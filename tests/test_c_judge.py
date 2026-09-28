@@ -62,8 +62,13 @@ def test_items_cover_drafts_and_digest(items):
     assert "just wanted to" in items[1].material and items[2].material.startswith("# Daily Digest")
 
 
-def test_skipped_without_a_judge_model(items):
-    run = judge_items(items)  # config/models.yaml: judge model is null until Shubham picks
+def test_skipped_without_a_judge_model(tmp_path, items):
+    from digest.config import load_models
+    from digest.llm import LLM, CostLog
+
+    m = load_models()   # the real config names a judge now; this test is about a config without one
+    m.roles["judge"] = m.roles["judge"].model_copy(update={"model": None, "family": None})
+    run = judge_items(items, llm=LLM(m, cache_dir=tmp_path / "cache", cost_log=CostLog(tmp_path / "c.jsonl")))
     assert run.status == "skipped" and run.note == "no model configured" and not run.results
 
 

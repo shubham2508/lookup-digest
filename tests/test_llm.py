@@ -83,8 +83,10 @@ def test_session_and_unconfigured_roles(tmp_path):
     llm, _ = make(tmp_path, [])
     with pytest.raises(LLMSessionRole):
         llm.complete("generator", "p@v1", MSGS, Out)
+    m = load_models()
+    m.roles["judge"] = m.roles["judge"].model_copy(update={"model": None, "family": None})
     with pytest.raises(LLMRoleUnconfigured):
-        llm.complete("judge", "p@v1", MSGS, Out)
+        LLM(m, cache_dir=tmp_path / "cache", cost_log=CostLog(tmp_path / "c.jsonl"), client=FakeClient([])).complete("judge", "p@v1", MSGS, Out)
 
 
 def test_request_shape(tmp_path):

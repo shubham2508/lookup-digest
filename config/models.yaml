@@ -27,7 +27,9 @@ roles:
   # the linker role above is the fallback. Remove this line to run the linker on the LLM only.
   decider:      {model: typesafe/jev-1.13, family: typesafe}
   generator:    {model: claude-code-session, family: anthropic, reasoning_effort: null}
-  judge:        {model: null, family: null, reasoning_effort: medium}   # PENDING: picked after the Fable round below
+  # Shubham, 2026-09-29: DeepSeek V4.1 Flash (third family; $0.30 / $1.20 per 1M, structured output). The Fable
+  # calibration round below was skipped at submission; the judge's scores are reported, never gated.
+  judge:        {model: deepseek/deepseek-v4.1-flash, family: deepseek, reasoning_effort: null}
   # One-time calibration reference (Shubham, 2026-09-28): the first judging round runs on Fable so the cheap judge
   # can be compared against it. Never the judge of record (same family as the generator); the validator only
   # checks `judge`, so this role may be Anthropic.

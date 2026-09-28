@@ -9,7 +9,8 @@ def test_models_yaml_loads_and_pipeline_is_luna():
         assert m.role(r).model == "openai/gpt-6-luna", r
     assert m.role("compose").reasoning_effort == "high"
     assert m.role("generator").is_session
-    assert m.role("judge").model is None, "judge is pending Shubham's pick (OPEN_QUESTIONS.md #1)"
+    assert m.role("judge").model == "deepseek/deepseek-v4.1-flash" and m.role("judge").family == "deepseek", \
+        "Shubham's pick (OPEN_QUESTIONS.md #1): a third family"
 
 
 def test_family_rule():
