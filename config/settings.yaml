@@ -34,9 +34,6 @@ thresholds_default:
   family_conflict_lookahead_days: 2
   behavior_window_days: 30
 
-about_key_merge:
-  fuzzy_ratio: 0.85
-
 drafts:
   max_sentences: 3
   banned_phrases:
@@ -49,6 +46,9 @@ llm:
   max_workers: 8
   seed: 7
   max_retries_transport: 2
+  # Jev answers the linker's pick-one questions first; below this probability for its top answer it is unsure
+  # (dev: 'diligence call, moved Fri→Mon' vs the Fri event came back 0.49/0.51) and the LLM linker decides.
+  jev_min_probability: 0.7
 
 store:
   path_template: "runs/{world}/store.sqlite"

@@ -80,8 +80,10 @@ class Linker:
     ctx: object | None = None
     log: list[dict] = field(default_factory=list)
     decider: object | None = None   # compute/jev.JevDecider: Jev answers first; the LLM is the fallback
+    jev_min_p: float = 0.0          # pick-one questions where Jev's top probability is below this go to the LLM
 
-    def _jev(self, task: str, questions: list[LinkQuestion]) -> dict[str, list[str]] | None:
+    def _jev(self, task: str, questions: list[LinkQuestion], min_p: float = 0.0) -> tuple[dict[str, list[str]], list[LinkQuestion]] | None:
+        """Jev's picks, plus the questions it was unsure of (top probability below min_p) for the LLM to decide."""
         if self.decider is None:
             return None
         from .jev import JevError
@@ -93,22 +95,29 @@ class Linker:
                 self.ctx.degrade("compute", f"link:{task}", "jev_failed_fallback_llm", detail=str(e)[:200])
             return None
         out: dict[str, list[str]] = {}
+        unsure: list[LinkQuestion] = []
         for q in questions:
             choice, prob = picks.get(q.id, (None, 0.0))
+            if prob < min_p:
+                unsure.append(q)
+                continue
             out[q.id] = [choice] if choice else []
             self.log.append({"task": task, "question": q.id, "matches": out[q.id], "reason": f"jev p={prob:.2f}", "by": "jev"})
-        return out
+        return out, unsure
 
     def match(self, task: str, questions: list[LinkQuestion]) -> dict[str, list[str]]:
         """{question id → option ids judged the same thing}. Only options offered can come back."""
         questions = [q for q in questions if q.options]
         if not questions:
             return {}
-        jev = self._jev(task, questions)
+        jev = self._jev(task, questions, self.jev_min_p)
+        done: dict[str, list[str]] = {}
         if jev is not None:
-            return jev
+            done, questions = jev
+            if not questions:
+                return done
         if self.llm is None:
-            return {}
+            return done
         prompt = load_prompt("linker")
         text = prompt.render(task=TASKS[task], questions=json.dumps([q.model_dump() for q in questions], ensure_ascii=False))
         try:
@@ -117,14 +126,15 @@ class Linker:
         except LLMError as e:
             if self.ctx is not None:
                 self.ctx.degrade("compute", f"link:{task}", type(e).__name__, detail=str(e)[:200])
-            return {}
+            return done
         offered = {q.id: {o.id for o in q.options} for q in questions}
-        out: dict[str, list[str]] = {}
+        out: dict[str, list[str]] = dict(done)
         for a in r.output.answers:
             ok = [m for m in a.matches if m in offered.get(a.question_id, set())]
             if a.question_id in offered:
                 out[a.question_id] = ok
-                self.log.append({"task": task, "question": a.question_id, "matches": ok, "reason": a.reason})
+                self.log.append({"task": task, "question": a.question_id, "matches": ok, "reason": a.reason,
+                                 **({"by": "llm_after_unsure_jev"} if jev is not None else {})})
         return out
 
     def group_topics(self, by_kind: dict[str, list[dict]]) -> list[list[str]]:
@@ -145,8 +155,9 @@ class Linker:
                             ids[oid] = other["key"]
                             opts.append(LinkOption(id=oid, text=f"{other['key']}: {other['text']}"))
                     qs.append(LinkQuestion(id=f"q{len(qs)}|{row['key']}", item=f"{row['key']}: {row['text']}", options=opts))
-            jev = self._jev("topics", qs)
-            if jev is not None:
+            res = self._jev("topics", qs)   # topic grouping keeps every Jev pick (no unsure fallback)
+            if res is not None:
+                jev = res[0]
                 groups = []
                 for q in qs:
                     for m in jev.get(q.id, []):

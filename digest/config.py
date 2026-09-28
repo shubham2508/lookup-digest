@@ -108,10 +108,6 @@ class ThresholdsDefault(BaseModel):
     behavior_window_days: int = 30
 
 
-class AboutKeyMerge(BaseModel):
-    fuzzy_ratio: float = 0.85
-
-
 class DraftsCfg(BaseModel):
     max_sentences: int = 3
     banned_phrases: list[str] = Field(default_factory=list)
@@ -122,6 +118,7 @@ class LLMCfg(BaseModel):
     max_workers: int = 8
     seed: int | None = 7
     max_retries_transport: int = 3
+    jev_min_probability: float = 0.7
 
 
 class StoreCfg(BaseModel):
@@ -137,7 +134,6 @@ class Settings(BaseModel):
     calendar: CalendarCfg = Field(default_factory=CalendarCfg)
     freshness: FreshnessCfg = Field(default_factory=FreshnessCfg)
     thresholds_default: ThresholdsDefault = Field(default_factory=ThresholdsDefault)
-    about_key_merge: AboutKeyMerge = Field(default_factory=AboutKeyMerge)
     drafts: DraftsCfg = Field(default_factory=DraftsCfg)
     llm: LLMCfg = Field(default_factory=LLMCfg)
     store: StoreCfg = Field(default_factory=StoreCfg)

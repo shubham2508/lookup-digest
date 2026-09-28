@@ -525,7 +525,10 @@ def contradictions(ci: ComputeInputs) -> list[Candidate]:
                 continue
             if sm.previous_when and sm.previous_when.resolved and abs((e.start - sm.previous_when.resolved).total_seconds()) > 86400 * 2:
                 continue   # the calendar event is a different meeting
-            out.append(_mk("contradiction", ci.canon(p.about[0]) if p.about else f"meeting:{slugify(e.title)}",
+            # the contradiction is about the meeting, not the thread's broader topic: a ruling on "which date is right"
+            # must not attach to every item of the deal (rulings match exact keys)
+            about = next((ci.canon(a) for a in p.about if a.startswith("meeting:")), f"meeting:{slugify(e.title)}")
+            out.append(_mk("contradiction", about,
                            [ci.slug(a) or "" for a in (att & parts) - ci.world.owner_emails],
                            {"kind": "schedule", "email_says": sm.when.resolved.isoformat(), "email_raw": sm.when.raw,
                             "email_action": sm.action, "calendar_says": e.start.isoformat(), "event_uid": e.uid,

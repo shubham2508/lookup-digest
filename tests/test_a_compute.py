@@ -314,6 +314,8 @@ def test_declined_meeting_fallout_and_schedule_contradiction():
     con = [c for c in types(r.candidates, "contradiction") if c.facts["kind"] == "schedule"]
     assert len(con) == 1 and con[0].facts["calendar_says"].startswith("2026-09-25T13:00") and con[0].facts["email_says"].startswith("2026-09-28T10:00")
     assert {e.source_id for e in con[0].evidence} == {"msg:<m2>", "event:dil"} and "calendar" in con[0].source_dependencies
+    assert con[0].about == "meeting:ipv-diligence-call", "keyed by the meeting, not the thread's deal topic"
+    assert con[0].facts["calendar_day"] == "tomorrow (Fri)" and con[0].facts["email_day"] == "Mon 28 Sep"
     assert types(r.candidates, "approval_pending"), "an approval ask to Avery is approval_pending"
 
 
@@ -396,3 +398,18 @@ def test_deep_work_block_windows_only_on_block_days():
     from digest.compute.signals import block_windows
     blocks = [DeepWorkBlock(days=["TUE", "THU"], start="09:00", end="11:00")]
     assert len(block_windows(blocks, date(2026, 9, 24), TZ)) == 1 and block_windows(blocks, date(2026, 9, 25), TZ) == []
+
+
+def test_unsure_jev_pick_goes_to_the_llm_linker():
+    from digest.compute.linker import Linker, LinkOption, LinkQuestion
+
+    class StubJev:   # confident "none" on q1, a coin flip on q2
+        def pick(self, task, instructions, questions):
+            return {"q1": (None, 0.95), "q2": (None, 0.51)}
+
+    qs = [LinkQuestion(id="q1", item="email (moved): budget review; now Tuesday", options=[LinkOption(id="e1", text="Hiring sync · Tue")]),
+          LinkQuestion(id="q2", item="email (moved): diligence call; now Monday", options=[LinkOption(id="e2", text="Partner diligence call · Fri")])]
+    lk = Linker(_LLM, None, decider=StubJev(), jev_min_p=0.7)
+    out = lk.match("email_meeting_to_event", qs)
+    assert out["q1"] == [] and out["q2"] == ["e2"], "the confident pick stands; the unsure one is the LLM's call"
+    assert [x.get("by") for x in lk.log] == ["jev", "llm_after_unsure_jev"]

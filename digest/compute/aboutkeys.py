@@ -40,7 +40,7 @@ class AboutMerger:
     Which keys name the same thing is decided by the linker (an LLM call, OPEN_QUESTIONS #16), never by word
     similarity; without the linker only identical canonical keys merge."""
 
-    def __init__(self, fuzzy_ratio: float = 0.85, generic_entities: set[str] | None = None):
+    def __init__(self, generic_entities: set[str] | None = None):
         self.keys: dict[str, _Key] = {}
         self.texts: dict[str, list[str]] = {}
         self.generic_entities: set[str] = set(generic_entities or ())

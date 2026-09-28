@@ -97,7 +97,7 @@ def compute_world(world: NormalizedWorld, extractions: list[Extraction], profile
                   as_of: datetime, llm=None, ctx=None, decider=None) -> ComputeResult:
     from .linker import Linker
 
-    linker = Linker(llm, ctx, decider=decider)
+    linker = Linker(llm, ctx, decider=decider, jev_min_p=settings.llm.jev_min_probability)
     directory = build_contacts(world, extractions, profile, linker)
     _inherit_org_tiers(directory, world.owner_emails)
     behavior_stats(directory, world, as_of, settings.thresholds_default.behavior_window_days)
