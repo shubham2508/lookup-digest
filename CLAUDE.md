@@ -102,13 +102,7 @@ Default `--as-of` for real use is now; for worlds, the manifest lists run days.
 
 If time runs short, shrink the held-out world and M9 first. Never cut eval.
 
-**Deadline (set 2026-09-28):** the repo is submitted the morning of **2026-09-29**; the walkthrough is the following week. Cut line for the submission, in priority order:
-1. `digest run` produces a digest end to end (A M5), on `data/dev` or, if dev data is late, on `tests/fixtures/mini`.
-2. The dev world is generated with all 16 storylines and every planted trap; background filler may be reduced (B M2 pass 1, see `docs/handoffs/B-data.md`).
-3. `digest eval` writes one report with P0 recall, trap assertions and must-not rate (C M6).
-4. README.md, DESIGN.md (with the scheduling design), sessions/.
-
-Deferred to the walkthrough week: held-out world, rulings loop and `simulate` (M9), the full ~500-email background, customize suite and honesty variants (M7), the judge calibration round, the naive baseline unless it is cheap.
+**Deadline (set 2026-09-28):** the full scope, M0 through M10, is built today, 2026-09-28; the repo is submitted the morning of 2026-09-29; the walkthrough is the following week. Nothing is deferred; the milestone order above stands. Held-out anchor: 2026-03-26.
 
 ## Working style
 

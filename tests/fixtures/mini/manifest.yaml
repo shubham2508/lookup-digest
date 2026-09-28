@@ -44,6 +44,8 @@ items:
   - source_id: nl-scbrief-212
     kind: newsletter
     category: newsletters
+    messages:
+      - {message_id: "<20260923-0700.brief@scbrief.example>", day: 29, time: "07:00", from_email: brief@scbrief.example, to: [avery@tessera.io]}
     expected:
       type: newsletter
       news_items:
@@ -54,6 +56,8 @@ items:
     kind: automated
     category: hiring
     storyline: S8
+    messages:
+      - {message_id: "<20260922-0915.dse@docusign.net>", day: 28, time: "09:15", from_email: dse@docusign.net, to: [avery@tessera.io]}
     expected:
       type: automated
       automated: {system: DocuSign, action_bearing: true, action_kind: signature, about: offer:mei-tanaka}
@@ -62,11 +66,15 @@ items:
     category: saas_marketing
     must_not_surface: true
     must_not_reason: marketing
+    messages:
+      - {message_id: "<20260921-1000.hello@mail.rippleboard.example>", day: 27, time: "10:00", from_email: hello@mail.rippleboard.example, to: [avery@tessera.io]}
     expected: {type: marketing}
   - source_id: t-sam-daycare
     kind: thread
     category: personal
     storyline: S11
+    messages:
+      - {message_id: "<20260923-2110.sam@parkfamily.example>", day: 29, time: "21:10", from_email: sam@parkfamily.example, to: [avery@tessera.io], beat_ref: S11.b2}
     expected:
       type: human_thread
       domain: personal

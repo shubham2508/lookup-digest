@@ -62,21 +62,34 @@ class RunContext:
     variant: str | None = None
     customize: Path | None = None
     runs_dir: Path | None = None
+    baseline: bool = False
     run_dir: Path = field(init=False)
     cost_log: CostLog = field(init=False)
     degradations: list[dict] = field(default_factory=list)
     timings: dict[str, float] = field(default_factory=dict)
     started_at: float = field(default_factory=time.time)
 
+    @property
+    def suffix(self) -> str | None:
+        """Run-dir suffix: <variant>, customize-<stem>, baseline, joined with '+' when combined (OPEN_QUESTIONS #7c)."""
+        parts = []
+        if self.variant:
+            parts.append(self.variant)
+        if self.customize:
+            parts.append(f"customize-{Path(self.customize).stem}")
+        if self.baseline:
+            parts.append("baseline")
+        return "+".join(parts) or None
+
     def __post_init__(self) -> None:
         base = self.runs_dir or RUNS_DIR
-        self.run_dir = base / self.world / run_dir_name(self.as_of, self.variant)
+        self.run_dir = base / self.world / run_dir_name(self.as_of, self.suffix)
         self.run_dir.mkdir(parents=True, exist_ok=True)
         self.cost_log = CostLog(self.run_dir / ARTIFACTS["cost_log"])
 
     @property
     def run_id(self) -> str:
-        return f"{self.world}/{run_dir_name(self.as_of, self.variant)}"
+        return f"{self.world}/{run_dir_name(self.as_of, self.suffix)}"
 
     # ------------------------------------------------------------------ artifacts
     def path(self, artifact: str) -> Path:
@@ -126,6 +139,7 @@ class RunContext:
         self.write_jsonl("degradations", self.degradations)
         summary = {
             "run_id": self.run_id, "world": self.world, "as_of": self.as_of.isoformat(), "variant": self.variant,
+            "baseline": self.baseline, "suffix": self.suffix,
             "customize": str(self.customize) if self.customize else None, "timings_s": self.timings,
             "wall_s": round(time.time() - self.started_at, 3), "cost_usd": totals["cost_usd"],
             "llm_calls": totals["calls"], "llm_cached": totals["cached"], "degradations": len(self.degradations),

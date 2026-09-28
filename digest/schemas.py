@@ -592,6 +592,77 @@ class CustomizeOverrides(Model):
     not_understood: bool
 
 
+# ----------------------------------------------------------------------------- reduce / materialize / verify artifacts (code-produced; OPEN_QUESTIONS #7a)
+class ReduceItem(Model):
+    """One surviving item after reduce (architecture §7): merged by about key, sorted, capped."""
+    id: str = Field(description="stable item id; compose refers to items by this id")
+    about: AboutKey
+    candidate_ids: list[str]
+    candidate_types: list[CandidateType] = Field(default_factory=list)
+    priority: Priority
+    section: Section
+    due_today: bool = False
+    confidence: Confidence = "medium"
+    why: str = Field(default="", description="the why-now line of the highest-priority triage result")
+    citations: list[Evidence] = Field(default_factory=list)
+    proposed_actions: list[ProposedAction] = Field(default_factory=list)
+    ambiguity: Ambiguity | None = None
+    entities: list[str] = Field(default_factory=list)
+    times_surfaced: int = 0
+    freshness_cap: FreshnessCap = "none"
+
+
+class AboutMerge(Model):
+    canonical: str
+    merged: list[str]
+    reason: str = Field(default="", description="fuzzy-ratio | shared-entity-and-evidence")
+
+
+class ReduceResult(Model):
+    items: list[ReduceItem]
+    overflow: list[str] = Field(default_factory=list, description="item ids beyond K, rendered as 'Also pending'")
+    about_merges: list[AboutMerge] = Field(default_factory=list)
+    dropped: list[str] = Field(default_factory=list, description="candidate ids with include == false")
+
+
+class MaterializedAction(Model):
+    """One rendered action block (architecture §9.3), one line of actions.jsonl."""
+    item_id: str
+    type: ActionType
+    target: str | None = None
+    recipient_name: str | None = None
+    recipient_category: RelationshipHint | None = None
+    brief: str = ""
+    brief_assumptions: list[str] = Field(default_factory=list)
+    text: str = Field(default="", description="the rendered action block as it appears in the digest")
+    draft: str | None = Field(default=None, description="draft body for reply / forward_delegate / decide, else null")
+    assumptions: list[str] = Field(default_factory=list)
+    evidence: list[Evidence] = Field(default_factory=list)
+    llm: bool = Field(default=False, description="true when the materializer LLM wrote the text")
+
+
+class VerifyViolation(Model):
+    rule: int = Field(description="architecture §8 rule number, 1–11")
+    item_id: str | None = None
+    detail: str
+    fix: Literal["fixed", "dropped", "unresolved"]
+
+
+class VerifyStats(Model):
+    words: int = 0
+    budget: int = 0
+    header_present: bool = False
+    items: int = 0
+    items_cited: int = 0
+    citations_total: int = 0
+    citations_resolved: int = 0
+
+
+class VerifyResult(Model):
+    violations: list[VerifyViolation] = Field(default_factory=list)
+    stats: VerifyStats = Field(default_factory=VerifyStats)
+
+
 LLM_OUTPUT_MODELS: dict[str, type[Model]] = {
     "ExtractorOutput": ExtractorOutput,
     "TriageResult": TriageResult,

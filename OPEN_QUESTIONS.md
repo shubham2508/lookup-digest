@@ -20,85 +20,11 @@ Judge plan (Shubham, 2026-09-28): the first judging round runs on Fable via the 
 
 OpenRouter spend on this config ≈ $4–5 (pipeline ≈ $3, judge ≈ $1–1.6, sim_avery ≈ 0). Generation costs nothing on OpenRouter.
 
-### 2. Anchor date for `heldout` — needed at M8 (dev is decided: 2026-09-24, see bottom)
+### 4. Storyline review — M1 gate (Data session) — **drafted, waiting on Shubham**
 
-Day 30 must be a Thursday. Worlds are relative, so any Thursday works; the only real choice is whether the 30-day window crosses a DST change (PT offset flips −07:00 ↔ −08:00 mid-world, which exercises date parsing).
+All 16 files in `world/dev/storylines/` are drafted with 5 run-day expectations and assertions each (`reviewed: false`). The orchestrator's structural pre-review found every storyline complete against the checklist in `docs/handoffs/B-data.md`. Shubham approves (or lists changes) and the orchestrator flips `reviewed: true`; then `Track B, M2` renders the full world.
 
-| Option | day 30 | day 1 | DST crossing | Note |
-|---|---|---|---|---|
-| dev A | Thu 2026-09-24 | Wed 2026-08-26 | none | "the last 30 days" as of setup; all PDT |
-| dev B | Thu 2026-10-22 | Wed 2026-09-23 | none | recent at walkthrough time |
-| heldout A | Thu 2026-03-26 | Wed 2026-02-25 | spring-forward on Mar 8 (day 12) | in the past |
-| heldout B | Thu 2026-11-12 | Wed 2026-10-14 | fall-back on Nov 1 (day 19) | future-dated files |
-
-**Decided for dev:** option A, 2026-09-24. **Suggestion for heldout:** option A, 2026-03-26, so held-out carries the DST flip in its history (not in its run days) as a fair extra stress; both are past dates, so file mtimes look normal. Decide at M8.
-
-### 3. Held-out world size — needed at M8
-
-Options: full ~500 emails · minimum ~150. Cost is now session time, not API spend.
-**Suggestion:** full. The assignment says "synthetic data sets", plural, and a small held-out world weakens the anti-overfitting story.
-
-### 4. Storyline review — M1 gate (Data session)
-
-Every `expectations:` block in `world/dev/storylines/*.yaml` needs `reviewed: true` from Shubham before `digest generate` will run. Nothing to decide yet; this is a reminder that it is the largest single block of Shubham's time (~1–2 h of careful reading).
-
-### 6. Track A · M3 contract notes (A-product, 2026-09-28) — confirm or redirect; implemented as suggested so integration is not blocked
-
-| # | What · where | Options | Implemented (suggestion) |
-|---|---|---|---|
-| 6a | **Thread and source ids** for `extractions.jsonl` / evidence. No spec fixes the format; Track C's scorer must join my ids to the manifest. | (1) `thread:<root Message-ID without brackets>`, root = earliest real message; (2) opaque hash; (3) generator-assigned `t-0142` (the product can't know it) | (1). Evidence ids as the schema says: `msg:<Message-ID>` with brackets, `note:notes/<file>.md#L<n>`, `task:<slug-of-title>`; `Extraction.source_id` is `thread:…` / `note:notes/…` / `task:…`. Forwarded messages get synthetic ids `<fwdN.<parent id>>` and live in the `messages` table, so citations resolve. |
-| 6b | **Avery's email address.** The extractor input lists it, `profile.md` never states it, and `config/` is orchestrator-owned. | (1) detect from the data: the address whose display name matches `ProfileConfig.person` in From/To/Cc/ICS CN, else the most frequent recipient; (2) add `owner_email` to `settings.yaml`; (3) add it to `profile.md` (verbatim from the assignment, so no) | (1), logged in `run.json` as `owner_email`. Happy to add (2) as an override if you want it explicit. |
-| 6c | **`tasks.md` staleness via file mtime does not survive `git clone`** (mtime = checkout time, so the planted "12 days old" only holds on the generating machine). | (1) generator writes a sidecar or header line (`<!-- last-modified: … -->`) that ingest prefers over mtime; (2) accept: staleness is only exercised on the generating machine; (3) `digest generate` re-touches mtimes and the README says to run it after cloning | Ingest reads mtime today. Suggest (1) for B; A adds the header parse in a few lines once the format is named. |
-| 6d | **Honesty variants live in ingest** (data_generation §10: `stale_inbox` = ignore mail after as_of−30h, `no_notes` = notes dir hidden, `corrupt_ics` = work.ics truncated at half). Implemented now as run conditions in `digest/ingest/loader.py` because the loader had to handle missing/unreadable sources anyway. | keep · move to eval-side data mutation | keep (zero extra code in M7; C's assertions can rely on `run.json.freshness` and `degradations.jsonl`). |
-| 6e | **`Ball.evidence` / `Automated.evidence` are required singletons**, so "drop the fact" can't apply when only the quote is bad. | (1) replace with a verbatim span from the right source and log `evidence_replaced`; (2) drop the whole extraction; (3) relax the schema to optional | (1). Logged per item in `degradations.jsonl` and counted in `run.json.extract.evidence_replaced`; the fact keeps verbatim, code-checked provenance. |
-| 6f | **`run` exit code at M3.** `digest run` executes compile → ingest → normalize → extract, writes `extractions.jsonl`, then exits 3 ("stages … not implemented (M4/M5)") so nothing mistakes it for a digest. `tests/test_cli.py` (orchestrator-owned) no longer lists `run` among the stubs; a `run` on a missing world exits 2 with a hint. | — | Note for the orchestrator; `eval` in the same test now fails because C's `eval/cli.py` also outgrew the stub (not touched by A). |
-
-### 7. Track C · M6 contract gaps (C-grader, 2026-09-28): confirm or redirect; built as suggested, isolated in `eval/scorer/artifacts.py`
-
-| # | What · where | Options | Implemented (suggestion) |
-|---|---|---|---|
-| 7a | **`reduce.json`, `actions.jsonl`, `verify.json` have no model in `digest/schemas.py`**, but the scorer needs item ids → about/priority/citations, drafts per recipient, and verify drops/stats. | (1) orchestrator pins them as Pydantic models in `digest/schemas.py`; (2) leave free-form, C adapts at integration | (1), with the shapes in the `eval/scorer/artifacts.py` docstring: reduce `{items:[{id, about, candidate_ids, priority, section, confidence, citations, proposed_actions, ambiguity, entities}], overflow, about_merges}`; actions `{item_id, type, target, recipient_name, recipient_category, brief, brief_assumptions, text, draft, assumptions, evidence}`; verify `{violations:[{rule, item_id, detail, fix: fixed\|dropped\|unresolved}], stats:{words, budget, header_present, items, items_cited, citations_total, citations_resolved}}`. The reader tolerates missing keys and files. |
-| 7b | **Every manifest item needs `messages[].message_id`**: the scorer maps product evidence to manifest items only through them (A's ids in 6a are resolved this way). The fixture manifest labels 2 of 6 items; for unlabeled items absence checks pass vacuously (the report warns). Notes and tasks: the manifest `source_id` should use A's forms, `note:notes/<file>.md` and `task:<slug-of-title>`. | (1) B emits messages for every thread/newsletter/automated/marketing item, and the fixture manifest gets them (orchestrator); (2) scorer re-parses `data/` headers | (1). Tests patch the four missing fixture labels in `tests/c_helpers.py`. |
-| 7c | **Run-dir names for customize and baseline runs.** `RunContext` names a dir by as_of + variant only, so a `--customize` run overwrites the default run of that day. | (1) `digest run --customize …/x.md` uses variant `customize-x`, `digest baseline` uses `baseline`; (2) a separate world dir per mode | (1): the scorer looks for `…_customize-<stem>/` and `…_baseline/`. |
-| 7d | **About-key merges are not logged in any artifact**, so the §2.2 merge-accuracy metric can't be computed. | (1) compute writes `about_merges: [{canonical, merged:[…]}]` into `reduce.json`; (2) a new artifact | (1). Until then the report shows "not scoreable". |
-| 7e | **Assertion arg shapes** the enum comments leave open (defined in the `eval/scorer/assertions.py` docstring): every item-level kind takes the selectors `about` (+`cites_any`) · `source_id` · `type` (str or list, prefix match) · `category` · `source_kind`; phrases may be lists of alternatives; `item_present.position_max`, `draft_contains.require_draft`, `no_draft_to.rule\|category`, `priorities_only.or_categories`, `ruling_applied.expect`, `content_overrides_ruling.priority_max`, `injection_not_acted.require_flag`. | B authors manifest assertions with these · redirect | B uses them; the customize suite (`eval/customize_suite.yaml`) already does. |
-| 7f | **`tests/test_cli.py` (orchestrator-owned)**: `eval` and `simulate` removed from the stub list, since they are implemented now (their tests are in `tests/test_c_report.py`). | — | Note for the orchestrator. |
-
-### 8. Business-day counting rule for `quiet_thread` (Track B, M1) — needed before A's M4 and B's M2
-
-**What:** `investor_quiet_business_days: 3` is not defined precisely (architecture §6.4 says "business days since last inbound"). S3's boundary depends on it: Marcus's message is Fri day 24 17:52.
-**Where:** `digest/compute` (Track A), `world/dev/storylines/S03-marcus-quiet-weekend.yaml`, `tests/test_b_world.py::test_s3_business_day_boundary`.
-**Options:** (a) weekday dates strictly after the message date and strictly before the run date (fully elapsed business days) → Sun 0, Mon 0, Tue 1, Wed 2, **Thu 3** → present on day 30 only. (b) also count the run date (dates in (msg, run]) → Wed 3 → present on days 29 and 30. (c) count the message date if sent during business hours → shifts by one more day.
-**Suggestion:** (a). At 06:00 the run day has not started, and the profile says "after three business days". The S3 storyline and the manifest are written for (a); if A picks (b), S3's `absent` on day 29 must move to day 28 (a one-line change in the storyline).
-
-### 9. Canonical about keys for computed candidates (Track B, M1) — needed before B's M2 manifest emit
-
-**What:** items with no source thread (cadence drops, recruiter patterns, calendar conflicts, profile drift, stale sources) need an about key so the manifest and the pipeline agree. The `kind` vocabulary is fixed, but the slug is not.
-**Where:** `world/dev/README.md` (proposed convention), `digest/compute` (Track A), `eval/scorer` (Track C).
-**Options:** (a) the convention in `world/dev/README.md`: `other:<org>-cadence`, `other:recruiter-<org>`, `meeting:<event-slug>` / `family:<event-slug>` for calendar conflicts (slug from the event title), `other:profile-<field>`, `other:stale-<source>`; (b) leave the slug to compute and have the scorer match candidates by `type` + entity instead of by about key.
-**Suggestion:** (a) for the manifest plus (b) as the scorer's fallback: match an expected candidate by type and by shared entity/citation when the about key does not fuzzy-match.
-
-### 10. Expected-item matching should fall back to citations (Track B, M1) — for Track C's scorer
-
-**What:** `ExpectedItem.about` is the item identity, but the extractor names about keys freely (S6's forward may be keyed `invoice:northstar:…` or `renewal:northstar`; the S11 daycare closure and pediatrician may be composed into one item). A strict about-key match would score correct digests as misses.
-**Where:** `eval/scorer` (C), `world/dev/storylines/*` (`cites_any` is filled everywhere for this reason).
-**Options:** (a) match on fuzzy about key only; (b) match if the about key fuzzy-matches **or** any rendered citation is in `cites_any`; (c) match only on citations.
-**Suggestion:** (b). Also treat "present" as full item, one-liner, or "Also pending" line (README convention).
-
-### 11. Cadence formula edge cases (Track B, M1) — for A's M4 unit tests
-
-**What:** S6 has one Grace inbound in days 21–30 (day 24), so the "recent median gap" has zero or one pair depending on whether the gap spanning day 20→24 counts as recent. S7's Nadia has 8 inbound after the handover.
-**Where:** `digest/compute` (cadence_drop), `world/dev/storylines/S06-northstar-cadence.yaml`, `S07`.
-**Suggestion:** assign each gap to the window of its later message; if the recent window has no complete gap, use the current gap (as_of − last inbound) as the recent value. With that, S6 gives baseline ≈1.2 d, recent ≈3.8 d (or the current gap), ratio ≥ 3, and the boundary falls between day 27 (2.85 d) and day 28 (3.85 d). Merge predecessor + successor at the same org/role for S7 (spec) — without the merge, Simon shows a false drop and Nadia alone sits at ratio ≈2.0, a coin flip.
-
-### 12. Storyline S2: Avery had the last word, contradiction must still surface (Track B, M1) — confirm the intent
-
-**What:** In S2 Avery confirms "Monday 10 works" by email, so the thread is closed by Avery, but the calendar still holds Friday. The digest must surface the calendar-vs-email contradiction (profile: "tell me, don't pick one") even though the "threads where I had the last word" rule would hide the thread. The contradiction comes from the calendar join, not from the thread's ball.
-**Where:** `S02-diligence-call-moved.yaml`, `digest/compute` contradiction (a), triage `include` rules.
-**Options:** (a) keep as drafted (harder, more realistic: invites do go stale after an email reschedule); (b) make Avery not reply, so the thread is also an open ask (easier).
-**Suggestion:** (a). If Shubham prefers (b), delete beat S2.b3 and set `ball_awaiting: avery`.
-
-### 13. Judgment calls in the answer key that Shubham should confirm (Track B, M1)
+### 5. Judgment calls in the answer key that Shubham should confirm (Track B, M1) — part of the M1 review gate
 
 Recorded in the storylines as `notes:`; listed here so they are not missed during review:
 - S1: the **one thing on day 29** is the cap table (6 h overdue), over Priya's inference email (S13) and the diligence-call contradiction (S2).
@@ -111,6 +37,16 @@ Recorded in the storylines as `notes:`; listed here so they are not missed durin
 - Background: the injection email is a P2/P3 one-liner in Pulse (flagged), the press request P2, the tax notice P2, Jae Whitlock P3 "unsure", the wedding invite absent.
 
 ## Decided
+
+- **2026-09-28 · full scope, no cut line.** Everything through M10 is built today; submission tomorrow morning; walkthrough the following week. Nothing is deferred.
+- **2026-09-28 · held-out anchor = 2026-03-26** (Thursday = day 30; day 1 = Wed 2026-02-25; the window crosses the Mar 8 spring-forward on day 12, in the history, not in the run days). Held-out world is **full size** (~500 emails), same trap types, different disguises and names, written in a separate Data session.
+- **2026-09-28 · Track A M3 contract notes (#6), all accepted as implemented:** (6a) `Extraction.source_id` = `thread:<root Message-ID>` / `note:notes/<file>.md` / `task:<slug-of-title>`; evidence ids `msg:<Message-ID>` (with brackets), `note:…#L<n>`, `task:<slug>`, `event:<uid>`; forwarded messages get `<fwdN.<parent id>>`. (6b) Avery's address detected from the data, logged as `owner_email`. (6c) the generator writes `<!-- last-modified: <ISO> -->` as the first line of `tasks.md` and every note; ingest prefers it over mtime. (6d) honesty variants stay in ingest. (6e) a required singleton evidence with a bad quote is replaced by a verbatim span and logged as `evidence_replaced`. (6f) `tests/test_cli.py` updated.
+- **2026-09-28 · Track C M6 contract gaps (#7), all accepted:** (7a) `ReduceItem/ReduceResult`, `MaterializedAction`, `VerifyViolation/VerifyStats/VerifyResult` are pinned in `digest/schemas.py`; Track A writes `reduce.json`, `actions.jsonl`, `verify.json` in those shapes. (7b) every manifest email item carries `messages[].message_id`; the fixture manifest now does too; notes/tasks use A's source-id forms. (7c) `RunContext.suffix`: `--customize x.md` → `…_customize-x`, `digest baseline` → `…_baseline`, combined with `+`. (7d) compute/reduce writes `about_merges` into `reduce.json`. (7e) assertion arg shapes as defined in `eval/scorer/assertions.py`; Track B authors to them. (7f) done.
+- **2026-09-28 · business days (#8): option (a).** Weekday dates strictly after the message date and strictly before the run date. S3 stays as drafted.
+- **2026-09-28 · about keys for computed candidates (#9): (a) + (b).** The `world/dev/README.md` convention for the manifest; the scorer falls back to type + shared entity/citation when the key does not fuzzy-match. Track A uses the same slugs in compute.
+- **2026-09-28 · expected-item matching (#10): option (b).** Fuzzy about key **or** any rendered citation in `cites_any`; "present" = full item, one-liner, or "Also pending" line.
+- **2026-09-28 · cadence formula (#11): as suggested.** Each gap belongs to the window of its later message; if the recent window has no complete gap, use the current gap (as_of − last inbound); merge predecessor + successor at the same org/role. Track A implements exactly this with S6/S7 as the unit tests.
+- **2026-09-28 · S2 (#12): option (a),** keep as drafted; the contradiction comes from the calendar join, not the thread's ball.
 
 - **2026-09-28 · deadline:** the repo is submitted the morning of 2026-09-29; the walkthrough is the following week. Cut line recorded in CLAUDE.md ("Deadline") and `docs/handoffs/STATUS.md`. Building continues after submission until the walkthrough.
 - **2026-09-28 · dev anchor = 2026-09-24** (Thursday = day 30; day 1 = 2026-08-26; run days Sun 20 – Thu 24 Sept; all PDT, no DST crossing). `world/dev/world.yaml` carries `anchor: 2026-09-24`; `digest generate --anchor` overrides. Held-out anchor is decided separately at M8.

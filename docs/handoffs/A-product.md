@@ -2,7 +2,7 @@
 
 You are building **the product**: `digest/` and its prompts. The design is frozen; implement it.
 
-**Deadline:** the repo is submitted the morning of 2026-09-29. For the submission you must reach **M5**: `digest run` producing a real digest end to end, on `tests/fixtures/mini` at minimum and on `data/dev` when it lands. Prefer a working, honest pipeline over a complete one: if a stage is thin, make it degrade visibly (header note, `ctx.degrade`) rather than stop. M7–M9 wait for the walkthrough week.
+**Deadline:** everything is built today, 2026-09-28 (submission tomorrow morning). Order: M4 → M5 → M7 (customize compiler, honesty variants) → M8 (`digest baseline`) → M9 (rulings, `digest answer`, history/escalation). Keep each stage honest when thin: header note and `ctx.degrade`, never a crash. Contract rulings for your notes (#6) and the new artifact shapes (#7a, #7c, #7d) are in `OPEN_QUESTIONS.md` → Decided and `digest/schemas.py`.
 
 ## Read first, in this order
 1. `CLAUDE.md` (golden rules; the addendum at the bottom).
