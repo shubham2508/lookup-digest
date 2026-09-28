@@ -262,6 +262,63 @@ def read_source(world: str, sid: str) -> tuple[int, dict]:
             con.close()
 
 
+VARIANT_WORDS = {"stale_inbox": "inbox 30h stale", "no_notes": "notes missing", "corrupt_ics": "work calendar broken"}
+
+
+def _step_words(args: list[str]) -> str:
+    """Plain words for one matrix step."""
+    a = args
+    if a[0] == "baseline":
+        return "naive baseline (one LLM call)"
+    if a[0] == "simulate":
+        return "5-day simulation (simulated Avery answers cards)"
+    if a[0] == "eval":
+        return "score everything → report"
+    at = a[a.index("--as-of") + 1] if "--as-of" in a else ""
+    try:
+        day = datetime.fromisoformat(at).strftime("%a %d %b")
+    except ValueError:
+        day = at
+    if "--variant" in a:
+        return f"{day} · broken data: {VARIANT_WORDS.get(a[a.index('--variant') + 1], a[a.index('--variant') + 1])}"
+    if "--customize" in a:
+        return f"{day} · customize: {Path(a[a.index('--customize') + 1]).stem.replace('_', ' ')}"
+    return f"{day} · normal digest"
+
+
+def matrix_progress(world: str) -> dict:
+    """Progress of the latest full matrix for a world, from its log: the planned steps in plain words, which are
+    done / failed, which one is running. Works for a matrix started from a terminal or from this page."""
+    import re
+
+    from eval.integrate import plan
+    from eval.manifest_schema import load_manifest
+
+    mpath = WORLD_MANIFESTS.get(world)
+    if not mpath or not mpath.exists():
+        return {"world": world, "steps": [], "active": False}
+    steps = plan(world, load_manifest(mpath))
+    logs = [p for p in (RUNS_DIR / world / "matrix.log", LAUNCH.log) if p.exists()]
+    if LAUNCH.log in logs and not (LAUNCH.args[:2] == ["eval", "--matrix"] and world in LAUNCH.args):
+        logs.remove(LAUNCH.log)
+    status: dict[int, str] = {}
+    if logs:
+        log = max(logs, key=lambda p: p.stat().st_mtime)
+        for m in re.finditer(r"^\[\s*(\d+)/(\d+)\]\s+(\w+)", log.read_text(encoding="utf-8", errors="replace"), re.M):
+            status[int(m.group(1))] = m.group(3)
+    active = LAUNCH.running() or Launch.external_busy()
+    out = []
+    for i, s in enumerate(steps, 1):
+        st = status.get(i, "pending")
+        out.append({"n": i, "words": _step_words(s.args), "status": st})
+    if active:
+        nxt = next((x for x in out if x["status"] == "pending"), None)
+        if nxt:
+            nxt["status"] = "running"
+    return {"world": world, "steps": out, "active": active and bool(status), "total": len(out),
+            "done": sum(1 for x in out if x["status"] in ("ok", "failed", "blocked", "skipped"))}
+
+
 def list_reports() -> list[dict]:
     if not REPORTS_DIR.exists():
         return []
@@ -334,6 +391,8 @@ class Handler(BaseHTTPRequestHandler):
             self._json(200, list_worlds())
         elif u.path == "/api/customize":
             self._json(200, list_customize())
+        elif u.path == "/api/progress":
+            self._json(200, matrix_progress(q.get("world", "dev")))
         elif u.path == "/api/subjects":
             self._json(200, thread_subjects(q.get("world", "dev")))
         elif u.path == "/api/source":
