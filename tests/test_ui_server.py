@@ -91,4 +91,13 @@ def test_worlds_list_run_mornings():
     assert mini["mornings"] and mini["mornings"][-1]["as_of"] == "2026-09-24T06:00" and "Thu" in mini["mornings"][-1]["label"]
     if "dev" in ws:
         assert [m["as_of"] for m in ws["dev"]["mornings"]][0] == "2026-09-20T06:00" and len(ws["dev"]["mornings"]) == 5
-    assert "profile/customize/weekend.md" in list_customize()
+    presets = list_customize()
+    assert any(c["path"] == "profile/customize/weekend.md" and c["text"] for c in presets)
+
+
+def test_custom_prompt_file(tmp_path, monkeypatch):
+    import ui.server as s
+    monkeypatch.setattr(s, "RUNS_DIR", tmp_path / "runs")
+    monkeypatch.setattr(s, "ROOT", tmp_path)
+    rel = s.save_custom_prompt("Only investors, under 120 words")
+    assert rel.startswith("runs/_ui/customize/only-investors-under-12") and (tmp_path / rel).read_text().startswith("Only investors")

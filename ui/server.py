@@ -55,11 +55,21 @@ class Launch:
             self.started = datetime.now().isoformat(timespec="seconds")
             return {"ok": True, "pid": self.proc.pid, "args": args}
 
+    @staticmethod
+    def external_busy() -> bool:
+        """A pipeline started outside the UI (a matrix in a terminal) is running: launching now would collide."""
+        try:
+            r = subprocess.run(["pgrep", "-f", "digest eval --matrix|cli.main run|cli.main simulate"], capture_output=True, text=True, timeout=5)
+        except Exception:  # noqa: BLE001 - no pgrep: don't block
+            return False
+        return bool(r.stdout.split())
+
     def status(self) -> dict:
         tail = ""
         if self.log.exists():
             tail = self.log.read_text(encoding="utf-8", errors="replace")[-4000:]
-        return {"running": self.running(), "returncode": None if self.proc is None else self.proc.poll(),
+        return {"running": self.running(), "external_busy": (not self.running()) and self.external_busy(),
+                "returncode": None if self.proc is None else self.proc.poll(),
                 "args": self.args, "started": self.started, "log": tail}
 
 
@@ -160,9 +170,96 @@ def list_worlds(data_dir: Path | None = None) -> list[dict]:
     return out
 
 
-def list_customize() -> list[str]:
+def list_customize() -> list[dict]:
+    """Preset customize prompts: path, short name, and the one-line text (so the UI can show and edit it)."""
     d = ROOT / "profile" / "customize"
-    return sorted(f"profile/customize/{p.name}" for p in d.glob("*.md")) if d.exists() else []
+    out = []
+    for p in sorted(d.glob("*.md")) if d.exists() else []:
+        text = p.read_text(encoding="utf-8", errors="replace").strip()
+        out.append({"path": f"profile/customize/{p.name}", "name": p.stem.replace("_", " "), "text": text})
+    return out
+
+
+def save_custom_prompt(text: str) -> str:
+    """A one-line instruction typed in the UI becomes runs/_ui/customize/<slug>.md, passed to --customize."""
+    import hashlib
+    import re
+
+    words = re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")[:24].strip("-") or "custom"
+    name = f"{words}-{hashlib.sha1(text.encode()).hexdigest()[:6]}"
+    path = RUNS_DIR / "_ui" / "customize" / f"{name}.md"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(text.strip() + "\n", encoding="utf-8")
+    return str(path.relative_to(ROOT))
+
+
+def _store(world: str):
+    import sqlite3
+
+    from digest.config import load_settings
+
+    path = ROOT / load_settings().store.path_template.format(world=world)
+    if not path.exists():
+        return None
+    con = sqlite3.connect(f"file:{path}?mode=ro", uri=True)
+    con.row_factory = sqlite3.Row
+    return con
+
+
+def thread_subjects(world: str) -> dict:
+    """thread_id → {subject, from, first} for readable labels."""
+    con = _store(world)
+    if con is None:
+        return {}
+    try:
+        rows = con.execute("SELECT thread_id, subject, from_addr, MIN(sent_at) AS first FROM messages GROUP BY thread_id").fetchall()
+        return {r["thread_id"]: {"subject": r["subject"], "from": r["from_addr"], "first": r["first"]} for r in rows}
+    finally:
+        con.close()
+
+
+def read_source(world: str, sid: str) -> tuple[int, dict]:
+    """The original text behind a citation: thread:/msg: → the email thread, note: → the note, task: → tasks.md,
+    event: → the calendar event."""
+    from digest.paths import data_dir
+
+    con = _store(world)
+    try:
+        if sid.startswith(("thread:", "msg:")):
+            if con is None:
+                return 404, {"error": "no store for this world; run a digest first"}
+            tid = sid
+            if sid.startswith("msg:"):
+                r = con.execute("SELECT thread_id FROM messages WHERE message_id=?", (sid[4:],)).fetchone()
+                if r is None:
+                    return 404, {"error": "message not in the store"}
+                tid = r["thread_id"]
+            msgs = []
+            for r in con.execute("SELECT data FROM messages WHERE thread_id=? ORDER BY sent_at", (tid,)):
+                m = json.loads(r["data"])
+                msgs.append({"id": m.get("message_id"), "from": f'{m.get("from_name") or ""} <{m.get("from_addr")}>'.strip(),
+                             "to": ", ".join(m.get("to") or []), "sent_at": m.get("sent_at"), "subject": m.get("subject"),
+                             "body": m.get("body_new") or "", "forwarded_by": m.get("forwarded_by")})
+            return 200, {"kind": "thread", "thread_id": tid, "messages": msgs, "highlight": sid[4:] if sid.startswith("msg:") else None}
+        if sid.startswith("note:"):
+            rel, _, line = sid[5:].partition("#L")
+            path = data_dir(world) / rel
+            if not path.exists():
+                return 404, {"error": f"{rel} not found"}
+            return 200, {"kind": "note", "path": rel, "text": path.read_text(encoding="utf-8", errors="replace"),
+                         "line": int(line) if line.isdigit() else None}
+        if sid.startswith("task:"):
+            path = data_dir(world) / "tasks.md"
+            return 200, {"kind": "tasks", "path": "tasks.md", "text": path.read_text(encoding="utf-8") if path.exists() else ""}
+        if sid.startswith("event:"):
+            if con is None:
+                return 404, {"error": "no store"}
+            r = con.execute("SELECT data FROM events WHERE uid=? LIMIT 1", (sid[6:],)).fetchone()
+            return (200, {"kind": "event", "event": json.loads(r["data"])}) if r else (404, {"error": "event not in store"})
+        return 400, {"error": "unknown source id"}
+    finally:
+        if con is not None:
+            con.close()
 
 
 def list_reports() -> list[dict]:
@@ -237,6 +334,11 @@ class Handler(BaseHTTPRequestHandler):
             self._json(200, list_worlds())
         elif u.path == "/api/customize":
             self._json(200, list_customize())
+        elif u.path == "/api/subjects":
+            self._json(200, thread_subjects(q.get("world", "dev")))
+        elif u.path == "/api/source":
+            code, obj = read_source(q.get("world", "dev"), q.get("id", ""))
+            self._json(code, obj)
         elif u.path == "/api/reports":
             if "name" in q:
                 code, obj = read_report(q["name"])
@@ -257,6 +359,9 @@ class Handler(BaseHTTPRequestHandler):
             self._json(400, {"error": "bad json"})
             return
         if u.path == "/api/launch":
+            text = (body.get("customize_text") or "").strip()
+            if text and not (body.get("customize") or "").strip():
+                body["customize"] = save_custom_prompt(text)
             args = launch_args(body)
             if args is None:
                 self._json(400, {"error": "world is required"})

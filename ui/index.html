@@ -3,333 +3,408 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Digest debug UI</title>
+<title>Daily Digest console</title>
 <style>
-  :root { --bg:#f5f6f8; --panel:#fff; --ink:#1b2430; --muted:#667085; --line:#e1e5ea; --accent:#1d4ed8; --code:#0b7a6e; --llm:#b7620a; --bad:#b42318; --ok:#067647; --soft:#f0f3f7; }
-  * { box-sizing: border-box; }
-  [hidden] { display:none !important; }
-  body { margin:0; font: 14px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; color:var(--ink); background:var(--bg); }
-  .layout { display:grid; grid-template-columns: 290px 1fr; height:100vh; }
-  aside { background:var(--panel); border-right:1px solid var(--line); padding:16px; overflow:auto; display:flex; flex-direction:column; gap:18px; }
-  main { padding:18px 22px; overflow:auto; }
-  .brand { font-weight:600; font-size:15px; }
-  .brand small { display:block; font-weight:400; color:var(--muted); font-size:12px; }
-  .step { display:flex; flex-direction:column; gap:8px; }
-  .step h3 { margin:0; font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); }
-  label { font-size:12px; color:var(--muted); display:flex; flex-direction:column; gap:3px; }
-  select, input, button { font:inherit; }
-  select, input { padding:7px 8px; border:1px solid var(--line); border-radius:6px; background:#fff; width:100%; }
-  button { padding:8px 12px; border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; }
-  button:hover:not(:disabled) { border-color:var(--ink); }
-  button.primary { background:var(--accent); color:#fff; border-color:var(--accent); }
-  button:disabled { opacity:.45; cursor:not-allowed; }
-  .row { display:flex; gap:6px; } .row > * { flex:1; }
-  details { border:1px solid var(--line); border-radius:6px; padding:6px 10px; }
-  details summary { cursor:pointer; font-size:12px; color:var(--muted); }
-  details[open] { padding-bottom:10px; } details .step { margin-top:8px; }
-  .hint { font-size:12px; color:var(--muted); margin:0; }
-  .status { font-size:12px; padding:8px 10px; border-radius:6px; background:var(--soft); }
-  .status.running { background:#eef4ff; color:var(--accent); } .status.fail { background:#fef3f2; color:var(--bad); } .status.done { background:#ecfdf3; color:var(--ok); }
-  .status pre { max-height:140px; margin:6px 0 0; font-size:11px; }
-  .list { display:flex; flex-direction:column; gap:2px; }
-  .list a { display:block; padding:6px 8px; border-radius:6px; text-decoration:none; color:var(--ink); }
-  .list a:hover { background:var(--soft); } .list a.active { background:#eef4ff; }
-  .list .meta { color:var(--muted); font-size:11px; }
-  .title { display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:6px; }
-  .title h1 { font-size:18px; margin:0; } .title .muted { font-size:12px; }
-  .stats { display:flex; gap:18px; flex-wrap:wrap; font-size:12px; color:var(--muted); margin-bottom:12px; }
-  .stats b { color:var(--ink); font-size:14px; display:block; }
-  .tabs { display:flex; gap:2px; border-bottom:1px solid var(--line); margin-bottom:14px; }
-  .tabs button { border:none; border-bottom:2px solid transparent; border-radius:0; background:none; padding:8px 12px; color:var(--muted); }
-  .tabs button.active { border-bottom-color:var(--accent); color:var(--ink); font-weight:600; }
-  .tabnote { font-size:12px; color:var(--muted); margin:-6px 0 12px; }
-  table { border-collapse:collapse; width:100%; font-size:13px; background:var(--panel); }
-  th, td { text-align:left; vertical-align:top; padding:6px 8px; border-bottom:1px solid var(--line); }
-  th { font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); background:var(--panel); position:sticky; top:0; }
-  tr.row:hover { background:var(--soft); cursor:pointer; }
-  tr.detail td { background:#fafbfc; }
-  pre { background:#fff; border:1px solid var(--line); border-radius:6px; padding:8px 10px; overflow:auto; font:12px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace; white-space:pre-wrap; word-break:break-word; max-height:460px; }
-  .pill { display:inline-block; padding:0 7px; border-radius:10px; font-size:11px; border:1px solid var(--line); white-space:nowrap; }
-  .pill.llm { color:var(--llm); border-color:var(--llm); } .pill.code { color:var(--code); border-color:var(--code); } .pill.bad { color:var(--bad); border-color:var(--bad); } .pill.ok { color:var(--ok); border-color:var(--ok); }
-  .doc { max-width:780px; background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:16px 24px; }
-  .doc h1 { font-size:20px; } .doc h2 { font-size:15px; margin-top:20px; } .doc li { margin:6px 0; } .doc hr { border:none; border-top:1px solid var(--line); }
-  .toolbar { display:flex; gap:8px; align-items:center; margin-bottom:10px; flex-wrap:wrap; font-size:12px; color:var(--muted); }
-  .toolbar input { width:260px; }
-  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-  .empty { color:var(--muted); padding:40px 0; text-align:center; }
-  @media (max-width: 900px) { .layout { grid-template-columns:1fr; height:auto; } aside { border-right:none; border-bottom:1px solid var(--line); } .grid2 { grid-template-columns:1fr; } }
+  :root { --bg:#f4f5f7; --panel:#fff; --ink:#18212b; --muted:#687384; --line:#e2e6eb; --accent:#2449c7; --accent-soft:#eaf0ff;
+          --code:#0b7a6e; --code-soft:#e5f5f2; --llm:#a85c0a; --llm-soft:#fcf1e3; --bad:#b42318; --bad-soft:#fdecea; --ok:#067647; --ok-soft:#e7f7ee; }
+  * { box-sizing:border-box; } [hidden] { display:none !important; }
+  body { margin:0; font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--ink); background:var(--bg); }
+  button, select, input { font:inherit; color:inherit; }
+  select, input[type=text] { padding:7px 9px; border:1px solid var(--line); border-radius:7px; background:#fff; }
+  button { padding:7px 13px; border:1px solid var(--line); border-radius:7px; background:#fff; cursor:pointer; }
+  button:hover:not(:disabled) { border-color:#9aa3b0; } button:disabled { opacity:.45; cursor:not-allowed; }
+  button.primary { background:var(--accent); border-color:var(--accent); color:#fff; font-weight:600; }
+  button.link { border:none; background:none; padding:0; color:var(--accent); cursor:pointer; font-size:12px; }
+  .muted { color:var(--muted); } .small { font-size:12px; }
+
+  /* top bar */
+  .bar { background:var(--panel); border-bottom:1px solid var(--line); padding:12px 20px; display:flex; flex-direction:column; gap:10px; }
+  .bar-row { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+  .brand { font-weight:700; margin-right:8px; }
+  .custom { flex:1; min-width:280px; }
+  .chips { display:flex; gap:6px; flex-wrap:wrap; align-items:center; }
+  .chip { font-size:12px; padding:3px 10px; border-radius:14px; border:1px solid var(--line); background:#fff; cursor:pointer; }
+  .chip.on { background:var(--accent-soft); border-color:var(--accent); color:var(--accent); }
+  .status { margin-left:auto; font-size:12px; padding:5px 10px; border-radius:14px; background:#eef0f3; cursor:pointer; max-width:420px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .status.running { background:var(--accent-soft); color:var(--accent); } .status.done { background:var(--ok-soft); color:var(--ok); } .status.fail, .status.busy { background:var(--bad-soft); color:var(--bad); }
+  .log { background:#0f1720; color:#d6dde6; font:12px/1.45 ui-monospace,Menlo,monospace; padding:10px 12px; border-radius:7px; max-height:220px; overflow:auto; white-space:pre-wrap; margin:0; }
+
+  /* layout */
+  .layout { display:grid; grid-template-columns:250px 1fr; min-height:calc(100vh - 110px); }
+  .rail { border-right:1px solid var(--line); padding:14px; display:flex; flex-direction:column; gap:18px; background:var(--panel); }
+  .rail h4 { margin:0 0 6px; font-size:11px; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); }
+  .runs a, .reports a { display:block; padding:6px 8px; border-radius:7px; color:var(--ink); text-decoration:none; }
+  .runs a:hover, .reports a:hover { background:#f2f4f7; } .runs a.on { background:var(--accent-soft); }
+  .runs .k { font-size:11px; color:var(--muted); }
+  .row2 { display:flex; gap:6px; } .row2 button { flex:1; }
+  main { padding:18px 24px 60px; min-width:0; }
+  .empty { color:var(--muted); text-align:center; padding:70px 0; }
+
+  .runhead h1 { font-size:19px; margin:0; display:flex; gap:10px; align-items:center; }
+  .stats { display:flex; gap:22px; margin:10px 0 14px; font-size:12px; color:var(--muted); flex-wrap:wrap; }
+  .stats b { display:block; font-size:16px; color:var(--ink); }
+  .tabs { display:flex; gap:4px; border-bottom:1px solid var(--line); margin-bottom:16px; }
+  .tabs button { border:none; border-radius:0; background:none; padding:9px 14px; border-bottom:2px solid transparent; color:var(--muted); }
+  .tabs button.on { color:var(--ink); border-bottom-color:var(--accent); font-weight:600; }
+  .pill { display:inline-block; font-size:11px; padding:1px 8px; border-radius:10px; border:1px solid var(--line); white-space:nowrap; font-weight:500; }
+  .pill.P0 { background:var(--bad-soft); border-color:var(--bad); color:var(--bad); } .pill.P1 { background:#fff4e5; border-color:#c4630b; color:#9a4d06; }
+  .pill.P2 { background:#eef2f7; } .pill.P3 { color:var(--muted); }
+  .pill.llm { background:var(--llm-soft); border-color:var(--llm); color:var(--llm); } .pill.code { background:var(--code-soft); border-color:var(--code); color:var(--code); }
+  .pill.ok { background:var(--ok-soft); border-color:var(--ok); color:var(--ok); } .pill.bad { background:var(--bad-soft); border-color:var(--bad); color:var(--bad); }
+
+  /* digest page */
+  .page { max-width:760px; background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:22px 30px 26px; }
+  .page h1 { font-size:21px; margin:0 0 8px; }
+  .fresh { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:6px; } .fresh span { font-size:11px; background:#f2f4f7; border-radius:10px; padding:2px 8px; color:var(--muted); }
+  .fresh span.warn { background:var(--bad-soft); color:var(--bad); }
+  .page h2 { font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin:24px 0 8px; padding-top:14px; border-top:1px solid var(--line); }
+  .onething { background:var(--accent-soft); border-radius:9px; padding:12px 16px; }
+  .item { padding:8px 0; } .item + .item { border-top:1px dashed var(--line); }
+  .item .what { font-weight:600; } .cite { font-size:11px; color:var(--muted); background:#f2f4f7; border-radius:5px; padding:1px 6px; margin-left:4px; white-space:nowrap; }
+  .act { margin:5px 0 0 14px; font-size:13px; } .act.task::before { content:"☐ "; } .act.go { color:#344054; }
+  .draft { margin:5px 0 0 14px; border-left:3px solid var(--accent); background:#f7f9ff; padding:6px 10px; border-radius:0 6px 6px 0; font-size:13px; }
+  .assume { margin:3px 0 0 14px; font-size:12px; color:var(--muted); }
+  .question { margin:5px 0 0 14px; font-size:13px; background:#fff8e6; border-radius:6px; padding:6px 10px; }
+  .page details { margin-top:18px; border-top:1px solid var(--line); padding-top:12px; }
+  .page details summary { cursor:pointer; color:var(--muted); font-size:13px; }
+  .page details li { font-size:13px; margin:4px 0; }
+  .plain { color:var(--muted); font-size:13px; }
+
+  /* why view */
+  .toolbar { display:flex; gap:10px; align-items:center; margin-bottom:12px; flex-wrap:wrap; }
+  .toolbar input { width:320px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:9px; margin-bottom:8px; }
+  .card > .head { display:flex; gap:10px; align-items:center; padding:10px 14px; cursor:pointer; }
+  .card > .head .t { flex:1; } .card.open > .head { border-bottom:1px solid var(--line); }
+  .group-title { font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin:18px 0 8px; }
+  .timeline { padding:10px 14px 14px; }
+  .step { display:grid; grid-template-columns:26px 1fr; gap:10px; padding:8px 0; }
+  .step + .step { border-top:1px solid #f0f2f5; }
+  .dot { width:24px; height:24px; border-radius:50%; font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; }
+  .dot.code { background:var(--code-soft); color:var(--code); } .dot.llm { background:var(--llm-soft); color:var(--llm); } .dot.data { background:#eef0f3; color:var(--muted); }
+  .step h5 { margin:0 0 4px; font-size:13px; display:flex; gap:8px; align-items:center; }
+  .kv { font-size:12px; color:#344054; } .kv span { display:inline-block; margin-right:12px; } .kv b { color:var(--muted); font-weight:500; }
+  .quote { font-size:13px; border-left:3px solid var(--line); padding-left:8px; margin:4px 0; }
+  .sub { font-size:12px; margin:4px 0; padding:6px 8px; background:#fafbfc; border-radius:6px; }
+
+  /* llm calls */
+  .grp { background:var(--panel); border:1px solid var(--line); border-radius:9px; margin-bottom:10px; }
+  .grp > summary { padding:10px 14px; cursor:pointer; display:flex; gap:10px; align-items:center; list-style:none; }
+  .grp > summary::-webkit-details-marker { display:none; }
+  .grp > summary .t { font-weight:600; flex:1; }
+  .call { border-top:1px solid var(--line); }
+  .call > .head { display:grid; grid-template-columns:34px 1fr 60px 90px 70px 70px; gap:8px; padding:7px 14px; cursor:pointer; font-size:13px; align-items:center; }
+  .call > .head:hover { background:#f7f8fa; } .call.flash > .head { background:#fff6d6; }
+  .call .body { padding:4px 14px 14px; }
+  pre { background:#fbfcfd; border:1px solid var(--line); border-radius:7px; padding:9px 11px; overflow:auto; font:12px/1.45 ui-monospace,SFMono-Regular,Menlo,monospace; white-space:pre-wrap; word-break:break-word; max-height:440px; margin:6px 0; }
+
+  /* source drawer */
+  .drawer { position:fixed; top:0; right:0; bottom:0; width:min(620px, 96vw); background:var(--panel); border-left:1px solid var(--line); box-shadow:-8px 0 24px rgba(0,0,0,.08); padding:16px 18px; overflow:auto; z-index:10; }
+  .drawer .msg { border:1px solid var(--line); border-radius:8px; padding:10px 12px; margin:10px 0; }
+  .drawer .msg.hl { border-color:var(--accent); background:#f7f9ff; }
+  .drawer .meta { font-size:12px; color:var(--muted); }
+  .drawer .body { white-space:pre-wrap; font-size:13px; margin-top:6px; }
+  .noteline { background:#fff3c4; }
+  table.rep { border-collapse:collapse; margin:8px 0; font-size:13px; } table.rep td, table.rep th { border:1px solid var(--line); padding:4px 8px; }
+  @media (max-width:900px) { .layout { grid-template-columns:1fr; } .rail { border-right:none; border-bottom:1px solid var(--line); } }
 </style>
 </head>
 <body>
-<div class="layout">
-  <aside>
-    <div class="brand">Daily Digest<small>run, inspect, score</small></div>
 
-    <div class="step">
-      <h3>1 · Pick a world</h3>
-      <select id="world"></select>
-    </div>
-
-    <div class="step" id="launch">
-      <h3>2 · Try one morning</h3>
-      <label>Morning (06:00 PT)<select id="as_of"></select></label>
-      <details>
-        <summary>Options: variant, customize, tag</summary>
-        <div class="step">
-          <label>Variant (honesty test)
-            <select id="variant">
-              <option value="">none: normal digest</option>
-              <option value="stale_inbox">stale_inbox: last 30h of mail missing</option>
-              <option value="no_notes">no_notes: notes folder missing</option>
-              <option value="corrupt_ics">corrupt_ics: work calendar unreadable</option>
-            </select></label>
-          <label>Customize prompt<select id="customize"><option value="">none: default format</option></select></label>
-          <label>Tag (keeps an experiment separate)<input id="tag" placeholder="e.g. try1"></label>
-        </div>
-      </details>
-      <div class="row">
-        <button class="primary" data-action="run">Run digest</button>
-        <button data-action="baseline" title="the naive one-call digest for the same morning">Baseline</button>
-      </div>
-    </div>
-
-    <div class="step">
-      <h3>3 · Score the world</h3>
-      <div class="row">
-        <button data-action="eval" title="grade the runs that exist; ~1 min">Score runs</button>
-        <button data-action="matrix" title="every morning, variant, customize, baseline, simulation, then the score; ~20 min">Full matrix</button>
-      </div>
-      <p class="hint">Score runs grades what you've run. Full matrix runs everything, then grades it.</p>
-      <details>
-        <summary>More</summary>
-        <div class="step">
-          <button data-action="simulate" title="5 mornings in order; simulated Avery answers question cards">Simulate 5 days</button>
-          <button data-action="generate" title="re-render data from world/ files; only after editing them">Regenerate data</button>
-        </div>
-      </details>
-    </div>
-
-    <div id="status" class="status">Idle.</div>
-
-    <div class="step">
-      <h3>Runs in this world</h3>
-      <div class="list" id="runs"></div>
-    </div>
-    <div class="step">
-      <h3>Reports</h3>
-      <div class="list" id="reports"></div>
-    </div>
-  </aside>
-
-  <main>
-    <div id="head"><div class="empty">Pick a world, choose a morning, press <b>Run digest</b>.<br>Or open an existing run on the left.</div></div>
-    <div class="tabs" id="tabs" hidden>
-      <button data-tab="digest" class="active">Digest</button>
-      <button data-tab="pipeline">Pipeline</button>
-      <button data-tab="trace">LLM calls</button>
-      <button data-tab="actions">Actions</button>
-      <button data-tab="issues">Issues &amp; cost</button>
-    </div>
-    <div id="view"></div>
-  </main>
+<div class="bar">
+  <div class="bar-row">
+    <span class="brand">Daily Digest</span>
+    <select id="world" title="Which synthetic mailbox"></select>
+    <select id="as_of" title="The morning the digest pretends it is"></select>
+    <select id="variant" title="Break a data source on purpose to test honesty">
+      <option value="">all data normal</option>
+      <option value="stale_inbox">inbox 30h stale</option>
+      <option value="no_notes">notes missing</option>
+      <option value="corrupt_ics">work calendar broken</option>
+    </select>
+    <button class="primary" data-action="run">Run digest</button>
+    <button data-action="baseline" title="The naive single-LLM-call digest, for comparison">Run baseline</button>
+    <span id="status" class="status" title="click for the log">Idle</span>
+  </div>
+  <div class="bar-row">
+    <input id="custom" class="custom" type="text" placeholder="Customize (optional), one line in plain English, e.g. “Weekend mode: P0 and family only, under 100 words”">
+    <div class="chips" id="presets"><span class="small muted">Presets:</span></div>
+  </div>
+  <pre id="log" class="log" hidden></pre>
 </div>
+
+<div class="layout">
+  <nav class="rail">
+    <div>
+      <h4>Runs</h4>
+      <div class="runs" id="runs"></div>
+    </div>
+    <div>
+      <h4>Scores</h4>
+      <div class="row2"><button data-action="eval" title="Grade the runs that exist, about a minute">Score runs</button><button data-action="matrix" title="Run every morning, variant, preset and the baseline, then grade (~20 min)">Full matrix</button></div>
+      <div class="reports" id="reports" style="margin-top:8px"></div>
+      <details style="margin-top:8px"><summary class="small muted">More</summary>
+        <div class="row2" style="margin-top:6px"><button data-action="simulate" class="small">Simulate 5 days</button><button data-action="generate" class="small">Regenerate data</button></div>
+      </details>
+    </div>
+  </nav>
+  <main id="main"><div class="empty">Choose a morning at the top and press <b>Run digest</b>, or open a run on the left.</div></main>
+</div>
+
+<aside class="drawer" id="drawer" hidden></aside>
+
 <script>
-const $ = (s) => document.querySelector(s);
-const esc = (s) => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const fmt = (v) => typeof v === "object" ? JSON.stringify(v, null, 2) : String(v ?? "");
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const money = (v) => "$" + (v ?? 0).toFixed(3);
-let worlds = [], allRuns = [], current = null, tab = "digest", cache = {};
-
+const J = (v) => JSON.stringify(v, null, 2);
 async function api(path, opts) { const r = await fetch(path, opts); const t = await r.text(); let j; try { j = JSON.parse(t); } catch { j = { raw: t }; } if (!r.ok) throw Object.assign(new Error(j.error || r.statusText), { status: r.status }); return j; }
-function store(k, v) { try { v === undefined ? null : localStorage.setItem("digest." + k, v); return localStorage.getItem("digest." + k); } catch { return null; } }
+function remember(k, v) { try { if (v !== undefined) localStorage.setItem("dd." + k, v); return localStorage.getItem("dd." + k); } catch { return null; } }
 
-function md(text) {
-  const inline = (s) => esc(s).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>").replace(/\*(.+?)\*/g, "<i>$1</i>");
-  let out = [], inList = false;
-  for (const raw of text.split("\n")) {
-    const l = raw.replace(/\s+$/, "");
-    if (/^\s*- /.test(l)) { if (!inList) { out.push("<ul>"); inList = true; } out.push("<li>" + inline(l.replace(/^\s*- /, "")) + "</li>"); continue; }
-    if (inList && /^\s{2,}\S/.test(l)) { out.push("<div style='margin-left:24px;color:#475467'>" + inline(l.trim()) + "</div>"); continue; }
-    if (inList) { out.push("</ul>"); inList = false; }
-    if (l.startsWith("# ")) out.push("<h1>" + inline(l.slice(2)) + "</h1>");
-    else if (l.startsWith("## ")) out.push("<h2>" + inline(l.slice(3)) + "</h2>");
-    else if (l.startsWith("### ")) out.push("<h3>" + inline(l.slice(4)) + "</h3>");
-    else if (l === "---") out.push("<hr>");
-    else if (/^\|/.test(l)) out.push("<pre style='margin:0;border:none;padding:0'>" + esc(l) + "</pre>");
-    else if (l.trim()) out.push("<p>" + inline(l) + "</p>");
-  }
-  if (inList) out.push("</ul>");
-  return out.join("\n");
-}
+let WORLDS = [], PRESETS = [], RUNS = [], run = null, tab = "digest", A = {}, SUBJ = {};
 
-// ---------- world, mornings, customize ----------
+// ======================= top bar =======================
 async function init() {
-  worlds = await api("/api/worlds");
-  const ws = $("#world");
-  ws.innerHTML = worlds.map(w => `<option value="${esc(w.world)}">${esc(w.label)} (${w.emails} emails)</option>`).join("");
-  const saved = store("world"); if (saved && worlds.some(w => w.world === saved)) ws.value = saved;
-  ws.onchange = () => { store("world", ws.value); fillMornings(); renderRunList(); };
-  const cz = await api("/api/customize");
-  $("#customize").innerHTML += cz.map(c => `<option value="${esc(c)}">${esc(c.split("/").pop().replace(".md", ""))}</option>`).join("");
-  fillMornings();
-  document.querySelectorAll("aside button[data-action]").forEach(b => b.onclick = () => launch(b.dataset.action));
-  document.querySelectorAll("#tabs button").forEach(b => b.onclick = () => { tab = b.dataset.tab; document.querySelectorAll("#tabs button").forEach(x => x.classList.toggle("active", x === b)); render(); });
-  await loadRuns(); await loadReports(); pollLaunch();
+  WORLDS = await api("/api/worlds");
+  $("#world").innerHTML = WORLDS.map(w => `<option value="${esc(w.world)}">${esc(w.label)}</option>`).join("");
+  const w = remember("world"); if (w && WORLDS.some(x => x.world === w)) $("#world").value = w;
+  $("#world").onchange = () => { remember("world", $("#world").value); fillMornings(); listRuns(); };
+  PRESETS = await api("/api/customize");
+  $("#presets").innerHTML += PRESETS.map((p, i) => `<button class="chip" data-i="${i}" title="${esc(p.text)}">${esc(p.name)}</button>`).join("");
+  $$("#presets .chip").forEach(b => b.onclick = () => { const p = PRESETS[b.dataset.i]; const on = b.classList.contains("on"); $$("#presets .chip").forEach(x => x.classList.remove("on")); $("#custom").value = on ? "" : p.text; if (!on) b.classList.add("on"); });
+  $("#custom").oninput = () => $$("#presets .chip").forEach(x => x.classList.toggle("on", PRESETS[x.dataset.i].text === $("#custom").value.trim()));
+  $$("button[data-action]").forEach(b => b.onclick = () => launch(b.dataset.action));
+  $("#status").onclick = () => { $("#log").hidden = !$("#log").hidden; };
+  fillMornings(); await listRuns(); await listReports(); poll();
 }
 function fillMornings() {
-  const w = worlds.find(x => x.world === $("#world").value);
-  const ms = w ? w.mornings : [];
+  const w = WORLDS.find(x => x.world === $("#world").value); const ms = w ? w.mornings : [];
   $("#as_of").innerHTML = ms.map(m => `<option value="${m.as_of}">${esc(m.label)}</option>`).join("");
   if (ms.length) $("#as_of").value = ms[ms.length - 1].as_of;
 }
 
-// ---------- runs + reports ----------
-async function loadRuns() { allRuns = await api("/api/runs"); renderRunList(); }
-function runLabel(r) {
-  const d = r.as_of ? new Date(r.as_of) : null;
-  const day = d ? d.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric", timeZone: "America/Los_Angeles" }) : r.name;
-  const kind = r.baseline ? "baseline" : r.suffix ? r.suffix : "digest";
-  return { day, kind };
-}
-function renderRunList() {
-  const world = $("#world").value;
-  const runs = allRuns.filter(r => r.world === world).slice().reverse();
-  const el = $("#runs");
-  if (!runs.length) { el.innerHTML = "<div class='hint'>No runs yet.</div>"; return; }
-  el.innerHTML = "";
-  for (const r of runs) {
-    const { day, kind } = runLabel(r);
-    const a = document.createElement("a"); a.href = "#"; a.dataset.dir = r.dir;
-    a.innerHTML = `<div>${esc(day)} <span class="pill ${kind === "digest" ? "ok" : ""}">${esc(kind)}</span></div><div class="meta">${r.placed ?? "?"} shown · ${money(r.cost_usd)}${r.violations ? ` · ${r.violations} rule fixes` : ""}</div>`;
-    a.onclick = (e) => { e.preventDefault(); openRun(r); };
-    if (current && current.dir === r.dir) a.classList.add("active");
-    el.appendChild(a);
-  }
-}
-async function loadReports() {
-  const reps = await api("/api/reports");
-  const el = $("#reports");
-  el.innerHTML = reps.length ? "" : "<div class='hint'>None yet. Press Score runs.</div>";
-  for (const r of reps.slice(0, 8)) {
-    const a = document.createElement("a"); a.href = "#";
-    a.innerHTML = `<div>${esc(r.name.replace(".md", ""))}</div><div class="meta">${esc(r.modified.replace("T", " "))}</div>`;
-    a.onclick = async (e) => { e.preventDefault(); const rep = await api("/api/reports?name=" + encodeURIComponent(r.name)); current = null; renderRunList(); $("#tabs").hidden = true; $("#head").innerHTML = `<div class="title"><h1>Report</h1><span class="muted">${esc(r.name)}</span></div>`; $("#view").innerHTML = `<div class="doc">${md(rep.text)}</div>`; };
-    el.appendChild(a);
-  }
-}
-
-// ---------- launching ----------
+// ======================= launching =======================
+let armed = 0, pollT = null, wasRunning = false;
 async function launch(action) {
-  if (action === "generate" && !confirmInPage("Regenerate overwrites data/ for this world. Press again within 5s to confirm.")) return;
-  const body = { action, world: $("#world").value, as_of: $("#as_of").value, variant: $("#variant").value, customize: $("#customize").value, tag: $("#tag").value };
-  try { await api("/api/launch", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }); wasRunning = true; pollLaunch(); }
+  if (action === "generate" && Date.now() - armed > 5000) { armed = Date.now(); setStatus("busy", "Regenerate overwrites this world's data. Click again to confirm."); return; }
+  const text = $("#custom").value.trim(); const preset = PRESETS.find(p => p.text === text);
+  const body = { action, world: $("#world").value, as_of: $("#as_of").value, variant: $("#variant").value,
+                 customize: action === "run" && preset ? preset.path : "", customize_text: action === "run" && !preset ? text : "" };
+  try { await api("/api/launch", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }); wasRunning = true; poll(); }
   catch (e) { setStatus("fail", "Refused: " + e.message); }
 }
-let armed = 0;
-function confirmInPage(msg) { if (Date.now() - armed < 5000) { armed = 0; return true; } armed = Date.now(); setStatus("", msg); return false; }
-function setStatus(cls, text, log) { const s = $("#status"); s.className = "status " + cls; s.innerHTML = esc(text) + (log ? `<pre>${esc(log)}</pre>` : ""); }
-let pollTimer = null, wasRunning = false;
-async function pollLaunch() {
-  clearTimeout(pollTimer);
+function setStatus(cls, text) { const s = $("#status"); s.className = "status " + cls; s.textContent = text; s.title = text + " (click for the log)"; }
+async function poll() {
+  clearTimeout(pollT);
   const st = await api("/api/launch");
-  document.querySelectorAll("aside button[data-action]").forEach(b => b.disabled = st.running);
+  $("#log").textContent = (st.log || "").trim().split("\n").slice(-40).join("\n");
+  const busy = st.running || st.external_busy;
+  $$("button[data-action]").forEach(b => b.disabled = busy);
   const cmd = st.args.length ? "digest " + st.args.join(" ") : "";
-  const tail = (st.log || "").trim().split("\n").slice(-6).join("\n");
-  if (st.running) { wasRunning = true; setStatus("running", "Running: " + cmd + " (the result opens here when it finishes)", tail); pollTimer = setTimeout(pollLaunch, 2000); return; }
-  else if (st.args.length) {
-    setStatus(st.returncode === 0 ? "done" : "fail", (st.returncode === 0 ? "Finished: " : `Failed (exit ${st.returncode}): `) + cmd, tail);
-    await loadRuns(); await loadReports();
-    if (wasRunning && st.returncode === 0 && (st.args[0] === "run" || st.args[0] === "baseline")) {
-      const i = st.args.indexOf("--as-of"), w = st.args[st.args.indexOf("--world") + 1];
-      const asOf = i > -1 ? st.args[i + 1] : null;
-      const want = st.args[0] === "baseline" ? (r) => r.baseline : (r) => !r.baseline && !r.suffix;
-      const hit = allRuns.filter(r => r.world === w && want(r) && (!asOf || (r.dir.includes(asOf.replace(":", "-"))))).pop();
-      if (hit) openRun(hit);
-    }
+  if (st.running) { wasRunning = true; setStatus("running", "Running · " + cmd); pollT = setTimeout(poll, 2000); return; }
+  if (st.external_busy) { setStatus("busy", "A pipeline is running outside this page (terminal/matrix). Buttons unlock when it ends."); pollT = setTimeout(poll, 5000); return; }
+  if (st.args.length) {
+    setStatus(st.returncode === 0 ? "done" : "fail", (st.returncode === 0 ? "Finished · " : `Failed (exit ${st.returncode}) · `) + cmd);
+    if (wasRunning) { wasRunning = false; await listRuns(); await listReports(); if (st.returncode === 0) openNewest(st.args); }
+  } else setStatus("", "Idle");
+  pollT = setTimeout(poll, 8000);
+}
+function openNewest(args) {
+  if (!["run", "baseline"].includes(args[0])) return;
+  const w = args[args.indexOf("--world") + 1], i = args.indexOf("--as-of"), day = i > -1 ? args[i + 1].replace(":", "-") : "";
+  const hits = RUNS.filter(r => r.world === w && r.dir.includes(day) && (args[0] === "baseline" ? r.baseline : !r.baseline));
+  hits.sort((a, b) => (b.mtime || 0) - (a.mtime || 0));
+  if (hits.length) openRun(hits[hits.length - 1]);
+}
+
+// ======================= rail =======================
+function kindOf(r) { if (r.baseline) return "baseline"; if (r.suffix) return r.suffix.replace("customize-", "custom: ").replace("stale_inbox", "inbox stale").replace("no_notes", "notes missing").replace("corrupt_ics", "calendar broken"); return "digest"; }
+function dayOf(r) { if (!r.as_of) return r.name; return new Date(r.as_of).toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric", timeZone: "America/Los_Angeles" }); }
+async function listRuns() {
+  RUNS = await api("/api/runs");
+  const mine = RUNS.filter(r => r.world === $("#world").value && !(r.suffix || "").endsWith("sim")).reverse();
+  $("#runs").innerHTML = mine.length ? mine.map((r, i) => `<a href="#" data-dir="${esc(r.dir)}" class="${run && run.dir === r.dir ? "on" : ""}"><div>${esc(dayOf(r))} · ${esc(kindOf(r))}</div><div class="k">${r.placed ?? "?"} on the page · ${money(r.cost_usd)}</div></a>`).join("") : `<div class="small muted">No runs for this world yet.</div>`;
+  $$("#runs a").forEach(a => a.onclick = (e) => { e.preventDefault(); openRun(RUNS.find(r => r.dir === a.dataset.dir)); });
+}
+async function listReports() {
+  const reps = (await api("/api/reports")).slice(0, 6);
+  $("#reports").innerHTML = reps.length ? reps.map(r => `<a href="#" data-n="${esc(r.name)}"><div class="small">${esc(r.name.replace(".md", ""))}</div><div class="k small muted">${esc(r.modified.replace("T", " "))}</div></a>`).join("") : `<div class="small muted">No reports yet.</div>`;
+  $$("#reports a").forEach(a => a.onclick = async (e) => { e.preventDefault(); run = null; listRuns(); const rep = await api("/api/reports?name=" + encodeURIComponent(a.dataset.n)); $("#main").innerHTML = `<div class="page" style="max-width:980px">${reportMd(rep.text)}</div>`; });
+}
+function reportMd(text) {
+  const lines = text.split("\n"); let out = [], tbl = [];
+  const flush = () => { if (!tbl.length) return; const rows = tbl.filter(l => !/^\|\s*-/.test(l)).map(l => l.trim().replace(/^\||\|$/g, "").split("|")); out.push(`<table class="rep">${rows.map((c, i) => `<tr>${c.map(x => i ? `<td>${inline(x.trim())}</td>` : `<th>${inline(x.trim())}</th>`).join("")}</tr>`).join("")}</table>`); tbl = []; };
+  for (const l of lines) { if (l.trim().startsWith("|")) { tbl.push(l); continue; } flush();
+    if (l.startsWith("# ")) out.push(`<h1>${inline(l.slice(2))}</h1>`); else if (l.startsWith("## ")) out.push(`<h2>${inline(l.slice(3))}</h2>`); else if (l.startsWith("### ")) out.push(`<h3>${inline(l.slice(4))}</h3>`);
+    else if (/^\s*- /.test(l)) out.push(`<div style="margin-left:${l.search(/\S/) * 6 + 8}px">• ${inline(l.trim().slice(2))}</div>`); else if (l.trim()) out.push(`<p>${inline(l)}</p>`); }
+  flush(); return out.join("\n");
+}
+const inline = (s) => esc(s).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>").replace(/`(.+?)`/g, "<code>$1</code>");
+
+// ======================= run =======================
+async function art(name) { if (!(name in A)) { try { A[name] = await api(`/api/run?dir=${encodeURIComponent(run.dir)}&artifact=${name}`); } catch { A[name] = null; } } return A[name]; }
+async function openRun(r) {
+  if (!r) return; run = r; A = {}; tab = "digest"; listRuns();
+  SUBJ = await api("/api/subjects?world=" + encodeURIComponent(r.world)).catch(() => ({}));
+  $("#main").innerHTML = `<div class="runhead"><h1>${esc(dayOf(r))} <span class="pill">${esc(kindOf(r))}</span></h1>
+    <div class="stats"><div><b>${r.placed ?? "?"}</b>items on the page</div><div><b>${r.items ?? "?"}</b>items considered</div><div><b>${r.llm_calls ?? "?"}</b>LLM calls · ${r.llm_cached ?? 0} cached</div><div><b>${money(r.cost_usd)}</b>cost</div><div><b>${r.violations ?? 0}</b>hard-rule fixes</div></div></div>
+    <div class="tabs"><button data-t="digest">Digest</button><button data-t="why">Why each item</button><button data-t="calls">LLM calls</button></div><div id="view"></div>`;
+  $$(".tabs button").forEach(b => b.onclick = () => show(b.dataset.t));
+  show("digest");
+}
+async function show(t, after) {
+  tab = t; $$(".tabs button").forEach(b => b.classList.toggle("on", b.dataset.t === t));
+  const v = $("#view"); v.innerHTML = `<div class="empty">Loading…</div>`;
+  v.innerHTML = t === "digest" ? await digestView() : t === "why" ? await whyView() : await callsView();
+  wire(); if (after) after();
+}
+
+// ======================= 1. digest =======================
+async function digestView() {
+  const d = await art("digest"); if (!d) return `<div class="empty">This run has no digest.</div>`;
+  const lines = d.text.split("\n"); let html = "", sec = null, item = null, pend = [];
+  const cites = (s) => { const cs = []; s = s.replace(/\*\[(.+?)\]\*/g, (_, x) => { x.split("] [").forEach(c => cs.push(c)); return ""; }).replace(/\s*\*\s*\*\s*$/, ""); return [s.trim(), cs]; };
+  const itemHtml = (raw) => { const [body, cs] = cites(raw); const m = body.match(/^\*\*(.+?)\*\*\s*(.*)$/); const what = m ? m[1] : body, why = m ? m[2] : "";
+    return `<div class="what">${esc(what)}</div>${why ? `<div>${inline(why)}</div>` : ""}${cs.length ? `<div>${cs.map(c => `<span class="cite">${esc(c)}</span>`).join("")}</div>` : ""}`; };
+  const sub = (l) => { const s = l.trim();
+    if (s.startsWith("☐")) return `<div class="act task">${esc(s.slice(1).trim())}</div>`;
+    if (s.startsWith('"') || s.startsWith("“")) return `<div class="draft">${esc(s.replace(/^["“]|["”]$/g, ""))}</div>`;
+    if (/^Assumptions:/.test(s)) return `<div class="assume">${esc(s)}</div>`;
+    if (/^Q\d+ ·/.test(s)) return `<div class="question">${esc(s)}</div>`;
+    return `<div class="act go">${esc(s)}</div>`; };
+  const close = () => { if (item !== null) { html += item + "</div>"; item = null; } };
+  for (const l of lines) {
+    if (!l.trim()) continue;
+    if (l.startsWith("# ")) { html += `<h1>${esc(l.slice(2))}</h1>`; continue; }
+    if (/^As of /.test(l)) { html += `<div class="fresh">${l.split(" · ").map(p => `<span class="${/stale|missing|unreadable|degraded|skipped/i.test(p) ? "warn" : ""}">${esc(p)}</span>`).join("")}</div>`; continue; }
+    if (l.startsWith("## ")) { close(); if (sec === "one") html += "</div>"; sec = /one thing/i.test(l) ? "one" : /also pending/i.test(l) ? "pend" : "sec";
+      if (sec === "pend") { pend.push(l.slice(3)); continue; } html += `<h2>${esc(l.slice(3).replace(/:$/, ""))}</h2>` + (sec === "one" ? `<div class="onething">` : ""); continue; }
+    if (l === "---") continue;
+    if (sec === "pend") { if (/^\s*- /.test(l)) pend.push(l.replace(/^\s*- /, "")); continue; }
+    if (/^- /.test(l)) { close(); item = `<div class="item">` + itemHtml(l.slice(2)); continue; }
+    if (/^\s{2,}\S/.test(l)) { if (item !== null) item += sub(l); else html += sub(l); continue; }
+    close(); if (sec === "one" && /^\*\*/.test(l)) html += itemHtml(l); else html += `<div class="plain">${inline(l)}</div>`;
   }
-  else setStatus("", "Idle.");
+  close(); if (sec === "one") html += "</div>";
+  if (pend.length) html += `<details><summary>${esc(pend[0])}: the overflow list, not part of the page Avery reads</summary><ul>${pend.slice(1).map(p => { const [b] = cites(p); return `<li>${inline(b)}</li>`; }).join("")}</ul></details>`;
+  return `<div class="page">${html}</div>`;
 }
 
-// ---------- run view ----------
-async function art(name) { const k = current.dir + "|" + name; if (!(k in cache)) { try { cache[k] = await api(`/api/run?dir=${encodeURIComponent(current.dir)}&artifact=${name}`); } catch (e) { cache[k] = null; } } return cache[k]; }
-function openRun(r) {
-  current = r; cache = {}; renderRunList();
-  const { day, kind } = runLabel(r);
-  $("#head").innerHTML = `<div class="title"><h1>${esc(day)}</h1><span class="pill">${esc(kind)}</span><span class="muted">${esc(r.world)} · ${esc(r.dir)}</span></div>
-    <div class="stats"><div><b>${r.items ?? "?"}</b>items after reduce</div><div><b>${r.placed ?? "?"}</b>shown in digest</div><div><b>${r.llm_calls ?? "?"}</b>LLM calls (${r.llm_cached ?? 0} cached)</div><div><b>${money(r.cost_usd)}</b>cost</div><div><b>${r.violations ?? 0}</b>hard-rule fixes</div><div><b>${r.degradations ?? 0}</b>degraded</div></div>`;
-  $("#tabs").hidden = false; render();
+// ======================= 2. why each item =======================
+async function whyView() {
+  const [cands, tri, red, comp, acts, ver, ex] = await Promise.all(["candidates", "triage", "reduce", "compose", "actions", "verify", "extractions"].map(art));
+  if (!cands || !red) return `<div class="empty">This run has no pipeline artifacts (a baseline is a single LLM call).</div>`;
+  const C = {}; cands.forEach(c => C[c.candidate_id] = c); const T = {}; (tri || []).forEach(t => T[t.candidate_id] = t);
+  const X = {}; (ex || []).forEach(x => X[x.source_id] = x); const CI = {}; (comp?.items || []).forEach(i => CI[i.id] = i);
+  const RI = {}; red.items.forEach(i => RI[i.id] = i);
+  const placed = []; if (comp?.one_thing_id) placed.push([comp.one_thing_id, "the one thing"]);
+  (comp?.sections || []).forEach(s => s.item_ids.forEach(id => placed.push([id, s.name.replace("_", " & ")])));
+  const pend = (comp?.cut_ids || []).map(id => [id, "also pending"]); const seen = new Set([...placed, ...pend].map(x => x[0]));
+  const over = red.items.filter(i => !seen.has(i.id)).map(i => [i.id, "over the cap"]);
+  const dropped = cands.filter(c => T[c.candidate_id] && !T[c.candidate_id].include);
+  const card = ([id, where]) => { const it = RI[id]; if (!it) return ""; const ci = CI[id] || {};
+    return `<div class="card" data-kind="item" data-id="${esc(id)}" data-search="${esc((ci.what || "") + " " + it.about + " " + it.candidate_types.join(" ") + " " + (it.why || "")).toLowerCase()}"><div class="head"><span class="pill ${it.priority}">${it.priority}</span><span class="t">${esc(ci.what || it.about)}</span><span class="small muted">${esc(where)}</span></div><div class="timeline" hidden></div></div>`; };
+  const dcard = (c) => `<div class="card" data-kind="dropped" data-id="${esc(c.candidate_id)}" data-search="${esc((c.type + " " + c.about + " " + (T[c.candidate_id].why || "") + " " + (SUBJ[c.facts.thread_id]?.subject || "")).toLowerCase())}"><div class="head"><span class="pill code">${esc(c.type)}</span><span class="t">${esc(SUBJ[c.facts.thread_id]?.subject || c.about)}</span><span class="small muted">${esc(T[c.candidate_id].why || "")}</span></div><div class="timeline" hidden></div></div>`;
+  WHY = { C, T, X, CI, RI, acts: acts || [], ver, comp };
+  return `<div class="toolbar"><input id="whyq" type="text" placeholder="Search items: a name, a topic, a word from the email…"><span class="small muted">Click an item to see its path: email → facts → rule → triage → page → action.</span></div>
+    <div class="group-title">On the page (${placed.length})</div>${placed.map(card).join("")}
+    <div class="group-title">Also pending, the overflow (${pend.length})</div>${pend.map(card).join("")}
+    ${over.length ? `<div class="group-title">Considered but over the cap (${over.length})</div>${over.map(card).join("")}` : ""}
+    <div class="group-title">Dropped by triage (${dropped.length})</div>${dropped.map(dcard).join("")}`;
 }
-const NOTES = {
-  digest: "What Avery would read at 06:00.",
-  pipeline: "Every candidate compute found, what triage decided, and whether it made the page. Click a row for facts, evidence and the triage output.",
-  trace: "Every LLM call in order. Click a row to see the exact prompt sent and the output returned.",
-  actions: "Drafts, tasks and proposals rendered under items, and the hard rules verify enforced.",
-  issues: "Items skipped or degraded, with reasons, and the cost breakdown.",
-};
-async function render() {
-  const v = $("#view");
-  if (!current) { v.innerHTML = ""; return; } v.innerHTML = `<p class="tabnote">${NOTES[tab]}</p><div class="empty">Loading…</div>`;
-  let html = "";
-  if (tab === "digest") { const d = await art("digest"); html = d ? `<div class="doc">${md(d.text)}</div>` : "<div class='empty'>No digest in this run.</div>"; }
-  else if (tab === "pipeline") html = await pipelineView();
-  else if (tab === "trace") html = await traceView();
-  else if (tab === "actions") html = await actionsView();
-  else html = await issuesView();
-  v.innerHTML = `<p class="tabnote">${NOTES[tab]}</p>` + html;
-  document.querySelectorAll("tr.row").forEach(tr => tr.onclick = () => { const d = tr.nextElementSibling; if (d?.classList.contains("detail")) d.hidden = !d.hidden; });
-  const f = $("#filter"); if (f) f.oninput = () => { const q = f.value.toLowerCase(); document.querySelectorAll("tbody tr.row").forEach(tr => { tr.hidden = q && !tr.textContent.toLowerCase().includes(q); if (tr.nextElementSibling?.classList.contains("detail")) tr.nextElementSibling.hidden = true; }); };
-}
-const detail = (cols, inner) => `<tr class="detail" hidden><td colspan="${cols}">${inner}</td></tr>`;
-
-async function pipelineView() {
-  const cands = await art("candidates") || [], tri = await art("triage") || [], red = await art("reduce"), comp = await art("compose");
-  if (!cands.length) return "<div class='empty'>No candidates in this run (baseline runs skip the pipeline).</div>";
-  const T = {}; tri.forEach(t => T[t.candidate_id] = t);
-  const I = {}; (red?.items || []).forEach(it => (it.candidate_ids || []).forEach(c => I[c] = it));
-  const placed = new Set(); (comp?.sections || []).forEach(s => s.item_ids.forEach(i => placed.add(i)));
-  const cut = new Set(comp?.cut_ids || []);
-  const fate = (c) => { const t = T[c.candidate_id], it = I[c.candidate_id];
-    if (!t) return ["no triage", "bad"]; if (!t.include) return ["dropped by triage", ""];
-    if (!it) return ["lost in reduce", "bad"]; if (comp?.one_thing_id === it.id) return ["THE ONE THING", "ok"];
-    if (placed.has(it.id)) return ["shown", "ok"]; if (cut.has(it.id)) return ["also pending", ""]; return ["over the cap", ""]; };
-  let h = `<div class="toolbar"><input id="filter" placeholder="Filter by type, topic, text…"> ${cands.length} candidates → ${tri.filter(t => t.include).length} kept → ${(red?.items || []).length} items → ${placed.size + (comp?.one_thing_id ? 1 : 0)} shown</div>`;
-  h += `<table><thead><tr><th>Type</th><th>Topic</th><th>Priority</th><th>Outcome</th><th>Why (triage)</th></tr></thead><tbody>`;
-  for (const c of cands) { const t = T[c.candidate_id] || {}; const [f, cls] = fate(c);
-    h += `<tr class="row"><td><span class="pill code">${esc(c.type)}</span></td><td>${esc(c.about)}</td><td>${esc(t.priority || "")}</td><td><span class="pill ${cls}">${esc(f)}</span></td><td style="font-size:12px">${esc(t.why || "")}</td></tr>`;
-    h += detail(5, `<div class="grid2"><div><b>Computed facts</b><pre>${esc(fmt(c.facts))}</pre><b>Evidence</b><pre>${esc(fmt(c.evidence))}</pre></div><div><b>Triage output</b><pre>${esc(fmt(t))}</pre>${I[c.candidate_id] ? `<b>Reduced item</b><pre>${esc(fmt(I[c.candidate_id]))}</pre>` : ""}</div></div>`); }
-  return h + "</tbody></table>";
-}
-
-async function traceView() {
-  let rows = await art("trace");
-  if (!rows) { const c = await art("cost_log"); if (!c) return "<div class='empty'>No LLM calls recorded.</div>"; return `<div class="toolbar">This run predates full tracing; only costs were logged (${c.length} calls). Re-run the morning to get prompts and outputs.</div>`; }
-  const by = {}; rows.forEach(r => { const k = r.role || "?"; by[k] = by[k] || { n: 0, c: 0, $: 0 }; by[k].n++; if (r.cached) by[k].c++; by[k].$ += r.cost_usd || 0; });
-  let h = `<div class="toolbar"><input id="filter" placeholder="Filter by role, tag, prompt text…"> ` + Object.entries(by).map(([k, s]) => `${k}: ${s.n} (${s.c} cached, ${money(s.$)})`).join(" · ") + `</div>`;
-  h += `<table><thead><tr><th>#</th><th>Stage</th><th>For</th><th>Prompt</th><th>Cached</th><th>Tokens</th><th>Cost</th><th>Result</th></tr></thead><tbody>`;
-  rows.forEach((r, i) => {
-    h += `<tr class="row"><td>${i + 1}</td><td><span class="pill llm">${esc(r.role)}</span></td><td style="font-size:12px">${esc(r.tag || "")}</td><td style="font-size:12px">${esc(r.prompt_version || "")}</td><td>${r.cached ? "yes" : ""}</td><td>${r.prompt_tokens || 0}+${r.completion_tokens || 0}</td><td>${(r.cost_usd || 0).toFixed(4)}</td><td>${r.invalid ? "<span class='pill bad'>invalid</span>" : r.retries ? `<span class="pill">retried</span>` : "<span class='pill ok'>ok</span>"}</td></tr>`;
-    h += detail(8, `<div class="grid2"><div><b>Sent</b>${(r.messages || []).map(m => `<div style="font-size:11px;color:var(--muted)">${esc(m.role)}</div><pre>${esc(m.content)}</pre>`).join("")}</div><div><b>Returned (${esc(r.output_model || "")})</b><pre>${esc(fmt(r.output ?? r.raw))}</pre>${(r.errors || []).length ? `<b>Validation errors</b><pre>${esc(r.errors.join("\n---\n"))}</pre>` : ""}</div></div>`);
-  });
-  return h + "</tbody></table>";
+let WHY = null;
+function srcLabel(e) { const id = e.source_id;
+  if (id.startsWith("msg:")) { const m = id.match(/<\d{8}-\d{4}\.([^@>]+)@([^>]+)>/); return "email" + (m ? ` from ${m[1]}@${m[2]}` : ""); }
+  return id.split("#")[0].replace(/^note:notes\//, "note: ").replace(/^task:/, "task: ").replace(/^event:/, "calendar: ").replace(/^thread:/, "thread "); }
+function step(n, kind, title, body) { return `<div class="step"><div class="dot ${kind}">${n}</div><div><h5>${title} <span class="pill ${kind === "data" ? "" : kind}">${kind === "llm" ? "LLM" : kind === "code" ? "code" : "data"}</span></h5>${body}</div></div>`; }
+function facts(f) { return `<div class="kv">${Object.entries(f || {}).filter(([k, v]) => v !== null && v !== "" && !["summary", "thread_id", "subject"].includes(k) && typeof v !== "object").slice(0, 10).map(([k, v]) => `<span><b>${esc(k.replace(/_/g, " "))}:</b> ${esc(String(v).slice(0, 80))}</span>`).join("")}</div>`; }
+function timelineFor(id, kind) {
+  const W = WHY; const cands = kind === "item" ? W.RI[id].candidate_ids.map(c => W.C[c]).filter(Boolean) : [W.C[id]]; const it = kind === "item" ? W.RI[id] : null;
+  const evid = []; const seenE = new Set(); (it ? it.citations : []).concat(...cands.map(c => c.evidence)).forEach(e => { if (!seenE.has(e.source_id)) { seenE.add(e.source_id); evid.push(e); } });
+  const threads = [...new Set(cands.map(c => c.facts.thread_id).filter(Boolean))];
+  let s = "";
+  s += step(1, "data", "Source", evid.slice(0, 6).map(e => `<div class="quote">“${esc(e.quote)}” <span class="cite">${esc(srcLabel(e))}</span> <button class="link" data-src="${esc(e.source_id)}">open original</button></div>`).join("") || `<span class="small muted">no quotes</span>`);
+  s += step(2, "llm", "Extractor read it", threads.length ? threads.map(t => { const x = W.X[t]; const p = x?.payload || {};
+    return `<div class="sub"><b>${esc(SUBJ[t]?.subject || t)}</b><br>${esc(p.summary || x?.type || "")}${p.intent_primary ? `<div class="kv"><span><b>intent:</b> ${esc(p.intent_primary)}</span><span><b>ball with:</b> ${esc(p.ball?.awaiting)}</span><span><b>asks:</b> ${(p.asks || []).length}</span><span><b>promises:</b> ${(p.commitments || []).length}</span></div>` : ""}<button class="link" data-call="tag=${esc(t)}">see this LLM call</button></div>`; }).join("") : `<span class="small muted">from a note, task or calendar event</span>`);
+  s += step(3, "code", "A rule in compute flagged it", cands.map(c => `<div class="sub"><span class="pill code">${esc(c.type)}</span> <span class="small">${esc(c.about)}</span>${facts(c.facts)}</div>`).join(""));
+  s += step(4, "llm", "Triage judged it", cands.map(c => { const t = W.T[c.candidate_id] || {};
+    return `<div class="sub">${t.include ? `<span class="pill ok">kept</span> <span class="pill ${t.priority}">${t.priority}</span> ${esc(t.section || "")}` : `<span class="pill bad">dropped</span>`} · ${esc(t.why || "")}${(t.proposed_actions || []).length ? `<div class="small muted">proposed: ${t.proposed_actions.map(a => a.type).join(", ")}</div>` : ""}<button class="link" data-call="cand=${esc(c.candidate_id)}">see this LLM call</button></div>`; }).join(""));
+  if (it) {
+    const where = W.comp?.one_thing_id === id ? "placed as THE ONE THING" : (W.comp?.sections || []).find(x => x.item_ids.includes(id)) ? "placed in " + W.comp.sections.find(x => x.item_ids.includes(id)).name : (W.comp?.cut_ids || []).includes(id) ? "cut to Also pending" : "not placed (over the cap)";
+    s += step(5, "code", "Reduce merged it", `<div class="small">${cands.length} candidate(s) → one item <b>${esc(id)}</b> · ${esc(it.about)} · ${it.priority}${it.times_surfaced ? ` · shown ${it.times_surfaced} time(s) before` : ""}</div>`);
+    const ci = W.CI[id] || {};
+    s += step(6, "llm", "Compose wrote it", `<div class="small"><b>${esc(where)}</b></div>${ci.what ? `<div class="sub"><b>${esc(ci.what)}</b><br>${esc(ci.why || "")}</div>` : ""}<button class="link" data-call="tag=compose">see this LLM call</button>`);
+    const acts = W.acts.filter(a => a.item_id === id);
+    s += step(7, acts.some(a => a.llm) ? "llm" : "code", "Action", acts.length ? acts.map(a => `<div class="sub"><span class="pill">${esc(a.type)}</span> ${a.llm ? `<span class="pill llm">written by LLM</span>` : `<span class="pill code">template</span>`}<div>${esc(a.draft || a.text || "")}</div>${a.llm ? `<button class="link" data-call="item=${esc(id)}">see this LLM call</button>` : ""}</div>`).join("") : `<span class="small muted">no action</span>`);
+    const vs = (W.ver?.violations || []).filter(v => v.item_id === id);
+    s += step(8, "code", "Verify checked it", vs.length ? vs.map(v => `<div class="sub">rule ${v.rule}: ${esc(v.detail)} → <b>${esc(v.fix)}</b></div>`).join("") : `<span class="small muted">passed all 11 hard rules</span>`);
+  }
+  return s;
 }
 
-async function actionsView() {
-  const acts = await art("actions") || [], ver = await art("verify");
-  let h = acts.length ? `<table><thead><tr><th>Item</th><th>Action</th><th>Written by</th><th>Text</th></tr></thead><tbody>` : "<div class='empty'>No actions.</div>";
-  for (const a of acts) { h += `<tr class="row"><td>${esc(a.item_id)}</td><td><span class="pill">${esc(a.type)}</span></td><td>${a.llm ? "<span class='pill llm'>LLM</span>" : "<span class='pill code'>template</span>"}</td><td style="font-size:12px">${esc((a.draft || a.text || "").slice(0, 180))}</td></tr>` + detail(4, `<pre>${esc(fmt(a))}</pre>`); }
-  if (acts.length) h += "</tbody></table>";
-  const vs = ver?.violations || [];
-  h += `<h3 style="margin-top:20px">Hard rules enforced (${vs.length})</h3>` + (vs.length ? `<table><thead><tr><th>Rule</th><th>Item</th><th>Fix</th><th>Detail</th></tr></thead><tbody>` + vs.map(v => `<tr><td>${v.rule}</td><td>${esc(v.item_id || "")}</td><td>${esc(v.fix)}</td><td style="font-size:12px">${esc(v.detail)}</td></tr>`).join("") + "</tbody></table>" : "<p class='hint'>None needed.</p>");
-  return h;
+// ======================= 3. llm calls =======================
+const STAGES = [["compiler", "1 · Compile the profile and customize prompt"], ["extractor", "2 · Extract facts, one call per thread / note / task"], ["triage", "3 · Triage candidates, packs of 6"], ["compose", "4 · Compose the page"], ["materializer", "5 · Write drafts and decisions"], ["judge", "Judge"], ["sim_avery", "Simulated Avery"]];
+function callLabel(r, i) {
+  const tag = r.tag || "";
+  if (r.role === "extractor") { const s = SUBJ[tag]; return s ? `${s.subject} <span class="muted small">· ${esc(s.from)}</span>` : esc(tag.replace(/^note:notes\//, "note ").replace(/^task:/, "task ")); }
+  if (r.role === "triage") { const ids = tag.replace("triage:", "").split(","); const C = WHY?.C || {}; return `${ids.length} candidates: ` + esc(ids.map(id => C[id] ? C[id].type.replace("calendar_conflict:", "cal:") : id).join(", ")); }
+  if (r.role === "materializer") { const [k, item, typ] = tag.split(":"); return `${esc(typ || k)} for ${esc(item)}: ` + esc((WHY?.CI?.[item]?.what) || ""); }
+  if (r.role === "compose") return "the whole page (one call)";
+  return esc(tag || r.role);
+}
+async function callsView() {
+  const rows = await art("trace");
+  if (!rows) return `<div class="empty">This run was made before full tracing. Run this morning again to see every prompt and output.</div>`;
+  if (!WHY) await whyView();
+  CALLS = rows.map((r, i) => ({ ...r, i, label: callLabel(r, i), hay: (r.tag + " " + r.role + " " + callLabel(r, i) + " " + JSON.stringify(r.output || r.raw || "") + " " + (r.messages || []).map(m => m.content).join(" ")).toLowerCase() }));
+  const groups = STAGES.map(([role, title]) => [role, title, CALLS.filter(c => c.role === role)]).filter(g => g[2].length);
+  return `<div class="toolbar"><input id="callq" type="text" placeholder="Search calls: a name, a thread subject, any word in a prompt or output…"><span class="small muted" id="callcount">${rows.length} calls in pipeline order</span></div>` +
+    groups.map(([role, title, cs]) => `<details class="grp" data-role="${role}" ${role === "extractor" ? "" : "open"}><summary><span class="t">${title}</span><span class="small muted">${cs.length} calls · ${cs.filter(c => c.cached).length} cached · ${money(cs.reduce((a, c) => a + (c.cost_usd || 0), 0))}</span></summary>` +
+      cs.map(c => `<div class="call" data-i="${c.i}"><div class="head"><span class="muted small">#${c.i + 1}</span><span>${c.label}</span><span class="small">${c.cached ? "cached" : "live"}</span><span class="small muted">${c.prompt_tokens || 0}+${c.completion_tokens || 0} tok</span><span class="small">${(c.cost_usd || 0).toFixed(4)}</span><span>${c.invalid ? `<span class="pill bad">invalid</span>` : c.retries ? `<span class="pill">retried</span>` : `<span class="pill ok">ok</span>`}</span></div><div class="body" hidden></div></div>`).join("") + `</details>`).join("");
+}
+let CALLS = [];
+function callBody(c) {
+  return `<div class="small muted">${esc(c.prompt_version || "")} · ${esc(c.model || "")}${c.reasoning_effort ? " · effort " + esc(c.reasoning_effort) : ""} · ${c.latency_ms ?? 0} ms</div>
+    <b class="small">What came back</b><pre>${esc(J(c.output ?? c.raw))}</pre>${(c.errors || []).length ? `<b class="small">Validation errors</b><pre>${esc(c.errors.join("\n---\n"))}</pre>` : ""}
+    <details><summary class="small">What was sent (${(c.messages || []).reduce((a, m) => a + (m.content || "").length, 0).toLocaleString()} chars)</summary>${(c.messages || []).map(m => `<div class="small muted">${esc(m.role)}</div><pre>${esc(m.content)}</pre>`).join("")}</details>`;
+}
+function jumpToCall(q) {
+  const [k, v] = q.split("="); const hit = CALLS.find(c => k === "tag" ? c.tag === v : k === "cand" ? c.role === "triage" && c.tag.replace("triage:", "").split(",").includes(v) : c.role === "materializer" && c.tag.split(":")[1] === v);
+  if (!hit) { alertInline("No traced LLM call for this step (cached before tracing, or code only)."); return; }
+  const el = $(`.call[data-i="${hit.i}"]`); el.closest("details").open = true; const b = $(".body", el); b.innerHTML = callBody(hit); b.hidden = false;
+  el.classList.add("flash"); el.scrollIntoView({ block: "center" }); setTimeout(() => el.classList.remove("flash"), 1600);
+}
+function alertInline(msg) { setStatus("busy", msg); setTimeout(poll, 3500); }
+
+// ======================= source drawer =======================
+async function openSource(id) {
+  const d = $("#drawer"); d.hidden = false; d.innerHTML = `<div class="empty">Loading…</div>`;
+  let s; try { s = await api(`/api/source?world=${encodeURIComponent(run.world)}&id=${encodeURIComponent(id)}`); } catch (e) { d.innerHTML = `<button onclick="this.parentNode.hidden=true">Close</button><p>${esc(e.message)}</p>`; return; }
+  let body = "";
+  if (s.kind === "thread") body = `<h3>${esc(s.messages[0]?.subject || "")}</h3>` + s.messages.map(m => `<div class="msg ${m.id === s.highlight ? "hl" : ""}"><div class="meta"><b>${esc(m.from)}</b> → ${esc(m.to)}<br>${esc(m.sent_at)}${m.forwarded_by ? " · forwarded" : ""}</div><div class="body">${esc(m.body)}</div></div>`).join("");
+  else if (s.kind === "note" || s.kind === "tasks") body = `<h3>${esc(s.path)}</h3><pre>${s.text.split("\n").map((l, i) => `<span class="${s.line === i + 1 ? "noteline" : ""}">${esc(l)}</span>`).join("\n")}</pre>`;
+  else body = `<h3>Calendar event</h3><pre>${esc(J(s.event))}</pre>`;
+  d.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center"><span class="small muted">Original source</span><button id="closeDrawer">Close</button></div>${body}`;
+  $("#closeDrawer").onclick = () => d.hidden = true;
+  const hl = $(".msg.hl", d) || $(".noteline", d); if (hl) hl.scrollIntoView({ block: "center" });
 }
 
-async function issuesView() {
-  const deg = await art("degradations") || [], cost = await art("cost");
-  let h = `<h3>Degraded or skipped (${deg.length})</h3>` + (deg.length ? `<table><thead><tr><th>Stage</th><th>Item</th><th>Reason</th><th>Detail</th></tr></thead><tbody>` + deg.map(d => `<tr><td>${esc(d.stage)}</td><td style="font-size:12px">${esc(d.item)}</td><td>${esc(d.reason)}</td><td style="font-size:12px">${esc(d.detail || "")}</td></tr>`).join("") + "</tbody></table>" : "<p class='hint'>Nothing degraded.</p>");
-  if (cost?.by_role) h += `<h3 style="margin-top:20px">Cost by stage</h3><table><thead><tr><th>Stage</th><th>Calls</th><th>Cached</th><th>Tokens</th><th>Cost</th></tr></thead><tbody>` + Object.entries(cost.by_role).map(([k, s]) => `<tr><td>${esc(k)}</td><td>${s.calls}</td><td>${s.cached}</td><td>${s.prompt_tokens}+${s.completion_tokens}</td><td>${money(s.cost_usd)}</td></tr>`).join("") + `</tbody></table>`;
-  return h;
+// ======================= wiring =======================
+function wire() {
+  $$(".card > .head").forEach(h => h.onclick = () => { const c = h.parentNode, tl = $(".timeline", c); if (tl.hidden && !tl.innerHTML) tl.innerHTML = timelineFor(c.dataset.id, c.dataset.kind); tl.hidden = !tl.hidden; c.classList.toggle("open", !tl.hidden); wireLinks(tl); });
+  $$(".call > .head").forEach(h => h.onclick = () => { const el = h.parentNode, b = $(".body", el); if (!b.innerHTML) b.innerHTML = callBody(CALLS[+el.dataset.i]); b.hidden = !b.hidden; });
+  const wq = $("#whyq"); if (wq) wq.oninput = () => { const q = wq.value.trim().toLowerCase(); $$(".card").forEach(c => c.hidden = q && !c.dataset.search.includes(q)); };
+  const cq = $("#callq"); if (cq) cq.oninput = () => { const q = cq.value.trim().toLowerCase(); let n = 0;
+    $$(".call").forEach(el => { const hit = !q || CALLS[+el.dataset.i].hay.includes(q); el.hidden = !hit; if (hit) n++; });
+    $$(".grp").forEach(g => { const any = $$(".call", g).some(el => !el.hidden); g.hidden = !any; if (q && any) g.open = true; });
+    $("#callcount").textContent = q ? `${n} of ${CALLS.length} calls match` : `${CALLS.length} calls in pipeline order`; };
 }
-
+function wireLinks(root) {
+  $$("[data-src]", root).forEach(b => b.onclick = (e) => { e.stopPropagation(); openSource(b.dataset.src); });
+  $$("[data-call]", root).forEach(b => b.onclick = (e) => { e.stopPropagation(); const q = b.dataset.call; show("calls", () => jumpToCall(q)); });
+}
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") $("#drawer").hidden = true; });
 init();
 </script>
 </body>
