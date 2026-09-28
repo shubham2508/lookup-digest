@@ -19,10 +19,12 @@ from eval.manifest_schema import Manifest, load_manifest
 from .artifacts import RunView
 from .assertions import AssertionResult, CheckContext, run_assertions
 from .common import StageMetrics
-from .compute import score_compute
 from .digest_metrics import score_digest, score_materializer
-from .extraction import score_extraction
 from .match import PT, SourceIndex
+from .merge import score_merge
+from .readers import score_readers
+from .spine import score_spine
+from .sweeps import score_sweeps
 from .triage import score_triage
 
 EVAL_DIR = Path(__file__).resolve().parents[1]
@@ -78,7 +80,7 @@ def headline_of(runs: dict[int, RunScore], assertions: list[AssertionResult]) ->
     p0_hit = p0_n = noise_hit = noise_n = one_ok = one_n = 0
     costs = []
     for r in runs.values():
-        c = r.stages.get("compose")
+        c = r.stages.get("digest")
         if c and c.metrics:
             n = c.metrics.get("p0_expected", 0)
             p0_n += n
@@ -104,26 +106,23 @@ def headline_of(runs: dict[int, RunScore], assertions: list[AssertionResult]) ->
     }
 
 
+# report order: the digest-level target first, then the diagnostics along the pipeline
+SECTIONS = ("digest", "read", "sweep", "merge", "judgment", "spine", "materialize")
+
+
 def score_run(view: RunView, manifest: Manifest, day: int, digest_only: bool = False) -> RunScore:
-    """All five stages; only compose (digest-level) + materializer for markdown-only runs or `digest_only`."""
-    stages: dict[str, StageMetrics] = {}
+    """Digest-level metrics (the target) and every diagnostic; only digest + materialize for markdown-only runs
+    (the baseline) or `digest_only`."""
+    stages: dict[str, StageMetrics] = {"digest": score_digest(view, manifest, day)}
     if not (digest_only or view.markdown_only):
-        stages["extraction"] = score_extraction(view, manifest)
-        stages["compute"] = score_compute(view, manifest, day)
-        stages["triage"] = score_triage(view, manifest, day)
-    stages["compose"] = score_digest(view, manifest, day)
-    stages["materializer"] = score_materializer(view, manifest)
+        stages["read"] = score_readers(view, manifest, day)
+        stages["sweep"] = score_sweeps(view, manifest, day)
+        stages["merge"] = score_merge(view, manifest, day)
+        stages["judgment"] = score_triage(view, manifest, day)
+        stages["spine"] = score_spine(view, manifest, day)
+    stages["materialize"] = score_materializer(view, manifest)
     return RunScore(day=day, run_dir=str(view.dir), stages=stages, cost_usd=view.cost.get("cost_usd"),
                     missing_artifacts=view.missing)
-
-
-def _extraction_misses(score: RunScore | None) -> dict[str, list]:
-    out: dict[str, list] = {}
-    if score is None:
-        return out
-    for m in score.stages["extraction"].misses if "extraction" in score.stages else []:
-        out.setdefault(m.what.split(":", 1)[0], []).append(m)
-    return out
 
 
 SIM_KINDS = {"ruling_applied", "escalation_framing", "resolved_disappears", "content_overrides_ruling"}
@@ -155,7 +154,6 @@ def score_world(world: str, runs_root: Path | None = None, *, suffix: str | None
     for day, view in sorted(views.items()):
         ws.runs[day] = score_run(view, manifest, day)
         ws.notes += [f"day {day}: malformed artifact: {m}" for m in view.malformed]
-    ex_misses = _extraction_misses(ws.runs[max(ws.runs)] if ws.runs else None)
 
     if suffix in (None, "baseline"):
         base = [a for a in manifest.assertions if not a.variant and not a.customize]
@@ -164,9 +162,9 @@ def score_world(world: str, runs_root: Path | None = None, *, suffix: str | None
         sim_views = (load_views(manifest, runs_root, "sim") or views) if suffix is None else views
         sim_only = [a for a in base if a.kind in SIM_KINDS or a.args.get("mode") == "simulate"]
         plain = [a for a in base if a not in sim_only]
-        ws.assertions += run_assertions(plain, CheckContext(manifest, views, ex_misses))
+        ws.assertions += run_assertions(plain, CheckContext(manifest, views))
         if sim_only:
-            ws.assertions += run_assertions(sim_only, CheckContext(manifest, sim_views, ex_misses))
+            ws.assertions += run_assertions(sim_only, CheckContext(manifest, sim_views))
         if suffix is None and conditions:
             ws.conditions = score_conditions(manifest, runs_root, views, customize_suite=customize_suite)
         if suffix is None:
@@ -182,5 +180,5 @@ def score_world(world: str, runs_root: Path | None = None, *, suffix: str | None
         if cid in BUILTIN_VARIANTS:
             ws.notes.append(f"{cid} is built into the world; its assertions are scored on the default runs")
         ws.assertions += run_assertions(condition_assertions(manifest, kind, cid, customize_suite=True),
-                                        CheckContext(manifest, views, ex_misses))
+                                        CheckContext(manifest, views))
     return ws

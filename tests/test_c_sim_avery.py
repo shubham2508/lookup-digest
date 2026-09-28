@@ -35,8 +35,10 @@ def test_code_match_by_contact_and_thread_kind():
     m = mini_manifest()
     m.sim_avery = [SimAveryAnswer(scope_contact="Renee Tan", intended_option=2)]
     assert answer_cards(view(m), m, use_llm=False)[0].option == 2
-    m.sim_avery = [SimAveryAnswer(scope_thread_kind="reply_owed", intended_option=2)]
-    assert answer_cards(view(m), m, use_llm=False)[0].source == "code"
+    m.sim_avery = [SimAveryAnswer(scope_thread_kind="reference customer waiting on a date", intended_option=2)]
+    assert answer_cards(view(m), m, use_llm=False)[0].source == "code"   # a reader's free-text kind
+    m.sim_avery = [SimAveryAnswer(scope_about="rollout:halberd:oct-6", intended_option=2)]
+    assert answer_cards(view(m), m, use_llm=False)[0].option == 2
 
 
 def test_default_when_nothing_matches():

@@ -11,7 +11,7 @@ from eval.manifest_schema import Manifest
 
 from .artifacts import RunView
 from .attribution import attribute_missing, attribute_unwanted
-from .common import Miss, StageMetrics, contact_label, rate, select_items
+from .common import Miss, StageMetrics, is_never_draft, rate, select_items
 from .markdown_view import resolve_citation
 from .match import norm_text
 
@@ -32,7 +32,7 @@ def expected_p0(manifest: Manifest, day: int):
 
 def score_digest(view: RunView, manifest: Manifest, day: int, settings: Settings | None = None) -> StageMetrics:
     settings = settings or load_settings()
-    sm = StageMetrics("compose")
+    sm = StageMetrics("digest")
     try:
         rd = manifest.run_day(day)
     except KeyError:
@@ -168,19 +168,10 @@ def stale_profile_values(manifest: Manifest, profile: dict | None = None) -> dic
     return {s: (facts[s], vals) for s, vals in data.items() if s in facts and facts[s] not in vals}
 
 
-def is_never_draft(manifest: Manifest, target: str | None) -> bool:
-    if not target:
-        return False
-    c = contact_label(manifest, target)
-    if c is None:
-        return False
-    return "never_draft" in c.rules or c.category == "cold_inbound" or "recruit" in (c.subtype or "")
-
-
 def score_materializer(view: RunView, manifest: Manifest, settings: Settings | None = None,
                        profile: dict | None = None) -> StageMetrics:
     settings = settings or load_settings()
-    sm = StageMetrics("materializer")
+    sm = StageMetrics("materialize")
     drafts = view.drafts()
     stale = stale_profile_values(manifest, profile)
     ok = {"sentences": 0, "banned": 0, "never_draft": 0, "assumptions": 0, "numbers": 0}
@@ -193,22 +184,22 @@ def score_materializer(view: RunView, manifest: Manifest, settings: Settings | N
         if n <= settings.drafts.max_sentences:
             ok["sentences"] += 1
         else:
-            sm.misses.append(Miss(f"draft to {who}: {n} sentences", f"≤{settings.drafts.max_sentences}", n, link, _stage(view, "materializer")))
+            sm.misses.append(Miss(f"draft to {who}: {n} sentences", f"≤{settings.drafts.max_sentences}", n, link, _stage(view, "materialize")))
         banned = [b for b in settings.drafts.banned_phrases if norm_text(b) in norm_text(text)]
         if not banned:
             ok["banned"] += 1
         else:
-            sm.misses.append(Miss(f"draft to {who}: banned phrase", "none", banned, link, _stage(view, "materializer")))
+            sm.misses.append(Miss(f"draft to {who}: banned phrase", "none", banned, link, _stage(view, "materialize")))
         if not (is_never_draft(manifest, d.get("target")) or is_never_draft(manifest, d.get("recipient_name"))):
             ok["never_draft"] += 1
         else:
-            sm.misses.append(Miss(f"draft to never-draft contact {who}", "no draft", "draft", link, _stage(view, "materializer")))
+            sm.misses.append(Miss(f"draft to never-draft contact {who}", "no draft", "draft", link, _stage(view, "materialize")))
         if d.get("brief_assumptions"):
             n_assump += 1
             if d.get("assumptions"):
                 ok["assumptions"] += 1
             else:
-                sm.misses.append(Miss(f"draft to {who}: assumptions not shown", d["brief_assumptions"], [], link, _stage(view, "materializer")))
+                sm.misses.append(Miss(f"draft to {who}: assumptions not shown", d["brief_assumptions"], [], link, _stage(view, "materialize")))
         used_stale = [(s, pv) for s, (pv, _) in stale.items() if norm_text(pv) in norm_text(text)]
         if any(norm_text(v) in norm_text(text) for _, vals in stale.values() for v in vals) or used_stale:
             n_numbers += 1
@@ -216,7 +207,7 @@ def score_materializer(view: RunView, manifest: Manifest, settings: Settings | N
                 ok["numbers"] += 1
             else:
                 sm.misses.append(Miss(f"draft to {who}: profile value used over data", {s: stale[s][1] for s, _ in used_stale},
-                                      [pv for _, pv in used_stale], link, _stage(view, "materializer")))
+                                      [pv for _, pv in used_stale], link, _stage(view, "materialize")))
     total = len(drafts)
     sm.metrics = {
         "drafts": total,

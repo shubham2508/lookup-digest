@@ -1,11 +1,11 @@
 """Matching rules shared by every metric (extraction_schema §7 "Matching rules for scoring").
 
-- About keys: same `kind`, and the rest (slug + qualifier) has a fuzzy ratio ≥ 0.85, the same rule compute
-  uses to merge keys (architecture §6.3). Strict on purpose: the scorer must not be kinder than the product.
-- Source references: product evidence IDs (`msg:<message-id>`, `note:<path>#L<n>`, `task:<id>`) are mapped
-  back to manifest `source_id`s through the manifest's message labels. The product assigns its own thread IDs,
-  so a thread is identified by the messages its evidence cites, never by its ID.
-- Dates: equal within the granularity the extractor claimed (day → same PT day, week → 7 days, ...).
+- About keys: same `kind`, and the rest (slug + qualifier) has a fuzzy ratio ≥ 0.85. Strict on purpose: the scorer
+  must not be kinder than the product. (Grader side only; the product decides sameness with its linker.)
+- Source references: product evidence IDs (`msg:<message-id>`, `thread:<root message-id>`, `note:<path>#L<n>`,
+  `task:<id>`, `event:<uid>`) are mapped back to manifest `source_id`s through the manifest's message labels. The
+  product assigns its own thread IDs, so a thread is identified by its messages, never by its ID.
+- Dates: equal within the granularity the product claimed (day → same PT day, week → 7 days, ...).
 """
 from __future__ import annotations
 
@@ -96,8 +96,9 @@ class SourceIndex:
             return self.by_note.get(_stem(ref))
         if low.startswith("task:"):
             return self.by_task.get(ref.split(":", 1)[1].split("#", 1)[0].lower())
-        if low.startswith("event:"):
-            return None
+        if low.startswith("event:"):  # `event:<uid>`; a uid may carry an @domain or #occurrence the manifest id lacks
+            uid = ref.split(":", 1)[1].split("#", 1)[0].split("@", 1)[0].strip()
+            return f"event:{uid}" if f"event:{uid}" in self.ids else None
         if "@" in ref:  # a bare message id
             return self.by_msg.get(_norm_msg(ref))
         return None
@@ -127,11 +128,12 @@ def evidence_refs(obj: Any) -> list[str]:
     return out
 
 
-def majority_source(index: SourceIndex, refs: Iterable[str], own_id: str | None = None) -> str | None:
-    """The manifest item an extraction is about: its own id if the manifest knows it, else the majority of its evidence."""
+def majority_source(index: SourceIndex, refs: Iterable[str], own_id: str | None = None, kind: str | None = None) -> str | None:
+    """The manifest item a finding is about: its own id if the manifest knows it, else the majority of its evidence
+    (counting only items of `kind`, when given)."""
     if own_id and index.resolve(own_id):
         return index.resolve(own_id)
-    counts = Counter(s for s in (index.resolve(r) for r in refs) if s)
+    counts = Counter(s for s in (index.resolve(r) for r in refs) if s and (kind is None or index.kind_of(s) == kind))
     return counts.most_common(1)[0][0] if counts else None
 
 

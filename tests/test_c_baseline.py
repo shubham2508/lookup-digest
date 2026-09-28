@@ -65,15 +65,15 @@ def test_baseline_scores_digest_level_only(manifest, index):
     v = RunView(MINI_RUNS / "2026-09-24T06-00_baseline", index, ROOT, day=DAY)
     assert v.markdown_only and "compose" in v.missing
     ws = score_world("tests/fixtures/mini", MINI_RUNS, suffix="baseline", label="baseline", manifest=manifest)
-    assert set(ws.runs[DAY].stages) == {"compose", "materializer"}
+    assert set(ws.runs[DAY].stages) == {"digest", "materialize"}
     h = ws.headline()
     assert h["p0_recall"] == pytest.approx(0.667, abs=1e-3) and h["one_thing_accuracy"] == 0.0
     assert h["must_not_rate"] == 1.0 and h["cost_per_run"] == 0.0451 and h["traps_passed"] == "1/5"
     na = [a.id for a in ws.assertions if a.passed is None]
     assert na == ["S12-lumen-flagged", "S12-jordan-not-flagged"]  # candidate kinds: n/a without pipeline artifacts
-    c = ws.runs[DAY].stages["compose"]
+    c = ws.runs[DAY].stages["digest"]
     assert {m.stage for m in c.misses} == {"baseline"} and c.metrics["md_citations_valid_rate"] == 1.0
-    mat = ws.runs[DAY].stages["materializer"]
+    mat = ws.runs[DAY].stages["materialize"]
     assert mat.metrics["no_never_draft_recipient"] == 0.5  # the draft to Sam
 
 
@@ -87,6 +87,7 @@ def test_eval_cli_has_baseline_column(tmp_path):
                                  "--customize-suite"])
     assert r.exit_code == 0, r.output
     text = next(tmp_path.glob("*.md")).read_text()
-    assert "| metric | pipeline · dev | baseline · dev |" in text  # found without --baseline because the run exists
+    assert "| metric | v1 · dev | v2 · dev | baseline · dev | v1 · heldout | v2 · heldout | baseline · heldout |" in text
+    # the baseline run exists, so it is scored live (no --baseline needed); held-out falls back to the fixed numbers
+    assert "| Runs scored | 5 | 1 | 1 | 5 | not run | 1 † |" in text
     assert "### Naive baseline · dev" in text and "| weekend | customize | 30 |" in text
-    assert "Not run yet: pipeline · heldout, baseline · heldout." in text

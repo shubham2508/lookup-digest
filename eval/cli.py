@@ -20,7 +20,11 @@ def evaluate(
     customize_suite: bool = typer.Option(False, "--customize-suite", help="also score profile/customize/* runs"),
     baseline: bool = typer.Option(False, "--baseline", help="also score the naive baseline (runs …_baseline/)"),
     runs: Path = typer.Option(None, "--runs", help="runs root; default runs/<world>"),
-    judge: bool = typer.Option(False, "--judge", help="run the LLM judge (reported, not gated)"),
+    judge: bool = typer.Option(False, "--judge", help="run the API judge (reported, not gated; costs cents)"),
+    judge_export: Path = typer.Option(None, "--judge-export", help="write the judge items + rendered prompts (JSONL) "
+                                      "for an in-session judge (OPEN_QUESTIONS #20); no API call"),
+    judge_scores: Path = typer.Option(None, "--judge-scores", help="read in-session judge scores (JSON/YAML/JSONL) "
+                                      "into the report instead of calling the API judge"),
     calibrate_judge: bool = typer.Option(False, "--calibrate-judge",
                                          help="one-time: judge_reference (Fable) vs judge on the same items"),
     out: Path = typer.Option(None, "--out", help="report directory; default eval/reports/"),
@@ -33,7 +37,7 @@ def evaluate(
     if matrix:
         _matrix(world, dry_run, keep_going)
         return
-    from eval.judge.judge import calibrate, digest_item, draft_items, judge_items
+    from eval.judge.judge import calibrate, digest_item, draft_items, export_items, judge_items, load_scores
     from eval.report import render_report, report_name, write_report
     from eval.scorer.runner import load_views, manifest_path, score_world
 
@@ -59,7 +63,7 @@ def evaluate(
             scores[("baseline", other)] = score_world(other, oroot, suffix="baseline", label="baseline", manifest=om)
 
     jrun = cal = None
-    if judge or calibrate_judge:
+    if judge or calibrate_judge or judge_export:
         items = []
         for day, view in sorted(load_views(manifest, root, variant).items()):
             items += draft_items(view, f"d{day}/")
@@ -70,10 +74,14 @@ def evaluate(
             di = digest_item(view, f"baseline/d{day}/")
             if di:
                 items.append(di)
+        if judge_export:
+            typer.echo(f"judge items: {export_items(items, judge_export)} → {judge_export}")
         if calibrate_judge:
             cal = calibrate(items[:20])
         if judge:
             jrun = judge_items(items)
+    if judge_scores:
+        jrun = load_scores(judge_scores)
 
     text = render_report(world, scores, manifest, jrun, cal)
     path = write_report(text, report_name(world, suffix=variant), out)

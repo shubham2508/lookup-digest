@@ -1,0 +1,54 @@
+# v1 (tag `v1-extraction-centric`, commit 02906f9) and naive-baseline headline numbers, fixed.
+# Source: eval/reports/dev_2026-09-29_v1.md and heldout_2026-09-29_v1.md (the v1 final matrices, five mornings a world),
+# cost per run from the v2 handoff (docs/handoffs/v2-C-eval.md C4). Every report's v1 / v2 / baseline table reads
+# this file, so the comparison never depends on those reports or on re-running v1. v1 was not judged (judge: null).
+# A baseline column is scored live when a baseline run exists on disk; these baseline numbers fill it otherwise.
+source: "v1-extraction-centric (02906f9); eval/reports/{dev,heldout}_2026-09-29_v1.md"
+v1:
+  dev:
+    p0_recall: 1.0
+    traps_passed: "115/175"
+    must_not_rate: 0.066
+    one_thing_accuracy: 1.0
+    cost_per_run: 0.054
+    cost_note: cached
+    runs_scored: 5
+    judge: null
+  heldout:
+    p0_recall: 0.846
+    traps_passed: "129/207"
+    must_not_rate: 0.066
+    one_thing_accuracy: 0.5
+    cost_per_run: 0.19
+    cost_note: cold extraction
+    runs_scored: 5
+    judge: null
+baseline:
+  dev:
+    p0_recall: 0.75
+    traps_passed: "34/74"
+    must_not_rate: 0.012
+    one_thing_accuracy: 0.0
+    cost_per_run: null
+    cost_note: cached rerun, cost not logged
+    runs_scored: 1
+    judge: null
+  heldout:
+    p0_recall: 0.625
+    traps_passed: "44/83"
+    must_not_rate: 0.028
+    one_thing_accuracy: 0.0
+    cost_per_run: 0.0358
+    runs_scored: 1
+    judge: null
+# The same v1 runs rescored with the v2 scorer (2026-09-29, before v2 runs replace runs/<world>/). The v2 scorer
+# also matches an item by the answer key's sources for its key (OPEN_QUESTIONS #21) and honours count_items_of_type's
+# `about`; on v1's own runs that credits three items v1 rendered under other keys (dev: franchise tax, press request;
+# the 19-item approval count). Apples to apples with v2, since v2 is scored by this scorer.
+rescored_with_v2_scorer:
+  v1:
+    dev: {p0_recall: 1.0, traps_passed: "118/175", must_not_rate: 0.066, one_thing_accuracy: 1.0}
+    heldout: {p0_recall: 0.846, traps_passed: "137/207", must_not_rate: 0.066, one_thing_accuracy: 0.5}
+  baseline:
+    dev: {p0_recall: 0.75, traps_passed: "34/74", must_not_rate: 0.012, one_thing_accuracy: 0.0}
+    heldout: {p0_recall: 0.625, traps_passed: "45/83", must_not_rate: 0.028, one_thing_accuracy: 0.0}

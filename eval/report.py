@@ -1,10 +1,12 @@
-"""eval/reports/<world>_<date>.md in the eval.md §9 layout.
+"""eval/reports/<world>_<date>.md in the eval.md §9 layout, rewired for v2 (PIVOT_SPEC §6).
 
-1. Summary: pipeline vs baseline, dev vs held-out, on the headline metrics.
-2. Per-stage metrics per run day (§2), with misses attributed to a stage.
+1. Summary: v1 / v2 / baseline on dev and held-out (P0 recall, traps, must-not rate, one thing, judge, cost).
+   v1 is fixed (eval/v1_results.yaml); v2 and the baseline are scored from the runs on disk.
+2. Diagnostics per run day: the digest-level metrics (the target), then where it failed: readers, sweeps and
+   nets (with the rescue list), merge, judgment (triage.jsonl + hard rules), the contact spine, the materializer.
 3. Failed assertions, each with its stage and artifact links.
 4. Customize and variant results.
-5. Judge (reported, not gated) and the label-audit note.
+5. Judge (reported, not gated), 6. multi-day simulation, 7. label audit.
 """
 from __future__ import annotations
 
@@ -12,22 +14,30 @@ from collections import Counter
 from datetime import date
 from pathlib import Path
 
-from eval.judge.judge import Calibration, JudgeRun
+import yaml
+
+from eval.judge.judge import RUBRICS, Calibration, JudgeRun
 from eval.manifest_schema import Manifest
 from eval.scorer.assertions import AssertionResult
 from eval.scorer.common import STAGES
-from eval.scorer.runner import WorldScore
+from eval.scorer.runner import SECTIONS, WorldScore
 
 REPORTS_DIR = Path(__file__).resolve().parent / "reports"
+V1_RESULTS = Path(__file__).resolve().parent / "v1_results.yaml"
 HEADLINE_ROWS = [
     ("P0 recall (gate = 100%)", "p0_recall"),
     ("Trap assertions passed", "traps_passed"),
     ("Must-not rate", "must_not_rate"),
     ("One-thing accuracy", "one_thing_accuracy"),
+    ("Judge · digest (3 questions / no noise / honest)", "judge_digest"),
+    ("Judge · drafts (facts / tone / assumptions)", "judge_draft"),
     ("Cost / run (USD)", "cost_per_run"),
     ("Runs scored", "runs_scored"),
 ]
-COLUMNS = [("pipeline", "dev"), ("pipeline", "heldout"), ("baseline", "dev"), ("baseline", "heldout")]
+WORLDS = ("dev", "heldout")
+SECTION_TITLES = {"digest": "digest (the target)", "read": "read · thread readers", "sweep": "sweep & net · planted traps, rescues",
+                  "merge": "merge", "judgment": "judgment · triage.jsonl after the code floors", "spine": "spine · contacts",
+                  "materialize": "materialize"}
 
 
 def _fmt(v) -> str:
@@ -51,20 +61,90 @@ def report_name(world: str, on: date | None = None, suffix: str | None = None) -
     return f"{slug}_{(on or date.today()).isoformat()}{'_' + suffix if suffix else ''}.md"
 
 
-def _summary(scores: dict[tuple[str, str], WorldScore]) -> list[str]:
-    cols = [c for c in COLUMNS if c in scores] + [c for c in scores if c not in COLUMNS]
-    lines = ["| metric | " + " | ".join(f"{a} · {b}" for a, b in cols) + " |", "|---|" + "---|" * len(cols)]
-    heads = {c: scores[c].headline() for c in cols}
-    for label, key in HEADLINE_ROWS:
-        row = [_fmt(heads[c].get(key)) if key != "cost_per_run" or heads[c].get(key) is None
-               else f"${heads[c][key]:.4f}" for c in cols]
+def load_v1_results(path: Path | None = None) -> dict:
+    p = path or V1_RESULTS
+    return yaml.safe_load(p.read_text(encoding="utf-8")) if p.exists() else {}
+
+
+def judge_means(judge: JudgeRun | None, kind: str, baseline: bool) -> str | None:
+    """'4.2 / 3.8 / 4.5' in rubric order, over the judged items of one column (baseline items are `baseline/…`)."""
+    if judge is None or judge.status != "ok":
+        return None
+    vals: dict[str, list[int]] = {}
+    for r in judge.results:
+        if r.kind != kind or r.item_id.startswith("baseline/") != baseline:
+            continue
+        for k, v in r.scores.items():
+            vals.setdefault(k, []).append(v)
+    if not vals:
+        return None
+    return " / ".join(f"{sum(vals[c]) / len(vals[c]):.1f}" if vals.get(c) else "—" for c in RUBRICS[kind])
+
+
+def _cell(key: str, head: dict | None, fixed: dict | None, judge_cell: tuple[str | None, str | None]) -> str:
+    """One table cell: the live headline when scored, else the fixed v1-era number (marked †)."""
+    if key in ("judge_digest", "judge_draft"):
+        v = judge_cell[0 if key == "judge_digest" else 1]
+        return v if v else "—"
+    if head is not None:
+        v = head.get(key)
+        if key == "cost_per_run":
+            return f"${v:.4f}" if v is not None else "—"
+        cell = _fmt(v)
         if key == "p0_recall":
-            row = [f"{r} {'✅' if heads[c].get('p0_gate') else ('❌' if heads[c].get('p0_gate') is False else '')}".strip()
-                   for r, c in zip(row, cols, strict=True)]
+            cell = f"{cell} {'✅' if head.get('p0_gate') else ('❌' if head.get('p0_gate') is False else '')}".strip()
+        return cell
+    if fixed is None:
+        return "not run"
+    v = fixed.get(key)
+    if key == "cost_per_run":
+        cell = f"${v:.4f}" if v is not None else "—"
+        note = fixed.get("cost_note")
+        return f"{cell} ({note})" if note else cell
+    return _fmt(v)
+
+
+def _summary(world: str, scores: dict[tuple[str, str], WorldScore], judge: JudgeRun | None,
+             v1: dict | None = None) -> list[str]:
+    """The v1 / v2 / baseline comparison table (PIVOT_SPEC §6), dev and held-out."""
+    v1 = load_v1_results() if v1 is None else v1
+    here = "heldout" if "heldout" in world else "dev"
+    cols: list[tuple[str, str]] = []
+    for w in WORLDS:
+        cols += [("v1", w), ("v2", w), ("baseline", w)]
+    extra = [k for k in scores if k[1] not in WORLDS]  # fixture worlds: their own v2 / baseline columns
+    cols += [("v2" if k == "pipeline" else k, w) for k, w in extra]
+    lines = ["| metric | " + " | ".join(f"{a} · {b}" for a, b in cols) + " |", "|---|" + "---|" * len(cols)]
+    fallback_baseline = []
+    for label, key in HEADLINE_ROWS:
+        row = []
+        for kind, w in cols:
+            if kind == "v1":
+                row.append(_cell(key, None, (v1.get("v1") or {}).get(w), (None, None)))
+                continue
+            ws = scores.get(("pipeline" if kind == "v2" else "baseline", w))
+            head = ws.headline() if ws is not None and ws.runs else None
+            jc = (judge_means(judge, "digest", kind == "baseline"), judge_means(judge, "draft", kind == "baseline")) \
+                if w == here else (None, None)
+            fixed = (v1.get("baseline") or {}).get(w) if kind == "baseline" and head is None else None
+            if fixed is not None and key == HEADLINE_ROWS[0][1]:
+                fallback_baseline.append(w)
+            cell = _cell(key, head, fixed, jc)
+            dagger = fixed is not None and not key.startswith("judge_") and cell not in ("—", "not run")
+            row.append(f"{cell} †" if dagger else cell)
         lines.append(f"| {label} | " + " | ".join(row) + " |")
-    missing = [f"{a} · {b}" for a, b in COLUMNS if (a, b) not in scores]
-    if missing:
-        lines.append(f"\nNot run yet: {', '.join(missing)}.")
+    lines.append("")
+    lines.append("v1 is fixed from the v1 tag's final reports (`eval/v1_results.yaml`); v2 is scored from the runs on disk."
+                 + (f" † baseline from the v1-era run ({', '.join(fallback_baseline)}): no baseline run on disk."
+                    if fallback_baseline else "")
+                 + " Judge cells are rubric means (1–5) for the world this report is about.")
+    rescored = v1.get("rescored_with_v2_scorer") or {}
+    if rescored:
+        def line(kind: str) -> str:
+            return "; ".join(f"{w} {_fmt(r.get('p0_recall'))} · {r.get('traps_passed')} · {_fmt(r.get('must_not_rate'))} · "
+                             f"{_fmt(r.get('one_thing_accuracy'))}" for w, r in (rescored.get(kind) or {}).items())
+        lines.append(f"\nThe v1 runs rescored with this scorer (P0 · traps · must-not · one thing): v1 {line('v1')}; "
+                     f"baseline {line('baseline')}.")
     return lines
 
 
@@ -75,27 +155,31 @@ def _stage_section(ws: WorldScore) -> list[str]:
         out.append(f"### Day {day} · `{rs.run_dir}`")
         if rs.missing_artifacts:
             out.append(f"Missing artifacts: {', '.join(rs.missing_artifacts)}")
-        for stage in STAGES:
-            sm = rs.stages.get(stage)
+        for section in SECTIONS:
+            sm = rs.stages.get(section)
             if sm is None:
                 continue
-            out.append(f"\n**{stage}**\n")
+            out.append(f"\n**{SECTION_TITLES.get(section, section)}**\n")
             out.append("| metric | value |")
             out.append("|---|---|")
             for k, v in sm.metrics.items():
                 out.append(f"| {k} | {_fmt(v)} |")
+            for name, items in sm.lists.items():
+                out.append(f"\n{name}:")
+                out += [f"- {x}" for x in items]
             for n in sm.notes:
                 out.append(f"\n_{n}_")
             if sm.misses:
                 out.append("\nMisses:")
                 for m in sm.misses:
-                    st = m.stage or stage
+                    st = m.stage or section
                     by_stage[st] += 1
                     link = f" · [{m.link}]({m.link})" if m.link else ""
                     out.append(f"- [{st}] {m.what}: expected `{_fmt(m.expected)}`, got `{_fmt(m.got)}`{link}")
         out.append("")
     if by_stage:
-        out.insert(0, "Misses by attributed stage: " + ", ".join(f"{s} {by_stage[s]}" for s in STAGES if by_stage[s]) + "\n")
+        order = list(STAGES) + sorted(s for s in by_stage if s not in STAGES)
+        out.insert(0, "Misses by attributed stage: " + ", ".join(f"{s} {by_stage[s]}" for s in order if by_stage[s]) + "\n")
     return out
 
 
@@ -170,8 +254,8 @@ def render_report(world: str, scores: dict[tuple[str, str], WorldScore], manifes
           "P0 recall is the only gate; everything else is reported.", ""]
     for n in main.notes:
         L += [f"> {n}", ""]
-    L += ["## 1. Summary", ""] + _summary(scores) + [""]
-    L += ["## 2. Per-stage metrics (eval.md §2)", ""] + _stage_section(main)
+    L += ["## 1. Summary: v1 / v2 / baseline", ""] + _summary(world, scores, judge) + [""]
+    L += ["## 2. Diagnostics (PIVOT_SPEC §6: where it failed; §1 is the target)", ""] + _stage_section(main)
     L += ["## 3. Trap assertions", "",
           f"{len(passed)} passed · {len(failed)} failed · {len(not_run)} not run.", ""]
     if failed:
@@ -189,10 +273,10 @@ def render_report(world: str, scores: dict[tuple[str, str], WorldScore], manifes
         L.append(f"{sum(1 for a in ws.assertions if a.passed)} passed · {len(bf)} failed · {na} n/a (need pipeline artifacts).")
         L += [""] + [f"- **{a.id}** (`{a.kind}`): {a.evidence}" for a in bf]
         for day, rs in sorted(ws.runs.items()):
-            for stage in ("compose", "materializer"):
+            for stage in ("digest", "materialize"):
                 for m in rs.stages[stage].misses:
                     L.append(f"- day {day} · {stage}: {m.what}: expected `{_fmt(m.expected)}`, got `{_fmt(m.got)}`")
-            c = rs.stages["compose"].metrics
+            c = rs.stages["digest"].metrics
             L.append(f"- day {day} · citations valid {_fmt(c.get('md_citations_valid_rate'))}, words {c.get('words')}")
         L.append("")
     L += ["## 4. Customize and variant results", ""] + _conditions_section(main.conditions, extra)

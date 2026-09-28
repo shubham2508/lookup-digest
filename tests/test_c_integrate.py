@@ -134,7 +134,7 @@ def test_malformed_contacts_are_reported_not_fatal(tmp_path, manifest):
     d = make_run(tmp_path, manifest, DAY, [])
     (d / "contacts.json").write_text(json.dumps(["contact_id='sam-park' names=['Sam Park']"]))
     ws = score_world("x", tmp_path, manifest=manifest, conditions=False)
-    assert ws.runs[DAY].stages["compute"].metrics["contact_category_accuracy"] == 0.0
+    assert ws.runs[DAY].stages["spine"].metrics["contact_category_accuracy"] == 0.0
     assert any("malformed artifact: contacts.json: 1 of 1" in n for n in ws.notes)
 
 
@@ -154,14 +154,15 @@ def test_quoted_draft_line_under_an_action():
 
 
 def test_item_matches_by_candidate_fallback(tmp_path, manifest):
-    """Compute keyed the pediatrician conflict by the child's name; #9 still finds it (type + evidence token)."""
+    """A safety net keyed the pediatrician conflict by the child's name; #9 still finds it (type + evidence token)."""
     ped = {"id": "w", "about": "family:wren", "priority": "P0", "section": "calendar_personal",
-           "ctype": "calendar_conflict:family", "cites": ["event:wren-pediatrician-20260924@parkfamily.example"]}
+           "ctype": "calendar_conflict:family", "origin": "safety_net",
+           "cites": ["event:wren-pediatrician-20260924@parkfamily.example"]}
     make_run(tmp_path, manifest, DAY, [ped])
     ws = score_world("x", tmp_path, manifest=manifest, conditions=False)
-    c, t = ws.runs[DAY].stages["compose"], ws.runs[DAY].stages["triage"]
+    c, t = ws.runs[DAY].stages["digest"], ws.runs[DAY].stages["judgment"]
     assert "P0 missing: family:pediatrician" not in " ".join(m.what for m in c.misses)
-    assert "family:pediatrician: never triaged" not in " ".join(m.what for m in t.misses)
+    assert "family:pediatrician: never surfaced" not in " ".join(m.what for m in t.misses)
     # but a key another expectation owns is never borrowed: the daycare item stays missing
     assert any(m.what.startswith("P0 missing: family:daycare") for m in c.misses)
     assert load_views(manifest, tmp_path)[DAY].rendered[0].about == "family:wren"

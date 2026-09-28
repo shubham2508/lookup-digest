@@ -21,13 +21,16 @@ def test_report_has_every_section_and_links():
     ws = score_world("tests/fixtures/mini", MINI_RUNS, manifest=m)
     text = render_report("tests/fixtures/mini", {("pipeline", "dev"): ws}, m, JudgeRun("judge", "skipped", "no model configured"),
                          on=date(2026, 9, 28))
-    for h in ("## 1. Summary", "## 2. Per-stage metrics", "## 3. Trap assertions", "## 4. Customize and variant results",
+    for h in ("## 1. Summary: v1 / v2 / baseline", "## 2. Diagnostics", "## 3. Trap assertions", "## 4. Customize and variant results",
               "## 5. Judge", "## 6. Multi-day simulation", "## 7. Label audit"):
         assert h in text, h
-    assert "| P0 recall (gate = 100%) | 0.667 ❌ |" in text
+    # v1 fixed · v2 scored · baseline and held-out columns fall back to the v1-era numbers (†) or "not run"
+    assert "| P0 recall (gate = 100%) | 100% | 0.667 ❌ | 0.75 † | 0.846 | not run | 0.625 † |" in text
+    assert "| Cost / run (USD) | $0.0540 (cached) | $0.0123 |" in text
     assert "judge: skipped (no model configured)" in text
-    assert "[triage] P0 missing: family:daycare" in text and "triage.jsonl#L8" in text
-    assert "Not run yet: pipeline · heldout, baseline · dev, baseline · heldout." in text
+    assert "[read] P0 missing: family:daycare" in text and "findings.jsonl#L8" in text
+    for s in ("**read · thread readers**", "reader_recall", "Rescue list", "**merge**", "**spine · contacts**"):
+        assert s in text, s
     assert report_name("tests/fixtures/mini", date(2026, 9, 28)) == "tests_fixtures_mini_2026-09-28.md"
     assert report_name("dev", date(2026, 9, 28), "stale_inbox") == "dev_2026-09-28_stale_inbox.md"
 
@@ -78,3 +81,13 @@ def test_eval_cli_writes_a_report(tmp_path):
 def test_eval_cli_without_manifest_exits_2():
     r = CliRunner().invoke(app, ["eval", "--world", "no-such-world-xyz"])
     assert r.exit_code == 2 and "no manifest" in r.output
+
+
+def test_v1_numbers_are_fixed_in_a_file():
+    """The v1 column never depends on the v1 reports or a v1 re-run (handoff C4)."""
+    from eval.report import load_v1_results
+
+    v1 = load_v1_results()
+    assert v1["v1"]["dev"]["p0_recall"] == 1.0 and v1["v1"]["dev"]["traps_passed"] == "115/175"
+    assert v1["v1"]["heldout"]["p0_recall"] == 0.846 and v1["v1"]["heldout"]["one_thing_accuracy"] == 0.5
+    assert v1["baseline"]["dev"]["traps_passed"] == "34/74" and v1["baseline"]["heldout"]["must_not_rate"] == 0.028
