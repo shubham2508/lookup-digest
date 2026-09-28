@@ -1,0 +1,53 @@
+thread_id: t-nia-social
+subject: "great seeing you saturday"
+storyline: null
+category: vendors_misc
+labels:
+  kind: thread
+  must_not: true
+  reason: social_no_ask
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: social
+    about: [other:nia-social]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: network, subtype: founder_peer}
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 22
+    time: "08:40"
+    from: nia
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      great seeing you Saturday - that was the first time I've laughed about a board deck in months. your plant-manager-and-the-forklift story is going in my next all-hands, credit given.
+
+      also I finally tried the ramen place you mentioned on Telegraph. you were right.
+
+      no news on my end, just wanted to say it was fun.
+  - id: m2
+    beat_ref: null
+    day: 22
+    time: "09:10"
+    from: avery
+    to: [nia]
+    cc: []
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      same! the forklift story gets better every time i tell it. and yes, telegraph ramen is undefeated.
+
+      let's do it again in october, i'll text you.
+
+      Avery

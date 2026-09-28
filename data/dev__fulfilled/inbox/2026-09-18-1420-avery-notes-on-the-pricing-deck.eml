@@ -1,0 +1,20 @@
+Message-ID: <20260918-1420.avery@tessera.io>
+Date: Fri, 18 Sep 2026 14:20:21 -0700
+From: Avery Chen <avery@tessera.io>
+To: =?utf-8?q?Tom=C3=A1s?= Reyes <tomas@tessera.io>
+Cc: Ana Kowalski <ana@tessera.io>
+Subject: notes on the pricing deck
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+as promised, here are my notes on the pricing deck (v2). nothing here should stop Ana using it Monday.
+
+- tier names: keep Line / Plant / Network. drop the "formerly Starter/Growth/Enterprise" footnote on slide 3, it just invites the question.
+- slide 6 (usage tiers): good that it's written down. add one worked example - "a plant doing 40M events a month sits in tier 2 on a trailing 3-month average" - and cut the second paragraph, it repeats the first.
+- slide 7 (vs in-house): too long, and the "18 months to build" claim needs a source or needs to go. one slide, three numbers.
+- slide 8 (references): fine to name Halberd and Northstar. leave Veritas off until the renewal is signed, not before.
+- list price: show it. Ana's right - the surprise costs more than the room to move.
+- slide 12 (implementation timeline): "2 weeks" should say "2-4 weeks depending on plant IT". Yuki will thank you.
+
+Avery

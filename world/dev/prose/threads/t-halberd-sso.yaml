@@ -1,0 +1,85 @@
+thread_id: t-halberd-sso
+subject: "SSO / Okta setup for the pilot group"
+storyline: S5
+category: customers
+labels: null
+messages:
+  - id: m1
+    beat_ref: S5.b6
+    day: 12
+    time: "11:20"
+    from: joel
+    to: [{name: "Tessera Support", email: "support@tessera.io"}]
+    cc: [renee, avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi Tessera support,
+
+      We're standing up the pilot group ahead of Tuesday and SAML is failing for every user in the Halberd-Tessera-Pilot Okta group. Details:
+
+      - IdP: Okta, SAML 2.0 app created from your setup guide v2.3.
+      - SP-initiated flow. Okta authenticates fine, the POST back to https://halberd.tessera.io/sso/acs returns HTTP 400.
+      - Error on your side: "SAML assertion rejected: required attribute 'email' not present (NameID format: urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified)"
+      - Okta System Log shows the assertion issued with attribute statements firstName, lastName, login. I have a screenshot of the attribute statement if that helps.
+      - Metadata XML re-uploaded twice, cert fingerprint matches on both ends.
+
+      I also tried switching the NameID format to emailAddress in the app profile, same 400. 12 users affected, all in the pilot group. Would like to get this sorted before Tuesday (Monday is a holiday here) so they can log in on day one.
+
+      Our ticket ref: HAL-IT-2291.
+  - id: m2
+    beat_ref: S5.b7
+    day: 12
+    time: "16:45"
+    from: jordan
+    to: [joel]
+    cc: [renee, avery]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Joel,
+
+      Mateo looped me in (Tessera ticket #4471). Short version: this was on our side, it's fixed, and you should be able to log in now.
+
+      - Impact: every SP-initiated login for your Okta app returned 400 since the app was created. Nobody in the pilot group could have got in.
+      - Root cause: attribute mapping. Our ACS was looking for an attribute literally named `email`; the profile in the setup guide maps it as `login`. The guide and the ACS disagreed with each other, which is our bug, not your config.
+      - Fix: the ACS now accepts `email`, `login`, or the NameID when it's in emailAddress format. Shipped 16:20 PT. No change needed on the Okta app.
+      - Follow-up: we'll correct the setup guide this week.
+
+      Could you retest with one pilot user and let us know? If it still fails, send me the Okta System Log entry and I'll look at it tonight.
+  - id: m3
+    beat_ref: S5.b8
+    day: 14
+    time: "09:10"
+    from: renee
+    to: [jordan]
+    cc: [joel, avery]
+    reply_to: m2
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Jordan,
+
+      Joel retested first thing this morning and all 12 pilot users are in. Thanks for jumping on this on a Sunday, that was above and beyond.
+
+      Closing HAL-IT-2291 on our side.
+
+      Renee
+  - id: m4
+    beat_ref: S5.b9
+    day: 14
+    time: "09:30"
+    from: priya
+    to: [jordan]
+    cc: [renee, joel, avery]
+    reply_to: m3
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      +1, nice catch. 3 other tenants were set up from the same guide, sweeping them today.

@@ -1,0 +1,27 @@
+Message-ID: <20260827-0905.hello@linear.app>
+Date: Thu, 27 Aug 2026 09:05:32 -0700
+From: Linear <hello@linear.app>
+To: Avery Chen <avery@tessera.io>
+Subject: Linear Changelog: Triage intelligence, project health, and SLAs
+List-Unsubscribe: <mailto:unsubscribe@linear.app?subject=unsubscribe>, <https://linear.app/u/4cc8a5d6>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+This week in Linear
+
+Triage intelligence
+Incoming issues from Slack, Intercom, and email are now grouped by similarity and get a suggested team and assignee automatically. Turn it on under Settings > Triage.
+
+Project health
+Project leads can mark a project On track, At risk, or Off track with a short update. Health rolls up into initiatives so you get a single view across teams.
+
+SLAs
+Set a response and resolution SLA per team and per issue priority. Breaches show up in views and can trigger Slack notifications.
+
+Also shipped: a keyboard shortcut for cycling through issue views (Cmd+Shift+J), faster board rendering with 500+ issues, and a refreshed Figma embed.
+
+Full changelog: https://linear.app/changelog/2026-08-27
+
+Manage email preferences or unsubscribe: https://linear.app/e/pref/3jq8d

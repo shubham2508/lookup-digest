@@ -1,0 +1,33 @@
+Message-ID: <20260903-0810.github@explore.github.com>
+Date: Thu, 03 Sep 2026 08:10:51 -0700
+From: GitHub <github@explore.github.com>
+To: Avery Chen <avery@tessera.io>
+Subject: GitHub Changelog: Copilot code review, merge queue for all, and Actions cost insights
+List-Unsubscribe: <mailto:unsubscribe@explore.github.com?subject=unsubscribe>, <https://explore.github.com/u/2ea830c4>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi Avery,
+
+Here's what's new on GitHub this month for organizations on Team.
+
+Copilot code review, generally available
+Copilot now reviews every pull request automatically, flagging likely bugs, missing tests, and security issues before a human reviewer looks. Enable it per repository under Settings > Rules.
+
+Merge queue for every plan
+Keep your default branch green by letting GitHub batch and test PRs before they land.
+
+Actions cost insights
+A new usage page breaks down minutes by workflow, repository, and runner type, so you can see which CI jobs are eating the budget.
+
+Also: Dependabot groups related updates into one PR, and the new issue types (bug, task, epic) roll up into project views.
+
+See the changelog: https://explore.github.com/l/changelog-0903
+
+Happy shipping,
+GitHub
+
+GitHub, Inc. | 88 Colin P Kelly Jr St, San Francisco, CA 94107
+Unsubscribe from product news: https://explore.github.com/u/k2h8m

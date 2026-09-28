@@ -1,0 +1,13 @@
+Message-ID: <20260903-0750.priya@tessera.io>
+Date: Thu, 03 Sep 2026 07:50:44 -0700
+From: Priya Iyer <priya@tessera.io>
+To: Tessera Engineering <eng@tessera.io>
+Cc: Avery Chen <avery@tessera.io>
+Subject: vector index
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+p95 similarity lookup 380ms -> 95ms after switching the exception-matching index to hnsw (m=16, ef=64). recall unchanged on the 10k sample. rolled out to all plants at 07:30. no action.
+
+p

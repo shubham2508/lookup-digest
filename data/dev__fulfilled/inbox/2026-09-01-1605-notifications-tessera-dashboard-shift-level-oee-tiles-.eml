@@ -1,0 +1,19 @@
+Message-ID: <20260901-1605.notifications@github.com>
+Date: Tue, 01 Sep 2026 16:05:56 -0700
+From: GitHub <notifications@github.com>
+To: Avery Chen <avery@tessera.io>
+Subject: [tessera/dashboard] Shift-level OEE tiles (PR #233)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+@priyai requested your review on: #233 Shift-level OEE tiles.
+
+Adds per-shift OEE tiles to the plant overview. Availability, performance and quality are computed in the API (new endpoint /v2/oee/shifts) and the dashboard only renders. Shift boundaries come from the site config.
+
+Numbers on the Halberd staging tenant match the spreadsheet Yuki uses for the weekly to within 0.2%.
+
+--
+Reply to this email directly or view it on GitHub:
+https://github.com/tessera/dashboard/pull/233
+You are receiving this because your review was requested.

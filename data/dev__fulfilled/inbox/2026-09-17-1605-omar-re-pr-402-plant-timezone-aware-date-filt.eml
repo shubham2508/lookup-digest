@@ -1,0 +1,15 @@
+Message-ID: <20260917-1605.omar@tessera.io>
+Date: Thu, 17 Sep 2026 16:05:36 -0700
+From: Omar Haddad <omar@tessera.io>
+To: Sofia Andrade <sofia@tessera.io>
+Cc: Dev Patel <dev@tessera.io>, Avery Chen <avery@tessera.io>, Jordan Liu <jordan@tessera.io>
+Subject: Re: PR #402 - plant-timezone-aware date filter
+In-Reply-To: <20260917-0940.sofia@tessera.io>
+References: <20260917-0940.sofia@tessera.io>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+approved with Dev's two. I also checked that "last 7 days" in a UTC plant is 7 days and not 6.96, which I feel should come up at my performance review. merge is yours.
+
+Omar

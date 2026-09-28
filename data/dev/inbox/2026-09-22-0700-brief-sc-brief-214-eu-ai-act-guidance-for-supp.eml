@@ -1,0 +1,30 @@
+Message-ID: <20260922-0700.brief@scbrief.io>
+Date: Tue, 22 Sep 2026 07:00:05 -0700
+From: SC Brief <brief@scbrief.io>
+To: Avery Chen <avery@tessera.io>
+Subject: SC Brief #214: EU AI Act guidance for supply-chain data processors, Port of Oakland volumes, cold-chain sensor consolidation
+List-Unsubscribe: <mailto:unsubscribe@scbrief.io?subject=unsubscribe>, <https://scbrief.io/u/77382ed8>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+SC BRIEF #214
+Tuesday, September 22, 2026 | The morning read for supply-chain and logistics operators
+
+Good morning. Brussels published guidance that reaches into plant-floor software, Oakland's August numbers are in, and the cold-chain sensor market is consolidating. Three items today.
+
+1. EU AI Act guidance for supply-chain data processors handling EU production-line telemetry
+The European Commission's AI Office issued draft guidance on how the EU AI Act applies to software vendors and data processors that ingest production-line telemetry (machine states, throughput, downtime, quality signals) from plants in the EU and turn it into recommendations for plant staff. The core clarification: analytics that surface line performance to supervisors is not by itself a high-risk system under Annex III, but any feature that scores or ranks individual workers, or that feeds shift assignments, is. Vendors handling EU telemetry are asked to document data lineage from sensor to recommendation, keep human-oversight logs showing that a person can override the system, and complete a self-assessment before August 2027, when the relevant obligations begin to apply. The guidance applies to non-EU vendors with EU-based plant customers, and to US manufacturers running EU plants. Comments are open until November 14. Full text: https://scbrief.io/l/ai-office-telemetry-guidance
+
+2. Port of Oakland volumes: August up 3.8% on imports, exports soft
+The Port of Oakland handled 198,400 TEUs in August. Loaded imports rose 3.8% year over year, while loaded exports (mostly agricultural products: almonds, wine, and refrigerated meat) fell 2.1% on weaker Asia demand. Empty containers were up 6%. Rail-bound cargo through the Oakland International Gateway was flat. The port reported an average truck turn time of 61 minutes.
+
+3. Cold-chain sensor vendor consolidation
+Kinross Sensors acquired two smaller cold-chain telemetry vendors, Frostline Monitoring and Thermik Labs, in a pair of deals announced Monday, bringing its cold-chain customer count to about 1,400 sites. Kinross plans to migrate both companies' customers onto its platform by mid-2027 and retire the acquired hardware. The consolidation follows two years of price pressure on temperature-logging hardware; three vendors have exited the market since 2024. Customers on the acquired platforms should ask about data export before signing the migration paperwork.
+
+---
+Read this issue on the web: https://scbrief.io/i/214
+Forward to a colleague: https://scbrief.io/share?i=214
+Unsubscribe: https://scbrief.io/u/9c2e1a | Manage preferences: https://scbrief.io/prefs/9c2e1a
+SC Brief | 1 Marina Way, Suite 210, San Francisco, CA 94123

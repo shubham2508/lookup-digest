@@ -1,0 +1,33 @@
+Message-ID: <20260826-0702.hello@latentdispatch.ai>
+Date: Wed, 26 Aug 2026 07:02:33 -0700
+From: Latent Dispatch <hello@latentdispatch.ai>
+To: Avery Chen <avery@tessera.io>
+Subject: Latent Dispatch: Sable-3 Mini lands, Kestrel cuts batch prices, agents that read PDFs badly
+List-Unsubscribe: <mailto:unsubscribe@latentdispatch.ai?subject=unsubscribe>, <https://latentdispatch.ai/u/7224c001>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+LATENT DISPATCH
+Wed Aug 26 · 5 items · ~4 min
+
+SABLE-3 MINI IS OUT, AND IT IS THE INTERESTING ONE
+Sable Labs shipped Sable-3 Mini this morning: 12B active parameters, 128k context, and a price of $0.18 / $0.72 per million input/output tokens. The headline model gets the press, but Mini is the one that will end up in production pipelines; on our internal extraction set it lands within four points of the full Sable-3 at a tenth of the cost. Weights are not open. https://latentdispatch.ai/p/sable-3-mini
+
+KESTREL COMPUTE DROPS BATCH PRICING 40%
+Kestrel's async batch tier now runs at 40% below its real-time price for any job that can tolerate a 24-hour window. Most back-office workloads can. If you are still running nightly classification through a real-time endpoint, this is the week to move it. https://latentdispatch.ai/p/kestrel-batch
+
+AGENTS STILL CAN'T READ A SCANNED PDF
+A new benchmark from a group at Ostrava Labs tests agents on 400 real-world procurement documents (scans, rotated pages, stamps over text). Best score: 61% field-level accuracy. The failure mode is not OCR; it is the agent confidently filling fields it could not read. Paper and data: https://latentdispatch.ai/p/scanned-pdf-bench
+
+BRINDLE RAISES $40M FOR AN AGENT RUNTIME
+Brindle's pitch is "a process supervisor for agents": retries, checkpoints, and a replay log so you can see why step 7 did what it did. It is the third such company this month. The category is real; whether it is a company or a feature of the model providers' SDKs is the open question.
+
+SHORT TAKES
+· Quillon's API now returns per-request cost in the response headers. Small thing, big for finance teams.
+· Lodestone-R gets a "think less" parameter that caps reasoning tokens. Early reports say quality holds to about 60% of default.
+· Someone benchmarked eleven embedding models on multilingual invoice text. Vireo-2 wins, barely. https://latentdispatch.ai/p/embeddings-invoices
+
+—
+You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1

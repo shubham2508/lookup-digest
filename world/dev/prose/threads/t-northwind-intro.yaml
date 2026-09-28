@@ -1,0 +1,87 @@
+thread_id: t-northwind-intro
+subject: "Intro: Avery Chen (Tessera) <> Tessa Ruiz (Northwind Capital)"
+storyline: null
+category: investors_board
+labels:
+  kind: thread
+  must_not: true
+  reason: last_word_avery
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [deal:series-a:northwind]
+    ball_awaiting: nobody
+    closed_by_courtesy: true
+    sender_relationship: {category: capital, subtype: prospective_vc}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 16
+    time: "08:30"
+    from: diane
+    to: [avery, tessa]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery, Tessa, as promised, connecting you two.
+
+      Tessa is a principal at Northwind and has been building their supply-chain thesis; she's spent time with a couple of the plant-floor companies in our portfolio and asks the right questions. Avery runs Tessera, which you've heard me talk about: production-line forecasting for mid-market manufacturers, three reference customers, and a Series A in progress.
+
+      I'll let you two take it from here.
+
+      Diane
+  - id: m2
+    beat_ref: null
+    day: 16
+    time: "11:10"
+    from: tessa
+    to: [avery]
+    cc: [diane]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Diane, thank you so much for this! Moving you to cc.
+
+      Avery, it's wonderful to meet you, even by email. I've been following Tessera since the Halberd case study went around in the spring, and Diane's description of how you've built the reference-customer motion matches what I've heard from two operators in our network who have looked at the product. Northwind is a $240M early-stage fund; I lead our supply-chain and industrial software work, and over the last year we've spent a lot of time with plant-floor data companies, mostly at the sensor and MES layer. What we haven't found is a company that turns that data into decisions procurement and operations people actually act on, which is exactly what Diane says you do. I know you're in the middle of a process and I don't want to slow it down, but I'd love to get to know you and the business properly and, if it makes sense, move quickly.
+
+      Would you have 30 minutes next week for an intro call? I'm flexible Tuesday through Thursday, and happy to come to Oakland if in person is easier.
+
+      Warmly,
+      Tessa
+  - id: m3
+    beat_ref: null
+    day: 17
+    time: "08:20"
+    from: avery
+    to: [tessa]
+    cc: [diane]
+    reply_to: m2
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      Tessa, good to meet you. Happy to talk — Tuesday 9/15 at 11:30 or Thursday 9/17 at 1pm both work on my side. Zoom is easiest this week.
+
+      Avery
+  - id: m4
+    beat_ref: null
+    day: 17
+    time: "10:05"
+    from: tessa
+    to: [avery]
+    cc: [diane]
+    reply_to: m3
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Thursday 9/17 at 1pm it is! I'll send the Zoom link that morning. Looking forward to it.
+
+      Tessa

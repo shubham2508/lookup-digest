@@ -1,0 +1,67 @@
+thread_id: t-int-bluefin-pilot-signed
+subject: "Bluefin Seafoods - paid pilot SIGNED"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: last_word_avery
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [deal:bluefin-seafoods]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: exec}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 22
+    time: "11:30"
+    from: tomas
+    to: [avery]
+    cc: [ana, kim, yuki]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      IT'S SIGNED!! Bluefin Seafoods paid pilot: 8 weeks, one line, $9,000, kickoff Thursday. Order form is in the CRM and Kim has the countersigned copy.
+
+      First seafood logo, first cold-chain line, first pilot that came in through the website form. Three firsts!! Ana ran the demo and the follow-ups, I ran the paper, Yuki answered eleven technical questions from Eli, at least four of which were the same question.
+
+      Kickoff is Thursday 10am with Eli (plant manager) and their QA lead. Yuki + Sofia are doing the sensor connector on day one, which Eli does not believe is possible, so that will be fun.
+
+      Kim: invoice is net 30 from kickoff, per the form.
+
+      Tomás
+  - id: m2
+    beat_ref: null
+    day: 22
+    time: "11:50"
+    from: ana
+    to: [tomas]
+    cc: [avery, kim, yuki]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      🎉🎉🎉 Eli's going to believe it by lunch on Thursday.
+
+      Ana
+  - id: m3
+    beat_ref: null
+    day: 22
+    time: "12:40"
+    from: avery
+    to: [tomas]
+    cc: [ana, kim, yuki]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      congrats all. nice one.

@@ -1,0 +1,45 @@
+thread_id: t-pricing-deck-notes
+subject: "notes on the pricing deck"
+storyline: S16
+category: internal_routine
+labels: null
+messages:
+  - id: m1
+    beat_ref: S16.b3
+    day: 24
+    time: "14:20"
+    from: avery
+    to: [tomas]
+    cc: [ana]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      as promised, here are my notes on the pricing deck (v2). nothing here should stop Ana using it Monday.
+
+      - tier names: keep Line / Plant / Network. drop the "formerly Starter/Growth/Enterprise" footnote on slide 3, it just invites the question.
+      - slide 6 (usage tiers): good that it's written down. add one worked example - "a plant doing 40M events a month sits in tier 2 on a trailing 3-month average" - and cut the second paragraph, it repeats the first.
+      - slide 7 (vs in-house): too long, and the "18 months to build" claim needs a source or needs to go. one slide, three numbers.
+      - slide 8 (references): fine to name Halberd and Northstar. leave Veritas off until the renewal is signed, not before.
+      - list price: show it. Ana's right - the surprise costs more than the room to move.
+      - slide 12 (implementation timeline): "2 weeks" should say "2-4 weeks depending on plant IT". Yuki will thank you.
+
+      Avery
+  - id: m2
+    beat_ref: S16.b4
+    day: 24
+    time: "16:50"
+    from: tomas
+    to: [avery]
+    cc: [ana]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Amazing, thanks Avery - all six are going in tonight and Ana will have v3 in her inbox before Monday's calls. Slide 7 gets the haircut it deserved and the "18 months" line is gone (it was Ana's old employer's number, so no source we could quote anyway).
+
+      Enjoy the weekend!
+
+      Tomás

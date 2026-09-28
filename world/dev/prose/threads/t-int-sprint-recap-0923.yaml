@@ -1,0 +1,49 @@
+thread_id: t-int-sprint-recap-0923
+subject: "Sprint 20 - planning recap"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: internal_fyi
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [report:sprint-recap]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: exec}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 29
+    time: "11:40"
+    from: jordan
+    to: [eng_list]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Recap from this morning's planning. Two weeks as usual.
+
+      Impact first: land multi-line ingest, fix the two regressions Lena found, keep the connector work boring.
+
+      Committed:
+      - Multi-line ingest refactor (#412): finish review and merge this week - Dev
+      - TES-1042 export CSV encoding (write the BOM): fix is up, one-liner - Omar
+      - TES-1043 date filter restore path: after #412 - Dev
+      - Circuit breaker for the connector retry path (the #389 follow-up) - Omar
+      - Regression pass on the above, plus the Windows Excel case added to the suite permanently - Lena
+      - Manual-upload guide and retention doc for the Ridgeway and Calder pilots - Yuki (with Mateo)
+      - Sofia is on a customer ingest cutover this week and has nothing else assigned on purpose
+
+      Stretch:
+      - Audit log export UI (the #417 backend is in) - Dev
+
+      Not this sprint: PDF export (FR-118), dark mode (FR-121). Both real, both later.
+
+      Jordan

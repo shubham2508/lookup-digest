@@ -1,0 +1,31 @@
+thread_id: t-int-priya-vector-index
+subject: "vector index"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: internal_fyi
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [other:vector-index]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: cofounder}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 9
+    time: "07:50"
+    from: priya
+    to: [eng_list]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      p95 similarity lookup 380ms -> 95ms after switching the exception-matching index to hnsw (m=16, ef=64). recall unchanged on the 10k sample. rolled out to all plants at 07:30. no action.

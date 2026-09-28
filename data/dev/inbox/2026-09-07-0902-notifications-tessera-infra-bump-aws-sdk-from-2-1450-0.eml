@@ -1,0 +1,22 @@
+Message-ID: <20260907-0902.notifications@github.com>
+Date: Mon, 07 Sep 2026 09:02:46 -0700
+From: GitHub <notifications@github.com>
+To: Avery Chen <avery@tessera.io>
+Subject: [tessera/infra] Bump aws-sdk from 2.1450.0 to 2.1491.0 (PR #144)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+dependabot[bot] opened a pull request.
+
+Bumps aws-sdk from 2.1450.0 to 2.1491.0.
+
+Release notes: https://github.com/aws/aws-sdk-js/releases
+Commits: https://github.com/aws/aws-sdk-js/compare/v2.1450.0...v2.1491.0
+
+Dependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting @dependabot rebase.
+
+--
+Reply to this email directly or view it on GitHub:
+https://github.com/tessera/infra/pull/144
+You are receiving this because you are subscribed to this repository.

@@ -1,0 +1,61 @@
+thread_id: t-int-ana-calder-discovery
+subject: "Calder Textiles - discovery call recap"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_by_team
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [deal:calder-textiles]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 9
+    time: "15:30"
+    from: ana
+    to: [tomas]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: "Ana Kowalski | AE, Tessera\nbook time: tessera.io/ana | +1 (510) 555-0177"
+    body: |
+      Hi Tomás!
+
+      Discovery with Calder Textiles done, 45 minutes with Ruth Amsel (VP Ops) and their plant controller. Notes are in the CRM: https://app.hubspot.com/contacts/8841/deal/1042
+
+      Quick hits:
+      - 3 plants (Reno, Sparks, Carson City), ~140 machines total, same legacy MES everywhere
+      - They export CSVs by hand every Friday and someone builds a deck from it on Monday. Ruth's words: "we run the plant on last week's data"
+      - Pain #1 is exceptions nobody catches until the weekly review. Pain #2 is shift handoff.
+      - Budget: Ruth owns it, no procurement gate under $75k/yr
+      - Timeline: "before the holiday peak", so a pilot starting in October would be ideal
+
+      Next step: demo on Sep 17 with Yuki, Ruth is bringing two plant leads. I've asked for a CSV sample so the demo uses their headers.
+
+      Stage moved to Demo Scheduled 🎉
+
+      Ana
+  - id: m2
+    beat_ref: null
+    day: 9
+    time: "16:10"
+    from: tomas
+    to: [ana]
+    cc: [avery, yuki]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      THIS IS GREAT!! "We run the plant on last week's data" is going in the deck (with permission, I'll ask Ruth). Yuki, looping you in on the CSV sample. Ana, nice work, and yes to a plant lead on the demo call, that's exactly how Meridian happened too!!
+
+      Tomás

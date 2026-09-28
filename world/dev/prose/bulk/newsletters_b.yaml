@@ -1,0 +1,1567 @@
+# world/dev/prose/bulk/newsletters_b.yaml - newsletters, batch B (Track B, M2)
+# SC Brief: 22 weekday issues #195-#216 (#214 on day 28 is the EU AI Act decoy) - Factory Floor Weekly #33-#37
+# (#37 on day 29 carries the MX Summit item) - SaaS Operator x4 - Founders Ledger x4 - Oakland Tech Digest x3.
+# 38 items; every item bulk: true, signature: none. Bodies are ASCII; the renderer adds headers and bulk fields.
+category: newsletters
+items:
+  - id: nl-scbrief-195
+    day: 1
+    time: "06:12"
+    from: {name: "SC Brief", email: "brief@scbrief.io"}
+    to: [avery]
+    subject: "SC Brief #195: Transpacific spot slide, Long Beach's big August, FMC detention ruling"
+    bulk: true
+    signature: none
+    body: |
+      SC BRIEF #195
+      Wednesday, August 26, 2026 | The morning read for supply-chain and logistics operators
+
+      Good morning. Spot rates keep sliding, Long Beach had a huge August, and the FMC finally said who a detention invoice can go to. Five items, six minutes.
+
+      1. Transpacific spot rates fall for a fourth straight week
+      The Shanghai-to-Los Angeles benchmark closed Friday at $2,140 per FEU, down 9% week over week and roughly 40% below the early-July peak. Carriers have announced 14 blank sailings for the first half of September, but with front-loaded inventory already on the ground, the forwarders we spoke to see little reason for a September bounce. If you are negotiating short-term contracts, this is the week to push.
+
+      2. Long Beach posts its second-busiest August ever
+      The Port of Long Beach handled 861,000 TEUs in August, up 6.2% year over year, with loaded imports carrying the gain. Terminal operators say the surge was orderly: average import dwell held at 3.1 days and truck turn times stayed under 70 minutes at four of six terminals. Watch September for the hangover, since much of this volume was pulled forward ahead of tariff changes.
+
+      3. FMC rules detention invoices must go to the contracting party
+      In a decision against Bluewater Container Lines, the Federal Maritime Commission held that detention and demurrage invoices billed to a trucker who never contracted for the box are unenforceable. The ruling puts teeth into last year's billing rule: invoices go to the shipper or consignee named in the contract, with the required 30-day dispute window. Drayage carriers are already circulating the decision to their customers.
+
+      4. Quillon Analytics raises $40M for freight-audit AI
+      The Denver startup, whose software reconciles carrier invoices against contracted rates, closed a Series B led by Thornfield Partners. Quillon says its customers recover 2 to 4 percent of freight spend in the first year, mostly from accessorial errors. The pitch is old (freight audit is a forty-year-old business); the twist is that it now reads unstructured PDF invoices without templates.
+
+      5. Trucking: spot rates flat, diesel edges up
+      The national dry-van spot average held at $2.04 per mile last week, unchanged for the third week. Diesel rose four cents to $3.71 per gallon. Class 8 orders for July came in soft, which fleets read as a sign that capacity will keep tightening slowly rather than snapping.
+
+      ---
+      Read this issue on the web: https://scbrief.io/i/195
+      Forward to a colleague: https://scbrief.io/share?i=195
+      Unsubscribe: https://scbrief.io/u/9c2e1a | Manage preferences: https://scbrief.io/prefs/9c2e1a
+      SC Brief | 1 Marina Way, Suite 210, San Francisco, CA 94123
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scbrief-196
+    day: 2
+    time: "06:08"
+    from: {name: "SC Brief", email: "brief@scbrief.io"}
+    to: [avery]
+    subject: "SC Brief #196: USMCA review calendar, Savannah's new berth, TMS consolidation"
+    bulk: true
+    signature: none
+    body: |
+      SC BRIEF #196
+      Thursday, August 27, 2026 | The morning read for supply-chain and logistics operators
+
+      Good morning. The USMCA review has a calendar, Savannah has a new berth, and two transportation-software vendors are becoming one.
+
+      1. USTR publishes the USMCA joint-review calendar
+      The Office of the U.S. Trade Representative set a public-comment deadline of October 3 and hearings for the week of October 20 ahead of next year's joint review. Automotive rules of origin and the treatment of steel and aluminum inputs are the flashpoints; agriculture groups are asking for the dispute-panel process to be sped up. If you source from Mexico or Canada, this is the comment window that matters.
+
+      2. Savannah opens the Berth 1 expansion
+      Georgia Ports cut the ribbon on the rebuilt Berth 1 at Garden City Terminal, adding room for a 16,000-TEU vessel and roughly 1.2 million TEUs of annual capacity. Rail dwell at the Mason Mega Rail yard is averaging 2.4 days, which the port says is its best number since 2021.
+
+      3. Orrin Logistics buys Ledgerpoint's transportation module
+      Orrin, the Atlanta-based transportation-management vendor, is acquiring the TMS product line that Ledgerpoint had bolted onto its freight-payment platform. Customers on the Ledgerpoint side should ask three questions now: what happens to the roadmap, what happens to the pricing, and whether the integration to their freight-payment data survives the migration.
+
+      4. Peregrine Air Cargo adds Anchorage-to-Chicago freighter capacity
+      Peregrine will run a fourth weekly 777 freighter on the Anchorage-Chicago leg starting mid-September, citing steady e-commerce volumes out of Asia. Air rates on transpacific lanes are up 6% month over month.
+
+      5. Canadian rail talks resume; contingency plans stay on the shelf
+      Union and carrier negotiators are back at the table this week after a two-week pause. Shippers who moved volume to truck in July are mostly holding those arrangements through September, which is keeping cross-border truck rates elevated.
+
+      ---
+      Read this issue on the web: https://scbrief.io/i/196
+      Forward to a colleague: https://scbrief.io/share?i=196
+      Unsubscribe: https://scbrief.io/u/9c2e1a | Manage preferences: https://scbrief.io/prefs/9c2e1a
+      SC Brief | 1 Marina Way, Suite 210, San Francisco, CA 94123
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scbrief-197
+    day: 3
+    time: "06:20"
+    from: {name: "SC Brief", email: "brief@scbrief.io"}
+    to: [avery]
+    subject: "SC Brief #197: Section 232 derivatives list grows, Panama draft, robots in the DC"
+    bulk: true
+    signature: none
+    body: |
+      SC BRIEF #197
+      Friday, August 28, 2026 | The morning read for supply-chain and logistics operators
+
+      Good morning. Commerce reached further into finished goods with the steel and aluminum tariffs, Panama is holding its draft, and a picking-robot company hit a milestone. Plus a weekend read.
+
+      1. Commerce expands Section 232 derivative coverage by 43 HTS codes
+      The Bureau of Industry and Security added 43 tariff lines to the list of steel and aluminum derivative products subject to Section 232 duties, effective for entries on or after September 8. The additions reach well into finished goods: several categories of industrial fasteners, shelving, and appliance components are now in scope. Importers should re-run classifications on anything with meaningful steel or aluminum content and check whether the duty applies to the metal value or the full entered value.
+
+      2. Panama Canal holds the 50-foot draft through October
+      The Panama Canal Authority extended its current 50-foot maximum draft for the Neopanamax locks through at least October 31, with 36 daily transits. Water levels at Gatun Lake are above the five-year average after a wet season, so the risk of restrictions like 2023's looks low for now.
+
+      3. Marrow Robotics ships its 1,000th picking arm
+      The Pittsburgh company says its piece-picking arms are now live in 60 distribution centers, with the latest units handling 900 picks per hour on mixed-SKU totes. The number to watch is not picks per hour but exception rate; Marrow claims under 0.5% of picks need a human touch, which would be a real step up from the 2 to 3% range most operators report.
+
+      4. Chicago chassis pool adds 3,000 units
+      Beacon Chassis is adding 3,000 marine chassis to its Chicago-area pool by mid-September, and the pool is loosening street-turn rules to let truckers reuse a chassis across two different terminals. Chicago has been the tightest chassis market in the country all summer.
+
+      5. Weekend read: the tariff-engineering playbook, revisited
+      Our long read this week walks through how five importers legally restructured product specs and country-of-origin flows over the past 18 months, and where customs has pushed back. https://scbrief.io/reads/tariff-engineering-2026
+
+      ---
+      Read this issue on the web: https://scbrief.io/i/197
+      Forward to a colleague: https://scbrief.io/share?i=197
+      Unsubscribe: https://scbrief.io/u/9c2e1a | Manage preferences: https://scbrief.io/prefs/9c2e1a
+      SC Brief | 1 Marina Way, Suite 210, San Francisco, CA 94123
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scbrief-198
+    day: 6
+    time: "06:05"
+    from: {name: "SC Brief", email: "brief@scbrief.io"}
+    to: [avery]
+    subject: "SC Brief #198: De minimis guidance, Rotterdam congestion, gate automation, Memphis cold chain"
+    bulk: true
+    signature: none
+    body: |
+      SC BRIEF #198
+      Monday, August 31, 2026 | The morning read for supply-chain and logistics operators
+
+      Good morning. Customs clarified the low-value entry rules, Rotterdam is jammed, and a gate-automation company raised money. Five items.
+
+      1. CBP posts updated guidance on the reduced de minimis threshold
+      Customs and Border Protection published a CSMS message clarifying entry requirements for low-value shipments from origins no longer eligible for de minimis treatment. Brokers report Type 11 informal entry volumes running five times last year's level, and several are adding surcharges for shipments under $250 in value. Plan on longer release times for postal and express shipments through the fall.
+
+      2. Rotterdam yard congestion pushes feeder delays to 3-5 days
+      Yard utilization at Rotterdam's two largest terminals is running at 85 to 90%, and feeder vessels to the UK and Scandinavia are waiting three to five days for berths. Carriers are diverting some Asia-Europe calls to Antwerp-Bruges.
+
+      3. Osprey Yard Systems raises $25M for gate automation
+      Osprey, whose camera-and-kiosk gate systems replace guard-shack check-ins at distribution centers, closed a Series B. The company says a typical DC cuts gate transaction time from nine minutes to under two, which matters more than it sounds when 300 trucks a day are queuing on a public road.
+
+      4. Rail intermodal volume up 4.1% year over year
+      Weekly intermodal originations came in at 275,000 units, with domestic containers leading. International intermodal is flat, mirroring the softness in ocean volumes.
+
+      5. Fennel Cold Chain opens a GDP-certified hub in Memphis
+      Fennel's new 180,000-square-foot facility near the Memphis airport is built for pharmaceutical shipments that need 2-to-8C handling, with 24-hour customs coverage. Cold-chain capacity near air hubs has been the bottleneck for specialty pharma shippers all year.
+
+      ---
+      Read this issue on the web: https://scbrief.io/i/198
+      Forward to a colleague: https://scbrief.io/share?i=198
+      Unsubscribe: https://scbrief.io/u/9c2e1a | Manage preferences: https://scbrief.io/prefs/9c2e1a
+      SC Brief | 1 Marina Way, Suite 210, San Francisco, CA 94123
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scbrief-199
+    day: 7
+    time: "06:31"
+    from: {name: "SC Brief", email: "brief@scbrief.io"}
+    to: [avery]
+    subject: "SC Brief #199: September GRIs fizzle, Monterrey vacancy under 2%, UFLPA detentions"
+    bulk: true
+    signature: none
+    body: |
+      SC BRIEF #199
+      Tuesday, September 1, 2026 | The morning read for supply-chain and logistics operators
+
+      Good morning. It's September 1, which means carriers tried a rate increase and mostly failed. Also: Mexico industrial space, forced-labor detentions, and a procurement product we're not sold on.
+
+      1. September GRIs mostly fail to stick
+      Carriers' September 1 general rate increases on the transpacific, announced at $1,000 per FEU, are landing at $200 to $400 in practice. The overhang of new vessel deliveries is simply too large. Watch for a fresh round of blank sailings around Golden Week.
+
+      2. Monterrey industrial vacancy falls under 2%
+      Nearshoring demand has pushed Class A industrial vacancy in Monterrey to 1.8% and rents up 11% year over year, per Greyfield Warehousing's quarterly report. The Bajio corridor (Queretaro, Guanajuato) is the overflow market; several auto suppliers have signed there this quarter.
+
+      3. UFLPA detentions: electronics and apparel still lead
+      CBP detained $312 million of goods under the Uyghur Forced Labor Prevention Act in July, with electronics and apparel accounting for two-thirds of the value. The practical lesson from brokers is unchanged: supplier mapping down to the raw-material tier, documented before shipment, is what gets a detained container released.
+
+      4. Almanac Procurement launches a "supplier-risk agent"
+      Almanac's new product reads supplier financials, news, and shipping data and flags risks for the category manager. Our skeptical take: the hard part of supplier risk was never spotting the news; it is deciding what to do when the only qualified alternate supplier is in the same flood plain.
+
+      5. Class 8 orders slump again
+      North American Class 8 truck orders for August came in at 11,200 units, the weakest August in a decade. Fleets are running equipment longer, which is a quiet tailwind for tightening capacity into 2027.
+
+      ---
+      Read this issue on the web: https://scbrief.io/i/199
+      Forward to a colleague: https://scbrief.io/share?i=199
+      Unsubscribe: https://scbrief.io/u/9c2e1a | Manage preferences: https://scbrief.io/prefs/9c2e1a
+      SC Brief | 1 Marina Way, Suite 210, San Francisco, CA 94123
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scbrief-200
+    day: 8
+    time: "06:14"
+    from: {name: "SC Brief", email: "brief@scbrief.io"}
+    to: [avery]
+    subject: "SC Brief #200: Two hundred issues, Houston's record July, Suez returns, eBLs pass 30%"
+    bulk: true
+    signature: none
+    body: |
+      SC BRIEF #200
+      Wednesday, September 2, 2026 | The morning read for supply-chain and logistics operators
+
+      Good morning, and welcome to issue 200. When we sent #1 in 2019 the transpacific benchmark was $1,400 per FEU, the phrase "supply chain" had not yet appeared on a cable-news chyron, and nobody had heard of the Ever Given. Thanks for reading. Five items, as always.
+
+      1. Two hundred issues in: what actually changed
+      Our editor's note looks back at seven years of briefs. The short version: visibility got better, forecasting did not, and the average importer now spends more on compliance staff than on freight audit. https://scbrief.io/reads/200
+
+      2. Port Houston posts record July container volume
+      Houston moved 384,000 TEUs in July, a record, with resin exports and project cargo doing the heavy lifting. Bayport's new Wharf 6 is now fully operational.
+
+      3. Two carriers return to Suez routing on Asia-Mediterranean
+      Two mid-sized carriers moved their Asia-Med services back through the Suez Canal this week, cutting transit by ten to twelve days. The larger alliances are staying around the Cape for now; war-risk premiums are down but still roughly triple 2023 levels.
+
+      4. Electronic bills of lading pass 30% of trade-finance volume
+      A consortium of nine trade banks reported that 31% of the bills of lading they financed in the first half were electronic, up from 12% a year earlier. The DCSA standard is now supported by every top-ten container carrier.
+
+      5. Inland Empire warehouse vacancy climbs to 7.4%
+      Greyfield Warehousing's Q3 leasing report shows Inland Empire vacancy at 7.4%, the highest since 2012, with asking rents down 9% from the peak. Sublease space from e-commerce tenants is doing most of the damage.
+
+      ---
+      Read this issue on the web: https://scbrief.io/i/200
+      Forward to a colleague: https://scbrief.io/share?i=200
+      Unsubscribe: https://scbrief.io/u/9c2e1a | Manage preferences: https://scbrief.io/prefs/9c2e1a
+      SC Brief | 1 Marina Way, Suite 210, San Francisco, CA 94123
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scbrief-201
+    day: 9
+    time: "06:02"
+    from: {name: "SC Brief", email: "brief@scbrief.io"}
+    to: [avery]
+    subject: "SC Brief #201: Tariff refund process opens, driver-out trucks on I-45, Charleston at 52 feet"
+    bulk: true
+    signature: none
+    body: |
+      SC BRIEF #201
+      Thursday, September 3, 2026 | The morning read for supply-chain and logistics operators
+
+      Good morning. Refunds, robots on the interstate, and a deeper Charleston. Five items.
+
+      1. CBP opens the refund process for a vacated tariff action
+      Importers who paid duties under the tariff action vacated by the Court of International Trade in June can now file for refunds through ACE reconciliation. The window is 180 days from liquidation. Brokers say the paperwork is manageable for anyone who flagged the entries at the time; everyone else is facing a line-by-line review.
+
+      2. Sable Freight runs driver-out trucks on Dallas-Houston
+      Sable is now running about 400 loads per week with no safety driver on the I-45 corridor, hauling for three consumer-goods shippers. The company says the lane is profitable at current rates; the question is whether it still is once the transfer terminals at each end are added to the cost.
+
+      3. Charleston completes harbor deepening to 52 feet
+      The Port of Charleston can now handle fully loaded 16,000-TEU ships at any tide. Volumes were up 3% in August.
+
+      4. Retail inventory-to-sales ratio ticks up
+      The Census Bureau's July inventory-to-sales ratio for retailers rose to 1.32, the highest since early 2023. Combined with the front-loaded imports we covered last week, this argues for a soft holiday shipping peak.
+
+      5. Accessorials now 14% of freight spend
+      Ledgerpoint's annual spend benchmark, covering $18 billion in audited freight, puts accessorial charges at 14% of total spend, up from 11% three years ago. Detention and fuel surcharges are the biggest lines.
+
+      ---
+      Read this issue on the web: https://scbrief.io/i/201
+      Forward to a colleague: https://scbrief.io/share?i=201
+      Unsubscribe: https://scbrief.io/u/9c2e1a | Manage preferences: https://scbrief.io/prefs/9c2e1a
+      SC Brief | 1 Marina Way, Suite 210, San Francisco, CA 94123
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scbrief-202
+    day: 10
+    time: "06:25"
+    from: {name: "SC Brief", email: "brief@scbrief.io"}
+    to: [avery]
+    subject: "SC Brief #202: Long-weekend edition - labor watch, Q4 rate outlook, rare-earth lead times"
+    bulk: true
+    signature: none
+    body: |
+      SC BRIEF #202
+      Friday, September 4, 2026 | The morning read for supply-chain and logistics operators
+
+      Good morning. Four items before the long weekend, and a reading list for the beach or the porch.
+
+      1. Labor watch: ILA contract implementation, ILWU quiet
+      East and Gulf Coast ports are through the first year of the ILA master contract without a major dispute, though the automation clauses are being tested by a semi-automated gate project at one Gulf terminal. On the West Coast the ILWU contract runs to 2028 and no one we spoke to sees trouble before then.
+
+      2. Q4 rate outlook: contract holders sit tight
+      Analysts polled for our quarterly outlook see transpacific spot rates ranging between $1,800 and $2,400 per FEU through year-end, with contract rates above spot for the first time since 2023. Shippers on annual contracts are asking for mid-term relief; carriers are mostly saying no.
+
+      3. Rare-earth licensing slows magnet supply
+      Kinross Sensors, which makes industrial telemetry hardware, told customers this week that lead times on certain magnet-dependent components have stretched from six to fourteen weeks because of export-licensing delays on rare-earth materials. Other electronics makers report similar timelines.
+
+      4. What we're reading over the long weekend
+      A history of the intermodal container's first decade; a profile of the customs broker who built the first automated classification tool in 1987; and a long piece on why Class I railroads stopped growing. Links at https://scbrief.io/reads/labor-day-2026
+
+      ---
+      Read this issue on the web: https://scbrief.io/i/202
+      Forward to a colleague: https://scbrief.io/share?i=202
+      Unsubscribe: https://scbrief.io/u/9c2e1a | Manage preferences: https://scbrief.io/prefs/9c2e1a
+      SC Brief | 1 Marina Way, Suite 210, San Francisco, CA 94123
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scbrief-203
+    day: 13
+    time: "06:40"
+    from: {name: "SC Brief", email: "brief@scbrief.io"}
+    to: [avery]
+    subject: "SC Brief #203: Labor Day short edition - Canadian rail dwell, electric drayage, FTZ uptake"
+    bulk: true
+    signature: none
+    body: |
+      SC BRIEF #203
+      Monday, September 7, 2026 | The morning read for supply-chain and logistics operators
+
+      Good morning. A short edition for Labor Day; most of you are off and so is half our desk. Three items and a podcast.
+
+      1. Prince Rupert and Vancouver rail dwell normalizes
+      Rail dwell at Canada's two Pacific gateways is back under three days after a summer of five-day averages. The backlog from July's labor disruption is cleared, and carriers have restored the two services they had diverted to Seattle.
+
+      2. Vantage Drayage buys 60 electric tractors with state grant money
+      Vantage will put 60 battery-electric drayage tractors on the San Pedro Bay ports by December, funded partly by a California incentive program. The Advanced Clean Fleets timeline for drayage remains the reason; most operators we talk to are buying just enough to stay compliant.
+
+      3. Foreign-trade zone activations up 22%
+      Applications to activate foreign-trade zone sites rose 22% in the first half as importers looked for ways to defer duty on inventory. The catch is that FTZ operations need weekly inventory reconciliation, which is more than most warehouse-management systems do out of the box.
+
+      4. Podcast: the chassis problem, explained
+      Our 25-minute conversation with a pool operator on why chassis shortages keep recurring and what the FMC's pending rule might change. https://scbrief.io/pod/chassis
+
+      ---
+      Read this issue on the web: https://scbrief.io/i/203
+      Forward to a colleague: https://scbrief.io/share?i=203
+      Unsubscribe: https://scbrief.io/u/9c2e1a | Manage preferences: https://scbrief.io/prefs/9c2e1a
+      SC Brief | 1 Marina Way, Suite 210, San Francisco, CA 94123
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scbrief-204
+    day: 14
+    time: "06:11"
+    from: {name: "SC Brief", email: "brief@scbrief.io"}
+    to: [avery]
+    subject: "SC Brief #204: How overlapping tariffs stack, NY/NJ volumes, control-tower reality check"
+    bulk: true
+    signature: none
+    body: |
+      SC BRIEF #204
+      Tuesday, September 8, 2026 | The morning read for supply-chain and logistics operators
+
+      Good morning. Customs explained tariff stacking, New York had a decent August, and we surveyed 200 shippers about their visibility platforms. Five items.
+
+      1. CBP clarifies how overlapping tariff programs stack
+      A CSMS message published Friday walks through the order of application when an entry is subject to more than one additional-duty program: Section 232, Section 301, and reciprocal tariffs. The examples matter because stacking order affects the dutiable base. Brokers are re-running August entries to check.
+
+      2. Port of New York and New Jersey: August volume up 2%
+      The port handled 745,000 TEUs in August, with rail lifts at ExpressRail up 8%. The Bayonne Bridge navigational-clearance work is complete; a 14,000-TEU vessel called at Port Newark last week.
+
+      3. Control-tower software: a reality check
+      Our survey of 200 shippers who bought "control tower" visibility platforms in the past three years found that data integration ate roughly 70% of project time and budget, and that only a third of respondents use the platform for decisions rather than reporting. The tools work; the data underneath them usually does not.
+
+      4. Bluewater Container Lines orders 12 methanol dual-fuel ships
+      Bluewater signed for twelve 16,000-TEU methanol-capable vessels for delivery from 2028. Green-methanol supply, not shipyard capacity, is the constraint.
+
+      5. Peregrine Air Cargo raises its Q3 outlook
+      Peregrine now sees Q3 cargo revenue up 9% year over year, citing e-commerce and semiconductor-equipment shipments out of Taiwan and Korea.
+
+      ---
+      Read this issue on the web: https://scbrief.io/i/204
+      Forward to a colleague: https://scbrief.io/share?i=204
+      Unsubscribe: https://scbrief.io/u/9c2e1a | Manage preferences: https://scbrief.io/prefs/9c2e1a
+      SC Brief | 1 Marina Way, Suite 210, San Francisco, CA 94123
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scbrief-205
+    day: 15
+    time: "06:17"
+    from: {name: "SC Brief", email: "brief@scbrief.io"}
+    to: [avery]
+    subject: "SC Brief #205: Steel prices, rail-merger schedule, cross-dock robots, CBAM Q3 deadline"
+    bulk: true
+    signature: none
+    body: |
+      SC BRIEF #205
+      Wednesday, September 9, 2026 | The morning read for supply-chain and logistics operators
+
+      Good morning. Steel got more expensive, the rail merger has a schedule, and a pallet robot is moving boxes in Ohio. Five items.
+
+      1. Domestic hot-rolled steel climbs on tariff pass-through
+      Midwest hot-rolled coil is at $920 per short ton, up 14% since June, as the expanded Section 232 derivative coverage pulls demand back to domestic mills. Buyers on quarterly contracts will feel it in October.
+
+      2. Rail merger: STB sets the filing schedule
+      The Surface Transportation Board set a procedural schedule for the proposed Class I merger, with shipper comments due December 1. Agriculture and chemical shippers plan to argue for gateway-protection conditions; intermodal groups are split.
+
+      3. Cartwheel Robotics pilots cross-dock automation with Southpoint 3PL
+      Cartwheel's autonomous pallet movers are handling inbound-to-outbound transfers at a Southpoint 3PL cross-dock outside Columbus. The pilot claims a 30% reduction in touches; Southpoint says the real win was fewer forklift near-misses.
+
+      4. CBAM: third-quarter declarations due October 31
+      Importers into the EU of steel, aluminum, cement, and fertilizer products need to file Q3 embedded-emissions data under the Carbon Border Adjustment Mechanism by the end of October. Most US exporters are still relying on default values, which will get expensive once the definitive period begins.
+
+      5. Truck tonnage index up 1.2%
+      The for-hire truck tonnage index rose 1.2% in August, the second consecutive monthly gain. Contract rates are creeping up even as spot stays flat.
+
+      ---
+      Read this issue on the web: https://scbrief.io/i/205
+      Forward to a colleague: https://scbrief.io/share?i=205
+      Unsubscribe: https://scbrief.io/u/9c2e1a | Manage preferences: https://scbrief.io/prefs/9c2e1a
+      SC Brief | 1 Marina Way, Suite 210, San Francisco, CA 94123
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scbrief-206
+    day: 16
+    time: "06:09"
+    from: {name: "SC Brief", email: "brief@scbrief.io"}
+    to: [avery]
+    subject: "SC Brief #206: The peak season that isn't, Manzanillo breaks ground, procurement AI pilots"
+    bulk: true
+    signature: none
+    body: |
+      SC BRIEF #206
+      Thursday, September 10, 2026 | The morning read for supply-chain and logistics operators
+
+      Good morning. The fall peak is looking flat, Mexico's Pacific gateway is getting bigger, and most procurement AI pilots are still pilots. Five items.
+
+      1. The peak season that isn't
+      The monthly port tracker forecast now sees September import volumes down 5% year over year and October down 8%, as front-loaded inventory works through the system. Warehouses near the ports are full; the ships are not.
+
+      2. Manzanillo expansion breaks ground
+      Mexico's largest Pacific port started work on a new terminal that will double capacity by 2029, with a dedicated rail link to the Bajio. For nearshoring shippers this is the missing piece: today most Asia-origin inputs for Mexican plants still route through Long Beach.
+
+      3. Procurement AI: 60% of pilots never graduate
+      A survey of 140 procurement organizations found that 60% of AI pilots launched since 2024 are still pilots. The ones that reached production share a pattern: a narrow task (invoice matching, contract-clause extraction), clean master data, and one named owner. The ones that stalled were "transformation" projects.
+
+      4. Asia-Europe rates hold at $2,900
+      Asia-North Europe spot rates are steady at $2,900 per FEU, propped up by Cape routing. If more carriers return to Suez, this number drops fast.
+
+      5. Cargo theft up 20% in Q2
+      Reported cargo-theft incidents rose 20% in the second quarter, with strategic theft (fictitious pickups using stolen carrier identities) now the most common type. Memphis and Dallas were the hot spots. The prevention advice is boring and effective: verify the carrier's MC number and phone number independently before tendering.
+
+      ---
+      Read this issue on the web: https://scbrief.io/i/206
+      Forward to a colleague: https://scbrief.io/share?i=206
+      Unsubscribe: https://scbrief.io/u/9c2e1a | Manage preferences: https://scbrief.io/prefs/9c2e1a
+      SC Brief | 1 Marina Way, Suite 210, San Francisco, CA 94123
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scbrief-207
+    day: 17
+    time: "06:22"
+    from: {name: "SC Brief", email: "brief@scbrief.io"}
+    to: [avery]
+    subject: "SC Brief #207: Port-fee fallout, Seattle-Tacoma up 5%, warehouse wages, weekend reads"
+    bulk: true
+    signature: none
+    body: |
+      SC BRIEF #207
+      Friday, September 11, 2026 | The morning read for supply-chain and logistics operators
+
+      Good morning. Carriers are reshuffling US port calls, the Northwest had a good August, and warehouse wages keep rising. Four items and the weekend reads.
+
+      1. USTR port-fee proposal: carriers restructure services
+      The proposed per-call fees on vessels built in certain countries have pushed two carriers to reorganize their US services around fewer port calls with larger ships. Fees would phase in over three years starting next April. Smaller ports on the rotations are the likely losers.
+
+      2. Northwest Seaport Alliance volumes up 5%
+      Seattle and Tacoma handled a combined 310,000 TEUs in August, helped by cargo diverted from Vancouver during the summer disruption. The alliance is not counting on keeping it.
+
+      3. Warehouse wages up 4%; the automation math shifts
+      Average hourly warehouse wages rose 4% year over year to $21.40, per Greyfield Warehousing's labor survey. The rule of thumb operators are using: goods-to-person automation pays back in under three years once fully loaded labor cost passes $28 per hour.
+
+      4. Weekend reads
+      A long piece on how the Port of Savannah outgrew its own rail yard; a retrospective on the 2021 container crunch five years on; and a Q&A with a customs attorney on the derivative-steel inclusions process. https://scbrief.io/reads/sept-11
+
+      ---
+      Read this issue on the web: https://scbrief.io/i/207
+      Forward to a colleague: https://scbrief.io/share?i=207
+      Unsubscribe: https://scbrief.io/u/9c2e1a | Manage preferences: https://scbrief.io/prefs/9c2e1a
+      SC Brief | 1 Marina Way, Suite 210, San Francisco, CA 94123
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scbrief-208
+    day: 20
+    time: "06:04"
+    from: {name: "SC Brief", email: "brief@scbrief.io"}
+    to: [avery]
+    subject: "SC Brief #208: Rates find a floor, LA's August, $12 trackers, 301 exclusions renewed"
+    bulk: true
+    signature: none
+    body: |
+      SC BRIEF #208
+      Monday, September 14, 2026 | The morning read for supply-chain and logistics operators
+
+      Good morning. The first rate uptick in nine weeks, a record San Pedro Bay August, and container trackers that cost less than lunch. Five items.
+
+      1. Transpacific rates find a floor
+      The Shanghai-Los Angeles benchmark rose for the first time in nine weeks, to $2,020 per FEU, as carriers pulled roughly 12% of capacity ahead of Golden Week. Whether the floor holds depends on how much of that capacity comes back in mid-October.
+
+      2. Port of Los Angeles: August volume 905,000 TEUs
+      LA's August number was up 3.5% year over year and, combined with Long Beach, makes it the San Pedro Bay complex's strongest August on record. Rail-bound imports were 32% of the total.
+
+      3. Cellular trackers drop under $12 per unit
+      LTE-M container and pallet trackers are now selling below $12 at volume, per a pricing survey of eight hardware vendors, down from $30 three years ago. At that price, disposable trackers on high-value pallets pencil out for most shippers; the recurring cost is now the data plan and the platform, not the hardware.
+
+      4. Rail service: dwell improves, velocity flat
+      Class I terminal dwell averaged 23.5 hours last week, the best reading since spring, while train velocity was flat at 24 mph.
+
+      5. Section 301 exclusions renewed for 164 tariff lines
+      USTR extended the current exclusions for 164 product lines through May 31, 2027. Machinery components and certain industrial inputs are the bulk of the list.
+
+      ---
+      Read this issue on the web: https://scbrief.io/i/208
+      Forward to a colleague: https://scbrief.io/share?i=208
+      Unsubscribe: https://scbrief.io/u/9c2e1a | Manage preferences: https://scbrief.io/prefs/9c2e1a
+      SC Brief | 1 Marina Way, Suite 210, San Francisco, CA 94123
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scbrief-209
+    day: 21
+    time: "06:19"
+    from: {name: "SC Brief", email: "brief@scbrief.io"}
+    to: [avery]
+    subject: "SC Brief #209: Payment terms hit 75 days, Houston bridge closure, eBL pilot live, reefer rates"
+    bulk: true
+    signature: none
+    body: |
+      SC BRIEF #209
+      Tuesday, September 15, 2026 | The morning read for supply-chain and logistics operators
+
+      Good morning. Big buyers are paying slower, Houston drayage is about to get a detour, and paper bills of lading lost another round. Five items.
+
+      1. Payment terms stretch to 75 days
+      Large buyers' median payment terms to suppliers reached 75 days in the second quarter, per a working-capital study of 400 public companies, up from 62 days in 2022. Supply-chain finance programs are filling the gap for tier-1 suppliers; the tier-2 and tier-3 base is absorbing it.
+
+      2. Houston Ship Channel bridge closure adds truck detours
+      A three-week closure of a bridge on the east side of the Houston Ship Channel starting September 21 will add 25 to 40 minutes to drayage moves from Barbours Cut. Terminals are extending gate hours to compensate.
+
+      3. Electronic bill of lading pilot with a Korean carrier goes live
+      A fifty-shipper pilot of fully electronic bills of lading on Korea-US lanes went live this week, with title transfer handled on the DCSA standard. The banks are the last holdout; two of the five financing banks are still asking for a paper copy.
+
+      4. Reefer rates rise ahead of Chile's fruit season
+      Refrigerated-container rates from the west coast of South America to the US are up 15% on early bookings for the Chilean fruit season. Equipment repositioning is the constraint.
+
+      5. Class 8 orders: another weak month
+      August orders came in at 11,900 units, marginally above July. Fleets are waiting on clarity about 2027 engine rules before committing.
+
+      ---
+      Read this issue on the web: https://scbrief.io/i/209
+      Forward to a colleague: https://scbrief.io/share?i=209
+      Unsubscribe: https://scbrief.io/u/9c2e1a | Manage preferences: https://scbrief.io/prefs/9c2e1a
+      SC Brief | 1 Marina Way, Suite 210, San Francisco, CA 94123
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scbrief-210
+    day: 22
+    time: "06:13"
+    from: {name: "SC Brief", email: "brief@scbrief.io"}
+    to: [avery]
+    subject: "SC Brief #210: Broker roll-up continues, Savannah rail dwell, digital-broker layoffs, ISF penalties"
+    bulk: true
+    signature: none
+    body: |
+      SC BRIEF #210
+      Wednesday, September 16, 2026 | The morning read for supply-chain and logistics operators
+
+      Good morning. Customs brokerage keeps consolidating, a digital freight broker cut staff, and CBP is writing ISF tickets again. Five items.
+
+      1. Lattice Customs buys two regional brokers
+      Lattice, the private-equity-backed customs brokerage, acquired firms in Laredo and Detroit, bringing its total to eleven acquisitions in three years. Roll-ups in brokerage are being driven by compliance complexity: the small firms cannot keep up with tariff-program changes, and the large ones can amortize the staff.
+
+      2. Savannah's rail dwell ticks back up
+      After a strong summer, rail dwell at Savannah's Mason Mega Rail yard rose to 3.1 days last week on a surge of Southeast-bound imports. Not a crisis, but worth watching if you route through Georgia.
+
+      3. Digital freight brokers: margins squeezed; Trellis Supply cuts staff
+      Trellis Supply, the app-based freight brokerage, laid off 15% of staff as gross margins fell under 12%. The digital brokers have discovered what the incumbents knew: brokerage margins are a function of the rate cycle, not the software.
+
+      4. ISF enforcement picks up
+      CBP issued more Importer Security Filing penalties in August than in any month since 2019, with the standard $5,000 assessment for late or inaccurate filings. The common failure was an outdated manufacturer address.
+
+      5. Gulf hurricane watch
+      A tropical system in the western Gulf could affect Houston and New Orleans operations early next week. Carriers have not yet announced diversions.
+
+      ---
+      Read this issue on the web: https://scbrief.io/i/210
+      Forward to a colleague: https://scbrief.io/share?i=210
+      Unsubscribe: https://scbrief.io/u/9c2e1a | Manage preferences: https://scbrief.io/prefs/9c2e1a
+      SC Brief | 1 Marina Way, Suite 210, San Francisco, CA 94123
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scbrief-211
+    day: 23
+    time: "06:27"
+    from: {name: "SC Brief", email: "brief@scbrief.io"}
+    to: [avery]
+    subject: "SC Brief #211: 232 inclusions window opens, Virginia at 55 feet, driverless yard trucks, LTL re-rating"
+    bulk: true
+    signature: none
+    body: |
+      SC BRIEF #211
+      Thursday, September 17, 2026 | The morning read for supply-chain and logistics operators
+
+      Good morning. Another window to add products to the steel and aluminum tariffs, the deepest port on the East Coast, and a warning on your LTL tariff. Five items.
+
+      1. Section 232 derivatives: inclusions window opens, deadline October 15
+      Commerce opened the second inclusions window, in which domestic producers can petition to add more downstream products to steel and aluminum derivative coverage. Petitions are due October 15 and decisions follow within 60 days. If you import finished goods with steel content, this window is where the next round of additions will come from; consider filing comments opposing specific petitions.
+
+      2. Port of Virginia completes dredging to 55 feet
+      Norfolk is now the deepest port on the East Coast, at 55 feet across the main channel. The port is targeting 20% capacity growth by 2028 with the new North Berth.
+
+      3. Autonomous yard trucks move from pilot to fleet
+      Osprey Yard Systems and two other vendors report that 40-plus distribution centers now run driverless yard trucks in daily operation, up from a handful two years ago. The yard is a closed environment, which is why it went first.
+
+      4. LTL pricing: density-based classification arrives
+      The NMFC's shift to density-based freight classes for most commodities took effect this summer, and shippers are seeing rate swings of plus or minus 15% on affected items. Re-rate your LTL tariff before the next contract cycle.
+
+      5. Air cargo: Q4 capacity tight on the transpacific
+      Freighter capacity out of Asia is 90% booked through mid-November, with e-commerce shippers holding block space. Spot rates are up 11% month over month.
+
+      ---
+      Read this issue on the web: https://scbrief.io/i/211
+      Forward to a colleague: https://scbrief.io/share?i=211
+      Unsubscribe: https://scbrief.io/u/9c2e1a | Manage preferences: https://scbrief.io/prefs/9c2e1a
+      SC Brief | 1 Marina Way, Suite 210, San Francisco, CA 94123
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scbrief-212
+    day: 24
+    time: "06:07"
+    from: {name: "SC Brief", email: "brief@scbrief.io"}
+    to: [avery]
+    subject: "SC Brief #212: Mexico's tariff proposal, apparel inventory glut, forced-labor bans abroad, reads"
+    bulk: true
+    signature: none
+    body: |
+      SC BRIEF #212
+      Friday, September 18, 2026 | The morning read for supply-chain and logistics operators
+
+      Good morning. Mexico wants higher tariffs on non-treaty imports, apparel is overstocked, and two more forced-labor regimes are coming. Four items and the weekend reads.
+
+      1. Mexico proposes tariff increases on non-FTA imports
+      Mexico's economy ministry proposed raising most-favored-nation tariffs on textiles, steel, and several categories of finished goods from countries without a free-trade agreement with Mexico. For nearshoring operations, the immediate effect is on Asia-origin inputs: plants in Mexico that assemble imported components will need to re-check their landed-cost models.
+
+      2. Apparel inventories at a three-year high
+      Apparel retailers' inventory-to-sales ratio hit 2.1 in July, the highest since 2023, as front-loaded fall merchandise met soft demand. Markdowns will follow; so will cancelled Q4 orders back to the factories.
+
+      3. Forced-labor import bans abroad: the timeline
+      Canada's revised forced-labor import ban takes effect in January, and the EU's forced-labor regulation applies from December 2027. Both borrow heavily from UFLPA, so the supplier-mapping work US importers have already done will carry over. The difference is that the EU version puts the burden on the authorities to prove, not the importer to disprove.
+
+      4. Weekend reads
+      How one apparel importer rebuilt its origin documentation in ninety days; the economics of a transloading warehouse; and an oral history of the 2002 West Coast lockout. https://scbrief.io/reads/sept-18
+
+      ---
+      Read this issue on the web: https://scbrief.io/i/212
+      Forward to a colleague: https://scbrief.io/share?i=212
+      Unsubscribe: https://scbrief.io/u/9c2e1a | Manage preferences: https://scbrief.io/prefs/9c2e1a
+      SC Brief | 1 Marina Way, Suite 210, San Francisco, CA 94123
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scbrief-213
+    day: 27
+    time: "06:16"
+    from: {name: "SC Brief", email: "brief@scbrief.io"}
+    to: [avery]
+    subject: "SC Brief #213: Index-linked contracts gain ground, Pier B opens, dock-scheduling claims checked"
+    bulk: true
+    signature: none
+    body: |
+      SC BRIEF #213
+      Monday, September 21, 2026 | The morning read for supply-chain and logistics operators
+
+      Good morning. Contract season is starting early, Long Beach opened a rail yard, and we checked the dock-scheduling vendors' claims. Five items.
+
+      1. Q4 contract talks: index-linked deals gain ground
+      With annual transpacific contracts up for renewal in the spring, several large beneficial cargo owners are pushing for index-linked pricing in place of fixed rates, arguing that fixed contracts have been out of the money every year since 2022. Carriers are open to it for a share of volume, not all of it.
+
+      2. Long Beach opens phase one of the Pier B rail yard
+      The first phase of Pier B on-dock rail is open, adding capacity for 10,000-foot trains and removing an estimated 1,000 truck trips a day from local roads at full build-out.
+
+      3. Dock-scheduling software: the detention claims, checked
+      Vendors of dock-appointment software claim 30 to 50% reductions in carrier detention charges. We asked six shippers who installed it; four saw reductions in the 15 to 25% range, and the other two saw none, because the bottleneck was inside the building, not at the door.
+
+      4. Diesel steady at $3.68
+      The national average diesel price held at $3.68 for the second week. Fuel surcharges are flat.
+
+      5. Appeals court hears tariff-authority arguments
+      A federal appeals court heard oral arguments Friday in the challenge to the executive branch's use of emergency powers for tariff actions. No change for importers until a decision issues, likely in the new year; keep flagging affected entries for potential refund claims.
+
+      ---
+      Read this issue on the web: https://scbrief.io/i/213
+      Forward to a colleague: https://scbrief.io/share?i=213
+      Unsubscribe: https://scbrief.io/u/9c2e1a | Manage preferences: https://scbrief.io/prefs/9c2e1a
+      SC Brief | 1 Marina Way, Suite 210, San Francisco, CA 94123
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scbrief-214
+    day: 28
+    time: "07:00"
+    from: {name: "SC Brief", email: "brief@scbrief.io"}
+    to: [avery]
+    subject: "SC Brief #214: EU AI Act guidance for supply-chain data processors, Port of Oakland volumes, cold-chain sensor consolidation"
+    bulk: true
+    signature: none
+    body: |
+      SC BRIEF #214
+      Tuesday, September 22, 2026 | The morning read for supply-chain and logistics operators
+
+      Good morning. Brussels published guidance that reaches into plant-floor software, Oakland's August numbers are in, and the cold-chain sensor market is consolidating. Three items today.
+
+      1. EU AI Act guidance for supply-chain data processors handling EU production-line telemetry
+      The European Commission's AI Office issued draft guidance on how the EU AI Act applies to software vendors and data processors that ingest production-line telemetry (machine states, throughput, downtime, quality signals) from plants in the EU and turn it into recommendations for plant staff. The core clarification: analytics that surface line performance to supervisors is not by itself a high-risk system under Annex III, but any feature that scores or ranks individual workers, or that feeds shift assignments, is. Vendors handling EU telemetry are asked to document data lineage from sensor to recommendation, keep human-oversight logs showing that a person can override the system, and complete a self-assessment before August 2027, when the relevant obligations begin to apply. The guidance applies to non-EU vendors with EU-based plant customers, and to US manufacturers running EU plants. Comments are open until November 14. Full text: https://scbrief.io/l/ai-office-telemetry-guidance
+
+      2. Port of Oakland volumes: August up 3.8% on imports, exports soft
+      The Port of Oakland handled 198,400 TEUs in August. Loaded imports rose 3.8% year over year, while loaded exports (mostly agricultural products: almonds, wine, and refrigerated meat) fell 2.1% on weaker Asia demand. Empty containers were up 6%. Rail-bound cargo through the Oakland International Gateway was flat. The port reported an average truck turn time of 61 minutes.
+
+      3. Cold-chain sensor vendor consolidation
+      Kinross Sensors acquired two smaller cold-chain telemetry vendors, Frostline Monitoring and Thermik Labs, in a pair of deals announced Monday, bringing its cold-chain customer count to about 1,400 sites. Kinross plans to migrate both companies' customers onto its platform by mid-2027 and retire the acquired hardware. The consolidation follows two years of price pressure on temperature-logging hardware; three vendors have exited the market since 2024. Customers on the acquired platforms should ask about data export before signing the migration paperwork.
+
+      ---
+      Read this issue on the web: https://scbrief.io/i/214
+      Forward to a colleague: https://scbrief.io/share?i=214
+      Unsubscribe: https://scbrief.io/u/9c2e1a | Manage preferences: https://scbrief.io/prefs/9c2e1a
+      SC Brief | 1 Marina Way, Suite 210, San Francisco, CA 94123
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter_non_attaching_decoy
+      classification_case: null
+      expected:
+        type: newsletter
+        news_items:
+          - {headline_hint: "EU AI Act guidance supply-chain data processors", topics: [regulation], entities: [], attaches_to: []}
+          - {headline_hint: "Port of Oakland volumes", topics: [supply-chain], entities: [], attaches_to: []}
+          - {headline_hint: "cold-chain sensor vendor consolidation", topics: [supply-chain], entities: [], attaches_to: []}
+
+  - id: nl-scbrief-215
+    day: 29
+    time: "06:10"
+    from: {name: "SC Brief", email: "brief@scbrief.io"}
+    to: [avery]
+    subject: "SC Brief #215: Golden Week blank sailings, Charleston up 3%, 3PL margins, FMC chassis rule"
+    bulk: true
+    signature: none
+    body: |
+      SC BRIEF #215
+      Wednesday, September 23, 2026 | The morning read for supply-chain and logistics operators
+
+      Good morning. Carriers are pulling capacity for Golden Week, a big 3PL beat on margins and warned on volume, and the chassis rule moved. Five items.
+
+      1. Golden Week blank sailings: 38 and counting
+      Carriers have now announced 38 blank sailings across the transpacific for the two weeks around China's Golden Week holiday (October 1 to 7), about 20% of scheduled capacity. Rates have firmed slightly in response.
+
+      2. Charleston: August volume up 3%
+      The Port of Charleston handled 231,000 TEUs in August. Inland-port volumes at Greer were up 9% on automotive traffic.
+
+      3. Southpoint 3PL beats on margins, warns on volume
+      Southpoint reported third-quarter contract-logistics margins of 9.1%, ahead of its own guidance, but flagged that customer volume forecasts for Q4 have been revised down twice since July. Warehousing revenue is holding up better than transportation.
+
+      4. FMC advances the chassis-choice rule
+      The Federal Maritime Commission voted to advance a rule letting motor carriers choose their chassis provider on merchant-haulage moves. Chassis pool operators oppose it; truckers have wanted it for a decade. A final rule could come in early 2027.
+
+      5. Marrow Robotics adds depalletizing to its lineup
+      Marrow announced a mixed-case depalletizing arm for inbound docks, shipping in Q1. The claimed rate is 600 cases per hour, which is on par with the incumbents; the differentiator, Marrow says, is that it handles damaged and shrink-wrapped cases without stopping.
+
+      ---
+      Read this issue on the web: https://scbrief.io/i/215
+      Forward to a colleague: https://scbrief.io/share?i=215
+      Unsubscribe: https://scbrief.io/u/9c2e1a | Manage preferences: https://scbrief.io/prefs/9c2e1a
+      SC Brief | 1 Marina Way, Suite 210, San Francisco, CA 94123
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scbrief-216
+    day: 30
+    time: "06:21"
+    from: {name: "SC Brief", email: "brief@scbrief.io"}
+    to: [avery]
+    subject: "SC Brief #216: 301 exclusions dropped on 31 lines, LA/LB turn times, air cargo Q4, supplier scorecards"
+    bulk: true
+    signature: none
+    body: |
+      SC BRIEF #216
+      Thursday, September 24, 2026 | The morning read for supply-chain and logistics operators
+
+      Good morning. Some tariff exclusions lapsed, trucks are waiting longer at the San Pedro Bay gates, and our practitioner column tackles supplier scorecards. Five items.
+
+      1. Section 301 exclusion decisions: 31 lines dropped
+      USTR let exclusions lapse on 31 of the 164 product lines it reviewed, mostly consumer goods, while extending the rest. Duties on the dropped lines apply to entries from October 1. Check your HTS list against the notice.
+
+      2. Truck turn times at LA and Long Beach creep up
+      Average truck turn times at the San Pedro Bay terminals rose to 78 minutes in the first half of September, from 68 in August, as import volumes stayed high and one terminal reduced weekend gates. Dual transactions (drop and pick in one visit) are the lever; only 40% of moves are dual.
+
+      3. Rail intermodal: flat week
+      Weekly intermodal originations were flat year over year at 271,000 units. Domestic gains offset international declines again.
+
+      4. Air cargo: Q4 outlook firm, rates up
+      Freight forwarders are quoting transpacific air rates 12% above August levels for October departures, with e-commerce block-space agreements taking roughly a third of freighter capacity. Charter inquiries are up.
+
+      5. Supplier scorecards: what the good ones measure
+      Our practitioner column this week covers supplier scorecards that changed supplier behavior versus the ones that became a quarterly ritual. The short version: measure on-time-in-full, quality escapes, and responsiveness to engineering changes; skip the twenty-metric dashboard. https://scbrief.io/reads/scorecards
+
+      ---
+      Read this issue on the web: https://scbrief.io/i/216
+      Forward to a colleague: https://scbrief.io/share?i=216
+      Unsubscribe: https://scbrief.io/u/9c2e1a | Manage preferences: https://scbrief.io/prefs/9c2e1a
+      SC Brief | 1 Marina Way, Suite 210, San Francisco, CA 94123
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-factoryfloor-33
+    day: 1
+    time: "06:30"
+    from: {name: "Factory Floor Weekly", email: "weekly@factoryfloor.news"}
+    to: [avery]
+    subject: "Factory Floor Weekly #33: Predictive maintenance ROI, vision QA on a gluer line, the MES rewrite question"
+    bulk: true
+    signature: none
+    body: |
+      FACTORY FLOOR WEEKLY
+      Issue #33 | Wednesday, August 26, 2026
+      Manufacturing AI and plant automation, once a week, no fluff.
+
+      Hi,
+
+      Back from summer with three stories that came out of plant visits rather than press releases. As always, reply if we got something wrong; a plant manager usually does.
+
+      1) Predictive maintenance: the ROI numbers, twelve months in
+      We followed up with 120 plants that put vibration- or current-based predictive maintenance on rotating equipment at least a year ago. Median payback was 14 months, and the spread was enormous: the top quartile paid back in under seven months, the bottom quartile has not paid back at all. The difference was not the sensors or the model. The plants that got there tuned alert thresholds by asset class in month two and assigned one reliability engineer to own the queue. The plants that did not drowned in alerts and, by month six, had quietly turned notifications off.
+
+      2) Vision QA on a folder-gluer line: 31% less rework for $9,000
+      Alderwood Containers, a corrugated-box maker in Ohio, cut rework 31% on its slowest folder-gluer line using a $9,000 camera setup and an off-the-shelf defect model retrained on about 2,000 images the operators tagged themselves. The trick that made it stick was mounting the camera so the operator's screen showed the same view the model saw. When the model flagged a skewed panel, the operator could see it too, and stopped arguing with the box.
+
+      3) The MES rewrite question: replace or wrap?
+      Two CIOs, both with fifteen-year-old MES installs, made opposite calls this year. One is doing a full replacement over 30 months with a plant-by-plant cutover. The other is wrapping the old system with an integration layer and building new capability on top. The wrapping camp is winning the argument industry-wide for one reason: the plant cannot stop for a cutover, and the replacement projects that went badly all went badly on day one of the switch.
+
+      WORTH YOUR TIME
+      - A 40-minute talk on OT data historians and why they are not a data lake: https://factoryfloor.news/l/historians-talk
+      - Job board: 14 new controls and automation roles this week: https://factoryfloor.news/jobs
+
+      Tips and corrections: tips@factoryfloor.news. Reply to this email and a human reads it.
+      Unsubscribe: https://factoryfloor.news/unsub/av8f2 | Preferences: https://factoryfloor.news/prefs/av8f2
+      Factory Floor Media LLC | PO Box 1187 | Milwaukee, WI 53201
+      - Harlan
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-factoryfloor-34
+    day: 8
+    time: "06:35"
+    from: {name: "Factory Floor Weekly", email: "weekly@factoryfloor.news"}
+    to: [avery]
+    subject: "Factory Floor Weekly #34: Welding cobots on second shift, the Fairlane ransomware, skills-gap numbers"
+    bulk: true
+    signature: none
+    body: |
+      FACTORY FLOOR WEEKLY
+      Issue #34 | Wednesday, September 2, 2026
+      Manufacturing AI and plant automation, once a week, no fluff.
+
+      Hi,
+
+      A job shop in Wisconsin, a ransomware case that should scare you, and a skills report with one useful number buried in it.
+
+      1) Welding cobots on second shift: one operator, three arms
+      Deacon Metalworks, a 60-person fabrication shop outside Green Bay, runs three welding cobots on second shift with a single operator. The shop could not hire welders for nights; now the night operator tacks parts, loads fixtures, and lets the arms run the long seams. Utilization on the three cells is around 65%, which the owner says is double what a single welder managed. Programming is by demonstration: the operator guides the torch once, the cobot repeats it. The catch is fixturing. Every new part number needs a jig, and the shop's jig backlog is now the bottleneck.
+
+      2) OT cybersecurity after the Fairlane Castings incident
+      Fairlane Castings, a foundry group in Indiana, lost two plants for nine days in August after ransomware crossed from the office network into the plant network and encrypted the HMI workstations. The PLCs were fine; nobody could talk to them. The three things every plant should take from it: segment the plant network from the office network with an actual firewall, keep offline backups of every PLC program and HMI project, and put multi-factor authentication on every remote-access path, including the integrator's. Fairlane had none of the three.
+
+      3) Skills gap: the number that matters in a 60-page report
+      The annual workforce report from a manufacturing institute puts unfilled production roles at 480,000 nationally, which is the number that will make the headlines. The number that matters is on page 41: plants with a structured 90-day onboarding program fill roles in half the time and keep new hires at nearly twice the rate of plants that do "shadow the lead for a week." Automation does not fix a retention problem; onboarding does.
+
+      WORTH YOUR TIME
+      - A checklist for plant-network segmentation, written by a controls engineer: https://factoryfloor.news/l/segmentation-checklist
+
+      Tips and corrections: tips@factoryfloor.news. Reply to this email and a human reads it.
+      Unsubscribe: https://factoryfloor.news/unsub/av8f2 | Preferences: https://factoryfloor.news/prefs/av8f2
+      Factory Floor Media LLC | PO Box 1187 | Milwaukee, WI 53201
+      - Harlan
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-factoryfloor-35
+    day: 15
+    time: "06:28"
+    from: {name: "Factory Floor Weekly", email: "weekly@factoryfloor.news"}
+    to: [avery]
+    subject: "Factory Floor Weekly #35: Digital twins, honestly; AMRs at -20C; PLC programming moves to the cloud"
+    bulk: true
+    signature: none
+    body: |
+      FACTORY FLOOR WEEKLY
+      Issue #35 | Wednesday, September 9, 2026
+      Manufacturing AI and plant automation, once a week, no fluff.
+
+      Hi,
+
+      Three items this week, one of which will annoy a vendor. Good.
+
+      1) Digital twins: 12 of 40 pilots made it to production
+      We tracked 40 digital-twin pilots announced between 2023 and 2025. Twelve are in daily production use. Twenty-one were quietly shelved and seven are still "in pilot," which usually means the same thing. The twelve that worked were narrow: a twin of one bottleneck asset or one line, fed by data the plant already collected, used to answer one question (usually "what happens to throughput if we change this setpoint"). Every whole-plant twin on the list is on the shelved side.
+
+      2) AMRs in cold storage: the battery problem is real
+      Autonomous mobile robots in frozen warehouses (-20C and below) lose 25 to 30% of battery capacity, and sensors fog when a robot crosses from the freezer into a 4C dock. Two vendors have added heated enclosures and a five-minute "acclimation" pause at the dock door; one operator we spoke to just bought 40% more robots than the model said they needed and rotates them. Both approaches work. Both cost more than the sales deck said.
+
+      3) Rutherford Controls launches a cloud PLC programming environment
+      Rutherford, the mid-sized PLC vendor, announced a browser-based programming environment for its controllers with built-in version control, collaborative editing, and simulation. The reaction from the controls engineers we asked, paraphrased: "no." The objection is not the cloud; it is that the programming laptop on the plant floor has no internet on purpose. The version control, though, is the feature everyone actually wants, and the vendor should ship it for the offline tool too.
+
+      WORTH YOUR TIME
+      - A plant manager's write-up of a failed twin project, with the numbers: https://factoryfloor.news/l/twin-postmortem
+      - Job board: https://factoryfloor.news/jobs
+
+      Tips and corrections: tips@factoryfloor.news. Reply to this email and a human reads it.
+      Unsubscribe: https://factoryfloor.news/unsub/av8f2 | Preferences: https://factoryfloor.news/prefs/av8f2
+      Factory Floor Media LLC | PO Box 1187 | Milwaukee, WI 53201
+      - Harlan
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-factoryfloor-36
+    day: 22
+    time: "06:32"
+    from: {name: "Factory Floor Weekly", email: "weekly@factoryfloor.news"}
+    to: [avery]
+    subject: "Factory Floor Weekly #36: Edge inference on the line, OEE dashboards nobody reads, battery-plant hiring"
+    bulk: true
+    signature: none
+    body: |
+      FACTORY FLOOR WEEKLY
+      Issue #36 | Wednesday, September 16, 2026
+      Manufacturing AI and plant automation, once a week, no fluff.
+
+      Hi,
+
+      We're headed to Chicago next week for the MX Summit; if you're there, come find the Factory Floor table near the coffee. Three items.
+
+      1) Edge inference on the line: 40 milliseconds on a $600 box
+      A packaging plant in Tennessee is running a quantized vision model on a $600 industrial PC bolted to the line, hitting about 40 milliseconds per inspection with no cloud round-trip. The model is retrained in the cloud monthly and pushed down. This is becoming the standard split: inference at the edge because the line will not wait for a network, training in the cloud because nobody wants a GPU in a dusty cabinet. The plant's IT lead said the hardest part was getting the box on the plant network's allow-list.
+
+      2) OEE dashboards nobody reads
+      Loretta Vance, who runs a 300-person stamping plant in Kentucky, told us her OEE dashboards were ignored for two years. What changed: she put one number per cell on the andon display at the cell, made each cell lead own that number, and reviewed it in the daily stand-up instead of a monthly meeting. Overall equipment effectiveness went from 61% to 68% in six months with no capital spend. The dashboards were never the problem. Ownership was.
+
+      3) Battery-plant ramp-ups and the labor pipeline
+      Three battery-cell plants in the Southeast are hiring about 6,000 production workers between now and next summer, and the community colleges near them have added maintenance-tech and process-tech programs with 90% placement. The ramp is slower than announced (one plant has pushed first production to Q2), but the training programs are the durable part, and they are already feeding the existing plants nearby.
+
+      Tips and corrections: tips@factoryfloor.news. Reply to this email and a human reads it.
+      Unsubscribe: https://factoryfloor.news/unsub/av8f2 | Preferences: https://factoryfloor.news/prefs/av8f2
+      Factory Floor Media LLC | PO Box 1187 | Milwaukee, WI 53201
+      - Harlan
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-factoryfloor-37
+    day: 29
+    time: "06:30"
+    from: {name: "Factory Floor Weekly", email: "weekly@factoryfloor.news"}
+    to: [avery]
+    subject: "Factory Floor Weekly #37: MX Summit case studies, retrofit money, tier-2 tariffs"
+    bulk: true
+    signature: none
+    body: |
+      FACTORY FLOOR WEEKLY
+      Issue #37 | Wednesday, September 23, 2026
+      Manufacturing AI and plant automation, once a week, no fluff.
+
+      Hi,
+
+      Back from Chicago. The MX Manufacturing AI Summit was bigger than last year and, for once, the best sessions were the customers talking, not the vendors. Three items.
+
+      1) MX Manufacturing AI Summit: the case studies that landed
+      The two most-discussed sessions on the customer track were both about plant-floor visibility. Halberd Manufacturing presented a plant-floor visibility case study from the machining cells at one of its California plants: live cell status on a floor display, downtime reasons captured at the machine instead of on paper at the end of the shift, and a weekly review that runs off the same data. The Halberd presenter described a meaningful drop in unplanned downtime on the pilot cells and said a broader rollout is planned for the fall. Northstar Foods presented a plant-floor visibility case study from its Modesto operation, focused on changeover tracking on the packaging lines; the headline number was 40 minutes recovered per changeover once the operators could see where the time went. What got the hallway talking: neither company named its software vendor on stage. Both presenters referred to "our visibility platform" and declined to name it in the Q&A, which in a room full of vendors was noticed. We have asked both companies for a follow-up conversation and will report back.
+
+      2) Robotics retrofit funding roundup
+      Money is flowing to companies that put automation on machines that already exist rather than replacing them. Ironvale Automation raised a $28 million Series A for retrofit kits that add closed-loop monitoring and automatic tool changes to legacy CNC machines. Tamsin Robotics closed a $12 million seed round for a cobot cell that bolts onto existing press brakes. Gantry Labs, which retrofits overhead cranes with collision avoidance, raised $45 million. On the public side, Michigan's retrofit tax credit for small manufacturers has approved 310 applications totaling $60 million. The common thread from the investors we spoke to: the installed base is the market, and the plant cannot stop for a rip-and-replace.
+
+      3) Tariff guidance for tier-2 suppliers
+      The Precision Supplier Alliance, a trade group for tier-2 and tier-3 suppliers, published a twelve-page guide on handling the expanded Section 232 derivative coverage and the stacking of overlapping tariff programs. The practical advice: document the metal content of every part number now, because your tier-1 customers will ask for it; add tariff pass-through language to open quotes; and confirm whether your customer's contract lets you re-price when a program changes mid-term. The guide also has a one-page checklist for the October 15 inclusions window. Free download: https://factoryfloor.news/l/psa-tariff-guide
+
+      Tips and corrections: tips@factoryfloor.news. Reply to this email and a human reads it.
+      Unsubscribe: https://factoryfloor.news/unsub/av8f2 | Preferences: https://factoryfloor.news/prefs/av8f2
+      Factory Floor Media LLC | PO Box 1187 | Milwaukee, WI 53201
+      - Harlan
+    labels:
+      kind: newsletter
+      must_not: false
+      reason: null
+      classification_case: null
+      expected:
+        type: newsletter
+        news_items:
+          - {headline_hint: "MX Summit case studies", topics: [customers, manufacturing-ai], entities: [Halberd Manufacturing, Northstar Foods], attaches_to: ["rollout:halberd:oct-6"]}
+          - {headline_hint: "robotics retrofit funding", topics: [manufacturing-ai], entities: [], attaches_to: []}
+          - {headline_hint: "tariff guidance tier-2", topics: [supply-chain], entities: [], attaches_to: []}
+
+  - id: nl-saasoperator-0827
+    day: 2
+    time: "07:05"
+    from: {name: "SaaS Operator", email: "letters@saasoperator.co"}
+    to: [avery]
+    subject: "SaaS Operator #141: NRR is the number your next lead investor will remember"
+    bulk: true
+    signature: none
+    body: |
+      SaaS Operator | Letter #141
+      Thursday, August 27, 2026
+
+      NRR is the number your next lead investor will remember
+
+      Every founder walking into a Series A or B conversation this year has the same slide: ARR, growth rate, burn. Investors nod through it. The number they write down is net revenue retention, and the question they ask their partners afterward is whether it is real.
+
+      Here is what "real" means to a fund that has seen a few hundred of these decks.
+
+      First, cohort it. A single trailing-twelve-month NRR figure hides everything. Show NRR by annual customer cohort, and show it as a table, not a chart. A 2023 cohort at 118% and a 2025 cohort at 104% tells an honest story about a product that is getting harder to expand, and an investor would rather hear that from you than discover it in diligence.
+
+      Second, separate gross from net. Gross revenue retention (what you kept before expansion) is the number that tells a fund whether customers are staying because they want to or because the contract has not lapsed yet. In vertical SaaS, GRR above 92% is good and above 95% is excellent. If GRR is 85% and NRR is 115%, you have a product that a few customers love and most tolerate, and that is a very different company.
+
+      Third, attribute the expansion. Price increases, seat growth, and new-module sales are three different mechanisms with three different durabilities. A fund will assume expansion from price is a one-time event unless you show a repeatable motion behind it.
+
+      Fourth, decide what to do with the customers who are shrinking. Downgrades before churn are the earliest signal you have. If you can show that your team catches downgrades and turns half of them around, that is worth more than a point of NRR, because it says something about how the company operates.
+
+      The tactical part: put the cohort table in the appendix, not the main deck, and mention in the meeting that it is there. The partners who matter will go find it. The ones who do not were never going to lead.
+
+      A template for the cohort table is at https://saasoperator.co/templates/nrr-cohorts. Take it, break it, send me what you changed.
+
+      Until next Thursday,
+      Ezra
+
+      You are receiving this because you subscribed at saasoperator.co.
+      Unsubscribe: https://saasoperator.co/unsubscribe/7k2m9 | Archive: https://saasoperator.co/letters
+      SaaS Operator | 548 Market St #61220 | San Francisco, CA 94104
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-saasoperator-0903
+    day: 9
+    time: "07:10"
+    from: {name: "SaaS Operator", email: "letters@saasoperator.co"}
+    to: [avery]
+    subject: "SaaS Operator #142: Burn multiple, and the eighteen-month runway myth"
+    bulk: true
+    signature: none
+    body: |
+      SaaS Operator | Letter #142
+      Thursday, September 3, 2026
+
+      Burn multiple, and the eighteen-month runway myth
+
+      Somewhere around 2016 the advice "raise enough for eighteen months" hardened into a rule, and a generation of founders now manages the company to a runway number the way a pilot watches fuel. Runway is a survival statistic. It tells you when you die. It tells you nothing about whether the company deserves to live, and investors know the difference even when founders forget it.
+
+      The number that answers the second question is burn multiple: net burn divided by net new ARR over the same period. Spend $2 million to add $2 million of ARR and your burn multiple is 1.0. Spend $2 million to add $800,000 and it is 2.5, and you are going to have a hard meeting.
+
+      Rough bands, for a company past $5 million in ARR: under 1.0 is excellent and rare; 1.0 to 1.5 is good; 1.5 to 2.0 is fine if it is trending down; above 2.0 needs an explanation, and "we are investing in growth" is not one, because that is what everyone says.
+
+      Three things to do with this.
+
+      One: show it by quarter, on one line, in the deck. A burn multiple that went 2.4, 2.1, 1.7, 1.4 over four quarters is a better story than any single number, and it is a story about operating discipline, which is what a Series A or B investor is actually underwriting.
+
+      Two: know which lever moved it. If it improved because sales productivity went up, say so and show the ramp data. If it improved because you cut marketing spend that was not working, say that too; it is a more honest signal than most founders think.
+
+      Three: stop treating runway as the target. If burn multiple is healthy, a fund will extend your runway; that is what the round is for. If it is not, eighteen months of cash just means eighteen months to have the same problem at a larger scale.
+
+      The failure mode I see most often is a founder cutting sales headcount to protect runway before checking whether those reps were paying back. Look at payback by rep cohort first. If the reps hired last year are paying back in under 14 months, cutting them is cutting the ARR that would have fixed your burn multiple.
+
+      A worksheet for burn multiple by quarter, with the payback cohort table next to it: https://saasoperator.co/templates/burn-multiple
+
+      Until next Thursday,
+      Ezra
+
+      You are receiving this because you subscribed at saasoperator.co.
+      Unsubscribe: https://saasoperator.co/unsubscribe/7k2m9 | Archive: https://saasoperator.co/letters
+      SaaS Operator | 548 Market St #61220 | San Francisco, CA 94104
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-saasoperator-0910
+    day: 16
+    time: "06:58"
+    from: {name: "SaaS Operator", email: "letters@saasoperator.co"}
+    to: [avery]
+    subject: "SaaS Operator #143: Usage pricing in vertical SaaS: three ways it goes wrong"
+    bulk: true
+    signature: none
+    body: |
+      SaaS Operator | Letter #143
+      Thursday, September 10, 2026
+
+      Usage pricing in vertical SaaS: three ways it goes wrong
+
+      Every vertical SaaS board has had the conversation by now: seats are a bad proxy for value, our customers' headcount is flat, let's price on usage. It is a reasonable instinct. It also goes wrong in the same three ways, in the same order, at almost every company I have watched try it.
+
+      Failure one: the meter measures activity, not value. If you charge per API call, per report, or per record processed, you have just given your customer a reason to use the product less. The meter should track the thing the customer is already paying for in their own business: orders shipped, claims processed, machines monitored, patients seen. If you cannot name that unit in one sentence, you are not ready for usage pricing.
+
+      Failure two: the budget owner cannot forecast the bill. Your champion may love a variable bill; the CFO who approves it does not. The fix is a hybrid: a platform fee that covers the committed baseline, and usage above it billed in tiers with a cap the customer chooses. The cap is the feature. It lets procurement put a number in the budget, and it lets you have the "you hit your cap, let's talk" conversation, which is the best expansion conversation there is.
+
+      Failure three: billing operations cannot invoice it. Usage pricing means metering, reconciliation, disputes, and credits, and the finance team that runs annual invoices in a spreadsheet will break in month two. Before you announce the new pricing, run three months of shadow invoices on the new model for ten customers and see how many the team can explain without calling engineering.
+
+      One more thing, on existing customers. Do not move them on renewal by default. Offer the new model, show them what their last twelve months would have cost under it, and let the ones who would pay less switch first. They will tell the others. The ones who would pay more will switch when they see a feature they want that is only on the new plan, and that is a product decision, not a pricing one.
+
+      Until next Thursday,
+      Ezra
+
+      You are receiving this because you subscribed at saasoperator.co.
+      Unsubscribe: https://saasoperator.co/unsubscribe/7k2m9 | Archive: https://saasoperator.co/letters
+      SaaS Operator | 548 Market St #61220 | San Francisco, CA 94104
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-saasoperator-0917
+    day: 23
+    time: "07:12"
+    from: {name: "SaaS Operator", email: "letters@saasoperator.co"}
+    to: [avery]
+    subject: "SaaS Operator #144: Your first RevOps hire"
+    bulk: true
+    signature: none
+    body: |
+      SaaS Operator | Letter #144
+      Thursday, September 17, 2026
+
+      Your first RevOps hire
+
+      There is a moment in every SaaS company, usually somewhere between $4 million and $10 million in ARR, when the CEO realizes that nobody can answer the question "what closed last quarter and why" without an hour of spreadsheet work. That is the moment to hire revenue operations. Most founders wait a year past it.
+
+      What the job is: owning the definitions. What counts as a qualified opportunity, when a deal moves stage, what a renewal looks like in the CRM, how the comp plan is calculated, and what the forecast is built from. A good RevOps lead makes the CRM tell the truth, and then builds the forecast and the board reporting on top of a system that tells the truth.
+
+      What the job is not: a sales manager, a sales engineer, a marketing ops person who also does sales, or a junior analyst who pulls reports for the head of sales. If the head of sales interviews this person and says "great, someone to build my dashboards," you are about to hire the wrong role. RevOps reports to the CEO or the COO, not to the person whose pipeline it is measuring.
+
+      Who to hire: someone who has done it once at a company one stage ahead of you, who is comfortable telling a head of sales that a deal is not real, and who can write a comp plan without a lawyer. Pay them like a senior individual contributor; in most markets that is somewhere between a senior engineer and a director.
+
+      The first 90 days, in order: stage definitions written down and agreed by everyone who carries a number; the CRM cleaned to those definitions, which is ugly and takes a month; a forecast produced from the cleaned data and compared against the head of sales' gut; the comp plan documented and the first quarter's commissions calculated from the CRM instead of a spreadsheet.
+
+      How you know it worked: forecast accuracy. If the forecast at the start of the quarter is within 10% of what closes, for two quarters in a row, the hire paid for itself, because every board conversation, every hiring plan, and every fundraise from there is built on a number you trust.
+
+      Until next Thursday,
+      Ezra
+
+      You are receiving this because you subscribed at saasoperator.co.
+      Unsubscribe: https://saasoperator.co/unsubscribe/7k2m9 | Archive: https://saasoperator.co/letters
+      SaaS Operator | 548 Market St #61220 | San Francisco, CA 94104
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-foundersledger-0830
+    day: 5
+    time: "07:30"
+    from: {name: "Founders Ledger", email: "digest@foundersledger.com"}
+    to: [avery]
+    subject: "Founders Ledger: four rounds, participating preferred creeps back, the Series A pre-money chart"
+    bulk: true
+    signature: none
+    body: |
+      FOUNDERS LEDGER
+      Sunday, August 30, 2026 | Edition 87
+
+      Good morning. Four things this week, as always: rounds, terms, a chart, and a read.
+
+      1) ROUNDS WE NOTICED
+      - Fieldstone Robotics (Boston) raised a $30M Series A led by Granite Peak Ventures for its warehouse-inspection drones. Pre-money about $110M.
+      - Loop Health (Austin) closed a $12M seed led by Alder Lane Ventures for a clinic-scheduling product. Twelve months from company formation to close.
+      - Parsley Analytics (Toronto) raised $9M seed for grocery demand forecasting; Cormorant Capital led.
+      - Cinder Energy (Denver) announced a $55M Series B for industrial heat pumps; Palisade Growth led, with the seed and A investors taking their full pro rata.
+
+      2) TERM SHEET WATCH
+      Participating preferred is creeping back. Of the 31 Series A term sheets readers shared with us in August, two carried participating preferred with a 3x cap, both from newer funds. That is two more than we saw in all of last year. The standard remains 1x non-participating; if you see participation, treat it as a price cut and negotiate it as one.
+
+      3) CHART OF THE WEEK
+      Median Series A pre-money valuation, US, by quarter: Q2 2026 came in at $38M, flat on Q1 and down from $45M in Q4 2025. Round sizes are flat at a $14M median, which means dilution at the A crept up to about 27%. Chart: https://foundersledger.com/charts/series-a-premoney-q2-2026
+
+      4) WORTH READING
+      "Why the second close is where founders lose leverage," by a former fund general counsel, on what changes between a signed term sheet and a wired round. https://foundersledger.com/reads/second-close
+
+      Have a good Sunday.
+      Colette
+
+      Founders Ledger is free and reader-supported. Forward it to a founder who needs it.
+      Unsubscribe: https://foundersledger.com/u/2x91qa | Preferences: https://foundersledger.com/prefs
+      Founders Ledger | 2261 Market St #4180 | San Francisco, CA 94114
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-foundersledger-0906
+    day: 12
+    time: "07:25"
+    from: {name: "Founders Ledger", email: "digest@foundersledger.com"}
+    to: [avery]
+    subject: "Founders Ledger: rounds, seed-fund pro rata gets squeezed, 26 months from seed to A"
+    bulk: true
+    signature: none
+    body: |
+      FOUNDERS LEDGER
+      Sunday, September 6, 2026 | Edition 88
+
+      Good morning. Four things this week.
+
+      1) ROUNDS WE NOTICED
+      - Marlow Bio (San Diego) raised an $80M Series B led by Cormorant Capital for its protein-design platform.
+      - Quorum Compliance (Chicago) closed a $14M Series A led by Granite Peak Ventures; the product automates state-by-state licensing filings.
+      - Tinsley Freight Tech (Kansas City) raised a $6M seed from Alder Lane Ventures for less-than-truckload rating software.
+      - Ordinal Labs (New York) announced an $18M Series A led by Palisade Growth for developer tooling.
+
+      2) TERM SHEET WATCH
+      Seed-fund pro rata is getting squeezed. In six of the 24 Series A term sheets we saw in the last month, the lead asked existing seed investors to waive or cap their pro rata so the round could close at the target ownership. Seed funds are pushing back, and in two cases the founders ended up mediating. If you are raising an A, ask your lead about this before the term sheet, not after; it is a much easier conversation when nobody has signed anything.
+
+      3) CHART OF THE WEEK
+      Median time from seed close to Series A close, US software companies: 26 months for companies that raised an A in the first half of 2026, up from 19 months in 2021. The distribution has a long right tail; the 75th percentile is now 34 months. Chart: https://foundersledger.com/charts/seed-to-a-2026
+
+      4) WORTH READING
+      "How to run a reference call on your lead investor," by a three-time founder, including the two questions that get honest answers from other founders in the portfolio. https://foundersledger.com/reads/reference-your-lead
+
+      Have a good Sunday.
+      Colette
+
+      Founders Ledger is free and reader-supported. Forward it to a founder who needs it.
+      Unsubscribe: https://foundersledger.com/u/2x91qa | Preferences: https://foundersledger.com/prefs
+      Founders Ledger | 2261 Market St #4180 | San Francisco, CA 94114
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-foundersledger-0913
+    day: 19
+    time: "07:40"
+    from: {name: "Founders Ledger", email: "digest@foundersledger.com"}
+    to: [avery]
+    subject: "Founders Ledger: rounds, founder secondaries at the A, where Series A dollars are going"
+    bulk: true
+    signature: none
+    body: |
+      FOUNDERS LEDGER
+      Sunday, September 13, 2026 | Edition 89
+
+      Good morning. Four things this week.
+
+      1) ROUNDS WE NOTICED
+      - Saltmarsh Software (Portland) raised a $22M Series A led by Palisade Growth for property-management accounting.
+      - Hexley Materials (Pittsburgh) closed a $40M Series B led by Granite Peak Ventures for recycled-alloy production.
+      - Nightjar Security (Austin) raised a $7M seed from Alder Lane Ventures for identity tooling aimed at mid-sized companies.
+      - Juniper Grid (Denver) announced a $65M Series B led by Cormorant Capital for distribution-grid software.
+
+      2) TERM SHEET WATCH
+      Founder secondaries at the Series A are back. Six of the 28 term sheets we saw this month allowed founders to sell between $500K and $1.5M of common as part of the round, typically capped at 10% of the founder's holdings. Two years ago this was a Series B conversation. The leads offering it say the same thing: a founder who has paid off the mortgage makes better long-term decisions. Ask; the worst answer is no.
+
+      3) CHART OF THE WEEK
+      Share of US Series A dollars by category, trailing twelve months: AI application-layer companies took 41%, up from 28% a year ago; infrastructure and developer tools 17%; vertical software 15%; everything else 27%. Chart: https://foundersledger.com/charts/series-a-by-category-2026
+
+      4) WORTH READING
+      "The data room that closed in eleven days," a practical piece on what a lead's associate actually opens first, and the three documents that generate the most follow-up questions. https://foundersledger.com/reads/eleven-day-data-room
+
+      Have a good Sunday.
+      Colette
+
+      Founders Ledger is free and reader-supported. Forward it to a founder who needs it.
+      Unsubscribe: https://foundersledger.com/u/2x91qa | Preferences: https://foundersledger.com/prefs
+      Founders Ledger | 2261 Market St #4180 | San Francisco, CA 94114
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-foundersledger-0920
+    day: 26
+    time: "07:35"
+    from: {name: "Founders Ledger", email: "digest@foundersledger.com"}
+    to: [avery]
+    subject: "Founders Ledger: rounds, tranched Series As return for hardware, extension rounds hit 34%"
+    bulk: true
+    signature: none
+    body: |
+      FOUNDERS LEDGER
+      Sunday, September 20, 2026 | Edition 90
+
+      Good morning. Four things this week.
+
+      1) ROUNDS WE NOTICED
+      - Orchard Robotics (Fresno) raised a $35M Series A led by Cormorant Capital for tree-crop harvesting robots.
+      - Stillwater Compliance (Minneapolis) closed an $11M seed led by Alder Lane Ventures for environmental-permit tracking.
+      - Kindling Health (Nashville) announced a $20M Series A led by Palisade Growth for home-health scheduling.
+      - Harrow Analytics (Boston) raised a $9M seed from Granite Peak Ventures for insurance-claims analytics.
+
+      2) TERM SHEET WATCH
+      Tranched rounds are back for hardware. Four of the nine hardware Series As we saw this month were structured as two closes, with the second tranche tied to a milestone (usually a first production unit or a signed pilot). Software rounds are still single-close. If you are offered a tranche, negotiate the milestone definition harder than the valuation; a vague milestone is a re-negotiation with extra steps.
+
+      3) CHART OF THE WEEK
+      Extension and bridge rounds as a share of all A-stage financings: 34% in the first half of 2026, the highest reading in our data. Half of the extensions were priced flat to the prior round; a quarter were down. Chart: https://foundersledger.com/charts/extensions-h1-2026
+
+      4) WORTH READING
+      "The board deck that takes two hours to build," on a five-slide monthly format that a dozen founders now use, and why the fifth slide is always the ask. https://foundersledger.com/reads/two-hour-board-deck
+
+      Have a good Sunday.
+      Colette
+
+      Founders Ledger is free and reader-supported. Forward it to a founder who needs it.
+      Unsubscribe: https://foundersledger.com/u/2x91qa | Preferences: https://foundersledger.com/prefs
+      Founders Ledger | 2261 Market St #4180 | San Francisco, CA 94114
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-oaklandtech-0828
+    day: 3
+    time: "07:45"
+    from: {name: "Oakland Tech Digest", email: "news@oaklandtechdigest.org"}
+    to: [avery]
+    subject: "Oakland Tech Digest: Hardware meetup Tuesday, founders coffee, Fifth Street Foundry expands"
+    bulk: true
+    signature: none
+    body: |
+      OAKLAND TECH DIGEST
+      Friday, August 28, 2026
+
+      Hi neighbors,
+
+      Summer is winding down and the calendar is filling back up. Here is what is happening in East Bay tech over the next two weeks.
+
+      THIS WEEK
+      - Fifth Street Foundry, the makerspace on Fifth near Broadway, is taking over the adjacent warehouse bay and adding a second CNC router and a paint booth. The membership waitlist reopens September 8.
+      - The city's small-business office extended the storefront-activation grant deadline to September 30; tech companies taking ground-floor space downtown qualify.
+
+      COMING UP
+      - Tue Sep 1, 6:00pm | Uptown Hardware Meetup at Fifth Street Foundry. Two lightning talks (a low-cost vibration-sensor build; a teardown of a 1990s PLC) and open shop time. Free. RSVP: https://oaklandtechdigest.org/e/hw-sep1
+      - Thu Sep 3, 8:00am | Founders Coffee, Temescal. No agenda, no pitches, just coffee at the Alcatraz Avenue place with the big table. https://oaklandtechdigest.org/e/coffee-sep3
+      - Thu Sep 10, 6:30pm | East Bay Robotics Demo Night, Jack London Square. Six teams, five minutes each, a working robot required. Applications for a demo slot close Sep 4. https://oaklandtechdigest.org/e/robots-sep10
+
+      COMMUNITY
+      - The Oakland Public Library's main branch is starting a weekly "AI for small business" drop-in on Tuesday afternoons through October.
+      - A reader is organizing a group drive to the Sacramento hardware expo in October; reply to this email if you want a seat.
+
+      JOBS BOARD
+      - Controls engineer, Alameda (small automation integrator)
+      - Community manager, Fifth Street Foundry
+      - Firmware engineer, a Jack London Square startup (they asked us not to name them yet)
+      Post a job: https://oaklandtechdigest.org/jobs
+
+      See you around the lake,
+      Desmond
+
+      Oakland Tech Digest is a volunteer newsletter. Unsubscribe: https://oaklandtechdigest.org/unsub/q3p8 | Sponsor an issue: https://oaklandtechdigest.org/sponsor
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-oaklandtech-0911
+    day: 17
+    time: "07:50"
+    from: {name: "Oakland Tech Digest", email: "news@oaklandtechdigest.org"}
+    to: [avery]
+    subject: "Oakland Tech Digest: AI in the trades panel, women founders lunch, Oakland Startup Week dates"
+    bulk: true
+    signature: none
+    body: |
+      OAKLAND TECH DIGEST
+      Friday, September 11, 2026
+
+      Hi neighbors,
+
+      Startup Week has dates, the library has a panel, and the Foundry needs hands on Saturday the 19th. Here is the next two weeks.
+
+      THIS WEEK
+      - Oakland Startup Week is set for October 12 to 16, spread across Uptown, Old Oakland, and Jack London Square. The organizers are taking session proposals until September 25: https://oaklandtechdigest.org/startup-week
+      - Ninth Street Commons, a new coworking space in Old Oakland with a shared electronics bench, opens October 1. Founding memberships are half price through the end of September.
+
+      COMING UP
+      - Tue Sep 15, 6:00pm | "AI in the trades" panel, Oakland Public Library main branch. An electrician, a machinist, and a community-college instructor on what the tools are actually doing on job sites. Free. https://oaklandtechdigest.org/e/trades-sep15
+      - Thu Sep 17, 12:00pm | Women Founders Lunch, Old Oakland. Monthly, informal, bring a question. https://oaklandtechdigest.org/e/wfl-sep17
+      - Sat Sep 19, 10:00am | Volunteer build day at Fifth Street Foundry. Help move the shop into the new bay; lunch provided; no skills required. https://oaklandtechdigest.org/e/foundry-sep19
+      - Tue Sep 22, 6:00pm | Uptown Hardware Meetup. Details next issue.
+
+      COMMUNITY
+      - The East Bay Robotics Demo Night drew about 120 people last week; the winning team built a shelf-scanning robot out of a modified floor cleaner. Photos: https://oaklandtechdigest.org/p/robots-sep10
+      - A reader-run study group on industrial control systems meets Wednesdays at 7pm at the Foundry; newcomers welcome.
+
+      JOBS BOARD
+      - Mechanical engineer, Emeryville (climate hardware)
+      - Operations lead, Ninth Street Commons
+      - Field technician, Oakland (building-sensor installer)
+      Post a job: https://oaklandtechdigest.org/jobs
+
+      See you around the lake,
+      Desmond
+
+      Oakland Tech Digest is a volunteer newsletter. Unsubscribe: https://oaklandtechdigest.org/unsub/q3p8 | Sponsor an issue: https://oaklandtechdigest.org/sponsor
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-oaklandtech-0918
+    day: 24
+    time: "07:48"
+    from: {name: "Oakland Tech Digest", email: "news@oaklandtechdigest.org"}
+    to: [avery]
+    subject: "Oakland Tech Digest: Hardware meetup Tuesday, climate tech happy hour, kids coding Saturday"
+    bulk: true
+    signature: none
+    body: |
+      OAKLAND TECH DIGEST
+      Friday, September 18, 2026
+
+      Hi neighbors,
+
+      A full week ahead, and the Startup Week schedule is live. Here is what is on.
+
+      THIS WEEK
+      - The Oakland Startup Week schedule is up: 38 sessions over five days, October 12 to 16, including a hardware track at Fifth Street Foundry and a founders-only breakfast each morning at Ninth Street Commons. https://oaklandtechdigest.org/startup-week
+      - The Foundry's membership waitlist is closed again after the September 8 reopening filled in nine days. Next opening is planned for January.
+
+      COMING UP
+      - Tue Sep 22, 6:00pm | Uptown Hardware Meetup at Fifth Street Foundry. This month's theme: putting sensors on old machines. Two show-and-tells and open shop time. Free. https://oaklandtechdigest.org/e/hw-sep22
+      - Thu Sep 24, 5:30pm | Climate Tech Happy Hour, Jack London Square. Hosted by three East Bay climate-hardware companies; first drink covered. https://oaklandtechdigest.org/e/climate-sep24
+      - Sat Sep 26, 10:00am | Kids coding morning, Dimond Library. Ages 6 to 10, laptops provided, parents stay. Registration required. https://oaklandtechdigest.org/e/kids-sep26
+      - Tue Sep 29, 8:00am | Founders Coffee, Temescal. Same place, same big table.
+
+      COMMUNITY
+      - Ninth Street Commons is running open-house hours next week ahead of its October 1 opening; drop by weekday afternoons.
+      - The Saturday volunteer day moved about two tons of equipment into the Foundry's new bay. Thank you to the 30-odd people who showed up.
+
+      JOBS BOARD
+      - Embedded software engineer, Berkeley (medical devices)
+      - Shop manager, Fifth Street Foundry
+      - Customer success lead, Oakland (logistics software)
+      Post a job: https://oaklandtechdigest.org/jobs
+
+      See you around the lake,
+      Desmond
+
+      Oakland Tech Digest is a volunteer newsletter. Unsubscribe: https://oaklandtechdigest.org/unsub/q3p8 | Sponsor an issue: https://oaklandtechdigest.org/sponsor
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null

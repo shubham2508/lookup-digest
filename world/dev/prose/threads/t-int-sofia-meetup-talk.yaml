@@ -1,0 +1,63 @@
+thread_id: t-int-sofia-meetup-talk
+subject: "meetup talk in November - ok?"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_by_team
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [other:meetup-talk]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 18
+    time: "11:20"
+    from: sofia
+    to: [jordan]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      The SF Data Eng meetup asked if I'd give a 20-minute talk in November on how we stream plant telemetry without dropping batches. I'd like to say yes. Nothing proprietary: the retry/backoff pattern, the streaming export, the boring parts that work.
+
+      Okay with you? Cc'ing Avery as FYI since it's public. I'll write it on my own time.
+
+      Sofia
+  - id: m2
+    beat_ref: null
+    day: 18
+    time: "14:05"
+    from: jordan
+    to: [sofia]
+    cc: [avery]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Yes. Three conditions: no customer names, no plant counts or anything that adds up to revenue, and send me the slides a week before. Otherwise go for it, it's a good story.
+
+      Jordan
+  - id: m3
+    beat_ref: null
+    day: 18
+    time: "14:30"
+    from: sofia
+    to: [jordan]
+    cc: [avery]
+    reply_to: m2
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      Deal 🙌

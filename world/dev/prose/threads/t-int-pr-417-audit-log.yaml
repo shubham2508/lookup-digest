@@ -1,0 +1,67 @@
+thread_id: t-int-pr-417-audit-log
+subject: "PR #417 - audit log for user admin actions"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_by_team
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [other:pr-417-audit-log]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 28
+    time: "09:50"
+    from: dev
+    to: [omar, sofia]
+    cc: [avery, jordan]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      https://github.com/tessera-io/platform/pull/417
+
+      small one while #412 is in review: audit log entries for add user / remove user / role change, with who, when, and from which IP. exportable as CSV from the admin page. no behavior change for anyone, just a table that fills up.
+
+      mostly tests. review whenever, not urgent.
+
+      Dev
+  - id: m2
+    beat_ref: null
+    day: 28
+    time: "11:30"
+    from: omar
+    to: [dev]
+    cc: [sofia, avery, jordan]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      lgtm. one question that isn't blocking: does the audit log record who exported the audit log? (yes, I've thought about this too much.)
+
+      Omar
+  - id: m3
+    beat_ref: null
+    day: 28
+    time: "12:15"
+    from: dev
+    to: [omar]
+    cc: [sofia, avery, jordan]
+    reply_to: m2
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      added it, because you're right and I hate it. merging.
+
+      Dev

@@ -1,0 +1,61 @@
+thread_id: t-pinnacle-q3-est
+subject: "Q3 estimated tax payments submitted - please confirm"
+storyline: null
+category: vendors_misc
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_by_kim
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [other:q3-estimated-tax]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: vendor, subtype: services}
+    asks: [{to_avery: false, kind: information, deadline_day: null, status: answered}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 14
+    time: "10:15"
+    from: rina
+    to: [kim]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi Kim,
+
+      Confirming that the Q3 2026 estimated tax payments for Tessera, Inc. were submitted this morning, ahead of the September 15 due date:
+
+      - Federal (Form 1120-W, Q3): $11,250.00 via EFTPS, confirmation #EF-3390417
+      - California (Form 100-ES, Q3): $2,640.00 via Web Pay, confirmation #CA-77120553
+
+      Both were drawn from the operating account per your authorization of September 4. Please confirm the amounts match your books so I can close the file. Q4 estimates will be due December 15; I'll send the vouchers in late November.
+
+      Thank you,
+  - id: m2
+    beat_ref: null
+    day: 14
+    time: "11:02"
+    from: kim
+    to: [rina]
+    cc: [avery]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Hi Rina,
+
+      Confirmed, both amounts match the ledger ($11,250.00 federal, $2,640.00 CA) and I've filed the confirmations under Tax/2026/Q3. Nothing further needed from our side.
+
+      Avery, FYI only, no action.
+
+      Thanks,

@@ -1,0 +1,32 @@
+Message-ID: <20260922-0312.notifications@stripe.com>
+Date: Tue, 22 Sep 2026 03:12:01 -0700
+From: Stripe <notifications@stripe.com>
+To: Avery Chen <avery@tessera.io>
+Subject: Payout of $18,420.55 failed - bank account verification required
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Stripe
+
+A payout of $18,420.55 to your bank account ending in 4471 could not be completed.
+
+Your bank returned the transfer (ACH return code R16). Bank account verification required: before payouts can resume, Stripe needs you to verify this account in the Dashboard.
+
+Payout ID: po_3Q7Lm2K2eZvKYlo2C9pW4aRt
+Amount: $18,420.55
+Bank account: •••• 4471
+Initiated: Sep 21, 2026
+Failed: Sep 22, 2026
+Status: Failed - funds returned to your Stripe balance
+
+What happens next
+- The $18,420.55 has been returned to your Stripe balance. It has not been lost.
+- Automatic payouts are paused for this account until it is verified.
+- To verify: Dashboard > Settings > Bank accounts and scheduling > Verify. You may need to upload a recent bank statement or confirm two micro-deposits (1-2 business days).
+
+Verify your bank account: https://dashboard.stripe.com/settings/payouts
+
+If you believe this is an error, contact your bank about the return first, then reach Stripe Support from the Dashboard.
+
+Stripe, 354 Oyster Point Blvd, South San Francisco, CA 94080

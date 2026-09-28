@@ -1,0 +1,38 @@
+Message-ID: <20260910-0725.issue@modelwatch.dev>
+Date: Thu, 10 Sep 2026 07:25:47 -0700
+From: Model Watch <issue@modelwatch.dev>
+To: Avery Chen <avery@tessera.io>
+Subject: Model Watch #54: everyone matches Argent, Halcyon Vision 3, caching effective rates
+List-Unsubscribe: <mailto:unsubscribe@modelwatch.dev?subject=unsubscribe>, <https://modelwatch.dev/u/f90f9be1>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+MODEL WATCH #54 — Thursday, September 10, 2026
+
+1. THE MID-TIER TABLE AFTER THE MATCHES
+Nimbus matched Wednesday; Kestrel matched today and added a 15% quarterly-prepay tier. Updated ($/M in / out):
+
+  Model            Argent          Kestrel         Nimbus
+  Sable-3 Mini     $0.11 / $0.44   $0.11 / $0.44   $0.11 / $0.44
+  Quillon-L        $0.90 / $4.50   $0.90 / $4.50   $0.90 / $4.50
+  Tanager-Coder 2  $0.23 / $0.68   $0.23 / $0.68   $0.23 / $0.68
+
+Prices are now identical across the three. Differentiation is latency, uptime, and batch terms.
+
+2. HALCYON VISION 3
+Chart and diagram reading up 9 points on our set; photo tasks flat. Bounding-box output is new and accurate to within a few pixels on clean scans. $0.002 per image at standard resolution.
+
+3. PROMPT CACHING: EFFECTIVE INPUT RATES
+What you actually pay per million input tokens on a 6k-token system prompt at 90% cache hit rate:
+
+  Lab / provider     List     Cached    Effective
+  Sable-3           $3.00    $0.30     $0.57
+  Pelagic 2.5       $2.50    $0.25     $0.48
+  Argent (Ferrite-8B) $0.06  $0.015    $0.02
+
+Put dynamic content at the end of the prompt or the hit rate goes to zero.
+
+—
+Model Watch is written by two people and a lot of scripts. Unsubscribe: https://modelwatch.dev/u/7c19e

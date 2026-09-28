@@ -1,0 +1,55 @@
+thread_id: t-inv-board-sched
+subject: "Thursday board meeting - logistics"
+storyline: null
+category: investors_board
+labels:
+  kind: thread
+  must_not: true
+  reason: last_word_avery
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [meeting:board-meeting-aug27]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: capital, subtype: existing_investor_ops}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 1
+    time: "09:40"
+    from: {name: "Lauren Whitaker", email: "lauren@cobaltridge.vc"}
+    to: [avery]
+    cc: [diane]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: "Lauren Whitaker\nExecutive Assistant to Diane Okafor | Cobalt Ridge Ventures"
+    body: |
+      Hi Avery,
+
+      Confirming Diane for the Tessera board meeting tomorrow, Thursday August 27, 2:00 to 4:00 pm at your office. She'll arrive around 1:50 and has a hard stop at 4:00 for a flight.
+
+      Two quick questions:
+      1. Is there a pre-read you'd like me to put in front of her tonight?
+      2. Should Ravi Menon (IPV, observer) be on the same invite, or is he coming separately?
+
+      Thanks so much,
+      Lauren
+  - id: m2
+    beat_ref: null
+    day: 1
+    time: "10:30"
+    from: avery
+    to: [{name: "Lauren Whitaker", email: "lauren@cobaltridge.vc"}]
+    cc: [diane]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      thanks Lauren. pre-read is here: tessera.io/board/aug27 (deck + the July financials, both short). Ravi is already on the invite from our side, so nothing needed there. Parking is the lot on 3rd; I'll leave a pass at the front desk.
+
+      Avery

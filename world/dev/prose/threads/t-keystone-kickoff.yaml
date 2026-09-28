@@ -1,0 +1,60 @@
+thread_id: t-keystone-kickoff
+subject: "Keystone x Tessera - designer search kickoff"
+storyline: S9
+category: hiring
+labels: null
+messages:
+  - id: m1
+    beat_ref: S9.b1
+    day: 4
+    time: "10:00"
+    from: tomas
+    to: [bram]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Bram - great to meet you Thursday, and thanks for turning the proposal around so fast. Let's do it! This email is the kickoff so the three of us have the scope in one place; Avery is copied and will be the final-round interviewer.
+
+      The role: Product Designer, our first. Senior-ish (five-plus years), has shipped B2B software that people use on a factory floor or somewhere equally unglamorous, comfortable being the only designer in a twelve-person company and doing research, UX and visual design without a team behind them. Reports to Avery for now. Remote in the US is fine, Bay Area is a bonus, not a requirement.
+
+      Comp: $165k-$185k base plus equity at our standard senior band; we'll share the equity number with finalists.
+
+      Process: you screen, Jordan and I do a portfolio review, then a half-day onsite with the team, then Avery for the final round. Avery will join the final round for every candidate you bring to that stage, no exceptions, so plan on it in the timeline.
+
+      Terms: retained, per the proposal - one third on signature, one third at shortlist, one third at hire, ninety-day replacement guarantee. Kim will handle the invoices once the letter is countersigned.
+
+      Two asks to get going: send us your first batch of profiles in about two weeks, and tell me now if the comp band is going to be a problem in this market - I'd rather hear it today than after we've fallen in love with someone.
+
+      Looking forward to it!
+
+      Tomás
+  - id: m2
+    beat_ref: S9.b2
+    day: 4
+    time: "14:30"
+    from: bram
+    to: [tomas]
+    cc: [avery]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Tomás, Avery -
+
+      Thank you both. The engagement letter is countersigned and attached (Keystone_Tessera_Engagement_2026-08.pdf); the signature invoice will follow from our office on Monday.
+
+      Confirming the brief as I have it:
+
+      - Product Designer, first design hire, 5+ years, B2B / industrial software, comfortable as a team of one.
+      - $165k-$185k base plus equity; Avery joins the final round for every finalist.
+      - First batch of profiles in two weeks, i.e. the week of September 14, then a steady cadence after that.
+
+      On the comp band: it is workable for the profile you describe, though the strongest candidates at the industrial end of the market are clustering around $190k. I will flag anyone above band rather than screen them out.
+
+      Per our engagement, I'll send profiles as a batch with a one-line summary and a portfolio link each, and I'd ask for feedback on each batch within a week so I can adjust the search.
+
+      Kind regards,

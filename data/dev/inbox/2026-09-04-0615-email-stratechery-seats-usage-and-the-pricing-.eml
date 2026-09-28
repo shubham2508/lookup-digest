@@ -1,0 +1,30 @@
+Message-ID: <20260904-0615.email@stratechery.com>
+Date: Fri, 04 Sep 2026 06:15:48 -0700
+From: Stratechery <email@stratechery.com>
+To: Avery Chen <avery@tessera.io>
+Subject: Stratechery: Seats, Usage, and the Pricing Reckoning
+List-Unsubscribe: <mailto:unsubscribe@stratechery.com?subject=unsubscribe>, <https://stratechery.com/u/9685125f>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+STRATECHERY
+Friday, September 4, 2026
+
+Seats, Usage, and the Pricing Reckoning
+
+Per-seat pricing was never about seats. It was a proxy: more people using the software meant more value delivered, and the proxy was easy to count and easy to budget. The proxy is now breaking, and the reason is that the best AI products reduce the number of people who need to use them.
+
+A procurement team of six that adopts a good automation product might become a team of four. Under seat pricing the vendor just lost a third of its revenue for doing its job well. Under usage pricing the vendor is fine, but the customer's finance team now has an unpredictable line item, and unpredictable line items get cut in budget season. Under outcome pricing everyone is aligned in theory, and in practice nobody can agree on what an outcome is or who caused it.
+
+I have spent the week talking to founders about this and the most common answer is a hybrid: a platform fee that covers the fixed cost of integration and support, plus a usage component with a cap. This is not elegant, but it has a virtue that pure models lack, which is that it can be explained to a CFO in one sentence.
+
+The deeper point is that pricing is a statement about what the product is. Seats say "this is a tool people use." Usage says "this is infrastructure." Outcomes say "this is a service." Most AI application companies are all three at once and have not decided which one they want to be, and their pricing reflects the indecision.
+
+My advice, for what it is worth, is to decide, and to decide based on which framing your best customers already use when they describe you internally. If the champion at a customer calls you "the team's tool," price seats and accept the squeeze. If she calls you "the pipeline," price usage and invest in predictability features. If she calls you "the thing that does our reconciliations," price outcomes and build the measurement to back it up. The worst position is to be described one way and priced another, because that gap is exactly where churn lives.
+
+Read on the web: https://stratechery.com/2026/seats-usage-and-the-pricing-reckoning/
+
+—
+You are receiving this because you subscribed to Stratechery Daily Updates. Manage your subscription or unsubscribe: https://stratechery.com/account/

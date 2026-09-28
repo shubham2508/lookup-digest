@@ -1,0 +1,33 @@
+Message-ID: <20260914-0657.hello@latentdispatch.ai>
+Date: Mon, 14 Sep 2026 06:57:21 -0700
+From: Latent Dispatch <hello@latentdispatch.ai>
+To: Avery Chen <avery@tessera.io>
+Subject: Latent Dispatch: Ferrite-70B full benchmarks, Pelagic deprecates 2.0, a prompt-injection reminder
+List-Unsubscribe: <mailto:unsubscribe@latentdispatch.ai?subject=unsubscribe>, <https://latentdispatch.ai/u/a8e8ce37>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+LATENT DISPATCH
+Mon Sep 14 · 5 items · ~5 min
+
+FERRITE-70B: THE FULL TABLE
+We ran it against eleven models on six task families. Summary: best open model on extraction (94.1 field accuracy vs. 91.3 for the next open model), tool selection at 95%, reasoning in the middle of the pack. At the hosted price Kestrel announced ($0.60 / $1.80 per million), it is the cheapest model that clears our "production-ready for structured work" bar. Table, prompts, and raw outputs: https://latentdispatch.ai/p/ferrite-70b-table
+
+PELAGIC DEPRECATES 2.0, 12 MONTHS' NOTICE
+True to the policy they published two weeks ago. 2.0 shuts off September 2027; 2.5 is a drop-in for most use, but the reasoning-token behavior differs, so re-run your cost model before migrating.
+
+PROMPT INJECTION IS STILL A THING
+A security researcher demonstrated an injection through a vendor invoice PDF: instructions hidden in white text told an accounts-payable agent to approve the invoice and email a confirmation. The agent did. Two lessons: treat every document as untrusted content, and never let a model's output trigger an irreversible action without a human or a hard rule in between. https://latentdispatch.ai/p/invoice-injection
+
+OSTRAVA LABS SIGNS WITH ARGENT
+Their document model will be hosted on Argent's EU and US regions from October. Pricing to follow.
+
+SHORT TAKES
+· Lodestone-R2 gets a 15% price cut. Reasoning is following the curve, slowly.
+· Brindle's replay format gets adopted by Larkspur. Interop wins.
+· Sable-3 Mini is now on every major provider.
+
+—
+You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1

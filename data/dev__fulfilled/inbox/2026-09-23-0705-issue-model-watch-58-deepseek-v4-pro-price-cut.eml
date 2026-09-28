@@ -1,0 +1,48 @@
+Message-ID: <20260923-0705.issue@modelwatch.dev>
+Date: Wed, 23 Sep 2026 07:05:22 -0700
+From: Model Watch <issue@modelwatch.dev>
+To: Avery Chen <avery@tessera.io>
+Subject: Model Watch #58: DeepSeek-V4 Pro price cut, a new 70B, eval harnesses
+List-Unsubscribe: <mailto:unsubscribe@modelwatch.dev?subject=unsubscribe>, <https://modelwatch.dev/u/44428666>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+MODEL WATCH #58 — Wednesday, September 23, 2026
+
+1. OPENROUTER ANNOUNCES VOLUME PRICING ON DEEPSEEK-V4 PRO, ROUGHLY 30% LOWER, EFFECTIVE OCTOBER 1
+OpenRouter announced this morning that DeepSeek-V4 Pro moves to volume pricing on October 1: accounts above 500M tokens a month get roughly 30% off the current list price on both input and output, applied automatically, no prepay or commit required. Current vs. announced ($/M in / out):
+
+  Tier                       Today            From October 1
+  List (under 500M/mo)       $1.10 / $4.40    $1.10 / $4.40
+  Volume (500M–5B/mo)        —                $0.77 / $3.08   (-30%)
+  Volume (over 5B/mo)        —                $0.70 / $2.80   (-36%)
+
+This is the largest single cut on a top-tier model this quarter, and it lands on a model family a lot of production extraction pipelines already run on. If you are modelling Q4 inference spend on DeepSeek-V4 Pro at today's rates, re-run it. Details: https://modelwatch.dev/pricing/openrouter-deepseek-v4-pro
+
+2. MARLIN-70B (OPEN, APACHE 2.0) FROM WHITECAP RESEARCH
+A second strong open 70B in a month. Whitecap's Marlin-70B trades a little extraction accuracy against Ferrite-70B for a noticeably better reasoning score:
+
+  Model               Composite   Extraction   Tool use   Reasoning   $/M out (hosted)
+  Marlin-70B (open)      80.3        92.6        94.2       76.0       $1.75 (Kestrel)
+  Ferrite-70B (open)     78.9        94.1        95.0       68.2       $1.70 (Argent)
+  Quillon-L              78.4        89.1        91.2       77.6       $4.50
+  Sable-3.1 Mini         76.0        88.7        91.0       72.4       $0.44
+
+Hosted on Kestrel today; Argent and Nimbus "shortly." https://modelwatch.dev/models/marlin-70b
+
+3. AGENT EVALUATION HARNESSES: A ROUNDUP
+Five harnesses for scoring multi-step agent runs, compared on what they replay, what they score, and what they cost to run:
+
+  Harness          Replays tool calls?   Scores per step?   Cost tracking?   License
+  Stepwise            yes                  yes                yes             Apache 2.0
+  Larkspur Bench      yes                  yes                yes             Apache 2.0
+  Brindle Scorer      yes                  no                 yes             commercial
+  OpenTrace           yes                  no                 no              MIT
+  Harnessline         no                   yes                no              commercial
+
+Stepwise and Larkspur Bench are the two we would start with; both now read the shared replay-log format. Full notes: https://modelwatch.dev/roundups/agent-harnesses
+
+—
+Model Watch is written by two people and a lot of scripts. Unsubscribe: https://modelwatch.dev/u/7c19e

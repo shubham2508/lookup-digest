@@ -1,0 +1,19 @@
+Message-ID: <20260916-1633.notifications@github.com>
+Date: Wed, 16 Sep 2026 16:33:35 -0700
+From: GitHub <notifications@github.com>
+To: Avery Chen <avery@tessera.io>
+Subject: Re: [tessera/dashboard] SAML group-to-role mapping ignores nested groups (#241)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+@jliu-tessera commented on this issue.
+
+Confirmed. We only read the top-level memberOf values from the assertion, so anyone whose role comes from a nested AD group gets the default viewer role. Two customers use nested groups, so this matters.
+
+Fix: flatten group membership during the assertion parse, cap depth at 5, cache per session. Sofia has it in #244, targeting this sprint.
+
+--
+Reply to this email directly or view it on GitHub:
+https://github.com/tessera/dashboard/issues/241#issuecomment-2810445372
+You are receiving this because you are subscribed to this thread.

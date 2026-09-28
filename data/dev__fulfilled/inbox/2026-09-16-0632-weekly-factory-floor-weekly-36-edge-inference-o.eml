@@ -1,0 +1,32 @@
+Message-ID: <20260916-0632.weekly@factoryfloor.news>
+Date: Wed, 16 Sep 2026 06:32:30 -0700
+From: Factory Floor Weekly <weekly@factoryfloor.news>
+To: Avery Chen <avery@tessera.io>
+Subject: Factory Floor Weekly #36: Edge inference on the line, OEE dashboards nobody reads, battery-plant hiring
+List-Unsubscribe: <mailto:unsubscribe@factoryfloor.news?subject=unsubscribe>, <https://factoryfloor.news/u/8f9dc7e7>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+FACTORY FLOOR WEEKLY
+Issue #36 | Wednesday, September 16, 2026
+Manufacturing AI and plant automation, once a week, no fluff.
+
+Hi,
+
+We're headed to Chicago next week for the MX Summit; if you're there, come find the Factory Floor table near the coffee. Three items.
+
+1) Edge inference on the line: 40 milliseconds on a $600 box
+A packaging plant in Tennessee is running a quantized vision model on a $600 industrial PC bolted to the line, hitting about 40 milliseconds per inspection with no cloud round-trip. The model is retrained in the cloud monthly and pushed down. This is becoming the standard split: inference at the edge because the line will not wait for a network, training in the cloud because nobody wants a GPU in a dusty cabinet. The plant's IT lead said the hardest part was getting the box on the plant network's allow-list.
+
+2) OEE dashboards nobody reads
+Loretta Vance, who runs a 300-person stamping plant in Kentucky, told us her OEE dashboards were ignored for two years. What changed: she put one number per cell on the andon display at the cell, made each cell lead own that number, and reviewed it in the daily stand-up instead of a monthly meeting. Overall equipment effectiveness went from 61% to 68% in six months with no capital spend. The dashboards were never the problem. Ownership was.
+
+3) Battery-plant ramp-ups and the labor pipeline
+Three battery-cell plants in the Southeast are hiring about 6,000 production workers between now and next summer, and the community colleges near them have added maintenance-tech and process-tech programs with 90% placement. The ramp is slower than announced (one plant has pushed first production to Q2), but the training programs are the durable part, and they are already feeding the existing plants nearby.
+
+Tips and corrections: tips@factoryfloor.news. Reply to this email and a human reads it.
+Unsubscribe: https://factoryfloor.news/unsub/av8f2 | Preferences: https://factoryfloor.news/prefs/av8f2
+Factory Floor Media LLC | PO Box 1187 | Milwaukee, WI 53201
+- Harlan

@@ -1,0 +1,33 @@
+Message-ID: <20260911-0708.hello@latentdispatch.ai>
+Date: Fri, 11 Sep 2026 07:08:32 -0700
+From: Latent Dispatch <hello@latentdispatch.ai>
+To: Avery Chen <avery@tessera.io>
+Subject: Latent Dispatch: Ferrite-70B ships, agents vs. workflows, the September price tracker preview
+List-Unsubscribe: <mailto:unsubscribe@latentdispatch.ai?subject=unsubscribe>, <https://latentdispatch.ai/u/47c11801>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+LATENT DISPATCH
+Fri Sep 11 · 5 items · ~4 min
+
+FERRITE-70B IS HERE
+Ferrite released the 70B this morning under Apache 2.0. First-day numbers from our harness: it beats every other open model we track on structured extraction and tool use, and lands between the mid-tier proprietary models on reasoning. It needs two 80GB cards or a hosted provider; Kestrel and Argent both say "next week." Full benchmark table Monday. https://latentdispatch.ai/p/ferrite-70b
+
+AGENTS VS. WORKFLOWS: A TAXONOMY THAT ACTUALLY HELPS
+A long post from the Larkspur team distinguishing workflows (fixed steps, model calls inside them) from agents (the model picks the steps). Their claim: 80% of production "agents" are workflows and would be more reliable if built as such. We agree. https://latentdispatch.ai/p/agents-vs-workflows
+
+SEPTEMBER PRICE TRACKER PREVIEW
+Halfway through the month, mid-tier prices are down another 20% after the Argent/Nimbus/Kestrel round. Frontier flat again. Open-weights hosting is the new battleground; expect Ferrite-70B pricing to set the floor.
+
+SABLE LABS RAISES
+$1.2B at a valuation we will not repeat because it will be wrong by the time you read this. Use of funds: compute. Always compute.
+
+SHORT TAKES
+· Quillon-M now handles multi-page documents as a single call.
+· Nimbus adds SOC 2 Type II to its trust page.
+· A clear guide to per-tenant cost attribution when everything runs through one API key: https://latentdispatch.ai/p/tenant-cost
+
+—
+You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1

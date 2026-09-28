@@ -1,0 +1,36 @@
+thread_id: t-pers-gym-renewal
+subject: "Your Lakeshore membership renews Oct 1 - no action needed"
+storyline: null
+category: personal
+labels:
+  kind: automated
+  must_not: true
+  reason: automated_personal_fyi
+  classification_case: null
+  expected:
+    type: automated
+    automated: {system: "Lakeshore Athletic Club", action_bearing: false, action_kind: none, about: [other:gym-membership]}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 7
+    time: "06:05"
+    from: {name: "Lakeshore Athletic Club", email: "members@lakeshoreathletic.club"}
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      A quick heads-up: your Lakeshore Athletic Club membership (Individual, monthly) renews automatically on October 1, 2026 at the current rate of $89/month. Nothing changes and there is nothing you need to do.
+
+      If you'd like to pause, freeze, or change your plan, you can do that any time in the member portal before September 30.
+
+      New this fall: the 6:00am lap swim lane is back on Tuesdays and Thursdays, and towel service is included again.
+
+      See you at the club,
+      The Lakeshore team

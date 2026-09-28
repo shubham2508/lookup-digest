@@ -1,0 +1,34 @@
+Message-ID: <20260828-0800.hello@mail.figma.com>
+Date: Fri, 28 Aug 2026 08:00:09 -0700
+From: Figma <hello@mail.figma.com>
+To: Avery Chen <avery@tessera.io>
+Subject: New in Figma: smarter variables, developer handoff for everyone
+List-Unsubscribe: <mailto:unsubscribe@mail.figma.com?subject=unsubscribe>, <https://mail.figma.com/u/5cf4c50f>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi Avery,
+
+Here's what's new in Figma this month.
+
+Variables, extended
+Variables now support expressions, so a spacing token can be defined as 2x another. Mode switching (light/dark, compact/comfortable) works across nested components without detaching.
+
+Developer handoff, included
+Every seat on your plan now includes the handoff view: inspect specs, copy CSS/iOS/Android code, and compare changes between versions. No add-on required.
+
+Slides improvements
+Presenter notes, speaker view, and export to PDF with links preserved.
+
+FigJam
+New voting stickers, a timer that follows you between boards, and templates for retros and sprint planning.
+
+See everything that shipped: https://mail.figma.com/l/whats-new-0828
+
+Happy designing,
+The Figma Team
+
+Figma, Inc. | 760 Market St, San Francisco, CA
+You're receiving this because you're an admin on a Figma plan. Unsubscribe: https://mail.figma.com/u/2k9pq

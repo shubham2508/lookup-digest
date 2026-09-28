@@ -1,0 +1,52 @@
+thread_id: t-hire-theo-panel
+subject: "Theo Lindgren onsite Thu 9/17 - panel slots"
+storyline: null
+category: hiring
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_by_team
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [candidate:theo-lindgren]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: exec}
+    asks: [{to_avery: false, kind: meeting, status: answered}]
+messages:
+  - id: m1
+    beat_ref: null
+    day: 16
+    time: "10:30"
+    from: jordan
+    to: [sofia, priya]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Sofia, Priya - Theo Lindgren's onsite is Thursday the 17th, in the office. Proposed slots:
+
+      - 10:00-11:00 coding - Sofia
+      - 11:15-12:15 systems design - me
+      - 14:00-15:00 technical depth - Priya
+      - 16:00-16:30 closer - Avery (copied for visibility, nothing needed)
+
+      Please accept the Greenhouse invites when they land, or tell me by end of day tomorrow if a slot doesn't work. Same question bank as Mei's loop so the scores are comparable.
+  - id: m2
+    beat_ref: null
+    day: 16
+    time: "11:05"
+    from: sofia
+    to: [jordan]
+    cc: [priya, avery]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      10:00 works for me 👍 I'll reuse the ingest-pipeline exercise from Mei's loop so the scores line up. Invite accepted.

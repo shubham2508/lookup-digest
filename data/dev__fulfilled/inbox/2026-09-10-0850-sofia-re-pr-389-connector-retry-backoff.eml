@@ -1,0 +1,33 @@
+Message-ID: <20260910-0850.sofia@tessera.io>
+Date: Thu, 10 Sep 2026 08:50:42 -0700
+From: Sofia Andrade <sofia@tessera.io>
+To: Omar Haddad <omar@tessera.io>
+Cc: Dev Patel <dev@tessera.io>, Avery Chen <avery@tessera.io>, Jordan Liu <jordan@tessera.io>
+Subject: Re: PR #389 - connector retry/backoff
+In-Reply-To: <20260909-1405.omar@tessera.io>
+References: <20260909-1405.omar@tessera.io>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+State machine is clean, read it twice. Two things:
+
+1. Jitter: you call random.random() per attempt but seed once per process, so two workers restarted together retry in lockstep. Per-connector RNG, or seed from os.urandom.
+2. On the 8th failure we set degraded but the last error message is lost. Log it before the transition, it's the one message anyone will want.
+
+Otherwise approved 👌
+
+Sofia
+
+Sofia
+
+On Wed, Sep 9, 2026 at 2:05 PM, Omar Haddad <omar@tessera.io> wrote:
+> https://github.com/tessera-io/platform/pull/389
+>
+> Retries are now exponential with full jitter: base 2s, cap 5 minutes, max 8 attempts, then the feed goes to "degraded" instead of silently dying. Per the design doc, minus the circuit breaker, which is a follow-up.
+>
+> Please read the state machine in connector/retry.py first; the rest is plumbing. Tests include a flapping-feed simulation that I am slightly too proud of.
+>
+> Omar
+>
+> Omar

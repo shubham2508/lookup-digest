@@ -1,0 +1,46 @@
+thread_id: t-int-eng-week-0911
+subject: "Eng week in review - Sep 11"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: internal_fyi
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [report:eng-week-review]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: exec}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 17
+    time: "17:15"
+    from: jordan
+    to: [eng_list]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Shipped:
+      - Connector retry/backoff (#389, Omar). Exponential with jitter, capped at 5 minutes, "degraded" state instead of a silent death. The flapping-feed pages should mostly stop.
+      - Stale flag cleanup (#392, Dev). 14 flags removed; the config file is readable again.
+      - Help-center page for dashboard timezones (Mateo). Four tickets on it the week before, zero this week.
+
+      In progress:
+      - Plant-timezone-aware date filter (Sofia), PR next week
+      - Multi-line ingest refactor, design doc in review (Dev)
+      - Regression plan (Lena), draft Monday
+
+      Process:
+      - On-call handoff moves to Monday 10:00 from Sep 21. The Friday deploy freeze after 15:00 is in effect as of today.
+
+      Have a good weekend.
+
+      Jordan

@@ -1,0 +1,23 @@
+Message-ID: <20260915-1205.notifications@github.com>
+Date: Tue, 15 Sep 2026 12:05:22 -0700
+From: GitHub <notifications@github.com>
+To: Avery Chen <avery@tessera.io>
+Subject: [tessera/dashboard] New Dependabot alert: high severity in next
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Dependabot found a high severity vulnerability in a dependency of tessera/dashboard.
+
+Package: next (npm)
+Affected versions: >= 14.0.0, < 14.2.10
+Patched version: 14.2.10
+Advisory: GHSA-gp8f-8m3g-qvj9 - Cache poisoning in Next.js when using the Image Optimization API
+Manifest: package.json
+
+Dependabot has opened a pull request to fix this alert: #239 Bump next from 14.2.5 to 14.2.10
+
+View alert: https://github.com/tessera/dashboard/security/dependabot/19
+
+--
+You are receiving this because you are an admin of this repository.

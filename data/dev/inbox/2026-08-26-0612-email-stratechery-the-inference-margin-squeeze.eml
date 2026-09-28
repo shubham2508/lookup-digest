@@ -1,0 +1,32 @@
+Message-ID: <20260826-0612.email@stratechery.com>
+Date: Wed, 26 Aug 2026 06:12:44 -0700
+From: Stratechery <email@stratechery.com>
+To: Avery Chen <avery@tessera.io>
+Subject: Stratechery: The Inference Margin Squeeze
+List-Unsubscribe: <mailto:unsubscribe@stratechery.com?subject=unsubscribe>, <https://stratechery.com/u/5de20878>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+STRATECHERY
+Wednesday, August 26, 2026
+
+The Inference Margin Squeeze
+
+There is a pattern in every platform shift that I keep coming back to: the layer that looks like the business ends up being the cost center, and the layer that looks like plumbing ends up being the business. In the PC era the hardware was the product until it wasn't; Microsoft and Intel captured the profit while the box-makers fought over single-digit margins. The question for the current cycle is which layer is the box-maker.
+
+My growing suspicion is that it is the application layer, at least as currently constituted. Consider the unit economics of a typical "AI-native" vertical SaaS company. It sells a seat, or increasingly a workflow, for a fixed monthly price. Underneath that price sits a variable cost: tokens, and those tokens are priced by someone else. When a customer's usage doubles because the product worked, the vendor's revenue stays flat and its cost of goods doubles. That is the exact inverse of the software business model we have spent twenty-five years celebrating.
+
+The obvious response is usage-based pricing, and many companies are moving there. But usage pricing trades one problem for another: it makes the vendor's margin transparent, and transparent margins invite the customer to ask why they are paying a markup on tokens they could buy directly. The vendor's answer has to be "because of what we do with them," which is a real answer, but it is a services answer, not a software answer.
+
+The second response is to push the cost down the stack: negotiate volume discounts, route to cheaper models, cache aggressively, distill. This works, and it is where most of the actual engineering effort in the industry is going right now. It also means the application company's most important supplier relationship is with its inference provider, which is a strange place for a software company to find itself.
+
+The third response, and the one I find most interesting, is to change the customer. Companies that sell outcomes rather than software (a resolved ticket, a reconciled invoice, a completed onboarding) can absorb variable cost because they are pricing the value, not the seat. The catch is that outcome pricing requires the product to actually work, reliably, without a human in the loop, which is a much higher bar than "helpful."
+
+I don't think any of this is fatal to the application layer. I do think the companies that survive will look less like the SaaS playbook and more like something new: part software, part managed service, with gross margins that would have made a 2019 investor wince. The squeeze is real; the question is who gets squeezed.
+
+Read on the web: https://stratechery.com/2026/the-inference-margin-squeeze/
+
+—
+You are receiving this because you subscribed to Stratechery Daily Updates. Manage your subscription or unsubscribe: https://stratechery.com/account/

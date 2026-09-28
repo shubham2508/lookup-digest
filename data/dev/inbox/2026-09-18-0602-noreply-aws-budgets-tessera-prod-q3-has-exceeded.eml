@@ -1,0 +1,26 @@
+Message-ID: <20260918-0602.noreply@aws.amazon.com>
+Date: Fri, 18 Sep 2026 06:02:00 -0700
+From: AWS Billing <no-reply@aws.amazon.com>
+To: Avery Chen <avery@tessera.io>
+Subject: AWS Budgets: tessera-prod-q3 has exceeded 80% of the budgeted amount
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Dear AWS Budgets Customer,
+
+You requested that we alert you when the ACTUAL cost associated with your tessera-prod-q3 budget is greater than 80% of the budgeted amount. The ACTUAL cost has now reached $16,911.37 (80.5% of $21,000.00).
+
+Budget Name: tessera-prod-q3
+Budget Type: Cost
+Budget Period: Quarterly (Jul 1 - Sep 30, 2026)
+Budgeted Amount: $21,000.00
+Alert Type: ACTUAL
+Alert Threshold: > 80% ($16,800.00)
+ACTUAL Amount: $16,911.37 (Jul 1 - Sep 17, 2026)
+
+Top services: Amazon EC2 ($6,540.12), Amazon RDS ($4,512.70), Amazon S3 ($1,833.06), AWS Data Transfer ($1,166.25)
+
+Go to the AWS Budgets dashboard to review: https://console.aws.amazon.com/billing/home#/budgets
+
+This is an informational alert. No changes have been made to your account.

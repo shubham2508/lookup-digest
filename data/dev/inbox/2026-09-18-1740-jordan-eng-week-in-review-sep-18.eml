@@ -1,0 +1,27 @@
+Message-ID: <20260918-1740.jordan@tessera.io>
+Date: Fri, 18 Sep 2026 17:40:29 -0700
+From: Jordan Liu <jordan@tessera.io>
+To: Tessera Engineering <eng@tessera.io>
+Cc: Avery Chen <avery@tessera.io>
+Subject: Eng week in review - Sep 18
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Shipped:
+- Plant-timezone-aware date filter (#402, Sofia). Plant-local ranges, presets persist per plant. Lena's regression pass is Monday/Tuesday.
+- Exceptions index migration (Omar). Seven minutes, ~4x faster exception queries on the big plants.
+- Bluefin sensor connector live on day one of their pilot (Yuki + Sofia).
+
+In progress:
+- Multi-line ingest refactor (Dev), PR up early next week
+- Ingest p95 holding at ~340ms since Priya's pool change; no pages this week
+
+Watching:
+- Nothing red.
+
+Have a good weekend.
+
+Jordan
+
+Jordan

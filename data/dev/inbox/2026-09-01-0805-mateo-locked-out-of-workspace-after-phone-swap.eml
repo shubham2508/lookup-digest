@@ -1,0 +1,19 @@
+Message-ID: <20260901-0805.mateo@tessera.io>
+Date: Tue, 01 Sep 2026 08:05:23 -0700
+From: Mateo Silva <mateo@tessera.io>
+To: Kim Delgado <kim@tessera.io>
+Cc: Jordan Liu <jordan@tessera.io>, Avery Chen <avery@tessera.io>
+Subject: Locked out of Workspace after phone swap (IT-0091)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+IT-0091 (ticket-style because habit).
+
+Swapped phones over the weekend and the authenticator app didn't migrate. Locked out of Google Workspace (mail + drive) since 7:40. The support inbox is a separate login and is fine, so customers aren't affected.
+
+Kim, can you do the admin reset? Backup codes are in the envelope in the office safe if that's faster.
+
+Mateo
+
+Mateo | Tessera Support

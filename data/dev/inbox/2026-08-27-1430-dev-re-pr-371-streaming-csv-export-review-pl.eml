@@ -1,0 +1,31 @@
+Message-ID: <20260827-1430.dev@tessera.io>
+Date: Thu, 27 Aug 2026 14:30:09 -0700
+From: Dev Patel <dev@tessera.io>
+To: Sofia Andrade <sofia@tessera.io>
+Cc: Omar Haddad <omar@tessera.io>, Avery Chen <avery@tessera.io>, Jordan Liu <jordan@tessera.io>
+Subject: Re: PR #371 - streaming CSV export (review please)
+In-Reply-To: <20260827-1015.sofia@tessera.io>
+References: <20260827-1015.sofia@tessera.io>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+left comments. main one: 5k chunks are fine but the flush after every chunk doubles syscalls on the big plants, flush every 4 chunks? also a nit: the header row goes through the new byte path but the tests only check the body rows.
+
+Dev
+
+On Thu, Aug 27, 2026 at 10:15 AM, Sofia Andrade <sofia@tessera.io> wrote:
+> https://github.com/tessera-io/platform/pull/371
+>
+> Streams the export instead of building the whole file in memory. 200k-row plants go from timeout to ~40s locally. Chunk size 5k rows, gzip on the wire.
+>
+> Things I want eyes on:
+> - the encoding path (we now write bytes directly, not through the old csv writer)
+> - cancellation when the client disconnects mid-stream
+> - the test for the last partial chunk
+>
+> Not touching the filter code, that's a separate PR. Review by tomorrow would be great 🙏
+>
+> Sofia
+>
+> Sofia

@@ -1,0 +1,35 @@
+Message-ID: <20260902-0635.weekly@factoryfloor.news>
+Date: Wed, 02 Sep 2026 06:35:30 -0700
+From: Factory Floor Weekly <weekly@factoryfloor.news>
+To: Avery Chen <avery@tessera.io>
+Subject: Factory Floor Weekly #34: Welding cobots on second shift, the Fairlane ransomware, skills-gap numbers
+List-Unsubscribe: <mailto:unsubscribe@factoryfloor.news?subject=unsubscribe>, <https://factoryfloor.news/u/518d325b>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+FACTORY FLOOR WEEKLY
+Issue #34 | Wednesday, September 2, 2026
+Manufacturing AI and plant automation, once a week, no fluff.
+
+Hi,
+
+A job shop in Wisconsin, a ransomware case that should scare you, and a skills report with one useful number buried in it.
+
+1) Welding cobots on second shift: one operator, three arms
+Deacon Metalworks, a 60-person fabrication shop outside Green Bay, runs three welding cobots on second shift with a single operator. The shop could not hire welders for nights; now the night operator tacks parts, loads fixtures, and lets the arms run the long seams. Utilization on the three cells is around 65%, which the owner says is double what a single welder managed. Programming is by demonstration: the operator guides the torch once, the cobot repeats it. The catch is fixturing. Every new part number needs a jig, and the shop's jig backlog is now the bottleneck.
+
+2) OT cybersecurity after the Fairlane Castings incident
+Fairlane Castings, a foundry group in Indiana, lost two plants for nine days in August after ransomware crossed from the office network into the plant network and encrypted the HMI workstations. The PLCs were fine; nobody could talk to them. The three things every plant should take from it: segment the plant network from the office network with an actual firewall, keep offline backups of every PLC program and HMI project, and put multi-factor authentication on every remote-access path, including the integrator's. Fairlane had none of the three.
+
+3) Skills gap: the number that matters in a 60-page report
+The annual workforce report from a manufacturing institute puts unfilled production roles at 480,000 nationally, which is the number that will make the headlines. The number that matters is on page 41: plants with a structured 90-day onboarding program fill roles in half the time and keep new hires at nearly twice the rate of plants that do "shadow the lead for a week." Automation does not fix a retention problem; onboarding does.
+
+WORTH YOUR TIME
+- A checklist for plant-network segmentation, written by a controls engineer: https://factoryfloor.news/l/segmentation-checklist
+
+Tips and corrections: tips@factoryfloor.news. Reply to this email and a human reads it.
+Unsubscribe: https://factoryfloor.news/unsub/av8f2 | Preferences: https://factoryfloor.news/prefs/av8f2
+Factory Floor Media LLC | PO Box 1187 | Milwaukee, WI 53201
+- Harlan

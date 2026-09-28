@@ -1,0 +1,26 @@
+Message-ID: <20260922-1620.jordan@tessera.io>
+Date: Tue, 22 Sep 2026 16:20:09 -0700
+From: Jordan Liu <jordan@tessera.io>
+To: Nadia Rahimi <nadia.rahimi@veritascomponents.com>
+Cc: Avery Chen <avery@tessera.io>, Yuki Sato <yuki@tessera.io>, Ivan Petrov <ivan.petrov@veritascomponents.com>
+Subject: Re: Second line - ingest setup
+In-Reply-To: <20260922-1145.nadia.rahimi@veritascomponents.com>
+References: <20260917-1030.nadia.rahimi@veritascomponents.com> <20260917-1540.yuki.9b4cec@tessera.io> <20260922-1145.nadia.rahimi@veritascomponents.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi Nadia - yes, Wednesday.
+
+- Staging validated Ivan's sample this morning: 400 of 400 rows parsed, all three new station types mapped.
+- Production feed goes live Wednesday morning PT; Sofia will confirm in this thread once it is on.
+- Yuki is out this afternoon, so I'm answering for the team.
+
+Jordan
+
+On Tue, Sep 22, 2026 at 11:45 AM, Nadia Rahimi <nadia.rahimi@veritascomponents.com> wrote:
+> Yuki - Ivan sent Sofia the sample export and the field list on Friday (line2_sample.csv, 400 rows, plus the station list). Ops is asking me hourly: can the feed be live by Wednesday? A yes or no today would be great so I can confirm the start-up sequence.
+>
+> Nadia
+>
+> Nadia Rahimi | Procurement Lead | Veritas Components

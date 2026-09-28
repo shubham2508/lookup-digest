@@ -1,0 +1,83 @@
+thread_id: t-brightline-sso
+subject: "SSO group mapping question"
+storyline: BG-brightline
+category: customers
+labels:
+  kind: thread
+  must_not: true
+  reason: answered_by_engineer_courtesy_close
+  classification_case: answered_non_reference_customer
+  expected: {type: human_thread, domain: work, intent_primary: ask, about: [incident:brightline:sso], ball_awaiting: nobody, closed_by_courtesy: true,
+             sender_relationship: {category: customer, subtype: active, stage: active}, asks: [{to_avery: false, kind: information, status: answered}]}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 27
+    time: "09:30"
+    from: brightline_procurement
+    to: [{name: "Tessera Support", email: "support@tessera.io"}]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Dear Tessera team,
+
+      We are rolling Tessera out to a second group of users at our Reno facility and have a question regarding single sign-on.
+
+      Our identity provider (Microsoft Entra) sends group claims for each user. We would like users in the group "BLP-Plant-Supervisors" to receive the Supervisor role in Tessera and users in "BLP-Plant-Operators" to receive the Operator role, without assigning roles by hand for each person. We have located the SSO settings page but cannot find where group names are mapped to roles.
+
+      Could you advise on the correct procedure, or confirm if this is not supported? We have copied Avery Chen as our account contact per our onboarding documentation.
+
+      Kind regards,
+  - id: m2
+    beat_ref: null
+    day: 27
+    time: "11:50"
+    from: jordan
+    to: [brightline_procurement]
+    cc: [avery, mateo]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Hello,
+
+      Supported, no hand-assignment needed. Mateo is out today so I'm picking this up from the support queue.
+
+      Impact: once mapping is on, every user in a mapped group gets the role at next login; users in no mapped group keep whatever they have today.
+
+      Steps (admin account):
+      - Settings > Security > Single sign-on > Group mapping (the section is collapsed by default, which is why it's easy to miss)
+      - Add mapping: claim value "BLP-Plant-Supervisors" -> role Supervisor
+      - Add mapping: claim value "BLP-Plant-Operators" -> role Operator
+      - Save, then have one user from each group sign out and back in to confirm
+
+      Two notes:
+      - The claim value must match the group name exactly as Entra sends it. If your app registration emits group object IDs rather than names, use the ID instead; the "groups assigned to the application" setting on your side controls which.
+      - A user in both groups gets the higher role (Supervisor).
+
+      If the roles don't apply after re-login, reply here with the username and we'll check the assertion on our side.
+
+      Jordan
+  - id: m3
+    beat_ref: null
+    day: 28
+    time: "08:15"
+    from: brightline_procurement
+    to: [jordan]
+    cc: [avery, mateo]
+    reply_to: m2
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Dear Jordan,
+
+      Thank you for the prompt response. The mapping section was indeed collapsed. Both mappings are now in place and we have confirmed with one supervisor and two operators that the correct roles are applied after signing in again.
+
+      No further action is required on this item.
+
+      Kind regards,

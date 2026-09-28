@@ -1,0 +1,42 @@
+Message-ID: <20260903-0722.issue@modelwatch.dev>
+Date: Thu, 03 Sep 2026 07:22:47 -0700
+From: Model Watch <issue@modelwatch.dev>
+To: Avery Chen <avery@tessera.io>
+Subject: Model Watch #52: Lodestone-R2 leads reasoning, Quillon-M per-page pricing, structured-output rates
+List-Unsubscribe: <mailto:unsubscribe@modelwatch.dev?subject=unsubscribe>, <https://modelwatch.dev/u/1793805c>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+MODEL WATCH #52 — Thursday, September 3, 2026
+
+1. LODESTONE-R2 TAKES THE REASONING LEAD
+R2 on our 200-task reasoning set: 94.8, up from R1's 91.5 and clear of the field. Latency is the cost: median 41 seconds per task. Price $4 / $16 per million.
+
+  Model          Reasoning   Median latency   Cost/task
+  Lodestone-R2     94.8         41s            $0.052
+  Pelagic 2.5      90.7         12s            $0.019
+  Sable-3 (think)  88.1         15s            $0.024
+
+2. QUILLON-M: PER-PAGE PRICING FOR DOCUMENT WORK
+$0.004 per page, any token count. On our 500-page procurement set: 93.6 field accuracy, $2.00 total. The same set through a text model after OCR: 91.0 and $3.40. Per-page pricing is easier to forecast and, here, cheaper.
+
+3. STRUCTURED OUTPUT: SCHEMA-VALID RATES
+20,000 extraction calls with a strict JSON schema, schema-enforcement mode on where available:
+
+  Sable-3         99.7%
+  Pelagic 2.5     99.5%
+  Quillon-L       99.4%
+  Sable-3 Mini    98.9%
+  Ferrite-8B      96.1%
+
+Validate anyway. 0.3% of 50k daily calls is 150 bad records.
+
+4. PRICE CHANGES THIS WEEK
+  Sable-3 Mini: -20% (now $0.14 / $0.58)
+  Vireo-2 embeddings: -50% (now $0.02 / M)
+  Lodestone-R2: new, $4 / $16
+
+—
+Model Watch is written by two people and a lot of scripts. Unsubscribe: https://modelwatch.dev/u/7c19e

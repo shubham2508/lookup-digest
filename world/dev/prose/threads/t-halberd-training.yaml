@@ -1,0 +1,91 @@
+thread_id: t-halberd-training
+subject: "Operator training sessions - dates"
+storyline: S5
+category: customers
+labels: null
+messages:
+  - id: m1
+    beat_ref: S5.b10
+    day: 16
+    time: "14:00"
+    from: renee
+    to: [yuki]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Yuki,
+
+      Can we get the operator training on the calendar for the week of Sep 28? I want the shift leads trained the week before the 6th, not the week of. Two sessions would be ideal (day shift and swing) but one long one works if that's easier for you.
+
+      Which days that week can you do?
+
+      Renee
+  - id: m2
+    beat_ref: S5.b11
+    day: 16
+    time: "17:20"
+    from: yuki
+    to: [renee]
+    cc: [avery]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Hi Renee,
+
+      Happy to. Two options for that week:
+
+      1. Tuesday, Sep 29, 9:00-12:00 at the plant. One combined session, both shifts. In my experience the cross-shift questions are the useful ones.
+      2. Thursday, Oct 1, two shorter sessions, 9:00-10:30 and 14:00-15:30, one per shift.
+
+      Either way the agenda is:
+      1. Logging in and the shift view (20 min)
+      2. Work orders: start, pause, complete, and the split-across-shifts case (45 min)
+      3. Exceptions and who to call (20 min)
+      4. Hands-on with your own lines' data (the rest)
+
+      Let me know which and I'll send the invite. Avery, cc'ing you for visibility only, nothing needed.
+
+      Best,
+  - id: m3
+    beat_ref: S5.b12
+    day: 19
+    time: "10:15"
+    from: renee
+    to: [yuki]
+    cc: [avery]
+    reply_to: m2
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Let's do Tuesday the 29th, one combined session. The shift leads prefer it and it's one less trip for you.
+
+      One more ask: could you put togehter a one-page operator guide we can laminate and hang by the terminals? Login, the three work-order buttons, and who to call. Nothing fancy, our operators won't read past a page anyway.
+
+      Thanks, and sorry for the Sunday email, I'm catching up.
+
+      Renee
+  - id: m4
+    beat_ref: S5.b15
+    day: 24
+    time: "11:30"
+    from: renee
+    to: [yuki]
+    cc: [avery]
+    reply_to: m3
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Yuki,
+
+      14 operators confirmed for the 29th (9 day shift, 5 swing), plus Joel and me. The one-pager is great, it's already up by the terminals in the pilot area.
+
+      Thanks for all of this.
+
+      Renee

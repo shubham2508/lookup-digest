@@ -1,0 +1,77 @@
+thread_id: t-ravi-dataroom
+subject: "Data room access for two analysts"
+storyline: null
+category: investors_board
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_closed
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [deal:series-a:data-room]
+    ball_awaiting: nobody
+    closed_by_courtesy: true
+    sender_relationship: {category: capital, subtype: investor_associate}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 15
+    time: "14:30"
+    from: ravi
+    to: [avery]
+    cc: [kim]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi Avery,
+
+      Thank you again for this morning; the partnership was very engaged.
+
+      To keep the diligence work moving, could we get data room access for two of our analysts? Their details:
+
+      - Hana Okoro, hokoro@inflectionpoint.vc
+      - Owen Castellanos, ocastellanos@inflectionpoint.vc
+
+      Read-only is fine. I've copied Kim, who I believe manages the room, in case that's the faster route.
+
+      Best,
+      Ravi
+  - id: m2
+    beat_ref: null
+    day: 15
+    time: "15:45"
+    from: kim
+    to: [ravi]
+    cc: [avery]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Hi Ravi,
+
+      Done. Both accounts were created at 3:40 pm with viewer access to the IPV folder; invitations went to the addresses below. Access runs through October 31, 2026 and I can extend it if the process goes longer.
+
+      If either of them has trouble with the login, they can reach me directly.
+
+      Kim
+  - id: m3
+    beat_ref: null
+    day: 15
+    time: "16:10"
+    from: ravi
+    to: [kim]
+    cc: [avery]
+    reply_to: m2
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Perfect, thank you Kim. Both are in.
+
+      Ravi

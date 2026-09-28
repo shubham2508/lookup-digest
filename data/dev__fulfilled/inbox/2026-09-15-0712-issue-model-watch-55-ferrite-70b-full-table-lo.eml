@@ -1,0 +1,37 @@
+Message-ID: <20260915-0712.issue@modelwatch.dev>
+Date: Tue, 15 Sep 2026 07:12:12 -0700
+From: Model Watch <issue@modelwatch.dev>
+To: Avery Chen <avery@tessera.io>
+Subject: Model Watch #55: Ferrite-70B full table, Lodestone-R2 price cut, Tanager 70B preview
+List-Unsubscribe: <mailto:unsubscribe@modelwatch.dev?subject=unsubscribe>, <https://modelwatch.dev/u/20d4e561>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+MODEL WATCH #55 — Tuesday, September 15, 2026
+
+1. FERRITE-70B (OPEN, APACHE 2.0): THE FULL TABLE
+Best open model we have measured on structured work. Composite and per-family scores against the models it competes with on price:
+
+  Model               Composite   Extraction   Tool use   Reasoning   $/M out (hosted)
+  Ferrite-70B (open)     78.9        94.1        95.0       68.2       $1.80 (Kestrel)
+  Quillon-L              78.4        89.1        91.2       77.6       $4.50
+  Sable-3 Mini           74.6        86.4        90.5       71.9       $0.44
+  Tanager-Coder 2        70.1        84.0        92.3       60.4       $0.68
+
+On extraction it is within two points of the frontier models at a tenth of the price. Reasoning is where you still pay for proprietary. https://modelwatch.dev/models/ferrite-70b
+
+2. LODESTONE-R2: -15%
+Now $3.40 / $13.60 per million. Still the reasoning leader (94.8); still slow. R2 batch at half price with a 24-hour window is the way to run it for anything not interactive.
+
+3. TANAGER-CODER 70B (PREVIEW)
+Agentic coding 79.4 in preview, up from the 34B's 71.2 and now first among open models by a wide margin. 2x the price, 3x the latency of the 34B. Public release slated for October.
+
+4. PRICE CHANGES THIS WEEK
+  Lodestone-R2: -15%
+  Kestrel, Ferrite-70B: new, $0.60 / $1.80
+  Argent, Ferrite-70B: announced for this week
+
+—
+Model Watch is written by two people and a lot of scripts. Unsubscribe: https://modelwatch.dev/u/7c19e

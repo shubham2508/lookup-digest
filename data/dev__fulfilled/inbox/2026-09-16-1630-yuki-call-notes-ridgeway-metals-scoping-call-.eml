@@ -1,0 +1,25 @@
+Message-ID: <20260916-1630.yuki@tessera.io>
+Date: Wed, 16 Sep 2026 16:30:36 -0700
+From: Yuki Sato <yuki@tessera.io>
+To: =?utf-8?q?Tom=C3=A1s?= Reyes <tomas@tessera.io>, Ana Kowalski <ana@tessera.io>
+Cc: Avery Chen <avery@tessera.io>
+Subject: Call notes: Ridgeway Metals - scoping call (Sep 16)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Notes from this afternoon's scoping call with Ridgeway Metals: Dale Whitcombe (Ops Director), Bud Halloran (plant manager), Tomás and me. 45 minutes on Zoom; Dale used the phone dial-in.
+
+1. Setup: one mill in Stockton, two rolling lines. Line B is the one that runs slower on nights and nobody can say why. 22 machines across both lines.
+2. Data today: the PLC historian on line B exports a CSV nightly (confirmed by Bud, who also keeps a parallel log in a notebook, and read us three weeks of it from memory).
+3. What they want first: the exception report on line B only. Telemetry dashboards later, if the exception report earns it. Dale's words: "prove it on one line".
+4. Data access: manual upload of the nightly CSV for the first two weeks, connector after. Their IT contractor is in on Wednesdays, which is when we would set the connector up.
+5. Trial shape we discussed: six weeks, one line, on-site kickoff. Success criterion Dale proposed himself: night-shift alerts acknowledged inside 15 minutes. Price did not come up; Dale did not ask and Tomás did not offer.
+6. Personal note: Bud has eleven years of notebooks. We are not replacing those; we are adding to them. Worth saying in the scoping doc.
+
+Follow-ups: Ana is writing the scoping doc; I owe Bud the manual-upload guide by Tuesday. Nothing for Avery.
+
+Yuki
+
+Yuki Sato
+Solutions Engineering, Tessera

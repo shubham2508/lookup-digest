@@ -1,0 +1,46 @@
+thread_id: t-pers-sam-pickup
+subject: "pickup this week"
+storyline: null
+category: personal
+labels:
+  kind: thread
+  must_not: true
+  reason: last_word_avery
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: personal
+    intent_primary: ask
+    about: [family:daycare-pickup]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: family, subtype: partner}
+    asks: [{to_avery: true, kind: other, deadline_day: 7, status: answered}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 5
+    time: "18:40"
+    from: sam
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      hey, can you do pickup tues and thurs this week? i have late meetings both days and won't make it by 5:30. also do you know where the extra car seat base went, i think it's still in kai's car
+  - id: m2
+    beat_ref: null
+    day: 5
+    time: "19:15"
+    from: avery
+    to: [sam]
+    cc: []
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      yes to both, i'll block 5:00 on those days. base is in the garage on the shelf behind the stroller, i pulled it out of kai's car last weekend.

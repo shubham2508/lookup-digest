@@ -1,0 +1,30 @@
+Message-ID: <20260902-0608.email@stratechery.com>
+Date: Wed, 02 Sep 2026 06:08:01 -0700
+From: Stratechery <email@stratechery.com>
+To: Avery Chen <avery@tessera.io>
+Subject: Stratechery: Agents and the App Store Problem
+List-Unsubscribe: <mailto:unsubscribe@stratechery.com?subject=unsubscribe>, <https://stratechery.com/u/26d4faa9>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+STRATECHERY
+Wednesday, September 2, 2026
+
+Agents and the App Store Problem
+
+The app store was the defining business model innovation of the smartphone era: a platform owner took thirty percent of every transaction in exchange for distribution, payments, and trust. The question I have been chewing on is whether agents recreate that structure or dissolve it.
+
+The bull case for a new app store is straightforward. If users interact with software through an assistant, the assistant decides which tools get called. Whoever controls the assistant controls distribution, and distribution has always been where the money is. Several companies are building "tool directories" on exactly this premise, and the pitch to developers is familiar: register your tool, we'll send you traffic, we'll take a cut.
+
+The bear case is that agents are much less loyal than users. A person picks an app and keeps it because switching is annoying. An agent picks a tool per task based on cost, latency, and whether it worked last time, and can switch on every call. That makes the directory's leverage far weaker than an app store's. Distribution still matters, but it looks less like a storefront and more like a search engine, and search engines take their cut in a very different way.
+
+My tentative view is that the app store analogy is wrong and the payments analogy is right. The valuable position is not the shelf; it is the rails. Whoever handles authentication, authorization, metering, and settlement between agents and tools gets a small slice of a very large number of transactions, and does so without needing anyone to be loyal. That is a more defensible business than curation, and it is where I would expect the platform companies to concentrate.
+
+For developers, the implication is to build for interchangeability rather than for placement. Expose a clean interface, price per call, publish your latency, and assume the calling agent will benchmark you against three competitors every week. It is a less romantic world than the app store, but it is also one where a small company with a better tool can win without asking anyone's permission.
+
+Read on the web: https://stratechery.com/2026/agents-and-the-app-store-problem/
+
+—
+You are receiving this because you subscribed to Stratechery Daily Updates. Manage your subscription or unsubscribe: https://stratechery.com/account/

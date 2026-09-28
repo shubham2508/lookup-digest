@@ -1,0 +1,43 @@
+thread_id: t-ines-interview
+subject: "Tomorrow 4pm - video or in person?"
+storyline: BG-ines
+category: hiring
+labels:
+  kind: thread
+  must_not: false
+  reason: null
+  classification_case: unknown_attendee_of_todays_meeting
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [candidate:ines-ferreira]
+    ball_awaiting: avery
+    closed_by_courtesy: false
+    sender_relationship: {category: hiring, subtype: candidate, stage: screen}
+    asks: [{to_avery: true, kind: information, deadline_day: 30, status: open}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 29
+    time: "19:30"
+    from: ines
+    to: [avery]
+    cc: [jordan]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Dear Avery,
+
+      I hope you don't mind me writing to you directly. I am looking forward to our conversation tomorrow at 4. Jordan mentioned you would be joining for the last part of the interview loop.
+
+      Two small logistics questions, if I may:
+      1. Will the interview be over video or in person at your office? The invitation has both an address and a link, so I want to be sure I am in the right place.
+      2. Is there anything you would like me to prepare or bring along?
+
+      Thank you in advance, and apologies for the late email.
+
+      Kind regards,

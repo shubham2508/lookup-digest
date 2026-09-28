@@ -1,0 +1,28 @@
+Message-ID: <20260911-1715.jordan@tessera.io>
+Date: Fri, 11 Sep 2026 17:15:20 -0700
+From: Jordan Liu <jordan@tessera.io>
+To: Tessera Engineering <eng@tessera.io>
+Cc: Avery Chen <avery@tessera.io>
+Subject: Eng week in review - Sep 11
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Shipped:
+- Connector retry/backoff (#389, Omar). Exponential with jitter, capped at 5 minutes, "degraded" state instead of a silent death. The flapping-feed pages should mostly stop.
+- Stale flag cleanup (#392, Dev). 14 flags removed; the config file is readable again.
+- Help-center page for dashboard timezones (Mateo). Four tickets on it the week before, zero this week.
+
+In progress:
+- Plant-timezone-aware date filter (Sofia), PR next week
+- Multi-line ingest refactor, design doc in review (Dev)
+- Regression plan (Lena), draft Monday
+
+Process:
+- On-call handoff moves to Monday 10:00 from Sep 21. The Friday deploy freeze after 15:00 is in effect as of today.
+
+Have a good weekend.
+
+Jordan
+
+Jordan

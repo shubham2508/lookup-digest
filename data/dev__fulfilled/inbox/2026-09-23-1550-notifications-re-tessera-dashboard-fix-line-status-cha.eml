@@ -1,0 +1,15 @@
+Message-ID: <20260923-1550.notifications@github.com>
+Date: Wed, 23 Sep 2026 15:50:15 -0700
+From: GitHub <notifications@github.com>
+To: Avery Chen <avery@tessera.io>
+Subject: Re: [tessera/dashboard] Fix line-status chart flicker after WebSocket reconnect (PR #247)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Merged #247 into main.
+
+--
+Reply to this email directly or view it on GitHub:
+https://github.com/tessera/dashboard/pull/247#event-14992870341
+You are receiving this because you are subscribed to this repository.

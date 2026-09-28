@@ -1,0 +1,78 @@
+Message-ID: <20260902-0850.renee.tan@halberd.com>
+Date: Wed, 02 Sep 2026 08:50:52 -0700
+From: Renee Tan <renee.tan@halberd.com>
+To: Yuki Sato <yuki@tessera.io>
+Cc: Avery Chen <avery@tessera.io>
+Subject: Re: Oct 6 rollout - plan and owners
+In-Reply-To: <20260830-1530.yuki@tessera.io>
+References: <20260827-0940.renee.tan@halberd.com> <20260827-1315.avery@tessera.io> <20260830-1005.renee.tan@halberd.com> <20260830-1530.yuki@tessera.io>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Yuki,
+
+Yesterday's workshop went well. The team came out of it with a much clearer picture than they went in with, and Joel actually said "that was useful", which from Joel is a standing ovation.
+
+Two mapping questions that came up after you left:
+1. Work orders that span two shifts: one row with two shift codes, or two rows?
+2. Lines 3 and 4 share a PLC. Do we map them as one line and split on the station tag, or keep them separate?
+
+Thanks for driving up.
+
+Renee
+
+Renee Tan | Procurement Lead | Halberd Manufacturing
+
+On Sun, Aug 30, 2026 at 3:30 PM, Yuki Sato <yuki@tessera.io> wrote:
+> Hi Renee,
+>
+> Thank you for the list, that is exactly what I needed. Proposal for the workshop:
+>
+> 1. Tuesday, Sep 1, 10:00-12:00, at the plant. I'll drive up. Joel and the controls engineer in the room, plant manager optional.
+> 2. Attached: Halberd_Fresno_mapping_template_v1.xlsx. If Joel can fill in columns A-D (line, station, PLC tag, and the current work-order field names) before Tuesday, we'll spend the two hours on the hard cases instead of the easy ones.
+> 3. Output of the session: an agreed field mapping, which becomes the basis of the rollout plan I'll circulate the week after.
+>
+> Avery, nothing needed from you here; I'll keep you cc'd on this thread.
+>
+> Best,
+>
+> Yuki Sato
+> Solutions Engineering, Tessera
+>
+> On Sun, Aug 30, 2026 at 10:05 AM, Renee Tan <renee.tan@halberd.com> wrote:
+> > Yuki,
+> >
+> > Attatched is the Fresno contact list (plant manager, the two shift leads, Joel, and our controls engineer), with cell numbers for the go-live week.
+> >
+> > When do you want to do the data-mapping workshop? Joel and the controls engineer both need to be in the room, and they're easiest to pin down early in the week.
+> >
+> > Sorry for the weekend email, I'm out Monday and wanted this off my desk.
+> >
+> > Renee
+> >
+> > Renee Tan | Procurement Lead | Halberd Manufacturing
+> >
+> > On Thu, Aug 27, 2026 at 1:15 PM, Avery Chen <avery@tessera.io> wrote:
+> > > renee, yes, let's lock Oct 6.
+> > >
+> > > Yuki owns the plan day to day (Yuki, take it from here). Escalation is me, directly. And I'd like to be on your weekly call, send the invite whenever you set it up and I'll be there.
+> > >
+> > > Avery
+> > >
+> > > On Thu, Aug 27, 2026 at 9:40 AM, Renee Tan <renee.tan@halberd.com> wrote:
+> > > > Avery,
+> > > >
+> > > > Good news from our side: the Fresno plant manager signed off yesterday, so we can set a date. I'd like to propose Oct 6 as go-live for Fresno. It's a Tuesday, it gives us five weeks, and it keeps us clear of quarter-end.
+> > > >
+> > > > Two questions so I can put names in our project sheet:
+> > > > 1. Who on your side owns the rollout plan day to day?
+> > > > 2. Who is my escalation point if something goes sideways?
+> > > >
+> > > > On our side it's me (project), Joel Brennan (IT and SSO) and the plant manager for the floor.
+> > > >
+> > > > Can we lock Oct 6?
+> > > >
+> > > > Renee
+> > > >
+> > > > Renee Tan | Procurement Lead | Halberd Manufacturing

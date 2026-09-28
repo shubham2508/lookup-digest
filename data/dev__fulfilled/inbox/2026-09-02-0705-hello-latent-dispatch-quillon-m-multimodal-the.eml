@@ -1,0 +1,33 @@
+Message-ID: <20260902-0705.hello@latentdispatch.ai>
+Date: Wed, 02 Sep 2026 07:05:14 -0700
+From: Latent Dispatch <hello@latentdispatch.ai>
+To: Avery Chen <avery@tessera.io>
+Subject: Latent Dispatch: Quillon-M multimodal, the small-model comeback, a benchmark we don't trust
+List-Unsubscribe: <mailto:unsubscribe@latentdispatch.ai?subject=unsubscribe>, <https://latentdispatch.ai/u/779a8d4d>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+LATENT DISPATCH
+Wed Sep 2 · 5 items · ~4 min
+
+QUILLON-M: DOCUMENTS IN, STRUCTURE OUT
+Quillon's new multimodal model takes page images directly and returns structured fields, skipping the OCR step. On invoices and packing slips it is the best thing we have tested; on handwritten forms it is not. Pricing is per page ($0.004) rather than per token, which makes budgeting much easier. https://latentdispatch.ai/p/quillon-m
+
+THE SMALL-MODEL COMEBACK IS REAL
+Three separate teams told us this week they moved a production workload from a frontier model to a fine-tuned sub-10B model and saw cost drop by 80–95% with quality within noise. The common thread: the task was narrow, the training data came from the big model's own outputs, and they had a way to measure quality before switching. https://latentdispatch.ai/p/small-model-comeback
+
+A BENCHMARK WE DON'T TRUST
+A new "agentic enterprise" leaderboard has been circulating. The tasks are synthetic, the top three entries are from the leaderboard's sponsor, and the scoring prompt is not published. We are not linking it. Ask for the scoring prompt before you believe a number.
+
+OSTRAVA LABS OPENS A SAN FRANCISCO OFFICE
+The Czech research lab, best known for its document-understanding work, is hiring a small US team. Their models are not on any major provider yet; watch for that to change.
+
+SHORT TAKES
+· Argent Systems adds an EU-region endpoint. Same models, same price, data stays in Frankfurt.
+· Tanager-Coder 2 is now on Kestrel at $0.30/$0.90.
+· A nice write-up on prompt versioning as a deploy artifact: https://latentdispatch.ai/p/prompt-versioning
+
+—
+You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1

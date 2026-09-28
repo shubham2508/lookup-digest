@@ -1,0 +1,44 @@
+thread_id: t-ipv-call-move
+subject: "Re: Tessera x IPV - diligence call Friday"
+storyline: S2
+category: investors_board
+labels: null
+messages:
+  - id: m1
+    beat_ref: S2.b2
+    day: 28
+    time: "11:15"
+    from: marcus
+    to: [avery]
+    cc: [elena, ravi]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      Friday 10am no longer works on our side; an LP meeting moved onto that slot. Can we do Monday, Sep 28, 10am instead? Same hour, same dial-in.
+
+      Copying Elena Vasquez, who runs technical diligence for us. She'll join Monday and may send you a short list beforehand.
+
+      Separately: Ravi tells me the analysts have finished with the cohort tab. Nothing needed from you on that.
+
+      Marcus
+  - id: m2
+    beat_ref: S2.b3
+    day: 28
+    time: "17:50"
+    from: avery
+    to: [marcus]
+    cc: [elena, ravi]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      Monday 10 works. Elena, welcome — looking forward to it.
+
+      Ravi, could you resend the invite for the new time so our calendars match?
+
+      Avery

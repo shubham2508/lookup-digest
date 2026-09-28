@@ -1,0 +1,39 @@
+Message-ID: <20260910-1400.yuki@tessera.io>
+Date: Thu, 10 Sep 2026 14:00:41 -0700
+From: Yuki Sato <yuki@tessera.io>
+To: Grace Lindqvist <grace.lindqvist@northstarfoods.com>
+Cc: Avery Chen <avery@tessera.io>, =?utf-8?q?Tom=C3=A1s?= Reyes <tomas@tessera.io>
+Subject: Re: Modesto line 2 - onboarding questions
+In-Reply-To: <20260910-1125.grace.lindqvist@northstarfoods.com>
+References: <20260827-0835.grace.lindqvist@northstarfoods.com> <20260827-1110.yuki@tessera.io> <20260828-0950.grace.lindqvist@northstarfoods.com> <20260910-1125.grace.lindqvist@northstarfoods.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi Grace,
+
+Nothing missed on your side - the display names come from the mapping template, and line 2's template was loaded with only the tag column filled in. Two options:
+
+1. Bulk rename: Settings > Sites > MOD-01/L2 > Export tags gives you a CSV. Fill in the "display_name" column and re-import it on the same page. Existing history stays attached to the tag; only the name shown to operators changes.
+2. Send me the filled-in template and I'll load it for you. Same result, less clicking.
+
+For the naming itself I'd follow what line 1 did: "<Station> <Measurement>", e.g. "Filler Temp 4". Operators find those in the exception report much faster than the PLC tags.
+
+Best,
+Yuki
+
+Yuki Sato
+Solutions Engineering, Tessera
+
+On Thu, Sep 10, 2026 at 11:25 AM, Grace Lindqvist <grace.lindqvist@northstarfoods.com> wrote:
+> Hi Yuki,
+>
+> Line 2 is pushing data now (thank you) but the sensor names came through as the raw PLC tags - things like L2_FILL_TT_04 - and the operators can't tell which one is the filler temp vs the sealer. Line 1 has readable names. Did we miss a step, or is that the mapping template Marta's team was supposed to fill in?
+>
+> Also, is there a way to rename in bulk? There are about 140 of them and I am not doing that one at a time.
+>
+> Thanks,
+> Grace
+>
+> Grace Lindqvist
+> Procurement Manager | Northstar Foods

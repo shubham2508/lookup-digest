@@ -1,0 +1,53 @@
+thread_id: t-tomas-pipeline-weekly-2
+subject: "Pipeline Monday!! (week of Sep 7)"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: routine_pipeline_fyi
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [report:pipeline-weekly]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: exec}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 13
+    time: "08:40"
+    from: tomas
+    to: [avery]
+    cc: [kim, ana, yuki]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Morning all!!
+
+      The pipeline did not take the weekend off. Rundown:
+
+      RIDGEWAY METALS - WE GOT DALE ON THE PHONE. Ana called Thursday like she said she would and Dale Whitcombe picked up himself. Fifteen minutes. Two rolling lines at their Stockton mill, line B runs slower on nights and nobody can tell him why, which is our whole pitch in one sentence. He said he'd "write to us" (his words) about a short call to scope a trial on one line. Ana gave him my name and yours. Nothing in the inbox yet, but I believe him. Ana, you're a legend.
+
+      CALDER TEXTILES - discovery call Thursday was fantastic (Ana's notes are in the CRM and in your inbox). Three plants, all on the same legacy MES, they export CSVs by hand every Friday (!!). Demo on the 17th with Yuki. Ruth asked about the exception report before we even showed it, she'd read the Northstar case study.
+
+      MERIDIAN - Carla came back Friday asking for annual pricing for two plants (Salinas plus Yuma) now that the pilot's wrapped, decision on their side by end of September. I told her she'd have a proposal by the 25th and that I'd rather quote her our new packaging than the old per-line list. Which means: I want a proper pipeline review the week of the 14th so we can nail packaging for mid-market deals like this one. Invite coming.
+
+      BLUEFIN SEAFOODS - demo went well, they want a paid pilot on one line to start. Proposal going out Wednesday. Eli (their plant manager) asked if we do cold-chain temperature alerts, Yuki says yes with the sensor connector, so: yes!
+
+      NORTHSTAR - QBR for the end of the month, I owe Grace dates and I'm sending them tomorrow. Modesto line 2 numbers are looking good for the story.
+
+      BRIGHTLINE - check-in went great, Yuki's notes are in your inbox. Green.
+
+      Numbers: 15 open, $1.2M weighted, 5 pilots (Bluefin pending paperwork). Two new inbound leads from the website this week, and Ana booked three discovery calls for next week off the back of them.
+
+      Onward!!
+
+      Tomás
+
+      P.S. Kim, the trade-show booth quote came in at $6,200 for the Sacramento show, I'll bring it to GTM weekly rather than decide by email.

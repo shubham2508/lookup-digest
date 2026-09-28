@@ -1,0 +1,27 @@
+Message-ID: <20260909-0900.hello@linear.app>
+Date: Wed, 09 Sep 2026 09:00:35 -0700
+From: Linear <hello@linear.app>
+To: Avery Chen <avery@tessera.io>
+Subject: Linear Changelog: Customer requests, Asks in Slack, and Initiatives 2.0
+List-Unsubscribe: <mailto:unsubscribe@linear.app?subject=unsubscribe>, <https://linear.app/u/5d001f73>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+This week in Linear
+
+Customer requests
+Link issues to the customers who asked for them. Pull from Intercom, Zendesk, Slack, or email, and see revenue and request count on every issue so prioritization stops being a guess.
+
+Asks in Slack
+Turn any Slack message into a Linear issue with a reaction. The thread stays linked, and the requester is notified when the issue closes.
+
+Initiatives 2.0
+Group projects under company-level initiatives, with a health rollup and an update feed for leadership.
+
+Also shipped: sub-issue progress bars, a Cmd+K action to duplicate an issue, and faster mobile sync.
+
+Full changelog: https://linear.app/changelog/2026-09-09
+
+Manage email preferences or unsubscribe: https://linear.app/e/pref/7bn2s

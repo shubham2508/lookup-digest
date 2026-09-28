@@ -1,0 +1,24 @@
+Message-ID: <20260827-1015.sofia@tessera.io>
+Date: Thu, 27 Aug 2026 10:15:21 -0700
+From: Sofia Andrade <sofia@tessera.io>
+To: Dev Patel <dev@tessera.io>, Omar Haddad <omar@tessera.io>
+Cc: Avery Chen <avery@tessera.io>, Jordan Liu <jordan@tessera.io>
+Subject: PR #371 - streaming CSV export (review please)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+https://github.com/tessera-io/platform/pull/371
+
+Streams the export instead of building the whole file in memory. 200k-row plants go from timeout to ~40s locally. Chunk size 5k rows, gzip on the wire.
+
+Things I want eyes on:
+- the encoding path (we now write bytes directly, not through the old csv writer)
+- cancellation when the client disconnects mid-stream
+- the test for the last partial chunk
+
+Not touching the filter code, that's a separate PR. Review by tomorrow would be great 🙏
+
+Sofia
+
+Sofia

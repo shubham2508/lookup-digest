@@ -1,0 +1,75 @@
+thread_id: t-lumen-demo
+subject: "Lumen demo Thursday 10:30 - agenda?"
+storyline: S12
+category: vendors_misc
+labels: null
+messages:
+  - id: m1
+    beat_ref: S12.b1
+    day: 20
+    time: "11:00"
+    from: dana
+    to: [priya]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi Priya,
+
+      Thanks for the time this morning, that was a genuinely useful 25 minutes. Your point about backfill being the thing that breaks most tools is one we hear a lot, and it's one of the places we're strongest, so I'd love to show rather than tell.
+
+      Quick one: can I get you and Avery into a proper demo? 45 minutes, I'll bring one of our solutions engineers, and we'll use a plant-floor dataset that looks like yours rather than our canned one.
+
+      A few slots that work on our end:
+      - Wed Sep 16, 2:00 or 3:30
+      - Thu Sep 17, 10:00
+      - Fri Sep 18, 11:00
+
+      Or grab anything open here: lumenanalytics.com/dana
+
+      Looking forward to it!
+
+      Dana
+  - id: m2
+    beat_ref: S12.b2
+    day: 20
+    time: "16:20"
+    from: priya
+    to: [dana]
+    cc: [avery]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      2 things:
+      1. next week or the week after, this week is gone.
+      2. avery should be there. send options to both of us.
+  - id: m3
+    beat_ref: S12.b3
+    day: 28
+    time: "17:31"
+    from: dana
+    to: [avery]
+    cc: [priya]
+    reply_to: m2
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Hi Avery,
+
+      Quick one. Priya and I landed on Thursday, and I've just sent over an invite for 10:30 (45 minutes, Zoom link in the invite). Really looking forward to finally getting you in the room.
+
+      One question so we make the most of it. Which would you rather we run?
+
+      1. Our standard demo: dashboards, alerting, the workflow layer, and a look at how teams your size roll it out in the first 30 days.
+      2. An API-focused walkthrough: ingestion, backfill, the data model, with one of our solutions engineers driving and you asking the hard questions.
+
+      Either works! I just need to know by Wednesday EOD so I can line up the right person on our side. If it's easier, reply with a 1 or a 2 and I'll take it from there.
+
+      Dana
+
+      P.S. Priya mentioned you're coming off another analytics tool. We've done a few of those migrations this year, happy to bring a customer reference to the call if that's useful.

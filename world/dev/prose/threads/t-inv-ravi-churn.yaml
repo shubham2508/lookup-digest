@@ -1,0 +1,57 @@
+thread_id: t-inv-ravi-churn
+subject: "Data room question - churn cohorts tab"
+storyline: null
+category: investors_board
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_by_kim
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [deal:series-a:data-room]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: capital, subtype: investor_associate}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 17
+    time: "10:15"
+    from: ravi
+    to: [avery]
+    cc: [kim]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi Avery,
+
+      One question from the analysts on the cohort tab (Customers_Cohorts_2026-08.xlsx, "Logo churn" sheet): the 2025 cohort shows one churned logo, but the notes column mentions two pilots that ended in Q1. Is logo churn counted net of pilots that never converted to an annual contract, or are those the same two? We want to make sure we're not double-counting in our model.
+
+      Copying Kim in case this is quicker for her to answer.
+
+      Best,
+      Ravi
+  - id: m2
+    beat_ref: null
+    day: 17
+    time: "12:40"
+    from: kim
+    to: [ravi]
+    cc: [avery]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Hi Ravi,
+
+      They're different. Logo churn on that sheet counts only customers who had signed an annual contract; the one churned logo in the 2025 cohort is Sierra Fasteners (contract ended 2026-02-28, $48,000 ARR). The two Q1 pilots (paid pilots, $6,000 each, 90 days) never converted and are excluded from both the numerator and the denominator, which is why they only appear in the notes.
+
+      I've added a "Pilots (non-converting)" line under the table so it's visible without the notes. Let me know if you'd like them shown any other way.
+
+      Kim

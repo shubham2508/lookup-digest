@@ -1,0 +1,86 @@
+thread_id: t-northstar-qbr
+subject: "QBR prep - Sept"
+storyline: S6
+category: customers
+labels: null
+messages:
+  - id: m1
+    beat_ref: S6.b10
+    day: 13
+    time: "13:45"
+    from: grace
+    to: [tomas]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi Tomás,
+
+      You said you'd send dates, so I'm jumping the queue - late September works better for us than early October because Marta's line 2 changeover starts the 5th and she'll be unreachable for two weeks.
+
+      Dates we can do: Sept 29 (Tue) afternoon, Sept 30 (Wed) any time after 11, Oct 1 (Thu) morning.
+
+      Agenda from our side:
+      - Line 2: what we're seeing vs. what we planned for (Marta)
+      - Exception report changes and what's next
+      - The invoice mix-up, briefly, so it doesn't repeat at renewal (Paul won't attend, I'll cover it)
+      - Anything Henrik's team wants on record for the vendor file - I've asked, waiting to hear
+
+      Avery, if you can make it, Henrik would probably show up for you where he wouldn't for me.
+
+      Grace
+  - id: m2
+    beat_ref: S6.b11
+    day: 13
+    time: "17:30"
+    from: tomas
+    to: [grace]
+    cc: [avery]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Grace, this is great, thank you for taking the initiative - and for the agenda, that's basically the one I was going to send you!
+
+      Three options from our side, all 60 minutes, all on Zoom unless you'd rather we come down to Modesto (we would genuinely love to, Yuki hasn't seen line 2 in person yet):
+
+      Option A - Tue Sept 29, 2:00-3:00pm. Doable, but Yuki is at a customer training that morning and would join from the road, which is fine but not ideal for the line 2 walkthrough.
+
+      Option B - Wed Sept 30, 1:00-2:00pm. Cleanest for us: Avery, Yuki and me all clear, and it's after your 11am cutoff. If Henrik's team can only do one slot, I'd push for this one.
+
+      Option C - Thu Oct 1, 9:00-10:00am. Works for me and Yuki; Avery is double-booked that morning and would join for the second half only, which I'd rather avoid given the Henrik point.
+
+      On the agenda - a few things I'd love to add, feel free to cut:
+
+      1. A short usage recap (batches, tags, active users by line) - 5 minutes, Yuki will bring a one-pager. Halberd found this useful for their internal write-up.
+      2. The downtime capture question Marta raised with Yuki last week - I'd rather we discuss it live than over email, there's a real product question in there about how we treat planned vs unplanned stops.
+      3. Roadmap for Q4 - 10 minutes, nothing salesy, just so Henrik's team can see where the line 2 investment goes next. (I know, I know. I'll keep it tight!)
+      4. Renewal timing - not the terms, just when you'd want to see them so Procurement isn't rushed in November.
+
+      And yes to the invoice item, I'll own that one and keep it to two minutes: what happened, what we changed in billing so it doesn't recur (Kim has actually put a co-term check into our invoicing template because of this, so something good came out of it).
+
+      Re Henrik - fully agree, and Avery, no pressure, but if you can make Option B it'd mean a lot to the Northstar side. I'll hold all three until Grace confirms.
+
+      Tomás
+
+      P.S. Marta's changeover - if she wants a second pair of eyes on the line 2 tag list before the 5th, Yuki has offered. Just say.
+  - id: m3
+    beat_ref: S6.b12
+    day: 14
+    time: "08:55"
+    from: grace
+    to: [tomas]
+    cc: [avery]
+    reply_to: m2
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Let's pencil in Option B, Wed Sept 30 at 1:00. Tentative until I hear from Henrik's office - his assistant said "probably", which is the best I've gotten out of them all year. Zoom is fine for this one; save the Modesto trip for when line 2 is boring.
+
+      Agenda additions all fine. Keep the roadmap to 10.
+
+      Grace

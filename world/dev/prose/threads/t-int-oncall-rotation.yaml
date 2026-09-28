@@ -1,0 +1,108 @@
+thread_id: t-int-oncall-rotation
+subject: "on-call: can we talk about the rotation"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_by_team
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [other:oncall-rotation]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 16
+    time: "09:20"
+    from: omar
+    to: [eng_list]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Since I'm on this week (thanks to the swap with Dev) and have opinions at 3am:
+
+      1. Four people in a weekly rotation means everyone is on call one week in four, plus every swap moves it around. That was fine at 6 customers. At 11 plants with overnight shifts it's a lot.
+      2. Handoff is Monday 9am, which is exactly when Monday's ingest spike lands. The person coming on inherits the spike cold, with no context.
+      3. Proposal: (a) move handoff to Monday 10am, after the spike, (b) some kind of rule about Friday deploys, (c) longer term, a fifth person.
+
+      Not urgent. Just don't want to be the only one saying it.
+
+      Omar
+  - id: m2
+    beat_ref: null
+    day: 16
+    time: "09:50"
+    from: dev
+    to: [omar]
+    cc: [eng_list, avery]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      +1 to the 10am handoff. on (b): "no deploys after 3pm friday" and I'd sign it in blood, half our pages are self-inflicted. on (c) not my call but yes please
+
+      Dev
+  - id: m3
+    beat_ref: null
+    day: 16
+    time: "10:30"
+    from: sofia
+    to: [omar]
+    cc: [eng_list, avery]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Agree on 10am and on the Friday rule, honestly yes 😬
+
+      Data point before anyone redesigns the rotation: 7 of the last 12 pages were the same flapping connector, which #389 should mostly fix. Fixing that beats any schedule change.
+
+      Sofia
+  - id: m4
+    beat_ref: null
+    day: 17
+    time: "08:40"
+    from: mateo
+    to: [omar]
+    cc: [eng_list, avery]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      From the support side: most overnight pages that reached me were column-count warnings, which the new error message already cut in half. Whatever you pick, please keep support in the loop on the schedule; I get the customer emails at 6am either way.
+
+      Mateo
+  - id: m5
+    beat_ref: null
+    day: 17
+    time: "09:35"
+    from: jordan
+    to: [eng_list]
+    cc: [avery]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Thanks all, good thread. Decisions:
+
+      - Handoff moves to Monday 10:00 starting the week of Sep 21.
+      - No production deploys after 15:00 on Fridays, effective now. Hotfixes excepted, my call.
+      - Omar's flapping connector (7 of 12 pages): #389 merged yesterday, so we'll see next week.
+      - The fifth person is a headcount question, not a rotation question, so I'm taking it to Q2 planning rather than deciding it here.
+
+      Nothing needed from anyone else. Schedule is updated.
+
+      Jordan

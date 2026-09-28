@@ -39,10 +39,11 @@ def people(world) -> set[str]:
     return ids | {"parents_list", "team_list", "factoryfloor", "modelwatch", "scbrief"}
 
 
-def test_sixteen_storylines_all_unreviewed(storylines):
+def test_sixteen_storylines_reviewed(storylines):
     assert len(storylines) == 16
     assert [s["id"] for s in storylines] == [f"S{i}" for i in range(1, 17)]
-    assert all(s["reviewed"] is False for s in storylines), "M1 gate: nothing is reviewed until Shubham says so"
+    # M1 gate closed 2026-09-28 (OPEN_QUESTIONS → Decided); the generator refuses any `reviewed: false`
+    assert all(s["reviewed"] is True for s in storylines)
 
 
 def test_world_anchor_and_run_days(world):

@@ -1,0 +1,31 @@
+thread_id: t-int-priya-ingest-latency
+subject: "ingest p95"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: internal_fyi
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [other:ingest-latency]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: cofounder}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 21
+    time: "07:30"
+    from: priya
+    to: [eng_list]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      900ms -> 340ms p95 on the big feeds after pool tuning (pgbouncer transaction mode, pool 40 -> 120, statement timeout 5s). rolled out sunday night. no page since. details in #eng.

@@ -1,0 +1,40 @@
+thread_id: t-marcus-ts
+subject: "Series A - updated cap table?"
+storyline: S1
+category: investors_board
+labels: null
+messages:
+  - id: m1
+    beat_ref: S1.b2
+    day: 28
+    time: "16:42"
+    from: marcus
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      Before we go further on the term sheet I need the updated cap table, the one with the option pool refresh Ben mentioned last week. Our partnership meeting is Thursday and I want to walk in with final numbers, not a draft.
+
+      Can you send it over?
+
+      Marcus
+  - id: m2
+    beat_ref: S1.b3
+    day: 28
+    time: "21:30"
+    from: avery
+    to: [marcus]
+    cc: []
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      marcus, yes. Ben sent v3 yesterday and I'm reconciling it against the option pool numbers now. will send it tonight.
+
+      Avery

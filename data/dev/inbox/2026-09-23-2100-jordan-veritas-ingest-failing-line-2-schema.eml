@@ -1,0 +1,29 @@
+Message-ID: <20260923-2100.jordan@tessera.io>
+Date: Wed, 23 Sep 2026 21:00:30 -0700
+From: Jordan Liu <jordan@tessera.io>
+To: Avery Chen <avery@tessera.io>
+Cc: Priya Iyer <priya@tessera.io>, Sofia Andrade <sofia@tessera.io>
+Subject: Veritas ingest failing - line 2 schema
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Avery, you should hear this from me before Nadia emails you in the morning.
+
+Impact
+- Veritas ingest for line 2 is failing. The pipeline has been rejecting 100% of batches since about 18:10, when their second line went live.
+- Line 1 is unaffected. No other customer is affected.
+- Veritas can't see line 2 in the dashboard. They can still run the line; they just have no data from it yet.
+
+Cause
+- The production feed schema differs from the sample Ivan sent last week: two renamed fields, and timestamps in local time instead of UTC. Our validator rejects the whole batch rather than partially loading it, which is the behaviour we want, but it means nothing gets through.
+- This is the schema risk I flagged in our 1:1 last Thursday. We should have asked for a production sample rather than a hand-built one.
+
+Status
+- Sofia and I are on it now. Two paths: a mapping layer on our side (safer, most of tonight) or asking Ivan to change the feed (faster if he's reachable, which he isn't right now).
+- No ETA yet. I'll update this thread as soon as we have one.
+- Nothing you need to do tonight. If Nadia reaches you before I do, the honest line is "we've identified it and are working it."
+
+Jordan
+
+Jordan

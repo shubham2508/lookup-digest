@@ -1,0 +1,30 @@
+Message-ID: <20260911-0618.email@stratechery.com>
+Date: Fri, 11 Sep 2026 06:18:05 -0700
+From: Stratechery <email@stratechery.com>
+To: Avery Chen <avery@tessera.io>
+Subject: Stratechery: Search After Answers
+List-Unsubscribe: <mailto:unsubscribe@stratechery.com?subject=unsubscribe>, <https://stratechery.com/u/2c6ed9d2>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+STRATECHERY
+Friday, September 11, 2026
+
+Search After Answers
+
+The ten blue links are dying, which everyone knows, but the interesting question is what replaces the economics underneath them. Search worked as a business because a query expressed intent, and intent could be sold to advertisers at the moment of maximum relevance. Answers break that: if the assistant tells you which drill to buy, there is no page for the drill manufacturer to bid on.
+
+The incumbents' first response is to put ads inside the answer, which will happen and which users will hate. The second is to charge for the assistant, which works for a slice of the market and leaves the rest. The third, and the one I think matters most, is to move the monetization from the answer to the action. If the assistant can also buy the drill, the platform takes a cut of the transaction instead of a cut of the attention, and the cut is larger.
+
+This has obvious implications for retail and travel. The less obvious implication is for enterprise software. Every B2B software vendor built a marketing site, an SEO strategy, and a comparison-page budget on the assumption that buyers search. If buyers instead ask an assistant "what should we use for supplier quality tracking," the vendor's entire top-of-funnel becomes a question of whether the assistant knows it exists and what it says when asked. That is not SEO; it is something closer to analyst relations, conducted with a machine.
+
+Vendors are already adapting. I have seen companies rewrite their documentation to be retrievable, publish structured pricing so that comparisons are easy, and seed detailed case studies in places assistants index. It is early and nobody knows what works, but the budget is shifting, and it is shifting away from the channels that funded the open web.
+
+I do not think this is the end of the web, but I do think it is the end of the web as an advertising business, and the industry has not yet reckoned with how much of the current stack that funded.
+
+Read on the web: https://stratechery.com/2026/search-after-answers/
+
+—
+You are receiving this because you subscribed to Stratechery Daily Updates. Manage your subscription or unsubscribe: https://stratechery.com/account/

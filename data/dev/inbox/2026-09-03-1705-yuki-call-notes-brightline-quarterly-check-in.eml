@@ -1,0 +1,27 @@
+Message-ID: <20260903-1705.yuki@tessera.io>
+Date: Thu, 03 Sep 2026 17:05:03 -0700
+From: Yuki Sato <yuki@tessera.io>
+To: =?utf-8?q?Tom=C3=A1s?= Reyes <tomas@tessera.io>
+Cc: Avery Chen <avery@tessera.io>, Mateo Silva <mateo@tessera.io>
+Subject: Call notes: Brightline quarterly check-in (Sep 3)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi Tomás,
+
+Notes from today's quarterly check-in with Brightline Packaging (their ops lead and two shift supervisors, 30 minutes).
+
+1. Usage: 41 active users across both lines, up from 34 last quarter. The exception report is opened daily by all three shifts.
+2. What is working: the shift-handoff summary. Their night supervisor called it "the first thing I read".
+3. Requests:
+   a. Export the exception report as PDF (they print it for the floor). Logged as feature request FR-118.
+   b. A per-line view for their Ohio plant once it comes online (their timeline, not ours: early next year).
+4. Support: two tickets this quarter, both answered the same day (thank you Mateo). No open issues.
+
+Overall: healthy. Nothing needed from anyone this month.
+
+Yuki
+
+Yuki Sato
+Solutions Engineering, Tessera

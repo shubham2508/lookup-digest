@@ -1,0 +1,89 @@
+thread_id: t-veritas-renewal
+subject: "Renewal timing - Oct 1 anniversary"
+storyline: S7
+category: customers
+labels: null
+messages:
+  - id: m1
+    beat_ref: S7.b5
+    day: 7
+    time: "11:05"
+    from: simon
+    to: [avery]
+    cc: [tomas]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Dear Avery,
+
+      I hope the week has started well. As the first of October marks the anniversary of our agreement, I should like to begin the renewal paperwork on our side in good time, and to that end I would be grateful if you or Tomás could send over the proposed terms for the coming year: the subscription fee, any change to the usage tiers we discussed in June, and the term length you would propose. Our legal team will need roughly two weeks with the documents once the commercial points are agreed, so having the terms in hand by the middle of the month would let us sign comfortably before the anniversary.
+
+      If it would be simpler to talk the terms through before putting them in writing, I am happy to make time for a call at your convenience.
+
+      Kind regards,
+  - id: m2
+    beat_ref: S7.b6
+    day: 7
+    time: "15:50"
+    from: avery
+    to: [simon]
+    cc: [tomas]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      simon, thanks for getting ahead of this. Tomás will send the proposed terms over this week - same structure as last year, plus the usage-tier point from June written down properly. glad to do a call once you've had a read.
+
+      Avery
+  - id: m3
+    beat_ref: S7.b7
+    day: 8
+    time: "13:20"
+    from: walter
+    to: [avery]
+    cc: [simon, tomas]
+    reply_to: m2
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      Let's not run this as a one-off. Every renewal above the review threshold goes through our annual vendor review, and I don't sign terms before that closes. Simon can pick this up with Tomás mid-September once the review is done. No need to send anything before then.
+  - id: m4
+    beat_ref: S7.b8
+    day: 8
+    time: "17:10"
+    from: avery
+    to: [walter]
+    cc: [simon, tomas]
+    reply_to: m3
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      walter, understood - no problem holding until the review is done. Tomás will reach out the week of the 14th to pick it up. thanks for the heads-up.
+
+      Avery
+  - id: m5
+    beat_ref: S7.b11
+    day: 14
+    time: "09:00"
+    from: simon
+    to: [avery]
+    cc: [tomas]
+    reply_to: m4
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Dear Avery,
+
+      I am writing with some news on a personal note, which nonetheless has a bearing on the renewal. I have accepted a role elsewhere, and my last day at Veritas will be this Friday, the eleventh. My successor starts tomorrow and will be in touch with you directly this week; I have briefed them fully on the timetable Walter set out, on the usage figures we exchanged in August and on the tier question, so nothing should be lost in the handover.
+
+      It has been a genuine pleasure working with you, Tomás and Yuki over the past year, and I am confident the relationship is in good hands.
+
+      With warm regards,

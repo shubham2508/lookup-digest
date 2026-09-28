@@ -1,0 +1,27 @@
+Message-ID: <20260904-1322.notifications@github.com>
+Date: Fri, 04 Sep 2026 13:22:51 -0700
+From: GitHub <notifications@github.com>
+To: Avery Chen <avery@tessera.io>
+Subject: [tessera/dashboard] Run failed: CI - main (b71c04a)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Run failed for main (b71c04a)
+
+Repository: tessera/dashboard
+Workflow: CI
+Duration: 9m 41s
+Finished: 2026-09-04 20:22:17 UTC
+
+Jobs:
+  ✓ lint (succeeded)
+  ✓ unit (succeeded)
+  ✗ e2e (failed)
+
+e2e: 1 of 212 specs failed - plant-overview.spec.ts "renders shift tiles for a 3-shift site" (timeout 30000ms)
+
+View workflow run: https://github.com/tessera/dashboard/actions/runs/11512877204
+
+--
+You are receiving this because you are subscribed to this repository.

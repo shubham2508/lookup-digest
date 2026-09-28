@@ -1,0 +1,26 @@
+Message-ID: <20260916-1030.lena@tessera.io>
+Date: Wed, 16 Sep 2026 10:30:49 -0700
+From: Lena Hoffmann <lena@tessera.io>
+To: Jordan Liu <jordan@tessera.io>
+Cc: Avery Chen <avery@tessera.io>, Sofia Andrade <sofia@tessera.io>
+Subject: Regression plan - date filter + export path (sprint 19)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Plan for the regression pass on the plant-timezone date filter (Sofia's PR, landing this week) and the post-#371 export path. Runs Monday and Tuesday next week against the release build, then the Halberd smoke suite on top.
+
+Scope:
+1. Date filter: 6 timezone cases (browser vs plant: same, +3h, -8h, DST boundary, UTC plant, custom range persisted across a page refresh)
+2. Export: encoding (ASCII only, Latin-1 characters, emoji in notes fields, opened in Excel on Windows and Mac), 1-row, 200k-row, cancelled mid-stream
+3. Retry/backoff: one flapping-feed run against staging, just to see it with my own eyes
+
+Out of scope: multi-line ingest (not merged), PDF export (not built).
+
+Severity scale as usual: S1 blocks release, S2 blocks a customer workflow, S3 cosmetic or has a workaround.
+
+Jordan, no sign-off needed; flag anything you want added by Friday.
+
+Lena
+
+Lena Hoffmann | QA

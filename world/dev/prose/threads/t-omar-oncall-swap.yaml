@@ -1,0 +1,54 @@
+thread_id: t-omar-oncall-swap
+subject: "on-call swap this week?"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: not_for_avery
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [other:oncall-swap]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 26
+    time: "15:40"
+    from: omar
+    to: [dev]
+    cc: [jordan, avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Dev,
+
+      Any chance we can swap on-call weeks? I'd take yours starting tomorrow, you'd take mine (the week of Oct 5). I'm out of town that first week of October and would rather carry the pager now than from a motel with one bar of signal.
+
+      If yes, I'll make the schedule change myself so you don't have to touch anything. If no, no hard feelings, I will simply become a motel person.
+
+      Cc'ing Jordan and Avery because the rotation doc says to, not because this is interesting.
+
+      Omar
+  - id: m2
+    beat_ref: null
+    day: 26
+    time: "16:25"
+    from: dev
+    to: [omar]
+    cc: [jordan, avery]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      sure, no problem. swapped us in the schedule just now - you're primary from tomorrow 10:00, I've got the week of Oct 5. enjoy the motel 👍
+
+      Dev

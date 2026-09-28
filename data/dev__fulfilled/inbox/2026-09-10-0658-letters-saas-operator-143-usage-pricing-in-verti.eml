@@ -1,0 +1,32 @@
+Message-ID: <20260910-0658.letters@saasoperator.co>
+Date: Thu, 10 Sep 2026 06:58:53 -0700
+From: SaaS Operator <letters@saasoperator.co>
+To: Avery Chen <avery@tessera.io>
+Subject: SaaS Operator #143: Usage pricing in vertical SaaS: three ways it goes wrong
+List-Unsubscribe: <mailto:unsubscribe@saasoperator.co?subject=unsubscribe>, <https://saasoperator.co/u/7b0c13a9>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+SaaS Operator | Letter #143
+Thursday, September 10, 2026
+
+Usage pricing in vertical SaaS: three ways it goes wrong
+
+Every vertical SaaS board has had the conversation by now: seats are a bad proxy for value, our customers' headcount is flat, let's price on usage. It is a reasonable instinct. It also goes wrong in the same three ways, in the same order, at almost every company I have watched try it.
+
+Failure one: the meter measures activity, not value. If you charge per API call, per report, or per record processed, you have just given your customer a reason to use the product less. The meter should track the thing the customer is already paying for in their own business: orders shipped, claims processed, machines monitored, patients seen. If you cannot name that unit in one sentence, you are not ready for usage pricing.
+
+Failure two: the budget owner cannot forecast the bill. Your champion may love a variable bill; the CFO who approves it does not. The fix is a hybrid: a platform fee that covers the committed baseline, and usage above it billed in tiers with a cap the customer chooses. The cap is the feature. It lets procurement put a number in the budget, and it lets you have the "you hit your cap, let's talk" conversation, which is the best expansion conversation there is.
+
+Failure three: billing operations cannot invoice it. Usage pricing means metering, reconciliation, disputes, and credits, and the finance team that runs annual invoices in a spreadsheet will break in month two. Before you announce the new pricing, run three months of shadow invoices on the new model for ten customers and see how many the team can explain without calling engineering.
+
+One more thing, on existing customers. Do not move them on renewal by default. Offer the new model, show them what their last twelve months would have cost under it, and let the ones who would pay less switch first. They will tell the others. The ones who would pay more will switch when they see a feature they want that is only on the new plan, and that is a product decision, not a pricing one.
+
+Until next Thursday,
+Ezra
+
+You are receiving this because you subscribed at saasoperator.co.
+Unsubscribe: https://saasoperator.co/unsubscribe/7k2m9 | Archive: https://saasoperator.co/letters
+SaaS Operator | 548 Market St #61220 | San Francisco, CA 94104

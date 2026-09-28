@@ -1,0 +1,75 @@
+thread_id: t-int-sprint-recap-0909
+subject: "Sprint 19 - planning recap"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: internal_fyi
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [report:sprint-recap]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: exec}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 15
+    time: "11:40"
+    from: jordan
+    to: [eng_list]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Recap from planning. Sprint ends Sep 22.
+
+      Impact first: the Q4 pilots (Bluefin, Calder, Ridgeway scoping) all need the plant-timezone date filter, and every new line still needs hand-holding on ingest. So: filter, multi-line ingest design, reliability.
+
+      Committed:
+      - Plant-timezone-aware date filter, PR this sprint - Sofia
+      - Connector retry/backoff, shipping (design review done, thanks all) - Omar
+      - Multi-line ingest refactor: design doc + start of the PR - Dev
+      - Regression plan for the filter + export changes - Lena
+      - Index migration for the exceptions table (needs a maintenance window, Omar to propose) - Omar
+
+      Stretch:
+      - Stale feature flag cleanup - Dev (carried over)
+
+      Not this sprint: PDF export (FR-118). Real request, not yet.
+
+      Jordan
+  - id: m2
+    beat_ref: null
+    day: 15
+    time: "12:05"
+    from: dev
+    to: [jordan]
+    cc: [eng_list, avery]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      is the flag cleanup in or out? it's half done on a branch and I'd rather finish than carry it a third time
+
+      Dev
+  - id: m3
+    beat_ref: null
+    day: 15
+    time: "12:20"
+    from: jordan
+    to: [dev]
+    cc: [eng_list, avery]
+    reply_to: m2
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      In. Finish it, it's a day. Board updated.

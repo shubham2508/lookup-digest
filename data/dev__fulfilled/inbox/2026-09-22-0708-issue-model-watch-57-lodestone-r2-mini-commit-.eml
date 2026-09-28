@@ -1,0 +1,37 @@
+Message-ID: <20260922-0708.issue@modelwatch.dev>
+Date: Tue, 22 Sep 2026 07:08:31 -0700
+From: Model Watch <issue@modelwatch.dev>
+To: Avery Chen <avery@tessera.io>
+Subject: Model Watch #57: Lodestone-R2 Mini, commit-pricing terms compared, Sable-3.1 Mini
+List-Unsubscribe: <mailto:unsubscribe@modelwatch.dev?subject=unsubscribe>, <https://modelwatch.dev/u/425a7618>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+MODEL WATCH #57 — Tuesday, September 22, 2026
+
+1. LODESTONE-R2 MINI
+Distilled R2 at $0.80 / $3.20. On our reasoning set: 80.6 (R2: 94.8; Pelagic 2.5 capped: 88.9). Four times faster than R2. Cost per task $0.011, which makes it the cheapest model above 80 on reasoning.
+
+  Model               Reasoning   Median latency   Cost/task
+  Lodestone-R2           94.8         41s           $0.044
+  Pelagic 2.5 (cap 800)  88.9         9s            $0.0079
+  Lodestone-R2 Mini      80.6         10s           $0.011
+
+2. COMMIT-PRICING TERMS, SIDE BY SIDE
+Every provider now offers a prepay discount. The terms differ more than the percentages:
+
+  Provider   Discount   Term        Transferable across models?   Refundable?
+  Kestrel      15%      quarterly   no                            no
+  Argent       12%      quarterly   yes                           no
+  Nimbus       20%      annual      yes                           no
+  Sable Labs   10%      annual      n/a (one model family)        no
+
+With mid-tier prices falling 10–20% a month, an annual lock at 20% off is roughly break-even by December. Quarterly and transferable is the only version we would sign.
+
+3. SABLE-3.1 MINI
+Composite 76.0 (from 74.6). Same price. The head-to-head with Ferrite-70B: Mini is cheaper per token ($0.44 vs. $1.70 out) and 3 points worse on extraction. Pick by whether extraction accuracy or cost dominates your bill.
+
+—
+Model Watch is written by two people and a lot of scripts. Unsubscribe: https://modelwatch.dev/u/7c19e

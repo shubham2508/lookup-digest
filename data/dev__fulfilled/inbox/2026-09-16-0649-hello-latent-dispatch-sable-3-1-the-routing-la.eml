@@ -1,0 +1,33 @@
+Message-ID: <20260916-0649.hello@latentdispatch.ai>
+Date: Wed, 16 Sep 2026 06:49:51 -0700
+From: Latent Dispatch <hello@latentdispatch.ai>
+To: Avery Chen <avery@tessera.io>
+Subject: Latent Dispatch: Sable-3.1, the routing layer question, Ferrite-70B on Argent
+List-Unsubscribe: <mailto:unsubscribe@latentdispatch.ai?subject=unsubscribe>, <https://latentdispatch.ai/u/946144b7>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+LATENT DISPATCH
+Wed Sep 16 · 5 items · ~4 min
+
+SABLE-3.1: A POINT RELEASE THAT MATTERS
+Better instruction following, fewer refusals on benign enterprise content, and a fix for the long-context recall cliff we flagged in August. Same price. If you are on Sable-3, upgrade; if you pinned a version, re-run your regression set first. https://latentdispatch.ai/p/sable-31
+
+SHOULD THE ROUTING LAYER BE A PRODUCT?
+With four providers matching each other's prices weekly, the value of a smart router that picks the cheapest model meeting a quality bar is obvious. Three startups are selling exactly that. The counter-argument: a router is 200 lines of code and a config file, and owning it means owning your fallback behavior. We lean toward build. https://latentdispatch.ai/p/routing-layer
+
+FERRITE-70B NOW ON ARGENT
+$0.55 / $1.70 per million, five cents under Kestrel. The open-model price war has begun.
+
+MARROW SPEECH ADDS REAL-TIME
+Sub-second streaming transcription with the same noise robustness. Useful for anyone building voice on the shop floor.
+
+SHORT TAKES
+· Lodestone publishes an "R2 in production" guide with recommended reasoning caps per task type.
+· Pelagic 2.5 gets prompt caching. All five major labs now have it.
+· A thoughtful piece on why "the model is non-deterministic" is not an excuse for a flaky pipeline: https://latentdispatch.ai/p/determinism
+
+—
+You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1

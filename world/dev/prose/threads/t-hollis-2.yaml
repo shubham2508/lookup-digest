@@ -1,0 +1,50 @@
+thread_id: t-hollis-2
+subject: "read this"
+storyline: BG-hollis
+category: vendors_misc
+labels:
+  kind: thread
+  must_not: true
+  reason: last_word_avery
+  classification_case: mentor_by_behavior
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [other:hollis-article]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: network, subtype: mentor}
+    asks: []
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 11
+    time: "13:00"
+    from: hollis
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      https://www.thelongcompany.com/essays/the-seat-is-not-the-point
+
+      skip to the section on independents. it says what I was trying to say yesterday, only shorter, which is annoying.
+  - id: m2
+    beat_ref: null
+    day: 11
+    time: "15:05"
+    from: avery
+    to: [hollis]
+    cc: []
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      read it. the independents section is the part I'm keeping. thanks for yesterday, and for not letting me talk myself out of it.
+
+      Avery

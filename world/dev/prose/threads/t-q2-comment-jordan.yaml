@@ -1,0 +1,32 @@
+thread_id: t-q2-comment-jordan
+subject: "Q2 planning doc - comment"
+storyline: BG-q2
+category: internal_routine
+labels:
+  kind: thread
+  must_not: false
+  reason: null
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [report:q2-planning]
+    ball_awaiting: avery
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: exec}
+    asks: [{to_avery: true, kind: review, deadline_day: 30, status: open}]
+messages:
+  - id: m1
+    beat_ref: null
+    day: 28
+    time: "17:30"
+    from: jordan
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      Left a comment on the Q2 planning doc, on the on-call rotation headcount line (the 5th person we parked). Would like to walk through it at Thursday's sync.

@@ -1,0 +1,43 @@
+thread_id: t-int-vendor-invoices-0907
+subject: "Vendor invoices processed this week (FYI)"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: internal_fyi
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [invoice:vendor-september]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 13
+    time: "14:10"
+    from: kim
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      For your records, paid or scheduled from the operating account this week:
+
+      - Zoom annual plan: $2,880.00 (paid September 4)
+      - Linear annual: $1,440.00 (paid September 3)
+      - Office lease, October, 2201 Harrison St Suite 310: $11,500.00 (scheduled September 25, per the lease)
+      - Dev's replacement laptop: $2,149.00 (paid September 2)
+      - Alameda Plant Co. (office plants, delivery later this month): $342.18 (paid September 4)
+
+      Everything is inside budget. The Sacramento trade-show booth ($6,200) is not on this list; Tomás is bringing it to GTM weekly first.
+
+      Kim

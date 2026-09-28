@@ -1,0 +1,45 @@
+thread_id: t-kim-pto
+subject: "PTO Oct 5-9 - ok? (need to book by Thu)"
+storyline: BG-pto
+category: internal_routine
+labels:
+  kind: thread
+  must_not: false
+  reason: null
+  classification_case: pto_approval_today
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [approval:pto-kim]
+    ball_awaiting: avery
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+    asks: [{to_avery: true, kind: approval, deadline_day: 30, status: open}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 29
+    time: "16:40"
+    from: kim
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi Avery,
+
+      Could I take Oct 5-9 (Monday through Friday) as PTO? My sister's family is in Lisbon and the fare I'm looking at ($642 round trip) only holds if I book by Thursday end of day, hence the short notice.
+
+      Coverage:
+      - September close will be done by Friday Oct 2; I'll send the close summary before I leave.
+      - Payroll runs Oct 1 (already scheduled in Gusto) and Oct 15 (after I'm back).
+      - Ramp approvals and vendor invoices that week: Tomás has agreed to cover as backup, or they can wait for the 12th.
+      - I'll be reachable by phone for anything urgent.
+
+      A yes/no by Thursday is all I need. Happy to move the dates if that week is bad.
+
+      Thanks,

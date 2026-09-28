@@ -1,0 +1,39 @@
+thread_id: t-sofia-wedding
+subject: "save the date - Nov 14!"
+storyline: BG-wedding
+category: personal
+labels:
+  kind: thread
+  must_not: true
+  reason: personal_social_far_deadline
+  classification_case: colleague_wedding_invite
+  expected:
+    type: human_thread
+    domain: personal
+    intent_primary: social
+    about: [other:sofia-wedding]
+    ball_awaiting: avery
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+    asks: [{to_avery: true, kind: other, deadline_day: 51, status: open}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 26
+    time: "09:00"
+    from: sofia
+    to: [team_list]
+    cc: [{name: "Sofia Andrade", email: "sofia.andrade.sf@gmail.com"}]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      hi all 🎉
+
+      Gabriel and I are getting married on Saturday, November 14 in Sonoma (Glen Ellen, small vineyard, ~80 people). You're all invited, partners and kids welcome.
+
+      Formal invites with the venue and hotel block go out next week from our personal address (cc'd here so it doesn't land in spam). Please RSVP by Oct 15 so we can give the caterer a headcount.
+
+      Sending from my work email because I do not have half of your personal ones. Sorry for the Sunday morning inbox intrusion!

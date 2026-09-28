@@ -1,0 +1,29 @@
+Message-ID: <20260916-1200.info@datadoghq.com>
+Date: Wed, 16 Sep 2026 12:00:35 -0700
+From: Datadog <info@datadoghq.com>
+To: Avery Chen <avery@tessera.io>
+Subject: Your AWS bill has a log problem. We can show you where.
+List-Unsubscribe: <mailto:unsubscribe@datadoghq.com?subject=unsubscribe>, <https://datadoghq.com/u/d54b085f>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi Avery,
+
+Logs are the fastest-growing line on most startups' cloud bill, and most of them are never read.
+
+Datadog Observability Pipelines lets you route, filter, and archive logs before they're indexed, so you keep what matters and pay for that. Customers typically cut log costs 40 to 70% in the first month.
+
+New this quarter:
+- Flex Logs: retain everything for 15 months at a fraction of indexed pricing
+- Cloud Cost Management: your AWS spend by service, team, and environment, next to your infrastructure metrics
+- LLM Observability: token usage, latency, and cost per model call
+
+Request a free cost assessment; we'll look at your current setup and send a savings estimate in 48 hours: https://www.datadoghq.com/l/cost-assessment?c=3pl8q
+
+Regards,
+The Datadog Team
+
+Datadog, Inc. | 620 8th Avenue, New York, NY 10018
+Unsubscribe: https://www.datadoghq.com/unsub/y6t2w

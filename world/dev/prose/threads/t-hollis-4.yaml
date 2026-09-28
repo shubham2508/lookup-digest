@@ -1,0 +1,35 @@
+thread_id: t-hollis-4
+subject: "20 min thursday?"
+storyline: BG-hollis
+category: vendors_misc
+labels:
+  kind: thread
+  must_not: false
+  reason: null
+  classification_case: mentor_by_behavior
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [meeting:hollis-catchup]
+    ball_awaiting: avery
+    closed_by_courtesy: false
+    sender_relationship: {category: network, subtype: mentor}
+    asks: [{to_avery: true, kind: meeting, deadline_day: 30, status: open}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 29
+    time: "08:20"
+    from: hollis
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      got 20 minutes Thursday afternoon? I want to hear where IPV landed, and I have a thought on board composition you should hear before the A closes rather than after.
+
+      it's a small thought. it's the timing that matters.

@@ -1,0 +1,35 @@
+thread_id: t-int-ana-calder-proposal
+subject: "Calder Textiles - pilot proposal sent"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: internal_fyi
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [deal:calder-textiles]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 30
+    time: "09:15"
+    from: ana
+    to: [tomas]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Sent to Ruth this morning: 2-plant pilot (Reno + Sparks), 8 weeks, $14,000, on-site kickoff the week of October 12. All of Tomás's edits are in. She replied within ten minutes with "reviewing with the plant leads Friday", which is the fastest reply I have ever had to a proposal.
+
+      Stage moves to Proposal now that the quote is out. CRM: https://app.hubspot.com/contacts/8841/deal/1042
+
+      Ana

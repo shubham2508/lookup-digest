@@ -1,0 +1,17 @@
+Message-ID: <20260912-1120.sofia@tessera.io>
+Date: Sat, 12 Sep 2026 11:20:51 -0700
+From: Sofia Andrade <sofia@tessera.io>
+To: Jordan Liu <jordan@tessera.io>
+Cc: Avery Chen <avery@tessera.io>
+Subject: meetup talk in November - ok?
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+The SF Data Eng meetup asked if I'd give a 20-minute talk in November on how we stream plant telemetry without dropping batches. I'd like to say yes. Nothing proprietary: the retry/backoff pattern, the streaming export, the boring parts that work.
+
+Okay with you? Cc'ing Avery as FYI since it's public. I'll write it on my own time.
+
+Sofia
+
+Sofia

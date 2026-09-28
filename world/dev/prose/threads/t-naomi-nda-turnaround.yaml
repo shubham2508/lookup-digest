@@ -1,0 +1,60 @@
+thread_id: t-naomi-nda-turnaround
+subject: "Meridian Foods NDA - our redline"
+storyline: null
+category: lawyer
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_closed
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [contract:meridian:nda]
+    ball_awaiting: nobody
+    closed_by_courtesy: true
+    sender_relationship: {category: capital, subtype: deal_counsel}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 19
+    time: "16:40"
+    from: naomi
+    to: [tomas]
+    cc: [avery, ben]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Dear Tomás,
+
+      Please find attached our redline of the Meridian Foods mutual NDA (Meridian_Tessera_NDA_WSGR_redline_2026-09-13.docx) together with a clean copy.
+
+      The changes are limited:
+
+      1. Term reduced from five years to three, consistent with our other customer NDAs.
+      2. The residuals clause in section 4(c) has been struck; it would have allowed Meridian to use anything their team remembered from the pilot discussions without restriction.
+      3. Governing law changed from Illinois to Delaware, matching Tessera's other agreements.
+      4. A carve-out added so that Tessera may disclose the existence of the relationship to investors under their own confidentiality obligations.
+
+      Everything else is as Meridian sent it. Ben has reviewed. Please let me know if Meridian pushes back on any of the four points and I will turn comments the same day.
+
+      Kind regards,
+      Naomi
+  - id: m2
+    beat_ref: null
+    day: 19
+    time: "19:30"
+    from: tomas
+    to: [naomi]
+    cc: [avery, ben]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Naomi, this is perfect, thank you!! Sending to Carla first thing tomorrow - she said their legal team is quick so hopefuly we have this signed by Wednesday and can get moving on the pilot scope the same week. Will let you know the second I hear anything!
+
+      Tomás

@@ -1,0 +1,58 @@
+thread_id: t-int-yuki-calder-demo
+subject: "Demo notes: Calder Textiles (Sep 17)"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_by_team
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [deal:calder-textiles]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 23
+    time: "15:40"
+    from: yuki
+    to: [ana, tomas]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Notes from today's demo with Calder Textiles: Ruth Amsel (VP Ops), two plant leads (Reno, Sparks), their plant controller. 50 minutes.
+
+      1. What we showed: the exception report and the shift-handoff summary, built on their own CSV headers (Ruth's sample from last week). Seeing their machine names on screen got the plant leads talking within two minutes.
+      2. What landed: exceptions grouped by machine family. The Reno lead said they currently find these "on Monday, from Friday's file".
+      3. Questions:
+         a. Can they upload the Friday CSV themselves until a connector exists? Yes, the manual upload path.
+         b. Is a 3-plant pilot possible? Yes; I suggested 2 plants first so the comparison is meaningful without being noisy. Ruth agreed.
+         c. Data retention: 13 months by default, configurable.
+      4. Follow-ups, all ours: Ana sends the pilot proposal; I send the retention doc and the manual-upload guide.
+
+      Next step: Ruth asked for a pilot proposal "before the holiday peak". Nothing for Avery.
+
+      Yuki
+  - id: m2
+    beat_ref: null
+    day: 23
+    time: "16:20"
+    from: ana
+    to: [yuki]
+    cc: [tomas, avery]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      🙌 Thank you Yuki, the machine-names trick is now standard for every demo. Proposal draft to Tomás next week, sending to Ruth the week after.
+
+      Ana

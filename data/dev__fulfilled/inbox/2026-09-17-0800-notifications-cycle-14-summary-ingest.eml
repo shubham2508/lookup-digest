@@ -1,0 +1,28 @@
+Message-ID: <20260917-0800.notifications@linear.app>
+Date: Thu, 17 Sep 2026 08:00:01 -0700
+From: Linear <notifications@linear.app>
+To: Avery Chen <avery@tessera.io>
+Subject: Cycle 14 summary - Ingest
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Cycle 14 (Sep 3 - Sep 16) for the Ingest team has ended.
+
+Completed: 21 issues (84%)
+Moved to Cycle 15: 4 issues
+Cancelled: 0
+Scope change: +3 issues added mid-cycle
+
+Highlights
+  ING-412  Retry with backoff in the Modbus poller       Done
+  ING-418  Dedupe events on gateway replay               Done
+  ING-420  Strip BOM from CSV headers                    Done
+  ING-431  Backfill CLI: resume from checkpoint          Moved to Cycle 15
+
+Cycle 15 started Sep 17 and ends Sep 30.
+
+View cycle: https://linear.app/tessera/cycle/ING-14
+
+--
+You're receiving this because you're subscribed to cycle updates for Ingest.

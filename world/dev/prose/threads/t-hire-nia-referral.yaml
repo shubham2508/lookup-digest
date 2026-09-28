@@ -1,0 +1,60 @@
+thread_id: t-hire-nia-referral
+subject: "backend eng referral - Farah Qureshi"
+storyline: null
+category: hiring
+labels:
+  kind: thread
+  must_not: true
+  reason: last_word_avery
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [candidate:farah-qureshi]
+    ball_awaiting: other
+    closed_by_courtesy: false
+    sender_relationship: {category: network, subtype: founder_peer}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 10
+    time: "11:20"
+    from: nia
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      hey Avery - quick one. Farah Qureshi, who ran our backend team for two years before we downsized in the spring, is looking again. She's exactly the kind of engineer you were describing at dinner: ingest pipelines, on-call without drama, writes the docs nobody has to ask for. Not after a management title, wants to build.
+
+      I told her about Tessera and she's applying through your careers page this weekend with my name on it. Sending you the short version so it doesn't get lost in the pile. No need to reply - just thought of you first.
+  - id: m2
+    beat_ref: null
+    day: 10
+    time: "13:05"
+    from: avery
+    to: [jordan]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of:
+      - from: nia
+        day: 10
+        time: "11:20"
+        to: [avery]
+        cc: []
+        subject: "backend eng referral - Farah Qureshi"
+        body: |
+          hey Avery - quick one. Farah Qureshi, who ran our backend team for two years before we downsized in the spring, is looking again. She's exactly the kind of engineer you were describing at dinner: ingest pipelines, on-call without drama, writes the docs nobody has to ask for. Not after a management title, wants to build.
+
+          I told her about Tessera and she's applying through your careers page this weekend with my name on it. Sending you the short version so it doesn't get lost in the pile. No need to reply - just thought of you first.
+
+          Nia
+    signature: none
+    body: |
+      jordan - referral from Nia at Corvid, note below. Farah's applying via the careers page this weekend; can you make sure she gets a real screen rather than the auto-reject? Nia's judgement on engineers is good.
+
+      Avery

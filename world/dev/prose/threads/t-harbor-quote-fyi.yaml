@@ -1,0 +1,46 @@
+thread_id: t-harbor-quote-fyi
+subject: "D&O renewal quote 2026-27 - for review (binder due Oct 20)"
+storyline: BG-harbor
+category: vendors_misc
+labels:
+  kind: thread
+  must_not: true
+  reason: fyi_far_deadline
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [other:dno-renewal]
+    ball_awaiting: avery
+    closed_by_courtesy: false
+    sender_relationship: {category: vendor, subtype: services}
+    asks: [{to_avery: true, kind: decision, deadline_day: 56, status: open}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 23
+    time: "14:20"
+    from: mila
+    to: [avery]
+    cc: [kim]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi Avery,
+
+      Attached is the D&O renewal quote from Beacon Mutual for the 2026-27 policy year (Tessera_DO_Renewal_2026-27.pdf, 4 pages). Summary:
+
+      - Limit: $3M (unchanged)
+      - Premium: $18,950, up from $17,400 last year (the increase is market-wide; your loss history is clean)
+      - Retention: $25,000 (unchanged)
+      - Current policy expires: November 1, 2026
+
+      The carrier needs a signed binder by October 20 to avoid a gap. That is over a month out, so nothing to do this week; I just wanted the quote in your hands early. I'll ask Kim for the updated headcount closer to the date, and if the round closes before then we should revisit the limit.
+
+      If you'd like me to shop it against one more carrier, say the word and I'll have a comparison by early October.
+
+      Best,

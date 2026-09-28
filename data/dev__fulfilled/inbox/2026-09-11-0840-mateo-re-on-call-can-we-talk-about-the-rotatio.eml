@@ -1,0 +1,17 @@
+Message-ID: <20260911-0840.mateo@tessera.io>
+Date: Fri, 11 Sep 2026 08:40:32 -0700
+From: Mateo Silva <mateo@tessera.io>
+To: Omar Haddad <omar@tessera.io>
+Cc: Tessera Engineering <eng@tessera.io>, Avery Chen <avery@tessera.io>
+Subject: Re: on-call: can we talk about the rotation
+In-Reply-To: <20260910-0920.omar@tessera.io>
+References: <20260910-0920.omar@tessera.io>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+From the support side: most overnight pages that reached me were column-count warnings, which the new error message already cut in half. Whatever you pick, please keep support in the loop on the schedule; I get the customer emails at 6am either way.
+
+Mateo
+
+Mateo | Tessera Support

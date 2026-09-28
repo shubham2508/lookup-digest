@@ -1,0 +1,36 @@
+Message-ID: <20260909-1205.dev@tessera.io>
+Date: Wed, 09 Sep 2026 12:05:30 -0700
+From: Dev Patel <dev@tessera.io>
+To: Jordan Liu <jordan@tessera.io>
+Cc: Tessera Engineering <eng@tessera.io>, Avery Chen <avery@tessera.io>
+Subject: Re: Sprint 19 - planning recap
+In-Reply-To: <20260909-1140.jordan@tessera.io>
+References: <20260909-1140.jordan@tessera.io>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+is the flag cleanup in or out? it's half done on a branch and I'd rather finish than carry it a third time
+
+Dev
+
+On Wed, Sep 9, 2026 at 11:40 AM, Jordan Liu <jordan@tessera.io> wrote:
+> Recap from planning. Sprint ends Sep 22.
+>
+> Impact first: the Q4 pilots (Bluefin, Calder, Ridgeway scoping) all need the plant-timezone date filter, and every new line still needs hand-holding on ingest. So: filter, multi-line ingest design, reliability.
+>
+> Committed:
+> - Plant-timezone-aware date filter, PR this sprint - Sofia
+> - Connector retry/backoff, shipping (design review done, thanks all) - Omar
+> - Multi-line ingest refactor: design doc + start of the PR - Dev
+> - Regression plan for the filter + export changes - Lena
+> - Index migration for the exceptions table (needs a maintenance window, Omar to propose) - Omar
+>
+> Stretch:
+> - Stale feature flag cleanup - Dev (carried over)
+>
+> Not this sprint: PDF export (FR-118). Real request, not yet.
+>
+> Jordan
+>
+> Jordan

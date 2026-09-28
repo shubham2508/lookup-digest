@@ -1,0 +1,23 @@
+Message-ID: <20260910-1125.grace.lindqvist@northstarfoods.com>
+Date: Thu, 10 Sep 2026 11:25:54 -0700
+From: Grace Lindqvist <grace.lindqvist@northstarfoods.com>
+To: Yuki Sato <yuki@tessera.io>
+Cc: Avery Chen <avery@tessera.io>, =?utf-8?q?Tom=C3=A1s?= Reyes <tomas@tessera.io>
+Subject: Re: Modesto line 2 - onboarding questions
+In-Reply-To: <20260828-0950.grace.lindqvist@northstarfoods.com>
+References: <20260827-0835.grace.lindqvist@northstarfoods.com> <20260827-1110.yuki@tessera.io> <20260828-0950.grace.lindqvist@northstarfoods.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi Yuki,
+
+Line 2 is pushing data now (thank you) but the sensor names came through as the raw PLC tags - things like L2_FILL_TT_04 - and the operators can't tell which one is the filler temp vs the sealer. Line 1 has readable names. Did we miss a step, or is that the mapping template Marta's team was supposed to fill in?
+
+Also, is there a way to rename in bulk? There are about 140 of them and I am not doing that one at a time.
+
+Thanks,
+Grace
+
+Grace Lindqvist
+Procurement Manager | Northstar Foods

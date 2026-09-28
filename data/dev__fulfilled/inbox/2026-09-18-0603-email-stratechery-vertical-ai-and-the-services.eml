@@ -1,0 +1,30 @@
+Message-ID: <20260918-0603.email@stratechery.com>
+Date: Fri, 18 Sep 2026 06:03:16 -0700
+From: Stratechery <email@stratechery.com>
+To: Avery Chen <avery@tessera.io>
+Subject: Stratechery: Vertical AI and the Services Undertow
+List-Unsubscribe: <mailto:unsubscribe@stratechery.com?subject=unsubscribe>, <https://stratechery.com/u/619d64fd>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+STRATECHERY
+Friday, September 18, 2026
+
+Vertical AI and the Services Undertow
+
+The most common pitch I hear this year is "AI for [industry]": a model, a set of connectors, and a founder who spent a decade in the industry and knows where the pain is. It is a good pitch, and a fair number of these companies will work. But there is an undertow in the model, and it is worth naming.
+
+The undertow is that vertical customers do not want software; they want their problem solved. A mid-sized manufacturer that buys an AI product for supplier quality does not care about the model. It cares that the reports are right and that someone will answer the phone when they are not. The vendor, eager to close, says yes to both, and finds itself running a services organization with software gross margins on the slide and services gross margins in the bank.
+
+This is not new. Every vertical software wave has had it, and the successful companies escaped the same way: by being disciplined about which services are one-time implementation (charge for them, do not apologize) and which are the product not being finished yet (do not charge, fix the product). The failure mode is treating the second as the first, because the revenue feels good and the customer is happy, right up until the point where the company has forty customers each running a slightly different bespoke deployment and no engineering capacity left to build anything.
+
+What is new this cycle is that the "product not finished" category is larger, because model behavior is probabilistic and every customer's data surfaces a different failure. The temptation to hand-tune per customer is enormous. The companies that resist it, that insist on fixing the general case even when it delays a specific customer, are the ones building software. The others are building a consultancy with a nice demo.
+
+Investors are starting to notice, and I expect the next fundraising cycle to ask harder questions about the ratio of implementation cost to contract value. Founders should have the answer ready, and it should be trending in the right direction.
+
+Read on the web: https://stratechery.com/2026/vertical-ai-and-the-services-undertow/
+
+—
+You are receiving this because you subscribed to Stratechery Daily Updates. Manage your subscription or unsubscribe: https://stratechery.com/account/

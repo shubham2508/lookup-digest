@@ -1,0 +1,52 @@
+thread_id: t-hollis-3
+subject: "ipv"
+storyline: BG-hollis
+category: vendors_misc
+labels:
+  kind: thread
+  must_not: true
+  reason: last_word_avery
+  classification_case: mentor_by_behavior
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [deal:series-a:board-composition]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: network, subtype: mentor}
+    asks: [{to_avery: true, kind: information, deadline_day: null, status: answered}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 18
+    time: "17:20"
+    from: hollis
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      so. wednesday. how did it go?
+
+      and you still owe me the board answer from coffee. one line, you know the drill.
+  - id: m2
+    beat_ref: null
+    day: 18
+    time: "18:05"
+    from: avery
+    to: [hollis]
+    cc: []
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      wednesday went well, better than I'd braced for. they're moving us into diligence, the data room is open and their analysts are already in it. term sheet talk after that.
+
+      board, one line: Marcus gets a seat, Diane keeps hers, priya and I keep ours, and the independent seat stays open until after the close so it can't become part of the negotiation. that's the answer. you can tell me why it's wrong at the next coffee.
+
+      Avery

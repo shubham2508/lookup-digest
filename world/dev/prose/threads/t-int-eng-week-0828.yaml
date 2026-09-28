@@ -1,0 +1,61 @@
+thread_id: t-int-eng-week-0828
+subject: "Eng week in review - Aug 28"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: last_word_avery
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [report:eng-week-review]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: exec}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 3
+    time: "17:10"
+    from: jordan
+    to: [eng_list]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Short one, it's Friday.
+
+      Shipped:
+      - #371 streaming CSV export (Sofia). Large-plant exports no longer time out. Our single biggest support-ticket source, gone.
+      - Ingest connector: clearer error message when a feed's column count changes (Omar)
+      - Two help-center pages live (Mateo)
+
+      In progress:
+      - Retry/backoff design doc, review next week (Omar + Dev)
+      - Plant-timezone-aware date filter, design (Sofia)
+      - Regression suite expansion (Lena)
+
+      Watching:
+      - p95 ingest latency crept up to ~900ms on the big feeds this week. Not customer-visible. Priya is looking at connection pooling.
+
+      Have a good weekend.
+
+      Jordan
+  - id: m2
+    beat_ref: null
+    day: 3
+    time: "18:20"
+    from: avery
+    to: [jordan]
+    cc: [eng_list]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      nice week, thanks all. the export fix alone was worth the sprint.

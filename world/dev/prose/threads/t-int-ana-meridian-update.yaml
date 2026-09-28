@@ -1,0 +1,57 @@
+thread_id: t-int-ana-meridian-update
+subject: "Meridian - Yuma network answer + reference call set"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_by_team
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [deal:meridian-foods]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 20
+    time: "14:15"
+    from: ana
+    to: [tomas]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi Tomás!
+
+      Two Meridian updates from my call with Carla's coordinator this morning:
+
+      1. Your Yuma question: the plant network is owned by corporate IT, not the plant. One contact (Lou Ferrante, infra lead), and he's already been told to expect us. So week one at Yuma is a corporate IT conversation, not a plant one.
+      2. The reference call is set: Thursday 11:00, Carla plus her line lead with Brightline's ops lead. Yuki is joining for the first 10 minutes to do intros and then dropping off so they can talk freely.
+
+      Carla also asked whether "the 25th" still holds for the proposal. I said yes. She mentioned again that the steering meeting is the 29th and that a proposal in October is a proposal for next year. She's not being difficult, just precise!
+
+      CRM: https://app.hubspot.com/contacts/8841/deal/0977
+
+      Ana
+  - id: m2
+    beat_ref: null
+    day: 20
+    time: "15:05"
+    from: tomas
+    to: [ana]
+    cc: [avery]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Perfect, thank you Ana. Yes to the 25th, it holds. I'm bringing packaging options to the pipeline review tomorrow so we can put the right number in front of Carla, not the old per-line list. And nice work on the reference call, Brightline's ops lead is the best possible person for her to hear from!!
+
+      Tomás

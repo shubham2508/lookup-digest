@@ -1,0 +1,87 @@
+thread_id: t-int-mateo-tickets-0904
+subject: "Support tickets - week of Aug 31"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_by_team
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [report:support-tickets-weekly]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 10
+    time: "16:20"
+    from: mateo
+    to: [jordan]
+    cc: [avery, yuki]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Weekly summary: 14 tickets opened, 13 closed, 1 pending customer reply.
+
+      By topic:
+      - Dashboard timezone confusion (4): "why does the day start at 5pm" - all from plants outside Pacific. Answered each time, same answer. TS-1171, TS-1174, TS-1180, TS-1183.
+      - Export questions (3): two were "how do I", one was the large-plant timeout, which stopped reproducing after #371 shipped. TS-1169, TS-1172, TS-1185.
+      - User admin (3): add/remove users, one password reset. TS-1170, TS-1177, TS-1181.
+      - Connector column-count warnings (2): both were the customer changing their feed without telling anyone. The new error message helped; they self-fixed. TS-1178, TS-1184.
+      - Other (2): a PDF export request (logged as FR-118, Brightline) and a login-page typo (fixed, TS-1186, thanks Dev).
+
+      Pending: TS-1187, waiting on the customer for a sample file.
+
+      Median first response: 22 min. Median resolution: 3.1 hours.
+
+      Mateo
+  - id: m2
+    beat_ref: null
+    day: 10
+    time: "17:05"
+    from: avery
+    to: [mateo]
+    cc: [jordan, yuki]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      thanks mateo. the timezone question, four in a week, feels like it wants a help-center page or a setting. your call which.
+  - id: m3
+    beat_ref: null
+    day: 10
+    time: "17:30"
+    from: mateo
+    to: [avery]
+    cc: [jordan, yuki]
+    reply_to: m2
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Help-center page first (fast). A setting is a bigger conversation and overlaps with Sofia's date filter work, so I'll leave that to eng. I'll get the page up next week and link it from the dashboard footer.
+
+      Mateo
+  - id: m4
+    beat_ref: null
+    day: 16
+    time: "09:15"
+    from: mateo
+    to: [avery]
+    cc: [jordan, yuki]
+    reply_to: m3
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Page is live: help.tessera.io/dashboard-timezones, linked from the dashboard footer as of this morning. TS-1187 is also closed (sample file arrived). Nothing else open from that week.
+
+      Mateo

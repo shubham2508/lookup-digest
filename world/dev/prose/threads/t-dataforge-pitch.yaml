@@ -1,0 +1,78 @@
+thread_id: t-dataforge-pitch
+subject: "Tessera + DataForge: cut your ETL costs 40%"
+storyline: BG-dataforge
+category: vendors_misc
+labels:
+  kind: thread
+  must_not: true
+  reason: cold_pitch
+  classification_case: cold_vendor_pitch
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: promotional
+    about: [other:dataforge-pitch]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: cold_inbound, subtype: sales_pitch}
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 9
+    time: "08:05"
+    from: tyler
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi Avery,
+
+      I noticed Tessera is hiring backend engineers, which usually means the data pipeline is growing faster than the team. DataForge helps Series A companies like yours cut ETL and warehouse costs by up to 40% without rewriting anything - we sit on top of your existing connectors and de-duplicate the loads.
+
+      A couple of teams you might know (a sensor-analytics company in Fremont, a cold-chain platform in Portland) went live in under two weeks.
+
+      Do you have 15 minutes next week for a quick look? Here's my calendar: dataforge.io/tyler
+
+      Best,
+  - id: m2
+    beat_ref: null
+    day: 16
+    time: "08:10"
+    from: tyler
+    to: [avery]
+    cc: []
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Hi Avery,
+
+      Bumping this to the top of your inbox in case it got buried. Curious whether pipeline cost is on your radar at all this quarter, or if there's someone on your team (Priya?) who'd be the better person to talk to.
+
+      Happy to send a two-page overview instead of a call if that's easier.
+
+      Best,
+  - id: m3
+    beat_ref: null
+    day: 23
+    time: "08:00"
+    from: tyler
+    to: [avery]
+    cc: []
+    reply_to: m2
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      Last one from me, I promise. If the timing isn't right I'll close the loop on my end and check back next year. If it is, I'd love 15 minutes: dataforge.io/tyler
+
+      Either way, thanks for reading.
+
+      Best,

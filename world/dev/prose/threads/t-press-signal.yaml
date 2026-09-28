@@ -1,0 +1,45 @@
+thread_id: t-press-signal
+subject: "Comment request - mid-market manufacturers and AI (deadline Thu noon)"
+storyline: BG-press
+category: vendors_misc
+labels:
+  kind: thread
+  must_not: false
+  reason: null
+  classification_case: press_request
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [other:press-request]
+    ball_awaiting: avery
+    closed_by_courtesy: false
+    sender_relationship: {category: external_visibility, subtype: press}
+    asks: [{to_avery: true, kind: information, deadline_day: 30, status: open}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 28
+    time: "09:50"
+    from: sasha
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi Avery,
+
+      Sasha Kimura from Manufacturing Signal. I'm writing a piece on how mid-market manufacturers (roughly $50M-$500M revenue) are actually deploying AI on the plant floor, as opposed to what the vendors say they're deploying. Tessera came up twice in my reporting, once from a plant ops manager in the Central Valley, so I'd like to include you.
+
+      I have three questions:
+
+      1. What is the single most common reason a plant-floor AI pilot stalls before production, in your experience?
+      2. Are mid-market buyers asking for on-prem or private-cloud deployment, or is that mostly a large-enterprise concern?
+      3. What does "good" look like six months after go-live, in numbers a plant manager would recognize?
+
+      My deadline is Thursday noon Pacific. Written answers are fine, or if it's easier I'm happy to do 10 minutes by phone any time before then. Anything you'd rather keep off the record, just flag it and I'll honor that.
+
+      Thanks,

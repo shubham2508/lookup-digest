@@ -1,0 +1,19 @@
+Message-ID: <20260910-1030.sofia@tessera.io>
+Date: Thu, 10 Sep 2026 10:30:04 -0700
+From: Sofia Andrade <sofia@tessera.io>
+To: Omar Haddad <omar@tessera.io>
+Cc: Tessera Engineering <eng@tessera.io>, Avery Chen <avery@tessera.io>
+Subject: Re: on-call: can we talk about the rotation
+In-Reply-To: <20260910-0920.omar@tessera.io>
+References: <20260910-0920.omar@tessera.io>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Agree on 10am and on the Friday rule, honestly yes 😬
+
+Data point before anyone redesigns the rotation: 7 of the last 12 pages were the same flapping connector, which #389 should mostly fix. Fixing that beats any schedule change.
+
+Sofia
+
+Sofia

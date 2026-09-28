@@ -58,3 +58,13 @@ variants: [{id, extra_beats, expectations, assertions}]   # storyline variants �
 - `must_include` phrases are rendered verbatim; prose never contains "trap", "P0", "storyline", "expected".
 - Business days = Mon–Fri, no holidays. "Business days quiet" = weekday dates strictly after the message date and strictly
   before the run date (OPEN_QUESTIONS #8). S3's boundary depends on it.
+
+## Prose and rendering (M2)
+- `prose/FORMAT.md` is the contract for the prose files (`prose/threads/*.yaml`, `prose/bulk/*.yaml`, `prose/notes/*.md`,
+  `prose/variants/<id>/*.yaml`); `prose/AGENT_BRIEF.md` is the writing brief the prose subagents followed.
+- `digest generate --world dev [--anchor YYYY-MM-DD] [--seed N]` → `data/dev/` (+ `data/dev__fulfilled/`) and
+  `eval/manifests/dev.yaml`; it refuses to write the manifest when the validator (`generator/validate.py`,
+  data_generation §9) reports a problem. Reproducible from the world files + prose + seed.
+- Renderers: `generator/render_eml.py` (RFC 5322; RFC 2047 headers; `>` quoted history; Gmail-style forwarded blocks
+  with nested quotes), `generator/render_ics.py` (VTIMEZONE, RRULE, PARTSTAT, ORGANIZER, CREATED/LAST-MODIFIED),
+  `generator/render_notes.py` (`<!-- last-modified -->` + `Date: … | Attendees: …` header, mtimes).

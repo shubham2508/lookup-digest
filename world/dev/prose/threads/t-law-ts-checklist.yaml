@@ -1,0 +1,58 @@
+thread_id: t-law-ts-checklist
+subject: "Ahead of a term sheet - checklist"
+storyline: null
+category: lawyer
+labels:
+  kind: thread
+  must_not: true
+  reason: last_word_avery
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [deal:series-a:term-sheet-prep]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: capital, subtype: deal_counsel}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 20
+    time: "11:30"
+    from: ben
+    to: [avery]
+    cc: [naomi]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      Marcus's note last week that IPV is moving to diligence means we should get ahead of the term sheet. Here is what I'd like in order before one arrives, so we negotiate from a clean file rather than assembling one:
+
+      1. Cap table refresh. The current version still shows the seed as a SAFE conversion estimate. Naomi will rebuild it from the executed documents so the pre-money share count is exact. You'll get it as v3 with the option pool worked in.
+      2. Option pool. IPV will almost certainly ask for a pre-money pool top-up. We should settle our own number before they name theirs; 12% post is the usual opening ask, and your hiring plan supports arguing for less.
+      3. Board composition. Today it's you, Priya and Diane. A lead will ask for a seat; the open questions are whether Diane keeps hers and whether an independent is added now or at the B.
+      4. Cobalt pro rata. Diane's side letter gives Cobalt a pro rata right; we should confirm they intend to exercise it so the round math is right on the first draft.
+      5. Housekeeping. Charter, bylaws, the CIIAAs Kim ran through DocuSign, and the customer MSAs are all in the data room as of this morning.
+
+      Nothing is needed from you today. Items 1 and 2 will come to you as a draft from Naomi next week; 3 and 4 are worth a conversation with Diane before Marcus raises them.
+
+      Ben
+  - id: m2
+    beat_ref: null
+    day: 20
+    time: "17:45"
+    from: avery
+    to: [ben]
+    cc: [naomi]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      thanks Ben, this is the right list. one note on 3: Diane has said she wants to keep her seat through the A, so plan on that. will loop you in the moment anything arrives from IPV.
+
+      Avery

@@ -1,0 +1,79 @@
+thread_id: t-aperture
+subject: "Tessera - following up from the Dogpatch dinner"
+storyline: S4
+category: investors_board
+labels: null
+messages:
+  - id: m1
+    beat_ref: S4.b1
+    day: 6
+    time: "10:20"
+    from: david
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi Avery,
+
+      Really enjoyed our conversation at the Dogpatch dinner on Thursday. The bit about plant managers only trusting a forecast after it has been wrong in a way they can explain has stuck with me.
+
+      Quick context on us: Aperture is a $180M fund, we lead and co-lead Series A rounds, and we've been building a supply-chain thesis for about a year (two investments so far, both on the logistics side, nothing yet on the plant floor). Tessera sits right in the gap.
+
+      Would you be open to sending over the deck? Even the version you use with customers is fine. Two things I'm curious about, no need to answer by email: how you think about the reference-customer motion once you're past three, and whether the inference spend scales with lines or with plants.
+
+      David
+  - id: m2
+    beat_ref: S4.b2
+    day: 7
+    time: "08:05"
+    from: avery
+    to: [david]
+    cc: []
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      David, good to meet you too. Here's the deck: tessera.io/share/deck-aug26 (the customer version, plus the metrics appendix we use with investors).
+
+      Avery
+  - id: m3
+    beat_ref: S4.b3
+    day: 9
+    time: "11:15"
+    from: david
+    to: [avery]
+    cc: []
+    reply_to: m2
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Thanks Avery. Read it twice, and shared it with one partner (Iris) who got excited about the Halberd numbers.
+
+      Two things I keep turning over:
+
+      1. The gross margin trajectory. The appendix shows 71% trailing, and I'm trying to understand what the inference line does to that as backfill volume grows. Is the plan to get there with volume pricing, with model changes, or by pricing it through to customers?
+      2. Concentration. Roughly how much of the ARR sits with the three reference accounts today, and what does that look like a year out on the current pipeline?
+
+      Neither needs a written answer. I'm happy to dig in whenever you're ready; a 45-minute call would do it, and I'd bring Iris.
+
+      David
+  - id: m4
+    beat_ref: S4.b4
+    day: 9
+    time: "15:40"
+    from: avery
+    to: [david]
+    cc: []
+    reply_to: m3
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      great questions, and the honest answer on 1 is "some of each." let's talk soon — I'll send some times for next week once I've looked at the calendar.
+
+      Avery

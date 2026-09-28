@@ -1,0 +1,19 @@
+Message-ID: <20260922-1127.notifications@github.com>
+Date: Tue, 22 Sep 2026 11:27:13 -0700
+From: GitHub <notifications@github.com>
+To: Avery Chen <avery@tessera.io>
+Subject: [tessera/dashboard] Fix line-status chart flicker after WebSocket reconnect (PR #247)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+@devp opened a pull request.
+
+After a WebSocket reconnect the line-status chart briefly renders the last cached frame before the fresh snapshot arrives, so the status pill flips green -> grey -> green for about 400 ms. This holds the cached frame until the first message after reconnect lands.
+
+Lena's repro from the sprint notes is added as an e2e spec.
+
+--
+Reply to this email directly or view it on GitHub:
+https://github.com/tessera/dashboard/pull/247
+You are receiving this because you are subscribed to this repository.

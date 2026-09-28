@@ -1,0 +1,28 @@
+Message-ID: <20260826-0712.team@mail.notion.so>
+Date: Wed, 26 Aug 2026 07:12:32 -0700
+From: Notion <team@mail.notion.so>
+To: Avery Chen <avery@tessera.io>
+Subject: What's new in Notion: August release notes
+List-Unsubscribe: <mailto:unsubscribe@mail.notion.so?subject=unsubscribe>, <https://mail.notion.so/u/5c845038>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi Avery,
+
+Here's what shipped in Notion this month for your workspace:
+
+- Database automations now trigger on property changes, not just page creation. Set up a "when Status becomes Done, notify channel" flow in about a minute.
+- Forms are out of beta. Collect intake requests straight into a database, no third-party tool needed.
+- Notion Mail is now available to every Plus and Business workspace admin.
+- Faster search: we rebuilt the index and median search latency dropped 40%.
+
+Read the full release notes: https://mail.notion.so/c/aug-release-4k2m
+
+Tip of the month: press Cmd+Shift+P anywhere in Notion to jump to any page.
+
+Thanks for building with us,
+The Notion Team
+
+You're receiving this because you're an admin of a Notion workspace. Unsubscribe: https://mail.notion.so/u/a91xz

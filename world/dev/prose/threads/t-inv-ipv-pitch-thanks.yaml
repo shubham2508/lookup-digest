@@ -1,0 +1,50 @@
+thread_id: t-inv-ipv-pitch-thanks
+subject: "Thank you for today"
+storyline: null
+category: investors_board
+labels:
+  kind: thread
+  must_not: true
+  reason: closed_by_courtesy
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: social
+    about: [deal:series-a:ipv-pitch]
+    ball_awaiting: nobody
+    closed_by_courtesy: true
+    sender_relationship: {category: capital, subtype: lead_investor}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 15
+    time: "14:05"
+    from: avery
+    to: [marcus]
+    cc: [elena, ravi]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      marcus — thanks for the time today, and to the partnership for the questions. The two things I owe you, the customer cohort analysis and the pipeline detail behind the Q4 number, will be in the data room by Friday. Priya sends her thanks as well.
+
+      Avery
+  - id: m2
+    beat_ref: null
+    day: 16
+    time: "07:50"
+    from: marcus
+    to: [avery]
+    cc: [elena, ravi]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      Good session. The partnership wants to proceed to diligence; Ravi will send the request list today and the analysts start as soon as they have access. Elena will run the technical piece.
+
+      Marcus

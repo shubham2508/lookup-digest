@@ -1,0 +1,30 @@
+Message-ID: <20260923-0616.email@stratechery.com>
+Date: Wed, 23 Sep 2026 06:16:23 -0700
+From: Stratechery <email@stratechery.com>
+To: Avery Chen <avery@tessera.io>
+Subject: Stratechery: The Price War Nobody Announced
+List-Unsubscribe: <mailto:unsubscribe@stratechery.com?subject=unsubscribe>, <https://stratechery.com/u/bfc2a569>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+STRATECHERY
+Wednesday, September 23, 2026
+
+The Price War Nobody Announced
+
+Inference prices have fallen by roughly an order of magnitude in two years, and the interesting thing is how little fanfare each cut receives. There is no press release headlined "we are now losing money faster." There is a changelog entry, a pricing-page update, and a quiet email to enterprise accounts. The war is real; it is just being fought in footnotes.
+
+The reason it is quiet is that nobody wants to be seen starting it. A frontier lab that cuts prices publicly signals that its model is no longer differentiated. A cloud that cuts publicly invites a match. An aggregator that cuts publicly reveals its margin. So everyone cuts privately, through volume tiers, committed-use discounts, and off-peak pricing, and the list price stays high enough to preserve the fiction.
+
+For buyers, the lesson is that the list price is a starting point and the real price is whatever you negotiate. Companies spending six figures a year on inference and paying list are leaving a lot on the table. The providers have capacity to fill, and capacity is perishable.
+
+For the industry, the lesson is that the application layer's margin problem, which I wrote about last month, is being solved from below faster than the application companies are solving it from above. A product whose gross margin was untenable at January's prices may be fine at October's. This does not mean the application companies should stop optimizing; it means they should model their cost curve with a steep downward slope and price accordingly, rather than locking in today's economics in a multi-year contract.
+
+The people who should be worried are the inference providers themselves. A market where every participant cuts privately and nobody can hold a list price is a market heading toward utility margins, and utilities do not get venture multiples. Consolidation is coming, and the survivors will be the ones with either their own silicon or their own captive demand. Everyone in between is renting a position that is getting cheaper every quarter.
+
+Read on the web: https://stratechery.com/2026/the-price-war-nobody-announced/
+
+—
+You are receiving this because you subscribed to Stratechery Daily Updates. Manage your subscription or unsubscribe: https://stratechery.com/account/

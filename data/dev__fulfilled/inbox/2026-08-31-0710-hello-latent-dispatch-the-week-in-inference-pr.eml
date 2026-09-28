@@ -1,0 +1,32 @@
+Message-ID: <20260831-0710.hello@latentdispatch.ai>
+Date: Mon, 31 Aug 2026 07:10:22 -0700
+From: Latent Dispatch <hello@latentdispatch.ai>
+To: Avery Chen <avery@tessera.io>
+Subject: Latent Dispatch: the week in inference pricing, Larkspur 1.0, and a very long context
+List-Unsubscribe: <mailto:unsubscribe@latentdispatch.ai?subject=unsubscribe>, <https://latentdispatch.ai/u/3350662f>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+LATENT DISPATCH
+Mon Aug 31 · 5 items · ~4 min
+
+INFERENCE PRICE TRACKER, AUGUST EDITION
+Our monthly roll-up: median price per million output tokens across the 20 models we track fell 11% in August, driven mostly by the mid-tier (10–30B class) getting cheaper. Frontier pricing was flat. Full table with month-over-month deltas: https://latentdispatch.ai/p/price-tracker-aug
+
+LARKSPUR 1.0: AN AGENT FRAMEWORK THAT ADMITS IT IS A STATE MACHINE
+Larkspur's 1.0 release drops the "autonomous agent" framing entirely. You define states, transitions, and which model call happens in each; the framework handles retries and persistence. It is less exciting than the alternatives and, from the demos, a lot more debuggable. https://latentdispatch.ai/p/larkspur-1
+
+A 2M-TOKEN CONTEXT WINDOW, AND WHY YOU PROBABLY DON'T WANT IT
+Halcyon's new model advertises a 2M-token window. Our testing: recall of a specific fact degrades noticeably past 400k, latency at 1M is over a minute, and the cost of one full-window call is about $6. Retrieval is still the answer for most workloads; the giant window is for the one-off "read the whole archive" job.
+
+OPEN-WEIGHTS ROUNDUP
+Three releases this week worth a look: Ferrite-8B (Apache 2.0, strong on structured output), a 1.5B multilingual model from a university group in Lisbon, and a domain-tuned model for industrial maintenance logs that we have not tried but whose benchmark claims are plausible. Links: https://latentdispatch.ai/p/ow-roundup-0831
+
+SHORT TAKES
+· Quillon adds structured-output mode with JSON schema enforcement. Validation still recommended; we caught two schema violations in 10k calls.
+· Kestrel now publishes p50/p99 latency per model on a public status page. More of this, please.
+
+—
+You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1

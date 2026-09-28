@@ -1,0 +1,138 @@
+Message-ID: <20260923-2211.tomas@tessera.io>
+Date: Wed, 23 Sep 2026 22:11:18 -0700
+From: =?utf-8?q?Tom=C3=A1s?= Reyes <tomas@tessera.io>
+To: Avery Chen <avery@tessera.io>
+Subject: Fwd: Northstar - open items (AP / line 2 / contract)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+thoughts?
+
+Tomás Reyes | Head of GTM, Tessera | +1 (510) 555-0142
+
+---------- Forwarded message ---------
+From: Marta Kowalczyk <marta.kowalczyk@northstarfoods.com>
+Date: Wed, Sep 23, 2026 at 5:55 PM
+Subject: Re: Northstar - open items (AP / line 2 / contract)
+To: Tomás Reyes <tomas@tessera.io>
+Cc: Grace Lindqvist <grace.lindqvist@northstarfoods.com>, Paul Osei <paul.osei@northstarfoods.com>, Henrik Dahl <henrik.dahl@northstarfoods.com>
+
+Tomas - sorry, I read that twice and I still can't tell the shift leads yes or no. Is there a downtime log with reason codes in the tool on Thursday, or not? If it's "something that gets part of the way" I need to know what the operator actually clicks.
+
+Also, line 2 changeover starts Oct 5 and I'm not touching anything on the line after the 2nd, so if it's not in by then it's November.
+
+Marta
+
+On Wed, Sep 23, 2026 at 12:40 PM, Tomás Reyes <tomas@tessera.io> wrote:
+> Henrik, thank you for the note, and for the clarity on process - totally understood, and happy to support the review however is most useful for the committee! We'll get the renewal proposal to your office by October 9 with pricing for both Modesto lines, and I'll make sure the usage summary Marta mentioned is in the pack (Yuki is already pulling it for the QBR, so that one's easy). If it would help, Avery and I would be glad to do a short session with the committee itself, whatever format works for you.
+>
+> Marta - the downtime log is a real thing, promise. We have something today that gets you a good part of the way (tagging a stop from the exception view with a code and a note, and the weekly report grouping by code and shift), and the fuller version with the operator-side log is on the roadmap. Yuki will walk you through what's there on Thursday and we'll see how far it gets you. Planned vs unplanned is a flag in the code list, so that part is easy. Phones: known issue on the charts, it's on the list.
+>
+> Paul - order form and W-9 coming from Kim today, apologies for the delay on that one, it fell between us.
+>
+> Grace - still on for the 30th? Let's use part of it for the review prep if Henrik's team can make it.
+>
+> Thanks all!
+>
+> Tomás
+> On Wed, Sep 23, 2026 at 9:15 AM, Henrik Dahl <henrik.dahl@northstarfoods.com> wrote:
+> > Dear Mr. Reyes,
+> >
+> > Thank you for your attention to the items above; I understand from Paul that the accounts payable matter is now resolved. As part of our vendor review, I should let you know that Tessera's renewal will go through a formal vendor review this quarter as part of vendor consolidation across our plant systems, which Northstar's leadership has asked Finance to lead ahead of the 30 November anniversary. The review committee meets in the second half of October; I would ask that the renewal proposal, including pricing for both Modesto lines and any proposed changes to scope, be submitted to my office by 9 October rather than to Procurement, and that the usage summary Marta refers to be included with it. Grace remains your day-to-day contact; please direct commercial correspondence to me until the review concludes.
+> >
+> > Kind regards,
+> > Henrik Dahl
+> > Finance Director, Northstar Foods
+> > On Wed, Sep 23, 2026 at 6:35 AM, Marta Kowalczyk <marta.kowalczyk@northstarfoods.com> wrote:
+> > > One more while I'm at it - the shift leads want the line 2 view on their phones. The login page works but the charts don't fit. Not urgent. The downtime log is the urgent one.
+> > >
+> > > Marta
+> > > On Tue, Sep 22, 2026 at 3:40 PM, Marta Kowalczyk <marta.kowalczyk@northstarfoods.com> wrote:
+> > > > Adding Henrik. He asked me this afternoon what line 2 is getting us vs. line 1 for the budget review and honestly I don't have a clean number - I have sensor names and a whiteboard. Grace, do we have the usage numbers Tomas mentioned for the QBR, or can Yuki pull that one-pager early? Henrik needs it before the 30th.
+> > > >
+> > > > Tomas - if the downtime log is a real thing, that would be the number. Downtime by reason by shift, line 1 vs line 2, before and after. That's what Henrik wants to see.
+> > > >
+> > > > Marta
+> > > > On Tue, Sep 22, 2026 at 7:10 AM, Marta Kowalczyk <marta.kowalczyk@northstarfoods.com> wrote:
+> > > > > Any word on the downtime log? Night shift lead is asking because he's keeping two logs now (whiteboard + your tool) and wants to stop one of them. Yuki said "Thursday" on the phone - is that this Thursday?
+> > > > >
+> > > > > Marta
+> > > > > On Mon, Sep 21, 2026 at 12:35 PM, Marta Kowalczyk <marta.kowalczyk@northstarfoods.com> wrote:
+> > > > > > Reason codes attached (photo of the whiteboard, sorry, it's what we have). The 14 codes are the ones in red. Blue ones are line 1 only.
+> > > > > >
+> > > > > > Also - can it tell planned from unplanned? CIP is planned, a sealer jam is not. If they're lumped together the number is useless to Henrik and I'll get asked about it.
+> > > > > >
+> > > > > > Marta
+> > > > > > On Mon, Sep 21, 2026 at 6:50 AM, Marta Kowalczyk <marta.kowalczyk@northstarfoods.com> wrote:
+> > > > > > > Tomas - Paul said to put this here so here it is.
+> > > > > > >
+> > > > > > > Line 2 had 3 stops on the night shift Sunday (sealer jam 22:40, filler CIP overrun ~01:15, and a 40 min one nobody wrote down). Your report shows the sensor dropouts but not the stops themselves, so when I pull it up Monday morning I see squiggles and then have to walk over to the whiteboard to find out what actually happened.
+> > > > > > >
+> > > > > > > What I need: a downtime log in the tool. Operator picks a reason code from a list (we have 14, I'll send them), start/end, which station. Then the weekly report shows downtime by reason, by shift. Line 1 does this in a spreadsheet and it's the only report the plant manager actually reads.
+> > > > > > >
+> > > > > > > Is this something you have or something you'd build? Yuki said "let me check" on Friday.
+> > > > > > >
+> > > > > > > Marta
+> > > > > > > On Fri, Sep 18, 2026 at 3:45 PM, Paul Osei <paul.osei@northstarfoods.com> wrote:
+> > > > > > > > Mr. Reyes,
+> > > > > > > >
+> > > > > > > > Following up on item 3 only. Mr. Dahl's office has asked again for the executed order form (July 2026 line 2 amendment) and a current W-9 for the vendor file. Finance is running a vendor master clean-up ahead of quarter close and Tessera's record is flagged as incomplete on both. If simpler, Ms. Delgado may send them to me directly and I will place them on file.
+> > > > > > > >
+> > > > > > > > Regards,
+> > > > > > > > Paul Osei
+> > > > > > > > Accounts Payable | Northstar Foods
+> > > > > > > > On Fri, Sep 18, 2026 at 8:20 AM, Paul Osei <paul.osei@northstarfoods.com> wrote:
+> > > > > > > > > Mr. Reyes,
+> > > > > > > > >
+> > > > > > > > > Remittance advice for TS-0834-R1 attached (ACH trace 0918-NSF-30117, $7,437.50, settled 09/18). Vendor account balance is now $0.00; CM-0834 and CM-0834-R2 are closed. Please have Ms. Delgado confirm receipt at her convenience.
+> > > > > > > > >
+> > > > > > > > > Regards,
+> > > > > > > > > Paul Osei
+> > > > > > > > > Accounts Payable | Northstar Foods
+> > > > > > > > > On Thu, Sep 17, 2026 at 9:05 AM, Paul Osei <paul.osei@northstarfoods.com> wrote:
+> > > > > > > > > > Mr. Reyes,
+> > > > > > > > > >
+> > > > > > > > > > Per your voicemail: freight line confirmed as intended (edge gateway shipment, line 2, 07/21). Grace raised PO amendment 4500218877-002 for $312.50 this morning. TS-0834-R1 now three-way matches in full and is released in today's payment run. Net payable $7,437.50; ACH settles 09/18.
+> > > > > > > > > >
+> > > > > > > > > > AP item closed from my side. Items 2 and 3 remain open.
+> > > > > > > > > >
+> > > > > > > > > > Regards,
+> > > > > > > > > > Paul Osei
+> > > > > > > > > > Accounts Payable | Northstar Foods
+> > > > > > > > > > On Wed, Sep 16, 2026 at 2:05 PM, Paul Osei <paul.osei@northstarfoods.com> wrote:
+> > > > > > > > > > > Mr. Reyes,
+> > > > > > > > > > >
+> > > > > > > > > > > Further to our call this morning, and for the file: Ms. Delgado has confirmed the street address as the remit-to of record and reissued CM-0834-R2 referencing PO line 10. Received 13:52 today. Applied.
+> > > > > > > > > > >
+> > > > > > > > > > > Remaining discrepancy: TS-0834-R1 includes a hardware freight line of $312.50 (edge gateway, line 2) which does not appear on PO 4500218877. Please confirm whether this line was intended, in which case Grace will need to raise a PO amendment, or whether it was carried over from the original invoice in error. Until confirmed, the R1 will short-match by $312.50.
+> > > > > > > > > > >
+> > > > > > > > > > > Regards,
+> > > > > > > > > > > Paul Osei
+> > > > > > > > > > > Accounts Payable | Northstar Foods
+> > > > > > > > > > > On Tue, Sep 15, 2026 at 8:40 AM, Paul Osei <paul.osei@northstarfoods.com> wrote:
+> > > > > > > > > > > > Mr. Reyes,
+> > > > > > > > > > > >
+> > > > > > > > > > > > Confirming receipt of CM-0834-R2 ($0.00, referencing TS-0834-R1) from billing@tessera.io on 09/14 at 17:31. Two points before I can apply it:
+> > > > > > > > > > > >
+> > > > > > > > > > > > a) The R2 shows a PO Box in the remit-to block; TS-0834-R1 shows the street address. Our vendor master holds one remit-to per vendor. Please confirm which is current; I cannot release the 09/17 payment against conflicting remit-to details.
+> > > > > > > > > > > >
+> > > > > > > > > > > > b) The R2 references PO line 20; TS-0834-R1 was matched to PO line 10. Cosmetic, but our three-way match will flag it.
+> > > > > > > > > > > >
+> > > > > > > > > > > > Regards,
+> > > > > > > > > > > > Paul Osei
+> > > > > > > > > > > > Accounts Payable | Northstar Foods
+> > > > > > > > > > > > On Sat, Sep 12, 2026 at 10:12 AM, Paul Osei <paul.osei@northstarfoods.com> wrote:
+> > > > > > > > > > > > > Mr. Reyes,
+> > > > > > > > > > > > >
+> > > > > > > > > > > > > Apologies for the weekend note; I am clearing my queue ahead of Monday's AP cycle. At Grace Lindqvist's request I am consolidating Northstar's open items with Tessera into one thread so that they stop travelling across three mailboxes.
+> > > > > > > > > > > > >
+> > > > > > > > > > > > > 1. AP - Invoice TS-0834 / PO 4500218877. Corrected invoice TS-0834-R1 ($7,125.00) posted 09/04 and is scheduled for the 09/17 payment run. However, credit memo CM-0834 ($19,000.00), received with the R1, references the original TS-0834, which was rejected on 09/03 and never posted. Our system therefore carries CM-0834 as an unapplied vendor credit of $19,000.00 and flags the vendor account as a net receivable. Please either withdraw CM-0834 or reissue it against TS-0834-R1 at $0.00 so that the file can be closed. I cannot release the 09/17 payment while the account shows a credit balance.
+> > > > > > > > > > > > >
+> > > > > > > > > > > > > 2. Line 2 - Ms. Kowalczyk has an open request regarding downtime capture on line 2. She will add it to this thread directly.
+> > > > > > > > > > > > >
+> > > > > > > > > > > > > 3. Contract - Mr. Dahl's office has asked that the executed order form and a current W-9 be placed on the vendor file ahead of the contract anniversary (11/30). Please send both to me at your convenience.
+> > > > > > > > > > > > >
+> > > > > > > > > > > > > Regards,
+> > > > > > > > > > > > > Paul Osei
+> > > > > > > > > > > > > Accounts Payable | Northstar Foods

@@ -1,0 +1,30 @@
+Message-ID: <20260922-0647.hello@latentdispatch.ai>
+Date: Tue, 22 Sep 2026 06:47:12 -0700
+From: Latent Dispatch <hello@latentdispatch.ai>
+To: Avery Chen <avery@tessera.io>
+Subject: Latent Dispatch: Pelagic 3 rumors, the retry budget, Ferrite-70B fine-tuning recipes
+List-Unsubscribe: <mailto:unsubscribe@latentdispatch.ai?subject=unsubscribe>, <https://latentdispatch.ai/u/cf96b316>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+LATENT DISPATCH
+Tue Sep 22 · 4 items · ~3 min
+
+PELAGIC 3: WHAT WE KNOW
+Three sources say October. Rumored: native multi-document input, a cheaper reasoning mode, and a 4M context nobody asked for. Pricing unknown. If you are planning a Q4 migration, wait for the rate card.
+
+A RETRY BUDGET, NOT A RETRY COUNT
+A short, useful design note: instead of "retry 3 times," give each job a token budget and let it retry until the budget is gone. It bounds cost per job rather than per call, and it makes the runaway-job class of incident structurally impossible. https://latentdispatch.ai/p/retry-budget
+
+FERRITE-70B FINE-TUNING RECIPES
+Three teams published their recipes for narrow-task fine-tunes: 5k examples, LoRA, one 80GB card, under $200 in compute. The consistent result is a model that beats the base 70B on the target task and costs the same to serve. https://latentdispatch.ai/p/ferrite-recipes
+
+SHORT TAKES
+· Argent adds Lodestone-R2 Mini. $0.75 / $3.00, undercutting Lodestone's own API.
+· Halcyon Vision 3.1 on Nimbus.
+· The Ostrava scanned-PDF benchmark gets a v2 with 800 documents.
+
+—
+You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1

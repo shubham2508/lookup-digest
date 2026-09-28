@@ -1,0 +1,35 @@
+thread_id: t-daycare-closure
+subject: "IMPORTANT: Little Acorns closed Thursday 9/24"
+storyline: S11
+category: personal
+labels: null
+messages:
+  - id: m1
+    beat_ref: S11.b4
+    day: 29
+    time: "17:45"
+    from: beatriz
+    to: [parents_list]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Dear Little Acorns families,
+
+      I am so sorry to be sending this at the end of the day. Our HVAC system failed this afternoon and the building is now well above the temperature our licensing allows for the classrooms. The repair crew cannot get the replacement compressor here until tomorrow morning, so we have no choice:
+
+      **Little Acorns will be closed Thursday, September 24.**
+
+      There will be **no drop-off and no pickup on Thursday**. Please do not bring your child to the building; the front gate will be locked and a note will be posted.
+
+      Our plan:
+      - **Thursday, September 24:** repair crew on site from 7:00am. We will send an update by 3:00pm.
+      - **Friday, September 25:** we fully expect to reopen at the normal 7:30am, and I will confirm by email Thursday evening either way.
+
+      We know how disruptive a last-minute closure is for working families, and we truly apologize. Tuition for the closed day will be credited on your October statement automatically; there is nothing you need to do.
+
+      If you have any questions, reply to this email or call the office line, which I will be answering personally tomorrow.
+
+      With apologies and thanks for your patience,

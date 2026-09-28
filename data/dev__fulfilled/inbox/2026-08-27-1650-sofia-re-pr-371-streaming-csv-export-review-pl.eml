@@ -1,0 +1,22 @@
+Message-ID: <20260827-1650.sofia@tessera.io>
+Date: Thu, 27 Aug 2026 16:50:26 -0700
+From: Sofia Andrade <sofia@tessera.io>
+To: Dev Patel <dev@tessera.io>, Omar Haddad <omar@tessera.io>
+Cc: Avery Chen <avery@tessera.io>, Jordan Liu <jordan@tessera.io>
+Subject: Re: PR #371 - streaming CSV export (review please)
+In-Reply-To: <20260827-1510.omar@tessera.io>
+References: <20260827-1015.sofia@tessera.io> <20260827-1510.omar@tessera.io>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+All three fixed: flush every 4 chunks, header row covered, and the partial-chunk test now has 5001 rows so it's actually partial (thanks Omar 😅). Dev approved on GitHub, merging after CI.
+
+Sofia
+
+Sofia
+
+On Thu, Aug 27, 2026 at 3:10 PM, Omar Haddad <omar@tessera.io> wrote:
+> cancellation works, I yanked the cable mid-export like a professional. one thing: the partial-chunk test passes because it never produces a partial chunk. 5000 rows of fixture, 5000-row chunks. see comment.
+>
+> Omar

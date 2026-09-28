@@ -1,0 +1,57 @@
+thread_id: t-veritas-soc2
+subject: "SOC 2 report for our vendor file"
+storyline: S7
+category: customers
+labels: null
+messages:
+  - id: m1
+    beat_ref: S7.b16
+    day: 18
+    time: "11:00"
+    from: nadia
+    to: [avery]
+    cc: [jordan]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi Avery,
+
+      Quick one. The vendor file for the review needs a current SOC 2 report (Type II if you have one) and it has to be in by Tuesday. Tomás mentioned Jordan owns the trust portal, so I've copied Jordan.
+
+      Next step: can someone send me portal access or a PDF? Either works. Sorry for the weekend email - I'm clearing the review file before Monday.
+
+      Nadia
+  - id: m2
+    beat_ref: S7.b17
+    day: 18
+    time: "14:25"
+    from: jordan
+    to: [nadia]
+    cc: [avery]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Hi Nadia - done, you should have it within the hour.
+
+      - SOC 2 Type II (audit period ending June 30, 2026) is in our trust portal; the access invite went to this address just now.
+      - The bridge letter covering July through September is in the same folder, in case your auditors ask about the gap.
+      - If the vendor file needs a PDF rather than portal access, reply here and I'll export one.
+  - id: m3
+    beat_ref: S7.b18
+    day: 21
+    time: "09:15"
+    from: nadia
+    to: [jordan]
+    cc: [avery]
+    reply_to: m2
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Got it, thanks Jordan - portal access worked first time and the bridge letter was exactly what the auditors wanted. Review file is closed on this point, nothing more needed.
+
+      Nadia

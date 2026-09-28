@@ -1,0 +1,26 @@
+Message-ID: <20260911-1712.notifications@github.com>
+Date: Fri, 11 Sep 2026 17:12:57 -0700
+From: GitHub <notifications@github.com>
+To: Avery Chen <avery@tessera.io>
+Subject: [tessera/infra] Run failed: deploy-staging - main (a44f2e9)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Run failed for main (a44f2e9)
+
+Repository: tessera/infra
+Workflow: deploy-staging
+Duration: 2m 03s
+Finished: 2026-09-12 00:12:44 UTC
+
+Jobs:
+  ✓ build (succeeded)
+  ✗ deploy (failed)
+
+deploy: helm upgrade failed - timed out waiting for the condition (ingest-worker rollout, 0/2 pods ready)
+
+View workflow run: https://github.com/tessera/infra/actions/runs/11689021557
+
+--
+You are receiving this because you are subscribed to this repository.

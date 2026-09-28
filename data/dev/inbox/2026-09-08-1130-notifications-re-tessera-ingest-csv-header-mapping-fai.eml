@@ -1,0 +1,19 @@
+Message-ID: <20260908-1130.notifications@github.com>
+Date: Tue, 08 Sep 2026 11:30:47 -0700
+From: GitHub <notifications@github.com>
+To: Avery Chen <avery@tessera.io>
+Subject: Re: [tessera/ingest] CSV header mapping fails on BOM-prefixed exports (#410)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+@devp commented on this issue.
+
+Root cause: the export tool on the Veritas side writes a UTF-8 BOM, so the first header reads as "﻿site_id" and the mapper falls through to the unknown-column path. Same thing would hit anyone exporting from Excel on Windows.
+
+Fix is a one-liner in the reader (open with utf-8-sig). PR #413 is up with a fixture built from the sample file Ivan sent.
+
+--
+Reply to this email directly or view it on GitHub:
+https://github.com/tessera/ingest/issues/410#issuecomment-2781140455
+You are receiving this because you are subscribed to this thread.

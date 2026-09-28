@@ -1,0 +1,43 @@
+Message-ID: <20260917-1540.yuki.9b4cec@tessera.io>
+Date: Thu, 17 Sep 2026 15:40:09 -0700
+From: Yuki Sato <yuki@tessera.io>
+To: Nadia Rahimi <nadia.rahimi@veritascomponents.com>
+Cc: Avery Chen <avery@tessera.io>, Ivan Petrov <ivan.petrov@veritascomponents.com>
+Subject: Re: Second line - ingest setup
+In-Reply-To: <20260917-1030.nadia.rahimi@veritascomponents.com>
+References: <20260917-1030.nadia.rahimi@veritascomponents.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi Nadia,
+
+Congratulations on the green light, and thank you for the early notice - it makes a real difference. Here is the plan:
+
+1. Ivan sends us a sample export from line 2 (a few hundred rows is plenty) together with the field list - by Friday, September 18.
+2. Sofia Andrade on our engineering team maps the three new station types to our schema and stands up a staging feed - Monday, September 21.
+3. We run Ivan's sample through staging and send you a validation report - Tuesday, September 22.
+4. The production feed is switched on ahead of your first shift - Wednesday, September 23, morning PT.
+
+Sofia is on it from our side, and I will stay on as your point of contact for scheduling.
+
+One request: if any station IDs or field names change between the sample and the production export, please let us know before Wednesday. The mapping is only as good as the sample.
+
+Best regards,
+
+Yuki Sato
+Solutions Engineering, Tessera
+
+On Thu, Sep 17, 2026 at 10:30 AM, Nadia Rahimi <nadia.rahimi@veritascomponents.com> wrote:
+> Hi Yuki,
+>
+> Good news: the second line at Reno got the green light this morning. Go-live is Wednesday the 23rd, and I'd like Tessera ingesting from the first shift rather than backfilling a week later.
+>
+> Ivan (copied) will send you the feed schema for line 2 today. It's the same PLC export as line 1 with three new station types.
+>
+> Next step: can you send me a plan with dates by end of day tomorrow? Ops wants to see it before they lock the start-up sequence.
+>
+> Thanks!
+> Nadia
+>
+> Nadia Rahimi | Procurement Lead | Veritas Components

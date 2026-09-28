@@ -1,0 +1,36 @@
+thread_id: t-sam-daycare-form
+subject: "daycare form + thanksgiving"
+storyline: S11
+category: personal
+labels: null
+messages:
+  - id: m1
+    beat_ref: S11.b1
+    day: 27
+    time: "21:15"
+    from: sam
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      hey - the little acorns re-enrollment packet is on the kitchen counter, it needs both signatures by friday or wren loses the spot for the winter session. i did my pages already, yours are flagged with the yellow tabs.
+
+      unrelated: kai asked about thanksgiving. their place or ours this year? i'm fine either way but kai wants to know by the weekend so they can plan the turkey situation.
+
+      wren fell asleep in the car again btw. two nights in a row now.
+  - id: m2
+    beat_ref: S11.b2
+    day: 28
+    time: "07:10"
+    from: avery
+    to: [sam]
+    cc: []
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      signed both pages this morning, it's back on the counter with the tabs pulled. thanksgiving: home. i'll tell kai today.

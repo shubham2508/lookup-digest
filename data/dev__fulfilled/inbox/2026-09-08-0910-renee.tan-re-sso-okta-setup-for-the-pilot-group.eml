@@ -1,0 +1,52 @@
+Message-ID: <20260908-0910.renee.tan@halberd.com>
+Date: Tue, 08 Sep 2026 09:10:37 -0700
+From: Renee Tan <renee.tan@halberd.com>
+To: Jordan Liu <jordan@tessera.io>
+Cc: Joel Brennan <joel.brennan@halberd.com>, Avery Chen <avery@tessera.io>
+Subject: Re: SSO / Okta setup for the pilot group
+In-Reply-To: <20260906-1645.jordan@tessera.io>
+References: <20260906-1120.joel.brennan@halberd.com> <20260906-1645.jordan@tessera.io>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Jordan,
+
+Joel retested first thing this morning and all 12 pilot users are in. Thanks for jumping on this on a Sunday, that was above and beyond.
+
+Closing HAL-IT-2291 on our side.
+
+Renee
+
+Renee Tan | Procurement Lead | Halberd Manufacturing
+
+On Sun, Sep 6, 2026 at 4:45 PM, Jordan Liu <jordan@tessera.io> wrote:
+> Joel,
+>
+> Mateo looped me in (Tessera ticket #4471). Short version: this was on our side, it's fixed, and you should be able to log in now.
+>
+> - Impact: every SP-initiated login for your Okta app returned 400 since the app was created. Nobody in the pilot group could have got in.
+> - Root cause: attribute mapping. Our ACS was looking for an attribute literally named `email`; the profile in the setup guide maps it as `login`. The guide and the ACS disagreed with each other, which is our bug, not your config.
+> - Fix: the ACS now accepts `email`, `login`, or the NameID when it's in emailAddress format. Shipped 16:20 PT. No change needed on the Okta app.
+> - Follow-up: we'll correct the setup guide this week.
+>
+> Could you retest with one pilot user and let us know? If it still fails, send me the Okta System Log entry and I'll look at it tonight.
+>
+> Jordan
+>
+> On Sun, Sep 6, 2026 at 11:20 AM, Joel Brennan <joel.brennan@halberd.com> wrote:
+> > Hi Tessera support,
+> >
+> > We're standing up the pilot group ahead of Tuesday and SAML is failing for every user in the Halberd-Tessera-Pilot Okta group. Details:
+> >
+> > - IdP: Okta, SAML 2.0 app created from your setup guide v2.3.
+> > - SP-initiated flow. Okta authenticates fine, the POST back to https://halberd.tessera.io/sso/acs returns HTTP 400.
+> > - Error on your side: "SAML assertion rejected: required attribute 'email' not present (NameID format: urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified)"
+> > - Okta System Log shows the assertion issued with attribute statements firstName, lastName, login. I have a screenshot of the attribute statement if that helps.
+> > - Metadata XML re-uploaded twice, cert fingerprint matches on both ends.
+> >
+> > I also tried switching the NameID format to emailAddress in the app profile, same 400. 12 users affected, all in the pilot group. Would like to get this sorted before Tuesday (Monday is a holiday here) so they can log in on day one.
+> >
+> > Our ticket ref: HAL-IT-2291.
+> >
+> > Joel Brennan | IT Systems | Halberd Manufacturing

@@ -1,0 +1,68 @@
+thread_id: t-int-allhands-0911
+subject: "All hands today 3:00 - agenda"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_by_team
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [meeting:all-hands]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 17
+    time: "08:45"
+    from: kim
+    to: [team_list]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi all,
+
+      Agenda for today's all hands, 3:00-3:45:
+
+      1. Numbers + hiring update (Avery, 5 min)
+      2. Offsite: October 23 is booked, what to expect (Kim, 5 min)
+      3. Eng: sprint 19, what shipped since last time (Jordan, 10 min)
+      4. GTM: three new logos in the pipeline (Tomás, 10 min)
+      5. Support: what customers asked us this month (Mateo, 5 min)
+      6. Q&A
+
+      Kim
+  - id: m2
+    beat_ref: null
+    day: 17
+    time: "09:10"
+    from: jordan
+    to: [kim]
+    cc: [team_list, avery]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      Can we add 3 minutes on the on-call handoff change (moves to Monday 10:00)? The whole team should know, since it changes who answers what on Monday mornings.
+  - id: m3
+    beat_ref: null
+    day: 17
+    time: "09:20"
+    from: kim
+    to: [jordan]
+    cc: [team_list, avery]
+    reply_to: m2
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      Added as 3b, 3 minutes. The agenda in the invite is updated.

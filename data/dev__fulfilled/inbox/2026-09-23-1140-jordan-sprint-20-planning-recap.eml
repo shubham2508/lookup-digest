@@ -1,0 +1,31 @@
+Message-ID: <20260923-1140.jordan@tessera.io>
+Date: Wed, 23 Sep 2026 11:40:04 -0700
+From: Jordan Liu <jordan@tessera.io>
+To: Tessera Engineering <eng@tessera.io>
+Cc: Avery Chen <avery@tessera.io>
+Subject: Sprint 20 - planning recap
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Recap from this morning's planning. Two weeks as usual.
+
+Impact first: land multi-line ingest, fix the two regressions Lena found, keep the connector work boring.
+
+Committed:
+- Multi-line ingest refactor (#412): finish review and merge this week - Dev
+- TES-1042 export CSV encoding (write the BOM): fix is up, one-liner - Omar
+- TES-1043 date filter restore path: after #412 - Dev
+- Circuit breaker for the connector retry path (the #389 follow-up) - Omar
+- Regression pass on the above, plus the Windows Excel case added to the suite permanently - Lena
+- Manual-upload guide and retention doc for the Ridgeway and Calder pilots - Yuki (with Mateo)
+- Sofia is on a customer ingest cutover this week and has nothing else assigned on purpose
+
+Stretch:
+- Audit log export UI (the #417 backend is in) - Dev
+
+Not this sprint: PDF export (FR-118), dark mode (FR-121). Both real, both later.
+
+Jordan
+
+Jordan

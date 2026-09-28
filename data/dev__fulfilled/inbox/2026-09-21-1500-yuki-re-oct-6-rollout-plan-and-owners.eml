@@ -1,0 +1,40 @@
+Message-ID: <20260921-1500.yuki@tessera.io>
+Date: Mon, 21 Sep 2026 15:00:40 -0700
+From: Yuki Sato <yuki@tessera.io>
+To: Renee Tan <renee.tan@halberd.com>
+Cc: Avery Chen <avery@tessera.io>
+Subject: Re: Oct 6 rollout - plan and owners
+In-Reply-To: <20260921-1050.renee.tan@halberd.com>
+References: <20260827-0940.renee.tan@halberd.com> <20260827-1315.avery@tessera.io> <20260830-1005.renee.tan@halberd.com> <20260830-1530.yuki@tessera.io> <20260902-0850.renee.tan@halberd.com>
+ <20260916-0905.renee.tan@halberd.com> <20260916-1240.avery@tessera.io> <20260921-1050.renee.tan@halberd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi Renee,
+
+Attached: Halberd_Fresno_cutover_checklist_v1.pdf. Twenty-two items across three phases:
+
+1. T-7 to T-1: data freeze, final mapping import, SSO group sync, operator accounts (owner: me, with Joel).
+2. Go-live day, Oct 6: 05:00 switch-over before day shift, floor walk with the shift leads, 09:00 checkpoint with you (owner: me).
+3. T+1 to T+5: daily 15-minute check-in, open-issues list, T+5 sign-off (owner: you and me).
+
+Every item has a name and a time next to it. Happy to walk through it at tomorrow's weekly.
+
+Avery, nothing needed from you on this one; cc'ing so you have it.
+
+Best,
+
+Yuki Sato
+Solutions Engineering, Tessera
+
+On Mon, Sep 21, 2026 at 10:50 AM, Renee Tan <renee.tan@halberd.com> wrote:
+> Yuki,
+>
+> Do you have a cutover checklist for the 6th? Our steering committee wants to see one before they sign off on the comms to the floor, and I'd rather send them yours than write my own.
+>
+> If you have it by tomorrow's weekly that's perfect, if not, later this week is fine.
+>
+> Renee
+>
+> Renee Tan | Procurement Lead | Halberd Manufacturing

@@ -1,0 +1,33 @@
+Message-ID: <20260910-0644.hello@latentdispatch.ai>
+Date: Thu, 10 Sep 2026 06:44:21 -0700
+From: Latent Dispatch <hello@latentdispatch.ai>
+To: Avery Chen <avery@tessera.io>
+Subject: Latent Dispatch: Kestrel matches, Pelagic 2.5 in production, a caching cautionary tale
+List-Unsubscribe: <mailto:unsubscribe@latentdispatch.ai?subject=unsubscribe>, <https://latentdispatch.ai/u/707d991f>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+LATENT DISPATCH
+Thu Sep 10 · 5 items · ~4 min
+
+KESTREL MATCHES THE MID-TIER CUT, ADDS A TWIST
+Kestrel matched Argent and Nimbus on price and added a committed-use tier: prepay for a quarter, get a further 15% off. The prepay is non-refundable and non-transferable across models, which matters when a better model ships mid-quarter. Do the math on your own churn between models before committing. https://latentdispatch.ai/p/kestrel-committed
+
+PELAGIC 2.5 IN PRODUCTION: TWO WEEKS IN
+Reports from teams that switched: quality up on multi-step tasks, output-token spend up 2.5–4x on the same tasks, net cost roughly flat once they capped reasoning. The cap is the whole game.
+
+A CACHING CAUTIONARY TALE
+A team put a timestamp in its system prompt for "freshness." The timestamp changed every minute, so the prefix cache never hit, and they paid full price on 6k tokens per call for three months. Put dynamic content at the end of the prompt. https://latentdispatch.ai/p/caching-tale
+
+HALCYON DROPS PER-IMAGE PRICE 30%
+Vision is following text down the curve. Halcyon Vision 3 is now $0.0014 per image at standard resolution.
+
+SHORT TAKES
+· Sable-3 Mini gets JSON-schema mode.
+· Lodestone publishes a rate card for R2 batch: half price, 24-hour window.
+· Larkspur hits 10k GitHub stars. The boring framework is winning.
+
+—
+You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1

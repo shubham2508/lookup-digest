@@ -1,0 +1,26 @@
+Message-ID: <20260904-1620.mateo@tessera.io>
+Date: Fri, 04 Sep 2026 16:20:05 -0700
+From: Mateo Silva <mateo@tessera.io>
+To: Jordan Liu <jordan@tessera.io>
+Cc: Avery Chen <avery@tessera.io>, Yuki Sato <yuki@tessera.io>
+Subject: Support tickets - week of Aug 31
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Weekly summary: 14 tickets opened, 13 closed, 1 pending customer reply.
+
+By topic:
+- Dashboard timezone confusion (4): "why does the day start at 5pm" - all from plants outside Pacific. Answered each time, same answer. TS-1171, TS-1174, TS-1180, TS-1183.
+- Export questions (3): two were "how do I", one was the large-plant timeout, which stopped reproducing after #371 shipped. TS-1169, TS-1172, TS-1185.
+- User admin (3): add/remove users, one password reset. TS-1170, TS-1177, TS-1181.
+- Connector column-count warnings (2): both were the customer changing their feed without telling anyone. The new error message helped; they self-fixed. TS-1178, TS-1184.
+- Other (2): a PDF export request (logged as FR-118, Brightline) and a login-page typo (fixed, TS-1186, thanks Dev).
+
+Pending: TS-1187, waiting on the customer for a sample file.
+
+Median first response: 22 min. Median resolution: 3.1 hours.
+
+Mateo
+
+Mateo | Tessera Support

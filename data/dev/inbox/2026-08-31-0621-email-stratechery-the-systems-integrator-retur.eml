@@ -1,0 +1,30 @@
+Message-ID: <20260831-0621.email@stratechery.com>
+Date: Mon, 31 Aug 2026 06:21:58 -0700
+From: Stratechery <email@stratechery.com>
+To: Avery Chen <avery@tessera.io>
+Subject: Stratechery: The Systems Integrator Returns
+List-Unsubscribe: <mailto:unsubscribe@stratechery.com?subject=unsubscribe>, <https://stratechery.com/u/7f320df8>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+STRATECHERY
+Monday, August 31, 2026
+
+The Systems Integrator Returns
+
+Every few years someone declares the death of the systems integrator, and every few years the integrators post record revenue. The reason is simple: enterprises do not buy technology, they buy change, and change is labor. The AI cycle was supposed to be different because the software would do the integration itself. Eighteen months in, the evidence points the other way.
+
+The pattern I see in mid-market deployments, particularly in industrial and supply-chain settings, is that the model is the easy part. The hard part is the data: it lives in an ERP from 2009, a plant-floor historian with a proprietary export, three spreadsheets, and one person's head. Connecting those things is not a prompt engineering problem; it is a mapping, cleaning, and politics problem, and it looks exactly like the work integrators have always done.
+
+What has changed is who does it. The big consultancies are staffing up, of course, but the more interesting move is that software vendors themselves are becoming integrators. A startup selling into manufacturers cannot wait for a channel partner to learn its product; it sends its own solutions engineers on site, builds the connectors, and eats the cost. Its gross margin suffers, its sales cycle stays long, and its investors start asking whether it is a software company at all.
+
+I think the honest answer is "not yet." The historical arc is that services-heavy deployments become productized over time as the vendor learns which twenty connectors cover eighty percent of customers. The companies that win are the ones that treat every services engagement as R&D for the product, rather than as revenue to be maximized.
+
+There is a second-order effect worth watching. If the vendor is doing the integration, the vendor owns the data pipeline, and the data pipeline is the moat. The model can be swapped; the connector into a plant's quality system cannot, at least not cheaply. This is the same dynamic that made the early cloud ERPs sticky, and it suggests that the durable AI companies in industrial verticals will look a lot more like the last generation of vertical software than the pitch decks admit.
+
+Read on the web: https://stratechery.com/2026/the-systems-integrator-returns/
+
+—
+You are receiving this because you subscribed to Stratechery Daily Updates. Manage your subscription or unsubscribe: https://stratechery.com/account/

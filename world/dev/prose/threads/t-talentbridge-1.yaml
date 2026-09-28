@@ -1,0 +1,48 @@
+thread_id: t-talentbridge-1
+subject: "VP Engineering opportunity - Series B logistics platform"
+storyline: BG-talentbridge
+category: recruiters
+labels:
+  kind: thread
+  must_not: true
+  reason: lone_recruiter_until_pattern
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: promotional
+    about: [other:recruiter-talentbridge]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 24
+    time: "10:20"
+    from: chad
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi Avery,
+
+      I hope this finds you well! I came across your profile and was impressed by your engineering leadership experience at Tessera, particularly your work scaling backend teams at a Series C company.
+
+      I'm partnering with a well-funded Series B logistics platform (backed by top-tier investors, $40M raised) on an exciting opportunity for a VP of Engineering. This is a rare chance to own the technical roadmap for a 35-person engineering org with a strong remote-first culture and meaningful equity.
+
+      Highlights:
+      - Reports directly to the CEO
+      - Team of 35 engineers across 4 pods
+      - Competitive base + equity + full benefits
+      - Hybrid in Denver or fully remote
+
+      Would you be open to a brief 15-minute conversation this week or next to learn more? Even if the timing isn't right, I'd love to stay connected for future opportunities.
+
+      Looking forward to hearing from you!
+
+      Best regards,

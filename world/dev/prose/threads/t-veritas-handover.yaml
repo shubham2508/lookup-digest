@@ -1,0 +1,84 @@
+thread_id: t-veritas-handover
+subject: "Introduction - taking over procurement"
+storyline: S7
+category: customers
+labels: null
+messages:
+  - id: m1
+    beat_ref: S7.b12
+    day: 15
+    time: "09:20"
+    from: nadia
+    to: [avery]
+    cc: [tomas, simon]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi Avery,
+
+      Nadia Rahimi here. I'm taking over from Simon as procurement lead at Veritas as of today. Simon is around until Friday for handover, but I'm your point of contact from here on.
+
+      Two things:
+
+      1. Could we grab 20 minutes this week or next so I can put a face to the name? Happy to do it with Tomás too.
+      2. Where does the renewal stand? I have Walter's note about holding it for the vendor review and Simon's summary of the tier question, but I'd rather hear it from you.
+
+      Next step from my side: send me two or three slots and I'll take the first one that works.
+
+      Thanks!
+      Nadia
+  - id: m2
+    beat_ref: S7.b13
+    day: 15
+    time: "12:05"
+    from: avery
+    to: [nadia]
+    cc: [tomas, simon]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      nadia, welcome - and thanks for the quick intro. Tomás will send you a few times for the 20 minutes; I'll join.
+
+      on the renewal: Walter asked us to hold it until your vendor review is done and pick it up mid-month, so Tomás will reach out the week of the 14th with proposed terms. nothing you need to chase in the meantime.
+
+      Avery
+  - id: m3
+    beat_ref: S7.b14
+    day: 16
+    time: "10:10"
+    from: nadia
+    to: [tomas]
+    cc: [avery]
+    reply_to: m2
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Tomás - thanks for the slots you sent over. Thursday the 17th at 13:30 works best for me; Tuesday I'm on the floor all day. Can you send the invite to this address and copy Avery? If 14:00 is easier on your side that's fine too - just pick one.
+
+      Nadia
+  - id: m4
+    beat_ref: S7.b15
+    day: 16
+    time: "13:30"
+    from: tomas
+    to: [nadia]
+    cc: [avery]
+    reply_to: m3
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Booked! Thursday the 17th, 13:30-13:50 PT, invite is in your inbox and Avery is on it. I'll bring a one-page summary of where we are on line 1 (usage, alerting, the tier question Simon raised) so we can spend the time on what you want to do next rather than on history.
+
+      Also - welcome aboard! Simon said very kind things about you on the handover call, and Yuki says Ivan's team is already the fastest at acknowledging alerts of anyone we work with, so you're inheriting a good setup.
+
+      One small thing for the vendor file, so it doesn't surprise you: our SOC 2 report and security questionnaire live in a trust portal rather than as email attachments. Jordan Liu (our Head of Engineering) owns that, so if the review needs it, Jordan's the person.
+
+      See you Thursday!
+
+      Tomás

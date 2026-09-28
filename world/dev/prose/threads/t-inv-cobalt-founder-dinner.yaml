@@ -1,0 +1,46 @@
+thread_id: t-inv-cobalt-founder-dinner
+subject: "You're invited: Cobalt Ridge portfolio founders dinner - Oct 8, SF"
+storyline: null
+category: investors_board
+labels:
+  kind: thread
+  must_not: true
+  reason: mass_mailing
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: social
+    about: [other:cobalt-founders-dinner]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: capital, subtype: existing_investor_ops}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 10
+    time: "10:00"
+    from: cobalt_office
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    bulk: true
+    signature: default
+    body: |
+      Dear Cobalt Ridge founders,
+
+      Please join us for our fall portfolio founders dinner.
+
+      When: Thursday, October 8, 6:30 pm
+      Where: The Barrel Room, 415 Sansome St, San Francisco
+      Who: founders and CEOs across Funds II and III, plus the Cobalt Ridge partners
+
+      This year's format is small tables by stage, so you'll be seated with founders raising or closing a Series A. Diane and Tom will each host a table.
+
+      RSVP by October 2 using the link below; plus-ones are welcome with a heads-up, and dietary needs can go in the form.
+
+      cobaltridge.vc/founders-dinner-2026
+
+      We hope to see you there.

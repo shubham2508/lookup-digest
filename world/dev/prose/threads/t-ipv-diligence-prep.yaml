@@ -1,0 +1,29 @@
+thread_id: t-ipv-diligence-prep
+subject: "Ahead of Monday - a few things"
+storyline: S2
+category: investors_board
+labels: null
+messages:
+  - id: m1
+    beat_ref: S2.b4
+    day: 29
+    time: "06:05"
+    from: elena
+    to: [avery]
+    cc: [marcus]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      Marcus tells me Monday 10am is confirmed. So the call is a working session rather than a tour, I'd like three things in hand before we speak:
+
+      1. An architecture overview: ingest path, storage, model serving, and where the inference calls sit. A diagram plus a page of notes is enough; no need to produce anything new if it already exists.
+      2. Ingest uptime for the last 90 days, per customer: percent of batches accepted, and the number of incidents longer than 30 minutes. Halberd, Northstar and Veritas separately.
+      3. The inference cost line in your model: what you pay per 1M tokens today, what you assume for FY27, and the sensitivity if the price moves 25% either way.
+
+      If you can get these to me by Friday I'll have read them before Monday. Send them to me directly; Ravi will add them to the data room.
+
+      Elena

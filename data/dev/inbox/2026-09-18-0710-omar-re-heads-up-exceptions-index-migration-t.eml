@@ -1,0 +1,15 @@
+Message-ID: <20260918-0710.omar@tessera.io>
+Date: Fri, 18 Sep 2026 07:10:29 -0700
+From: Omar Haddad <omar@tessera.io>
+To: Tessera Engineering <eng@tessera.io>
+Cc: Avery Chen <avery@tessera.io>
+Subject: Re: heads up: exceptions index migration tonight 21:00
+In-Reply-To: <20260917-1520.omar@tessera.io>
+References: <20260917-1520.omar@tessera.io>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+done. 21:00 to 21:07. seven minutes, which means I owe someone a coffee for the bet I didn't make. exception queries are ~4x faster on the big plants. nothing else changed, I checked twice.
+
+Omar

@@ -1,0 +1,30 @@
+Message-ID: <20260914-0607.email@stratechery.com>
+Date: Mon, 14 Sep 2026 06:07:44 -0700
+From: Stratechery <email@stratechery.com>
+To: Avery Chen <avery@tessera.io>
+Subject: Stratechery: The Bundle Comes for AI
+List-Unsubscribe: <mailto:unsubscribe@stratechery.com?subject=unsubscribe>, <https://stratechery.com/u/9e0a05f9>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+STRATECHERY
+Monday, September 14, 2026
+
+The Bundle Comes for AI
+
+There are only two ways to make money in software: bundling and unbundling. The last eighteen months were an unbundling phase, in which a thousand startups each took one workflow, wrapped a model around it, and sold it as a product. The next phase is starting, and it is a bundle.
+
+The signal is in the incumbents' pricing pages. The large productivity suites are now including assistant features in the existing seat price, or in a modest tier upgrade, rather than selling them as a separate SKU. That is a classic bundling move: use a distribution advantage to make the standalone competitor's product a feature. It worked against the standalone spreadsheet, the standalone email client, and the standalone video-conferencing tool, and there is no reason to think it will not work against the standalone meeting summarizer.
+
+Where bundling fails is when the standalone product does something the bundle structurally cannot. In the last cycle that meant products that owned a different data source (the CRM, the code repository) or a different buyer (the developer, the designer). In this cycle, I think it means products that own a different context: the vendor that has integrated with the customer's plant floor or ledger or supplier network has data the suite will never see, and the assistant that sees that data will be better at the job than the one that sees only documents.
+
+So the question every AI application founder should be asking is not "is my feature better than the suite's?" but "does my product see something the suite cannot?" If the answer is yes, bundling is a nuisance. If the answer is no, bundling is the end of the road, and the only question is the acquisition price.
+
+There is a corollary for buyers: the suite's assistant will be good enough for generic work sooner than you think, and the budget for standalone tools should be reserved for the ones with proprietary context. Everyone else is a feature waiting to be absorbed.
+
+Read on the web: https://stratechery.com/2026/the-bundle-comes-for-ai/
+
+—
+You are receiving this because you subscribed to Stratechery Daily Updates. Manage your subscription or unsubscribe: https://stratechery.com/account/

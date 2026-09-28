@@ -1,0 +1,39 @@
+thread_id: t-int-payroll-sep15
+subject: "September 15 payroll submitted (FYI)"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: internal_fyi
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [other:payroll-september-15]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 21
+    time: "09:15"
+    from: kim
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      Mid-month payroll was submitted Friday and pays out today, September 15. Gross $187,420.16, same as the last run.
+
+      While I have you: the Q3 estimated tax payments went out on September 8 via Pinnacle ($11,250.00 federal, $2,640.00 California); Rina's confirmation is filed under Tax/2026/Q3. That was the thread you were cc'd on last week.
+
+      Nothing needed from you.
+
+      Kim

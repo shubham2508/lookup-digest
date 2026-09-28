@@ -1,0 +1,30 @@
+Message-ID: <20260828-1710.jordan@tessera.io>
+Date: Fri, 28 Aug 2026 17:10:27 -0700
+From: Jordan Liu <jordan@tessera.io>
+To: Tessera Engineering <eng@tessera.io>
+Cc: Avery Chen <avery@tessera.io>
+Subject: Eng week in review - Aug 28
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Short one, it's Friday.
+
+Shipped:
+- #371 streaming CSV export (Sofia). Large-plant exports no longer time out. Our single biggest support-ticket source, gone.
+- Ingest connector: clearer error message when a feed's column count changes (Omar)
+- Two help-center pages live (Mateo)
+
+In progress:
+- Retry/backoff design doc, review next week (Omar + Dev)
+- Plant-timezone-aware date filter, design (Sofia)
+- Regression suite expansion (Lena)
+
+Watching:
+- p95 ingest latency crept up to ~900ms on the big feeds this week. Not customer-visible. Priya is looking at connection pooling.
+
+Have a good weekend.
+
+Jordan
+
+Jordan

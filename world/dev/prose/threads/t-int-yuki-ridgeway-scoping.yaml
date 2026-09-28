@@ -1,0 +1,57 @@
+thread_id: t-int-yuki-ridgeway-scoping
+subject: "Call notes: Ridgeway Metals - scoping call (Sep 16)"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: closed_by_courtesy
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [deal:ridgeway-metals]
+    ball_awaiting: nobody
+    closed_by_courtesy: true
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 22
+    time: "16:30"
+    from: yuki
+    to: [tomas, ana]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Notes from this afternoon's scoping call with Ridgeway Metals: Dale Whitcombe (Ops Director), Bud Halloran (plant manager), Tomás and me. 45 minutes on Zoom; Dale used the phone dial-in.
+
+      1. Setup: one mill in Stockton, two rolling lines. Line B is the one that runs slower on nights and nobody can say why. 22 machines across both lines.
+      2. Data today: the PLC historian on line B exports a CSV nightly (confirmed by Bud, who also keeps a parallel log in a notebook, and read us three weeks of it from memory).
+      3. What they want first: the exception report on line B only. Telemetry dashboards later, if the exception report earns it. Dale's words: "prove it on one line".
+      4. Data access: manual upload of the nightly CSV for the first two weeks, connector after. Their IT contractor is in on Wednesdays, which is when we would set the connector up.
+      5. Trial shape we discussed: six weeks, one line, on-site kickoff. Success criterion Dale proposed himself: night-shift alerts acknowledged inside 15 minutes. Price did not come up; Dale did not ask and Tomás did not offer.
+      6. Personal note: Bud has eleven years of notebooks. We are not replacing those; we are adding to them. Worth saying in the scoping doc.
+
+      Follow-ups: Ana is writing the scoping doc; I owe Bud the manual-upload guide by Tuesday. Nothing for Avery.
+
+      Yuki
+  - id: m2
+    beat_ref: null
+    day: 22
+    time: "17:00"
+    from: ana
+    to: [yuki]
+    cc: [tomas, avery]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Thank you Yuki!! CRM updated. Scoping doc draft to Tomás by Monday, to Dale next week.
+
+      Ana

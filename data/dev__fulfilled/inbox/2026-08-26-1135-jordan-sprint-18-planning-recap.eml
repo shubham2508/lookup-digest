@@ -1,0 +1,31 @@
+Message-ID: <20260826-1135.jordan@tessera.io>
+Date: Wed, 26 Aug 2026 11:35:53 -0700
+From: Jordan Liu <jordan@tessera.io>
+To: Tessera Engineering <eng@tessera.io>
+Cc: Avery Chen <avery@tessera.io>
+Subject: Sprint 18 - planning recap
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Recap from this morning's planning. Two-week sprint, ends Sep 8.
+
+Impact first: this sprint is about export reliability and getting the connector retry story solid before the Q4 pilots start.
+
+Committed:
+- Streaming CSV export (large plants were timing out at ~200k rows) - Dev
+- Connector retry/backoff rewrite (design this sprint, ship next) - Omar
+- Dashboard date filter: plant-timezone-aware ranges, design doc - Sofia
+- Regression suite for export + filters - Lena
+- Support: help-center pages for the top 5 ticket topics - Mateo
+
+Stretch:
+- Stale feature flag cleanup - Dev
+
+Not this sprint: multi-line ingest refactor (needs the filter work and a design review first; sprint 19 at the earliest).
+
+Capacity: Dev is out Sep 3-4, planned for.
+
+Jordan
+
+Jordan

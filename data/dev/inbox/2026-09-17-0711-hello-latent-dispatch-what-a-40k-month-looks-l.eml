@@ -1,0 +1,30 @@
+Message-ID: <20260917-0711.hello@latentdispatch.ai>
+Date: Thu, 17 Sep 2026 07:11:39 -0700
+From: Latent Dispatch <hello@latentdispatch.ai>
+To: Avery Chen <avery@tessera.io>
+Subject: Latent Dispatch: what a $40k month looks like, Quillon raises, the frontier gap narrows
+List-Unsubscribe: <mailto:unsubscribe@latentdispatch.ai?subject=unsubscribe>, <https://latentdispatch.ai/u/e5a4187a>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+LATENT DISPATCH
+Thu Sep 17 · 4 items · ~3 min
+
+ANATOMY OF A $40K INFERENCE MONTH
+A Series A company shared its August bill breakdown with us (anonymized). 55% was a one-time backfill for two new customers; 30% was steady-state extraction; 15% was retries and a runaway summarization job. Their steady-state cost is fine. Their forecast was not, because it did not model backfills as a separate line. Same lesson as last week, with numbers. https://latentdispatch.ai/p/40k-month
+
+QUILLON RAISES $200M
+Use of funds: compute and a document-model team. Quillon-M has been the quiet success of the summer for anyone processing paper.
+
+THE FRONTIER GAP IS NARROWING ON THE TASKS THAT PAY THE BILLS
+Our quarterly look at the gap between the best proprietary model and the best open model, by task family. Extraction: 2 points. Classification: 1 point. Tool use: 3 points. Hard reasoning: 14 points. If your workload is the first three, the open model is the rational default now. https://latentdispatch.ai/p/frontier-gap-q3
+
+SHORT TAKES
+· Argent adds a 24-hour batch tier at 50% off. Everyone has one now.
+· Larkspur 1.2: native cost tracking per state.
+· Ostrava's document model gets a handwriting update. Still not great; better.
+
+—
+You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1

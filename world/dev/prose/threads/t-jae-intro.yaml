@@ -1,0 +1,37 @@
+thread_id: t-jae-intro
+subject: "we met at the SF founders dinner"
+storyline: BG-jae
+category: investors_board
+labels:
+  kind: thread
+  must_not: false
+  reason: null
+  classification_case: unresolved_surface
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [other:jae-whitlock-intro]
+    ball_awaiting: avery
+    closed_by_courtesy: false
+    sender_relationship: {category: unresolved, subtype: null}
+    asks: [{to_avery: true, kind: meeting, deadline_day: null, status: open}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 28
+    time: "20:10"
+    from: jae
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      Avery - Jae here, we met at the founders dinner in July (the one at the Mission place, I was sitting next to one of your engineers, Dev I think). You mentioned the manufacturing stuff and it stuck with me.
+
+      My fund is putting together a supply-chain thesis for next year and Tessera keeps coming up in conversations, Nia at Corvid said good things too. Would love 30 min to hear where things are, no agenda. I'm around most of next week.
+
+      Jae

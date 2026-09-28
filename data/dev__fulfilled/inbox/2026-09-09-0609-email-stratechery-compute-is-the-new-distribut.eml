@@ -1,0 +1,30 @@
+Message-ID: <20260909-0609.email@stratechery.com>
+Date: Wed, 09 Sep 2026 06:09:55 -0700
+From: Stratechery <email@stratechery.com>
+To: Avery Chen <avery@tessera.io>
+Subject: Stratechery: Compute Is the New Distribution
+List-Unsubscribe: <mailto:unsubscribe@stratechery.com?subject=unsubscribe>, <https://stratechery.com/u/dabb67ea>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+STRATECHERY
+Wednesday, September 9, 2026
+
+Compute Is the New Distribution
+
+For most of the internet era the scarce resource was attention, and the companies that owned the channels to it (search, social, the app store) captured most of the profit. My thesis for this cycle is that the scarce resource is compute, and that the companies which own access to it will occupy the position that the distribution owners occupied in the last one.
+
+The evidence is in the deal flow. The frontier labs are not competing primarily on research anymore; they are competing on multi-year capacity commitments, and the chip and cloud vendors are choosing winners by deciding who gets allocation. A startup with a better architecture and no GPUs is a research paper. A lab with a mediocre architecture and a hundred thousand accelerators is a business.
+
+Downstream, the same logic applies with smaller numbers. An application company's ability to serve customers at a reasonable margin depends on inference pricing it does not control. When a provider cuts prices, the whole application layer's economics improve overnight; when a provider raises rate limits or deprecates a model, roadmaps get rewritten. That is the definition of a dependency, and dependencies are where power sits.
+
+What does an application company do about this? Three things, I think. First, multi-source: keep at least two providers in production and the routing logic in your own code, so that a pricing change is a config change rather than a rewrite. Second, own the cache: a large fraction of enterprise inference is repeated, and a company that caches aggressively is buying its own compute at zero marginal cost. Third, distill: the moment a task is stable, train a small model on the big model's outputs and serve it yourself. None of this is novel, but very few companies do all three, and the ones that do have structurally better margins.
+
+The larger point is that "AI strategy" for most companies is going to look a lot like supply chain strategy: second-sourcing, inventory, and negotiating leverage. That is a less exciting frame than "we are building AGI," but it is the frame that will separate the companies that survive the next price war from the ones that do not.
+
+Read on the web: https://stratechery.com/2026/compute-is-the-new-distribution/
+
+—
+You are receiving this because you subscribed to Stratechery Daily Updates. Manage your subscription or unsubscribe: https://stratechery.com/account/

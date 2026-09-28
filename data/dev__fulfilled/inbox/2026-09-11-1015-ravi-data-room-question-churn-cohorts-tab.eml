@@ -1,0 +1,21 @@
+Message-ID: <20260911-1015.ravi@inflectionpoint.vc>
+Date: Fri, 11 Sep 2026 10:15:22 -0700
+From: Ravi Menon <ravi@inflectionpoint.vc>
+To: Avery Chen <avery@tessera.io>
+Cc: Kim Delgado <kim@tessera.io>
+Subject: Data room question - churn cohorts tab
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi Avery,
+
+One question from the analysts on the cohort tab (Customers_Cohorts_2026-08.xlsx, "Logo churn" sheet): the 2025 cohort shows one churned logo, but the notes column mentions two pilots that ended in Q1. Is logo churn counted net of pilots that never converted to an annual contract, or are those the same two? We want to make sure we're not double-counting in our model.
+
+Copying Kim in case this is quicker for her to answer.
+
+Best,
+Ravi
+
+Ravi Menon
+Associate, Inflection Point Ventures

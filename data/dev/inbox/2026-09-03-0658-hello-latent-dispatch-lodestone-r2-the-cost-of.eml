@@ -1,0 +1,30 @@
+Message-ID: <20260903-0658.hello@latentdispatch.ai>
+Date: Thu, 03 Sep 2026 06:58:49 -0700
+From: Latent Dispatch <hello@latentdispatch.ai>
+To: Avery Chen <avery@tessera.io>
+Subject: Latent Dispatch: Lodestone-R2, the cost of retries, and who actually uses 1M context
+List-Unsubscribe: <mailto:unsubscribe@latentdispatch.ai?subject=unsubscribe>, <https://latentdispatch.ai/u/905a508b>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+LATENT DISPATCH
+Thu Sep 3 · 4 items · ~3 min
+
+LODESTONE-R2 IS THE NEW REASONING LEADER, FOR NOW
+Lodestone's R2 tops the hard-reasoning boards by a clear margin and costs $4 / $16 per million. It is slow (median 40s on multi-step tasks) and it is not what you want for extraction. It is what you want for the one call per workflow where being wrong is expensive. https://latentdispatch.ai/p/lodestone-r2
+
+RETRIES ARE EATING YOUR BUDGET
+A useful piece of arithmetic from a reader: if 8% of calls fail validation and you retry once with the error appended, your effective cost is 1.08x. If you retry three times, it is closer to 1.2x, and the third retry rarely succeeds. One retry with the error message, then degrade gracefully, is the pattern most production teams have converged on. https://latentdispatch.ai/p/retry-math
+
+WHO USES 1M-TOKEN CONTEXT?
+We asked. Answers from 40 teams: legal discovery, codebase-wide refactors, and "loading the whole customer history once to build a summary that we then cache." Nobody is using it for per-request work. The window is a batch feature wearing a real-time costume.
+
+SHORT TAKES
+· Sable-3 Mini gets a 20% price cut three weeks after launch. Predictable; still nice.
+· Larkspur adds a replay UI. You can now step through an agent run like a debugger.
+· Vireo-2 embeddings drop to $0.02 per million tokens. Embeddings are basically free now.
+
+—
+You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1

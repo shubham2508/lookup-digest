@@ -1,0 +1,27 @@
+Message-ID: <20260827-1148.notifications@github.com>
+Date: Thu, 27 Aug 2026 11:48:05 -0700
+From: GitHub <notifications@github.com>
+To: Avery Chen <avery@tessera.io>
+Subject: [tessera/infra] Run failed: CI - main (3e9d1f0)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Run failed for main (3e9d1f0)
+
+Repository: tessera/infra
+Workflow: CI
+Duration: 4m 12s
+Finished: 2026-08-27 18:48:03 UTC
+
+Jobs:
+  ✗ terraform-plan (failed)
+  ✓ terraform-fmt (succeeded)
+  ✓ lint (succeeded)
+
+terraform-plan: Error: Reference to undeclared resource "aws_iam_role.ingest_worker" (modules/ingest/iam.tf line 41)
+
+View workflow run: https://github.com/tessera/infra/actions/runs/11412203931
+
+--
+You are receiving this because you are subscribed to this repository.

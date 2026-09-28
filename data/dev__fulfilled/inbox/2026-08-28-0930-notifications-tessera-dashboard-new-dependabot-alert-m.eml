@@ -1,0 +1,23 @@
+Message-ID: <20260828-0930.notifications@github.com>
+Date: Fri, 28 Aug 2026 09:30:24 -0700
+From: GitHub <notifications@github.com>
+To: Avery Chen <avery@tessera.io>
+Subject: [tessera/dashboard] New Dependabot alert: moderate severity in axios
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Dependabot found a moderate severity vulnerability in a dependency of tessera/dashboard.
+
+Package: axios (npm)
+Affected versions: < 1.7.4
+Patched version: 1.7.4
+Advisory: GHSA-8hc4-vh64-cxmj - Server-side request forgery in axios when path-relative URLs are processed
+Manifest: package-lock.json
+
+Dependabot has opened a pull request to fix this alert: #229 Bump axios from 1.6.8 to 1.7.4
+
+View alert: https://github.com/tessera/dashboard/security/dependabot/17
+
+--
+You are receiving this because you are an admin of this repository.

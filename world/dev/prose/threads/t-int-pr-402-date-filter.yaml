@@ -1,0 +1,84 @@
+thread_id: t-int-pr-402-date-filter
+subject: "PR #402 - plant-timezone-aware date filter"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_by_team
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [other:pr-402-date-filter]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 23
+    time: "09:40"
+    from: sofia
+    to: [dev, omar]
+    cc: [avery, jordan]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      https://github.com/tessera-io/platform/pull/402
+
+      The date filter now resolves ranges in the plant's timezone instead of the browser's. "Last 7 days" for a plant in Ohio means Ohio days, which is what every customer assumed it already did. Presets and custom ranges persist per plant.
+
+      Big diff, sorry. Read it in this order: filters/range.py, then the API change, then the React bits.
+
+      Known subtlety: the persisted range is stored as UTC and restored in local, which is fine as long as restore goes through the same resolver. There's a test for the preset case.
+
+      Sofia
+  - id: m2
+    beat_ref: null
+    day: 23
+    time: "13:20"
+    from: dev
+    to: [sofia]
+    cc: [omar, avery, jordan]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      read it in order as instructed, range.py is nice. one nit and one real: the DST test uses a fixed date in March 2025, parametrize it so it doesn't rot. the real one: the presets dropdown re-renders on every tick, memoize it.
+
+      Dev
+  - id: m3
+    beat_ref: null
+    day: 23
+    time: "16:05"
+    from: omar
+    to: [sofia]
+    cc: [dev, avery, jordan]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      approved with Dev's two. I also checked that "last 7 days" in a UTC plant is 7 days and not 6.96, which I feel should come up at my performance review. merge is yours.
+
+      Omar
+  - id: m4
+    beat_ref: null
+    day: 23
+    time: "17:30"
+    from: sofia
+    to: [dev, omar]
+    cc: [avery, jordan, lena]
+    reply_to: m3
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Both fixed, merged, deploying tomorrow morning (before the Friday freeze, I checked the clock). Lena, it's all yours next week 🎉
+
+      Sofia

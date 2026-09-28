@@ -1,0 +1,32 @@
+Message-ID: <20260921-0611.email@stratechery.com>
+Date: Mon, 21 Sep 2026 06:11:54 -0700
+From: Stratechery <email@stratechery.com>
+To: Avery Chen <avery@tessera.io>
+Subject: Stratechery: Who Owns the Agent's Memory?
+List-Unsubscribe: <mailto:unsubscribe@stratechery.com?subject=unsubscribe>, <https://stratechery.com/u/8962162f>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+STRATECHERY
+Monday, September 21, 2026
+
+Who Owns the Agent's Memory?
+
+A quiet fight is starting over a question that sounds technical and is actually about lock-in: where does an assistant's memory of you live, and who can read it?
+
+The platform position is that memory belongs with the assistant. The model that has watched you work for a year knows your preferences, your contacts, your recurring decisions, and that knowledge makes it better, and it makes leaving expensive. This is the same logic that made the social graph valuable, and it is going to be defended with the same intensity.
+
+The application position is that memory belongs with the workflow. The tool that handles your procurement should remember your suppliers; the tool that handles your hiring should remember your candidates; neither should need to route through a general assistant to do so. This is the position of every vertical software company, and it is correct for them, because their memory is the product.
+
+The user position, to the extent it has been articulated, is that memory belongs to the user and should be portable. I am sympathetic and skeptical. Portability sounds good and has historically not mattered, because the value of the data is in the model that reads it, and the model is not portable.
+
+My guess is that the fight resolves the way the last one did: the platforms win the consumer layer, the applications win the enterprise layer, and the boundary is drawn by who the buyer is. A person will have one assistant that knows everything about them. A company will have twenty tools each knowing one thing, plus an orchestration layer that knows how to ask them. The interesting companies will be the ones that make the orchestration layer's job easy, by exposing memory in a structured, permissioned way, rather than hoarding it.
+
+For founders, the practical question is simpler: if your customer left tomorrow, what would they lose? If the answer is "the connectors," you have a product. If the answer is "the history," you have a moat. If the answer is "nothing," you have a problem.
+
+Read on the web: https://stratechery.com/2026/who-owns-the-agents-memory/
+
+—
+You are receiving this because you subscribed to Stratechery Daily Updates. Manage your subscription or unsubscribe: https://stratechery.com/account/

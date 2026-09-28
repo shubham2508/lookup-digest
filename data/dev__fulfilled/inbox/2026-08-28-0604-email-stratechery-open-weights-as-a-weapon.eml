@@ -1,0 +1,30 @@
+Message-ID: <20260828-0604.email@stratechery.com>
+Date: Fri, 28 Aug 2026 06:04:01 -0700
+From: Stratechery <email@stratechery.com>
+To: Avery Chen <avery@tessera.io>
+Subject: Stratechery: Open Weights as a Weapon
+List-Unsubscribe: <mailto:unsubscribe@stratechery.com?subject=unsubscribe>, <https://stratechery.com/u/4f1850a2>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+STRATECHERY
+Friday, August 28, 2026
+
+Open Weights as a Weapon
+
+"Commoditize your complement" is the oldest strategy essay on the internet, and it explains more about the current model market than any benchmark. When a company releases the weights of a frontier-adjacent model for free, it is not being generous. It is making a bet that the value it can capture elsewhere, in chips, in cloud, in the application it already sells, exceeds whatever it could have charged for the model itself, and that its competitors' pricing power is worth destroying.
+
+What is new this year is that the strategy is being run by more than one player at once, from more than one direction. A chip vendor wants models to be free so that demand for compute goes up. A cloud wants models to be free so that customers spend on hosting instead of on API margins. An enterprise software incumbent wants models to be free so that the frontier labs cannot charge it a toll. Each of these actors is happy to release a strong open model, and each release drags the price floor down for everyone.
+
+The frontier labs' answer has been to run faster: keep the best model proprietary and let the second-best leak. That works as long as the gap between best and second-best is large enough for customers to pay for. My read of the last six months is that the gap is holding at the top end (long-horizon agents, hard reasoning) and collapsing everywhere else. For most production workloads, which are extraction, classification, summarization, and routing, a well-served open model at a fifth of the price is simply the rational choice.
+
+This is why the interesting competition has shifted from "who has the best model" to "who serves open models best." Inference providers are competing on throughput, latency, and price per million tokens, and they are competing against the cloud giants who can afford to run inference at a loss for a decade. That is not a comfortable position for a venture-backed inference startup, and I expect consolidation.
+
+For application companies, the practical implication is unglamorous: your model choice is a procurement decision, not a strategic one, and it should be revisited quarterly. Build the abstraction, keep the switching cost low, and let the suppliers fight.
+
+Read on the web: https://stratechery.com/2026/open-weights-as-a-weapon/
+
+—
+You are receiving this because you subscribed to Stratechery Daily Updates. Manage your subscription or unsubscribe: https://stratechery.com/account/

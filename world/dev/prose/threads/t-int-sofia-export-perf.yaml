@@ -1,0 +1,46 @@
+thread_id: t-int-sofia-export-perf
+subject: "export job: 11 min -> 90 s"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: last_word_avery
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [other:export-job-perf]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 27
+    time: "14:20"
+    from: sofia
+    to: [eng_list]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      The nightly export job for the two biggest plants went from 11 minutes to 90 seconds this week: Omar's index migration plus the streaming path, compounding. No code change from me today, just credit where it's due. Graph in #eng 🎉
+
+      Sofia
+  - id: m2
+    beat_ref: null
+    day: 27
+    time: "18:10"
+    from: avery
+    to: [sofia]
+    cc: [eng_list]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      nice. that's the kind of graph I like. thanks both.

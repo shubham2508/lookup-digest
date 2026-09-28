@@ -1,0 +1,22 @@
+Message-ID: <20260917-1030.nadia.rahimi@veritascomponents.com>
+Date: Thu, 17 Sep 2026 10:30:30 -0700
+From: Nadia Rahimi <nadia.rahimi@veritascomponents.com>
+To: Yuki Sato <yuki@tessera.io>
+Cc: Avery Chen <avery@tessera.io>, Ivan Petrov <ivan.petrov@veritascomponents.com>
+Subject: Second line - ingest setup
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi Yuki,
+
+Good news: the second line at Reno got the green light this morning. Go-live is Wednesday the 23rd, and I'd like Tessera ingesting from the first shift rather than backfilling a week later.
+
+Ivan (copied) will send you the feed schema for line 2 today. It's the same PLC export as line 1 with three new station types.
+
+Next step: can you send me a plan with dates by end of day tomorrow? Ops wants to see it before they lock the start-up sequence.
+
+Thanks!
+Nadia
+
+Nadia Rahimi | Procurement Lead | Veritas Components

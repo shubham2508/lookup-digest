@@ -1,0 +1,36 @@
+Message-ID: <20260908-0718.issue@modelwatch.dev>
+Date: Tue, 08 Sep 2026 07:18:25 -0700
+From: Model Watch <issue@modelwatch.dev>
+To: Avery Chen <avery@tessera.io>
+Subject: Model Watch #53: mid-tier price cuts, Sable-3 agent mode, Ostrava on Kestrel
+List-Unsubscribe: <mailto:unsubscribe@modelwatch.dev?subject=unsubscribe>, <https://modelwatch.dev/u/8867a235>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+MODEL WATCH #53 — Tuesday, September 8, 2026
+
+1. ARGENT CUTS MID-TIER 25%; WHO MATCHES?
+Argent Systems cut every 10–35B-class model by 25% this morning with no volume requirement. Current hosted prices for the models most of you run in production ($/M in / out):
+
+  Model            Argent          Kestrel         Nimbus
+  Sable-3 Mini     $0.11 / $0.44   $0.14 / $0.58   $0.14 / $0.58
+  Quillon-L        $0.90 / $4.50   $1.20 / $6.00   $1.10 / $5.40
+  Tanager-Coder 2  $0.23 / $0.68   $0.30 / $0.90   $0.30 / $0.90
+
+We will update the table as others move.
+
+2. SABLE-3 AGENT MODE
+Server-side tool loop. On our 12-tool selection set it scores the same as calling Sable-3 in your own loop (96.0), so the gain is convenience, not accuracy. Trace format is proprietary; no mid-run interrupt.
+
+3. OSTRAVA DOCUMENT MODEL ON KESTREL
+$0.003 per page. On our procurement set: 92.8 field accuracy, slightly under Quillon-M (93.6) at 75% of the price. Handwriting remains weak for both.
+
+4. PRICE CHANGES THIS WEEK
+  Argent Systems, all 10–35B models: -25%
+  Kestrel, Nimbus: no change (yet)
+  Ostrava on Kestrel: new, $0.003/page
+
+—
+Model Watch is written by two people and a lot of scripts. Unsubscribe: https://modelwatch.dev/u/7c19e

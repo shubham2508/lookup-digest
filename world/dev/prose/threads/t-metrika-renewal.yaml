@@ -1,0 +1,45 @@
+thread_id: t-metrika-renewal
+subject: "Your Metrika annual plan renews on Sep 25 ($14,400)"
+storyline: BG-metrika
+category: vendors_misc
+labels:
+  kind: thread
+  must_not: false
+  reason: null
+  classification_case: vendor_auto_renewal_today
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [renewal:metrika]
+    ball_awaiting: avery
+    closed_by_courtesy: false
+    sender_relationship: {category: vendor, subtype: active_contract, stage: renewal_due}
+    asks: [{to_avery: true, kind: decision, deadline_day: 30, status: open}]
+    stage_signals: [{entity: metrika, stage: renewal_due, day: 29}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 29
+    time: "09:00"
+    from: metrika_billing
+    to: [avery]
+    cc: [kim]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hello Avery,
+
+      This is a reminder that the Metrika Team plan for Tessera (account #TS-20841) renews automatically on September 25, 2026.
+
+      Plan: Team (annual, 15 seats)
+      Renewal amount: $14,400 (unchanged from last year)
+      Payment method: card ending 4471
+      Renewal date: September 25, 2026
+
+      No action is needed to continue your service. If you would like to cancel or change your plan, reply to this email or cancel in settings (Workspace > Billing > Plan) before end of day September 24, 2026. Changes after the renewal date are prorated to the next billing period.
+
+      Thank you for using Metrika.

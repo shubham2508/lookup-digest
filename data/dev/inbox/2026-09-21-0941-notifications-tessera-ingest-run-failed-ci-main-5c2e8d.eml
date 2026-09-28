@@ -1,0 +1,27 @@
+Message-ID: <20260921-0941.notifications@github.com>
+Date: Mon, 21 Sep 2026 09:41:08 -0700
+From: GitHub <notifications@github.com>
+To: Avery Chen <avery@tessera.io>
+Subject: [tessera/ingest] Run failed: CI - main (5c2e8d7)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Run failed for main (5c2e8d7)
+
+Repository: tessera/ingest
+Workflow: CI
+Duration: 6m 27s
+Finished: 2026-09-21 16:41:09 UTC
+
+Jobs:
+  ✓ lint (succeeded)
+  ✗ unit (failed)
+  - integration (skipped)
+
+unit: 2 of 1,431 checks failed - reader/csv_bom: strips_bom_on_first_header, no_bom_unchanged (fixture path not found)
+
+View workflow run: https://github.com/tessera/ingest/actions/runs/11901355082
+
+--
+You are receiving this because you are subscribed to this repository.

@@ -1,0 +1,49 @@
+thread_id: t-franchise-tax
+subject: "Forwarded notice: Delaware annual franchise tax - amended report due Oct 1"
+storyline: BG-tax
+category: lawyer
+labels:
+  kind: thread
+  must_not: false
+  reason: null
+  classification_case: tax_compliance_notice
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [other:franchise-tax-notice]
+    ball_awaiting: avery
+    closed_by_courtesy: false
+    sender_relationship: {category: legal_gov, subtype: registered_agent}
+    asks: [{to_avery: true, kind: signature, deadline_day: 37, status: open}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 27
+    time: "11:30"
+    from: statewide_notices
+    to: [avery]
+    cc: [kim]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Client: Tessera, Inc. (DE file no. 7712094)
+      Notice type: Annual Franchise Tax - Amended Annual Report Required
+      Received by agent: September 21, 2026
+
+      We received the following notice from the Delaware Division of Corporations on behalf of Tessera, Inc. The text of the notice is reproduced below. Statewide Registered Agents does not prepare or file franchise tax reports; please route this to your accountant or corporate counsel.
+
+      ---------- NOTICE ----------
+      The Annual Franchise Tax Report filed for tax year 2025 lists total authorized shares that do not match the amended Certificate of Incorporation on file (filed 2025-11-03). An amended Annual Report using the Assumed Par Value Capital Method must be filed, and any additional tax paid, on or before October 1, 2026.
+
+      Failure to file by the due date results in a penalty of $200.00 plus interest at 1.5% per month on any unpaid tax balance. Continued non-compliance may result in the corporation losing its good standing.
+
+      The amended report must be signed by an authorized officer of the corporation.
+      ---------- END NOTICE ----------
+
+      Action needed: an officer's signature on the amended report before October 1. If you would like us to forward the original PDF to a different address, reply to this email with the recipient.
+
+      Ref: SRA-2026-091834

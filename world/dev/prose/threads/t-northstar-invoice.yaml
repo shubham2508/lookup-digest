@@ -1,0 +1,138 @@
+thread_id: t-northstar-invoice
+subject: "Invoice #TS-0834 - PO mismatch"
+storyline: S6
+category: customers
+labels: null
+messages:
+  - id: m1
+    beat_ref: S6.b7
+    day: 9
+    time: "10:30"
+    from: grace
+    to: [tomas]
+    cc: [avery, paul]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi Tomás,
+
+      Paul in AP kicked back your invoice TS-0834. The line 2 add-on is billed at the full annual rate ($19,000) but our PO 4500218877 was cut for the pro-rated amount to our contract anniversary ($7,125), which is what we agreed with Ana in July. AP can't pay against a mismatched PO - the system is very literal about it - so could you have someone reissue at the PO amount? Paul is cc'd and can send the PO copy if that helps.
+
+      Sorry for the admin.
+
+      Grace
+  - id: m2
+    beat_ref: S6.b8
+    day: 9
+    time: "15:15"
+    from: tomas
+    to: [grace]
+    cc: [avery, paul]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Grace!! Apologies, totally our miss - the add-on got keyed as a fresh annual instead of co-termed to your Nov 30 anniversary. Kim is reissuing TS-0834 at the PO amount ($7,125, pro-rated to Nov 30) and you'll have the corrected PDF tomorrow morning: same invoice number with an -R1 suffix so Paul's system doesn't see it as a second invoice, plus a credit memo for the original so your side has a clean void. Paul, if you'd rather handle it differently just say the word and Kim will do whatever your system likes best.
+
+      While I have you: line 2 data is looking great on our side. Yuki says the first week of batches came in clean, which honestly almost never happens on a second line. Would love to get Marta on a call at some point to hear what the operators think of the exception report now that it's split daily/weekly.
+
+      Also - no pressure at all - we're putting together the agenda for a Sept QBR and I'll send some dates separately next week. Would be great to have Henrik's team in the room this time if that's possible on your end, even for the first 20 minutes.
+
+      Thanks for flagging so fast, and sorry again for the admin!
+
+      Tomás
+  - id: m3
+    beat_ref: S6.b9
+    day: 10
+    time: "09:05"
+    from: grace
+    to: [tomas]
+    cc: [avery, paul]
+    reply_to: m2
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Got the -R1 this morning, thanks Tomás (and Kim). Paul has it in the queue for the next payment run.
+
+      QBR dates - yes please, send them. I'll ask Henrik, no promises.
+
+      Grace
+  - id: m4
+    beat_ref: S6.b16
+    day: 19
+    time: "16:40"
+    from: grace
+    to: [tomas]
+    cc: [avery, paul]
+    reply_to: m3
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Tomás - sorry for the Sunday email, I'm catching up.
+
+      Paul flagged a second mismatch on Friday: the -R1 posted fine, but the credit memo that came with it (CM-0834) is for the full $19,000 and we never posted the original invoice, so on our side it's sitting as an unapplied credit and the system now thinks Tessera owes us money. He emailed you directly on Saturday with the detail, I think. Can Kim take a look Monday? Paul's threshold for "escalate to Procurement" is low, in the nicest possible way.
+
+      Grace
+  - id: m5
+    beat_ref: S6.b17
+    day: 20
+    time: "15:00"
+    from: grace
+    to: [tomas]
+    cc: [avery, paul]
+    reply_to: m4
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Tomás,
+
+      Paul's notes from this morning, pasting so it's all in one place:
+
+      - TS-0834 (original, $19,000): rejected 9/3, never posted
+      - TS-0834-R1 ($7,125): posted 9/4, scheduled for the 9/17 payment run
+      - CM-0834 ($19,000 credit): received 9/4 with the R1, no invoice to apply it to, currently unapplied
+      - Ask: withdraw CM-0834, or reissue it against the R1 for $0 so the file closes
+
+      Can we do a 20-minute call with Kim this week? Paul's on the thread and will bring the screenshots. I'd like this off my list before the QBR.
+
+      Grace
+  - id: m6
+    beat_ref: S6.b18
+    day: 20
+    time: "17:45"
+    from: tomas
+    to: [grace]
+    cc: [avery, paul]
+    reply_to: m5
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Grace, Paul - thank you for laying it out, that's much clearer than what I had!
+
+      Kim has withdrawn CM-0834 and issued CM-0834-R2 for $0.00 referencing TS-0834-R1, so the file closes on your side with nothing unapplied. It went out at 5:30 today from billing@tessera.io - Paul, shout if it hasn't shown up by tomorrow morning.
+
+      And yes to the call: Kim and I can do Friday at 10:30 or 2:00, 20 minutes. I'll send an invite for 10:30 and we can move it. If the R2 does the trick and there's nothing left to talk about, happy to cancel and give everyone 20 minutes back!
+
+      Separately - Marta mentioned to Yuki again that line 2 had a couple of downtime events last week that the report didn't catch. Not urgent, just want to make sure we hear about it properly; I'll ask Yuki to follow up with her.
+
+      Tomás
+  - id: m7
+    beat_ref: S6.b19
+    day: 24
+    time: "09:30"
+    from: grace
+    to: [tomas]
+    cc: [avery, paul]
+    reply_to: m6
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      All sorted on our end, Paul confirmed the R2 applied - thanks Tomás, no need for the call.

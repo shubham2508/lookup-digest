@@ -1,0 +1,43 @@
+Message-ID: <20260827-1630.tomas@tessera.io>
+Date: Thu, 27 Aug 2026 16:30:33 -0700
+From: =?utf-8?q?Tom=C3=A1s?= Reyes <tomas@tessera.io>
+To: Simon Achterberg <simon.achterberg@veritascomponents.com>
+Cc: Avery Chen <avery@tessera.io>
+Subject: Re: August usage report + Q4 forecast
+In-Reply-To: <20260827-1015.simon.achterberg@veritascomponents.com>
+References: <20260827-1015.simon.achterberg@veritascomponents.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Simon, absolutely - and great timing, the August numbers closed out this morning!
+
+Attached: Veritas_Usage_2026-08.pdf (same layout as July, plus one new page at the back). Quick tour so you don't have to hunt:
+
+Page 1 - headline numbers. 41.2M events ingested in August (up from 34.9M in July), 23 active stations on the line 1 feed, 14 named seats. Uptime on the connector was 99.96%; the one blip was the planned maintenance window on the 12th that Ivan and Yuki coordinated.
+
+Page 2 - the per-station breakdown you asked for last time. The packaging cell is now the biggest single source of events, which tracks with the new sensors Ivan's team wired in.
+
+Page 3 - anomaly alerts fired and acknowledged (38 fired, 31 acknowledged inside 15 minutes, which is honestly one of the best ratios across our customers - your ops team is fast).
+
+Page 4 (new!) - a Q4 forecast. We took the August run-rate and projected it through December so you have something to put in front of Walter for the review. It assumes volumes flat at August levels, so if there's anything you know is changing on the line, tell me and I'll re-cut it.
+
+Two other things while I have you. First, we're hosting a small customer roundtable in October (virtual, 45 minutes, four or five manufacturers comparing notes on alerting) and I'd love to have Veritas in the room - no prep needed. Second, on the renewal: Avery and I will come back to you with proposed terms in the next week or two so you have them well before the October 1 anniversary. Nothing for you to do on that yet!
+
+Shout if anything in the report doesn't add up.
+
+Tomás
+
+Tomás Reyes | Head of GTM, Tessera | +1 (510) 555-0142
+
+On Thu, Aug 27, 2026 at 10:15 AM, Simon Achterberg <simon.achterberg@veritascomponents.com> wrote:
+> Dear Tomás,
+>
+> As you may recall from our conversation in June, Veritas runs its annual vendor review in the first half of September, and Walter's office has asked every business owner to bring current usage figures for each subscription above the review threshold, of which Tessera is one. Would you be able to send over the August usage report for the Reno line 1 feed, ideally in the same layout as the July report, with events ingested, active stations and named seats broken out by month? If the August figures are not final until the first, a preliminary cut marked as such would serve the purpose equally well.
+>
+> I am copying Avery, as we agreed in June that the leadership team on both sides should stay informed in the run-up to the renewal, which I understand falls on the first of October.
+>
+> With thanks in advance,
+>
+> Simon Achterberg
+> Procurement Lead | Veritas Components

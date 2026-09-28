@@ -1,0 +1,52 @@
+thread_id: t-hollis-1
+subject: "that board question"
+storyline: BG-hollis
+category: vendors_misc
+labels:
+  kind: thread
+  must_not: true
+  reason: last_word_avery
+  classification_case: mentor_by_behavior
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [deal:series-a:board-composition]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: network, subtype: mentor}
+    asks: [{to_avery: true, kind: information, deadline_day: null, status: answered}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 4
+    time: "08:15"
+    from: hollis
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      you never answered me. when IPV asks for a seat, and they will, do you already know what you're giving up to get it? not the seat. the thing after the seat.
+
+      one line is fine.
+  - id: m2
+    beat_ref: null
+    day: 4
+    time: "09:55"
+    from: avery
+    to: [hollis]
+    cc: []
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      marcus floated it on our call this week, so it's not hypothetical anymore. honest answer: I haven't thought past the seat. Diane's fine with it, which is either reassuring or the problem.
+
+      can we do this over coffee instead of email? friday early, timeless at 8?
+
+      Avery

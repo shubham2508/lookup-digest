@@ -1,0 +1,44 @@
+Message-ID: <20260827-1110.yuki@tessera.io>
+Date: Thu, 27 Aug 2026 11:10:54 -0700
+From: Yuki Sato <yuki@tessera.io>
+To: Grace Lindqvist <grace.lindqvist@northstarfoods.com>
+Cc: Avery Chen <avery@tessera.io>, =?utf-8?q?Tom=C3=A1s?= Reyes <tomas@tessera.io>
+Subject: Re: Modesto line 2 - onboarding questions
+In-Reply-To: <20260827-0835.grace.lindqvist@northstarfoods.com>
+References: <20260827-0835.grace.lindqvist@northstarfoods.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi Grace,
+
+Happy to help - answers in order:
+
+1. Site key: MOD-01 is the site key (Modesto), not the line. Line 2 gets its own line key under it. I'd suggest MOD-01/L2, to match what line 1 is effectively using (MOD-01/L1). I can rename the line 1 key on our side if that helps; nothing downstream breaks, history stays attached.
+2. Exception report: yes, a distribution list works. Settings > Reports > Exception report > Recipients, add ops-modesto@northstarfoods.com. Delivery stays daily at 06:00 your time unless you change it on the same page.
+3. PO changes: Kim Delgado (kim@tessera.io) handles anything PO or invoice related. I'll give Kim a heads-up that a change is coming from Paul.
+
+Tuesday is fine for the first push from line 2. If Marta's team can send me the tag list by Monday I'll pre-load it so the first batch lands cleanly.
+
+Best,
+Yuki
+
+Yuki Sato
+Solutions Engineering, Tessera
+
+On Thu, Aug 27, 2026 at 8:35 AM, Grace Lindqvist <grace.lindqvist@northstarfoods.com> wrote:
+> Hi Yuki,
+>
+> Line 2 gets its tags loaded this week, so three quick ones before Marta's team starts pushing data:
+>
+> 1. Do we reuse the Modesto site key from line 1, or does line 2 get its own? Our IT person set line 1 up as "MOD-01" and now nobody remembers whether that's the site or the line.
+> 2. The exception report - can it go to a distribution list (ops-modesto@) rather than named people? We've had two people rotate off since June and I keep forgetting to update it.
+> 3. Who on your side should Paul in AP send the PO change to? The line 2 add-on bumps our PO and I'd rather he not send it to you by accident.
+>
+> Not urgent-urgent, but Marta wants to start pushing Tuesday.
+>
+> Thanks!
+> Grace
+>
+> Grace Lindqvist
+> Procurement Manager | Northstar Foods

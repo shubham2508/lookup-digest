@@ -1,0 +1,53 @@
+thread_id: t-unknown-podcast
+subject: "quick question about the Northstar case"
+storyline: BG-podcast
+category: vendors_misc
+labels:
+  kind: thread
+  must_not: true
+  reason: last_word_avery
+  classification_case: unresolved_must_not
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [other:podcast-invite]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: unresolved, subtype: null}
+    asks: [{to_avery: true, kind: other, deadline_day: null, status: answered}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 20
+    time: "13:00"
+    from: {name: "Devin Okoro", email: "devin.okoro.pod@gmail.com"}
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      Hi Avery,
+
+      I host a small podcast on supply-chain operations (Line Speed, ~4k listeners, mostly plant and ops folks). I read the Northstar Foods case on your site and had a quick question: would you be up for coming on for an October episode? 35-40 minutes, remote, we'd talk through the Modesto rollout and what actually changed on the floor. I can send the questions ahead of time.
+
+      Thanks for considering it,
+      Devin
+  - id: m2
+    beat_ref: null
+    day: 20
+    time: "19:30"
+    from: avery
+    to: [{name: "Devin Okoro", email: "devin.okoro.pod@gmail.com"}]
+    cc: []
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      hi Devin - thanks, but not before November, things are too packed here through October. ping me then and we'll find a slot.
+
+      Avery

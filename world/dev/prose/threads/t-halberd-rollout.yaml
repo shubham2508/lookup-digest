@@ -1,0 +1,25 @@
+thread_id: t-halberd-rollout
+subject: "Oct 6 - still on?"
+storyline: S5
+category: customers
+labels: null
+messages:
+  - id: m1
+    beat_ref: S5.b18
+    day: 29
+    time: "14:08"
+    from: renee
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      Quick one from my side. Our steering committee meets Friday morning and the 6th is on their agenda. Joel mentioned this morning that your team is chasing a couple of regressions (something with exports, I think, he wasn't specific) and now I'm getting the question I can't answer myself: is Oct 6 still on?
+
+      I don't need the detail, just a yes or a no, and if it's a no, a new date. If you could get me something by end of Thursday I can walk in Friday with a straight answer instead of a shrug.
+
+      Renee

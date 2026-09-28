@@ -1,0 +1,17 @@
+thread_id: t-captable
+messages:
+  - id: v2
+    beat_ref: S1.v2
+    day: 29
+    time: "11:20"
+    from: avery
+    to: [naomi]
+    cc: [ben]
+    reply_to: m2
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      no comments from me on v3, that's the version I sent Marcus this morning. go ahead and send the final to IPV's counsel.
+
+      Avery

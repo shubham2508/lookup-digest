@@ -1,0 +1,22 @@
+Message-ID: <20260917-1520.omar@tessera.io>
+Date: Thu, 17 Sep 2026 15:20:59 -0700
+From: Omar Haddad <omar@tessera.io>
+To: Tessera Engineering <eng@tessera.io>
+Cc: Avery Chen <avery@tessera.io>
+Subject: heads up: exceptions index migration tonight 21:00
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Running the exceptions-table index migration tonight at 21:00 PT. Plan:
+
+- concurrent index build, so reads keep working
+- writes see ~10 minutes of higher latency (my estimate: 8; my estimate last time: 8; actual last time: 19)
+- no customer-visible downtime; the dashboards read from the replica
+- rollback is dropping the new index, 30 seconds
+
+I'll post here when it's done. If you're doing a plant demo tonight for some reason, don't.
+
+Omar
+
+Omar

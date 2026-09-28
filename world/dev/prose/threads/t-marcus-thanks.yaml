@@ -1,0 +1,48 @@
+thread_id: t-marcus-thanks
+subject: "Data room - updated folder"
+storyline: null
+category: investors_board
+labels:
+  kind: thread
+  must_not: true
+  reason: courtesy_close
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [deal:series-a:data-room]
+    ball_awaiting: nobody
+    closed_by_courtesy: true
+    sender_relationship: {category: capital, subtype: lead_investor}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 16
+    time: "09:00"
+    from: avery
+    to: [marcus]
+    cc: [ravi]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      marcus — the updated data room is here: tessera.io/dataroom/ipv (same login as before). Added since yesterday: the cohort tab you asked for, the pipeline detail behind the Q4 number, and the August close.
+
+      Avery
+  - id: m2
+    beat_ref: null
+    day: 16
+    time: "09:40"
+    from: marcus
+    to: [avery]
+    cc: [ravi]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Thanks, got it. Ravi's team starts on it today.
+
+      Marcus

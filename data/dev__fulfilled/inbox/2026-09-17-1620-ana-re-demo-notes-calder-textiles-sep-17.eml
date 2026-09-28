@@ -1,0 +1,35 @@
+Message-ID: <20260917-1620.ana@tessera.io>
+Date: Thu, 17 Sep 2026 16:20:41 -0700
+From: Ana Kowalski <ana@tessera.io>
+To: Yuki Sato <yuki@tessera.io>
+Cc: =?utf-8?q?Tom=C3=A1s?= Reyes <tomas@tessera.io>, Avery Chen <avery@tessera.io>
+Subject: Re: Demo notes: Calder Textiles (Sep 17)
+In-Reply-To: <20260917-1540.yuki@tessera.io>
+References: <20260917-1540.yuki@tessera.io>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+🙌 Thank you Yuki, the machine-names trick is now standard for every demo. Proposal draft to Tomás next week, sending to Ruth the week after.
+
+Ana
+
+Ana Kowalski | AE, Tessera
+
+On Thu, Sep 17, 2026 at 3:40 PM, Yuki Sato <yuki@tessera.io> wrote:
+> Notes from today's demo with Calder Textiles: Ruth Amsel (VP Ops), two plant leads (Reno, Sparks), their plant controller. 50 minutes.
+>
+> 1. What we showed: the exception report and the shift-handoff summary, built on their own CSV headers (Ruth's sample from last week). Seeing their machine names on screen got the plant leads talking within two minutes.
+> 2. What landed: exceptions grouped by machine family. The Reno lead said they currently find these "on Monday, from Friday's file".
+> 3. Questions:
+>    a. Can they upload the Friday CSV themselves until a connector exists? Yes, the manual upload path.
+>    b. Is a 3-plant pilot possible? Yes; I suggested 2 plants first so the comparison is meaningful without being noisy. Ruth agreed.
+>    c. Data retention: 13 months by default, configurable.
+> 4. Follow-ups, all ours: Ana sends the pilot proposal; I send the retention doc and the manual-upload guide.
+>
+> Next step: Ruth asked for a pilot proposal "before the holiday peak". Nothing for Avery.
+>
+> Yuki
+>
+> Yuki Sato
+> Solutions Engineering, Tessera

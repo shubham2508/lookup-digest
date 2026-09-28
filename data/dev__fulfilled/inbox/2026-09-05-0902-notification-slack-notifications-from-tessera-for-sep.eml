@@ -1,0 +1,26 @@
+Message-ID: <20260905-0902.notification@slack.com>
+Date: Sat, 05 Sep 2026 09:02:46 -0700
+From: Slack <notification@slack.com>
+To: Avery Chen <avery@tessera.io>
+Subject: [Slack] Notifications from Tessera for Sep 4th
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+You have new notifications in the Tessera workspace.
+
+#general
+  Kim Delgado (Fri 4:12 PM): reminder the office is closed Monday for Labor Day. Payroll already ran, nothing changes there.
+  Dev Patel (Fri 4:15 PM): :tada:
+
+#eng
+  Omar Haddad (Fri 5:48 PM): on-call handoff notes are in the thread. quiet week, one alert on the staging poller that resolved itself.
+  Sofia Andrade (Fri 6:02 PM): staging is green again after the e2e flake, was a timeout on the 3-shift fixture
+
+#gtm
+  Ana Kowalski (Fri 3:30 PM): Meridian intro call went well, notes in the CRM
+
+Open Slack: https://tessera.slack.com
+
+--
+This email was sent because you have email notifications turned on for when you are away from Slack. Change this in your Slack preferences.

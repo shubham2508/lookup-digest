@@ -1,0 +1,15 @@
+Message-ID: <20260921-1420.sofia@tessera.io>
+Date: Mon, 21 Sep 2026 14:20:38 -0700
+From: Sofia Andrade <sofia@tessera.io>
+To: Tessera Engineering <eng@tessera.io>
+Cc: Avery Chen <avery@tessera.io>
+Subject: export job: 11 min -> 90 s
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+The nightly export job for the two biggest plants went from 11 minutes to 90 seconds this week: Omar's index migration plus the streaming path, compounding. No code change from me today, just credit where it's due. Graph in #eng 🎉
+
+Sofia
+
+Sofia

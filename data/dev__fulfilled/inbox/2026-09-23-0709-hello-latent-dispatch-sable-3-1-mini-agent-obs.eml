@@ -1,0 +1,33 @@
+Message-ID: <20260923-0709.hello@latentdispatch.ai>
+Date: Wed, 23 Sep 2026 07:09:51 -0700
+From: Latent Dispatch <hello@latentdispatch.ai>
+To: Avery Chen <avery@tessera.io>
+Subject: Latent Dispatch: Sable-3.1 Mini, agent observability tools compared, the Q3 open-weights scorecard
+List-Unsubscribe: <mailto:unsubscribe@latentdispatch.ai?subject=unsubscribe>, <https://latentdispatch.ai/u/228c461f>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+LATENT DISPATCH
+Wed Sep 23 · 5 items · ~4 min
+
+SABLE-3.1 MINI
+The point release comes to the small model: same refusal fixes, same long-context improvement, same price. Sable-3.1 Mini vs. Ferrite-70B is now the interesting mid-tier comparison; Mini is cheaper per token and slightly worse on extraction. Our head-to-head: https://latentdispatch.ai/p/mini-vs-ferrite
+
+AGENT OBSERVABILITY: FIVE TOOLS COMPARED
+We looked at Brindle, Larkspur's built-in replay, and three others on what they capture (every call? every tool result? cost per step?) and what they cost. Summary: the framework-native options are good enough for most teams; the standalone tools win when you run agents across several frameworks. https://latentdispatch.ai/p/observability-compared
+
+Q3 OPEN-WEIGHTS SCORECARD
+Ferrite-70B is the story of the quarter. Tanager-Coder 2 second. The 8B class got crowded and good. Full scorecard with the task-family breakdown: https://latentdispatch.ai/p/q3-scorecard
+
+NIMBUS ADDS STAGED ROLLOUTS
+As promised in the post-mortem. Region by region, with automatic rollback on error-rate increase.
+
+SHORT TAKES
+· Lodestone-R2 Mini gets prompt caching.
+· A good thread on structuring prompts for cache hit rates: static first, dynamic last, no timestamps. https://latentdispatch.ai/p/cache-structure
+· Quillon publishes Quillon-M's page-level accuracy by document type. Refreshing transparency.
+
+—
+You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1

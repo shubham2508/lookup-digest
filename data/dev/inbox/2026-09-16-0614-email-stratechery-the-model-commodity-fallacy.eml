@@ -1,0 +1,30 @@
+Message-ID: <20260916-0614.email@stratechery.com>
+Date: Wed, 16 Sep 2026 06:14:05 -0700
+From: Stratechery <email@stratechery.com>
+To: Avery Chen <avery@tessera.io>
+Subject: Stratechery: The Model Commodity Fallacy
+List-Unsubscribe: <mailto:unsubscribe@stratechery.com?subject=unsubscribe>, <https://stratechery.com/u/75df1294>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+STRATECHERY
+Wednesday, September 16, 2026
+
+The Model Commodity Fallacy
+
+I have argued in this newsletter that models are becoming commodities, and I stand by it for the middle of the market. But there is a version of the argument that goes too far, and I want to draw the line carefully because a lot of strategy depends on where it sits.
+
+The strong claim is that all models converge, and therefore nothing above the model layer has any dependency worth worrying about. This is wrong for two reasons. The first is that "converge" is doing a lot of work: models converge on benchmarks, which measure the tasks that are easy to measure, and diverge on the long tail of behaviors that determine whether a product feels reliable. Two models with the same score will handle an ambiguous instruction, a malformed input, or a twelve-step task differently, and a product built around one model's quirks does not transfer cleanly to another.
+
+The second reason is that the frontier keeps moving. The commodity argument assumes a fixed target; in practice, the tasks customers want automated expand as soon as the current ones work, and the newly demanded tasks are exactly the ones where the best model is meaningfully better than the second-best. Commoditization is real at any given moment and perpetually one step behind demand.
+
+What follows is a two-tier strategy for application companies. For stable, high-volume tasks, treat the model as a commodity: multi-source, cache, distill, negotiate. For the frontier tasks that define the product's next feature, pay for the best model available and accept the dependency, because the alternative is shipping something that does not work.
+
+The mistake I see most often is applying one tier's logic to the other: penny-pinching on the feature that sells the product, or paying frontier prices for a classification task a small model handles fine. The companies with the best margins I know of are the ones that have drawn the line explicitly and revisit it every quarter.
+
+Read on the web: https://stratechery.com/2026/the-model-commodity-fallacy/
+
+—
+You are receiving this because you subscribed to Stratechery Daily Updates. Manage your subscription or unsubscribe: https://stratechery.com/account/

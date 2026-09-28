@@ -1,0 +1,67 @@
+thread_id: t-int-laptop-dev
+subject: "laptop battery is doing the thing"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_by_team
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [other:it-laptop-dev]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 8
+    time: "10:20"
+    from: dev
+    to: [kim]
+    cc: [jordan, avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      my laptop battery is swelling (trackpad doesn't click anymore, classic). still works but I'd rather not find out what happens next.
+
+      can we get a replacement? same 14" model is fine. I'll work off the spare mac mini in the office meanwhile.
+
+      Dev
+  - id: m2
+    beat_ref: null
+    day: 8
+    time: "11:05"
+    from: kim
+    to: [dev]
+    cc: [jordan, avery]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Ordered: 14" MacBook Pro, 32 GB / 1 TB, $2,149.00, arriving Friday, September 4. That is under the $2,500 equipment threshold, so no approval needed; Avery, cc'd for the record only.
+
+      Dev, please bring the old one to me. I will handle the battery recycling. Do not put it in the bin, and do not put it in your bag.
+
+      Kim
+  - id: m3
+    beat_ref: null
+    day: 8
+    time: "11:20"
+    from: dev
+    to: [kim]
+    cc: [jordan, avery]
+    reply_to: m2
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      you're the best. old one is on your desk, wrapped in a towel, don't ask
+
+      Dev

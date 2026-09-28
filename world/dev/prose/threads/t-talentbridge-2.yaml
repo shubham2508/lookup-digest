@@ -1,0 +1,40 @@
+thread_id: t-talentbridge-2
+subject: "Following up on Chad's note - CTO search"
+storyline: BG-talentbridge
+category: recruiters
+labels:
+  kind: thread
+  must_not: true
+  reason: lone_recruiter_until_pattern
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: promotional
+    about: [other:recruiter-talentbridge]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 27
+    time: "09:05"
+    from: kelsey
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi Avery,
+
+      I'm following up on Chad's note from last week about the VP of Engineering role. I work alongside Chad at TalentBridge and also wanted to flag a second search I'm leading that might be an even better fit given your background in data infrastructure at Tessera: a CTO role with a Series A fintech in Austin.
+
+      The founder is looking for someone who has managed teams of 50+ and has previously reported to a CEO at a growth-stage company. Based on your profile, you tick every box!
+
+      If you have 15 minutes this week, I'd love to walk you through both roles. You can grab time here: talentbridge-recruiting.com/kelsey
+
+      Warm regards,

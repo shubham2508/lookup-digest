@@ -1,0 +1,36 @@
+Message-ID: <20260922-1100.lena@tessera.io>
+Date: Tue, 22 Sep 2026 11:00:27 -0700
+From: Lena Hoffmann <lena@tessera.io>
+To: Jordan Liu <jordan@tessera.io>
+Cc: Avery Chen <avery@tessera.io>
+Subject: QA: two non-blocking regressions in this week's build
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Summary: regression pass on build 2026.09.21-3 finished this morning. Two issues opened, both non-blocking, both in Linear. Everything else in the smoke suite is green. Writing it up here so it is in one place; nothing needed from anyone outside eng.
+
+1) TES-1042 - Export CSV encoding
+   Severity: S3 (non-blocking; cosmetic, data intact)
+   Repro:
+     1. Open any plant with non-ASCII characters in a plant or machine name (test plant "Zürich Süd" works)
+     2. Export > CSV
+     3. Open the file in Excel on Windows
+   Actual: non-ASCII plant names come out mangled ("ZÃ¼rich"). File is UTF-8 with no BOM since the streaming export change; Excel on Windows assumes the local code page without one.
+   Workaround: Data > From Text, choose UTF-8.
+   Owner: Omar picked it up at standup (one-liner: write the BOM).
+
+2) TES-1043 - Dashboard date filter
+   Severity: S3 (non-blocking; confusing, no data loss)
+   Repro:
+     1. Set the date range to a custom range, e.g. Sep 1 - Sep 14
+     2. Refresh the page
+   Actual: the filter resets to "last 7 days" after refresh. The persisted range is stored but the restore path does not go through the new resolver.
+   Workaround: re-select the range.
+   Owner: Dev, after #412 per standup.
+
+Both are tagged for the Oct 13 patch. Neither is in the Halberd cutover path; I re-ran the Halberd smoke suite on the fixed build and it is green apart from these two.
+
+Lena
+
+Lena Hoffmann | QA

@@ -1,0 +1,52 @@
+Message-ID: <20260904-1600.tomas@tessera.io>
+Date: Fri, 04 Sep 2026 16:00:14 -0700
+From: =?utf-8?q?Tom=C3=A1s?= Reyes <tomas@tessera.io>
+To: Carla Mendes <carla.mendes@meridianfoods.com>
+Cc: Avery Chen <avery@tessera.io>
+Subject: Re: Meridian Foods - evaluation next steps
+In-Reply-To: <20260904-1130.carla.mendes@meridianfoods.com>
+References: <20260904-1130.carla.mendes@meridianfoods.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Carla, thank you - this is a really useful summary, and I'm glad the case packer finding landed, that one surprised us too!
+
+Short version: you'll have a proposal covering all three points by Friday Sept 25, in time for your steering meeting on the 29th. Some context on each so you're not waiting blind:
+
+1. Pricing for Salinas + Yuma, two lines each. We're in the middle of simplifying our packaging for exactly this shape of deal (multi-line, multi-plant, mid-market), and I'd rather quote you the new structure than the old per-line list, because the new one will be better for you. That's the reason for "by the 25th" rather than "by Monday" - I need a couple of weeks to get it signed off internally. If it helps I can send indicative ranges sooner, with the caveat that they're ranges.
+
+2. Base vs add-on. Base covers ingest, the exception view, the daily/weekly reports, SSO and unlimited operator seats. Onboarding services are priced separately and you can decline them (more below). The downtime module: honest answer is it's on the Q4 roadmap and not in the product today, and I'm not going to price something we haven't shipped. What I can do is put in writing that when it ships it's included in your base at no added cost. I'll put that in the proposal.
+
+3. Onboarding timeline. You're right that the workshop ran long, and we've looked at why: your engineer was building the tag mapping from scratch because Salinas had no historian export. For Yuma, which does have one, we'd plan on one day. For Salinas line 2, two days, because half the tags carry over from line 1. So roughly: Yuma three weeks to first report, Salinas line 2 two weeks, and they can run in parallel with Yuki on both. I'll write it up properly with the assumptions stated.
+
+On the comparison with the other two - genuinely happy to be compared, and if it helps I can put you in touch with a customer that runs two lines with us so you can hear the unvarnished version.
+
+One question back: for Yuma, is the plant network owned locally or by corporate IT? It changes who we need in the first week.
+
+Talk soon, and thanks again for the thorough pilot.
+
+Tomás
+
+Tomás Reyes | Head of GTM, Tessera | +1 (510) 555-0142
+
+On Fri, Sep 4, 2026 at 11:30 AM, Carla Mendes <carla.mendes@meridianfoods.com> wrote:
+> Hi Tomás,
+>
+> Thanks for the pilot wrap-up on Wednesday. Summary of where we landed internally:
+>
+> The pilot on the Salinas packing line did what you said it would - the exception view found the two chronic issues our line leads already suspected and one they didn't (the case packer). The team liked it. The concerns were the same as at kickoff: the mapping workshop took our engineer three days rather than one, and we still don't have a clear picture of what you would charge beyond the pilot.
+>
+> We are looking at two other vendors in parallel; one is cheaper and shallower, the other is a larger platform we would have to grow into. To compare them properly I need from you:
+>
+> 1. Pricing for two plants (Salinas and Yuma), each with two lines, on an annual basis, with and without the onboarding services.
+> 2. What is included in the base subscription vs. what is an add-on (the downtime module was mentioned as "coming" - is it in the price?).
+> 3. A realistic onboarding timeline per plant based on what you learned from our pilot, not the brochure number.
+>
+> Our decision is due by end of September (our steering meeting is Tuesday the 29th); the budget line closes with it, so a proposal received in October is a proposal for next year.
+>
+> Regards,
+> Carla
+>
+> Carla Mendes
+> Director, Supply Chain | Meridian Foods

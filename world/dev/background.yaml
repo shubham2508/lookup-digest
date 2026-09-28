@@ -6,10 +6,10 @@ targets:
   # full = data_generation §6 (~490–520 emails); pass_1 = the reduced set for the 2026-09-29 submission
   # (docs/handoffs/B-data.md "two passes"). Storyline emails are counted inside their category.
   categories:
-    internal_routine: {full: 110, pass_1: 40, storyline_emails: 12, note: "1:1 follow-ups, standups, PR chatter, office ops, Tomás's weekly pipeline mail"}
+    internal_routine: {full: 100, pass_1: 40, storyline_emails: 12, note: "1:1 follow-ups, standups, PR chatter, office ops, Tomás's weekly pipeline mail"}
     notifications:    {full: 70,  pass_1: 25, storyline_emails: 1,  note: "GitHub, calendar confirmations, Greenhouse, Gusto, AWS, Ramp, Stripe, DocuSign"}
     newsletters:      {full: 80,  pass_1: 20, storyline_emails: 2,  note: "8 publications; only nl-factoryfloor-37 (S5) and nl-modelwatch-58 (S13) have attachable items; nl-scbrief-214 carries the EU AI Act decoy"}
-    customers:        {full: 60,  pass_1: 60, storyline_emails: 51, note: "Halberd 18, Northstar 21, Veritas 23 (storylines) + Brightline 4, Meridian 2, Ridgeway 2 + Curtis 1 = 61"}
+    customers:        {full: 70,  pass_1: 70, storyline_emails: 62, note: "Halberd 19, Northstar 20, Veritas 23 (storylines) + Curtis 1 + Brightline 3, Meridian 2, Ridgeway 2 = 70"}
     saas_marketing:   {full: 60,  pass_1: 15, storyline_emails: 0,  note: "tools Tessera pays for (Notion, Linear, Zoom, Slack, Figma, Vanta, Gusto marketing) and tools it doesn't"}
     investors_board:  {full: 40,  pass_1: 22, storyline_emails: 12, note: "S1–S4 threads + Diane check-in + Ravi data-room logistics + Cobalt LP mail + Northwind intro + inbound VC cold-ish notes"}
     recruiters:       {full: 25,  pass_1: 10, storyline_emails: 0,  note: "TalentBridge ×3 in days 24–29 + lone recruiters from ≥7 other firms"}
@@ -17,7 +17,7 @@ targets:
     hiring:           {full: 20,  pass_1: 16, storyline_emails: 11, note: "Mei, Theo, Keystone (storylines) + Ines + Greenhouse-forwarded candidate mail"}
     lawyer:           {full: 15,  pass_1: 6,  storyline_emails: 2,  note: "Ben/Naomi cap table (S1) + 83(b) FYI + IP assignment + NDA turnarounds"}
     personal:         {full: 15,  pass_1: 9,  storyline_emails: 4,  note: "Sam (S11), daycare (S11), Kai (S11), pediatrics reminder, Sofia's wedding invite, gym, dentist"}
-  totals: {full: 520, pass_1: 235}
+  totals: {full: 520, pass_1: 255}
   per_day: {weekday_full: 20, weekend_full: 6, weekday_pass_1: 9, weekend_pass_1: 3, cluster: "storyline beats in days 20–30; earlier days are history"}
   avery_sent_share: "20–25% of human threads contain at least one message from Avery (storylines already provide ~30 of ~95 human threads)"
 

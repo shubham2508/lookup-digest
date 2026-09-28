@@ -1,0 +1,33 @@
+Message-ID: <20260901-0820.hello@vanta.com>
+Date: Tue, 01 Sep 2026 08:20:11 -0700
+From: Vanta <hello@vanta.com>
+To: Avery Chen <avery@tessera.io>
+Subject: Vanta product update: continuous SOC 2, ISO 27001 crosswalk, and vendor risk
+List-Unsubscribe: <mailto:unsubscribe@vanta.com?subject=unsubscribe>, <https://vanta.com/u/ffb5fa77>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi Avery,
+
+Here's what's new in Vanta this month.
+
+Continuous SOC 2 monitoring, expanded
+We added 34 new automated tests covering AWS, GitHub, and Google Workspace, including MFA enforcement on every org member and branch-protection checks on default branches. Your dashboard will show new findings within 24 hours.
+
+ISO 27001 crosswalk
+If you're SOC 2 compliant, you can now see exactly which ISO 27001:2022 controls you already satisfy and what's left. Most SOC 2 customers start at 70%+ coverage.
+
+Vendor risk management
+Track every vendor's security posture, collect questionnaires, and get alerts when a vendor's status changes. Included on Growth and above.
+
+Trust Center refresh
+A new layout, custom domains, and a "request access" flow that logs who asked for your report.
+
+See all updates: https://www.vanta.com/l/product-update-0901
+
+The Vanta Team
+
+Vanta, Inc. | 369 Hayes St, San Francisco, CA
+Unsubscribe from product updates: https://www.vanta.com/u/v2d8k

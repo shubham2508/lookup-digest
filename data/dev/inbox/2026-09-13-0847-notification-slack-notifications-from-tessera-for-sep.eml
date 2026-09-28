@@ -1,0 +1,25 @@
+Message-ID: <20260913-0847.notification@slack.com>
+Date: Sun, 13 Sep 2026 08:47:51 -0700
+From: Slack <notification@slack.com>
+To: Avery Chen <avery@tessera.io>
+Subject: [Slack] Notifications from Tessera for Sep 12th
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+You have new notifications in the Tessera workspace.
+
+#eng
+  Omar Haddad (Sat 9:20 AM): retried the staging deploy from Friday, worker pods came up fine on the second try. closing the loop.
+  Dev Patel (Sat 9:31 AM): thanks, was the readiness probe timeout, bumped it to 60s in #146
+
+#general
+  Yuki Sato (Sat 11:05 AM): first draft of the Halberd operator training materials is in the shared drive, feedback welcome by Wednesday
+
+#random
+  Dev Patel (Sat 2:40 PM): anyone want an extra ticket for tonight's game, free to a good home
+
+Open Slack: https://tessera.slack.com
+
+--
+This email was sent because you have email notifications turned on for when you are away from Slack. Change this in your Slack preferences.

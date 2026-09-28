@@ -1,0 +1,41 @@
+Message-ID: <20260827-0720.issue@modelwatch.dev>
+Date: Thu, 27 Aug 2026 07:20:51 -0700
+From: Model Watch <issue@modelwatch.dev>
+To: Avery Chen <avery@tessera.io>
+Subject: Model Watch #50: August leaderboard refresh, Sable-3 Mini pricing, Kestrel batch
+List-Unsubscribe: <mailto:unsubscribe@modelwatch.dev?subject=unsubscribe>, <https://modelwatch.dev/u/c132738c>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+MODEL WATCH #50 — Thursday, August 27, 2026
+Benchmarks, releases, and price changes. Twice a week, no opinions we can't back with a table.
+
+1. AUGUST LEADERBOARD REFRESH
+Our composite score (extraction, tool use, reasoning, long-context recall; equal weights) across the 20 tracked models. Top of the table is unchanged; the movement is in the middle.
+
+  Model              Composite   Extraction   Tool use   Reasoning   $/M out
+  Lodestone-R1          84.2        88.0        94.1       91.5      $18.00
+  Sable-3               83.9        90.2        96.0       86.3      $12.00
+  Pelagic 2.0           81.1        87.5        93.8       84.0      $10.00
+  Quillon-L             78.4        89.1        91.2       77.6       $6.00
+  Sable-3 Mini (new)    74.0        86.4        90.5       70.8       $0.72
+  Ferrite-8B (open)     66.3        83.9        84.2       58.1       $0.20*
+  * self-hosted estimate at 70% utilization
+
+Method and per-task prompts: https://modelwatch.dev/leaderboard/2026-08
+
+2. SABLE-3 MINI: PRICE AND FIRST NUMBERS
+$0.18 / $0.72 per million tokens. On our extraction set it scores 86.4, four points off the full model at 6% of the output price. It is the best price-per-point in the table this week.
+
+3. KESTREL COMPUTE BATCH TIER
+40% off real-time pricing for 24-hour async jobs, all hosted models. We confirmed the discount applies to the full token count, not input only.
+
+4. PRICE CHANGES THIS WEEK
+  Kestrel batch tier: -40% (new)
+  Nimbus Inference, Quillon-L: -10% output
+  Argent Systems: no change
+
+—
+Model Watch is written by two people and a lot of scripts. Unsubscribe: https://modelwatch.dev/u/7c19e

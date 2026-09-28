@@ -1,0 +1,199 @@
+thread_id: t-halberd-rollout-plan
+subject: "Oct 6 rollout - plan and owners"
+storyline: S5
+category: customers
+labels: null
+messages:
+  - id: m1
+    beat_ref: S5.b1
+    day: 2
+    time: "09:40"
+    from: renee
+    to: [avery]
+    cc: [tomas, yuki]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      Good news from our side: the Fresno plant manager signed off yesterday, so we can set a date. I'd like to propose Oct 6 as go-live for Fresno. It's a Tuesday, it gives us five weeks, and it keeps us clear of quarter-end.
+
+      Two questions so I can put names in our project sheet:
+      1. Who on your side owns the rollout plan day to day?
+      2. Who is my escalation point if something goes sideways?
+
+      On our side it's me (project), Joel Brennan (IT and SSO) and the plant manager for the floor.
+
+      Can we lock Oct 6?
+
+      Renee
+  - id: m2
+    beat_ref: S5.b2
+    day: 2
+    time: "13:15"
+    from: avery
+    to: [renee]
+    cc: [tomas, yuki]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      renee, yes, let's lock Oct 6.
+
+      Yuki owns the plan day to day (Yuki, take it from here). Escalation is me, directly. And I'd like to be on your weekly call, send the invite whenever you set it up and I'll be there.
+
+      Avery
+  - id: m3
+    beat_ref: S5.b3
+    day: 5
+    time: "10:05"
+    from: renee
+    to: [yuki]
+    cc: [avery]
+    reply_to: m2
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Yuki,
+
+      Attatched is the Fresno contact list (plant manager, the two shift leads, Joel, and our controls engineer), with cell numbers for the go-live week.
+
+      When do you want to do the data-mapping workshop? Joel and the controls engineer both need to be in the room, and they're easiest to pin down early in the week.
+
+      Sorry for the weekend email, I'm out Monday and wanted this off my desk.
+
+      Renee
+  - id: m4
+    beat_ref: S5.b4
+    day: 5
+    time: "15:30"
+    from: yuki
+    to: [renee]
+    cc: [avery]
+    reply_to: m3
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Hi Renee,
+
+      Thank you for the list, that is exactly what I needed. Proposal for the workshop:
+
+      1. Tuesday, Sep 1, 10:00-12:00, at the plant. I'll drive up. Joel and the controls engineer in the room, plant manager optional.
+      2. Attached: Halberd_Fresno_mapping_template_v1.xlsx. If Joel can fill in columns A-D (line, station, PLC tag, and the current work-order field names) before Tuesday, we'll spend the two hours on the hard cases instead of the easy ones.
+      3. Output of the session: an agreed field mapping, which becomes the basis of the rollout plan I'll circulate the week after.
+
+      Avery, nothing needed from you here; I'll keep you cc'd on this thread.
+
+      Best,
+  - id: m5
+    beat_ref: S5.b5
+    day: 8
+    time: "08:50"
+    from: renee
+    to: [yuki]
+    cc: [avery]
+    reply_to: m4
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Yuki,
+
+      Yesterday's workshop went well. The team came out of it with a much clearer picture than they went in with, and Joel actually said "that was useful", which from Joel is a standing ovation.
+
+      Two mapping questions that came up after you left:
+      1. Work orders that span two shifts: one row with two shift codes, or two rows?
+      2. Lines 3 and 4 share a PLC. Do we map them as one line and split on the station tag, or keep them separate?
+
+      Thanks for driving up.
+
+      Renee
+  - id: m6
+    beat_ref: S5.b13
+    day: 22
+    time: "09:05"
+    from: renee
+    to: [avery]
+    cc: [yuki, tomas]
+    reply_to: m5
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      Weekly check-in, since we ran out of time on Tuesday.
+
+      Pilot group has been live since Monday, 12 users, and the SSO problem from the other week hasn't come back. Two operators asked for a bigger font on the shift view, which I'm taking as a good sign, it means they're looking at it.
+
+      Separate thing: our security team is putting together the vendor file for go-live and asked whether your SOC 2 report was ever sent over. I couldn't find it in my inbox. Was it sent, and if so, to whom?
+
+      Also, Tomás, the procurement paperwork for year two is with our legal, no action needed, just so you know where it sits.
+
+      Renee
+  - id: m7
+    beat_ref: S5.b14
+    day: 22
+    time: "12:40"
+    from: avery
+    to: [renee]
+    cc: [yuki, tomas]
+    reply_to: m6
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      renee, yes. Jordan sent the SOC 2 report to Joel on the 8th, right after the SSO fix went in. I'll have him forward it to you directly so it's in your file too.
+
+      pilot looks good from what I'm seeing. font ask noted, Yuki will pass it along.
+
+      Avery
+  - id: m8
+    beat_ref: S5.b16
+    day: 27
+    time: "10:50"
+    from: renee
+    to: [yuki]
+    cc: [avery]
+    reply_to: m7
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Yuki,
+
+      Do you have a cutover checklist for the 6th? Our steering committee wants to see one before they sign off on the comms to the floor, and I'd rather send them yours than write my own.
+
+      If you have it by tomorrow's weekly that's perfect, if not, later this week is fine.
+
+      Renee
+  - id: m9
+    beat_ref: S5.b17
+    day: 27
+    time: "15:00"
+    from: yuki
+    to: [renee]
+    cc: [avery]
+    reply_to: m8
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Hi Renee,
+
+      Attached: Halberd_Fresno_cutover_checklist_v1.pdf. Twenty-two items across three phases:
+
+      1. T-7 to T-1: data freeze, final mapping import, SSO group sync, operator accounts (owner: me, with Joel).
+      2. Go-live day, Oct 6: 05:00 switch-over before day shift, floor walk with the shift leads, 09:00 checkpoint with you (owner: me).
+      3. T+1 to T+5: daily 15-minute check-in, open-issues list, T+5 sign-off (owner: you and me).
+
+      Every item has a name and a time next to it. Happy to walk through it at tomorrow's weekly.
+
+      Avery, nothing needed from you on this one; cc'ing so you have it.
+
+      Best,

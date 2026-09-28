@@ -1,0 +1,59 @@
+thread_id: t-pers-sam-boots
+subject: "rain boots + milk"
+storyline: null
+category: personal
+labels:
+  kind: thread
+  must_not: true
+  reason: last_word_avery
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: personal
+    intent_primary: ask
+    about: [family:weekend-logistics]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: family, subtype: partner}
+    asks: [{to_avery: true, kind: information, deadline_day: 15, status: answered}, {to_avery: true, kind: other, deadline_day: 18, status: answered}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 15
+    time: "12:05"
+    from: sam
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      daycare says rain boots need to live there starting next week. do we still have the second pair or did we give those to the nakamuras? also can you grab milk on the way home, we're out
+  - id: m2
+    beat_ref: null
+    day: 15
+    time: "12:12"
+    from: sam
+    to: [avery]
+    cc: []
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      also swim saturday - are you taking wren or am i? i might have that 9am thing
+  - id: m3
+    beat_ref: null
+    day: 15
+    time: "12:40"
+    from: avery
+    to: [sam]
+    cc: []
+    reply_to: m2
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      second pair is in the hall closet, top shelf, the blue ones. milk yes. i'll take swim saturday.

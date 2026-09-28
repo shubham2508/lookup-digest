@@ -1,0 +1,38 @@
+Message-ID: <20260917-0719.issue@modelwatch.dev>
+Date: Thu, 17 Sep 2026 07:19:14 -0700
+From: Model Watch <issue@modelwatch.dev>
+To: Avery Chen <avery@tessera.io>
+Subject: Model Watch #56: Sable-3.1, open vs. proprietary gap by task, Argent undercuts on Ferrite
+List-Unsubscribe: <mailto:unsubscribe@modelwatch.dev?subject=unsubscribe>, <https://modelwatch.dev/u/8721d15b>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+MODEL WATCH #56 — Thursday, September 17, 2026
+
+1. SABLE-3.1
+Point release; same price. Long-context recall at 400k goes from 71 to 89 on our needle set, and refusals on benign enterprise text drop from 2.1% to 0.4%. Composite 85.1 (from 83.9). Upgrade unless you pinned a version for a reason.
+
+2. THE OPEN VS. PROPRIETARY GAP, BY TASK FAMILY
+Best proprietary vs. best open model on each family, Q3:
+
+  Family          Best proprietary       Best open           Gap
+  Extraction      Sable-3.1   96.0       Ferrite-70B  94.1    1.9
+  Classification  Sable-3.1   97.2       Ferrite-70B  96.0    1.2
+  Tool use        Sable-3.1   97.4       Ferrite-70B  95.0    2.4
+  Reasoning       Lodestone-R2 94.8      Ferrite-70B  68.2   26.6
+  Long context    Sable-3.1   89.0       Ferrite-70B  74.5   14.5
+
+For the first three families the open model is a rational default. For the last two, it is not.
+
+3. ARGENT UNDERCUTS ON FERRITE-70B
+$0.55 / $1.70, five cents under Kestrel on output. First price competition on an open 70B; we expect Nimbus to list it within the week.
+
+4. PRICE CHANGES THIS WEEK
+  Argent, Ferrite-70B: new, $0.55 / $1.70
+  Argent batch tier: new, -50%, 24-hour window
+  Halcyon Vision 3: -30% per image
+
+—
+Model Watch is written by two people and a lot of scripts. Unsubscribe: https://modelwatch.dev/u/7c19e

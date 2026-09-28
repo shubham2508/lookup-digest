@@ -1,0 +1,25 @@
+Message-ID: <20260911-1405.colinmar@amazon.com>
+Date: Fri, 11 Sep 2026 14:05:31 -0700
+From: Colin Marsh <colinmar@amazon.com>
+To: Avery Chen <avery@tessera.io>
+Cc: Jordan Liu <jordan@tessera.io>
+Subject: Tessera + AWS: Q3 check-in (no action needed)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi Avery,
+
+Colin here, your AWS account manager for the startup segment. Quick quarterly check-in, no action needed on your side.
+
+A few notes from your account:
+- Usage: trending about 12% above Q2, mostly EC2 and S3 in us-west-2, consistent with what Jordan mentioned about the new customer sites.
+- Credits: $6,200 of Activate credits remain and expire January 31. Worth planning to use them.
+- Savings Plans: based on the last 90 days, a 1-year compute Savings Plan would cover roughly 60% of your spend at a ~28% discount. I can send the exact recommendation report if useful.
+
+If anything changes on your side (new region, big data migration, GPU needs), I'm here. Otherwise I'll check in again in December.
+
+Best,
+
+Colin Marsh
+Account Manager, Startups | Amazon Web Services

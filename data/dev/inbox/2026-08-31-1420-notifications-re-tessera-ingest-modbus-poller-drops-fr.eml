@@ -1,0 +1,22 @@
+Message-ID: <20260831-1420.notifications@github.com>
+Date: Mon, 31 Aug 2026 14:20:50 -0700
+From: GitHub <notifications@github.com>
+To: Avery Chen <avery@tessera.io>
+Subject: Re: [tessera/ingest] Modbus poller drops frames under sustained load (#396)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+@sofiandrade commented on this issue.
+
+Reproduced on the bench rig with 3 devices at a 50 ms poll interval. Frames start dropping once the response queue passes ~400 entries; the poller does not back off, it just keeps stacking reads.
+
+Plan:
+- add exponential backoff with a 2 s ceiling when the queue is above the watermark
+- log a warning with the device id the first time it happens per hour, not per frame
+- PR up tomorrow
+
+--
+Reply to this email directly or view it on GitHub:
+https://github.com/tessera/ingest/issues/396#issuecomment-2745518206
+You are receiving this because you are subscribed to this thread.

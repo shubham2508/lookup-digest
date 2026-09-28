@@ -1,0 +1,66 @@
+thread_id: t-theo-loop
+subject: "Theo Lindgren - onsite Thursday"
+storyline: S9
+category: hiring
+labels: null
+messages:
+  - id: m1
+    beat_ref: S9.b3
+    day: 14
+    time: "09:05"
+    from: jordan
+    to: [avery]
+    cc: [tomas]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi Avery - Theo Lindgren passed the screen and I'd like to bring him onsite.
+
+      - Background: backend engineer, six years, most recently on a data-ingest team at a logistics company. Screen with Sofia went well: solid on the systems side, honest about what he hasn't done.
+      - Onsite: Thursday the 17th, in the office. Panel is me (systems design), Priya (technical depth) and Sofia (coding).
+      - You: the 30-minute closer at the end of the day. I'll put a hold on your calendar for 16:00 and confirm the full schedule early next week.
+
+      If you want a different slot for the closer, tell me before Friday and I'll shuffle the panel.
+  - id: m2
+    beat_ref: S9.b4
+    day: 21
+    time: "08:50"
+    from: jordan
+    to: [avery]
+    cc: [tomas]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Confirming Thursday for Theo's onsite:
+
+      - 10:00 coding (Sofia)
+      - 11:15 systems design (me)
+      - 13:00 lunch with Dev and Omar
+      - 14:00 technical depth (Priya)
+      - 16:00 closer (you, 30 minutes, room 2)
+
+      Greenhouse scorecards are set up; yours is the short form. He's flying in Wednesday night, so no schedule changes after tomorrow please.
+  - id: m3
+    beat_ref: S9.b5
+    day: 23
+    time: "18:10"
+    from: jordan
+    to: [avery]
+    cc: [tomas]
+    reply_to: m2
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Theo's onsite is done. Quick read before the scorecards are in:
+
+      - Coding (Sofia): good, not exceptional.
+      - Systems design (me): strong on ingest and backpressure, which is the part we care about.
+      - Technical depth (Priya): scorecard not in yet; her verbal read was "fine".
+      - Your closer: you'll add yours in Greenhouse.
+
+      I'll get the debrief on the calendar once all four scorecards are in, probably early next week. Nothing for you to do until then.

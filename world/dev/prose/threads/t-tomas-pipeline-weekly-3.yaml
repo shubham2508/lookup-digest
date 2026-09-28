@@ -1,0 +1,57 @@
+thread_id: t-tomas-pipeline-weekly-3
+subject: "Pipeline Monday!! (week of Sep 14)"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: routine_pipeline_fyi
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [report:pipeline-weekly]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: exec}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 20
+    time: "08:05"
+    from: tomas
+    to: [avery]
+    cc: [kim, ana, yuki]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Monday!! Rundown below. Pipeline review is tomorrow at 10 with Ana, Yuki and Kim, I know you're heads-down that morning so I'll bring the highlights to our 1:1 on Wednesday. Nothing here needs anything from anyone, just the weekly picture!
+
+      RIDGEWAY - scoping call is Wednesday at 2pm with Dale, and he's bringing his plant manager, Bud Halloran. Yuki's on. Dale answered my three prep questions by fax (see my Sunday email, sorry, couldn't wait), so we already know line B has a PLC historian with a nightly CSV export. This one feels real.
+
+      CALDER - demo Thursday. Yuki's been building a mock dashboard with their actual CSV headers (Ruth sent a sample, which she really didn't have to do, which tells you a lot).
+
+      BLUEFIN - verbal yes on the paid pilot!! Paperwork this week, Kim's got the order form. 8 weeks, one line, $9k.
+
+      MERIDIAN - Carla pinged Ana again about the two-plant pricing. I'm bringing packaging options to the review tomorrow so we can put a real number in front of her by the 25th like I promised. More on this after tomorrow.
+
+      ALDER PACKAGING - Ana's first deal run end to end! Pilot agreement went out Friday, she's chasing the signature.
+
+      IRONWOOD FASTENERS (Portland) - NEW, inbound via a Bluefin referral, believe it or not, and the Bluefin pilot hasn't even started. Hank Oberlin, plant manager. Ana's got a call Wednesday.
+
+      NORTHSTAR - QBR penciled for Wed the 30th at 1pm, tentative until Henrik's office confirms. Marta on the plant side is as chatty as ever, she sent Yuki a feature wishlist (shift-level filters, again!).
+
+      BRIGHTLINE - green, nothing new.
+
+      HALBERD - operator training is locked for the 29th, Yuki's building the one-page operator guide Renee asked for.
+
+      Numbers: 17 open, $1.35M weighted, 6 pilots incl. Bluefin. Best pipeline we've had, full stop.
+
+      Q4 events: I've got a draft list, will share when it's less embarrassing.
+
+      Have a great week!!
+
+      Tomás

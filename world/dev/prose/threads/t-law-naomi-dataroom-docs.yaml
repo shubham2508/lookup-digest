@@ -1,0 +1,69 @@
+thread_id: t-law-naomi-dataroom-docs
+subject: "Data room - legal folder contents"
+storyline: null
+category: lawyer
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_by_kim
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [deal:series-a:data-room]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: capital, subtype: deal_counsel}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 17
+    time: "15:30"
+    from: naomi
+    to: [avery]
+    cc: [ben, kim]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Dear Avery,
+
+      Ahead of IPV's counsel reviewing the data room, I have uploaded the following to Legal:
+
+      1. Certificate of Incorporation, as amended, and bylaws
+      2. Seed financing documents (SAFEs and the side letter with Cobalt Ridge)
+      3. Board and stockholder consents through August 2026
+      4. Executed CIIAAs for all current employees, including the three from this month
+
+      Still outstanding are the customer agreements: the Halberd, Northstar and Veritas MSAs and the Brightline order form. Kim, would you be able to add those to Legal > Customer Agreements? If you would prefer, you can send them to me and I will upload.
+
+      Please let me know if there is anything else you would like included.
+
+      Kind regards,
+      Naomi
+  - id: m2
+    beat_ref: null
+    day: 20
+    time: "09:10"
+    from: kim
+    to: [naomi]
+    cc: [avery, ben]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Hi Naomi,
+
+      Uploaded this morning to Legal > Customer Agreements:
+
+      - Halberd MSA (executed 2025-11-03) with Order Form 1
+      - Northstar MSA (executed 2026-01-22) with Order Forms 1 and 2
+      - Veritas MSA (executed 2025-10-01) with Order Form 1
+      - Brightline Order Form (executed 2026-06-15, under the online terms)
+
+      The Veritas renewal is in progress, so I've added a note on the folder that the current term ends 2026-09-30.
+
+      Kim

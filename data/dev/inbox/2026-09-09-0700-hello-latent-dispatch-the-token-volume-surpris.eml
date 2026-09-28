@@ -1,0 +1,30 @@
+Message-ID: <20260909-0700.hello@latentdispatch.ai>
+Date: Wed, 09 Sep 2026 07:00:34 -0700
+From: Latent Dispatch <hello@latentdispatch.ai>
+To: Avery Chen <avery@tessera.io>
+Subject: Latent Dispatch: the token-volume surprise, Nimbus matches Argent, an honest agent demo
+List-Unsubscribe: <mailto:unsubscribe@latentdispatch.ai?subject=unsubscribe>, <https://latentdispatch.ai/u/f50ca11d>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+LATENT DISPATCH
+Wed Sep 9 · 4 items · ~3 min
+
+WHY YOUR TOKEN BILL DOUBLED WHEN USAGE GREW 30%
+A reader question we get a lot, so here is the answer. Token volume is not linear in "usage." A new customer onboarding triggers a backfill over their history; a new data source adds context to every subsequent call; a longer system prompt multiplies across all traffic. Three teams this month reported bills roughly 2x their model because of one-time backfills they had not separated from steady state in the forecast. Separate them. https://latentdispatch.ai/p/token-volume-surprise
+
+NIMBUS MATCHES ARGENT'S 25% CUT
+That took one day. Kestrel is now the outlier on mid-tier pricing; we expect a move by Friday.
+
+AN AGENT DEMO THAT SHOWS ITS FAILURES
+Brindle's launch video spends four of its nine minutes on runs that went wrong and how the replay log helped. We cannot remember the last vendor demo that did that. Worth watching for the failure cases alone. https://latentdispatch.ai/p/brindle-demo
+
+SHORT TAKES
+· Pelagic 2.5 adds a "max reasoning tokens" cap. Set it or your P99 cost will surprise you.
+· A university group released a 300-document benchmark for supplier-contract clause extraction. Small, clean, useful. https://latentdispatch.ai/p/clause-bench
+· Tanager announces a 70B Coder for October.
+
+—
+You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1

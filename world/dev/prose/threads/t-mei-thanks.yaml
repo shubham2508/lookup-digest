@@ -1,0 +1,27 @@
+thread_id: t-mei-thanks
+subject: "Thank you - Tessera onsite"
+storyline: S8
+category: hiring
+labels: null
+messages:
+  - id: m1
+    beat_ref: S8.b2
+    day: 13
+    time: "09:10"
+    from: mei
+    to: [jordan]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi Jordan,
+
+      Thank you for organising the onsite, and please pass my thanks to Sofia, Priya and Avery as well. I came away with a much clearer picture of how the ingest pipeline is built and of the kind of problems the team is working on, and the conversation with Avery about how customers actually use the alerting was the most useful thirty minutes of the process so far.
+
+      For your planning: I am in one other process, which should conclude around the end of the month, so there is no pressure from my side before then. I will wait to hear from you on next steps whenever the panel has had a chance to compare notes.
+
+      Thank you again for a well-run day.
+
+      Best regards,

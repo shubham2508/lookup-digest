@@ -1,0 +1,2350 @@
+# world/dev/prose/bulk/notifications.yaml — automated notifications (Track B, M2, assignment B3).
+# 70 items: GitHub 20, Greenhouse 8, Gusto 6, AWS 2, Google Calendar 12, Ramp 3, Stripe 5 (1 failed payout),
+# DocuSign 2, Slack 3, Zoom 4, 1Password 1, Google 1, Notion 1, Linear 1, Oakland Pediatrics 1.
+# Only Ramp ×3, the failed Stripe payout and the Mei DocuSign are action-bearing. No List-Unsubscribe on any item.
+category: notifications
+items:
+  # ------------------------------------------------------------------ day 1 · Wed Aug 26
+  - id: auto-github-1-1
+    day: 1
+    time: "10:12"
+    from: github
+    to: [avery]
+    subject: "Re: [tessera/ingest] Backfill job for historical line events (PR #402)"
+    bulk: false
+    signature: none
+    body: |
+      Merged #402 into main.
+
+      --
+      Reply to this email directly or view it on GitHub:
+      https://github.com/tessera/ingest/pull/402#event-14401823312
+      You are receiving this because you are subscribed to this thread.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: GitHub, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 2 · Thu Aug 27
+  - id: auto-github-2-1
+    day: 2
+    time: "11:48"
+    from: github
+    to: [avery]
+    subject: "[tessera/infra] Run failed: CI - main (3e9d1f0)"
+    bulk: false
+    signature: none
+    body: |
+      Run failed for main (3e9d1f0)
+
+      Repository: tessera/infra
+      Workflow: CI
+      Duration: 4m 12s
+      Finished: 2026-08-27 18:48:03 UTC
+
+      Jobs:
+        ✗ terraform-plan (failed)
+        ✓ terraform-fmt (succeeded)
+        ✓ lint (succeeded)
+
+      terraform-plan: Error: Reference to undeclared resource "aws_iam_role.ingest_worker" (modules/ingest/iam.tf line 41)
+
+      View workflow run: https://github.com/tessera/infra/actions/runs/11412203931
+
+      --
+      You are receiving this because you are subscribed to this repository.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: GitHub, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 3 · Fri Aug 28
+  - id: auto-gusto-3-1
+    day: 3
+    time: "06:30"
+    from: gusto
+    to: [avery]
+    subject: "Your Aug 31 payroll has been processed"
+    bulk: false
+    signature: none
+    body: |
+      Hi Avery,
+
+      Payroll for Aug 16 - Aug 31 has been processed. Your team will be paid on Mon, Aug 31.
+
+      Pay period: Aug 16 - Aug 31, 2026
+      Pay date: Mon, Aug 31, 2026
+      Employees paid: 12
+      Total debit: $96,870.44 (from the account ending in 4471 on Thu, Aug 27)
+
+      Submitted by Kim Delgado on Aug 27 at 4:52 PM PDT.
+
+      View payroll details: https://app.gusto.com/payrolls/pr_8Ht2Kq9
+
+      Questions? Visit the Gusto Help Center at support.gusto.com.
+
+      Gusto, 525 20th Street, San Francisco, CA 94107
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Gusto, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-greenhouse-3-1
+    day: 3
+    time: "07:50"
+    from: greenhouse
+    to: [avery]
+    subject: "New application: Backend Engineer - Rohan Mehta"
+    bulk: false
+    signature: none
+    body: |
+      Hi Avery,
+
+      A new candidate has applied to Backend Engineer.
+
+      Candidate: Rohan Mehta
+      Job: Backend Engineer (Oakland, CA / Remote US)
+      Source: LinkedIn (Job Post)
+      Applied: Aug 28, 2026, 7:49 AM PDT
+      Resume: available in Greenhouse
+
+      View candidate: https://app.greenhouse.io/people/41823771
+
+      --
+      You are receiving this email because you follow the Backend Engineer job. Manage your notifications in Greenhouse.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Greenhouse, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-github-3-1
+    day: 3
+    time: "09:30"
+    from: github
+    to: [avery]
+    subject: "[tessera/dashboard] New Dependabot alert: moderate severity in axios"
+    bulk: false
+    signature: none
+    body: |
+      Dependabot found a moderate severity vulnerability in a dependency of tessera/dashboard.
+
+      Package: axios (npm)
+      Affected versions: < 1.7.4
+      Patched version: 1.7.4
+      Advisory: GHSA-8hc4-vh64-cxmj - Server-side request forgery in axios when path-relative URLs are processed
+      Manifest: package-lock.json
+
+      Dependabot has opened a pull request to fix this alert: #229 Bump axios from 1.6.8 to 1.7.4
+
+      View alert: https://github.com/tessera/dashboard/security/dependabot/17
+
+      --
+      You are receiving this because you are an admin of this repository.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: GitHub, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 5 · Sun Aug 30
+  - id: auto-aws-bill
+    day: 5
+    time: "04:15"
+    from: aws
+    to: [avery]
+    subject: "Amazon Web Services Billing Statement Available [Account: 418231907744]"
+    bulk: false
+    signature: none
+    body: |
+      Greetings from Amazon Web Services,
+
+      This e-mail confirms that your latest billing statement, for the account ending in 7744, is available on the AWS website. Your account will be charged the following:
+
+      Total: $6,318.42
+
+      Invoice number: 2027384419
+      Invoice date: August 30, 2026
+      Billing period: August 2026
+
+      You can view your invoice and a detailed breakdown by service in the Billing and Cost Management console:
+      https://console.aws.amazon.com/billing/home#/bills
+
+      If you have a credit card on file, the charge will appear on your statement within 3-5 business days.
+
+      Sincerely,
+      Amazon Web Services
+
+      This message was produced and distributed by Amazon Web Services, Inc., 410 Terry Avenue North, Seattle, WA 98109-5210.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: AWS, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 6 · Mon Aug 31
+  - id: auto-zoom-6-1
+    day: 6
+    time: "10:52"
+    from: {name: "Zoom", email: "no-reply@zoom.us"}
+    to: [avery]
+    subject: "Cloud Recording - Leadership sync is now available"
+    bulk: false
+    signature: none
+    body: |
+      Hi Avery Chen,
+
+      Your cloud recording is now available.
+
+      Topic: Leadership sync
+      Date: Aug 31, 2026 10:00 AM Pacific Time (US and Canada)
+      Meeting ID: 842 0193 5571
+      Duration: 43 minutes
+
+      For host only, click here to view your recording (viewers cannot access this page):
+      https://tessera.zoom.us/rec/share/kQ3x9WfT2nH8pLmR0aBcDeFgHiJkLmNoPqRsTuVwXyZ
+
+      Share recording with viewers:
+      https://tessera.zoom.us/rec/share/Xy7Lm2QwErTyUiOpAsDfGhJkLzXcVbNm Passcode: v8$Rq2!Tz
+
+      Audio transcript will be available in 10-15 minutes.
+
+      Thank you for choosing Zoom.
+      -The Zoom Team
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Zoom, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-github-6-1
+    day: 6
+    time: "14:20"
+    from: github
+    to: [avery]
+    subject: "Re: [tessera/ingest] Modbus poller drops frames under sustained load (#396)"
+    bulk: false
+    signature: none
+    body: |
+      @sofiandrade commented on this issue.
+
+      Reproduced on the bench rig with 3 devices at a 50 ms poll interval. Frames start dropping once the response queue passes ~400 entries; the poller does not back off, it just keeps stacking reads.
+
+      Plan:
+      - add exponential backoff with a 2 s ceiling when the queue is above the watermark
+      - log a warning with the device id the first time it happens per hour, not per frame
+      - PR up tomorrow
+
+      --
+      Reply to this email directly or view it on GitHub:
+      https://github.com/tessera/ingest/issues/396#issuecomment-2745518206
+      You are receiving this because you are subscribed to this thread.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: GitHub, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 7 · Tue Sep 1
+  - id: auto-stripe-7-1
+    day: 7
+    time: "03:10"
+    from: stripe
+    to: [avery]
+    subject: "Payout of $12,940.00 sent to your bank account"
+    bulk: false
+    signature: none
+    body: |
+      Stripe
+
+      A payout of $12,940.00 is on its way to your bank account ending in 4471. It should arrive by Wed, Sep 2, 2026.
+
+      Payout ID: po_3PzQ1aL2eZvKYlo2C0mX7T8g
+      Amount: $12,940.00
+      Bank account: •••• 4471
+      Initiated: Sep 1, 2026
+      Estimated arrival: Sep 2, 2026
+      Transactions included: 4
+
+      View this payout in the Dashboard: https://dashboard.stripe.com/payouts/po_3PzQ1aL2eZvKYlo2C0mX7T8g
+
+      If the payout does not arrive within 5 business days of the arrival date above, contact your bank first, then Stripe Support.
+
+      Stripe, 354 Oyster Point Blvd, South San Francisco, CA 94080
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Stripe, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-gusto-7-1
+    day: 7
+    time: "05:40"
+    from: gusto
+    to: [avery]
+    subject: "Your September benefits invoice is ready"
+    bulk: false
+    signature: none
+    body: |
+      Hi Avery,
+
+      Your September benefits invoice is ready.
+
+      Total: $14,230.00
+        Medical (12 enrolled): $11,640.00
+        Dental (11 enrolled): $1,430.00
+        Vision (10 enrolled): $360.00
+        Benefits administration: $800.00
+
+      This amount will be debited from the account ending in 4471 on Tue, Sep 8.
+
+      View invoice: https://app.gusto.com/benefits/invoices/inv_2026-09
+
+      Gusto, 525 20th Street, San Francisco, CA 94107
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Gusto, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-github-7-1
+    day: 7
+    time: "16:05"
+    from: github
+    to: [avery]
+    subject: "[tessera/dashboard] Shift-level OEE tiles (PR #233)"
+    bulk: false
+    signature: none
+    body: |
+      @priyai requested your review on: #233 Shift-level OEE tiles.
+
+      Adds per-shift OEE tiles to the plant overview. Availability, performance and quality are computed in the API (new endpoint /v2/oee/shifts) and the dashboard only renders. Shift boundaries come from the site config.
+
+      Numbers on the Halberd staging tenant match the spreadsheet Yuki uses for the weekly to within 0.2%.
+
+      --
+      Reply to this email directly or view it on GitHub:
+      https://github.com/tessera/dashboard/pull/233
+      You are receiving this because your review was requested.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: GitHub, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 8 · Wed Sep 2
+  - id: auto-stripe-8-1
+    day: 8
+    time: "05:00"
+    from: stripe
+    to: [avery]
+    subject: "Your August 2026 Stripe statement is ready"
+    bulk: false
+    signature: none
+    body: |
+      Stripe
+
+      Your statement for August 1 - August 31, 2026 is ready.
+
+      Gross volume: $41,290.00
+      Refunds: $0.00
+      Disputes: $0.00
+      Fees: $1,238.70
+      Net: $40,051.30
+      Payouts: 4 (total $40,051.30)
+
+      Download the PDF or CSV from the Dashboard: https://dashboard.stripe.com/reports/statements
+
+      Stripe, 354 Oyster Point Blvd, South San Francisco, CA 94080
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Stripe, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-github-8-1
+    day: 8
+    time: "10:41"
+    from: github
+    to: [avery]
+    subject: "Re: [tessera/ingest] Retry with backoff in the Modbus poller (PR #405)"
+    bulk: false
+    signature: none
+    body: |
+      Merged #405 into main.
+
+      Closes #396.
+
+      --
+      Reply to this email directly or view it on GitHub:
+      https://github.com/tessera/ingest/pull/405#event-14502211890
+      You are receiving this because you are subscribed to this thread.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: GitHub, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 9 · Thu Sep 3
+  - id: auto-github-9-1
+    day: 9
+    time: "08:15"
+    from: github
+    to: [avery]
+    subject: "Re: [tessera/infra] Rotate RDS credentials through Secrets Manager (PR #141)"
+    bulk: false
+    signature: none
+    body: |
+      Merged #141 into main.
+
+      @omarh: rotation runs every 30 days now; the ingest workers pick up the new secret on the next connection. Nothing to do on deploy.
+
+      --
+      Reply to this email directly or view it on GitHub:
+      https://github.com/tessera/infra/pull/141#event-14520077123
+      You are receiving this because you are subscribed to this repository.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: GitHub, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-greenhouse-9-1
+    day: 9
+    time: "11:20"
+    from: greenhouse
+    to: [avery]
+    subject: "New application: Product Designer - Camille Dubois"
+    bulk: false
+    signature: none
+    body: |
+      Hi Avery,
+
+      A new candidate has applied to Product Designer.
+
+      Candidate: Camille Dubois
+      Job: Product Designer (Oakland, CA / Remote US)
+      Source: Agency (Keystone Search)
+      Applied: Sep 3, 2026, 11:19 AM PDT
+      Portfolio: link on the candidate profile
+
+      View candidate: https://app.greenhouse.io/people/41905522
+
+      --
+      You are receiving this email because you follow the Product Designer job. Manage your notifications in Greenhouse.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Greenhouse, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-gcal-9-1
+    day: 9
+    time: "14:05"
+    from: {name: "Ravi Menon (Google Calendar)", email: "calendar-notification@google.com"}
+    to: [avery]
+    subject: "Invitation: IPV partnership pitch @ Wed Sep 9, 2026 11am - 12pm (PDT) (avery@tessera.io)"
+    bulk: false
+    signature: none
+    body: |
+      You have been invited to the following event.
+
+      IPV partnership pitch
+
+      When
+      Wednesday Sep 9, 2026 ⋅ 11:00am – 12:00pm (Pacific Time - Los Angeles)
+
+      Where
+      Inflection Point Ventures, San Francisco (suite and parking details in the description)
+
+      Organizer
+      Ravi Menon - ravi@inflectionpoint.vc
+
+      Guests
+      Ravi Menon - organizer
+      Avery Chen
+      Priya Iyer
+      Marcus Webb
+      Elena Vasquez
+      View all guest info
+
+      Description
+      Full partnership. 45 minutes for the deck, 15 for questions. Please arrive 10 minutes early; reception will have badges ready.
+
+      Reply for avery@tessera.io and view more details
+      Yes - Maybe - No
+      https://calendar.google.com/calendar/event?action=RESPOND&eid=aXB2LXBpdGNoLTIwMjYwOTA5
+
+      Invitation from Google Calendar
+
+      You are receiving this email because you are a guest on the event. To stop receiving future updates for this event, decline this event.
+      Forwarding this invitation could allow any recipient to send a response to the organizer, be added to the guest list, invite others regardless of their own invitation status, or modify your RSVP.
+    labels:
+      kind: automated
+      must_not: true
+      reason: accepted_meeting_confirmation
+      classification_case: null
+      expected: {type: automated, automated: {system: "Google Calendar", action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 10 · Fri Sep 4
+  - id: auto-gusto-10-1
+    day: 10
+    time: "12:05"
+    from: gusto
+    to: [avery]
+    subject: "Dev Patel updated their Form W-4"
+    bulk: false
+    signature: none
+    body: |
+      Hi Avery,
+
+      Dev Patel updated their federal tax withholding (Form W-4) in Gusto. The change applies starting with the Sep 15 payroll.
+
+      No action is needed from you. Admins are notified of withholding changes so payroll records stay in sync.
+
+      View team: https://app.gusto.com/team
+
+      Gusto, 525 20th Street, San Francisco, CA 94107
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Gusto, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-github-10-1
+    day: 10
+    time: "13:22"
+    from: github
+    to: [avery]
+    subject: "[tessera/dashboard] Run failed: CI - main (b71c04a)"
+    bulk: false
+    signature: none
+    body: |
+      Run failed for main (b71c04a)
+
+      Repository: tessera/dashboard
+      Workflow: CI
+      Duration: 9m 41s
+      Finished: 2026-09-04 20:22:17 UTC
+
+      Jobs:
+        ✓ lint (succeeded)
+        ✓ unit (succeeded)
+        ✗ e2e (failed)
+
+      e2e: 1 of 212 specs failed - plant-overview.spec.ts "renders shift tiles for a 3-shift site" (timeout 30000ms)
+
+      View workflow run: https://github.com/tessera/dashboard/actions/runs/11512877204
+
+      --
+      You are receiving this because you are subscribed to this repository.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: GitHub, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 11 · Sat Sep 5
+  - id: auto-slack-11-1
+    day: 11
+    time: "09:02"
+    from: {name: "Slack", email: "notification@slack.com"}
+    to: [avery]
+    subject: "[Slack] Notifications from Tessera for Sep 4th"
+    bulk: false
+    signature: none
+    body: |
+      You have new notifications in the Tessera workspace.
+
+      #general
+        Kim Delgado (Fri 4:12 PM): reminder the office is closed Monday for Labor Day. Payroll already ran, nothing changes there.
+        Dev Patel (Fri 4:15 PM): :tada:
+
+      #eng
+        Omar Haddad (Fri 5:48 PM): on-call handoff notes are in the thread. quiet week, one alert on the staging poller that resolved itself.
+        Sofia Andrade (Fri 6:02 PM): staging is green again after the e2e flake, was a timeout on the 3-shift fixture
+
+      #gtm
+        Ana Kowalski (Fri 3:30 PM): Meridian intro call went well, notes in the CRM
+
+      Open Slack: https://tessera.slack.com
+
+      --
+      This email was sent because you have email notifications turned on for when you are away from Slack. Change this in your Slack preferences.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Slack, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 12 · Sun Sep 6
+  - id: auto-greenhouse-12-1
+    day: 12
+    time: "18:05"
+    from: greenhouse
+    to: [avery]
+    subject: "Scorecard submitted: Sofia Andrade for Mei Tanaka (Backend Engineer)"
+    bulk: false
+    signature: none
+    body: |
+      Sofia Andrade submitted a scorecard.
+
+      Candidate: Mei Tanaka
+      Job: Backend Engineer
+      Interview: Onsite - Systems design (Sep 6, 2026, 1:00 PM PDT)
+      Overall recommendation: Strong Yes
+
+      Key takeaways (from the scorecard):
+      - Clear decomposition of the ingest pipeline question; asked about backpressure before we prompted.
+      - Comfortable in Postgres internals; knew when not to add an index.
+      - Communicates tradeoffs without being asked.
+
+      View scorecard: https://app.greenhouse.io/people/40917455/scorecards/9911280
+
+      --
+      You are receiving this email because you are on the hiring team for Backend Engineer.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Greenhouse, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 13 · Mon Sep 7
+  - id: auto-github-13-1
+    day: 13
+    time: "09:02"
+    from: github
+    to: [avery]
+    subject: "[tessera/infra] Bump aws-sdk from 2.1450.0 to 2.1491.0 (PR #144)"
+    bulk: false
+    signature: none
+    body: |
+      dependabot[bot] opened a pull request.
+
+      Bumps aws-sdk from 2.1450.0 to 2.1491.0.
+
+      Release notes: https://github.com/aws/aws-sdk-js/releases
+      Commits: https://github.com/aws/aws-sdk-js/compare/v2.1450.0...v2.1491.0
+
+      Dependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting @dependabot rebase.
+
+      --
+      Reply to this email directly or view it on GitHub:
+      https://github.com/tessera/infra/pull/144
+      You are receiving this because you are subscribed to this repository.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: GitHub, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 14 · Tue Sep 8
+  - id: auto-stripe-14-1
+    day: 14
+    time: "03:11"
+    from: stripe
+    to: [avery]
+    subject: "Payout of $9,215.30 sent to your bank account"
+    bulk: false
+    signature: none
+    body: |
+      Stripe
+
+      A payout of $9,215.30 is on its way to your bank account ending in 4471. It should arrive by Wed, Sep 9, 2026.
+
+      Payout ID: po_3Q1Hd7L2eZvKYlo2C4nR2vBq
+      Amount: $9,215.30
+      Bank account: •••• 4471
+      Initiated: Sep 8, 2026
+      Estimated arrival: Sep 9, 2026
+      Transactions included: 3
+
+      View this payout in the Dashboard: https://dashboard.stripe.com/payouts/po_3Q1Hd7L2eZvKYlo2C4nR2vBq
+
+      Stripe, 354 Oyster Point Blvd, South San Francisco, CA 94080
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Stripe, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-greenhouse-14-1
+    day: 14
+    time: "09:12"
+    from: greenhouse
+    to: [avery]
+    subject: "Interview scheduled: Theo Lindgren - Backend Engineer (Onsite)"
+    bulk: false
+    signature: none
+    body: |
+      An interview has been scheduled.
+
+      Candidate: Theo Lindgren
+      Job: Backend Engineer
+      Stage: Onsite
+      Scheduled by: Jordan Liu
+
+      Thu, Sep 17, 2026 (PDT)
+        1:00 PM - 2:00 PM   Coding - Sofia Andrade
+        2:00 PM - 3:00 PM   Systems design - Dev Patel, Omar Haddad
+        3:00 PM - 3:45 PM   Hiring manager - Jordan Liu
+        4:00 PM - 4:30 PM   Closer - Avery Chen
+
+      Calendar invites have been sent to each interviewer. Scorecards open in Greenhouse when each interview starts.
+
+      View candidate: https://app.greenhouse.io/people/41022913
+
+      --
+      You are receiving this email because you are an interviewer on this loop.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Greenhouse, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-gcal-14-1
+    day: 14
+    time: "09:20"
+    from: {name: "Jordan Liu (Google Calendar)", email: "calendar-notification@google.com"}
+    to: [avery]
+    subject: "Invitation: Onsite - Theo Lindgren (closer w/ Avery) @ Thu Sep 17, 2026 4pm - 4:30pm (PDT) (avery@tessera.io)"
+    bulk: false
+    signature: none
+    body: |
+      You have been invited to the following event.
+
+      Onsite - Theo Lindgren (closer w/ Avery)
+
+      When
+      Thursday Sep 17, 2026 ⋅ 4:00pm – 4:30pm (Pacific Time - Los Angeles)
+
+      Where
+      Tessera office, Room 2 (Google Meet link in the description as a fallback)
+
+      Organizer
+      Jordan Liu - jordan@tessera.io
+
+      Guests
+      Jordan Liu - organizer
+      Avery Chen
+      Theo Lindgren
+      View all guest info
+
+      Description
+      Last slot of Theo's onsite loop. Scorecard opens in Greenhouse at 4:00.
+
+      Reply for avery@tessera.io and view more details
+      Yes - Maybe - No
+      https://calendar.google.com/calendar/event?action=RESPOND&eid=dGhlby1vbnNpdGUtMjAyNjA5MTc
+
+      Invitation from Google Calendar
+
+      You are receiving this email because you are a guest on the event. To stop receiving future updates for this event, decline this event.
+    labels:
+      kind: automated
+      must_not: true
+      reason: accepted_meeting_confirmation
+      classification_case: null
+      expected: {type: automated, automated: {system: "Google Calendar", action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-github-14-1
+    day: 14
+    time: "11:30"
+    from: github
+    to: [avery]
+    subject: "Re: [tessera/ingest] CSV header mapping fails on BOM-prefixed exports (#410)"
+    bulk: false
+    signature: none
+    body: |
+      @devp commented on this issue.
+
+      Root cause: the export tool on the Veritas side writes a UTF-8 BOM, so the first header reads as "﻿site_id" and the mapper falls through to the unknown-column path. Same thing would hit anyone exporting from Excel on Windows.
+
+      Fix is a one-liner in the reader (open with utf-8-sig). PR #413 is up with a fixture built from the sample file Ivan sent.
+
+      --
+      Reply to this email directly or view it on GitHub:
+      https://github.com/tessera/ingest/issues/410#issuecomment-2781140455
+      You are receiving this because you are subscribed to this thread.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: GitHub, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 15 · Wed Sep 9
+  - id: auto-gusto-15-1
+    day: 15
+    time: "07:05"
+    from: gusto
+    to: [avery]
+    subject: "Open enrollment for 2027 benefits starts Nov 2"
+    bulk: false
+    signature: none
+    body: |
+      Hi Avery,
+
+      A heads up on the benefits calendar: open enrollment for your team's 2027 benefits runs Nov 2 - Nov 16, 2026.
+
+      What happens before then
+      - Your carrier renewal rates arrive in October. We will email your benefits admin (Kim Delgado) when they are ready to review.
+      - Employees will get their own reminder on Nov 2 with a link to enroll.
+
+      Nothing to do today. This is an early notice so the dates are on your radar.
+
+      View benefits: https://app.gusto.com/benefits
+
+      Gusto, 525 20th Street, San Francisco, CA 94107
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Gusto, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-gcal-15-1
+    day: 15
+    time: "10:35"
+    from: {name: "Kim Delgado (Google Calendar)", email: "calendar-notification@google.com"}
+    to: [avery]
+    subject: "Invitation: Finance sync @ Wed Sep 16, 2026 3pm - 3:45pm (PDT) (avery@tessera.io)"
+    bulk: false
+    signature: none
+    body: |
+      You have been invited to the following event.
+
+      Finance sync
+
+      When
+      Wednesday Sep 16, 2026 ⋅ 3:00pm – 3:45pm (Pacific Time - Los Angeles)
+
+      Where
+      Tessera office, Room 1
+
+      Organizer
+      Kim Delgado - kim@tessera.io
+
+      Guests
+      Kim Delgado - organizer
+      Avery Chen
+      Priya Iyer
+      View all guest info
+
+      Reply for avery@tessera.io and view more details
+      Yes - Maybe - No
+      https://calendar.google.com/calendar/event?action=RESPOND&eid=ZmluYW5jZS1zeW5jLTIwMjYwOTE2
+
+      Invitation from Google Calendar
+
+      You are receiving this email because you are a guest on the event. To stop receiving future updates for this event, decline this event.
+    labels:
+      kind: automated
+      must_not: true
+      reason: accepted_meeting_confirmation
+      classification_case: null
+      expected: {type: automated, automated: {system: "Google Calendar", action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-github-15-1
+    day: 15
+    time: "15:47"
+    from: github
+    to: [avery]
+    subject: "Re: [tessera/dashboard] Shift-level OEE tiles (PR #233)"
+    bulk: false
+    signature: none
+    body: |
+      Merged #233 into main.
+
+      --
+      Reply to this email directly or view it on GitHub:
+      https://github.com/tessera/dashboard/pull/233#event-14688201455
+      You are receiving this because your review was requested.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: GitHub, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 16 · Thu Sep 10
+  - id: auto-github-16-1
+    day: 16
+    time: "09:58"
+    from: github
+    to: [avery]
+    subject: "[tessera/ingest] Dedupe events by (site, line, ts) (PR #414)"
+    bulk: false
+    signature: none
+    body: |
+      @sofiandrade requested your review on: #414 Dedupe events by (site, line, ts).
+
+      When a gateway reconnects it replays its buffer, and we were storing the replayed events twice. This adds a unique index on (site_id, line_id, ts, seq) and makes the writer an upsert. Includes a one-off migration that removes the existing duplicates (about 0.3% of rows on prod, almost all from gateway reconnects).
+
+      Migration is idempotent and runs in batches of 10k.
+
+      --
+      Reply to this email directly or view it on GitHub:
+      https://github.com/tessera/ingest/pull/414
+      You are receiving this because your review was requested.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: GitHub, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-gcal-16-1
+    day: 16
+    time: "13:45"
+    from: {name: "Tomás Reyes (Google Calendar)", email: "calendar-notification@google.com"}
+    to: [avery]
+    subject: "Invitation: Hiring sync @ Thu Sep 17, 2026 11am - 11:30am (PDT) (avery@tessera.io)"
+    bulk: false
+    signature: none
+    body: |
+      You have been invited to the following event.
+
+      Hiring sync
+
+      When
+      Thursday Sep 17, 2026 ⋅ 11:00am – 11:30am (Pacific Time - Los Angeles)
+
+      Where
+      Tessera office, Room 1
+
+      Organizer
+      Tomás Reyes - tomas@tessera.io
+
+      Guests
+      Tomás Reyes - organizer
+      Avery Chen
+      Jordan Liu
+      View all guest info
+
+      Description
+      Backend loop status, designer req, and the one decision we need to close this week. Kept it to 30 so it lands after the morning block!
+
+      Reply for avery@tessera.io and view more details
+      Yes - Maybe - No
+      https://calendar.google.com/calendar/event?action=RESPOND&eid=aGlyaW5nLXN5bmMtMjAyNjA5MTc
+
+      Invitation from Google Calendar
+
+      You are receiving this email because you are a guest on the event. To stop receiving future updates for this event, decline this event.
+    labels:
+      kind: automated
+      must_not: true
+      reason: accepted_meeting_confirmation
+      classification_case: null
+      expected: {type: automated, automated: {system: "Google Calendar", action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 17 · Fri Sep 11
+  - id: auto-gusto-17-1
+    day: 17
+    time: "06:30"
+    from: gusto
+    to: [avery]
+    subject: "Your Sep 15 payroll has been processed"
+    bulk: false
+    signature: none
+    body: |
+      Hi Avery,
+
+      Payroll for Sep 1 - Sep 15 has been processed. Your team will be paid on Tue, Sep 15.
+
+      Pay period: Sep 1 - Sep 15, 2026
+      Pay date: Tue, Sep 15, 2026
+      Employees paid: 12
+      Total debit: $97,112.08 (from the account ending in 4471 on Fri, Sep 11)
+
+      Submitted by Kim Delgado on Sep 10 at 5:14 PM PDT.
+
+      View payroll details: https://app.gusto.com/payrolls/pr_8Jw4Rn1
+
+      Gusto, 525 20th Street, San Francisco, CA 94107
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Gusto, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-gcal-17-1
+    day: 17
+    time: "15:00"
+    from: {name: "Tomás Reyes (Google Calendar)", email: "calendar-notification@google.com"}
+    to: [avery]
+    subject: "Invitation: Pipeline review (Q4 push) @ Tue Sep 15, 2026 10am - 11am (PDT) (avery@tessera.io)"
+    bulk: false
+    signature: none
+    body: |
+      You have been invited to the following event.
+
+      Pipeline review (Q4 push)
+
+      When
+      Tuesday Sep 15, 2026 ⋅ 10:00am – 11:00am (Pacific Time - Los Angeles)
+
+      Where
+      Tessera office, Room 1 / Google Meet
+
+      Organizer
+      Tomás Reyes - tomas@tessera.io
+
+      Guests
+      Tomás Reyes - organizer
+      Avery Chen
+      Ana Kowalski
+      Yuki Sato
+      Kim Delgado
+      View all guest info
+
+      Description
+      Full pipeline walk for the Q4 push! Ana and Yuki bring the deal-by-deal, Kim has the collections view. Would love Avery's read on the top five before we lock the forecast.
+
+      Reply for avery@tessera.io and view more details
+      Yes - Maybe - No
+      https://calendar.google.com/calendar/event?action=RESPOND&eid=cGlwZWxpbmUtcmV2aWV3LTIwMjYwOTE1
+
+      Invitation from Google Calendar
+
+      You are receiving this email because you are a guest on the event. To stop receiving future updates for this event, decline this event.
+    labels:
+      kind: automated
+      must_not: true
+      reason: accepted_meeting_confirmation
+      classification_case: null
+      expected: {type: automated, automated: {system: "Google Calendar", action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-zoom-17-1
+    day: 17
+    time: "15:49"
+    from: {name: "Zoom", email: "no-reply@zoom.us"}
+    to: [avery]
+    subject: "Cloud Recording - All hands is now available"
+    bulk: false
+    signature: none
+    body: |
+      Hi Avery Chen,
+
+      Your cloud recording is now available.
+
+      Topic: All hands
+      Date: Sep 11, 2026 03:00 PM Pacific Time (US and Canada)
+      Meeting ID: 861 2270 4418
+      Duration: 41 minutes
+
+      For host only, click here to view your recording (viewers cannot access this page):
+      https://tessera.zoom.us/rec/share/pR8wN3VbGx1sKd0LqTzYuIoPaSdFgHjKlZxCvBnM
+
+      Share recording with viewers:
+      https://tessera.zoom.us/rec/share/Ba4Tr9YuNmKlOpQwErTyUiAsDfGhJk Passcode: 3g#Wm7&Lx
+
+      Audio transcript will be available in 10-15 minutes.
+
+      Thank you for choosing Zoom.
+      -The Zoom Team
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Zoom, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-github-17-1
+    day: 17
+    time: "17:12"
+    from: github
+    to: [avery]
+    subject: "[tessera/infra] Run failed: deploy-staging - main (a44f2e9)"
+    bulk: false
+    signature: none
+    body: |
+      Run failed for main (a44f2e9)
+
+      Repository: tessera/infra
+      Workflow: deploy-staging
+      Duration: 2m 03s
+      Finished: 2026-09-12 00:12:44 UTC
+
+      Jobs:
+        ✓ build (succeeded)
+        ✗ deploy (failed)
+
+      deploy: helm upgrade failed - timed out waiting for the condition (ingest-worker rollout, 0/2 pods ready)
+
+      View workflow run: https://github.com/tessera/infra/actions/runs/11689021557
+
+      --
+      You are receiving this because you are subscribed to this repository.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: GitHub, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 18 · Sat Sep 12
+  - id: auto-stripe-18-1
+    day: 18
+    time: "02:14"
+    from: stripe
+    to: [avery]
+    subject: "Receipt from Linear [#2264-8811]"
+    bulk: false
+    signature: none
+    body: |
+      Receipt from Linear
+
+      Amount paid: $224.00
+      Date paid: Sep 12, 2026
+      Payment method: Visa •••• 4409
+      Receipt number: 2264-8811
+
+      Summary
+        Linear Business - 14 seats x $16.00 (Sep 12 - Oct 12, 2026)    $224.00
+        Amount paid                                                     $224.00
+
+      Billed to: Tessera, Inc., 2201 Broadway, Suite 300, Oakland, CA 94612
+
+      If you have any questions about this receipt, contact Linear at support@linear.app.
+
+      Something wrong with this email? View it in your browser.
+      Powered by Stripe
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Stripe, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 19 · Sun Sep 13
+  - id: auto-slack-19-1
+    day: 19
+    time: "08:47"
+    from: {name: "Slack", email: "notification@slack.com"}
+    to: [avery]
+    subject: "[Slack] Notifications from Tessera for Sep 12th"
+    bulk: false
+    signature: none
+    body: |
+      You have new notifications in the Tessera workspace.
+
+      #eng
+        Omar Haddad (Sat 9:20 AM): retried the staging deploy from Friday, worker pods came up fine on the second try. closing the loop.
+        Dev Patel (Sat 9:31 AM): thanks, was the readiness probe timeout, bumped it to 60s in #146
+
+      #general
+        Yuki Sato (Sat 11:05 AM): first draft of the Halberd operator training materials is in the shared drive, feedback welcome by Wednesday
+
+      #random
+        Dev Patel (Sat 2:40 PM): anyone want an extra ticket for tonight's game, free to a good home
+
+      Open Slack: https://tessera.slack.com
+
+      --
+      This email was sent because you have email notifications turned on for when you are away from Slack. Change this in your Slack preferences.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Slack, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 20 · Mon Sep 14
+  - id: auto-github-20-1
+    day: 20
+    time: "10:20"
+    from: github
+    to: [avery]
+    subject: "Re: [tessera/ingest] Dedupe events by (site, line, ts) (PR #414)"
+    bulk: false
+    signature: none
+    body: |
+      Merged #414 into main.
+
+      @jliu-tessera: migration ran on prod Sunday night, 41,208 rows removed, no customer-visible change.
+
+      --
+      Reply to this email directly or view it on GitHub:
+      https://github.com/tessera/ingest/pull/414#event-14790335610
+      You are receiving this because your review was requested.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: GitHub, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-zoom-20-1
+    day: 20
+    time: "10:50"
+    from: {name: "Zoom", email: "no-reply@zoom.us"}
+    to: [avery]
+    subject: "Cloud Recording - Leadership sync is now available"
+    bulk: false
+    signature: none
+    body: |
+      Hi Avery Chen,
+
+      Your cloud recording is now available.
+
+      Topic: Leadership sync
+      Date: Sep 14, 2026 10:00 AM Pacific Time (US and Canada)
+      Meeting ID: 842 0193 5571
+      Duration: 46 minutes
+
+      For host only, click here to view your recording (viewers cannot access this page):
+      https://tessera.zoom.us/rec/share/mN2vB7CxZaQwSxEdCrFvTgByHnUjMiKoLpZ
+
+      Share recording with viewers:
+      https://tessera.zoom.us/rec/share/Qw9Er4TyUiOpAsDfGhJkLzXcVbNmQwEr Passcode: 6j@Kp3!Rd
+
+      Audio transcript will be available in 10-15 minutes.
+
+      Thank you for choosing Zoom.
+      -The Zoom Team
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Zoom, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-gcal-20-1
+    day: 20
+    time: "14:30"
+    from: {name: "Tomás Reyes (Google Calendar)", email: "calendar-notification@google.com"}
+    to: [avery]
+    subject: "Invitation: GTM weekly @ Mon Sep 21, 2026 3:30pm - 4:15pm (PDT) (avery@tessera.io)"
+    bulk: false
+    signature: none
+    body: |
+      You have been invited to the following event.
+
+      GTM weekly
+
+      When
+      Monday Sep 21, 2026 ⋅ 3:30pm – 4:15pm (Pacific Time - Los Angeles)
+
+      Where
+      Tessera office, Room 1 / Google Meet
+
+      Organizer
+      Tomás Reyes - tomas@tessera.io
+
+      Guests
+      Tomás Reyes - organizer
+      Avery Chen
+      Kim Delgado
+      Ana Kowalski
+      View all guest info
+
+      Description
+      Moving the GTM weekly to Mondays so it lands right after leadership sync and before the Priya 1:1. Pipeline, renewals, and one customer story each week!
+
+      Reply for avery@tessera.io and view more details
+      Yes - Maybe - No
+      https://calendar.google.com/calendar/event?action=RESPOND&eid=Z3RtLXdlZWtseS0yMDI2MDkyMQ
+
+      Invitation from Google Calendar
+
+      You are receiving this email because you are a guest on the event. To stop receiving future updates for this event, decline this event.
+    labels:
+      kind: automated
+      must_not: true
+      reason: accepted_meeting_confirmation
+      classification_case: null
+      expected: {type: automated, automated: {system: "Google Calendar", action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-docusign-nda-meridian
+    day: 20
+    time: "15:22"
+    from: docusign
+    to: [avery]
+    subject: "Completed: Mutual NDA - Meridian Foods.pdf"
+    bulk: false
+    signature: none
+    body: |
+      DocuSign
+
+      All parties have completed Mutual NDA - Meridian Foods.pdf.
+
+      VIEW COMPLETED DOCUMENT
+      https://na3.docusign.net/Signing/EmailStart.aspx?a=b02d9e51-13c7-4d0a-8a4f-6e2b1c9d7f40
+
+      Envelope status
+        Tomás Reyes (tomas@tessera.io) - Signed 9/14/2026
+        Carla Mendes (carla.mendes@meridianfoods.com) - Signed 9/14/2026
+        Avery Chen (avery@tessera.io) - Receives a copy
+
+      The completed document is available in your DocuSign account. No further action is required.
+
+      Do Not Share This Email
+      This email contains a secure link to DocuSign. Please do not share this email, link, or access code with others.
+
+      About DocuSign
+      Sign documents electronically in just minutes. It's safe, secure, and legally binding. Whether you're in an office, at home, on-the-go -- or even across the globe -- DocuSign provides a professional trusted solution for Digital Transaction Management.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: DocuSign, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 21 · Tue Sep 15
+  - id: auto-gcal-21-1
+    day: 21
+    time: "08:50"
+    from: {name: "Kim Delgado (Google Calendar)", email: "calendar-notification@google.com"}
+    to: [avery]
+    subject: "Updated invitation: Finance sync @ Wed Sep 16, 2026 3pm - 3:45pm (PDT) (avery@tessera.io)"
+    bulk: false
+    signature: none
+    body: |
+      This event has been updated.
+
+      Changed: description
+
+      Finance sync
+
+      When
+      Wednesday Sep 16, 2026 ⋅ 3:00pm – 3:45pm (Pacific Time - Los Angeles)
+
+      Where
+      Tessera office, Room 1
+
+      Organizer
+      Kim Delgado - kim@tessera.io
+
+      Guests
+      Kim Delgado - organizer
+      Avery Chen
+      Priya Iyer
+      View all guest info
+
+      Description
+      Agenda: (1) cash and runway as of Sep 15, (2) Q3 close status, (3) ARR reconciliation against the board deck, (4) D&O renewal quote timing. Doc link in the calendar entry.
+
+      Reply for avery@tessera.io and view more details
+      Yes - Maybe - No
+      https://calendar.google.com/calendar/event?action=RESPOND&eid=ZmluYW5jZS1zeW5jLTIwMjYwOTE2
+
+      Invitation from Google Calendar
+
+      You are receiving this email because you are a guest on the event. To stop receiving future updates for this event, decline this event.
+    labels:
+      kind: automated
+      must_not: true
+      reason: accepted_meeting_confirmation
+      classification_case: null
+      expected: {type: automated, automated: {system: "Google Calendar", action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-greenhouse-21-1
+    day: 21
+    time: "09:45"
+    from: greenhouse
+    to: [avery]
+    subject: "New application: Backend Engineer - Felix Brandt"
+    bulk: false
+    signature: none
+    body: |
+      Hi Avery,
+
+      A new candidate has applied to Backend Engineer.
+
+      Candidate: Felix Brandt
+      Job: Backend Engineer (Oakland, CA / Remote US)
+      Source: Company careers page
+      Applied: Sep 15, 2026, 9:44 AM PDT
+      Resume: available in Greenhouse
+
+      View candidate: https://app.greenhouse.io/people/42110865
+
+      --
+      You are receiving this email because you follow the Backend Engineer job. Manage your notifications in Greenhouse.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Greenhouse, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-github-21-1
+    day: 21
+    time: "12:05"
+    from: github
+    to: [avery]
+    subject: "[tessera/dashboard] New Dependabot alert: high severity in next"
+    bulk: false
+    signature: none
+    body: |
+      Dependabot found a high severity vulnerability in a dependency of tessera/dashboard.
+
+      Package: next (npm)
+      Affected versions: >= 14.0.0, < 14.2.10
+      Patched version: 14.2.10
+      Advisory: GHSA-gp8f-8m3g-qvj9 - Cache poisoning in Next.js when using the Image Optimization API
+      Manifest: package.json
+
+      Dependabot has opened a pull request to fix this alert: #239 Bump next from 14.2.5 to 14.2.10
+
+      View alert: https://github.com/tessera/dashboard/security/dependabot/19
+
+      --
+      You are receiving this because you are an admin of this repository.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: GitHub, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 22 · Wed Sep 16
+  - id: auto-gusto-22-1
+    day: 22
+    time: "08:10"
+    from: gusto
+    to: [avery]
+    subject: "Q3 2026 payroll tax filings: what Gusto files for you"
+    bulk: false
+    signature: none
+    body: |
+      Hi Avery,
+
+      The third quarter closes on Sep 30. Here is what Gusto will file and pay on Tessera's behalf after the quarter ends:
+
+      - Federal Form 941 (quarterly federal tax return)
+      - California DE 9 and DE 9C (quarterly contribution and wage reports)
+      - Associated federal and state tax deposits
+
+      Copies will be on your Tax documents page once filed, usually by Oct 31. No action is needed from you.
+
+      View tax documents: https://app.gusto.com/taxes/documents
+
+      Gusto, 525 20th Street, San Francisco, CA 94107
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Gusto, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-gcal-22-1
+    day: 22
+    time: "11:12"
+    from: {name: "Priya Iyer (Google Calendar)", email: "calendar-notification@google.com"}
+    to: [avery]
+    subject: "Accepted: Q2 planning sync @ Thu Sep 24, 2026 2:30pm - 3:30pm (PDT) (Priya Iyer)"
+    bulk: false
+    signature: none
+    body: |
+      Priya Iyer has accepted this invitation.
+
+      Q2 planning sync
+
+      When
+      Thursday Sep 24, 2026 ⋅ 2:30pm – 3:30pm (Pacific Time - Los Angeles)
+
+      Where
+      Tessera office, Room 1
+
+      Guests
+      Avery Chen - organizer
+      Priya Iyer - accepted
+      Jordan Liu
+      Tomás Reyes
+      Kim Delgado
+      View all guest info
+
+      View event: https://calendar.google.com/calendar/event?action=VIEW&eid=cTItcGxhbm5pbmctc3luYy0yMDI2MDkyNA
+
+      Invitation from Google Calendar
+
+      You are receiving this email because you are an organizer of the event.
+    labels:
+      kind: automated
+      must_not: true
+      reason: accepted_meeting_confirmation
+      classification_case: null
+      expected: {type: automated, automated: {system: "Google Calendar", action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-gcal-22-2
+    day: 22
+    time: "11:40"
+    from: {name: "Jordan Liu (Google Calendar)", email: "calendar-notification@google.com"}
+    to: [avery]
+    subject: "Accepted: Q2 planning sync @ Thu Sep 24, 2026 2:30pm - 3:30pm (PDT) (Jordan Liu)"
+    bulk: false
+    signature: none
+    body: |
+      Jordan Liu has accepted this invitation.
+
+      Q2 planning sync
+
+      When
+      Thursday Sep 24, 2026 ⋅ 2:30pm – 3:30pm (Pacific Time - Los Angeles)
+
+      Where
+      Tessera office, Room 1
+
+      Guests
+      Avery Chen - organizer
+      Priya Iyer - accepted
+      Jordan Liu - accepted
+      Tomás Reyes
+      Kim Delgado
+      View all guest info
+
+      View event: https://calendar.google.com/calendar/event?action=VIEW&eid=cTItcGxhbm5pbmctc3luYy0yMDI2MDkyNA
+
+      Invitation from Google Calendar
+
+      You are receiving this email because you are an organizer of the event.
+    labels:
+      kind: automated
+      must_not: true
+      reason: accepted_meeting_confirmation
+      classification_case: null
+      expected: {type: automated, automated: {system: "Google Calendar", action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-github-22-1
+    day: 22
+    time: "16:33"
+    from: github
+    to: [avery]
+    subject: "Re: [tessera/dashboard] SAML group-to-role mapping ignores nested groups (#241)"
+    bulk: false
+    signature: none
+    body: |
+      @jliu-tessera commented on this issue.
+
+      Confirmed. We only read the top-level memberOf values from the assertion, so anyone whose role comes from a nested AD group gets the default viewer role. Two customers use nested groups, so this matters.
+
+      Fix: flatten group membership during the assertion parse, cap depth at 5, cache per session. Sofia has it in #244, targeting this sprint.
+
+      --
+      Reply to this email directly or view it on GitHub:
+      https://github.com/tessera/dashboard/issues/241#issuecomment-2810445372
+      You are receiving this because you are subscribed to this thread.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: GitHub, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 23 · Thu Sep 17
+  - id: auto-linear-23-1
+    day: 23
+    time: "08:00"
+    from: {name: "Linear", email: "notifications@linear.app"}
+    to: [avery]
+    subject: "Cycle 14 summary - Ingest"
+    bulk: false
+    signature: none
+    body: |
+      Cycle 14 (Sep 3 - Sep 16) for the Ingest team has ended.
+
+      Completed: 21 issues (84%)
+      Moved to Cycle 15: 4 issues
+      Cancelled: 0
+      Scope change: +3 issues added mid-cycle
+
+      Highlights
+        ING-412  Retry with backoff in the Modbus poller       Done
+        ING-418  Dedupe events on gateway replay               Done
+        ING-420  Strip BOM from CSV headers                    Done
+        ING-431  Backfill CLI: resume from checkpoint          Moved to Cycle 15
+
+      Cycle 15 started Sep 17 and ends Sep 30.
+
+      View cycle: https://linear.app/tessera/cycle/ING-14
+
+      --
+      You're receiving this because you're subscribed to cycle updates for Ingest.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Linear, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-github-23-1
+    day: 23
+    time: "14:14"
+    from: github
+    to: [avery]
+    subject: "Re: [tessera/infra] Bump aws-sdk from 2.1450.0 to 2.1491.0 (PR #144)"
+    bulk: false
+    signature: none
+    body: |
+      Merged #144 into main.
+
+      --
+      Reply to this email directly or view it on GitHub:
+      https://github.com/tessera/infra/pull/144#event-14855120987
+      You are receiving this because you are subscribed to this repository.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: GitHub, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-greenhouse-23-1
+    day: 23
+    time: "15:12"
+    from: greenhouse
+    to: [avery]
+    subject: "Scorecard submitted: Dev Patel for Theo Lindgren (Backend Engineer)"
+    bulk: false
+    signature: none
+    body: |
+      Dev Patel submitted a scorecard.
+
+      Candidate: Theo Lindgren
+      Job: Backend Engineer
+      Interview: Onsite - Systems design (Sep 17, 2026, 2:00 PM PDT)
+      Overall recommendation: Yes
+
+      Key takeaways (from the scorecard):
+      - Solid on the streaming question; got to a workable design with a couple of nudges.
+      - Less depth on failure modes than I'd like at senior, fine at mid.
+
+      View scorecard: https://app.greenhouse.io/people/41022913/scorecards/9948117
+
+      --
+      You are receiving this email because you are on the hiring team for Backend Engineer.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Greenhouse, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 24 · Fri Sep 18
+  - id: auto-aws-24-1
+    day: 24
+    time: "06:02"
+    from: aws
+    to: [avery]
+    subject: "AWS Budgets: tessera-prod-q3 has exceeded 80% of the budgeted amount"
+    bulk: false
+    signature: none
+    body: |
+      Dear AWS Budgets Customer,
+
+      You requested that we alert you when the ACTUAL cost associated with your tessera-prod-q3 budget is greater than 80% of the budgeted amount. The ACTUAL cost has now reached $16,911.37 (80.5% of $21,000.00).
+
+      Budget Name: tessera-prod-q3
+      Budget Type: Cost
+      Budget Period: Quarterly (Jul 1 - Sep 30, 2026)
+      Budgeted Amount: $21,000.00
+      Alert Type: ACTUAL
+      Alert Threshold: > 80% ($16,800.00)
+      ACTUAL Amount: $16,911.37 (Jul 1 - Sep 17, 2026)
+
+      Top services: Amazon EC2 ($6,540.12), Amazon RDS ($4,512.70), Amazon S3 ($1,833.06), AWS Data Transfer ($1,166.25)
+
+      Go to the AWS Budgets dashboard to review: https://console.aws.amazon.com/billing/home#/budgets
+
+      This is an informational alert. No changes have been made to your account.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: AWS, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-1password-24-1
+    day: 24
+    time: "09:37"
+    from: {name: "1Password", email: "no-reply@1password.com"}
+    to: [avery]
+    subject: "New sign-in to 1Password from a new device"
+    bulk: false
+    signature: none
+    body: |
+      Hi Avery,
+
+      We noticed a new sign-in to your 1Password account.
+
+      Account: Tessera (tessera.1password.com)
+      Device: MacBook Pro (macOS 15.6)
+      App: 1Password for Mac 8.11
+      Location: Oakland, CA, United States (approximate, from IP address)
+      Time: Sep 18, 2026, 9:36 AM PDT
+
+      If this was you, there is nothing to do. If you don't recognize this sign-in, deauthorize the device from your profile page and change your account password.
+
+      Manage devices: https://tessera.1password.com/profile
+
+      1Password
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: 1Password, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 25 · Sat Sep 19
+  - id: auto-slack-25-1
+    day: 25
+    time: "10:15"
+    from: {name: "Slack", email: "notification@slack.com"}
+    to: [avery]
+    subject: "[Slack] Notifications from Tessera for Sep 18th"
+    bulk: false
+    signature: none
+    body: |
+      You have new notifications in the Tessera workspace.
+
+      #eng
+        Lena Hoffmann (Fri 4:50 PM): e2e suite green on main all week, zero flaky runs. small victories
+        Omar Haddad (Fri 4:52 PM): framed and hung on the wall
+
+      #general
+        Kim Delgado (Fri 3:05 PM): the new standing desks arrive Tuesday morning, facilities will swap them during lunch
+        Ana Kowalski (Fri 5:10 PM): happy friday all, I'm out Monday morning, back by noon
+
+      #gtm
+        Tomás Reyes (Fri 5:30 PM): GTM weekly moves to Mondays 3:30 starting the 21st, invite went out Monday!
+
+      Open Slack: https://tessera.slack.com
+
+      --
+      This email was sent because you have email notifications turned on for when you are away from Slack. Change this in your Slack preferences.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Slack, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 26 · Sun Sep 20
+  - id: auto-gcal-26-1
+    day: 26
+    time: "20:18"
+    from: {name: "Jordan Liu (Google Calendar)", email: "calendar-notification@google.com"}
+    to: [avery]
+    subject: "Invitation: Backend candidate interview - Ines Ferreira @ Thu Sep 24, 2026 4pm - 4:45pm (PDT) (avery@tessera.io)"
+    bulk: false
+    signature: none
+    body: |
+      You have been invited to the following event.
+
+      Backend candidate interview - Ines Ferreira
+
+      When
+      Thursday Sep 24, 2026 ⋅ 4:00pm – 4:45pm (Pacific Time - Los Angeles)
+
+      Where
+      Google Meet: https://meet.google.com/kqz-vbtd-hmw
+
+      Organizer
+      Jordan Liu - jordan@tessera.io
+
+      Guests
+      Jordan Liu - organizer
+      Avery Chen
+      Ines Ferreira
+      View all guest info
+
+      Description
+      Screen with Ines Ferreira (backend req). 30 min technical background, 15 min for questions. Greenhouse scorecard link in the calendar entry.
+
+      Reply for avery@tessera.io and view more details
+      Yes - Maybe - No
+      https://calendar.google.com/calendar/event?action=RESPOND&eid=aW50ZXJ2aWV3LWluZXMtMjAyNjA5MjQ
+
+      Invitation from Google Calendar
+
+      You are receiving this email because you are a guest on the event. To stop receiving future updates for this event, decline this event.
+    labels:
+      kind: automated
+      must_not: true
+      reason: accepted_meeting_confirmation
+      classification_case: null
+      expected: {type: automated, automated: {system: "Google Calendar", action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-greenhouse-26-1
+    day: 26
+    time: "20:19"
+    from: greenhouse
+    to: [avery]
+    subject: "Interview scheduled: Ines Ferreira - Backend Engineer (Screen)"
+    bulk: false
+    signature: none
+    body: |
+      An interview has been scheduled.
+
+      Candidate: Ines Ferreira
+      Job: Backend Engineer
+      Stage: Screen
+      Scheduled by: Jordan Liu
+
+      Thu, Sep 24, 2026 (PDT)
+        4:00 PM - 4:45 PM   Screen - Jordan Liu, Avery Chen (Google Meet)
+
+      Calendar invites have been sent to each interviewer. The scorecard opens in Greenhouse when the interview starts.
+
+      View candidate: https://app.greenhouse.io/people/41190377
+
+      --
+      You are receiving this email because you are an interviewer on this loop.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Greenhouse, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-gcal-26-2
+    day: 26
+    time: "21:40"
+    from: {name: "Ines Ferreira (Google Calendar)", email: "calendar-notification@google.com"}
+    to: [avery]
+    subject: "Accepted: Backend candidate interview - Ines Ferreira @ Thu Sep 24, 2026 4pm - 4:45pm (PDT) (Ines Ferreira)"
+    bulk: false
+    signature: none
+    body: |
+      Ines Ferreira has accepted this invitation.
+
+      Backend candidate interview - Ines Ferreira
+
+      When
+      Thursday Sep 24, 2026 ⋅ 4:00pm – 4:45pm (Pacific Time - Los Angeles)
+
+      Where
+      Google Meet: https://meet.google.com/kqz-vbtd-hmw
+
+      Guests
+      Jordan Liu - organizer
+      Avery Chen
+      Ines Ferreira - accepted
+      View all guest info
+
+      View event: https://calendar.google.com/calendar/event?action=VIEW&eid=aW50ZXJ2aWV3LWluZXMtMjAyNjA5MjQ
+
+      Invitation from Google Calendar
+
+      You are receiving this email because you are an attendee of this event.
+    labels:
+      kind: automated
+      must_not: true
+      reason: accepted_meeting_confirmation
+      classification_case: null
+      expected: {type: automated, automated: {system: "Google Calendar", action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 27 · Mon Sep 21
+  - id: auto-notion-27-1
+    day: 27
+    time: "08:00"
+    from: {name: "Notion", email: "notify@mail.notion.so"}
+    to: [avery]
+    subject: "Your weekly digest for Tessera"
+    bulk: false
+    signature: none
+    body: |
+      Here's what happened in the Tessera workspace this week (Sep 14 - Sep 20).
+
+      Pages updated
+        Engineering onboarding - edited by Jordan Liu
+        Expense policy - edited by Kim Delgado (added the receipt rule for Ramp)
+        Interview question bank - Backend - edited by Jordan Liu
+        On-call rotation - edited by Omar Haddad
+        Brand assets - edited by Ana Kowalski
+        Halberd operator training - outline - created by Yuki Sato
+
+      Most viewed: Engineering onboarding (14 views), Expense policy (9 views)
+
+      You were mentioned 0 times this week.
+
+      Open Notion: https://www.notion.so/tessera
+
+      You're receiving weekly digest emails for the Tessera workspace. Adjust this in Settings & members > My notifications.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Notion, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-greenhouse-27-1
+    day: 27
+    time: "09:20"
+    from: greenhouse
+    to: [avery]
+    subject: "Offer sent: Mei Tanaka - Backend Engineer"
+    bulk: false
+    signature: none
+    body: |
+      An offer has been sent.
+
+      Candidate: Mei Tanaka
+      Job: Backend Engineer
+      Level: L4
+      Sent by: Tomás Reyes
+      Approved by: Jordan Liu, Avery Chen (Sep 17, 2026)
+
+      The offer letter is being routed for signatures through DocuSign. Signature status will appear on the candidate's offer tab as each party signs.
+
+      View offer: https://app.greenhouse.io/people/40917455/offers/2231907
+
+      --
+      You are receiving this email because you are on the hiring team for Backend Engineer.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Greenhouse, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-github-27-1
+    day: 27
+    time: "09:41"
+    from: github
+    to: [avery]
+    subject: "[tessera/ingest] Run failed: CI - main (5c2e8d7)"
+    bulk: false
+    signature: none
+    body: |
+      Run failed for main (5c2e8d7)
+
+      Repository: tessera/ingest
+      Workflow: CI
+      Duration: 6m 27s
+      Finished: 2026-09-21 16:41:09 UTC
+
+      Jobs:
+        ✓ lint (succeeded)
+        ✗ unit (failed)
+        - integration (skipped)
+
+      unit: 2 of 1,431 checks failed - reader/csv_bom: strips_bom_on_first_header, no_bom_unchanged (fixture path not found)
+
+      View workflow run: https://github.com/tessera/ingest/actions/runs/11901355082
+
+      --
+      You are receiving this because you are subscribed to this repository.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: GitHub, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-ramp-exp-1
+    day: 27
+    time: "10:04"
+    from: ramp
+    to: [avery]
+    subject: "Expense report from Sofia Andrade needs your approval ($612.40)"
+    bulk: false
+    signature: none
+    body: |
+      Sofia Andrade submitted an expense report that needs your approval.
+
+      Report: September expenses
+      Amount: $612.40
+      Submitted: Sep 21, 2026, 10:03 AM PDT
+      Approver: Avery Chen
+
+      Line items
+        Sep 8    Amazon               USB-C to RS-485 adapters (x2), bench rig     $127.90
+        Sep 10   DoorDash             Team lunch, sprint planning                   $214.35
+        Sep 15   Lyft                 Customer site visit (round trip)              $71.40
+        Sep 17   Blue Bottle Coffee   Coffee with candidate                         $18.75
+        Sep 18   O'Reilly Media       Learning platform, annual                     $180.00
+
+      All five line items have receipts attached and match the card transactions.
+
+      Approve: https://app.ramp.com/approvals/rep_7Hk2mQ4Zp
+      Review in Ramp: https://app.ramp.com/expenses/reports/rep_7Hk2mQ4Zp
+
+      You are receiving this because you are the expense approver for Sofia Andrade.
+    labels:
+      kind: automated
+      must_not: false
+      reason: null
+      classification_case: null
+      expected: {type: automated, automated: {system: Ramp, action_bearing: true, action_kind: approval, about: approval:expenses-september}}
+
+  - id: auto-ramp-exp-2
+    day: 27
+    time: "10:04"
+    from: ramp
+    to: [avery]
+    subject: "Expense report from Ana Kowalski needs your approval ($1,284.10)"
+    bulk: false
+    signature: none
+    body: |
+      Ana Kowalski submitted an expense report that needs your approval.
+
+      Report: September expenses
+      Amount: $1,284.10
+      Submitted: Sep 21, 2026, 10:04 AM PDT
+      Approver: Avery Chen
+
+      Line items
+        Sep 3    United Airlines            SFO-ONT round trip, prospect visit          $418.60
+        Sep 3    Hilton Garden Inn          1 night, Ontario CA                          $246.80
+        Sep 3    Vito's Kitchen             Dinner with prospect (3)                     $162.40
+        Sep 4    Hertz                      Rental car, 1 day                            $94.30
+        Sep 16   Manufacturing Summit West  Conference badge                             $295.00
+        Sep 17   Lyft                       To/from conference                           $67.00
+
+      All six line items have receipts attached and match the card transactions.
+
+      Approve: https://app.ramp.com/approvals/rep_9Lp3nW7Xa
+      Review in Ramp: https://app.ramp.com/expenses/reports/rep_9Lp3nW7Xa
+
+      You are receiving this because you are the expense approver for Ana Kowalski.
+    labels:
+      kind: automated
+      must_not: false
+      reason: null
+      classification_case: null
+      expected: {type: automated, automated: {system: Ramp, action_bearing: true, action_kind: approval, about: approval:expenses-september}}
+
+  - id: auto-ramp-exp-3
+    day: 27
+    time: "10:05"
+    from: ramp
+    to: [avery]
+    subject: "Expense report from Yuki Sato needs your approval ($388.00)"
+    bulk: false
+    signature: none
+    body: |
+      Yuki Sato submitted an expense report that needs your approval.
+
+      Report: September expenses
+      Amount: $388.00
+      Submitted: Sep 21, 2026, 10:05 AM PDT
+      Approver: Avery Chen
+
+      Line items
+        Sep 3    Amazon          HDMI capture card + cables, operator training kit   $142.50
+        Sep 11   Lyft            Customer site visit (round trip)                    $58.50
+        Sep 11   Los Cantaros    Lunch with customer ops team (5)                    $112.00
+        Sep 16   FedEx Office    Laminated operator quick-start cards                $75.00
+
+      All four line items have receipts attached and match the card transactions.
+
+      Approve: https://app.ramp.com/approvals/rep_2Qv8kT5Ce
+      Review in Ramp: https://app.ramp.com/expenses/reports/rep_2Qv8kT5Ce
+
+      You are receiving this because you are the expense approver for Yuki Sato.
+    labels:
+      kind: automated
+      must_not: false
+      reason: null
+      classification_case: null
+      expected: {type: automated, automated: {system: Ramp, action_bearing: true, action_kind: approval, about: approval:expenses-september}}
+
+  - id: auto-zoom-27-1
+    day: 27
+    time: "10:51"
+    from: {name: "Zoom", email: "no-reply@zoom.us"}
+    to: [avery]
+    subject: "Cloud Recording - Leadership sync is now available"
+    bulk: false
+    signature: none
+    body: |
+      Hi Avery Chen,
+
+      Your cloud recording is now available.
+
+      Topic: Leadership sync
+      Date: Sep 21, 2026 10:00 AM Pacific Time (US and Canada)
+      Meeting ID: 842 0193 5571
+      Duration: 44 minutes
+
+      For host only, click here to view your recording (viewers cannot access this page):
+      https://tessera.zoom.us/rec/share/Hy6Gt5FrDeSwAqZxCvBnMkLoPiUyTrEwQaSdF
+
+      Share recording with viewers:
+      https://tessera.zoom.us/rec/share/Lk8Jh2GfDsAqWeRtYuIoPzXcVbNmAsDf Passcode: 9n%Vb4!Qs
+
+      Audio transcript will be available in 10-15 minutes.
+
+      Thank you for choosing Zoom.
+      -The Zoom Team
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Zoom, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 28 · Tue Sep 22
+  - id: auto-stripe-payout
+    day: 28
+    time: "03:12"
+    from: stripe
+    to: [avery]
+    subject: "Payout of $18,420.55 failed - bank account verification required"
+    bulk: false
+    signature: none
+    body: |
+      Stripe
+
+      A payout of $18,420.55 to your bank account ending in 4471 could not be completed.
+
+      Your bank returned the transfer (ACH return code R16). Bank account verification required: before payouts can resume, Stripe needs you to verify this account in the Dashboard.
+
+      Payout ID: po_3Q7Lm2K2eZvKYlo2C9pW4aRt
+      Amount: $18,420.55
+      Bank account: •••• 4471
+      Initiated: Sep 21, 2026
+      Failed: Sep 22, 2026
+      Status: Failed - funds returned to your Stripe balance
+
+      What happens next
+      - The $18,420.55 has been returned to your Stripe balance. It has not been lost.
+      - Automatic payouts are paused for this account until it is verified.
+      - To verify: Dashboard > Settings > Bank accounts and scheduling > Verify. You may need to upload a recent bank statement or confirm two micro-deposits (1-2 business days).
+
+      Verify your bank account: https://dashboard.stripe.com/settings/payouts
+
+      If you believe this is an error, contact your bank about the return first, then reach Stripe Support from the Dashboard.
+
+      Stripe, 354 Oyster Point Blvd, South San Francisco, CA 94080
+    labels:
+      kind: automated
+      must_not: false
+      reason: null
+      classification_case: null
+      expected: {type: automated, automated: {system: Stripe, action_bearing: true, action_kind: payment_issue, about: other:stripe-payout-failed}}
+
+  - id: auto-docusign-mei
+    day: 28
+    time: "08:40"
+    from: docusign
+    to: [avery]
+    subject: "Please DocuSign: Offer Letter - Mei Tanaka.pdf"
+    bulk: false
+    signature: none
+    body: |
+      DocuSign
+
+      Tomás Reyes sent you a document to review and sign.
+
+      Offer Letter - Mei Tanaka.pdf is awaiting your signature.
+
+      REVIEW DOCUMENT
+      https://na3.docusign.net/Signing/EmailStart.aspx?a=7c1e0b2d-4f8a-4a2e-9c1b-2d1f6a0e8b31
+
+      Tomás Reyes
+      tomas@tessera.io
+
+      Avery - offer letter for Mei Tanaka (Backend Engineer, L4) as agreed at Thursday's hiring sync. Jordan and I have signed; you are the last signer before it goes to Mei. About a minute in DocuSign.
+
+      Envelope status
+        Jordan Liu (jordan@tessera.io) - Signed 9/21/2026
+        Tomás Reyes (tomas@tessera.io) - Signed 9/21/2026
+        Avery Chen (avery@tessera.io) - Needs to sign
+        Mei Tanaka (mei.tanaka.dev@gmail.com) - Waiting for others
+
+      Do Not Share This Email
+      This email contains a secure link to DocuSign. Please do not share this email, link, or access code with others.
+
+      Alternate Signing Method
+      Visit DocuSign.com, click 'Access Documents', and enter the security code: 7C1E0B2D4F8A
+
+      About DocuSign
+      Sign documents electronically in just minutes. It's safe, secure, and legally binding. Whether you're in an office, at home, on-the-go -- or even across the globe -- DocuSign provides a professional trusted solution for Digital Transaction Management.
+
+      Questions about the Document?
+      If you need to modify the document or have questions about the details in the document, please reach out to the sender by emailing them directly.
+    labels:
+      kind: automated
+      must_not: false
+      reason: null
+      classification_case: docusign_action_vs_github_fyi
+      expected: {type: automated, automated: {system: DocuSign, action_bearing: true, action_kind: signature, about: offer:mei-tanaka}}
+
+  - id: auto-github-28-1
+    day: 28
+    time: "11:27"
+    from: github
+    to: [avery]
+    subject: "[tessera/dashboard] Fix line-status chart flicker after WebSocket reconnect (PR #247)"
+    bulk: false
+    signature: none
+    body: |
+      @devp opened a pull request.
+
+      After a WebSocket reconnect the line-status chart briefly renders the last cached frame before the fresh snapshot arrives, so the status pill flips green -> grey -> green for about 400 ms. This holds the cached frame until the first message after reconnect lands.
+
+      Lena's repro from the sprint notes is added as an e2e spec.
+
+      --
+      Reply to this email directly or view it on GitHub:
+      https://github.com/tessera/dashboard/pull/247
+      You are receiving this because you are subscribed to this repository.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: GitHub, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-gcal-28-1
+    day: 28
+    time: "17:31"
+    from: {name: "Dana Whitfield (Google Calendar)", email: "calendar-notification@google.com"}
+    to: [avery]
+    subject: "Invitation: Lumen Analytics <> Tessera - demo @ Thu Sep 24, 2026 10:30am - 11:15am (PDT) (avery@tessera.io)"
+    bulk: false
+    signature: none
+    body: |
+      You have been invited to the following event.
+
+      Lumen Analytics <> Tessera - demo
+
+      When
+      Thursday Sep 24, 2026 ⋅ 10:30am – 11:15am (Pacific Time - Los Angeles)
+
+      Where
+      Zoom (link in description)
+
+      Organizer
+      Dana Whitfield - dana.whitfield@lumenanalytics.com
+
+      Guests
+      Dana Whitfield - organizer
+      Avery Chen
+      Priya Iyer
+      View all guest info
+
+      Description
+      Lumen Analytics demo for the Tessera team. Zoom: https://lumenanalytics.zoom.us/j/84021935571 (passcode in the calendar entry). Dana will confirm the agenda by email.
+
+      Reply for avery@tessera.io and view more details
+      Yes - Maybe - No
+      https://calendar.google.com/calendar/event?action=RESPOND&eid=bHVtZW4tZGVtby0yMDI2MDkyNA
+
+      Invitation from Google Calendar
+
+      You are receiving this email because you are a guest on the event. To stop receiving future updates for this event, decline this event.
+      Forwarding this invitation could allow any recipient to send a response to the organizer, be added to the guest list, invite others regardless of their own invitation status, or modify your RSVP.
+    labels:
+      kind: automated
+      must_not: true
+      reason: accepted_meeting_confirmation
+      classification_case: null
+      expected: {type: automated, automated: {system: "Google Calendar", action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 29 · Wed Sep 23
+  - id: auto-google-29-1
+    day: 29
+    time: "07:15"
+    from: {name: "Google", email: "no-reply@accounts.google.com"}
+    to: [avery]
+    subject: "Security alert"
+    bulk: false
+    signature: none
+    body: |
+      New sign-in on a device you've used before
+
+      avery@tessera.io
+
+      Your Google Account was just signed in to from a Mac you've used before. You're getting this email to make sure it was you.
+
+      Device: Mac
+      When: Sep 23, 2026, 7:14 AM PDT
+      Near: Oakland, CA, USA
+
+      Check activity: https://myaccount.google.com/notifications
+
+      You can also see security activity at https://myaccount.google.com/notifications
+
+      You received this email to let you know about important changes to your Google Account and services.
+      Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: "Google Workspace", action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-github-29-1
+    day: 29
+    time: "15:50"
+    from: github
+    to: [avery]
+    subject: "Re: [tessera/dashboard] Fix line-status chart flicker after WebSocket reconnect (PR #247)"
+    bulk: false
+    signature: none
+    body: |
+      Merged #247 into main.
+
+      --
+      Reply to this email directly or view it on GitHub:
+      https://github.com/tessera/dashboard/pull/247#event-14992870341
+      You are receiving this because you are subscribed to this repository.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: GitHub, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-peds-reminder
+    day: 29
+    time: "21:10"
+    from: peds_reminders
+    to: [avery, sam]
+    subject: "Reminder: Wren - Thu Sep 24 3:00 PM"
+    category_override: personal
+    bulk: false
+    signature: none
+    body: |
+      Appointment reminder
+
+      This is a reminder that Wren has an appointment at Oakland Pediatrics.
+
+      When: Thursday, September 24, 2026 at 3:00 PM
+      With: Dr. Adeyemi
+      Where: Oakland Pediatrics, 3300 Grand Ave, Oakland, CA 94610
+      Visit type: 4-year well visit
+
+      Please arrive 10 minutes early and bring your insurance card. Well visits at this age include a vision screen.
+
+      No reply is needed. To reschedule or cancel, call (510) 555-0177 or use the patient portal: https://portal.oaklandpediatrics.com
+
+      Oakland Pediatrics
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_personal_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: "Oakland Pediatrics", action_bearing: false, action_kind: none, about: null}}

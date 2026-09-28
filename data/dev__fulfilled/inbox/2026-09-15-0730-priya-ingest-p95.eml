@@ -1,0 +1,13 @@
+Message-ID: <20260915-0730.priya@tessera.io>
+Date: Tue, 15 Sep 2026 07:30:21 -0700
+From: Priya Iyer <priya@tessera.io>
+To: Tessera Engineering <eng@tessera.io>
+Cc: Avery Chen <avery@tessera.io>
+Subject: ingest p95
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+900ms -> 340ms p95 on the big feeds after pool tuning (pgbouncer transaction mode, pool 40 -> 120, statement timeout 5s). rolled out sunday night. no page since. details in #eng.
+
+p

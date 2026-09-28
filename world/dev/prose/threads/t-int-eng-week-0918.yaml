@@ -1,0 +1,58 @@
+thread_id: t-int-eng-week-0918
+subject: "Eng week in review - Sep 18"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: last_word_avery
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [report:eng-week-review]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: exec}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 24
+    time: "17:40"
+    from: jordan
+    to: [eng_list]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Shipped:
+      - Plant-timezone-aware date filter (#402, Sofia). Plant-local ranges, presets persist per plant. Lena's regression pass is Monday/Tuesday.
+      - Exceptions index migration (Omar). Seven minutes, ~4x faster exception queries on the big plants.
+      - Bluefin sensor connector live on day one of their pilot (Yuki + Sofia).
+
+      In progress:
+      - Multi-line ingest refactor (Dev), PR up early next week
+      - Ingest p95 holding at ~340ms since Priya's pool change; no pages this week
+
+      Watching:
+      - Nothing red.
+
+      Have a good weekend.
+
+      Jordan
+  - id: m2
+    beat_ref: null
+    day: 24
+    time: "18:35"
+    from: avery
+    to: [jordan]
+    cc: [eng_list]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      good week. thanks all.

@@ -1,0 +1,26 @@
+Message-ID: <20260922-1130.omar@tessera.io>
+Date: Tue, 22 Sep 2026 11:30:52 -0700
+From: Omar Haddad <omar@tessera.io>
+To: Dev Patel <dev@tessera.io>
+Cc: Sofia Andrade <sofia@tessera.io>, Avery Chen <avery@tessera.io>, Jordan Liu <jordan@tessera.io>
+Subject: Re: PR #417 - audit log for user admin actions
+In-Reply-To: <20260922-0950.dev@tessera.io>
+References: <20260922-0950.dev@tessera.io>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+lgtm. one question that isn't blocking: does the audit log record who exported the audit log? (yes, I've thought about this too much.)
+
+Omar
+
+On Tue, Sep 22, 2026 at 9:50 AM, Dev Patel <dev@tessera.io> wrote:
+> https://github.com/tessera-io/platform/pull/417
+>
+> small one while #412 is in review: audit log entries for add user / remove user / role change, with who, when, and from which IP. exportable as CSV from the admin page. no behavior change for anyone, just a table that fills up.
+>
+> mostly tests. review whenever, not urgent.
+>
+> Dev
+>
+> Dev

@@ -1,0 +1,19 @@
+Message-ID: <20260909-1405.omar@tessera.io>
+Date: Wed, 09 Sep 2026 14:05:26 -0700
+From: Omar Haddad <omar@tessera.io>
+To: Dev Patel <dev@tessera.io>, Sofia Andrade <sofia@tessera.io>
+Cc: Avery Chen <avery@tessera.io>, Jordan Liu <jordan@tessera.io>
+Subject: PR #389 - connector retry/backoff
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+https://github.com/tessera-io/platform/pull/389
+
+Retries are now exponential with full jitter: base 2s, cap 5 minutes, max 8 attempts, then the feed goes to "degraded" instead of silently dying. Per the design doc, minus the circuit breaker, which is a follow-up.
+
+Please read the state machine in connector/retry.py first; the rest is plumbing. Tests include a flapping-feed simulation that I am slightly too proud of.
+
+Omar
+
+Omar

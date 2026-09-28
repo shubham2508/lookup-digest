@@ -1,0 +1,19 @@
+thread_id: t-marcus-ts
+messages:
+  - id: v1
+    beat_ref: S1.v1
+    day: 29
+    time: "07:40"
+    from: avery
+    to: [marcus]
+    cc: [ben]
+    reply_to: m2
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      marcus, cap table attached (v3, option pool refresh included, same version Ben's team has). the delay is on me.
+
+      Avery
+
+      [attachment: Tessera_CapTable_v3_final.xlsx]

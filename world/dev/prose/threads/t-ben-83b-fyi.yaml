@@ -1,0 +1,39 @@
+thread_id: t-ben-83b-fyi
+subject: "83(b) elections filed - August new-hire grants"
+storyline: null
+category: lawyer
+labels:
+  kind: thread
+  must_not: true
+  reason: fyi_no_action
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [other:83b-elections-august-grants]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: capital, subtype: deal_counsel}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 21
+    time: "14:20"
+    from: ben
+    to: [avery]
+    cc: [kim]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      For your records:
+
+      1. 83(b) elections for the three August new-hire grants (Haddad, Hoffmann, Silva; all three early-exercised) were filed with the IRS on September 11, inside the 30-day window. Certified mail receipts are attached (83b_receipts_2026-09-11.pdf).
+      2. Copies went to each grantee for their own tax files; Kim has the originals for the corporate minute book.
+      3. Nothing further is needed from you or from the grantees.
+
+      Ben

@@ -1,0 +1,25 @@
+Message-ID: <20260906-1805.noreply@greenhouse.io>
+Date: Sun, 06 Sep 2026 18:05:25 -0700
+From: Greenhouse <no-reply@greenhouse.io>
+To: Avery Chen <avery@tessera.io>
+Subject: Scorecard submitted: Sofia Andrade for Mei Tanaka (Backend Engineer)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Sofia Andrade submitted a scorecard.
+
+Candidate: Mei Tanaka
+Job: Backend Engineer
+Interview: Onsite - Systems design (Sep 6, 2026, 1:00 PM PDT)
+Overall recommendation: Strong Yes
+
+Key takeaways (from the scorecard):
+- Clear decomposition of the ingest pipeline question; asked about backpressure before we prompted.
+- Comfortable in Postgres internals; knew when not to add an index.
+- Communicates tradeoffs without being asked.
+
+View scorecard: https://app.greenhouse.io/people/40917455/scorecards/9911280
+
+--
+You are receiving this email because you are on the hiring team for Backend Engineer.

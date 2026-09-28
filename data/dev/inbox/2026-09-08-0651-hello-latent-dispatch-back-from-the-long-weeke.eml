@@ -1,0 +1,33 @@
+Message-ID: <20260908-0651.hello@latentdispatch.ai>
+Date: Tue, 08 Sep 2026 06:51:34 -0700
+From: Latent Dispatch <hello@latentdispatch.ai>
+To: Avery Chen <avery@tessera.io>
+Subject: Latent Dispatch: back from the long weekend =?utf-8?b?4oCU?= Argent price cut, Sable-3 agents mode, structured output bake-off
+List-Unsubscribe: <mailto:unsubscribe@latentdispatch.ai?subject=unsubscribe>, <https://latentdispatch.ai/u/66b3b93f>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+LATENT DISPATCH
+Tue Sep 8 · 5 items · ~4 min
+
+ARGENT SYSTEMS CUTS MID-TIER PRICES 25%
+Argent dropped its prices on every model in the 10–35B class by a quarter, effective immediately, with no volume requirement. Kestrel and Nimbus have not matched yet. Given how August went, we would not sign an annual commit at current prices anywhere. https://latentdispatch.ai/p/argent-cut
+
+SABLE-3 GETS AN "AGENT MODE"
+Sable Labs shipped a server-side agent loop: you give it tools and a goal, it runs the loop, you get the result and a trace. It is convenient and it is lock-in; the trace format is proprietary and the loop cannot be interrupted mid-run. Fine for prototypes, think twice for production.
+
+STRUCTURED OUTPUT BAKE-OFF
+We sent 20,000 extraction prompts with a strict JSON schema to nine models. Schema-valid rate: 99.7% at the top, 96% at the bottom. The gap sounds small until you multiply by call volume. Full table and the schema we used: https://latentdispatch.ai/p/structured-bakeoff
+
+OSTRAVA DOCUMENT MODEL NOW ON KESTREL
+The Czech lab's document-understanding model is available via Kestrel at $0.003 per page. First hosted availability outside their own API.
+
+SHORT TAKES
+· Larkspur 1.1: checkpoint-and-resume across process restarts.
+· Brindle open-sources its replay-log format. Good move; watch whether Larkspur adopts it.
+· Quillon-M adds a "confidence per field" output. We asked for this. https://latentdispatch.ai/p/quillon-confidence
+
+—
+You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1

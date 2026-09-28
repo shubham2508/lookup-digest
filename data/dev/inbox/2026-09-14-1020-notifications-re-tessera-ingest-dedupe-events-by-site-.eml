@@ -1,0 +1,17 @@
+Message-ID: <20260914-1020.notifications@github.com>
+Date: Mon, 14 Sep 2026 10:20:41 -0700
+From: GitHub <notifications@github.com>
+To: Avery Chen <avery@tessera.io>
+Subject: Re: [tessera/ingest] Dedupe events by (site, line, ts) (PR #414)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Merged #414 into main.
+
+@jliu-tessera: migration ran on prod Sunday night, 41,208 rows removed, no customer-visible change.
+
+--
+Reply to this email directly or view it on GitHub:
+https://github.com/tessera/ingest/pull/414#event-14790335610
+You are receiving this because your review was requested.

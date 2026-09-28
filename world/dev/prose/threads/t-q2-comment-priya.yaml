@@ -1,0 +1,32 @@
+thread_id: t-q2-comment-priya
+subject: "q2 doc"
+storyline: BG-q2
+category: internal_routine
+labels:
+  kind: thread
+  must_not: false
+  reason: null
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [report:q2-planning]
+    ball_awaiting: avery
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: cofounder}
+    asks: [{to_avery: true, kind: decision, deadline_day: 30, status: open}]
+messages:
+  - id: m1
+    beat_ref: null
+    day: 29
+    time: "08:40"
+    from: priya
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      left a comment on the q2 doc re backfill concurrency cap. numbers are in the comment. pick one before thursday.

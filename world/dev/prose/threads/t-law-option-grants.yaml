@@ -1,0 +1,56 @@
+thread_id: t-law-option-grants
+subject: "Board consent - August new-hire option grants (signature needed)"
+storyline: null
+category: lawyer
+labels:
+  kind: thread
+  must_not: true
+  reason: last_word_avery
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [approval:option-grants-august]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: capital, subtype: deal_counsel}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 14
+    time: "10:20"
+    from: ben
+    to: [avery]
+    cc: [kim]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      Attached for your signature via DocuSign (link in the separate DocuSign email): the unanimous written consent approving the three August new-hire option grants.
+
+      1. Grants: Haddad 20,000; Hoffmann 15,000; Silva 12,000, all at the $0.42 strike from the July 15 409A, standard four-year vest with a one-year cliff, early exercise permitted.
+      2. Diane signed yesterday; Priya's signature is in.
+      3. Please sign by Friday so the grant date stays in the first half of September; the 409A is good through January, so there is no valuation issue.
+
+      Kim has the grant notices ready to go out once the consent is fully executed.
+
+      Ben
+  - id: m2
+    beat_ref: null
+    day: 14
+    time: "11:05"
+    from: avery
+    to: [ben]
+    cc: [kim]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      signed just now. Kim, go ahead with the notices whenever you have the executed copy.
+
+      Avery

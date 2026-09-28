@@ -1,0 +1,858 @@
+# world/dev/prose/bulk/recruiters.yaml — lone cold recruiters (Track B, M2, assignment B3).
+# 22 single emails from 7 fictional firms plus 3 independents on gmail, spread over days 1–30. No firm sends more
+# than 2 in any 7-day window (TalentBridge, the only 3-in-7 pattern, lives in background.yaml and is not here).
+# Ids: t-rec-<firm>-<day>. Every item is a one-message thread with a literal (long) recruiter signature.
+category: recruiters
+items:
+  # ------------------------------------------------------------------ day 1 · Wed Aug 26
+  - id: t-rec-pinnacle-1
+    day: 1
+    time: "08:12"
+    from: {name: "Brett Callahan", email: "brett.callahan@pinnacletalentpartners.com"}
+    to: [avery]
+    subject: "Exciting opportunity: VP of Engineering, Series C fintech (SF/hybrid)"
+    bulk: false
+    signature: |-
+      Brett Callahan
+      Managing Director | Pinnacle Talent Partners
+      Executive Search for High-Growth Technology Companies
+      M: (415) 555-0134 | brett.callahan@pinnacletalentpartners.com
+      www.pinnacletalentpartners.com | LinkedIn
+
+      This message and any attachments are confidential and intended solely for the addressee. If you are not the intended recipient, please delete this message and notify the sender. Pinnacle Talent Partners is an equal opportunity search firm.
+    body: |
+      Hi Avery,
+
+      I hope this note finds you well! I came across your profile and was impressed by your engineering leadership at Tessera Health.
+
+      I'm partnering with a Series C fintech in San Francisco (post-money $900M, 220 employees) on a VP of Engineering search. They're looking for someone who has scaled a platform team from 20 to 100+ and is comfortable in a regulated environment. Your background is a strong fit.
+
+      Comp is competitive (base $320-380K plus meaningful equity) and the role reports directly to the CTO.
+
+      Would you be open to a 15-minute call this week or next to hear more? Even if the timing isn't right, I'd love to stay connected for future opportunities.
+
+      Best,
+      Brett
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-pinnacle-talent-partners]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 2 · Thu Aug 27
+  - id: t-rec-hexline-2
+    day: 2
+    time: "14:35"
+    from: {name: "Marisol Vega", email: "marisol@hexlinesearch.com"}
+    to: [avery]
+    subject: "Confidential: CEO search, vertical SaaS (Chicago, relocation assisted)"
+    bulk: false
+    signature: |-
+      Marisol Vega
+      Partner, Hexline Search
+      Chicago | New York | San Francisco
+      +1 (312) 555-0196 | marisol@hexlinesearch.com
+      hexlinesearch.com
+    body: |
+      Dear Avery,
+
+      Hexline Search has been retained by the board of a PE-backed vertical SaaS company in Chicago ($40M ARR, 180 employees) to identify their next Chief Executive Officer. The company serves mid-market distributors and is preparing for its next phase of growth.
+
+      Given your experience as a founder in the supply chain space, I wanted to reach out directly before we finalize our long list. The board is open to first-time public-company operators and will assist with relocation.
+
+      Would you have 20 minutes next week for a confidential conversation? If not for you, I'd welcome any names that come to mind.
+
+      Kind regards,
+      Marisol
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-hexline-search]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 6 · Mon Aug 31
+  - id: t-rec-northgate-6
+    day: 6
+    time: "09:20"
+    from: {name: "Graham Pryce", email: "g.pryce@northgateexec.com"}
+    to: [avery]
+    subject: "Head of Product opening - thought of you"
+    bulk: false
+    signature: |-
+      Graham Pryce
+      Senior Associate | Northgate Executive
+      Denver | Salt Lake City
+      g.pryce@northgateexec.com | (303) 555-0149
+    body: |
+      Hi Avery,
+
+      Quick one. I'm working on a Head of Product search for a Series B logistics platform in Denver and your name came up as someone with strong product instincts in industrial software.
+
+      The role owns a 6-person PM team, reports to the CEO, and comes with a relocation package (or fully remote for the right person).
+
+      I know you're currently at Tessera as CTO, so this may be a stretch, but would you be open to a quick 15 minutes to compare notes? Worst case you learn what the market looks like.
+
+      Cheers,
+      Graham
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-northgate-executive]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 8 · Wed Sep 2
+  - id: t-rec-riverbend-8
+    day: 8
+    time: "11:05"
+    from: {name: "Tanya Osgood", email: "tanya@riverbendrecruiting.com"}
+    to: [avery]
+    subject: "Senior backend engineers available for Tessera (contract-to-hire)"
+    bulk: false
+    signature: |-
+      Tanya Osgood | Account Manager
+      Riverbend Recruiting - Engineering Talent for Startups
+      (650) 555-0122 | tanya@riverbendrecruiting.com
+      riverbendrecruiting.com
+    body: |
+      Hi Avery,
+
+      I noticed Tessera is hiring backend engineers and wanted to introduce Riverbend Recruiting. We specialize in placing senior Python and Go engineers with Bay Area startups, on a contract-to-hire basis or direct hire.
+
+      Right now I have three candidates who could start within two weeks:
+
+      - Senior backend engineer, 8 yrs, Python/Postgres, ex-industrial IoT, Oakland-based
+      - Staff engineer, 11 yrs, distributed systems, open to contract
+      - Backend engineer, 5 yrs, Go/Kubernetes, remote (Portland)
+
+      Our fee is 18% for direct hire, and we offer a 90-day replacement guarantee. Happy to send anonymized profiles if any of these fit.
+
+      Do you have 15 minutes this week to chat about your open roles?
+
+      Thanks,
+      Tanya
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-riverbend-recruiting]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 9 · Thu Sep 3
+  - id: t-rec-farrow-9
+    day: 9
+    time: "07:45"
+    from: {name: "Denise Farrow", email: "denise.farrow.recruits@gmail.com"}
+    to: [avery]
+    subject: "quick intro - CTO role at a stealth robotics co"
+    bulk: false
+    signature: |-
+      Denise Farrow
+      Independent technical recruiter
+      denise.farrow.recruits@gmail.com | (510) 555-0163
+    body: |
+      Hi Avery -
+
+      I'm an independent recruiter working with a stealth-mode robotics company in the East Bay (founders ex-Berkeley, $12M seed, 15 people). They're hiring a CTO and asked me to find someone who's built data-heavy products for industrial customers.
+
+      I don't have a job description I can share yet, but the founders are great and the equity is meaningful.
+
+      Would you be up for a 15 minute call? I promise not to waste your time.
+
+      Denise
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-denise-farrow]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 10 · Fri Sep 4
+  - id: t-rec-apex-10
+    day: 10
+    time: "15:30"
+    from: {name: "Kyle Brannigan", email: "kyle@apextalent.io"}
+    to: [avery]
+    subject: "Would love 15 minutes - Chief Product Officer, supply chain SaaS"
+    bulk: false
+    signature: |-
+      Kyle Brannigan | Talent Partner | Apex Talent
+      kyle@apextalent.io | (404) 555-0158
+      We place product and engineering leaders at venture-backed companies.
+    body: |
+      Hi {{first_name}},
+
+      Hope your week is going well! I'm reaching out because I'm leading a Chief Product Officer search for a supply chain SaaS company (Series C, Atlanta, $60M ARR) and your background at {{company}} really stood out.
+
+      A few things about the role:
+      - Reports to the CEO, seat on the exec team
+      - Owns product, design, and product analytics (35 people)
+      - Comp: $350K base + bonus + equity refresh
+
+      I know inbound like this can be noise, but I'd love 15 minutes to walk you through it. Here's my calendar: https://cal.apextalent.io/kyle/15min
+
+      Cheers,
+      Kyle
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-apex-talent]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 13 · Mon Sep 7
+  - id: t-rec-summit-13
+    day: 13
+    time: "10:00"
+    from: {name: "Alicia Moreau", email: "amoreau@summitsearchgroup.com"}
+    to: [avery]
+    subject: "Re: VP Engineering search - Series B (following up)"
+    bulk: false
+    signature: |-
+      Alicia Moreau
+      Research Director, Summit Search Group
+      Seattle | Denver
+      amoreau@summitsearchgroup.com | (206) 555-0141
+      summitsearchgroup.com
+    body: |
+      Hi Avery,
+
+      Following up on my note from last month regarding the VP Engineering search we're running for a Series B analytics company in Seattle. I never heard back so I wanted to make sure it didn't get buried.
+
+      The client has moved quickly and we're now finalizing the slate. Given your experience leading engineering at Tessera, you would be a strong addition.
+
+      Are you open to a brief conversation this week? A 15-minute call is all I need to determine fit.
+
+      Best regards,
+      Alicia
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-summit-search-group]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 14 · Tue Sep 8
+  - id: t-rec-cascade-14
+    day: 14
+    time: "13:10"
+    from: {name: "Owen Fitzgerald", email: "owen@cascadepartners.co"}
+    to: [avery]
+    subject: "Board-level opportunity in industrial IoT"
+    bulk: false
+    signature: |-
+      Owen Fitzgerald
+      Partner, Cascade Partners
+      Board & Executive Search
+      owen@cascadepartners.co | +1 (612) 555-0177
+      cascadepartners.co
+    body: |
+      Avery,
+
+      I lead the industrial technology practice at Cascade Partners. One of our clients, a mid-cap industrial IoT company headquartered in Minneapolis, is adding an independent director with operating experience in manufacturing software. The board meets quarterly, with a modest annual retainer plus equity.
+
+      Your work at Tessera Systems and your visibility with mid-market manufacturers make you a natural candidate. The nominating committee is meeting in October and I'd like to put your name forward, with your permission.
+
+      Would you have 20 minutes in the next two weeks to discuss? I can share the board deck under NDA.
+
+      Regards,
+      Owen
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-cascade-partners]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 15 · Wed Sep 9
+  - id: t-rec-pinnacle-15
+    day: 15
+    time: "09:55"
+    from: {name: "Brett Callahan", email: "brett.callahan@pinnacletalentpartners.com"}
+    to: [avery]
+    subject: "Following up: VP of Engineering, Series C fintech"
+    bulk: false
+    signature: |-
+      Brett Callahan
+      Managing Director | Pinnacle Talent Partners
+      Executive Search for High-Growth Technology Companies
+      M: (415) 555-0134 | brett.callahan@pinnacletalentpartners.com
+      www.pinnacletalentpartners.com | LinkedIn
+
+      This message and any attachments are confidential and intended solely for the addressee. If you are not the intended recipient, please delete this message and notify the sender. Pinnacle Talent Partners is an equal opportunity search firm.
+    body: |
+      Hi Avery,
+
+      Circling back on my note from a couple of weeks ago about the VP of Engineering role with our Series C fintech client. The hiring team has completed first-round interviews and is still very interested in speaking with candidates who have your profile.
+
+      I realize you may be heads down at Tessera Health, but even a quick 15-minute conversation could be worthwhile. Would Thursday or Friday work?
+
+      Best,
+      Brett
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-pinnacle-talent-partners]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 16 · Thu Sep 10
+  - id: t-rec-tolliver-16
+    day: 16
+    time: "16:20"
+    from: {name: "Greg Tolliver", email: "gregtolliver.search@gmail.com"}
+    to: [avery]
+    subject: "Engineering leaders wanted - Austin relocation (full package)"
+    bulk: false
+    signature: |-
+      Greg Tolliver
+      Technical Recruiting | Austin, TX
+      gregtolliver.search@gmail.com
+    body: |
+      Hello Avery,
+
+      I represent several venture-backed companies in Austin, TX that are actively hiring engineering leaders (Director through CTO). Full relocation packages, no state income tax, and a lower cost of living than the Bay Area.
+
+      Roles currently open:
+      * CTO - healthtech, Series A
+      * VP Engineering - proptech, Series B
+      * Director of Platform - fintech, Series C
+
+      If any of these sound interesting, reply with a good time for a 15 minute intro call and I'll send details. If you're not looking, I'd appreciate a referral to anyone in your network who might be.
+
+      Regards,
+      Greg Tolliver
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-greg-tolliver]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 17 · Fri Sep 11
+  - id: t-rec-hexline-17
+    day: 17
+    time: "08:30"
+    from: {name: "Marisol Vega", email: "marisol@hexlinesearch.com"}
+    to: [avery]
+    subject: "Checking in - CEO search"
+    bulk: false
+    signature: |-
+      Marisol Vega
+      Partner, Hexline Search
+      Chicago | New York | San Francisco
+      +1 (312) 555-0196 | marisol@hexlinesearch.com
+      hexlinesearch.com
+    body: |
+      Dear Avery,
+
+      I wanted to follow up on my note from two weeks ago about the CEO search we are conducting for a PE-backed vertical SaaS company in Chicago. We are entering the second round of conversations and the board has asked me to close the long list by the end of the month.
+
+      If you are not interested, a quick reply saying so would be very helpful so I can update the board. If you are, I can offer a confidential 20-minute call at your convenience.
+
+      With kind regards,
+      Marisol
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-hexline-search]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 20 · Mon Sep 14
+  - id: t-rec-northgate-20
+    day: 20
+    time: "10:15"
+    from: {name: "Simone Laurent", email: "simone.laurent@northgateexec.com"}
+    to: [avery]
+    subject: "COO search - Series B manufacturing software (Bay Area)"
+    bulk: false
+    signature: |-
+      Simone Laurent
+      Partner | Northgate Executive
+      Denver | Salt Lake City | San Francisco
+      simone.laurent@northgateexec.com | (415) 555-0187
+      northgateexec.com
+    body: |
+      Dear Avery Chen,
+
+      Northgate Executive has been engaged to identify a Chief Operating Officer for a Series B manufacturing software company in the Bay Area. The company has approximately $15M in ARR and is building out its go-to-market and customer success functions ahead of a Series C.
+
+      Your experience as an operator in a similar segment makes you a compelling candidate, and I would welcome the opportunity to share more about the role and the leadership team. I am also happy to hear about your own hiring needs; Northgate places executives across product, engineering and operations.
+
+      Could we find 15 minutes this week for an introductory conversation?
+
+      Warm regards,
+      Simone Laurent
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-northgate-executive]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 21 · Tue Sep 15
+  - id: t-rec-apex-21
+    day: 21
+    time: "12:40"
+    from: {name: "Kyle Brannigan", email: "kyle@apextalent.io"}
+    to: [avery]
+    subject: "Bumping this - 15 minutes?"
+    bulk: false
+    signature: |-
+      Kyle Brannigan | Talent Partner | Apex Talent
+      kyle@apextalent.io | (404) 555-0158
+      We place product and engineering leaders at venture-backed companies.
+    body: |
+      Hi Avery,
+
+      Bumping this to the top of your inbox in case it got lost. The Chief Product Officer role I mentioned is moving to final rounds in early October, and I'd hate for you to miss it.
+
+      Still happy to do 15 minutes whenever works: https://cal.apextalent.io/kyle/15min
+
+      If you're not interested, no worries at all, just let me know and I'll stop pinging you.
+
+      Kyle
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-apex-talent]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 22 · Wed Sep 16
+  - id: t-rec-riverbend-22
+    day: 22
+    time: "09:05"
+    from: {name: "Tanya Osgood", email: "tanya@riverbendrecruiting.com"}
+    to: [avery]
+    subject: "3 backend candidates available immediately"
+    bulk: false
+    signature: |-
+      Tanya Osgood | Account Manager
+      Riverbend Recruiting - Engineering Talent for Startups
+      (650) 555-0122 | tanya@riverbendrecruiting.com
+      riverbendrecruiting.com
+    body: |
+      Hi Avery,
+
+      Following up from a couple of weeks ago. I still have strong backend candidates available and wanted to share quick blurbs in case your backend role is still open:
+
+      1. 9 yrs Python/Django, built the ingestion layer at a sensor-data startup, Oakland
+      2. 6 yrs Go, event streaming, currently at a large logistics company, open to startups
+      3. 7 yrs full-stack (React/Node), strong on dashboards, remote (Denver)
+
+      All three can interview this week. Our terms are 18% direct hire or contract-to-hire at $115-140/hr.
+
+      Can we grab 15 minutes so I can learn more about what you're looking for?
+
+      Best,
+      Tanya
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-riverbend-recruiting]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 23 · Thu Sep 17
+  - id: t-rec-pike-23
+    day: 23
+    time: "14:50"
+    from: {name: "Lauren Pike", email: "laurenpike.talent@gmail.com"}
+    to: [avery]
+    subject: "Fractional exec roles - are you open?"
+    bulk: false
+    signature: |-
+      Lauren Pike
+      Fractional Leadership Placement
+      laurenpike.talent@gmail.com
+    body: |
+      Hi Avery,
+
+      I work with a small group of founders who need part-time executive help (fractional CTO / CPO / COO), typically 1-2 days a week for 3-6 months. Several of my clients are in industrial and supply chain software and asked for someone with your kind of background.
+
+      Rates are typically $2,500-4,000/day depending on scope. Everything is remote.
+
+      I'm not sure whether you'd consider fractional work alongside your role at Tessera, but if so I'd love 15 minutes to understand your interests.
+
+      Thanks!
+      Lauren
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-lauren-pike]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 24 · Fri Sep 18
+  - id: t-rec-summit-24
+    day: 24
+    time: "07:58"
+    from: {name: "Alicia Moreau", email: "amoreau@summitsearchgroup.com"}
+    to: [avery]
+    subject: "VP Engineering - candidate slate closes Monday"
+    bulk: false
+    signature: |-
+      Alicia Moreau
+      Research Director, Summit Search Group
+      Seattle | Denver
+      amoreau@summitsearchgroup.com | (206) 555-0141
+      summitsearchgroup.com
+    body: |
+      Hi Avery,
+
+      One last note on the VP Engineering search for our Series B analytics client in Seattle. The slate closes Monday and the client has asked me to make a final push for operators with experience in data-intensive B2B products.
+
+      If there is any interest, I need 15 minutes before then. If not, I'll close your file and won't reach out again on this one.
+
+      Thank you for your time.
+
+      Best regards,
+      Alicia
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-summit-search-group]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 26 · Sun Sep 20
+  - id: t-rec-cascade-26
+    day: 26
+    time: "18:05"
+    from: {name: "Owen Fitzgerald", email: "owen@cascadepartners.co"}
+    to: [avery]
+    subject: "Re: Board-level opportunity in industrial IoT"
+    bulk: false
+    signature: |-
+      Owen Fitzgerald
+      Partner, Cascade Partners
+      Board & Executive Search
+      owen@cascadepartners.co | +1 (612) 555-0177
+      cascadepartners.co
+    body: |
+      Avery,
+
+      Following up on my note from the 8th. The nominating committee has asked for a preliminary list by the end of September and I'd like to include you.
+
+      Two points in your favor that came up internally: your customer base overlaps with theirs, and they're specifically looking for a founder's perspective on their platform strategy.
+
+      Could you spare 20 minutes this week? Tuesday afternoon or Thursday morning would work on my end.
+
+      Regards,
+      Owen
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-cascade-partners]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 27 · Mon Sep 21
+  - id: t-rec-pinnacle-27
+    day: 27
+    time: "08:22"
+    from: {name: "Jill Petrakis", email: "jill.petrakis@pinnacletalentpartners.com"}
+    to: [avery]
+    subject: "Chief Technology Officer - climate hardware, Bay Area"
+    bulk: false
+    signature: |-
+      Jill Petrakis
+      Principal | Pinnacle Talent Partners
+      Executive Search for High-Growth Technology Companies
+      M: (415) 555-0171 | jill.petrakis@pinnacletalentpartners.com
+      www.pinnacletalentpartners.com | LinkedIn
+
+      This message and any attachments are confidential and intended solely for the addressee. If you are not the intended recipient, please delete this message and notify the sender. Pinnacle Talent Partners is an equal opportunity search firm.
+    body: |
+      Hi Avery,
+
+      I'm a colleague of Brett Callahan here at Pinnacle Talent Partners. Separately from the search Brett mentioned, I'm leading a CTO search for a climate hardware company in the East Bay (Series B, $45M raised, 90 employees) and wanted to reach out directly.
+
+      They're looking for a technical leader who has taken a data platform from early customers to scale, ideally with exposure to hardware or industrial environments. Your profile at Tessera Health lines up well.
+
+      Would you be open to a 15-minute call this week? I can work around your schedule.
+
+      Best,
+      Jill
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-pinnacle-talent-partners]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  - id: t-rec-farrow-27
+    day: 27
+    time: "13:47"
+    from: {name: "Denise Farrow", email: "denise.farrow.recruits@gmail.com"}
+    to: [avery]
+    subject: "checking back in"
+    bulk: false
+    signature: |-
+      Denise Farrow
+      Independent technical recruiter
+      denise.farrow.recruits@gmail.com | (510) 555-0163
+    body: |
+      Hi Avery -
+
+      Checking back in on the stealth robotics CTO role. The founders have closed their seed extension and are moving faster than I thought. They asked me specifically about people with plant-floor data experience.
+
+      Any interest in a 15 minute call this week? Happy to do it after hours if that's easier.
+
+      Denise
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-denise-farrow]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 28 · Tue Sep 22
+  - id: t-rec-hexline-28
+    day: 28
+    time: "10:33"
+    from: {name: "Marisol Vega", email: "marisol@hexlinesearch.com"}
+    to: [avery]
+    subject: "Last note - CEO search"
+    bulk: false
+    signature: |-
+      Marisol Vega
+      Partner, Hexline Search
+      Chicago | New York | San Francisco
+      +1 (312) 555-0196 | marisol@hexlinesearch.com
+      hexlinesearch.com
+    body: |
+      Dear Avery,
+
+      This will be my last note on the Chicago CEO search. The board is finalizing its short list this week, and while I would still welcome a conversation, I understand that timing may not align.
+
+      Should your circumstances change, or should you know a strong operator in vertical SaaS who is ready for a CEO seat, I would be grateful for an introduction.
+
+      With best wishes for Tessera's continued growth,
+      Marisol
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-hexline-search]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 29 · Wed Sep 23
+  - id: t-rec-northgate-29
+    day: 29
+    time: "09:14"
+    from: {name: "Graham Pryce", email: "g.pryce@northgateexec.com"}
+    to: [avery]
+    subject: "Head of Product - still open, and a new one"
+    bulk: false
+    signature: |-
+      Graham Pryce
+      Senior Associate | Northgate Executive
+      Denver | Salt Lake City
+      g.pryce@northgateexec.com | (303) 555-0149
+    body: |
+      Hi Avery,
+
+      Two things.
+
+      1. The Head of Product role in Denver is still open; the client extended the search after their first finalist withdrew.
+
+      2. A new one came in yesterday: VP Product for a Series C supply chain visibility platform (remote, US). This one might be a better fit given your background in logistics software at Tessera.
+
+      Either way, would you be open to a 15-minute call? I'm free most afternoons this week.
+
+      Cheers,
+      Graham
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-northgate-executive]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 30 · Thu Sep 24
+  - id: t-rec-apex-30
+    day: 30
+    time: "05:40"
+    from: {name: "Kyle Brannigan", email: "kyle@apextalent.io"}
+    to: [avery]
+    subject: "One more try: CPO role (final rounds next week)"
+    bulk: false
+    signature: |-
+      Kyle Brannigan | Talent Partner | Apex Talent
+      kyle@apextalent.io | (404) 555-0158
+      We place product and engineering leaders at venture-backed companies.
+    body: |
+      Hi Avery,
+
+      Last attempt, I promise! The CPO search is heading into final rounds next week and the CEO asked me to take one more pass at operators who've built for industrial customers.
+
+      If you'd like to hear more, grab any slot here: https://cal.apextalent.io/kyle/15min
+
+      If not, I'll assume the timing isn't right and won't follow up again. Thanks for reading.
+
+      Kyle
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-apex-talent]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}

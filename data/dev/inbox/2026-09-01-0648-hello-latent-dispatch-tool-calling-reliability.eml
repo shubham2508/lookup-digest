@@ -1,0 +1,30 @@
+Message-ID: <20260901-0648.hello@latentdispatch.ai>
+Date: Tue, 01 Sep 2026 06:48:10 -0700
+From: Latent Dispatch <hello@latentdispatch.ai>
+To: Avery Chen <avery@tessera.io>
+Subject: Latent Dispatch: tool-calling reliability numbers, Sable-3 outage post-mortem, distillation how-to
+List-Unsubscribe: <mailto:unsubscribe@latentdispatch.ai?subject=unsubscribe>, <https://latentdispatch.ai/u/a82968a1>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+LATENT DISPATCH
+Tue Sep 1 · 4 items · ~3 min
+
+HOW OFTEN DO MODELS CALL THE WRONG TOOL?
+We ran 5,000 tool-selection prompts across eight models with 12 tools available. Frontier models pick the right tool 96–98% of the time; mid-tier open models land at 88–92%. The failure that matters is not the wrong tool, it is calling a tool with a hallucinated argument, which happened 2–4% of the time everywhere. Argument validation before execution is not optional. https://latentdispatch.ai/p/tool-calling-numbers
+
+SABLE-3 OUTAGE: 4 HOURS, ONE REGION, A GOOD POST-MORTEM
+Sable Labs published a clear write-up of Friday's outage: a routing config pushed to one region sent traffic to a capacity pool that did not have the model loaded. Requests returned 5xx rather than degrading. If you were single-provider on Sable-3, you were down. Multi-provider fallback is the lesson, again. https://latentdispatch.ai/p/sable-postmortem
+
+DISTILLATION FOR PEOPLE WITH A DAY JOB
+A practical guide to distilling a frontier model's outputs into a small model for one narrow task: collect 5–20k examples from production, fine-tune an 8B, measure against the big model on a held-back set, ship behind a flag. The author reports a 90% cost reduction on a classification task with no measurable quality loss. https://latentdispatch.ai/p/distillation-guide
+
+SHORT TAKES
+· Pelagic doubles default rate limits for accounts over $1k/month spend.
+· Nimbus Inference adds a "spend cap" per API key. Set it.
+· Lodestone's status page now shows queue depth. Useful for deciding whether to batch.
+
+—
+You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1

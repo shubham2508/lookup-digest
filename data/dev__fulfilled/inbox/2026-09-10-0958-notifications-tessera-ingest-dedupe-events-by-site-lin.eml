@@ -1,0 +1,19 @@
+Message-ID: <20260910-0958.notifications@github.com>
+Date: Thu, 10 Sep 2026 09:58:01 -0700
+From: GitHub <notifications@github.com>
+To: Avery Chen <avery@tessera.io>
+Subject: [tessera/ingest] Dedupe events by (site, line, ts) (PR #414)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+@sofiandrade requested your review on: #414 Dedupe events by (site, line, ts).
+
+When a gateway reconnects it replays its buffer, and we were storing the replayed events twice. This adds a unique index on (site_id, line_id, ts, seq) and makes the writer an upsert. Includes a one-off migration that removes the existing duplicates (about 0.3% of rows on prod, almost all from gateway reconnects).
+
+Migration is idempotent and runs in batches of 10k.
+
+--
+Reply to this email directly or view it on GitHub:
+https://github.com/tessera/ingest/pull/414
+You are receiving this because your review was requested.

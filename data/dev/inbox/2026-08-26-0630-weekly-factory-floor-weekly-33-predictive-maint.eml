@@ -1,0 +1,36 @@
+Message-ID: <20260826-0630.weekly@factoryfloor.news>
+Date: Wed, 26 Aug 2026 06:30:14 -0700
+From: Factory Floor Weekly <weekly@factoryfloor.news>
+To: Avery Chen <avery@tessera.io>
+Subject: Factory Floor Weekly #33: Predictive maintenance ROI, vision QA on a gluer line, the MES rewrite question
+List-Unsubscribe: <mailto:unsubscribe@factoryfloor.news?subject=unsubscribe>, <https://factoryfloor.news/u/9b968838>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+FACTORY FLOOR WEEKLY
+Issue #33 | Wednesday, August 26, 2026
+Manufacturing AI and plant automation, once a week, no fluff.
+
+Hi,
+
+Back from summer with three stories that came out of plant visits rather than press releases. As always, reply if we got something wrong; a plant manager usually does.
+
+1) Predictive maintenance: the ROI numbers, twelve months in
+We followed up with 120 plants that put vibration- or current-based predictive maintenance on rotating equipment at least a year ago. Median payback was 14 months, and the spread was enormous: the top quartile paid back in under seven months, the bottom quartile has not paid back at all. The difference was not the sensors or the model. The plants that got there tuned alert thresholds by asset class in month two and assigned one reliability engineer to own the queue. The plants that did not drowned in alerts and, by month six, had quietly turned notifications off.
+
+2) Vision QA on a folder-gluer line: 31% less rework for $9,000
+Alderwood Containers, a corrugated-box maker in Ohio, cut rework 31% on its slowest folder-gluer line using a $9,000 camera setup and an off-the-shelf defect model retrained on about 2,000 images the operators tagged themselves. The trick that made it stick was mounting the camera so the operator's screen showed the same view the model saw. When the model flagged a skewed panel, the operator could see it too, and stopped arguing with the box.
+
+3) The MES rewrite question: replace or wrap?
+Two CIOs, both with fifteen-year-old MES installs, made opposite calls this year. One is doing a full replacement over 30 months with a plant-by-plant cutover. The other is wrapping the old system with an integration layer and building new capability on top. The wrapping camp is winning the argument industry-wide for one reason: the plant cannot stop for a cutover, and the replacement projects that went badly all went badly on day one of the switch.
+
+WORTH YOUR TIME
+- A 40-minute talk on OT data historians and why they are not a data lake: https://factoryfloor.news/l/historians-talk
+- Job board: 14 new controls and automation roles this week: https://factoryfloor.news/jobs
+
+Tips and corrections: tips@factoryfloor.news. Reply to this email and a human reads it.
+Unsubscribe: https://factoryfloor.news/unsub/av8f2 | Preferences: https://factoryfloor.news/prefs/av8f2
+Factory Floor Media LLC | PO Box 1187 | Milwaukee, WI 53201
+- Harlan

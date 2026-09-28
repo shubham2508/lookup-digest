@@ -1,0 +1,24 @@
+Message-ID: <20260911-0935.jordan@tessera.io>
+Date: Fri, 11 Sep 2026 09:35:26 -0700
+From: Jordan Liu <jordan@tessera.io>
+To: Tessera Engineering <eng@tessera.io>
+Cc: Avery Chen <avery@tessera.io>
+Subject: Re: on-call: can we talk about the rotation
+In-Reply-To: <20260910-0920.omar@tessera.io>
+References: <20260910-0920.omar@tessera.io>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Thanks all, good thread. Decisions:
+
+- Handoff moves to Monday 10:00 starting the week of Sep 21.
+- No production deploys after 15:00 on Fridays, effective now. Hotfixes excepted, my call.
+- Omar's flapping connector (7 of 12 pages): #389 merged yesterday, so we'll see next week.
+- The fifth person is a headcount question, not a rotation question, so I'm taking it to Q2 planning rather than deciding it here.
+
+Nothing needed from anyone else. Schedule is updated.
+
+Jordan
+
+Jordan

@@ -1,0 +1,87 @@
+thread_id: t-int-pr-371-streaming-export
+subject: "PR #371 - streaming CSV export (review please)"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_by_team
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [other:pr-371-streaming-export]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 2
+    time: "10:15"
+    from: sofia
+    to: [dev, omar]
+    cc: [avery, jordan]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      https://github.com/tessera-io/platform/pull/371
+
+      Streams the export instead of building the whole file in memory. 200k-row plants go from timeout to ~40s locally. Chunk size 5k rows, gzip on the wire.
+
+      Things I want eyes on:
+      - the encoding path (we now write bytes directly, not through the old csv writer)
+      - cancellation when the client disconnects mid-stream
+      - the test for the last partial chunk
+
+      Not touching the filter code, that's a separate PR. Review by tomorrow would be great 🙏
+
+      Sofia
+  - id: m2
+    beat_ref: null
+    day: 2
+    time: "14:30"
+    from: dev
+    to: [sofia]
+    cc: [omar, avery, jordan]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      left comments. main one: 5k chunks are fine but the flush after every chunk doubles syscalls on the big plants, flush every 4 chunks? also a nit: the header row goes through the new byte path but the tests only check the body rows.
+
+      Dev
+  - id: m3
+    beat_ref: null
+    day: 2
+    time: "15:10"
+    from: omar
+    to: [sofia]
+    cc: [dev, avery, jordan]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      cancellation works, I yanked the cable mid-export like a professional. one thing: the partial-chunk test passes because it never produces a partial chunk. 5000 rows of fixture, 5000-row chunks. see comment.
+
+      Omar
+  - id: m4
+    beat_ref: null
+    day: 2
+    time: "16:50"
+    from: sofia
+    to: [dev, omar]
+    cc: [avery, jordan]
+    reply_to: m3
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      All three fixed: flush every 4 chunks, header row covered, and the partial-chunk test now has 5001 rows so it's actually partial (thanks Omar 😅). Dev approved on GitHub, merging after CI.
+
+      Sofia

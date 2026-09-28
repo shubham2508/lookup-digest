@@ -1,0 +1,30 @@
+Message-ID: <20260915-0703.hello@latentdispatch.ai>
+Date: Tue, 15 Sep 2026 07:03:39 -0700
+From: Latent Dispatch <hello@latentdispatch.ai>
+To: Avery Chen <avery@tessera.io>
+Subject: Latent Dispatch: Tanager-Coder 70B early look, spend caps everywhere, a good on-call story
+List-Unsubscribe: <mailto:unsubscribe@latentdispatch.ai?subject=unsubscribe>, <https://latentdispatch.ai/u/1b938f27>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+LATENT DISPATCH
+Tue Sep 15 · 4 items · ~3 min
+
+TANAGER-CODER 70B: EARLY ACCESS NOTES
+We got a preview. It is very good at multi-file edits and noticeably better than the 34B at reading a codebase before changing it. It is also 2x the price and 3x the latency. For a coding agent that runs overnight, worth it; for autocomplete, no. Public release "early October." https://latentdispatch.ai/p/tanager-70b-preview
+
+SPEND CAPS ARE NOW STANDARD
+Every provider we track now offers a per-key or per-project spend ceiling. Six months ago only two did. If you have not set one, the August backfill story from a few weeks back is your cautionary tale.
+
+AN ON-CALL STORY WITH A HAPPY ENDING
+An engineer wrote up a 3am page: a customer's data import tripled token volume in an hour, the spend cap tripped, the pipeline paused cleanly, and the on-call went back to sleep. The next morning they raised the cap deliberately. That is what the cap is for. https://latentdispatch.ai/p/oncall-story
+
+SHORT TAKES
+· Nimbus adds per-request cost to response headers, matching Quillon.
+· Halcyon Vision 3 adds table extraction to structured output.
+· Vireo-3 embeddings: 8k context, same price as Vireo-2.
+
+—
+You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1

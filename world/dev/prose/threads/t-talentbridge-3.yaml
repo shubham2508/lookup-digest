@@ -1,0 +1,40 @@
+thread_id: t-talentbridge-3
+subject: "Re: VP Engineering opportunity - last try"
+storyline: BG-talentbridge
+category: recruiters
+labels:
+  kind: thread
+  must_not: true
+  reason: individual_recruiter_pattern_only
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: promotional
+    about: [other:recruiter-talentbridge]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 29
+    time: "11:20"
+    from: chad
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi Avery,
+
+      This is my last try on this one! I know inboxes get busy, so I wanted to give it one more shot before I close out my search for the VP of Engineering role at the logistics platform I mentioned.
+
+      The hiring manager has asked me for a shortlist by Friday and I'd hate to leave your name off it given your track record leading engineering at Tessera.
+
+      Just reply with a "yes" or "no" and I'll take it from there. Even a "not now" helps me keep my notes up to date!
+
+      Thanks so much,

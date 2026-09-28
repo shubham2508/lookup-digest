@@ -1,0 +1,32 @@
+Message-ID: <20260909-1420.newsletter@vercel.com>
+Date: Wed, 09 Sep 2026 14:20:30 -0700
+From: Vercel <newsletter@vercel.com>
+To: Avery Chen <avery@tessera.io>
+Subject: Vercel Ship recap: v0 for teams, Fluid compute, and AI SDK 5
+List-Unsubscribe: <mailto:unsubscribe@vercel.com?subject=unsubscribe>, <https://vercel.com/u/efcdba9c>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi Avery,
+
+In case you missed it, here's the short version of what we announced at Vercel Ship last week.
+
+v0 for teams
+Generate UI from a prompt, iterate with your designer, and push to a branch. Now with shared projects and your design system loaded.
+
+Fluid compute
+Serverless functions that scale like servers: concurrency per instance, no cold starts on the paths that matter, and pricing that drops 30 to 80% for I/O-bound workloads.
+
+AI SDK 5
+One API for every model provider, with streaming, tool calls, and structured output. Switch providers with one line.
+
+Also: preview deployments now include a comment thread for stakeholders, and observability gets a query builder.
+
+Watch the keynote (18 min): https://vercel.com/l/ship-recap-2026
+
+The Vercel Team
+
+Vercel Inc. | 440 N Barranca Ave #4133, Covina, CA 91723
+Unsubscribe: https://vercel.com/u/n3f8x

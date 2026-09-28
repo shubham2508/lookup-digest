@@ -1,0 +1,65 @@
+thread_id: t-inv-marcus-deck
+subject: "Deck + August numbers"
+storyline: null
+category: investors_board
+labels:
+  kind: thread
+  must_not: true
+  reason: closed_by_courtesy
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [deal:series-a:deck]
+    ball_awaiting: other
+    closed_by_courtesy: true
+    sender_relationship: {category: capital, subtype: lead_investor}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 3
+    time: "09:20"
+    from: marcus
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      Good conversation Wednesday. Send me the deck and the August metrics when you have them; I'll circulate to Elena and Ravi ahead of a partnership session.
+
+      Marcus
+  - id: m2
+    beat_ref: null
+    day: 3
+    time: "18:40"
+    from: avery
+    to: [marcus]
+    cc: []
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      marcus — deck: tessera.io/share/deck-aug26. August metrics are in the appendix (ARR, net retention, gross margin, the three reference accounts broken out). Anything else you want ahead of the session, say the word.
+
+      Avery
+  - id: m3
+    beat_ref: null
+    day: 5
+    time: "19:05"
+    from: marcus
+    to: [avery]
+    cc: []
+    reply_to: m2
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Got it, thanks. Ravi will reach out on timing for the partnership session.
+
+      Marcus

@@ -1,0 +1,71 @@
+thread_id: t-int-allhands-0828
+subject: "All hands today 3:00 - agenda"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: last_word_avery
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [meeting:all-hands]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 3
+    time: "08:30"
+    from: kim
+    to: [team_list]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi all,
+
+      Agenda for today's all hands, 3:00-3:45 in the big room (Zoom link in the invite for anyone remote):
+
+      1. Welcome + numbers (Avery, 5 min)
+      2. Benefits: open enrollment timeline and what changes (Kim, 10 min)
+      3. Eng: sprint 18 and what ships in September (Jordan, 10 min)
+      4. GTM: the pipeline picture (Tomás, 10 min)
+      5. Q&A (10 min)
+
+      Kim
+  - id: m2
+    beat_ref: null
+    day: 3
+    time: "09:05"
+    from: tomas
+    to: [kim]
+    cc: [team_list, avery]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Can I have 5 extra minutes for the Meridian pilot story?! The Salinas line lead quote is too good not to share with the whole team!!
+
+      Tomás
+  - id: m3
+    beat_ref: null
+    day: 3
+    time: "09:20"
+    from: avery
+    to: [tomas, kim]
+    cc: [team_list]
+    reply_to: m2
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      yes - take the 5 from Q&A, not from kim. keep the quote, cut the deck.
+
+      Avery

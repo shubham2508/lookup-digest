@@ -1,0 +1,32 @@
+Message-ID: <20260904-0714.hello@latentdispatch.ai>
+Date: Fri, 04 Sep 2026 07:14:14 -0700
+From: Latent Dispatch <hello@latentdispatch.ai>
+To: Avery Chen <avery@tessera.io>
+Subject: Latent Dispatch: long weekend reading =?utf-8?b?4oCU?= agents in production, six months in
+List-Unsubscribe: <mailto:unsubscribe@latentdispatch.ai?subject=unsubscribe>, <https://latentdispatch.ai/u/0ac466f5>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+LATENT DISPATCH
+Fri Sep 4 · 5 items · ~5 min · no issue Monday (US holiday)
+
+SIX MONTHS OF AGENTS IN PRODUCTION: WHAT 30 TEAMS TOLD US
+Our longest piece of the year. The short version: the teams that are happy built narrow agents with hard stops, log every step, and let a human approve anything irreversible. The teams that are unhappy built general agents, gave them broad tool access, and are now writing guardrails one incident at a time. Nobody regrets adding a spend ceiling. https://latentdispatch.ai/p/agents-six-months
+
+FERRITE-70B IS COMING
+Ferrite's team confirmed a 70B open-weights release "this month." The 8B has been the surprise of the summer for structured tasks; if the 70B scales the same way it will be the first open model that is competitive with mid-tier proprietary models on agentic work. We will have numbers when it ships.
+
+HALCYON VISION 3
+Better on charts and diagrams, same on photos, and now supports bounding-box output for locating fields on a page. Per-image pricing unchanged. https://latentdispatch.ai/p/halcyon-v3
+
+MARROW SPEECH: DIARIZATION THAT WORKS ON PLANT-FLOOR AUDIO
+Marrow's new speech model was trained with a lot of industrial background noise and it shows: on our noisy-meeting set it separated speakers where the incumbents merged them. Niche, but if you have shop-floor recordings, worth a test.
+
+SHORT TAKES
+· Pelagic publishes a model deprecation policy: 12 months notice, guaranteed. First lab to put a number on it.
+· A good thread on why "the model got worse" is usually "the prompt cache got invalidated": https://latentdispatch.ai/p/cache-invalidation
+
+—
+You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1

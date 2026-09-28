@@ -1,0 +1,36 @@
+Message-ID: <20260909-0628.weekly@factoryfloor.news>
+Date: Wed, 09 Sep 2026 06:28:13 -0700
+From: Factory Floor Weekly <weekly@factoryfloor.news>
+To: Avery Chen <avery@tessera.io>
+Subject: Factory Floor Weekly #35: Digital twins, honestly; AMRs at -20C; PLC programming moves to the cloud
+List-Unsubscribe: <mailto:unsubscribe@factoryfloor.news?subject=unsubscribe>, <https://factoryfloor.news/u/58308635>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+FACTORY FLOOR WEEKLY
+Issue #35 | Wednesday, September 9, 2026
+Manufacturing AI and plant automation, once a week, no fluff.
+
+Hi,
+
+Three items this week, one of which will annoy a vendor. Good.
+
+1) Digital twins: 12 of 40 pilots made it to production
+We tracked 40 digital-twin pilots announced between 2023 and 2025. Twelve are in daily production use. Twenty-one were quietly shelved and seven are still "in pilot," which usually means the same thing. The twelve that worked were narrow: a twin of one bottleneck asset or one line, fed by data the plant already collected, used to answer one question (usually "what happens to throughput if we change this setpoint"). Every whole-plant twin on the list is on the shelved side.
+
+2) AMRs in cold storage: the battery problem is real
+Autonomous mobile robots in frozen warehouses (-20C and below) lose 25 to 30% of battery capacity, and sensors fog when a robot crosses from the freezer into a 4C dock. Two vendors have added heated enclosures and a five-minute "acclimation" pause at the dock door; one operator we spoke to just bought 40% more robots than the model said they needed and rotates them. Both approaches work. Both cost more than the sales deck said.
+
+3) Rutherford Controls launches a cloud PLC programming environment
+Rutherford, the mid-sized PLC vendor, announced a browser-based programming environment for its controllers with built-in version control, collaborative editing, and simulation. The reaction from the controls engineers we asked, paraphrased: "no." The objection is not the cloud; it is that the programming laptop on the plant floor has no internet on purpose. The version control, though, is the feature everyone actually wants, and the vendor should ship it for the offline tool too.
+
+WORTH YOUR TIME
+- A plant manager's write-up of a failed twin project, with the numbers: https://factoryfloor.news/l/twin-postmortem
+- Job board: https://factoryfloor.news/jobs
+
+Tips and corrections: tips@factoryfloor.news. Reply to this email and a human reads it.
+Unsubscribe: https://factoryfloor.news/unsub/av8f2 | Preferences: https://factoryfloor.news/prefs/av8f2
+Factory Floor Media LLC | PO Box 1187 | Milwaukee, WI 53201
+- Harlan

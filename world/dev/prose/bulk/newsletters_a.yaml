@@ -1,0 +1,1565 @@
+# world/dev/prose/bulk/newsletters_a.yaml — newsletters, batch A (Stratechery, Latent Dispatch, Model Watch)
+category: newsletters
+items:
+  # ---------------------------------------------------------------- Stratechery (Mon/Wed/Fri)
+  - id: nl-stratechery-1
+    day: 1
+    time: "06:12"
+    from: {name: "Stratechery", email: "email@stratechery.com"}
+    to: [avery]
+    subject: "Stratechery: The Inference Margin Squeeze"
+    bulk: true
+    signature: none
+    body: |
+      STRATECHERY
+      Wednesday, August 26, 2026
+
+      The Inference Margin Squeeze
+
+      There is a pattern in every platform shift that I keep coming back to: the layer that looks like the business ends up being the cost center, and the layer that looks like plumbing ends up being the business. In the PC era the hardware was the product until it wasn't; Microsoft and Intel captured the profit while the box-makers fought over single-digit margins. The question for the current cycle is which layer is the box-maker.
+
+      My growing suspicion is that it is the application layer, at least as currently constituted. Consider the unit economics of a typical "AI-native" vertical SaaS company. It sells a seat, or increasingly a workflow, for a fixed monthly price. Underneath that price sits a variable cost: tokens, and those tokens are priced by someone else. When a customer's usage doubles because the product worked, the vendor's revenue stays flat and its cost of goods doubles. That is the exact inverse of the software business model we have spent twenty-five years celebrating.
+
+      The obvious response is usage-based pricing, and many companies are moving there. But usage pricing trades one problem for another: it makes the vendor's margin transparent, and transparent margins invite the customer to ask why they are paying a markup on tokens they could buy directly. The vendor's answer has to be "because of what we do with them," which is a real answer, but it is a services answer, not a software answer.
+
+      The second response is to push the cost down the stack: negotiate volume discounts, route to cheaper models, cache aggressively, distill. This works, and it is where most of the actual engineering effort in the industry is going right now. It also means the application company's most important supplier relationship is with its inference provider, which is a strange place for a software company to find itself.
+
+      The third response, and the one I find most interesting, is to change the customer. Companies that sell outcomes rather than software (a resolved ticket, a reconciled invoice, a completed onboarding) can absorb variable cost because they are pricing the value, not the seat. The catch is that outcome pricing requires the product to actually work, reliably, without a human in the loop, which is a much higher bar than "helpful."
+
+      I don't think any of this is fatal to the application layer. I do think the companies that survive will look less like the SaaS playbook and more like something new: part software, part managed service, with gross margins that would have made a 2019 investor wince. The squeeze is real; the question is who gets squeezed.
+
+      Read on the web: https://stratechery.com/2026/the-inference-margin-squeeze/
+
+      —
+      You are receiving this because you subscribed to Stratechery Daily Updates. Manage your subscription or unsubscribe: https://stratechery.com/account/
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-stratechery-3
+    day: 3
+    time: "06:04"
+    from: {name: "Stratechery", email: "email@stratechery.com"}
+    to: [avery]
+    subject: "Stratechery: Open Weights as a Weapon"
+    bulk: true
+    signature: none
+    body: |
+      STRATECHERY
+      Friday, August 28, 2026
+
+      Open Weights as a Weapon
+
+      "Commoditize your complement" is the oldest strategy essay on the internet, and it explains more about the current model market than any benchmark. When a company releases the weights of a frontier-adjacent model for free, it is not being generous. It is making a bet that the value it can capture elsewhere, in chips, in cloud, in the application it already sells, exceeds whatever it could have charged for the model itself, and that its competitors' pricing power is worth destroying.
+
+      What is new this year is that the strategy is being run by more than one player at once, from more than one direction. A chip vendor wants models to be free so that demand for compute goes up. A cloud wants models to be free so that customers spend on hosting instead of on API margins. An enterprise software incumbent wants models to be free so that the frontier labs cannot charge it a toll. Each of these actors is happy to release a strong open model, and each release drags the price floor down for everyone.
+
+      The frontier labs' answer has been to run faster: keep the best model proprietary and let the second-best leak. That works as long as the gap between best and second-best is large enough for customers to pay for. My read of the last six months is that the gap is holding at the top end (long-horizon agents, hard reasoning) and collapsing everywhere else. For most production workloads, which are extraction, classification, summarization, and routing, a well-served open model at a fifth of the price is simply the rational choice.
+
+      This is why the interesting competition has shifted from "who has the best model" to "who serves open models best." Inference providers are competing on throughput, latency, and price per million tokens, and they are competing against the cloud giants who can afford to run inference at a loss for a decade. That is not a comfortable position for a venture-backed inference startup, and I expect consolidation.
+
+      For application companies, the practical implication is unglamorous: your model choice is a procurement decision, not a strategic one, and it should be revisited quarterly. Build the abstraction, keep the switching cost low, and let the suppliers fight.
+
+      Read on the web: https://stratechery.com/2026/open-weights-as-a-weapon/
+
+      —
+      You are receiving this because you subscribed to Stratechery Daily Updates. Manage your subscription or unsubscribe: https://stratechery.com/account/
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-stratechery-6
+    day: 6
+    time: "06:21"
+    from: {name: "Stratechery", email: "email@stratechery.com"}
+    to: [avery]
+    subject: "Stratechery: The Systems Integrator Returns"
+    bulk: true
+    signature: none
+    body: |
+      STRATECHERY
+      Monday, August 31, 2026
+
+      The Systems Integrator Returns
+
+      Every few years someone declares the death of the systems integrator, and every few years the integrators post record revenue. The reason is simple: enterprises do not buy technology, they buy change, and change is labor. The AI cycle was supposed to be different because the software would do the integration itself. Eighteen months in, the evidence points the other way.
+
+      The pattern I see in mid-market deployments, particularly in industrial and supply-chain settings, is that the model is the easy part. The hard part is the data: it lives in an ERP from 2009, a plant-floor historian with a proprietary export, three spreadsheets, and one person's head. Connecting those things is not a prompt engineering problem; it is a mapping, cleaning, and politics problem, and it looks exactly like the work integrators have always done.
+
+      What has changed is who does it. The big consultancies are staffing up, of course, but the more interesting move is that software vendors themselves are becoming integrators. A startup selling into manufacturers cannot wait for a channel partner to learn its product; it sends its own solutions engineers on site, builds the connectors, and eats the cost. Its gross margin suffers, its sales cycle stays long, and its investors start asking whether it is a software company at all.
+
+      I think the honest answer is "not yet." The historical arc is that services-heavy deployments become productized over time as the vendor learns which twenty connectors cover eighty percent of customers. The companies that win are the ones that treat every services engagement as R&D for the product, rather than as revenue to be maximized.
+
+      There is a second-order effect worth watching. If the vendor is doing the integration, the vendor owns the data pipeline, and the data pipeline is the moat. The model can be swapped; the connector into a plant's quality system cannot, at least not cheaply. This is the same dynamic that made the early cloud ERPs sticky, and it suggests that the durable AI companies in industrial verticals will look a lot more like the last generation of vertical software than the pitch decks admit.
+
+      Read on the web: https://stratechery.com/2026/the-systems-integrator-returns/
+
+      —
+      You are receiving this because you subscribed to Stratechery Daily Updates. Manage your subscription or unsubscribe: https://stratechery.com/account/
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-stratechery-8
+    day: 8
+    time: "06:08"
+    from: {name: "Stratechery", email: "email@stratechery.com"}
+    to: [avery]
+    subject: "Stratechery: Agents and the App Store Problem"
+    bulk: true
+    signature: none
+    body: |
+      STRATECHERY
+      Wednesday, September 2, 2026
+
+      Agents and the App Store Problem
+
+      The app store was the defining business model innovation of the smartphone era: a platform owner took thirty percent of every transaction in exchange for distribution, payments, and trust. The question I have been chewing on is whether agents recreate that structure or dissolve it.
+
+      The bull case for a new app store is straightforward. If users interact with software through an assistant, the assistant decides which tools get called. Whoever controls the assistant controls distribution, and distribution has always been where the money is. Several companies are building "tool directories" on exactly this premise, and the pitch to developers is familiar: register your tool, we'll send you traffic, we'll take a cut.
+
+      The bear case is that agents are much less loyal than users. A person picks an app and keeps it because switching is annoying. An agent picks a tool per task based on cost, latency, and whether it worked last time, and can switch on every call. That makes the directory's leverage far weaker than an app store's. Distribution still matters, but it looks less like a storefront and more like a search engine, and search engines take their cut in a very different way.
+
+      My tentative view is that the app store analogy is wrong and the payments analogy is right. The valuable position is not the shelf; it is the rails. Whoever handles authentication, authorization, metering, and settlement between agents and tools gets a small slice of a very large number of transactions, and does so without needing anyone to be loyal. That is a more defensible business than curation, and it is where I would expect the platform companies to concentrate.
+
+      For developers, the implication is to build for interchangeability rather than for placement. Expose a clean interface, price per call, publish your latency, and assume the calling agent will benchmark you against three competitors every week. It is a less romantic world than the app store, but it is also one where a small company with a better tool can win without asking anyone's permission.
+
+      Read on the web: https://stratechery.com/2026/agents-and-the-app-store-problem/
+
+      —
+      You are receiving this because you subscribed to Stratechery Daily Updates. Manage your subscription or unsubscribe: https://stratechery.com/account/
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-stratechery-10
+    day: 10
+    time: "06:15"
+    from: {name: "Stratechery", email: "email@stratechery.com"}
+    to: [avery]
+    subject: "Stratechery: Seats, Usage, and the Pricing Reckoning"
+    bulk: true
+    signature: none
+    body: |
+      STRATECHERY
+      Friday, September 4, 2026
+
+      Seats, Usage, and the Pricing Reckoning
+
+      Per-seat pricing was never about seats. It was a proxy: more people using the software meant more value delivered, and the proxy was easy to count and easy to budget. The proxy is now breaking, and the reason is that the best AI products reduce the number of people who need to use them.
+
+      A procurement team of six that adopts a good automation product might become a team of four. Under seat pricing the vendor just lost a third of its revenue for doing its job well. Under usage pricing the vendor is fine, but the customer's finance team now has an unpredictable line item, and unpredictable line items get cut in budget season. Under outcome pricing everyone is aligned in theory, and in practice nobody can agree on what an outcome is or who caused it.
+
+      I have spent the week talking to founders about this and the most common answer is a hybrid: a platform fee that covers the fixed cost of integration and support, plus a usage component with a cap. This is not elegant, but it has a virtue that pure models lack, which is that it can be explained to a CFO in one sentence.
+
+      The deeper point is that pricing is a statement about what the product is. Seats say "this is a tool people use." Usage says "this is infrastructure." Outcomes say "this is a service." Most AI application companies are all three at once and have not decided which one they want to be, and their pricing reflects the indecision.
+
+      My advice, for what it is worth, is to decide, and to decide based on which framing your best customers already use when they describe you internally. If the champion at a customer calls you "the team's tool," price seats and accept the squeeze. If she calls you "the pipeline," price usage and invest in predictability features. If she calls you "the thing that does our reconciliations," price outcomes and build the measurement to back it up. The worst position is to be described one way and priced another, because that gap is exactly where churn lives.
+
+      Read on the web: https://stratechery.com/2026/seats-usage-and-the-pricing-reckoning/
+
+      —
+      You are receiving this because you subscribed to Stratechery Daily Updates. Manage your subscription or unsubscribe: https://stratechery.com/account/
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-stratechery-13
+    day: 13
+    time: "06:30"
+    from: {name: "Stratechery", email: "email@stratechery.com"}
+    to: [avery]
+    subject: "Stratechery: Labor Day Notes on Labor"
+    bulk: true
+    signature: none
+    body: |
+      STRATECHERY
+      Monday, September 7, 2026
+
+      Labor Day Notes on Labor
+
+      A short one for the holiday. I want to push back on a framing that has become conventional wisdom in the last year: that AI's economic impact will show up first as job losses in white-collar work. The historical record of general-purpose technologies suggests something different and, I think, more interesting.
+
+      The first wave of electrification did not reduce factory headcount. It reorganized the factory. Steam-powered plants were built around a central shaft; electric motors let each machine have its own power, which meant the layout could follow the workflow instead of the drivetrain. It took roughly thirty years for managers to figure this out, and the productivity gains arrived only after they did. The technology was ready decades before the organization was.
+
+      I think we are in the equivalent of the early electric period. Companies are bolting models onto existing workflows the way early factories bolted motors onto the old shaft-and-belt layout: it works, it is a modest improvement, and it misses the point. The real gains come when someone redesigns the process around the assumption that reading, drafting, and routing are nearly free, and that redesign is an organizational act, not a technical one.
+
+      What this means for labor in the near term is not mass displacement but mass reassignment, and a lot of it will be awkward. The person who used to spend Monday triaging the inbox will spend Monday doing something else, and neither she nor her manager will be sure what that something else is for a while. That ambiguity, not unemployment, is the story of the next few years.
+
+      It also suggests where the durable companies will come from: not from the ones with the best model, but from the ones that figure out the new factory layout for a specific kind of work and sell it as a whole. That is a slower, less glamorous business than the demos imply. It is also the one that has historically produced the largest fortunes.
+
+      Enjoy the day off, if you are getting one.
+
+      Read on the web: https://stratechery.com/2026/labor-day-notes-on-labor/
+
+      —
+      You are receiving this because you subscribed to Stratechery Daily Updates. Manage your subscription or unsubscribe: https://stratechery.com/account/
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-stratechery-15
+    day: 15
+    time: "06:09"
+    from: {name: "Stratechery", email: "email@stratechery.com"}
+    to: [avery]
+    subject: "Stratechery: Compute Is the New Distribution"
+    bulk: true
+    signature: none
+    body: |
+      STRATECHERY
+      Wednesday, September 9, 2026
+
+      Compute Is the New Distribution
+
+      For most of the internet era the scarce resource was attention, and the companies that owned the channels to it (search, social, the app store) captured most of the profit. My thesis for this cycle is that the scarce resource is compute, and that the companies which own access to it will occupy the position that the distribution owners occupied in the last one.
+
+      The evidence is in the deal flow. The frontier labs are not competing primarily on research anymore; they are competing on multi-year capacity commitments, and the chip and cloud vendors are choosing winners by deciding who gets allocation. A startup with a better architecture and no GPUs is a research paper. A lab with a mediocre architecture and a hundred thousand accelerators is a business.
+
+      Downstream, the same logic applies with smaller numbers. An application company's ability to serve customers at a reasonable margin depends on inference pricing it does not control. When a provider cuts prices, the whole application layer's economics improve overnight; when a provider raises rate limits or deprecates a model, roadmaps get rewritten. That is the definition of a dependency, and dependencies are where power sits.
+
+      What does an application company do about this? Three things, I think. First, multi-source: keep at least two providers in production and the routing logic in your own code, so that a pricing change is a config change rather than a rewrite. Second, own the cache: a large fraction of enterprise inference is repeated, and a company that caches aggressively is buying its own compute at zero marginal cost. Third, distill: the moment a task is stable, train a small model on the big model's outputs and serve it yourself. None of this is novel, but very few companies do all three, and the ones that do have structurally better margins.
+
+      The larger point is that "AI strategy" for most companies is going to look a lot like supply chain strategy: second-sourcing, inventory, and negotiating leverage. That is a less exciting frame than "we are building AGI," but it is the frame that will separate the companies that survive the next price war from the ones that do not.
+
+      Read on the web: https://stratechery.com/2026/compute-is-the-new-distribution/
+
+      —
+      You are receiving this because you subscribed to Stratechery Daily Updates. Manage your subscription or unsubscribe: https://stratechery.com/account/
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-stratechery-17
+    day: 17
+    time: "06:18"
+    from: {name: "Stratechery", email: "email@stratechery.com"}
+    to: [avery]
+    subject: "Stratechery: Search After Answers"
+    bulk: true
+    signature: none
+    body: |
+      STRATECHERY
+      Friday, September 11, 2026
+
+      Search After Answers
+
+      The ten blue links are dying, which everyone knows, but the interesting question is what replaces the economics underneath them. Search worked as a business because a query expressed intent, and intent could be sold to advertisers at the moment of maximum relevance. Answers break that: if the assistant tells you which drill to buy, there is no page for the drill manufacturer to bid on.
+
+      The incumbents' first response is to put ads inside the answer, which will happen and which users will hate. The second is to charge for the assistant, which works for a slice of the market and leaves the rest. The third, and the one I think matters most, is to move the monetization from the answer to the action. If the assistant can also buy the drill, the platform takes a cut of the transaction instead of a cut of the attention, and the cut is larger.
+
+      This has obvious implications for retail and travel. The less obvious implication is for enterprise software. Every B2B software vendor built a marketing site, an SEO strategy, and a comparison-page budget on the assumption that buyers search. If buyers instead ask an assistant "what should we use for supplier quality tracking," the vendor's entire top-of-funnel becomes a question of whether the assistant knows it exists and what it says when asked. That is not SEO; it is something closer to analyst relations, conducted with a machine.
+
+      Vendors are already adapting. I have seen companies rewrite their documentation to be retrievable, publish structured pricing so that comparisons are easy, and seed detailed case studies in places assistants index. It is early and nobody knows what works, but the budget is shifting, and it is shifting away from the channels that funded the open web.
+
+      I do not think this is the end of the web, but I do think it is the end of the web as an advertising business, and the industry has not yet reckoned with how much of the current stack that funded.
+
+      Read on the web: https://stratechery.com/2026/search-after-answers/
+
+      —
+      You are receiving this because you subscribed to Stratechery Daily Updates. Manage your subscription or unsubscribe: https://stratechery.com/account/
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-stratechery-20
+    day: 20
+    time: "06:07"
+    from: {name: "Stratechery", email: "email@stratechery.com"}
+    to: [avery]
+    subject: "Stratechery: The Bundle Comes for AI"
+    bulk: true
+    signature: none
+    body: |
+      STRATECHERY
+      Monday, September 14, 2026
+
+      The Bundle Comes for AI
+
+      There are only two ways to make money in software: bundling and unbundling. The last eighteen months were an unbundling phase, in which a thousand startups each took one workflow, wrapped a model around it, and sold it as a product. The next phase is starting, and it is a bundle.
+
+      The signal is in the incumbents' pricing pages. The large productivity suites are now including assistant features in the existing seat price, or in a modest tier upgrade, rather than selling them as a separate SKU. That is a classic bundling move: use a distribution advantage to make the standalone competitor's product a feature. It worked against the standalone spreadsheet, the standalone email client, and the standalone video-conferencing tool, and there is no reason to think it will not work against the standalone meeting summarizer.
+
+      Where bundling fails is when the standalone product does something the bundle structurally cannot. In the last cycle that meant products that owned a different data source (the CRM, the code repository) or a different buyer (the developer, the designer). In this cycle, I think it means products that own a different context: the vendor that has integrated with the customer's plant floor or ledger or supplier network has data the suite will never see, and the assistant that sees that data will be better at the job than the one that sees only documents.
+
+      So the question every AI application founder should be asking is not "is my feature better than the suite's?" but "does my product see something the suite cannot?" If the answer is yes, bundling is a nuisance. If the answer is no, bundling is the end of the road, and the only question is the acquisition price.
+
+      There is a corollary for buyers: the suite's assistant will be good enough for generic work sooner than you think, and the budget for standalone tools should be reserved for the ones with proprietary context. Everyone else is a feature waiting to be absorbed.
+
+      Read on the web: https://stratechery.com/2026/the-bundle-comes-for-ai/
+
+      —
+      You are receiving this because you subscribed to Stratechery Daily Updates. Manage your subscription or unsubscribe: https://stratechery.com/account/
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-stratechery-22
+    day: 22
+    time: "06:14"
+    from: {name: "Stratechery", email: "email@stratechery.com"}
+    to: [avery]
+    subject: "Stratechery: The Model Commodity Fallacy"
+    bulk: true
+    signature: none
+    body: |
+      STRATECHERY
+      Wednesday, September 16, 2026
+
+      The Model Commodity Fallacy
+
+      I have argued in this newsletter that models are becoming commodities, and I stand by it for the middle of the market. But there is a version of the argument that goes too far, and I want to draw the line carefully because a lot of strategy depends on where it sits.
+
+      The strong claim is that all models converge, and therefore nothing above the model layer has any dependency worth worrying about. This is wrong for two reasons. The first is that "converge" is doing a lot of work: models converge on benchmarks, which measure the tasks that are easy to measure, and diverge on the long tail of behaviors that determine whether a product feels reliable. Two models with the same score will handle an ambiguous instruction, a malformed input, or a twelve-step task differently, and a product built around one model's quirks does not transfer cleanly to another.
+
+      The second reason is that the frontier keeps moving. The commodity argument assumes a fixed target; in practice, the tasks customers want automated expand as soon as the current ones work, and the newly demanded tasks are exactly the ones where the best model is meaningfully better than the second-best. Commoditization is real at any given moment and perpetually one step behind demand.
+
+      What follows is a two-tier strategy for application companies. For stable, high-volume tasks, treat the model as a commodity: multi-source, cache, distill, negotiate. For the frontier tasks that define the product's next feature, pay for the best model available and accept the dependency, because the alternative is shipping something that does not work.
+
+      The mistake I see most often is applying one tier's logic to the other: penny-pinching on the feature that sells the product, or paying frontier prices for a classification task a small model handles fine. The companies with the best margins I know of are the ones that have drawn the line explicitly and revisit it every quarter.
+
+      Read on the web: https://stratechery.com/2026/the-model-commodity-fallacy/
+
+      —
+      You are receiving this because you subscribed to Stratechery Daily Updates. Manage your subscription or unsubscribe: https://stratechery.com/account/
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-stratechery-24
+    day: 24
+    time: "06:03"
+    from: {name: "Stratechery", email: "email@stratechery.com"}
+    to: [avery]
+    subject: "Stratechery: Vertical AI and the Services Undertow"
+    bulk: true
+    signature: none
+    body: |
+      STRATECHERY
+      Friday, September 18, 2026
+
+      Vertical AI and the Services Undertow
+
+      The most common pitch I hear this year is "AI for [industry]": a model, a set of connectors, and a founder who spent a decade in the industry and knows where the pain is. It is a good pitch, and a fair number of these companies will work. But there is an undertow in the model, and it is worth naming.
+
+      The undertow is that vertical customers do not want software; they want their problem solved. A mid-sized manufacturer that buys an AI product for supplier quality does not care about the model. It cares that the reports are right and that someone will answer the phone when they are not. The vendor, eager to close, says yes to both, and finds itself running a services organization with software gross margins on the slide and services gross margins in the bank.
+
+      This is not new. Every vertical software wave has had it, and the successful companies escaped the same way: by being disciplined about which services are one-time implementation (charge for them, do not apologize) and which are the product not being finished yet (do not charge, fix the product). The failure mode is treating the second as the first, because the revenue feels good and the customer is happy, right up until the point where the company has forty customers each running a slightly different bespoke deployment and no engineering capacity left to build anything.
+
+      What is new this cycle is that the "product not finished" category is larger, because model behavior is probabilistic and every customer's data surfaces a different failure. The temptation to hand-tune per customer is enormous. The companies that resist it, that insist on fixing the general case even when it delays a specific customer, are the ones building software. The others are building a consultancy with a nice demo.
+
+      Investors are starting to notice, and I expect the next fundraising cycle to ask harder questions about the ratio of implementation cost to contract value. Founders should have the answer ready, and it should be trending in the right direction.
+
+      Read on the web: https://stratechery.com/2026/vertical-ai-and-the-services-undertow/
+
+      —
+      You are receiving this because you subscribed to Stratechery Daily Updates. Manage your subscription or unsubscribe: https://stratechery.com/account/
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-stratechery-27
+    day: 27
+    time: "06:11"
+    from: {name: "Stratechery", email: "email@stratechery.com"}
+    to: [avery]
+    subject: "Stratechery: Who Owns the Agent's Memory?"
+    bulk: true
+    signature: none
+    body: |
+      STRATECHERY
+      Monday, September 21, 2026
+
+      Who Owns the Agent's Memory?
+
+      A quiet fight is starting over a question that sounds technical and is actually about lock-in: where does an assistant's memory of you live, and who can read it?
+
+      The platform position is that memory belongs with the assistant. The model that has watched you work for a year knows your preferences, your contacts, your recurring decisions, and that knowledge makes it better, and it makes leaving expensive. This is the same logic that made the social graph valuable, and it is going to be defended with the same intensity.
+
+      The application position is that memory belongs with the workflow. The tool that handles your procurement should remember your suppliers; the tool that handles your hiring should remember your candidates; neither should need to route through a general assistant to do so. This is the position of every vertical software company, and it is correct for them, because their memory is the product.
+
+      The user position, to the extent it has been articulated, is that memory belongs to the user and should be portable. I am sympathetic and skeptical. Portability sounds good and has historically not mattered, because the value of the data is in the model that reads it, and the model is not portable.
+
+      My guess is that the fight resolves the way the last one did: the platforms win the consumer layer, the applications win the enterprise layer, and the boundary is drawn by who the buyer is. A person will have one assistant that knows everything about them. A company will have twenty tools each knowing one thing, plus an orchestration layer that knows how to ask them. The interesting companies will be the ones that make the orchestration layer's job easy, by exposing memory in a structured, permissioned way, rather than hoarding it.
+
+      For founders, the practical question is simpler: if your customer left tomorrow, what would they lose? If the answer is "the connectors," you have a product. If the answer is "the history," you have a moat. If the answer is "nothing," you have a problem.
+
+      Read on the web: https://stratechery.com/2026/who-owns-the-agents-memory/
+
+      —
+      You are receiving this because you subscribed to Stratechery Daily Updates. Manage your subscription or unsubscribe: https://stratechery.com/account/
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-stratechery-29
+    day: 29
+    time: "06:16"
+    from: {name: "Stratechery", email: "email@stratechery.com"}
+    to: [avery]
+    subject: "Stratechery: The Price War Nobody Announced"
+    bulk: true
+    signature: none
+    body: |
+      STRATECHERY
+      Wednesday, September 23, 2026
+
+      The Price War Nobody Announced
+
+      Inference prices have fallen by roughly an order of magnitude in two years, and the interesting thing is how little fanfare each cut receives. There is no press release headlined "we are now losing money faster." There is a changelog entry, a pricing-page update, and a quiet email to enterprise accounts. The war is real; it is just being fought in footnotes.
+
+      The reason it is quiet is that nobody wants to be seen starting it. A frontier lab that cuts prices publicly signals that its model is no longer differentiated. A cloud that cuts publicly invites a match. An aggregator that cuts publicly reveals its margin. So everyone cuts privately, through volume tiers, committed-use discounts, and off-peak pricing, and the list price stays high enough to preserve the fiction.
+
+      For buyers, the lesson is that the list price is a starting point and the real price is whatever you negotiate. Companies spending six figures a year on inference and paying list are leaving a lot on the table. The providers have capacity to fill, and capacity is perishable.
+
+      For the industry, the lesson is that the application layer's margin problem, which I wrote about last month, is being solved from below faster than the application companies are solving it from above. A product whose gross margin was untenable at January's prices may be fine at October's. This does not mean the application companies should stop optimizing; it means they should model their cost curve with a steep downward slope and price accordingly, rather than locking in today's economics in a multi-year contract.
+
+      The people who should be worried are the inference providers themselves. A market where every participant cuts privately and nobody can hold a list price is a market heading toward utility margins, and utilities do not get venture multiples. Consolidation is coming, and the survivors will be the ones with either their own silicon or their own captive demand. Everyone in between is renting a position that is getting cheaper every quarter.
+
+      Read on the web: https://stratechery.com/2026/the-price-war-nobody-announced/
+
+      —
+      You are receiving this because you subscribed to Stratechery Daily Updates. Manage your subscription or unsubscribe: https://stratechery.com/account/
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  # ---------------------------------------------------------------- Latent Dispatch (most weekdays)
+  - id: nl-latentdispatch-1
+    day: 1
+    time: "07:02"
+    from: {name: "Latent Dispatch", email: "hello@latentdispatch.ai"}
+    to: [avery]
+    subject: "Latent Dispatch: Sable-3 Mini lands, Kestrel cuts batch prices, agents that read PDFs badly"
+    bulk: true
+    signature: none
+    body: |
+      LATENT DISPATCH
+      Wed Aug 26 · 5 items · ~4 min
+
+      SABLE-3 MINI IS OUT, AND IT IS THE INTERESTING ONE
+      Sable Labs shipped Sable-3 Mini this morning: 12B active parameters, 128k context, and a price of $0.18 / $0.72 per million input/output tokens. The headline model gets the press, but Mini is the one that will end up in production pipelines; on our internal extraction set it lands within four points of the full Sable-3 at a tenth of the cost. Weights are not open. https://latentdispatch.ai/p/sable-3-mini
+
+      KESTREL COMPUTE DROPS BATCH PRICING 40%
+      Kestrel's async batch tier now runs at 40% below its real-time price for any job that can tolerate a 24-hour window. Most back-office workloads can. If you are still running nightly classification through a real-time endpoint, this is the week to move it. https://latentdispatch.ai/p/kestrel-batch
+
+      AGENTS STILL CAN'T READ A SCANNED PDF
+      A new benchmark from a group at Ostrava Labs tests agents on 400 real-world procurement documents (scans, rotated pages, stamps over text). Best score: 61% field-level accuracy. The failure mode is not OCR; it is the agent confidently filling fields it could not read. Paper and data: https://latentdispatch.ai/p/scanned-pdf-bench
+
+      BRINDLE RAISES $40M FOR AN AGENT RUNTIME
+      Brindle's pitch is "a process supervisor for agents": retries, checkpoints, and a replay log so you can see why step 7 did what it did. It is the third such company this month. The category is real; whether it is a company or a feature of the model providers' SDKs is the open question.
+
+      SHORT TAKES
+      · Quillon's API now returns per-request cost in the response headers. Small thing, big for finance teams.
+      · Lodestone-R gets a "think less" parameter that caps reasoning tokens. Early reports say quality holds to about 60% of default.
+      · Someone benchmarked eleven embedding models on multilingual invoice text. Vireo-2 wins, barely. https://latentdispatch.ai/p/embeddings-invoices
+
+      —
+      You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-latentdispatch-3
+    day: 3
+    time: "06:55"
+    from: {name: "Latent Dispatch", email: "hello@latentdispatch.ai"}
+    to: [avery]
+    subject: "Latent Dispatch: Pelagic 2.5 reasoning, prompt caching goes cross-provider, a rate-limit horror story"
+    bulk: true
+    signature: none
+    body: |
+      LATENT DISPATCH
+      Fri Aug 28 · 4 items · ~3 min
+
+      PELAGIC 2.5 ADDS EXTENDED REASONING, KEEPS THE PRICE
+      Pelagic AI's 2.5 release adds an extended-reasoning mode at the same per-token price as the base model, which is the first time a major lab has not charged a premium for thinking. The catch: reasoning tokens are billed as output, and on hard tasks the model thinks a lot. Budget for 3–5x output on anything multi-step. https://latentdispatch.ai/p/pelagic-25
+
+      PROMPT CACHING IS BECOMING TABLE STAKES
+      Argent Systems and Nimbus Inference both shipped prefix caching this week, joining the three labs that already had it. Cached input tokens are running 75–90% cheaper across the board. If your system prompt is 6k tokens and you send it 50,000 times a day, that is real money; we ran the numbers for a typical document pipeline. https://latentdispatch.ai/p/caching-math
+
+      A RATE-LIMIT STORY YOU SHOULD READ
+      A founder wrote up how a background backfill job hit a provider's per-minute token cap, silently fell back to a slower model, and ran for nine days at three times the planned cost before anyone noticed. The fix was boring: a per-job spend ceiling and a daily alert. The post is a good argument for putting cost observability in before the backfill, not after. https://latentdispatch.ai/p/backfill-story
+
+      TANAGER-CODER 2 BENCHMARKS
+      Tanager's coding model lands second on the open agentic-coding leaderboard, first among models you can self-host. 34B, permissive license, and it runs on a single 80GB card at usable speed. https://latentdispatch.ai/p/tanager-coder-2
+
+      —
+      You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-latentdispatch-6
+    day: 6
+    time: "07:10"
+    from: {name: "Latent Dispatch", email: "hello@latentdispatch.ai"}
+    to: [avery]
+    subject: "Latent Dispatch: the week in inference pricing, Larkspur 1.0, and a very long context"
+    bulk: true
+    signature: none
+    body: |
+      LATENT DISPATCH
+      Mon Aug 31 · 5 items · ~4 min
+
+      INFERENCE PRICE TRACKER, AUGUST EDITION
+      Our monthly roll-up: median price per million output tokens across the 20 models we track fell 11% in August, driven mostly by the mid-tier (10–30B class) getting cheaper. Frontier pricing was flat. Full table with month-over-month deltas: https://latentdispatch.ai/p/price-tracker-aug
+
+      LARKSPUR 1.0: AN AGENT FRAMEWORK THAT ADMITS IT IS A STATE MACHINE
+      Larkspur's 1.0 release drops the "autonomous agent" framing entirely. You define states, transitions, and which model call happens in each; the framework handles retries and persistence. It is less exciting than the alternatives and, from the demos, a lot more debuggable. https://latentdispatch.ai/p/larkspur-1
+
+      A 2M-TOKEN CONTEXT WINDOW, AND WHY YOU PROBABLY DON'T WANT IT
+      Halcyon's new model advertises a 2M-token window. Our testing: recall of a specific fact degrades noticeably past 400k, latency at 1M is over a minute, and the cost of one full-window call is about $6. Retrieval is still the answer for most workloads; the giant window is for the one-off "read the whole archive" job.
+
+      OPEN-WEIGHTS ROUNDUP
+      Three releases this week worth a look: Ferrite-8B (Apache 2.0, strong on structured output), a 1.5B multilingual model from a university group in Lisbon, and a domain-tuned model for industrial maintenance logs that we have not tried but whose benchmark claims are plausible. Links: https://latentdispatch.ai/p/ow-roundup-0831
+
+      SHORT TAKES
+      · Quillon adds structured-output mode with JSON schema enforcement. Validation still recommended; we caught two schema violations in 10k calls.
+      · Kestrel now publishes p50/p99 latency per model on a public status page. More of this, please.
+
+      —
+      You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-latentdispatch-7
+    day: 7
+    time: "06:48"
+    from: {name: "Latent Dispatch", email: "hello@latentdispatch.ai"}
+    to: [avery]
+    subject: "Latent Dispatch: tool-calling reliability numbers, Sable-3 outage post-mortem, distillation how-to"
+    bulk: true
+    signature: none
+    body: |
+      LATENT DISPATCH
+      Tue Sep 1 · 4 items · ~3 min
+
+      HOW OFTEN DO MODELS CALL THE WRONG TOOL?
+      We ran 5,000 tool-selection prompts across eight models with 12 tools available. Frontier models pick the right tool 96–98% of the time; mid-tier open models land at 88–92%. The failure that matters is not the wrong tool, it is calling a tool with a hallucinated argument, which happened 2–4% of the time everywhere. Argument validation before execution is not optional. https://latentdispatch.ai/p/tool-calling-numbers
+
+      SABLE-3 OUTAGE: 4 HOURS, ONE REGION, A GOOD POST-MORTEM
+      Sable Labs published a clear write-up of Friday's outage: a routing config pushed to one region sent traffic to a capacity pool that did not have the model loaded. Requests returned 5xx rather than degrading. If you were single-provider on Sable-3, you were down. Multi-provider fallback is the lesson, again. https://latentdispatch.ai/p/sable-postmortem
+
+      DISTILLATION FOR PEOPLE WITH A DAY JOB
+      A practical guide to distilling a frontier model's outputs into a small model for one narrow task: collect 5–20k examples from production, fine-tune an 8B, measure against the big model on a held-back set, ship behind a flag. The author reports a 90% cost reduction on a classification task with no measurable quality loss. https://latentdispatch.ai/p/distillation-guide
+
+      SHORT TAKES
+      · Pelagic doubles default rate limits for accounts over $1k/month spend.
+      · Nimbus Inference adds a "spend cap" per API key. Set it.
+      · Lodestone's status page now shows queue depth. Useful for deciding whether to batch.
+
+      —
+      You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-latentdispatch-8
+    day: 8
+    time: "07:05"
+    from: {name: "Latent Dispatch", email: "hello@latentdispatch.ai"}
+    to: [avery]
+    subject: "Latent Dispatch: Quillon-M multimodal, the small-model comeback, a benchmark we don't trust"
+    bulk: true
+    signature: none
+    body: |
+      LATENT DISPATCH
+      Wed Sep 2 · 5 items · ~4 min
+
+      QUILLON-M: DOCUMENTS IN, STRUCTURE OUT
+      Quillon's new multimodal model takes page images directly and returns structured fields, skipping the OCR step. On invoices and packing slips it is the best thing we have tested; on handwritten forms it is not. Pricing is per page ($0.004) rather than per token, which makes budgeting much easier. https://latentdispatch.ai/p/quillon-m
+
+      THE SMALL-MODEL COMEBACK IS REAL
+      Three separate teams told us this week they moved a production workload from a frontier model to a fine-tuned sub-10B model and saw cost drop by 80–95% with quality within noise. The common thread: the task was narrow, the training data came from the big model's own outputs, and they had a way to measure quality before switching. https://latentdispatch.ai/p/small-model-comeback
+
+      A BENCHMARK WE DON'T TRUST
+      A new "agentic enterprise" leaderboard has been circulating. The tasks are synthetic, the top three entries are from the leaderboard's sponsor, and the scoring prompt is not published. We are not linking it. Ask for the scoring prompt before you believe a number.
+
+      OSTRAVA LABS OPENS A SAN FRANCISCO OFFICE
+      The Czech research lab, best known for its document-understanding work, is hiring a small US team. Their models are not on any major provider yet; watch for that to change.
+
+      SHORT TAKES
+      · Argent Systems adds an EU-region endpoint. Same models, same price, data stays in Frankfurt.
+      · Tanager-Coder 2 is now on Kestrel at $0.30/$0.90.
+      · A nice write-up on prompt versioning as a deploy artifact: https://latentdispatch.ai/p/prompt-versioning
+
+      —
+      You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-latentdispatch-9
+    day: 9
+    time: "06:58"
+    from: {name: "Latent Dispatch", email: "hello@latentdispatch.ai"}
+    to: [avery]
+    subject: "Latent Dispatch: Lodestone-R2, the cost of retries, and who actually uses 1M context"
+    bulk: true
+    signature: none
+    body: |
+      LATENT DISPATCH
+      Thu Sep 3 · 4 items · ~3 min
+
+      LODESTONE-R2 IS THE NEW REASONING LEADER, FOR NOW
+      Lodestone's R2 tops the hard-reasoning boards by a clear margin and costs $4 / $16 per million. It is slow (median 40s on multi-step tasks) and it is not what you want for extraction. It is what you want for the one call per workflow where being wrong is expensive. https://latentdispatch.ai/p/lodestone-r2
+
+      RETRIES ARE EATING YOUR BUDGET
+      A useful piece of arithmetic from a reader: if 8% of calls fail validation and you retry once with the error appended, your effective cost is 1.08x. If you retry three times, it is closer to 1.2x, and the third retry rarely succeeds. One retry with the error message, then degrade gracefully, is the pattern most production teams have converged on. https://latentdispatch.ai/p/retry-math
+
+      WHO USES 1M-TOKEN CONTEXT?
+      We asked. Answers from 40 teams: legal discovery, codebase-wide refactors, and "loading the whole customer history once to build a summary that we then cache." Nobody is using it for per-request work. The window is a batch feature wearing a real-time costume.
+
+      SHORT TAKES
+      · Sable-3 Mini gets a 20% price cut three weeks after launch. Predictable; still nice.
+      · Larkspur adds a replay UI. You can now step through an agent run like a debugger.
+      · Vireo-2 embeddings drop to $0.02 per million tokens. Embeddings are basically free now.
+
+      —
+      You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-latentdispatch-10
+    day: 10
+    time: "07:14"
+    from: {name: "Latent Dispatch", email: "hello@latentdispatch.ai"}
+    to: [avery]
+    subject: "Latent Dispatch: long weekend reading — agents in production, six months in"
+    bulk: true
+    signature: none
+    body: |
+      LATENT DISPATCH
+      Fri Sep 4 · 5 items · ~5 min · no issue Monday (US holiday)
+
+      SIX MONTHS OF AGENTS IN PRODUCTION: WHAT 30 TEAMS TOLD US
+      Our longest piece of the year. The short version: the teams that are happy built narrow agents with hard stops, log every step, and let a human approve anything irreversible. The teams that are unhappy built general agents, gave them broad tool access, and are now writing guardrails one incident at a time. Nobody regrets adding a spend ceiling. https://latentdispatch.ai/p/agents-six-months
+
+      FERRITE-70B IS COMING
+      Ferrite's team confirmed a 70B open-weights release "this month." The 8B has been the surprise of the summer for structured tasks; if the 70B scales the same way it will be the first open model that is competitive with mid-tier proprietary models on agentic work. We will have numbers when it ships.
+
+      HALCYON VISION 3
+      Better on charts and diagrams, same on photos, and now supports bounding-box output for locating fields on a page. Per-image pricing unchanged. https://latentdispatch.ai/p/halcyon-v3
+
+      MARROW SPEECH: DIARIZATION THAT WORKS ON PLANT-FLOOR AUDIO
+      Marrow's new speech model was trained with a lot of industrial background noise and it shows: on our noisy-meeting set it separated speakers where the incumbents merged them. Niche, but if you have shop-floor recordings, worth a test.
+
+      SHORT TAKES
+      · Pelagic publishes a model deprecation policy: 12 months notice, guaranteed. First lab to put a number on it.
+      · A good thread on why "the model got worse" is usually "the prompt cache got invalidated": https://latentdispatch.ai/p/cache-invalidation
+
+      —
+      You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-latentdispatch-14
+    day: 14
+    time: "06:51"
+    from: {name: "Latent Dispatch", email: "hello@latentdispatch.ai"}
+    to: [avery]
+    subject: "Latent Dispatch: back from the long weekend — Argent price cut, Sable-3 agents mode, structured output bake-off"
+    bulk: true
+    signature: none
+    body: |
+      LATENT DISPATCH
+      Tue Sep 8 · 5 items · ~4 min
+
+      ARGENT SYSTEMS CUTS MID-TIER PRICES 25%
+      Argent dropped its prices on every model in the 10–35B class by a quarter, effective immediately, with no volume requirement. Kestrel and Nimbus have not matched yet. Given how August went, we would not sign an annual commit at current prices anywhere. https://latentdispatch.ai/p/argent-cut
+
+      SABLE-3 GETS AN "AGENT MODE"
+      Sable Labs shipped a server-side agent loop: you give it tools and a goal, it runs the loop, you get the result and a trace. It is convenient and it is lock-in; the trace format is proprietary and the loop cannot be interrupted mid-run. Fine for prototypes, think twice for production.
+
+      STRUCTURED OUTPUT BAKE-OFF
+      We sent 20,000 extraction prompts with a strict JSON schema to nine models. Schema-valid rate: 99.7% at the top, 96% at the bottom. The gap sounds small until you multiply by call volume. Full table and the schema we used: https://latentdispatch.ai/p/structured-bakeoff
+
+      OSTRAVA DOCUMENT MODEL NOW ON KESTREL
+      The Czech lab's document-understanding model is available via Kestrel at $0.003 per page. First hosted availability outside their own API.
+
+      SHORT TAKES
+      · Larkspur 1.1: checkpoint-and-resume across process restarts.
+      · Brindle open-sources its replay-log format. Good move; watch whether Larkspur adopts it.
+      · Quillon-M adds a "confidence per field" output. We asked for this. https://latentdispatch.ai/p/quillon-confidence
+
+      —
+      You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-latentdispatch-15
+    day: 15
+    time: "07:00"
+    from: {name: "Latent Dispatch", email: "hello@latentdispatch.ai"}
+    to: [avery]
+    subject: "Latent Dispatch: the token-volume surprise, Nimbus matches Argent, an honest agent demo"
+    bulk: true
+    signature: none
+    body: |
+      LATENT DISPATCH
+      Wed Sep 9 · 4 items · ~3 min
+
+      WHY YOUR TOKEN BILL DOUBLED WHEN USAGE GREW 30%
+      A reader question we get a lot, so here is the answer. Token volume is not linear in "usage." A new customer onboarding triggers a backfill over their history; a new data source adds context to every subsequent call; a longer system prompt multiplies across all traffic. Three teams this month reported bills roughly 2x their model because of one-time backfills they had not separated from steady state in the forecast. Separate them. https://latentdispatch.ai/p/token-volume-surprise
+
+      NIMBUS MATCHES ARGENT'S 25% CUT
+      That took one day. Kestrel is now the outlier on mid-tier pricing; we expect a move by Friday.
+
+      AN AGENT DEMO THAT SHOWS ITS FAILURES
+      Brindle's launch video spends four of its nine minutes on runs that went wrong and how the replay log helped. We cannot remember the last vendor demo that did that. Worth watching for the failure cases alone. https://latentdispatch.ai/p/brindle-demo
+
+      SHORT TAKES
+      · Pelagic 2.5 adds a "max reasoning tokens" cap. Set it or your P99 cost will surprise you.
+      · A university group released a 300-document benchmark for supplier-contract clause extraction. Small, clean, useful. https://latentdispatch.ai/p/clause-bench
+      · Tanager announces a 70B Coder for October.
+
+      —
+      You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-latentdispatch-16
+    day: 16
+    time: "06:44"
+    from: {name: "Latent Dispatch", email: "hello@latentdispatch.ai"}
+    to: [avery]
+    subject: "Latent Dispatch: Kestrel matches, Pelagic 2.5 in production, a caching cautionary tale"
+    bulk: true
+    signature: none
+    body: |
+      LATENT DISPATCH
+      Thu Sep 10 · 5 items · ~4 min
+
+      KESTREL MATCHES THE MID-TIER CUT, ADDS A TWIST
+      Kestrel matched Argent and Nimbus on price and added a committed-use tier: prepay for a quarter, get a further 15% off. The prepay is non-refundable and non-transferable across models, which matters when a better model ships mid-quarter. Do the math on your own churn between models before committing. https://latentdispatch.ai/p/kestrel-committed
+
+      PELAGIC 2.5 IN PRODUCTION: TWO WEEKS IN
+      Reports from teams that switched: quality up on multi-step tasks, output-token spend up 2.5–4x on the same tasks, net cost roughly flat once they capped reasoning. The cap is the whole game.
+
+      A CACHING CAUTIONARY TALE
+      A team put a timestamp in its system prompt for "freshness." The timestamp changed every minute, so the prefix cache never hit, and they paid full price on 6k tokens per call for three months. Put dynamic content at the end of the prompt. https://latentdispatch.ai/p/caching-tale
+
+      HALCYON DROPS PER-IMAGE PRICE 30%
+      Vision is following text down the curve. Halcyon Vision 3 is now $0.0014 per image at standard resolution.
+
+      SHORT TAKES
+      · Sable-3 Mini gets JSON-schema mode.
+      · Lodestone publishes a rate card for R2 batch: half price, 24-hour window.
+      · Larkspur hits 10k GitHub stars. The boring framework is winning.
+
+      —
+      You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-latentdispatch-17
+    day: 17
+    time: "07:08"
+    from: {name: "Latent Dispatch", email: "hello@latentdispatch.ai"}
+    to: [avery]
+    subject: "Latent Dispatch: Ferrite-70B ships, agents vs. workflows, the September price tracker preview"
+    bulk: true
+    signature: none
+    body: |
+      LATENT DISPATCH
+      Fri Sep 11 · 5 items · ~4 min
+
+      FERRITE-70B IS HERE
+      Ferrite released the 70B this morning under Apache 2.0. First-day numbers from our harness: it beats every other open model we track on structured extraction and tool use, and lands between the mid-tier proprietary models on reasoning. It needs two 80GB cards or a hosted provider; Kestrel and Argent both say "next week." Full benchmark table Monday. https://latentdispatch.ai/p/ferrite-70b
+
+      AGENTS VS. WORKFLOWS: A TAXONOMY THAT ACTUALLY HELPS
+      A long post from the Larkspur team distinguishing workflows (fixed steps, model calls inside them) from agents (the model picks the steps). Their claim: 80% of production "agents" are workflows and would be more reliable if built as such. We agree. https://latentdispatch.ai/p/agents-vs-workflows
+
+      SEPTEMBER PRICE TRACKER PREVIEW
+      Halfway through the month, mid-tier prices are down another 20% after the Argent/Nimbus/Kestrel round. Frontier flat again. Open-weights hosting is the new battleground; expect Ferrite-70B pricing to set the floor.
+
+      SABLE LABS RAISES
+      $1.2B at a valuation we will not repeat because it will be wrong by the time you read this. Use of funds: compute. Always compute.
+
+      SHORT TAKES
+      · Quillon-M now handles multi-page documents as a single call.
+      · Nimbus adds SOC 2 Type II to its trust page.
+      · A clear guide to per-tenant cost attribution when everything runs through one API key: https://latentdispatch.ai/p/tenant-cost
+
+      —
+      You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-latentdispatch-20
+    day: 20
+    time: "06:57"
+    from: {name: "Latent Dispatch", email: "hello@latentdispatch.ai"}
+    to: [avery]
+    subject: "Latent Dispatch: Ferrite-70B full benchmarks, Pelagic deprecates 2.0, a prompt-injection reminder"
+    bulk: true
+    signature: none
+    body: |
+      LATENT DISPATCH
+      Mon Sep 14 · 5 items · ~5 min
+
+      FERRITE-70B: THE FULL TABLE
+      We ran it against eleven models on six task families. Summary: best open model on extraction (94.1 field accuracy vs. 91.3 for the next open model), tool selection at 95%, reasoning in the middle of the pack. At the hosted price Kestrel announced ($0.60 / $1.80 per million), it is the cheapest model that clears our "production-ready for structured work" bar. Table, prompts, and raw outputs: https://latentdispatch.ai/p/ferrite-70b-table
+
+      PELAGIC DEPRECATES 2.0, 12 MONTHS' NOTICE
+      True to the policy they published two weeks ago. 2.0 shuts off September 2027; 2.5 is a drop-in for most use, but the reasoning-token behavior differs, so re-run your cost model before migrating.
+
+      PROMPT INJECTION IS STILL A THING
+      A security researcher demonstrated an injection through a vendor invoice PDF: instructions hidden in white text told an accounts-payable agent to approve the invoice and email a confirmation. The agent did. Two lessons: treat every document as untrusted content, and never let a model's output trigger an irreversible action without a human or a hard rule in between. https://latentdispatch.ai/p/invoice-injection
+
+      OSTRAVA LABS SIGNS WITH ARGENT
+      Their document model will be hosted on Argent's EU and US regions from October. Pricing to follow.
+
+      SHORT TAKES
+      · Lodestone-R2 gets a 15% price cut. Reasoning is following the curve, slowly.
+      · Brindle's replay format gets adopted by Larkspur. Interop wins.
+      · Sable-3 Mini is now on every major provider.
+
+      —
+      You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-latentdispatch-21
+    day: 21
+    time: "07:03"
+    from: {name: "Latent Dispatch", email: "hello@latentdispatch.ai"}
+    to: [avery]
+    subject: "Latent Dispatch: Tanager-Coder 70B early look, spend caps everywhere, a good on-call story"
+    bulk: true
+    signature: none
+    body: |
+      LATENT DISPATCH
+      Tue Sep 15 · 4 items · ~3 min
+
+      TANAGER-CODER 70B: EARLY ACCESS NOTES
+      We got a preview. It is very good at multi-file edits and noticeably better than the 34B at reading a codebase before changing it. It is also 2x the price and 3x the latency. For a coding agent that runs overnight, worth it; for autocomplete, no. Public release "early October." https://latentdispatch.ai/p/tanager-70b-preview
+
+      SPEND CAPS ARE NOW STANDARD
+      Every provider we track now offers a per-key or per-project spend ceiling. Six months ago only two did. If you have not set one, the August backfill story from a few weeks back is your cautionary tale.
+
+      AN ON-CALL STORY WITH A HAPPY ENDING
+      An engineer wrote up a 3am page: a customer's data import tripled token volume in an hour, the spend cap tripped, the pipeline paused cleanly, and the on-call went back to sleep. The next morning they raised the cap deliberately. That is what the cap is for. https://latentdispatch.ai/p/oncall-story
+
+      SHORT TAKES
+      · Nimbus adds per-request cost to response headers, matching Quillon.
+      · Halcyon Vision 3 adds table extraction to structured output.
+      · Vireo-3 embeddings: 8k context, same price as Vireo-2.
+
+      —
+      You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-latentdispatch-22
+    day: 22
+    time: "06:49"
+    from: {name: "Latent Dispatch", email: "hello@latentdispatch.ai"}
+    to: [avery]
+    subject: "Latent Dispatch: Sable-3.1, the routing layer question, Ferrite-70B on Argent"
+    bulk: true
+    signature: none
+    body: |
+      LATENT DISPATCH
+      Wed Sep 16 · 5 items · ~4 min
+
+      SABLE-3.1: A POINT RELEASE THAT MATTERS
+      Better instruction following, fewer refusals on benign enterprise content, and a fix for the long-context recall cliff we flagged in August. Same price. If you are on Sable-3, upgrade; if you pinned a version, re-run your regression set first. https://latentdispatch.ai/p/sable-31
+
+      SHOULD THE ROUTING LAYER BE A PRODUCT?
+      With four providers matching each other's prices weekly, the value of a smart router that picks the cheapest model meeting a quality bar is obvious. Three startups are selling exactly that. The counter-argument: a router is 200 lines of code and a config file, and owning it means owning your fallback behavior. We lean toward build. https://latentdispatch.ai/p/routing-layer
+
+      FERRITE-70B NOW ON ARGENT
+      $0.55 / $1.70 per million, five cents under Kestrel. The open-model price war has begun.
+
+      MARROW SPEECH ADDS REAL-TIME
+      Sub-second streaming transcription with the same noise robustness. Useful for anyone building voice on the shop floor.
+
+      SHORT TAKES
+      · Lodestone publishes an "R2 in production" guide with recommended reasoning caps per task type.
+      · Pelagic 2.5 gets prompt caching. All five major labs now have it.
+      · A thoughtful piece on why "the model is non-deterministic" is not an excuse for a flaky pipeline: https://latentdispatch.ai/p/determinism
+
+      —
+      You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-latentdispatch-23
+    day: 23
+    time: "07:11"
+    from: {name: "Latent Dispatch", email: "hello@latentdispatch.ai"}
+    to: [avery]
+    subject: "Latent Dispatch: what a $40k month looks like, Quillon raises, the frontier gap narrows"
+    bulk: true
+    signature: none
+    body: |
+      LATENT DISPATCH
+      Thu Sep 17 · 4 items · ~3 min
+
+      ANATOMY OF A $40K INFERENCE MONTH
+      A Series A company shared its August bill breakdown with us (anonymized). 55% was a one-time backfill for two new customers; 30% was steady-state extraction; 15% was retries and a runaway summarization job. Their steady-state cost is fine. Their forecast was not, because it did not model backfills as a separate line. Same lesson as last week, with numbers. https://latentdispatch.ai/p/40k-month
+
+      QUILLON RAISES $200M
+      Use of funds: compute and a document-model team. Quillon-M has been the quiet success of the summer for anyone processing paper.
+
+      THE FRONTIER GAP IS NARROWING ON THE TASKS THAT PAY THE BILLS
+      Our quarterly look at the gap between the best proprietary model and the best open model, by task family. Extraction: 2 points. Classification: 1 point. Tool use: 3 points. Hard reasoning: 14 points. If your workload is the first three, the open model is the rational default now. https://latentdispatch.ai/p/frontier-gap-q3
+
+      SHORT TAKES
+      · Argent adds a 24-hour batch tier at 50% off. Everyone has one now.
+      · Larkspur 1.2: native cost tracking per state.
+      · Ostrava's document model gets a handwriting update. Still not great; better.
+
+      —
+      You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-latentdispatch-24
+    day: 24
+    time: "06:53"
+    from: {name: "Latent Dispatch", email: "hello@latentdispatch.ai"}
+    to: [avery]
+    subject: "Latent Dispatch: weekend reading — the case for boring agents, Halcyon 3.1, Nimbus outage"
+    bulk: true
+    signature: none
+    body: |
+      LATENT DISPATCH
+      Fri Sep 18 · 5 items · ~4 min
+
+      THE CASE FOR BORING AGENTS
+      Our essay of the week. The agents that are earning their keep in production share three traits: a fixed set of tools (usually under ten), a hard step limit, and a human or a rule between the model and anything irreversible. None of them are impressive in a demo. All of them are still running. https://latentdispatch.ai/p/boring-agents
+
+      HALCYON VISION 3.1
+      Fixes the rotated-page problem from the Ostrava benchmark. Field accuracy on scanned procurement documents goes from 58% to 71% on our re-run. Still not a replacement for validation, but a real step.
+
+      NIMBUS OUTAGE: 90 MINUTES, ALL REGIONS
+      A bad deploy took down the API globally on Wednesday evening. Post-mortem promised. If you were single-provider on Nimbus you felt it; if you had a fallback, your router earned its keep. https://latentdispatch.ai/p/nimbus-outage
+
+      SABLE LABS PUBLISHES A PRICING FAQ
+      Notable for admitting that list prices are negotiable above $50k/year. Everyone knew; nobody had said it in writing.
+
+      SHORT TAKES
+      · Ferrite-8B gets a 1.1 with better JSON adherence.
+      · Brindle adds a cost budget per run. Pauses the agent, pings a human.
+      · Vireo-3 now on Kestrel and Argent.
+
+      —
+      You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-latentdispatch-27
+    day: 27
+    time: "07:06"
+    from: {name: "Latent Dispatch", email: "hello@latentdispatch.ai"}
+    to: [avery]
+    subject: "Latent Dispatch: Lodestone-R2 Mini, the September commit-pricing wave, Nimbus post-mortem"
+    bulk: true
+    signature: none
+    body: |
+      LATENT DISPATCH
+      Mon Sep 21 · 5 items · ~4 min
+
+      LODESTONE-R2 MINI: REASONING FOR THE MID-TIER BUDGET
+      A distilled R2 at $0.80 / $3.20 per million. It keeps about 85% of R2's hard-reasoning score and is four times faster. For the "one careful call per workflow" pattern, this is probably the new default. https://latentdispatch.ai/p/r2-mini
+
+      COMMIT PRICING IS EVERYWHERE THIS MONTH
+      Kestrel started it, and now Argent, Nimbus, and two of the labs offer a quarterly or annual prepay discount of 10–20%. Our advice has not changed: with prices dropping 10–20% a month at the mid-tier, a 15% discount for a 12-month lock is not a discount. Quarterly at most.
+
+      NIMBUS POST-MORTEM
+      Clear and honest: a config change to the load balancer was rolled out globally instead of per-region. They are adding staged rollouts. Good write-up. https://latentdispatch.ai/p/nimbus-postmortem
+
+      OPEN-WEIGHTS ROUNDUP
+      A 14B multilingual model from a Tokyo group, a 3B on-device model with surprisingly good tool-calling, and a Ferrite-70B fine-tune for legal clauses. Links: https://latentdispatch.ai/p/ow-roundup-0921
+
+      SHORT TAKES
+      · Quillon-M adds an "unreadable" flag per field instead of guessing. The right design.
+      · Marrow Speech drops per-minute price 20%.
+      · Larkspur publishes a migration guide from the two frameworks it is replacing.
+
+      —
+      You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-latentdispatch-28
+    day: 28
+    time: "06:47"
+    from: {name: "Latent Dispatch", email: "hello@latentdispatch.ai"}
+    to: [avery]
+    subject: "Latent Dispatch: Pelagic 3 rumors, the retry budget, Ferrite-70B fine-tuning recipes"
+    bulk: true
+    signature: none
+    body: |
+      LATENT DISPATCH
+      Tue Sep 22 · 4 items · ~3 min
+
+      PELAGIC 3: WHAT WE KNOW
+      Three sources say October. Rumored: native multi-document input, a cheaper reasoning mode, and a 4M context nobody asked for. Pricing unknown. If you are planning a Q4 migration, wait for the rate card.
+
+      A RETRY BUDGET, NOT A RETRY COUNT
+      A short, useful design note: instead of "retry 3 times," give each job a token budget and let it retry until the budget is gone. It bounds cost per job rather than per call, and it makes the runaway-job class of incident structurally impossible. https://latentdispatch.ai/p/retry-budget
+
+      FERRITE-70B FINE-TUNING RECIPES
+      Three teams published their recipes for narrow-task fine-tunes: 5k examples, LoRA, one 80GB card, under $200 in compute. The consistent result is a model that beats the base 70B on the target task and costs the same to serve. https://latentdispatch.ai/p/ferrite-recipes
+
+      SHORT TAKES
+      · Argent adds Lodestone-R2 Mini. $0.75 / $3.00, undercutting Lodestone's own API.
+      · Halcyon Vision 3.1 on Nimbus.
+      · The Ostrava scanned-PDF benchmark gets a v2 with 800 documents.
+
+      —
+      You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-latentdispatch-29
+    day: 29
+    time: "07:09"
+    from: {name: "Latent Dispatch", email: "hello@latentdispatch.ai"}
+    to: [avery]
+    subject: "Latent Dispatch: Sable-3.1 Mini, agent observability tools compared, the Q3 open-weights scorecard"
+    bulk: true
+    signature: none
+    body: |
+      LATENT DISPATCH
+      Wed Sep 23 · 5 items · ~4 min
+
+      SABLE-3.1 MINI
+      The point release comes to the small model: same refusal fixes, same long-context improvement, same price. Sable-3.1 Mini vs. Ferrite-70B is now the interesting mid-tier comparison; Mini is cheaper per token and slightly worse on extraction. Our head-to-head: https://latentdispatch.ai/p/mini-vs-ferrite
+
+      AGENT OBSERVABILITY: FIVE TOOLS COMPARED
+      We looked at Brindle, Larkspur's built-in replay, and three others on what they capture (every call? every tool result? cost per step?) and what they cost. Summary: the framework-native options are good enough for most teams; the standalone tools win when you run agents across several frameworks. https://latentdispatch.ai/p/observability-compared
+
+      Q3 OPEN-WEIGHTS SCORECARD
+      Ferrite-70B is the story of the quarter. Tanager-Coder 2 second. The 8B class got crowded and good. Full scorecard with the task-family breakdown: https://latentdispatch.ai/p/q3-scorecard
+
+      NIMBUS ADDS STAGED ROLLOUTS
+      As promised in the post-mortem. Region by region, with automatic rollback on error-rate increase.
+
+      SHORT TAKES
+      · Lodestone-R2 Mini gets prompt caching.
+      · A good thread on structuring prompts for cache hit rates: static first, dynamic last, no timestamps. https://latentdispatch.ai/p/cache-structure
+      · Quillon publishes Quillon-M's page-level accuracy by document type. Refreshing transparency.
+
+      —
+      You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-latentdispatch-30
+    day: 30
+    time: "06:59"
+    from: {name: "Latent Dispatch", email: "hello@latentdispatch.ai"}
+    to: [avery]
+    subject: "Latent Dispatch: Tanager-Coder 70B is public, Argent EU expansion, what October looks like"
+    bulk: true
+    signature: none
+    body: |
+      LATENT DISPATCH
+      Thu Sep 24 · 4 items · ~3 min
+
+      TANAGER-CODER 70B IS OUT
+      Ahead of the "early October" guidance. Open weights, permissive license, and the multi-file editing quality we saw in preview holds up. It is on Kestrel today at $1.20 / $3.60 per million and Argent says tomorrow. If you run an overnight coding agent, this is your new baseline. https://latentdispatch.ai/p/tanager-70b
+
+      ARGENT ADDS A SECOND EU REGION
+      Amsterdam joins Frankfurt. Same models, same prices, and a data-residency attestation on the trust page. Relevant to anyone with European customers who ask where the tokens go.
+
+      WHAT OCTOBER LOOKS LIKE
+      Our forward look: Pelagic 3, at least one more mid-tier price round, Ostrava's document model on Argent, and (we hear) a new frontier release from one of the two labs that has been quiet all quarter. We will have the details when they are public. https://latentdispatch.ai/p/october-preview
+
+      SHORT TAKES
+      · Larkspur 1.3: per-state spend caps.
+      · Halcyon adds bounding boxes to the 3.1 Mini.
+      · Marrow Speech opens a self-hosted option.
+
+      —
+      You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  # ---------------------------------------------------------------- Model Watch (Tue/Thu; #50–#58)
+  - id: nl-modelwatch-50
+    day: 2
+    time: "07:20"
+    from: {name: "Model Watch", email: "issue@modelwatch.dev"}
+    to: [avery]
+    subject: "Model Watch #50: August leaderboard refresh, Sable-3 Mini pricing, Kestrel batch"
+    bulk: true
+    signature: none
+    body: |
+      MODEL WATCH #50 — Thursday, August 27, 2026
+      Benchmarks, releases, and price changes. Twice a week, no opinions we can't back with a table.
+
+      1. AUGUST LEADERBOARD REFRESH
+      Our composite score (extraction, tool use, reasoning, long-context recall; equal weights) across the 20 tracked models. Top of the table is unchanged; the movement is in the middle.
+
+        Model              Composite   Extraction   Tool use   Reasoning   $/M out
+        Lodestone-R1          84.2        88.0        94.1       91.5      $18.00
+        Sable-3               83.9        90.2        96.0       86.3      $12.00
+        Pelagic 2.0           81.1        87.5        93.8       84.0      $10.00
+        Quillon-L             78.4        89.1        91.2       77.6       $6.00
+        Sable-3 Mini (new)    74.0        86.4        90.5       70.8       $0.72
+        Ferrite-8B (open)     66.3        83.9        84.2       58.1       $0.20*
+        * self-hosted estimate at 70% utilization
+
+      Method and per-task prompts: https://modelwatch.dev/leaderboard/2026-08
+
+      2. SABLE-3 MINI: PRICE AND FIRST NUMBERS
+      $0.18 / $0.72 per million tokens. On our extraction set it scores 86.4, four points off the full model at 6% of the output price. It is the best price-per-point in the table this week.
+
+      3. KESTREL COMPUTE BATCH TIER
+      40% off real-time pricing for 24-hour async jobs, all hosted models. We confirmed the discount applies to the full token count, not input only.
+
+      4. PRICE CHANGES THIS WEEK
+        Kestrel batch tier: -40% (new)
+        Nimbus Inference, Quillon-L: -10% output
+        Argent Systems: no change
+
+      —
+      Model Watch is written by two people and a lot of scripts. Unsubscribe: https://modelwatch.dev/u/7c19e
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-modelwatch-51
+    day: 7
+    time: "07:15"
+    from: {name: "Model Watch", email: "issue@modelwatch.dev"}
+    to: [avery]
+    subject: "Model Watch #51: Pelagic 2.5 tested, reasoning-token costs, Tanager-Coder 2"
+    bulk: true
+    signature: none
+    body: |
+      MODEL WATCH #51 — Tuesday, September 1, 2026
+
+      1. PELAGIC 2.5: REASONING MODE, SAME PRICE, MORE TOKENS
+      Pelagic 2.5 with extended reasoning enabled vs. disabled, on our reasoning set (200 tasks):
+
+        Mode           Score   Median out tokens   Median cost/task
+        Reasoning off   84.0        410               $0.0041
+        Reasoning on    90.7       1,880              $0.0188
+        Reasoning on, cap 800   88.9   790            $0.0079
+
+      The cap gets you most of the gain at 40% of the cost. We recommend the cap as the default.
+
+      2. WHAT REASONING TOKENS ACTUALLY COST ACROSS LABS
+      Every lab bills reasoning as output. Effective cost per reasoning-mode task on the same 200 items:
+
+        Lodestone-R1     $0.061
+        Pelagic 2.5      $0.019
+        Sable-3 (think)  $0.024
+        Quillon-L        n/a (no reasoning mode)
+
+      3. TANAGER-CODER 2 (OPEN, 34B)
+      Agentic coding score 71.2, second overall and first among open models. Single 80GB card at 38 tokens/sec in our setup. https://modelwatch.dev/models/tanager-coder-2
+
+      4. PRICE CHANGES THIS WEEK
+        Sable Labs: no change
+        Pelagic: reasoning mode included at base price (new)
+        Kestrel: Tanager-Coder 2 listed at $0.30 / $0.90
+
+      —
+      Model Watch is written by two people and a lot of scripts. Unsubscribe: https://modelwatch.dev/u/7c19e
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-modelwatch-52
+    day: 9
+    time: "07:22"
+    from: {name: "Model Watch", email: "issue@modelwatch.dev"}
+    to: [avery]
+    subject: "Model Watch #52: Lodestone-R2 leads reasoning, Quillon-M per-page pricing, structured-output rates"
+    bulk: true
+    signature: none
+    body: |
+      MODEL WATCH #52 — Thursday, September 3, 2026
+
+      1. LODESTONE-R2 TAKES THE REASONING LEAD
+      R2 on our 200-task reasoning set: 94.8, up from R1's 91.5 and clear of the field. Latency is the cost: median 41 seconds per task. Price $4 / $16 per million.
+
+        Model          Reasoning   Median latency   Cost/task
+        Lodestone-R2     94.8         41s            $0.052
+        Pelagic 2.5      90.7         12s            $0.019
+        Sable-3 (think)  88.1         15s            $0.024
+
+      2. QUILLON-M: PER-PAGE PRICING FOR DOCUMENT WORK
+      $0.004 per page, any token count. On our 500-page procurement set: 93.6 field accuracy, $2.00 total. The same set through a text model after OCR: 91.0 and $3.40. Per-page pricing is easier to forecast and, here, cheaper.
+
+      3. STRUCTURED OUTPUT: SCHEMA-VALID RATES
+      20,000 extraction calls with a strict JSON schema, schema-enforcement mode on where available:
+
+        Sable-3         99.7%
+        Pelagic 2.5     99.5%
+        Quillon-L       99.4%
+        Sable-3 Mini    98.9%
+        Ferrite-8B      96.1%
+
+      Validate anyway. 0.3% of 50k daily calls is 150 bad records.
+
+      4. PRICE CHANGES THIS WEEK
+        Sable-3 Mini: -20% (now $0.14 / $0.58)
+        Vireo-2 embeddings: -50% (now $0.02 / M)
+        Lodestone-R2: new, $4 / $16
+
+      —
+      Model Watch is written by two people and a lot of scripts. Unsubscribe: https://modelwatch.dev/u/7c19e
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-modelwatch-53
+    day: 14
+    time: "07:18"
+    from: {name: "Model Watch", email: "issue@modelwatch.dev"}
+    to: [avery]
+    subject: "Model Watch #53: mid-tier price cuts, Sable-3 agent mode, Ostrava on Kestrel"
+    bulk: true
+    signature: none
+    body: |
+      MODEL WATCH #53 — Tuesday, September 8, 2026
+
+      1. ARGENT CUTS MID-TIER 25%; WHO MATCHES?
+      Argent Systems cut every 10–35B-class model by 25% this morning with no volume requirement. Current hosted prices for the models most of you run in production ($/M in / out):
+
+        Model            Argent          Kestrel         Nimbus
+        Sable-3 Mini     $0.11 / $0.44   $0.14 / $0.58   $0.14 / $0.58
+        Quillon-L        $0.90 / $4.50   $1.20 / $6.00   $1.10 / $5.40
+        Tanager-Coder 2  $0.23 / $0.68   $0.30 / $0.90   $0.30 / $0.90
+
+      We will update the table as others move.
+
+      2. SABLE-3 AGENT MODE
+      Server-side tool loop. On our 12-tool selection set it scores the same as calling Sable-3 in your own loop (96.0), so the gain is convenience, not accuracy. Trace format is proprietary; no mid-run interrupt.
+
+      3. OSTRAVA DOCUMENT MODEL ON KESTREL
+      $0.003 per page. On our procurement set: 92.8 field accuracy, slightly under Quillon-M (93.6) at 75% of the price. Handwriting remains weak for both.
+
+      4. PRICE CHANGES THIS WEEK
+        Argent Systems, all 10–35B models: -25%
+        Kestrel, Nimbus: no change (yet)
+        Ostrava on Kestrel: new, $0.003/page
+
+      —
+      Model Watch is written by two people and a lot of scripts. Unsubscribe: https://modelwatch.dev/u/7c19e
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-modelwatch-54
+    day: 16
+    time: "07:25"
+    from: {name: "Model Watch", email: "issue@modelwatch.dev"}
+    to: [avery]
+    subject: "Model Watch #54: everyone matches Argent, Halcyon Vision 3, caching effective rates"
+    bulk: true
+    signature: none
+    body: |
+      MODEL WATCH #54 — Thursday, September 10, 2026
+
+      1. THE MID-TIER TABLE AFTER THE MATCHES
+      Nimbus matched Wednesday; Kestrel matched today and added a 15% quarterly-prepay tier. Updated ($/M in / out):
+
+        Model            Argent          Kestrel         Nimbus
+        Sable-3 Mini     $0.11 / $0.44   $0.11 / $0.44   $0.11 / $0.44
+        Quillon-L        $0.90 / $4.50   $0.90 / $4.50   $0.90 / $4.50
+        Tanager-Coder 2  $0.23 / $0.68   $0.23 / $0.68   $0.23 / $0.68
+
+      Prices are now identical across the three. Differentiation is latency, uptime, and batch terms.
+
+      2. HALCYON VISION 3
+      Chart and diagram reading up 9 points on our set; photo tasks flat. Bounding-box output is new and accurate to within a few pixels on clean scans. $0.002 per image at standard resolution.
+
+      3. PROMPT CACHING: EFFECTIVE INPUT RATES
+      What you actually pay per million input tokens on a 6k-token system prompt at 90% cache hit rate:
+
+        Lab / provider     List     Cached    Effective
+        Sable-3           $3.00    $0.30     $0.57
+        Pelagic 2.5       $2.50    $0.25     $0.48
+        Argent (Ferrite-8B) $0.06  $0.015    $0.02
+
+      Put dynamic content at the end of the prompt or the hit rate goes to zero.
+
+      —
+      Model Watch is written by two people and a lot of scripts. Unsubscribe: https://modelwatch.dev/u/7c19e
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-modelwatch-55
+    day: 21
+    time: "07:12"
+    from: {name: "Model Watch", email: "issue@modelwatch.dev"}
+    to: [avery]
+    subject: "Model Watch #55: Ferrite-70B full table, Lodestone-R2 price cut, Tanager 70B preview"
+    bulk: true
+    signature: none
+    body: |
+      MODEL WATCH #55 — Tuesday, September 15, 2026
+
+      1. FERRITE-70B (OPEN, APACHE 2.0): THE FULL TABLE
+      Best open model we have measured on structured work. Composite and per-family scores against the models it competes with on price:
+
+        Model               Composite   Extraction   Tool use   Reasoning   $/M out (hosted)
+        Ferrite-70B (open)     78.9        94.1        95.0       68.2       $1.80 (Kestrel)
+        Quillon-L              78.4        89.1        91.2       77.6       $4.50
+        Sable-3 Mini           74.6        86.4        90.5       71.9       $0.44
+        Tanager-Coder 2        70.1        84.0        92.3       60.4       $0.68
+
+      On extraction it is within two points of the frontier models at a tenth of the price. Reasoning is where you still pay for proprietary. https://modelwatch.dev/models/ferrite-70b
+
+      2. LODESTONE-R2: -15%
+      Now $3.40 / $13.60 per million. Still the reasoning leader (94.8); still slow. R2 batch at half price with a 24-hour window is the way to run it for anything not interactive.
+
+      3. TANAGER-CODER 70B (PREVIEW)
+      Agentic coding 79.4 in preview, up from the 34B's 71.2 and now first among open models by a wide margin. 2x the price, 3x the latency of the 34B. Public release slated for October.
+
+      4. PRICE CHANGES THIS WEEK
+        Lodestone-R2: -15%
+        Kestrel, Ferrite-70B: new, $0.60 / $1.80
+        Argent, Ferrite-70B: announced for this week
+
+      —
+      Model Watch is written by two people and a lot of scripts. Unsubscribe: https://modelwatch.dev/u/7c19e
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-modelwatch-56
+    day: 23
+    time: "07:19"
+    from: {name: "Model Watch", email: "issue@modelwatch.dev"}
+    to: [avery]
+    subject: "Model Watch #56: Sable-3.1, open vs. proprietary gap by task, Argent undercuts on Ferrite"
+    bulk: true
+    signature: none
+    body: |
+      MODEL WATCH #56 — Thursday, September 17, 2026
+
+      1. SABLE-3.1
+      Point release; same price. Long-context recall at 400k goes from 71 to 89 on our needle set, and refusals on benign enterprise text drop from 2.1% to 0.4%. Composite 85.1 (from 83.9). Upgrade unless you pinned a version for a reason.
+
+      2. THE OPEN VS. PROPRIETARY GAP, BY TASK FAMILY
+      Best proprietary vs. best open model on each family, Q3:
+
+        Family          Best proprietary       Best open           Gap
+        Extraction      Sable-3.1   96.0       Ferrite-70B  94.1    1.9
+        Classification  Sable-3.1   97.2       Ferrite-70B  96.0    1.2
+        Tool use        Sable-3.1   97.4       Ferrite-70B  95.0    2.4
+        Reasoning       Lodestone-R2 94.8      Ferrite-70B  68.2   26.6
+        Long context    Sable-3.1   89.0       Ferrite-70B  74.5   14.5
+
+      For the first three families the open model is a rational default. For the last two, it is not.
+
+      3. ARGENT UNDERCUTS ON FERRITE-70B
+      $0.55 / $1.70, five cents under Kestrel on output. First price competition on an open 70B; we expect Nimbus to list it within the week.
+
+      4. PRICE CHANGES THIS WEEK
+        Argent, Ferrite-70B: new, $0.55 / $1.70
+        Argent batch tier: new, -50%, 24-hour window
+        Halcyon Vision 3: -30% per image
+
+      —
+      Model Watch is written by two people and a lot of scripts. Unsubscribe: https://modelwatch.dev/u/7c19e
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-modelwatch-57
+    day: 28
+    time: "07:08"
+    from: {name: "Model Watch", email: "issue@modelwatch.dev"}
+    to: [avery]
+    subject: "Model Watch #57: Lodestone-R2 Mini, commit-pricing terms compared, Sable-3.1 Mini"
+    bulk: true
+    signature: none
+    body: |
+      MODEL WATCH #57 — Tuesday, September 22, 2026
+
+      1. LODESTONE-R2 MINI
+      Distilled R2 at $0.80 / $3.20. On our reasoning set: 80.6 (R2: 94.8; Pelagic 2.5 capped: 88.9). Four times faster than R2. Cost per task $0.011, which makes it the cheapest model above 80 on reasoning.
+
+        Model               Reasoning   Median latency   Cost/task
+        Lodestone-R2           94.8         41s           $0.044
+        Pelagic 2.5 (cap 800)  88.9         9s            $0.0079
+        Lodestone-R2 Mini      80.6         10s           $0.011
+
+      2. COMMIT-PRICING TERMS, SIDE BY SIDE
+      Every provider now offers a prepay discount. The terms differ more than the percentages:
+
+        Provider   Discount   Term        Transferable across models?   Refundable?
+        Kestrel      15%      quarterly   no                            no
+        Argent       12%      quarterly   yes                           no
+        Nimbus       20%      annual      yes                           no
+        Sable Labs   10%      annual      n/a (one model family)        no
+
+      With mid-tier prices falling 10–20% a month, an annual lock at 20% off is roughly break-even by December. Quarterly and transferable is the only version we would sign.
+
+      3. SABLE-3.1 MINI
+      Composite 76.0 (from 74.6). Same price. The head-to-head with Ferrite-70B: Mini is cheaper per token ($0.44 vs. $1.70 out) and 3 points worse on extraction. Pick by whether extraction accuracy or cost dominates your bill.
+
+      —
+      Model Watch is written by two people and a lot of scripts. Unsubscribe: https://modelwatch.dev/u/7c19e
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+  - id: nl-modelwatch-58
+    day: 29
+    time: "07:05"
+    from: {name: "Model Watch", email: "issue@modelwatch.dev"}
+    to: [avery]
+    subject: "Model Watch #58: DeepSeek-V4 Pro price cut, a new 70B, eval harnesses"
+    bulk: true
+    signature: none
+    body: |
+      MODEL WATCH #58 — Wednesday, September 23, 2026
+
+      1. OPENROUTER ANNOUNCES VOLUME PRICING ON DEEPSEEK-V4 PRO, ROUGHLY 30% LOWER, EFFECTIVE OCTOBER 1
+      OpenRouter announced this morning that DeepSeek-V4 Pro moves to volume pricing on October 1: accounts above 500M tokens a month get roughly 30% off the current list price on both input and output, applied automatically, no prepay or commit required. Current vs. announced ($/M in / out):
+
+        Tier                       Today            From October 1
+        List (under 500M/mo)       $1.10 / $4.40    $1.10 / $4.40
+        Volume (500M–5B/mo)        —                $0.77 / $3.08   (-30%)
+        Volume (over 5B/mo)        —                $0.70 / $2.80   (-36%)
+
+      This is the largest single cut on a top-tier model this quarter, and it lands on a model family a lot of production extraction pipelines already run on. If you are modelling Q4 inference spend on DeepSeek-V4 Pro at today's rates, re-run it. Details: https://modelwatch.dev/pricing/openrouter-deepseek-v4-pro
+
+      2. MARLIN-70B (OPEN, APACHE 2.0) FROM WHITECAP RESEARCH
+      A second strong open 70B in a month. Whitecap's Marlin-70B trades a little extraction accuracy against Ferrite-70B for a noticeably better reasoning score:
+
+        Model               Composite   Extraction   Tool use   Reasoning   $/M out (hosted)
+        Marlin-70B (open)      80.3        92.6        94.2       76.0       $1.75 (Kestrel)
+        Ferrite-70B (open)     78.9        94.1        95.0       68.2       $1.70 (Argent)
+        Quillon-L              78.4        89.1        91.2       77.6       $4.50
+        Sable-3.1 Mini         76.0        88.7        91.0       72.4       $0.44
+
+      Hosted on Kestrel today; Argent and Nimbus "shortly." https://modelwatch.dev/models/marlin-70b
+
+      3. AGENT EVALUATION HARNESSES: A ROUNDUP
+      Five harnesses for scoring multi-step agent runs, compared on what they replay, what they score, and what they cost to run:
+
+        Harness          Replays tool calls?   Scores per step?   Cost tracking?   License
+        Stepwise            yes                  yes                yes             Apache 2.0
+        Larkspur Bench      yes                  yes                yes             Apache 2.0
+        Brindle Scorer      yes                  no                 yes             commercial
+        OpenTrace           yes                  no                 no              MIT
+        Harnessline         no                   yes                no              commercial
+
+      Stepwise and Larkspur Bench are the two we would start with; both now read the shared replay-log format. Full notes: https://modelwatch.dev/roundups/agent-harnesses
+
+      —
+      Model Watch is written by two people and a lot of scripts. Unsubscribe: https://modelwatch.dev/u/7c19e
+    labels:
+      kind: newsletter
+      must_not: false
+      reason: null
+      classification_case: null
+      expected:
+        type: newsletter
+        news_items:
+          - {headline_hint: "DeepSeek-V4 Pro volume pricing", topics: [inference-cost, ai-models], entities: [OpenRouter, DeepSeek], attaches_to: [other:inference-cost-overrun]}
+          - {headline_hint: "open-weights 70B benchmark", topics: [ai-models], entities: [], attaches_to: []}
+          - {headline_hint: "agent eval harness roundup", topics: [ai-models], entities: [], attaches_to: []}

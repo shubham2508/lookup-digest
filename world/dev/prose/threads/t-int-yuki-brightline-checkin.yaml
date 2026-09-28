@@ -1,0 +1,57 @@
+thread_id: t-int-yuki-brightline-checkin
+subject: "Call notes: Brightline quarterly check-in (Sep 3)"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: last_word_avery
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [other:brightline-check-in]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 9
+    time: "17:05"
+    from: yuki
+    to: [tomas]
+    cc: [avery, mateo]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi Tomás,
+
+      Notes from today's quarterly check-in with Brightline Packaging (their ops lead and two shift supervisors, 30 minutes).
+
+      1. Usage: 41 active users across both lines, up from 34 last quarter. The exception report is opened daily by all three shifts.
+      2. What is working: the shift-handoff summary. Their night supervisor called it "the first thing I read".
+      3. Requests:
+         a. Export the exception report as PDF (they print it for the floor). Logged as feature request FR-118.
+         b. A per-line view for their Ohio plant once it comes online (their timeline, not ours: early next year).
+      4. Support: two tickets this quarter, both answered the same day (thank you Mateo). No open issues.
+
+      Overall: healthy. Nothing needed from anyone this month.
+
+      Yuki
+  - id: m2
+    beat_ref: null
+    day: 9
+    time: "18:30"
+    from: avery
+    to: [yuki]
+    cc: [tomas, mateo]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      great notes yuki. "the first thing I read" is the whole product. thanks

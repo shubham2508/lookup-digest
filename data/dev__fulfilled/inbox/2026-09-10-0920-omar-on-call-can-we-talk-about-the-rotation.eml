@@ -1,0 +1,21 @@
+Message-ID: <20260910-0920.omar@tessera.io>
+Date: Thu, 10 Sep 2026 09:20:38 -0700
+From: Omar Haddad <omar@tessera.io>
+To: Tessera Engineering <eng@tessera.io>
+Cc: Avery Chen <avery@tessera.io>
+Subject: on-call: can we talk about the rotation
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Since I'm on this week (thanks to the swap with Dev) and have opinions at 3am:
+
+1. Four people in a weekly rotation means everyone is on call one week in four, plus every swap moves it around. That was fine at 6 customers. At 11 plants with overnight shifts it's a lot.
+2. Handoff is Monday 9am, which is exactly when Monday's ingest spike lands. The person coming on inherits the spike cold, with no context.
+3. Proposal: (a) move handoff to Monday 10am, after the spike, (b) some kind of rule about Friday deploys, (c) longer term, a fifth person.
+
+Not urgent. Just don't want to be the only one saying it.
+
+Omar
+
+Omar

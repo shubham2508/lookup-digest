@@ -1,0 +1,33 @@
+Message-ID: <20260918-0653.hello@latentdispatch.ai>
+Date: Fri, 18 Sep 2026 06:53:48 -0700
+From: Latent Dispatch <hello@latentdispatch.ai>
+To: Avery Chen <avery@tessera.io>
+Subject: Latent Dispatch: weekend reading =?utf-8?b?4oCU?= the case for boring agents, Halcyon 3.1, Nimbus outage
+List-Unsubscribe: <mailto:unsubscribe@latentdispatch.ai?subject=unsubscribe>, <https://latentdispatch.ai/u/3a8656c2>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+LATENT DISPATCH
+Fri Sep 18 · 5 items · ~4 min
+
+THE CASE FOR BORING AGENTS
+Our essay of the week. The agents that are earning their keep in production share three traits: a fixed set of tools (usually under ten), a hard step limit, and a human or a rule between the model and anything irreversible. None of them are impressive in a demo. All of them are still running. https://latentdispatch.ai/p/boring-agents
+
+HALCYON VISION 3.1
+Fixes the rotated-page problem from the Ostrava benchmark. Field accuracy on scanned procurement documents goes from 58% to 71% on our re-run. Still not a replacement for validation, but a real step.
+
+NIMBUS OUTAGE: 90 MINUTES, ALL REGIONS
+A bad deploy took down the API globally on Wednesday evening. Post-mortem promised. If you were single-provider on Nimbus you felt it; if you had a fallback, your router earned its keep. https://latentdispatch.ai/p/nimbus-outage
+
+SABLE LABS PUBLISHES A PRICING FAQ
+Notable for admitting that list prices are negotiable above $50k/year. Everyone knew; nobody had said it in writing.
+
+SHORT TAKES
+· Ferrite-8B gets a 1.1 with better JSON adherence.
+· Brindle adds a cost budget per run. Pauses the agent, pings a human.
+· Vireo-3 now on Kestrel and Argent.
+
+—
+You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1

@@ -1,0 +1,40 @@
+thread_id: t-halberd-second-site
+subject: "Second site - Halberd Kansas City"
+storyline: BG-curtis
+category: customers
+labels:
+  kind: thread
+  must_not: false
+  reason: null
+  classification_case: new_customer_exec
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [contract:halberd:second-site]
+    ball_awaiting: avery
+    closed_by_courtesy: false
+    sender_relationship: {category: customer, subtype: reference_exec, stage: active}
+    asks: [{to_avery: true, kind: meeting, deadline_day: null, status: open}]
+    stage_signals: [{entity: halberd, stage: active, day: 28}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 28
+    time: "10:40"
+    from: curtis
+    to: [avery]
+    cc: [renee]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      Renee has kept me in the loop on Fresno and I like what I'm seeing. I want to talk about our Kansas City plant.
+
+      If Oct 6 lands the way Renee expects it to, I'd like Kansas City scoped and in the budget before our cycle closes on Oct 15. That means you and I should talk before then, not after.
+
+      Do you have 30 minutes next week? I'll work around your calendar.

@@ -1,0 +1,59 @@
+thread_id: t-diane-checkin
+subject: "How's the raise going?"
+storyline: S10
+category: investors_board
+labels: null
+messages:
+  - id: m1
+    beat_ref: S10.b1
+    day: 12
+    time: "10:20"
+    from: diane
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      No agenda here, just checking in. How's the raise going? Last I heard the IPV partnership meeting was on the calender for this week.
+
+      I mentioned Tessera to Tessa Ruiz at Northwind when we had coffee on Thursday. She's building a supply-chain list for the fund and asked good questions. I'll connect you two once you're past the IPV meeting, so you're not juggling both at once.
+
+      Hope you and Sam got some of the weekend.
+
+      Diane
+  - id: m2
+    beat_ref: S10.b2
+    day: 12
+    time: "14:05"
+    from: avery
+    to: [diane]
+    cc: []
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      thanks Diane. IPV is moving well — partnership pitch is Wednesday, and Marcus is already asking diligence-style questions, which I'm reading as a good sign. Aperture's David Kim is also circling after the Dogpatch dinner.
+
+      I owe you a proper update; I'll get one out next week once Wednesday is behind us.
+
+      Avery
+  - id: m3
+    beat_ref: S10.b3
+    day: 12
+    time: "15:30"
+    from: diane
+    to: [avery]
+    cc: []
+    reply_to: m2
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      That's great to hear. And no rush on the update; get through Wednesday first.
+
+      Diane

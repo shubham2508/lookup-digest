@@ -1,0 +1,17 @@
+Message-ID: <20260902-1041.notifications@github.com>
+Date: Wed, 02 Sep 2026 10:41:27 -0700
+From: GitHub <notifications@github.com>
+To: Avery Chen <avery@tessera.io>
+Subject: Re: [tessera/ingest] Retry with backoff in the Modbus poller (PR #405)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Merged #405 into main.
+
+Closes #396.
+
+--
+Reply to this email directly or view it on GitHub:
+https://github.com/tessera/ingest/pull/405#event-14502211890
+You are receiving this because you are subscribed to this thread.

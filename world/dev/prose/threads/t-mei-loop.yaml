@@ -1,0 +1,83 @@
+thread_id: t-mei-loop
+subject: "Mei Tanaka - backend loop"
+storyline: S8
+category: hiring
+labels: null
+messages:
+  - id: m1
+    beat_ref: S8.b1
+    day: 12
+    time: "17:30"
+    from: jordan
+    to: [avery]
+    cc: [tomas]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi Avery - Mei Tanaka's onsite is done. Short version: the panel wants to hire her.
+
+      - Coding (Sofia): strong. Clean, tested, asked the right clarifying questions before writing anything.
+      - Systems design (Priya): strong. Priya's note was "would put her on the ingest pipeline tomorrow", which from Priya is a rave.
+      - Values / collaboration (me): positive, no flags. She was clear about wanting to stay hands-on rather than move toward management, which fits the role.
+      - Your closer: you said "warm, direct, asked about the customers" - I've logged it as positive.
+
+      Next step: debrief next week once the Greenhouse scorecards are all in (Sofia's is the last one). I'll come to you with a leveling recommendation after that.
+  - id: m2
+    beat_ref: S8.b3
+    day: 20
+    time: "12:15"
+    from: jordan
+    to: [avery]
+    cc: [tomas]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Debrief done this morning. Unanimous strong hire.
+
+      - Recommendation: L4 offer at the top of the band. Priya and I both think she'd be operating at L4 within a quarter anyway, and the top-of-band number is what it will take against the market right now.
+      - Comp: $198k base, standard L4 equity grant, no signing bonus. Kim has confirmed it fits the plan.
+      - Timeline: Mei told Sofia she has one other process running and would like to decide by the end of September, so a fast offer matters.
+
+      Ask: can you approve the level and the number at Thursday's hiring sync so Tomás can send the letter Monday? If you'd rather do it by email, a yes here works too.
+  - id: m3
+    beat_ref: S8.b4
+    day: 20
+    time: "13:40"
+    from: avery
+    to: [jordan]
+    cc: [tomas]
+    reply_to: m2
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      approved in principle - L4, top of band, no signing bonus. let's finalise the number at the hiring sync Thursday and get it out Monday. nice work, all of you.
+
+      Avery
+  - id: m4
+    beat_ref: S8.b5
+    day: 27
+    time: "10:30"
+    from: tomas
+    to: [avery]
+    cc: [jordan]
+    reply_to: m3
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Morning! Offer sent to Mei at 9:15 this morning via the DocuSign template - L4, $198k base, the equity grant exactly as we agreed Thursday, start date October 19 or earlier if she can. The routing is Jordan, then me, then you, so it'll land in your DocuSign queue last, probably tomorrow once Jordan and I have signed. Nothing for you to do until then, I just didn't want it to arrive as a surprise from a robot.
+
+      While I'm here, a couple of hiring odds and ends so they're written down somewhere:
+
+      Greenhouse now has the Ines Ferreira screen on your and Jordan's calendars for Thursday at 4, and the confirmation went to her personal address, so if you see a gmail sender you don't recognise, that's why.
+
+      The offer letter template still had our old Berkeley address on it. Kim fixed it before it went out, but if anyone signed anything in August it'll have the old address. Cosmetic.
+
+      And a small thing that made me happy: Mei asked Sofia whether she could see the ingest codebase before her start date. We said no for the obvious reasons, but that's the kind of candidate we want.
+
+      Tomás

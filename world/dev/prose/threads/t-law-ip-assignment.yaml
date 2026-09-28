@@ -1,0 +1,58 @@
+thread_id: t-law-ip-assignment
+subject: "CIIAAs for the August starts - for signature"
+storyline: null
+category: lawyer
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_by_kim
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [contract:ciiaa-august-starts]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: capital, subtype: deal_counsel}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 7
+    time: "10:40"
+    from: ben
+    to: [kim]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Kim,
+
+      Attached are the Confidential Information and Invention Assignment Agreements for the three August starts, in our standard form:
+
+      1. CIIAA_Haddad_Omar.pdf
+      2. CIIAA_Hoffmann_Lena.pdf
+      3. CIIAA_Silva_Mateo.pdf
+
+      Please route each through DocuSign to the employee first and to Avery as countersignatory. The prior-inventions schedule (Exhibit A) should be completed by the employee before signing; a schedule that says "none" is fine. Once executed, please upload the three to the HR folder in the data room so they are in place before IPV's counsel asks for them.
+
+      Ben
+  - id: m2
+    beat_ref: null
+    day: 7
+    time: "15:20"
+    from: kim
+    to: [ben]
+    cc: [avery]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Hi Ben,
+
+      All three went out via DocuSign at 3:05 pm today, employee first, then Avery. I asked each of them to complete Exhibit A before signing and to have it back by Friday, September 4. I'll upload the executed copies to Data Room > Legal > HR as they come in and confirm when all three are there.
+
+      Kim

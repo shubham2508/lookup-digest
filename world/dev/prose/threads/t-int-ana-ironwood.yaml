@@ -1,0 +1,57 @@
+thread_id: t-int-ana-ironwood
+subject: "Ironwood Fasteners - second call done, proposal Thursday"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_by_team
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [deal:ironwood-fasteners]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 28
+    time: "16:00"
+    from: ana
+    to: [tomas]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi Tomás!
+
+      Second call with Ironwood Fasteners done: Hank Oberlin (plant manager) plus their controller this time. Highlights:
+
+      - One plant in Portland, 3 lines, 60 machines, same PLC brand as Ridgeway (Yuki says the same connector will work)
+      - Hank came in via Eli at Bluefin, and the referral did the selling: "Eli says it caught a temperature drift on day two"
+      - Pilot shape: 6 weeks, one line, they want to start in October
+      - Budget approved on their side up to $15k for a pilot
+
+      Proposal draft to you Thursday. I'll move the stage to Proposal once the quote actually goes out, per your new stage rules! CRM: https://app.hubspot.com/contacts/8841/deal/1058
+
+      Ana
+  - id: m2
+    beat_ref: null
+    day: 28
+    time: "16:35"
+    from: tomas
+    to: [ana]
+    cc: [avery]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      The referral pipeline is REAL. Thursday works, I'll turn it around the same day. And yes, correct use of the new stages, gold star. Hank's quote is going in the deck (with Eli's ok, I'll ask). Great work Ana!!
+
+      Tomás

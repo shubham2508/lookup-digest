@@ -1,0 +1,21 @@
+thread_id: t-kai-photos
+subject: "pics from sunday"
+storyline: S11
+category: personal
+labels: null
+messages:
+  - id: m1
+    beat_ref: S11.b3
+    day: 26
+    time: "09:40"
+    from: kai
+    to: [avery, sam]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      finally pulled last sunday's lake pics off my phone. the one of Wren on the paddleboard with the life jacket up over both ears is the best thing I have ever photographed. full album: https://share.pixelhaven.app/a/lake-0913
+
+      no need to reply, just wanted them in your inbox before I forget for another month.

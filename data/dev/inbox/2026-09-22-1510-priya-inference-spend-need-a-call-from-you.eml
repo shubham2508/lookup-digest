@@ -1,0 +1,20 @@
+Message-ID: <20260922-1510.priya@tessera.io>
+Date: Tue, 22 Sep 2026 15:10:03 -0700
+From: Priya Iyer <priya@tessera.io>
+To: Avery Chen <avery@tessera.io>
+Subject: inference spend - need a call from you
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+final august inference number is in: $41k. model had $22k for the month.
+
+why: halberd backfill (3 yrs of history at concurrency 6) + northstar line 2 doubled token volume in three weeks. not a leak, not a bug. checked twice.
+
+options
+1. cap backfill concurrency at 2. halberd backfill finishes ~1 week later, oct 6 probably slips with it.
+2. eat it through the raise. sept lands ~$38k, oct similar, flattens once backfill is done.
+
+no lean from me, halberd is your relationship. putting this in email so it's in writing. need a decision this week.
+
+p

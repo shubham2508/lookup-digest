@@ -1,0 +1,41 @@
+Message-ID: <20260901-0715.issue@modelwatch.dev>
+Date: Tue, 01 Sep 2026 07:15:15 -0700
+From: Model Watch <issue@modelwatch.dev>
+To: Avery Chen <avery@tessera.io>
+Subject: Model Watch #51: Pelagic 2.5 tested, reasoning-token costs, Tanager-Coder 2
+List-Unsubscribe: <mailto:unsubscribe@modelwatch.dev?subject=unsubscribe>, <https://modelwatch.dev/u/2d292ab3>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+MODEL WATCH #51 — Tuesday, September 1, 2026
+
+1. PELAGIC 2.5: REASONING MODE, SAME PRICE, MORE TOKENS
+Pelagic 2.5 with extended reasoning enabled vs. disabled, on our reasoning set (200 tasks):
+
+  Mode           Score   Median out tokens   Median cost/task
+  Reasoning off   84.0        410               $0.0041
+  Reasoning on    90.7       1,880              $0.0188
+  Reasoning on, cap 800   88.9   790            $0.0079
+
+The cap gets you most of the gain at 40% of the cost. We recommend the cap as the default.
+
+2. WHAT REASONING TOKENS ACTUALLY COST ACROSS LABS
+Every lab bills reasoning as output. Effective cost per reasoning-mode task on the same 200 items:
+
+  Lodestone-R1     $0.061
+  Pelagic 2.5      $0.019
+  Sable-3 (think)  $0.024
+  Quillon-L        n/a (no reasoning mode)
+
+3. TANAGER-CODER 2 (OPEN, 34B)
+Agentic coding score 71.2, second overall and first among open models. Single 80GB card at 38 tokens/sec in our setup. https://modelwatch.dev/models/tanager-coder-2
+
+4. PRICE CHANGES THIS WEEK
+  Sable Labs: no change
+  Pelagic: reasoning mode included at base price (new)
+  Kestrel: Tanager-Coder 2 listed at $0.30 / $0.90
+
+—
+Model Watch is written by two people and a lot of scripts. Unsubscribe: https://modelwatch.dev/u/7c19e

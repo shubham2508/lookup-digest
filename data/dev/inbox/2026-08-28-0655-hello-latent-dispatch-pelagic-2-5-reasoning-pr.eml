@@ -1,0 +1,28 @@
+Message-ID: <20260828-0655.hello@latentdispatch.ai>
+Date: Fri, 28 Aug 2026 06:55:23 -0700
+From: Latent Dispatch <hello@latentdispatch.ai>
+To: Avery Chen <avery@tessera.io>
+Subject: Latent Dispatch: Pelagic 2.5 reasoning, prompt caching goes cross-provider, a rate-limit horror story
+List-Unsubscribe: <mailto:unsubscribe@latentdispatch.ai?subject=unsubscribe>, <https://latentdispatch.ai/u/0053c4e3>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+LATENT DISPATCH
+Fri Aug 28 · 4 items · ~3 min
+
+PELAGIC 2.5 ADDS EXTENDED REASONING, KEEPS THE PRICE
+Pelagic AI's 2.5 release adds an extended-reasoning mode at the same per-token price as the base model, which is the first time a major lab has not charged a premium for thinking. The catch: reasoning tokens are billed as output, and on hard tasks the model thinks a lot. Budget for 3–5x output on anything multi-step. https://latentdispatch.ai/p/pelagic-25
+
+PROMPT CACHING IS BECOMING TABLE STAKES
+Argent Systems and Nimbus Inference both shipped prefix caching this week, joining the three labs that already had it. Cached input tokens are running 75–90% cheaper across the board. If your system prompt is 6k tokens and you send it 50,000 times a day, that is real money; we ran the numbers for a typical document pipeline. https://latentdispatch.ai/p/caching-math
+
+A RATE-LIMIT STORY YOU SHOULD READ
+A founder wrote up how a background backfill job hit a provider's per-minute token cap, silently fell back to a slower model, and ran for nine days at three times the planned cost before anyone noticed. The fix was boring: a per-job spend ceiling and a daily alert. The post is a good argument for putting cost observability in before the backfill, not after. https://latentdispatch.ai/p/backfill-story
+
+TANAGER-CODER 2 BENCHMARKS
+Tanager's coding model lands second on the open agentic-coding leaderboard, first among models you can self-host. 34B, permissive license, and it runs on a single 80GB card at usable speed. https://latentdispatch.ai/p/tanager-coder-2
+
+—
+You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1

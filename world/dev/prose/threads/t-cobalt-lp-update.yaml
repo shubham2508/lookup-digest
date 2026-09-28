@@ -1,0 +1,41 @@
+thread_id: t-cobalt-lp-update
+subject: "Cobalt Ridge Q3 letter + portfolio events this fall"
+storyline: null
+category: investors_board
+labels:
+  kind: thread
+  must_not: true
+  reason: fyi_bulk
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [other:cobalt-lp-letter-q3]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: capital, subtype: existing_investor_ops}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 19
+    time: "07:30"
+    from: cobalt_office
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    bulk: true
+    signature: default
+    body: |
+      Dear Cobalt Ridge founders,
+
+      Our Q3 letter to limited partners went out this morning; the founder-facing version is attached (CobaltRidge_Q3_2026_Portfolio_Letter.pdf). Highlights: two new Fund III investments, one exit, and a short section on how portfolio companies are handling inference costs, which several of you asked about at the summer offsite.
+
+      Upcoming platform events:
+      - Oct 8, San Francisco: Portfolio founders dinner (separate invite sent earlier this month)
+      - Oct 22, virtual: Series A readiness workshop with three of our GPs
+      - Nov 5, Oakland: Hiring in a down market, panel
+
+      Reply to this address if you'd like to be added to any of the above. As always, nothing here requires a response.

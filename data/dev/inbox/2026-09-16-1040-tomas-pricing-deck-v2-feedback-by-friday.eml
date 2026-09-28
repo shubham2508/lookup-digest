@@ -1,0 +1,29 @@
+Message-ID: <20260916-1040.tomas@tessera.io>
+Date: Wed, 16 Sep 2026 10:40:21 -0700
+From: =?utf-8?q?Tom=C3=A1s?= Reyes <tomas@tessera.io>
+To: Avery Chen <avery@tessera.io>
+Cc: Ana Kowalski <ana@tessera.io>
+Subject: Pricing deck v2 - feedback by Friday?
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Avery - pricing deck v2 attached (Tessera_Pricing_v2.pdf, 14 slides). This is the one Ana will start using in first calls, so I'd love your feedback by Friday - she has three intro calls Monday and I want her walking in with the final version, not v2-with-comments.
+
+What changed from v1:
+
+Tier naming. Starter / Growth / Enterprise is gone. It's now Line / Plant / Network, which matches how the customers themselves talk (nobody says "we're on Growth", everyone says "we've got two lines on it"). Ana tested it on Dale at Ridgeway last week and he got it immediately.
+
+Packaging. Each tier is now a list of what's in the box rather than a feature matrix with ticks. Alerting is in every tier. The forecasting module is Plant and up. SSO and the trust portal are Network only, which Jordan is fine with.
+
+Slides 6-8 are the ones I'm least sure about: 6 is the "how usage tiers work" explainer (trailing average, not monthly peak - the Simon question from August made me realise we'd never written it down), 7 is the comparison to doing it in-house, and 8 is the reference-customer slide, which right now names Halberd and Northstar with their permission and has a placeholder for Veritas.
+
+Open question for you: do we show list price on the deck at all, or leave it for the proposal? Ana votes show it (fewer surprises), I lean leave it (more room to move). You're the tiebreak.
+
+Separately - the customer roundtable in October now has four confirmed. I'd like you to open it, five minutes, no slides. Not urgent, just planting the seed.
+
+Thanks! Long email, I know. Anything by Friday helps, even bullet points.
+
+Tomás
+
+Tomás Reyes | Head of GTM, Tessera | +1 (510) 555-0142

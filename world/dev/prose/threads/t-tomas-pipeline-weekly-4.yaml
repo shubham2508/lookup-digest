@@ -1,0 +1,61 @@
+thread_id: t-tomas-pipeline-weekly-4
+subject: "Pipeline Monday!! (week of Sep 21)"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: routine_pipeline_fyi
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [report:pipeline-weekly]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: exec}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 27
+    time: "08:30"
+    from: tomas
+    to: [avery]
+    cc: [kim, ana, yuki]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Happy Monday!!
+
+      GTM weekly is at 3:30 today (Kim, Ana, see you there), so this is the short version. Ha. You know me.
+
+      RIDGEWAY - Wednesday's scoping call with Dale and Bud went fine, better than fine (Yuki's notes were superb, thank you Yuki!). One line, six weeks, success looks like alerts acknowledged inside 15 minutes. Ana's sending Dale the scoping doc this week. He hasn't asked about price yet, which I'm choosing to read as trust.
+
+      CALDER - demo went great. Ruth asked about a three-plant pilot on the demo call itself, which is more than we usually get! Yuki talked her down to two plants first, sensibly. Ana's writing the pilot proposal this week.
+
+      BLUEFIN - pilot kicked off Thursday, sensor connector was live on line 1 the same afternoon (Yuki + Sofia, unreal). First exception report went out Friday and Eli replied with just "huh." which from Eli is a standing ovation.
+
+      ALDER - Ana's chasing the signature, should land this week.
+
+      IRONWOOD - second call with Hank tomorrow. Ana thinks a proposal goes out this week.
+
+      MERIDIAN - pricing recap coming separately, keeping this one clean.
+
+      NORTHSTAR - Grace has been quiet this past week. I'll check in, no drama, just a hello. QBR is still tentative on Henrik's side.
+
+      HALBERD - Yuki is running operator training with Renee's team next Tuesday, 14 operators signed up. The cutover checklist is going to Renee today.
+
+      BRIGHTLINE - green.
+
+      Q4 push: Ana has six first calls booked off the MX Summit attendee list. SIX.
+
+      Numbers: 18 open, $1.4M weighted, 7 pilots. Two pilots converting in Q4 gets us the best quarter we've ever had, and I think it's three.
+
+      Q4 events list is done and I'll bring it to the 1:1 Wednesday, no need to look at anything before then.
+
+      Also: Ana hit her Q3 pilot quota with a week to spare, so if you see her, high five. 🙌
+
+      Tomás

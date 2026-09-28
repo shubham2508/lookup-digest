@@ -1,0 +1,21 @@
+Message-ID: <20260917-0940.sofia@tessera.io>
+Date: Thu, 17 Sep 2026 09:40:48 -0700
+From: Sofia Andrade <sofia@tessera.io>
+To: Dev Patel <dev@tessera.io>, Omar Haddad <omar@tessera.io>
+Cc: Avery Chen <avery@tessera.io>, Jordan Liu <jordan@tessera.io>
+Subject: PR #402 - plant-timezone-aware date filter
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+https://github.com/tessera-io/platform/pull/402
+
+The date filter now resolves ranges in the plant's timezone instead of the browser's. "Last 7 days" for a plant in Ohio means Ohio days, which is what every customer assumed it already did. Presets and custom ranges persist per plant.
+
+Big diff, sorry. Read it in this order: filters/range.py, then the API change, then the React bits.
+
+Known subtlety: the persisted range is stored as UTC and restored in local, which is fine as long as restore goes through the same resolver. There's a test for the preset case.
+
+Sofia
+
+Sofia

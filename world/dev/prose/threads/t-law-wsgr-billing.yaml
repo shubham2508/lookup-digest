@@ -1,0 +1,45 @@
+thread_id: t-law-wsgr-billing
+subject: "Wilson Sonsini invoice 2026-07 - Tessera, Inc. (matter 41207)"
+storyline: null
+category: lawyer
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_by_kim
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [invoice:wsgr:2026-07]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: capital, subtype: deal_counsel}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 6
+    time: "06:30"
+    from: {name: "WSGR Billing", email: "billing@wsgr.com"}
+    to: [kim]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      Invoice for professional services rendered through July 31, 2026 is attached (WSGR_Invoice_2026-07_Tessera.pdf).
+
+      Client: Tessera, Inc.
+      Matter 41207-001: General Corporate
+      Matter 41207-004: Series A Preferred Stock Financing
+      Responsible partner: Ben Schaffer
+
+      Fees: $12,640.00
+      Disbursements: $220.00
+      Total due: $12,860.00
+      Terms: Net 30 (due September 30, 2026)
+
+      Payment by ACH or wire using the instructions on the invoice. Please reference the invoice number on remittance. Questions about the invoice may be directed to billing@wsgr.com; questions about the work should go to the responsible partner.
+
+      This mailbox is not monitored for matter correspondence.

@@ -1,0 +1,27 @@
+Message-ID: <20260921-0910.hello@linear.app>
+Date: Mon, 21 Sep 2026 09:10:32 -0700
+From: Linear <hello@linear.app>
+To: Avery Chen <avery@tessera.io>
+Subject: Linear Changelog: Linear for Agents, cycle analytics, and a faster app
+List-Unsubscribe: <mailto:unsubscribe@linear.app?subject=unsubscribe>, <https://linear.app/u/f0f6fa8b>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+This week in Linear
+
+Linear for Agents
+Assign issues to coding agents the same way you assign them to people. Agents post progress in the issue, open a PR, and hand back for review. Works with the GitHub integration out of the box.
+
+Cycle analytics
+Scope change, completion rate, and carry-over for every cycle, with a trend line across the last eight. Team leads can see where the plan and the reality diverge.
+
+Faster app
+We rewrote the sync engine. Cold start is 2x faster and large workspaces feel it most.
+
+Also shipped: issue templates per team, Slack notifications for project updates, and a dark theme refresh.
+
+Full changelog: https://linear.app/changelog/2026-09-21
+
+Manage email preferences or unsubscribe: https://linear.app/e/pref/9cw4x

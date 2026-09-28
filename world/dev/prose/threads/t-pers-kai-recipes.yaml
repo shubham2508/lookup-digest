@@ -1,0 +1,34 @@
+thread_id: t-pers-kai-recipes
+subject: "mom's recipe box, scanned"
+storyline: null
+category: personal
+labels:
+  kind: thread
+  must_not: true
+  reason: family_fyi_no_action
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: personal
+    intent_primary: fyi
+    about: [family:recipe-box]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: family, subtype: relative}
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 9
+    time: "20:15"
+    from: kai
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      finished scanning mom's whole recipe box, all 140 cards. folder: https://share.pixelhaven.app/f/recipe-box (the soup ones are in "soups", obviously). the braised short rib card has a coffee ring on it that I am choosing to believe is from 1994.
+
+      no need to reply, I'll bring the physical box at thanksgiving.

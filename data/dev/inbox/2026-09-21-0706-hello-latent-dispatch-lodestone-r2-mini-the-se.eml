@@ -1,0 +1,33 @@
+Message-ID: <20260921-0706.hello@latentdispatch.ai>
+Date: Mon, 21 Sep 2026 07:06:50 -0700
+From: Latent Dispatch <hello@latentdispatch.ai>
+To: Avery Chen <avery@tessera.io>
+Subject: Latent Dispatch: Lodestone-R2 Mini, the September commit-pricing wave, Nimbus post-mortem
+List-Unsubscribe: <mailto:unsubscribe@latentdispatch.ai?subject=unsubscribe>, <https://latentdispatch.ai/u/78a1bfd7>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+LATENT DISPATCH
+Mon Sep 21 · 5 items · ~4 min
+
+LODESTONE-R2 MINI: REASONING FOR THE MID-TIER BUDGET
+A distilled R2 at $0.80 / $3.20 per million. It keeps about 85% of R2's hard-reasoning score and is four times faster. For the "one careful call per workflow" pattern, this is probably the new default. https://latentdispatch.ai/p/r2-mini
+
+COMMIT PRICING IS EVERYWHERE THIS MONTH
+Kestrel started it, and now Argent, Nimbus, and two of the labs offer a quarterly or annual prepay discount of 10–20%. Our advice has not changed: with prices dropping 10–20% a month at the mid-tier, a 15% discount for a 12-month lock is not a discount. Quarterly at most.
+
+NIMBUS POST-MORTEM
+Clear and honest: a config change to the load balancer was rolled out globally instead of per-region. They are adding staged rollouts. Good write-up. https://latentdispatch.ai/p/nimbus-postmortem
+
+OPEN-WEIGHTS ROUNDUP
+A 14B multilingual model from a Tokyo group, a 3B on-device model with surprisingly good tool-calling, and a Ferrite-70B fine-tune for legal clauses. Links: https://latentdispatch.ai/p/ow-roundup-0921
+
+SHORT TAKES
+· Quillon-M adds an "unreadable" flag per field instead of guessing. The right design.
+· Marrow Speech drops per-minute price 20%.
+· Larkspur publishes a migration guide from the two frameworks it is replacing.
+
+—
+You're getting this because you signed up at latentdispatch.ai. Unsubscribe: https://latentdispatch.ai/unsub/a8f2c1

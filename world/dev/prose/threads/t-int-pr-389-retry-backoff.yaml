@@ -1,0 +1,72 @@
+thread_id: t-int-pr-389-retry-backoff
+subject: "PR #389 - connector retry/backoff"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_by_team
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [other:pr-389-retry-backoff]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 15
+    time: "14:05"
+    from: omar
+    to: [dev, sofia]
+    cc: [avery, jordan]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      https://github.com/tessera-io/platform/pull/389
+
+      Retries are now exponential with full jitter: base 2s, cap 5 minutes, max 8 attempts, then the feed goes to "degraded" instead of silently dying. Per the design doc, minus the circuit breaker, which is a follow-up.
+
+      Please read the state machine in connector/retry.py first; the rest is plumbing. Tests include a flapping-feed simulation that I am slightly too proud of.
+
+      Omar
+  - id: m2
+    beat_ref: null
+    day: 16
+    time: "08:50"
+    from: sofia
+    to: [omar]
+    cc: [dev, avery, jordan]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      State machine is clean, read it twice. Two things:
+
+      1. Jitter: you call random.random() per attempt but seed once per process, so two workers restarted together retry in lockstep. Per-connector RNG, or seed from os.urandom.
+      2. On the 8th failure we set degraded but the last error message is lost. Log it before the transition, it's the one message anyone will want.
+
+      Otherwise approved 👌
+
+      Sofia
+  - id: m3
+    beat_ref: null
+    day: 16
+    time: "10:40"
+    from: omar
+    to: [sofia]
+    cc: [dev, avery, jordan]
+    reply_to: m2
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      both done. per-connector rng, and the last error now survives the trip to degraded (it was a good error too). merging after CI.
+
+      Omar
