@@ -258,12 +258,15 @@ def test_waiting_on_avery_thresholds():
     cc_only = cc_only.model_copy(update={"cc": [AVERY]})
     answered = [msg("a1", "2026-09-15T10:00", "marcus@inflectionpoint.vc", subject="docs", name="Marcus Webb"),
                 msg("a2", "2026-09-15T11:00", AVERY, to=["marcus@inflectionpoint.vc"], subject="Re: docs")]
-    ts = [thread(marcus), thread(sam), thread(cc_only), thread(*answered)]
+    team = [msg("k1", "2026-09-14T10:00", "marcus@inflectionpoint.vc", subject="data room access", name="Marcus Webb"),
+            msg("k2", "2026-09-14T11:00", "kim@tessera.io", to=["marcus@inflectionpoint.vc", AVERY], subject="Re: data room access", name="Kim Ops"),
+            msg("k3", "2026-09-14T12:00", "marcus@inflectionpoint.vc", subject="Re: data room access", name="Marcus Webb", body="Perfect, thanks Kim")]
+    ts = [thread(marcus), thread(sam), thread(cc_only), thread(*answered), thread(*team)]
     wed = waiting_on_avery(ci_for(world(ts, as_of="2026-09-23T06:00")))
     assert not kinds(wed, "quiet_thread"), "Mon, Tue = 2 business days: below the threshold"
     thu = waiting_on_avery(ci_for(world(ts)))
     q = kinds(thu, "quiet_thread")
-    assert len(q) == 1 and q[0].priority == "P0" and "3 business days" in q[0].why and q[0].citations[0].source_id == "msg:<m1>"
+    assert len(q) == 1 and q[0].priority == "P0" and "3 business days" in q[0].why and q[0].citations[0].source_id == "msg:<m1>", "a teammate answered the data-room thread: not waiting on Avery"
     r = kinds(thu, "reply_owed")
     assert len(r) == 1 and r[0].entities == ["sam-park"] and r[0].proposed_actions[0].type == "message_person"
 
@@ -360,6 +363,10 @@ def test_automated_requests():
     assert set(by) == {"Sign", "Approve", "Fix"}, [f.title for f in got]
     assert by["Sign"].priority == "P1" and by["Approve"].priority == "P3" and len(by["Approve"].citations) == 3
     assert by["Approve"].title == "Approve: 3 Ramp requests" and by["Fix"].priority == "P1"
+    tomas = msg("t0", "2026-09-01T10:00", "tomas@tessera.io", subject="hello", name="Tomas Reyes")
+    ds2 = ds.model_copy(update={"body_new": "Tomas Reyes tomas@tessera.io sent you a document. It is awaiting your signature."})
+    sign = approvals(ci_for(world([thread(tomas), thread(ds2, router="automated")])))[0]
+    assert sign.entities == ["docusign", "tomas-reyes"], "a person named by address in the request is an entity (links it to the reader's finding)"
 
 
 # ----------------------------------------------------------------------------- reconcile and merge
@@ -389,12 +396,30 @@ def test_reconcile_attaches_a_covered_net_and_rescues_the_rest():
     assert "(computed: Marcus Webb has waited 3 business days.)" in out[0].why and Evidence(source_id="msg:<m1>", quote="cap table?") in out[0].citations
     assert [r["net"] for r in rescues] == ["calendar_conflict:deep_work"] and rescues[0]["options"] == 0, "stale_source is never a rescue"
     q = lk.asked[0][1]
-    assert {o.id for o in q.options} == {"f1", "f2"}, "same thread and same person are offered; the linker picks"
+    assert {o.id for o in q.options} == {"f1"}, "a finding on the same thread outranks one that only shares the person"
     assert logs[0][1]["by"] == "linker" and logs[0][1]["finding"] == "f1"
     out2, rescues2 = reconcile([reader, other], [covered], StubLinker(), msg_thread={})
     assert [r["net"] for r in rescues2] == ["quiet_thread"] and rescues2[0]["options"] == 2 and out2[-1].finding_id == "net1"
     _, rescues3 = reconcile([reader], [covered], None)
     assert len(rescues3) == 1, "no linker: nothing matches, the net stays"
+
+
+def test_reconcile_offers_the_readers_summary_when_it_raised_nothing_on_the_thread():
+    other = _finding("f2", title="Send Marcus the cap table", cites=[Evidence(source_id="msg:<m9>", quote="cap table")])
+    net = _finding("net1", kind="quiet_thread", title="Reply to Marcus Webb: Re: Deck", origin="safety_net",
+                   cites=[Evidence(source_id="msg:<d1>", quote="Re: Deck")])
+    mt = {"msg:<d1>": "t-deck", "msg:<m9>": "t-cap"}
+    lk = StubLinker({"net_covers_finding": {"quiet_thread": ["read:t-deck"]}})
+    logs = []
+    out, rescues = reconcile([other], [net], lk, msg_thread=mt, summaries={"t-deck": "Marcus thanks Avery for the deck."},
+                             log=lambda r, d: logs.append(d))
+    q = lk.asked[0][1]
+    assert [o.id for o in q.options] == ["read:t-deck"] and "Marcus thanks Avery for the deck." in q.options[0].text, \
+        "the thread was read and raised nothing: its summary is the only option, not Marcus's other issues"
+    assert [f.finding_id for f in out] == ["f2"] and rescues == [] and logs[0]["by"] == "reader_summary"
+    assert "computed" not in out[0].why
+    _, unread = reconcile([other], [net], StubLinker(), msg_thread=mt, summaries={})
+    assert unread[0]["options"] == 1, "an unread thread falls back to findings about the same person"
 
 
 def test_reported_suspicious_quote_is_the_readers_flag_not_a_rescue():
@@ -433,3 +458,18 @@ def test_family_lookahead_window(days):
     moved = ped.model_copy(update={"start": ped.start + timedelta(days=7 * days), "end": ped.end + timedelta(days=7 * days)})
     w.events = [e for e in w.events if e.uid != "ped"] + [moved]
     assert bool(family_conflicts(ci_for(w))) == (days == 0)
+
+
+def test_same_message_covers_a_waiting_net_without_the_linker_and_patterns_get_no_summary():
+    q = Evidence(source_id="msg:<t1>", quote="Two things")
+    refs = _finding("f1", title="Pick two customer references", cites=[q])
+    arr = _finding("f2", title="Confirm current ARR", cites=[q]).model_copy(update={"priority": "P1"})
+    net = _finding("net1", kind="quiet_thread", title="Reply to Marcus Webb: Two things", origin="safety_net", cites=[q])
+    lk = StubLinker()
+    out, rescues = reconcile([refs, arr], [net], lk, msg_thread={"msg:<t1>": "t"})
+    assert rescues == [] and lk.asked == [] and "(computed:" in out[0].why and "(computed:" not in out[1].why, "the P0 one takes the fact"
+    pattern = _finding("net2", kind="recruiter_pattern", title="Note the recruiter pattern", origin="safety_net", entities=("scout-1",),
+                       cites=[Evidence(source_id="msg:<r1>", quote="Opportunity")])
+    lk2 = StubLinker({"net_covers_finding": {"recruiter_pattern": ["read:tr1"]}})
+    _, rescues2 = reconcile([], [pattern], lk2, msg_thread={"msg:<r1>": "tr1"}, summaries={"tr1": "A cold recruiter pitch; nothing for Avery."})
+    assert [r["net"] for r in rescues2] == ["recruiter_pattern"] and lk2.asked == [], "one reader's summary never covers a pattern"

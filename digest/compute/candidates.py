@@ -171,15 +171,27 @@ def _calendar_unreadable(ci: ComputeInputs) -> bool:
 
 
 def _unanswered(t: NormalizedThread, owner: set[str], as_of: datetime) -> dict[str, NormalizedMessage]:
-    """sender → their latest message addressed to Avery (in To) that arrived after Avery's last message in the thread."""
-    last_avery = max((m.sent_at for m in t.messages if m.is_from_avery), default=None)
+    """sender → their latest message addressed to Avery (in To) that nobody on Avery's side answered in this thread.
+
+    Avery's side is Avery, and for an outside sender also Avery's teammates (the owner's domain): when a teammate wrote
+    in the thread after the sender's first unanswered message, the team is handling it (the analyst's data-room
+    question answered by the ops lead). A co-founder's own message is answered only by Avery."""
+    own_domains = {domain_of(e) for e in owner}
+    msgs = [m for m in t.messages if m.sent_at <= as_of and not m.forwarded_by]
+    last_avery = max((i for i, m in enumerate(msgs) if m.is_from_avery), default=-1)
+    first: dict[str, int] = {}
     out: dict[str, NormalizedMessage] = {}
-    for m in t.messages:
-        if m.is_from_avery or m.forwarded_by or m.sent_at > as_of or (last_avery is not None and m.sent_at <= last_avery):
+    for i, m in enumerate(msgs[last_avery + 1:], last_avery + 1):
+        if m.is_from_avery or not ({a.lower() for a in m.to} & owner):
             continue
-        if not ({a.lower() for a in m.to} & owner):
+        sender = m.from_addr.lower()
+        first.setdefault(sender, i)
+        out[sender] = m
+    for sender, i in first.items():
+        if domain_of(sender) in own_domains:
             continue
-        out[m.from_addr.lower()] = m
+        if any(domain_of(r.from_addr) in own_domains and not r.is_from_avery for r in msgs[i + 1:]):
+            del out[sender]
     return out
 
 
@@ -426,6 +438,7 @@ _REQUEST = {
     "approval": re.compile(r"\b(needs? your approval|awaiting your approval|approval (is )?(needed|required))\b", re.I),
 }
 _NO_ACTION = re.compile(r"\bno action (is )?(needed|required)\b", re.I)
+_EMAIL = re.compile(r"[\w.+-]+@[\w-]+(?:\.[\w-]+)+")
 _VERB = {"signature": "Sign", "payment_issue": "Fix", "approval": "Approve"}
 _PRIORITY: dict[str, Priority] = {"signature": "P1", "payment_issue": "P1", "approval": "P3"}   # rubric: approving expenses is P3
 
@@ -451,6 +464,12 @@ def approvals(ci: ComputeInputs) -> list[Finding]:
             groups.setdefault((domain_of(m.from_addr), kind), []).append(m)
     for (dom, kind), msgs in sorted(groups.items()):
         system = org_from_domain(f"x@{dom}") or dom
+        people = []          # contacts whose address appears in the request ("Tomás Reyes tomas@… sent you a document")
+        for m in msgs:
+            for addr in _EMAIL.findall(m.body_new or ""):
+                c = ci.contact(addr.lower())
+                if c is not None and addr.lower() not in ci.world.owner_emails and c.contact_id not in people:
+                    people.append(c.contact_id)
         msgs.sort(key=lambda m: m.sent_at)
         n = len(msgs)
         what = msgs[0].subject if n == 1 else f"{n} {system} requests"
@@ -458,7 +477,7 @@ def approvals(ci: ComputeInputs) -> list[Finding]:
         why = f"{system}: {what}; received {received}; still the latest message of its thread."
         out.append(_net(ci, "approval_pending", f"{_VERB[kind]}: {what}", why, priority=_PRIORITY[kind], section="decisions",
                         urgency="today" if kind != "approval" else "this_week", stakes="medium" if kind != "approval" else "low",
-                        entities=[slugify(system)], about=[f"approval:{slugify(system)}"], citations=[msg_evidence(m) for m in msgs[:4]],
+                        entities=[slugify(system), *people], about=[f"approval:{slugify(system)}"], citations=[msg_evidence(m) for m in msgs[:4]],
                         actions=[_action("approve", system, f"{_VERB[kind].lower()} in {system}: {what}")], sources=["email"]))
     return out
 

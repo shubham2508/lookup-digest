@@ -1,7 +1,8 @@
 """Reconcile safety nets with reader/sweep findings, and group findings by topic (specs/PIVOT_SPEC.md §5.3–§5.4).
 
 No string similarity anywhere (MIGRATION_PLAN.md §2): code narrows the options with hard facts (a shared citation, the
-same thread, a shared person or org), and the linker (Jev first, the LLM when Jev is unsure) decides sameness. Without
+same thread, a shared person or org, the reader's own summary of the net's thread), and the linker (Jev first, the LLM
+when Jev is unsure) decides sameness. Without
 a linker nothing matches: every net stays a rescue and no topics merge, so a missed link shows up in the digest
 instead of hiding something.
 """
@@ -16,6 +17,8 @@ from .linker import LinkOption, LinkQuestion
 
 Log = Callable[[str, dict], None] | None
 PASS_THROUGH = ("stale_source",)     # a freshness fact no reader can cover; never counted as a rescue
+THREAD_NETS = ("quiet_thread", "reply_owed")   # one unanswered message in one thread
+_NEEDS = {"yes": 0, "unsure": 1, "no": 2}
 
 
 def thread_of(f: Finding, msg_thread: dict[str, str]) -> str | None:
@@ -23,14 +26,26 @@ def thread_of(f: Finding, msg_thread: dict[str, str]) -> str | None:
     return next((msg_thread[e.source_id] for e in f.citations if e.source_id in msg_thread), None)
 
 
-def _related(net: Finding, f: Finding, msg_thread: dict[str, str], ignore: set[str]) -> bool:
+def _threads(f: Finding, msg_thread: dict[str, str]) -> set[str]:
+    return {msg_thread[e.source_id] for e in f.citations if e.source_id in msg_thread}
+
+
+def _options(net: Finding, pool: list[Finding], msg_thread: dict[str, str], ignore: set[str]) -> list[tuple[Finding, str]]:
+    """(finding, the hard fact that makes it an option), strongest first: it cites the same message or event, or a
+    message of the same thread; only when there are none, it shares a person or org."""
     cites = {e.source_id for e in net.citations}
-    if cites & {e.source_id for e in f.citations}:
-        return True
-    threads = {msg_thread[s] for s in cites if s in msg_thread}
-    if threads & {msg_thread[e.source_id] for e in f.citations if e.source_id in msg_thread}:
-        return True
-    return bool((set(net.entities) - ignore) & (set(f.entities) - ignore))
+    threads = _threads(net, msg_thread)
+    close = []
+    for f in pool:
+        shared = cites & {e.source_id for e in f.citations}
+        if shared:
+            close.append((f, "same event" if all(x.startswith("event:") for x in shared) else "same message"))
+        elif threads & _threads(f, msg_thread):
+            close.append((f, "same thread"))
+    if close:
+        return close
+    ents = set(net.entities) - ignore
+    return [(f, "same person") for f in pool if ents & (set(f.entities) - ignore)]
 
 
 def _covered_by_report(net: Finding, findings: list[Finding]) -> Finding | None:
@@ -50,18 +65,27 @@ def _attach(f: Finding, net: Finding) -> Finding:
 
 
 def reconcile(findings: list[Finding], nets: list[Finding], linker, *, msg_thread: dict[str, str] | None = None,
-              ignore_entities: Iterable[str] = (), log: Log = None) -> tuple[list[Finding], list[dict]]:
+              summaries: dict[str, str] | None = None, ignore_entities: Iterable[str] = (),
+              log: Log = None) -> tuple[list[Finding], list[dict]]:
     """→ (reader/sweep findings with covered nets' facts attached, plus every uncovered net), rescue log.
 
-    A net is covered when the linker picks, among the findings on the same thread or citation or with the same
-    person/org, the one that is the same issue: its computed fact is appended to that finding's `why` and the net is
-    dropped. Otherwise the net stays, and the rescue log names it ({net, finding_id, title, why}): the caller marks those
-    `rescued_by_safety_net`. `msg_thread` (msg:<id> → thread id) lets the same-thread test work; `ignore_entities`
-    removes entities every finding shares (Avery's own company). Finding ids must be unique across `findings`."""
+    A waiting-on-Avery net (one unanswered message) is covered outright by a finding that cites that same message.
+    Otherwise code offers the options (hard facts, strongest first): the findings that cite the same message, event or
+    thread; else the findings that share a person or org. When a waiting-on-Avery net's thread was read and the reader
+    raised nothing on it, the reader's own summary of that thread is the option ("read:<thread id>"); aggregate nets
+    (a recruiter pattern across threads) never get one. The linker picks the option that is the
+    same issue, or none. A picked finding gets the net's computed fact appended to its `why` (the net is dropped); a
+    picked reader summary means the reader judged the thread and it needs nothing (the net is dropped, logged); no pick
+    keeps the net, and the rescue log names it ({net, finding_id, title, why, options}): the caller marks those
+    `rescued_by_safety_net`. `msg_thread` (msg:<id> → thread id) and `summaries` (thread id → the reader's summary,
+    digest.read.ReadResult.summaries) make those two tests possible; without them only shared citations and entities
+    narrow. `ignore_entities` removes entities every finding shares (Avery's own company). Finding ids must be unique."""
     msg_thread = msg_thread or {}
+    summaries = summaries or {}
     ignore = set(ignore_entities)
     out = list(findings)
     idx = {f.finding_id: i for i, f in enumerate(out)}
+    pool = [f for f in out if f.origin != "safety_net"]
     rescues: list[dict] = []
     kept: list[Finding] = []
     questions: list[LinkQuestion] = []
@@ -75,20 +99,37 @@ def reconcile(findings: list[Finding], nets: list[Finding], linker, *, msg_threa
             if log:
                 log("net_covered", {"net": net.kind, "net_id": net.finding_id, "finding": owner.finding_id, "by": "reported_quote"})
             continue
-        options = [f for f in out if f.origin != "safety_net" and _related(net, f, msg_thread, ignore)]
+        opts = _options(net, pool, msg_thread, ignore)
+        same = [f for f, label in opts if label == "same message"]
+        if net.kind in THREAD_NETS and same:
+            # identity, not similarity: the reader turned this very message into an issue (spec §5.3 "overlapping
+            # citations"); the fact goes to the most pressing of the findings that cite it
+            f = min(same, key=lambda x: (_NEEDS[x.needs_avery], x.priority))
+            if log:
+                log("net_covered", {"net": net.kind, "net_id": net.finding_id, "finding": f.finding_id, "by": "same_message",
+                                    "finding_needs_avery": f.needs_avery})
+            out[idx[f.finding_id]] = _attach(out[idx[f.finding_id]], net)
+            continue
+        options = [LinkOption(id=f.finding_id, text=f"[{label}] {f.kind}: {f.title}. {f.why}") for f, label in opts]
+        read = sorted(t for t in _threads(net, msg_thread) if t in summaries)
+        if net.kind in THREAD_NETS and len(read) == 1 and not any(_threads(net, msg_thread) & _threads(f, msg_thread) for f in pool):
+            options = [LinkOption(id=f"read:{t}", text=f"[same thread] the reader read this whole thread and raised nothing for Avery; its summary: "
+                                                      f"{summaries[t]}") for t in read]
         if not options:
             rescues.append({"net": net.kind, "finding_id": net.finding_id, "title": net.title, "why": net.why, "options": 0})
             kept.append(net)
             continue
         qid = f"n{len(questions)}"
         asked[qid] = net
-        questions.append(LinkQuestion(id=qid, item=f"{net.kind}: {net.title}. {net.why}",
-                                      options=[LinkOption(id=f.finding_id, text=f"{f.kind}: {f.title}. {f.why}") for f in options]))
+        questions.append(LinkQuestion(id=qid, item=f"{net.kind}: {net.title}. {net.why}", options=options))
     answers = linker.match("net_covers_finding", questions) if (linker is not None and questions) else {}
     for q in questions:
         net = asked[q.id]
-        picks = [p for p in answers.get(q.id, []) if p in idx]
-        if picks:
+        picks = [p for p in answers.get(q.id, []) if p in idx or p.startswith("read:")]
+        if picks and picks[0].startswith("read:"):
+            if log:
+                log("net_covered", {"net": net.kind, "net_id": net.finding_id, "thread": picks[0][5:], "by": "reader_summary"})
+        elif picks:
             i = idx[picks[0]]
             if log:
                 log("net_covered", {"net": net.kind, "net_id": net.finding_id, "finding": picks[0], "by": "linker",

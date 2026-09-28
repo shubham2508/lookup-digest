@@ -530,11 +530,15 @@ def build_contacts(world: NormalizedWorld, profile: ProfileConfig, linker=None, 
                 c.relationship = Relationship(category="unresolved", subtype=cl.subtype, stage=None, source="unresolved", evidence=ev)
             else:
                 c.relationship = Relationship(category=cl.category, subtype=cl.subtype, stage=cl.stage, source="inferred", evidence=ev)
+        if c.contact_id in roles:                            # 2. role-at-org overrides the classifier
+            _apply_rule(c, roles[c.contact_id].contact)
+            if c.relationship.category in LEARNABLE:
+                for dom in {domain_of(e) for e in c.emails} - owner_domains:
+                    learned.setdefault(dom, c.relationship.category)
+    for c, _o in pending:                                    # 5. fallback: the learned domain
         dom = next((domain_of(e) for e in c.emails if domain_of(e) in learned), None)
         if c.relationship.category == "unresolved" and dom is not None:
             c.relationship = Relationship(category=learned[dom], subtype=None, source="inferred", evidence=c.relationship.evidence)
-        if c.contact_id in roles:                            # 2. role-at-org overrides the classifier
-            _apply_rule(c, roles[c.contact_id].contact)
 
     d = ContactDirectory(contacts, by_email, by_slug, rules, signatures=sigs, classifications=cls)
     inherit_org_tiers(d, world.owner_emails)
