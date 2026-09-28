@@ -1,0 +1,3 @@
+- [ ] Send Q2 board update to Diane (due: 2026-09-18)
+- [ ] Review Q2 planning comments from Jordan and Priya (due: 2026-09-24)
+- [x] Approve September expense reports (due: 2026-09-21)

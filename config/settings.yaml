@@ -1,0 +1,53 @@
+# Settings that are not in profile.md (specs/architecture.md, specs/extraction_schema.md).
+# Profile-derived thresholds live in profile.yaml (compiled from profile/profile.md); the
+# thresholds_default block below is used only when the compiled profile lacks a value.
+
+timezone: America/Los_Angeles
+digest_time: "06:00"
+
+budget:
+  length_words: 350          # DESIGN_LOG O13; excludes header and action blocks
+  k_cap: 25                  # reduce: max items before "also pending"
+  question_budget: 2         # compose: max question cards
+  evidence_quote_max_words: 20
+
+context:
+  window_days: 14            # related extractions by shared entity, +/- days
+  max_items: 8
+
+calendar:
+  expand_before_days: 30     # RRULE expansion window around as_of
+  expand_after_days: 14
+
+freshness:
+  email_stale_hours: 24
+  calendar_stale_hours: 24
+  tasks_stale_days: 7
+
+thresholds_default:
+  investor_quiet_business_days: 3
+  hiring_stall_days: 5
+  recruiter_pattern: {count: 3, window_days: 7}
+  cadence_drop: {ratio: 2.0, min_current_gap_days: 3, baseline_days: [1, 20], recent_days: [21, 30]}
+  declined_meeting_lookback_days: 14
+  family_conflict_lookahead_days: 2
+  behavior_window_days: 30
+
+about_key_merge:
+  fuzzy_ratio: 0.85
+
+drafts:
+  max_sentences: 3
+  banned_phrases:
+    - "hope this email finds you well"
+    - "circling back"
+    - "just wanted to"
+
+llm:
+  cache_dir: .cache/llm
+  max_workers: 8
+  seed: 7
+  max_retries_transport: 3
+
+store:
+  path_template: "runs/{world}/store.sqlite"

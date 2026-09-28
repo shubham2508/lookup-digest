@@ -1,0 +1,129 @@
+# Mini answer key for the hand-made fixture. Same schema as eval/manifests/<world>.yaml (eval/manifest_schema.py).
+meta:
+  world: mini
+  anchor: 2026-09-24
+  run_days: [30]
+  counts: {emails: 7, notes: 1, tasks: 3, events: 5}
+
+items:
+  - source_id: t-halberd-rollout
+    kind: thread
+    category: customers
+    storyline: S5
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [rollout:halberd:oct-6]
+      ball_awaiting: avery
+      closed_by_courtesy: false
+      sender_relationship: {category: customer, subtype: reference, stage: active}
+      asks: [{to_avery: true, kind: information, deadline_day: 28, status: open}]
+    messages:
+      - {message_id: "<20260922-1408.renee@halberd.com>", day: 28, time: "14:08", from_email: renee.tan@halberd.com,
+         to: [avery@tessera.io], beat_ref: S5.b1, must_include: ["still on"]}
+  - source_id: t-marcus-captable
+    kind: thread
+    category: investors_board
+    storyline: S1
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [deal:series-a:cap-table]
+      ball_awaiting: avery
+      closed_by_courtesy: false
+      sender_relationship: {category: capital, subtype: lead_investor, stage: term_sheet}
+      commitments:
+        - {owner: avery, about: deal:series-a:cap-table, due_day: 28, due_time: "23:59", status_in_thread: open}
+    messages:
+      - {message_id: "<20260922-1642.marcus@inflectionpoint.vc>", day: 28, time: "16:42", from_email: marcus@inflectionpoint.vc,
+         to: [avery@tessera.io], beat_ref: S1.b2}
+      - {message_id: "<20260922-2130.avery@tessera.io>", day: 28, time: "21:30", from_email: avery@tessera.io,
+         to: [marcus@inflectionpoint.vc], beat_ref: S1.b3, must_include: ["will send it tonight"], is_from_avery: true}
+  - source_id: nl-scbrief-212
+    kind: newsletter
+    category: newsletters
+    expected:
+      type: newsletter
+      news_items:
+        - {headline_hint: "DeepSeek-V4 Pro volume pricing", topics: [inference-cost], entities: [OpenRouter, DeepSeek], attaches_to: [deal:series-a:model]}
+        - {headline_hint: "MX Summit case studies", topics: [customers], entities: [Halberd Manufacturing, Northstar Foods], attaches_to: [rollout:halberd:oct-6]}
+        - {headline_hint: "EU telemetry guidance", topics: [regulation], entities: [], attaches_to: []}
+  - source_id: auto-docusign-mei
+    kind: automated
+    category: hiring
+    storyline: S8
+    expected:
+      type: automated
+      automated: {system: DocuSign, action_bearing: true, action_kind: signature, about: offer:mei-tanaka}
+  - source_id: mkt-rippleboard
+    kind: marketing
+    category: saas_marketing
+    must_not_surface: true
+    must_not_reason: marketing
+    expected: {type: marketing}
+  - source_id: t-sam-daycare
+    kind: thread
+    category: personal
+    storyline: S11
+    expected:
+      type: human_thread
+      domain: personal
+      intent_primary: ask
+      about: [family:daycare]
+      ball_awaiting: avery
+      closed_by_courtesy: false
+      sender_relationship: {category: family, subtype: partner}
+      asks: [{to_avery: true, kind: decision, deadline_day: 30, status: open}]
+
+contacts:
+  - {email: renee.tan@halberd.com, name: Renee Tan, org: Halberd Manufacturing, title: Procurement Lead,
+     category: customer, subtype: reference, tier: P1, rules: [same_day_reply], stages: [{from_day: 1, stage: active}]}
+  - {email: marcus@inflectionpoint.vc, name: Marcus Webb, org: Inflection Point Ventures, category: capital,
+     subtype: lead_investor, tier: P0, in_profile: true, stages: [{from_day: 1, stage: term_sheet}]}
+  - {email: sam@parkfamily.example, name: Sam Park, category: family, subtype: partner, tier: P0,
+     rules: [never_draft], in_profile: true}
+  - {email: dana@lumenanalytics.example, name: Dana Whitfield, org: Lumen Analytics, category: vendor,
+     subtype: evaluating, tier: null, stages: [{from_day: 20, stage: evaluating}]}
+
+about_keys:
+  should_merge: [["deal:series-a:cap-table", "deal:series-a:captable"]]
+  should_not_merge: [["deal:series-a:cap-table", "deal:series-a:model"]]
+
+run_days:
+  - run_day: 30
+    candidates:
+      - {type: commitment_overdue, about: deal:series-a:cap-table, storyline: S1, facts_hint: {days_overdue: 1}}
+      - {type: commitment_not_in_tasks, about: deal:series-a:cap-table, storyline: S1}
+      - {type: reply_owed, about: rollout:halberd:oct-6, storyline: S5}
+      - {type: approval_pending, about: offer:mei-tanaka, storyline: S8}
+      - {type: "calendar_conflict:deep_work", about: meeting:lumen-demo, storyline: S12}
+      - {type: "calendar_conflict:family", about: family:pediatrician, storyline: S11}
+      - {type: news_attachment, about: rollout:halberd:oct-6}
+      - {type: task_due, about: report:q2-planning}
+    items:
+      - {about: deal:series-a:cap-table, priority: P0, section: urgent, actions: [task, forward_delegate],
+         cites_any: [t-marcus-captable], one_thing: true, storyline: S1}
+      - {about: rollout:halberd:oct-6, priority: P1, section: urgent, actions: [reply], cites_any: [t-halberd-rollout], storyline: S5}
+      - {about: offer:mei-tanaka, priority: P1, section: decisions, actions: [approve], cites_any: [auto-docusign-mei], storyline: S8}
+      - {about: family:pediatrician, priority: P0, section: calendar_personal, actions: [message_person], storyline: S11}
+      - {about: family:daycare, priority: P0, section: calendar_personal, actions: [message_person], cites_any: [t-sam-daycare], storyline: S11}
+      - {about: meeting:lumen-demo, priority: P2, section: calendar_personal, actions: [calendar_response, decide], storyline: S12}
+    absent: []
+    one_thing: {about: deal:series-a:cap-table, cites_any: [t-marcus-captable]}
+    noise_source_ids: [mkt-rippleboard]
+
+assertions:
+  - {id: S1-one-thing, kind: one_thing, run_day: 30, storyline: S1, args: {about: deal:series-a:cap-table, cites_any: [t-marcus-captable]}}
+  - {id: S1-task-action, kind: action_present, run_day: 30, storyline: S1, args: {about: deal:series-a:cap-table, action: task}}
+  - {id: S11-no-draft-sam, kind: no_draft_to, run_day: 30, storyline: S11, args: {contact: sam@parkfamily.example}}
+  - {id: marketing-absent, kind: item_absent, run_day: 30, args: {source_id: mkt-rippleboard}}
+  - {id: S12-lumen-flagged, kind: candidate_present, run_day: 30, storyline: S12, args: {type: "calendar_conflict:deep_work", about: meeting:lumen-demo}}
+  - {id: S12-jordan-not-flagged, kind: candidate_absent, run_day: 30, storyline: S12, args: {type: "calendar_conflict:deep_work", about: meeting:jordan-1on1}}
+  - {id: news-decoy-absent, kind: item_absent, run_day: 30, args: {about: other:eu-telemetry-guidance}}
+
+sim_avery:
+  - {scope_about: rollout:halberd:oct-6, intended_option: 1, rationale: "confirm the date; the sprint note says on track"}
+
+label_audit: {sample_size: 0}
