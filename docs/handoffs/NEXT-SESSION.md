@@ -9,8 +9,8 @@ Shubham wants short, plain answers, tables over paragraphs, and a status line be
 - **Submission:** the repo is due the morning of 2026-09-29; walkthrough the following week.
 - **Last commit:** `196e557` — known issues fixed in code (thread-level merge in reduce, earned P0, exact-scope rulings,
   linker for role-at-org, P0 one-thing guard) and **Jev** behind the linker. All tests green.
-- **No final numbers yet on this code.** Every earlier report was either before the prompt-leak fix (commit 5038594) or
-  before these fixes. The last full reports in `eval/reports/` are stale; do not quote them as results.
+- **No final numbers yet on this code.** The stale dev report was deleted (a7ae466+); the final matrix writes the
+  reports to quote. Earlier numbers (before commit 5038594, the prompt-leak fix) are not results.
 
 ## What to do next, in order
 
@@ -27,7 +27,7 @@ Shubham wants short, plain answers, tables over paragraphs, and a status line be
 2. **Final runs** (nothing else may run at the same time; do not edit `digest/`, `prompts/`, `config/`, `eval/`
    while they run):
    ```
-   rm -rf runs/dev runs/heldout && mkdir -p runs/dev runs/heldout
+   rm -rf runs/dev runs/heldout runs/_archive && mkdir -p runs/dev runs/heldout   # _archive = superseded local runs
    nohup sh -c 'uv run digest eval --matrix --world dev --keep-going > runs/dev/matrix.log 2>&1; uv run digest eval --matrix --world heldout --keep-going > runs/heldout/matrix.log 2>&1' >/dev/null 2>&1 &
    ```
    ~1.5 h. Cost ~$1–1.5 per world (extractor v2 is cached for dev days already run; held-out reads cold).
