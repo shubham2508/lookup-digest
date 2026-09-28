@@ -1,1 +1,1 @@
-{"stage": "extract", "item": "<20260922-1408.renee@halberd.com>", "reason": "evidence_invalid", "why": "quote not a substring of the source", "path": "asks[1]"}
+{"stage": "read", "item": "thread:20260922-1408.renee@halberd.com", "reason": "citation_invalid", "why": "quote not a substring of the source", "path": "findings[0].citations[1]"}

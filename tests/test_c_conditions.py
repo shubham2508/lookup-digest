@@ -46,7 +46,7 @@ def test_honesty_variants(world):
     nn = c["no_notes"]
     assert nn.status == "fail"
     [bad] = [a for a in nn.assertions if a.passed is False]
-    assert bad.id == "hv-nonotes-no-unhedged-status" and bad.attributed_stage == "materializer"
+    assert bad.id == "hv-nonotes-no-unhedged-status" and bad.attributed_stage == "materialize"
     assert bad.artifact_links[0].endswith("_no_notes/actions.jsonl#L3")
 
 

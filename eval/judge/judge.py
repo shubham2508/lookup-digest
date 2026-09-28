@@ -3,10 +3,14 @@
 - `draft`:  factual_consistency · tone_for_recipient · assumptions_flagged, per materialized draft.
 - `digest`: answers_three_questions · no_noise · honest_about_gaps, per run day.
 
-The judge of record is the `judge` role; until Shubham picks it, `LLMRoleUnconfigured` makes the report say
-"judge: skipped (no model configured)". `calibrate()` scores the same items with `judge_reference` (Fable, one
-round, ≈ $1) and the candidate judge, and reports agreement within 1 point (≥ 80% keeps the cheap judge).
-`judge_reference` is never used in a real eval run.
+The API judge is the `judge` role (DeepSeek V4.1 Flash, `digest eval --judge`); an unconfigured role makes the report
+say "judge: skipped". `calibrate()` scores the same items with `judge_reference` and the candidate judge, and reports
+agreement within 1 point (≥ 80% keeps the cheap judge).
+
+In-session judging (OPEN_QUESTIONS #20: the v2 judge of record is the orchestrator session applying
+`prompts/judge.md`, no API spend): `export_items` writes each item with its rendered prompt to a JSONL file;
+the session writes one JudgeScores per item back (`{id, kind, criteria: [{name, score, reason}]}`, JSON or YAML list),
+and `load_scores` validates it against the same rubric into a JudgeRun (role `in_session`) the report reads.
 """
 from __future__ import annotations
 
@@ -191,3 +195,47 @@ def calibrate(items: list[JudgeItem], llm: LLM | None = None, reference_role: st
             if k in c.scores:
                 cal.rows.append((r.item_id, k, v, c.scores[k]))
     return cal
+
+
+# ----------------------------------------------------------------------------- in-session judging (#20)
+def export_items(items: list[JudgeItem], path) -> int:
+    """One JSONL line per item: id, kind, the rubric's criteria, and the judge prompt rendered for it."""
+    from pathlib import Path
+
+    prompt = load_prompt("judge")
+    rows = [{"id": it.id, "kind": it.kind, "criteria": list(RUBRICS[it.kind]), "prompt_version": prompt.version_tag,
+             "prompt": prompt.render(rubric=it.kind, material=it.material)} for it in items]
+    p = Path(path)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), encoding="utf-8")
+    return len(rows)
+
+
+def load_scores(path, role: str = "in_session") -> JudgeRun:
+    """Scores written by an in-session judge, validated like an API judge's output (JudgeScores + the rubric)."""
+    from pathlib import Path
+
+    import yaml
+
+    p = Path(path)
+    text = p.read_text(encoding="utf-8")
+    if p.suffix == ".jsonl":
+        rows = [json.loads(x) for x in text.splitlines() if x.strip()]
+    else:
+        rows = yaml.safe_load(text) or []
+    run = JudgeRun(role, "ok", note=f"scores from {p.name}")
+    for r in rows:
+        jr = JudgeResult(str(r.get("id")), str(r.get("kind")), role, model=r.get("model"))
+        try:
+            scores = JudgeScores.model_validate({"criteria": r.get("criteria") or []})
+        except ValueError as e:
+            jr.error = f"invalid scores: {str(e)[:200]}"
+        else:
+            bad = _check(scores, jr.kind) if jr.kind in RUBRICS else f"unknown kind {jr.kind!r}"
+            if bad:
+                jr.error = bad
+            else:
+                jr.scores = {c.name: c.score for c in scores.criteria}
+                jr.reasons = {c.name: c.reason for c in scores.criteria}
+        run.results.append(jr)
+    return run

@@ -7,7 +7,16 @@ import pytest
 from digest.config import load_models
 from digest.llm import LLM
 from digest.prompts import load_prompt
-from eval.judge.judge import RUBRICS, JudgeScores, calibrate, digest_item, draft_items, judge_items
+from eval.judge.judge import (
+    RUBRICS,
+    JudgeScores,
+    calibrate,
+    digest_item,
+    draft_items,
+    export_items,
+    judge_items,
+    load_scores,
+)
 from eval.scorer.artifacts import RunView
 from eval.scorer.match import SourceIndex
 from tests.c_helpers import DAY, MINI_RUNS, ROOT, mini_manifest
@@ -92,3 +101,40 @@ def test_calibration_agreement(tmp_path, items):
 def test_scores_outside_range_fail_validation():
     with pytest.raises(ValueError):
         JudgeScores.model_validate({"criteria": [{"name": "no_noise", "score": 6, "reason": "x"}]})
+
+
+# ----------------------------------------------------------------------------- in-session judging (OPEN_QUESTIONS #20)
+def test_in_session_round_trip(tmp_path, items):
+    """The orchestrator session judges exported items with prompts/judge.md; the report reads its scores back."""
+    import yaml
+
+    path = tmp_path / "items.jsonl"
+    assert export_items(items, path) == len(items)
+    rows = [json.loads(x) for x in path.read_text().splitlines()]
+    assert rows[0]["criteria"] == list(RUBRICS[rows[0]["kind"]]) and "RUBRIC" in rows[0]["prompt"]
+    scores = [{"id": r["id"], "kind": r["kind"], "criteria": [{"name": c, "score": 4, "reason": "ok"} for c in r["criteria"]]}
+              for r in rows]
+    scores.append({"id": "bad", "kind": "digest", "criteria": [{"name": "no_noise", "score": 4, "reason": "x"}]})
+    (tmp_path / "scores.yaml").write_text(yaml.safe_dump(scores))
+    run = load_scores(tmp_path / "scores.yaml")
+    assert run.role == "in_session" and run.status == "ok"
+    assert [r.error for r in run.results if r.error] == ["criteria ['no_noise'] ≠ rubric " + str(list(RUBRICS["digest"]))]
+    assert run.means()["no_noise"] == 4.0
+
+
+def test_judge_scores_fill_the_comparison_table():
+    from eval.judge.judge import JudgeResult, JudgeRun
+    from eval.report import judge_means, render_report
+    from eval.scorer.runner import score_world
+
+    run = JudgeRun("in_session", "ok", results=[
+        JudgeResult("d30/digest", "digest", "in_session", scores=dict(zip(RUBRICS["digest"], (4, 3, 5), strict=True))),
+        JudgeResult("baseline/d30/digest", "digest", "in_session", scores=dict(zip(RUBRICS["digest"], (2, 1, 3), strict=True))),
+        JudgeResult("d30/i2:reply", "draft", "in_session", scores=dict(zip(RUBRICS["draft"], (5, 4, 4), strict=True)))])
+    assert judge_means(run, "digest", baseline=False) == "4.0 / 3.0 / 5.0"
+    assert judge_means(run, "digest", baseline=True) == "2.0 / 1.0 / 3.0"
+    assert judge_means(run, "draft", baseline=True) is None
+    m = mini_manifest()
+    ws = score_world("tests/fixtures/mini", MINI_RUNS, manifest=m)
+    text = render_report("tests/fixtures/mini", {("pipeline", "dev"): ws}, m, run)
+    assert "| Judge · digest (3 questions / no noise / honest) | — | 4.0 / 3.0 / 5.0 | 2.0 / 1.0 / 3.0 | — | — | — |" in text

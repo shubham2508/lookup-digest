@@ -34,6 +34,20 @@ longer occurs. (b) Block the citation match only when the item also cites one of
 **Suggestion.** (b), noted in DESIGN.md as a grader change made after results were seen. Your call; not changed.
 
 
+### 21. Track C · v2 scorer interpretations (C-grader, 2026-09-29, unattended): built with the picks below; confirm or redirect
+
+Where: `eval/scorer/common.py` (selectors), `readers.py` (C1), `assertions.py` (C3), `attribution.py`, `report.py`.
+
+| # | What | Options | Picked |
+|---|---|---|---|
+| 21a | **Key-only selectors miss v2 items.** Readers write light tags (`deal:series-a`), so an assertion with an `about` and no `cites_any` (`S4-d30-present`, `S2-d30-0605-present`, …) finds nothing although the reader flagged the thread. | (1) keep key-only; (2) when a selector names a key but no sources, that day's expected items' `cites_any` for the key stand in; (3) add `cites_any` to every assertion (manifest edit, Track B) | (2), for every item-level check and the candidate kinds, v1 and v2 alike. On v1's own runs it credits items v1 rendered under other keys (franchise tax, press request): dev 115 → 118/175, held-out 129 → 137/207. |
+| 21b | **Which v1 numbers head the table.** | (1) as reported (handoff C4); (2) rescored with this scorer (same rules as v2) | Column = (1), line under the table = (2), both in `eval/v1_results.yaml` (the v1 runs are overwritten by v2 runs). Suggest DESIGN.md quotes (2) for any v1-vs-v2 claim. |
+| 21c | **C3 about alternative** ("type = v1 name **or** about matches"). Taken literally, rescoring v1 turned three passing absent checks into failures (an `approval_pending` candidate about `candidate:ines-ferreira` counted as a `hiring_stall`). | (1) any finding about the key; (2) the about alternative only for free-text kinds (a finding that names another v1 rule is that rule); `contradiction` / `suspicious_content` / `news_attachment` also need their Finding analog (`contradictions`, `suspicious_instructions`, the news sweep); only live findings (yes, or unsure with a card) | (2). With it, v1 rescored matches v1 as reported except the 21a/21d fixes. |
+| 21d | **`count_items_of_type` without `about`** on a type v2 has no rule for (`cadence_drop`, `obligation_cadence`, …): the name never appears in v2. `about` was ignored in v1 (`BG-exp-one-item` counted all 19 approval items). | (1) name only; (2) that day's expected keys of the type, counted by key (not by shared note citations); honour `about` | (2) |
+| 21e | **Reader diagnostics truth (C1).** The label rule (ball on Avery / open ask / open promise → yes) disagrees with the answer key on some threads: must-not threads with the ball on Avery (courtesy close, far deadline, S16 fulfilled elsewhere) and per-day timing (S3 before 3 business days). | (1) label only; (2) label + day rules | (2): thread fully visible at as_of; cited by an included item that day → yes with its band and actions (a must-not thread behind a pattern item, e.g. TalentBridge, not scored); `must_not_surface` → no; key in that day's `absent` or an excluded item cites it → no; `fulfilled_by_source` closes a promise. |
+| 21f | **Stages the chain lacks.** | — | `spine` (before `read`) for contact classification; `net` also covers the code floors (`enforce`) when they override a right finding, and hard-rule violations in `triage.jsonl`. |
+
+
 ## Decided
 
 - **2026-09-29 · Orchestrator fixes from the final dev runs (implementing the spec, no design change).** Traced with
