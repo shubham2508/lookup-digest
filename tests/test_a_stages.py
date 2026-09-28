@@ -181,3 +181,18 @@ def test_focus_only_keeps_family_and_p0_as_outside_filter(mini_dir, tmp_path):
     assert fam and not (set(fam) & set(hidden)) and not (set(fam) & set(outside))
     assert any(red_it.priority == "P0" for red_it in red.items if red_it.id in outside), "a P0 outside the filter is kept as a one-liner"
     assert all(red_it.priority != "P0" for red_it in red.items if red_it.id in hidden)
+
+
+def test_stale_inbox_qualifies_reduced_items_too():
+    """An item that lands in 'Also pending' keeps the sync-gap qualifier (DESIGN_LOG §4.4)."""
+    from datetime import datetime
+    from types import SimpleNamespace
+
+    from digest.pipeline import qualify_reduced
+
+    stale = SimpleNamespace(state="stale", latest_item_time=datetime(2026, 9, 22, 18, 0, tzinfo=TZ))
+    quiet = SimpleNamespace(candidate_types=["quiet_thread"], why="Quiet for three business days.")
+    news = SimpleNamespace(candidate_types=["news_attachment"], why="Price cut on Oct 1.")
+    qualify_reduced(SimpleNamespace(items=[quiet, news]), {"email": stale})
+    assert "may be a sync gap" in quiet.why.lower() and "Tue 18:00" in quiet.why
+    assert news.why == "Price cut on Oct 1."

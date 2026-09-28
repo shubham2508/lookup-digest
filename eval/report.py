@@ -157,7 +157,8 @@ def _simulation_section(ws: WorldScore) -> list[str]:
 
 def render_report(world: str, scores: dict[tuple[str, str], WorldScore], manifest: Manifest,
                   judge: JudgeRun | None = None, calibration: Calibration | None = None, on: date | None = None) -> str:
-    main = scores.get(("pipeline", "dev")) or scores.get(("pipeline", "heldout")) or next(iter(scores.values()))
+    label = "heldout" if "heldout" in world else "dev"   # detail the world this report is for, not always dev
+    main = scores.get(("pipeline", label)) or next(iter(scores.values()))
     base = [a for a in main.assertions if not a.variant and not a.customize]
     extra = [a for a in main.assertions if a.variant or a.customize]
     failed = [a for a in base if a.passed is False]

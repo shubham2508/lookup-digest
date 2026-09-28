@@ -155,7 +155,10 @@ def render_digest(*, as_of: datetime, header: str, compose: ComposeResult, reduc
         for iid in pending[:ALSO_PENDING_MAX]:
             it = reduced[iid]
             ci = items.get(iid)
-            out.append(_one_liner(ci.what if ci else titles.get(iid, it.about), _cites(it, idx, 1)))
+            what = ci.what if ci else titles.get(iid, it.about)
+            if "sync gap" in it.why.lower() and "sync gap" not in what.lower():
+                what = f"{_end(what)} May be a sync gap."   # honesty qualifiers survive the one-liner
+            out.append(_one_liner(what, _cites(it, idx, 1)))
         if len(pending) > ALSO_PENDING_MAX:
             out.append(f"- …and {len(pending) - ALSO_PENDING_MAX} more lower-priority items (full list in reduce.json).")
         out += ["", "---", ""]

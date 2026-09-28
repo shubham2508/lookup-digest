@@ -62,23 +62,35 @@ class PipelineResult:
 SYNC_GAP_TYPES = {"quiet_thread", "commitment_overdue", "commitment_due", "reply_owed", "obligation_cadence"}
 
 
-def qualify_for_freshness(composed: ComposeResult, by_item: dict, cands: dict, freshness: dict, as_of: datetime) -> None:
-    """DESIGN_LOG §4.4, enforced in code: a 'quiet' or 'overdue' conclusion drawn from a stale inbox says it may be a
-    sync gap; a calendar conflict drawn while the work calendar is unreadable says overlaps were not checked."""
+def _freshness_qualifiers(types: set[str], why: str, freshness: dict) -> list[str]:
     email, cal = freshness.get("email"), freshness.get("calendar")
     email_stale = email is not None and email.state != "ok"
     cal_bad = cal is not None and cal.state in ("unreadable", "missing")
     synced = email.latest_item_time.strftime("%a %H:%M") if email_stale and email.latest_item_time else "unknown"
+    add = []
+    if email_stale and types & SYNC_GAP_TYPES and "sync gap" not in why.lower():
+        add.append(f"May be a sync gap: inbox last synced {synced}.")
+    if cal_bad and any(t.startswith("calendar_conflict") for t in types) and "calendar" not in why.lower():
+        add.append("Work calendar unreadable; overlaps not checked.")
+    return add
+
+
+def qualify_reduced(reduced, freshness: dict) -> None:
+    """The same qualifiers on every reduced item, so an item that ends up in 'Also pending' keeps them too."""
+    for it in reduced.items:
+        add = _freshness_qualifiers(set(it.candidate_types), it.why, freshness)
+        if add:
+            it.why = (it.why.rstrip() + " " + " ".join(add)).strip()
+
+
+def qualify_for_freshness(composed: ComposeResult, by_item: dict, cands: dict, freshness: dict, as_of: datetime) -> None:
+    """DESIGN_LOG §4.4, enforced in code: a 'quiet' or 'overdue' conclusion drawn from a stale inbox says it may be a
+    sync gap; a calendar conflict drawn while the work calendar is unreadable says overlaps were not checked."""
     for ci in composed.items:
         it = by_item.get(ci.id)
         if it is None:
             continue
-        types = set(it.candidate_types)
-        add = []
-        if email_stale and types & SYNC_GAP_TYPES and "sync gap" not in ci.why.lower():
-            add.append(f"May be a sync gap: inbox last synced {synced}.")
-        if cal_bad and any(t.startswith("calendar_conflict") for t in types) and "calendar" not in ci.why.lower():
-            add.append("Work calendar unreadable; overlaps not checked.")
+        add = _freshness_qualifiers(set(it.candidate_types), ci.why, freshness)
         if add:
             ci.why = (ci.why.rstrip() + " " + " ".join(add)).strip()
 
@@ -218,6 +230,7 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
 
         with ctx.timed("reduce"):
             reduced = reduce_items(triage, comp.candidates, comp, settings.budget.k_cap, comp.about_merges)
+        qualify_reduced(reduced, norm.freshness)
         ctx.write_json("reduce", reduced)
         by_item = {it.id: it for it in reduced.items}
         cands = {c.candidate_id: c for c in comp.candidates}
@@ -249,6 +262,8 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
                     ver.also_pending = [i for i in ver.also_pending if i != iid]
             for iid in cstats.hidden_by_focus:
                 ver.also_pending = [i for i in ver.also_pending if i != iid]
+        # the artifact lists every id not in a section: also-pending and the P0 one-liners outside a customize filter
+        composed.cut_ids = list(dict.fromkeys(list(composed.cut_ids) + list(ver.outside_filter)))
         ctx.write_json("compose", composed)
         ctx.write_jsonl("actions", ver.actions)
         ctx.write_json("verify", ver.result)
