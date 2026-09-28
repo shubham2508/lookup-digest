@@ -1,6 +1,6 @@
 ---
 name: baseline
-version: 1
+version: 2
 model_role: compose
 output_model: BaselineDigest
 ---
@@ -19,7 +19,7 @@ As of <Day HH:MM> PT · inbox synced <Day HH:MM> · calendar ok · notes ok · t
 ---
 
 ## Urgent To-Do Today
-- **<What.>** <Why.> *[email: Renee, Tue 14:08]*
+- **<What.>** <Why.> *[email: Dara, Tue 14:08]*
   <action lines>
 
 ---

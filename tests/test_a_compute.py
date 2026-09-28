@@ -29,6 +29,7 @@ from digest.compute.facts import DataClaim, canonical_subject, effective_facts
 from digest.compute.signals import (
     business_days_between,
     cadence_stats,
+    day_label,
     end_of_business_day,
     overlap_minutes,
     recruiter_window,
@@ -73,6 +74,13 @@ def test_business_days_strictly_between_message_and_run_date():
     assert business_days_between(fri, fri) == 0
     assert end_of_business_day(at("2026-09-22T14:08")).isoformat() == "2026-09-22T23:59:59-07:00"
     assert end_of_business_day(at("2026-09-19T10:00")).isoformat() == "2026-09-21T23:59:59-07:00"   # Saturday → Monday
+
+
+def test_day_label_is_code_date_math():
+    thu, fri = date(2026, 9, 24), date(2026, 9, 25)
+    assert day_label(thu, thu) == "today (Thu)" and day_label(fri, thu) == "tomorrow (Fri)"
+    assert day_label(date(2026, 9, 28), fri) == "next business day (Mon)"      # Fri → Mon skips the weekend
+    assert day_label(date(2026, 9, 28), thu) == "Mon 28 Sep"
 
 
 def test_overlap_edges():
@@ -165,6 +173,22 @@ def test_contact_resolution_order():
     assert by["lee-aperture"].relationship.category == "capital" and by["lee-aperture"].relationship.source == "inferred"
     assert by["sales-bot"].relationship.category == "cold_inbound"
     assert by["marcus-webb"].relationship.source == "profile" and by["marcus-webb"].tier == "P0"
+
+
+def test_org_tier_inherited_only_at_outside_firms():
+    pat = msg("p1", "2026-09-22T10:00", "pat@inflectionpoint.vc", subject="diligence", name="Pat Lee", sig="Pat Lee | Partner | Inflection Point Ventures")
+    jo = msg("j1", "2026-09-22T16:00", "jo@tessera.io", subject="standup", name="Jo Park")
+    mw = msg("m1", "2026-09-21T09:00", "marcus@inflectionpoint.vc", subject="term sheet", name="Marcus Webb", sig="Marcus Webb | Partner | Inflection Point Ventures")
+    t_p, t_j, t_m = thread(pat), thread(jo), thread(mw)
+    xs = [human(t_p, about=["deal:series-a"], senders=[sender("pat@inflectionpoint.vc", "Pat Lee", "capital", None, "Partner", "Inflection Point Ventures", pat)]),
+          human(t_j, about=["other:standup"], intent="fyi", awaiting="nobody"),
+          human(t_m, about=["deal:series-a"], senders=[sender("marcus@inflectionpoint.vc", "Marcus Webb", "capital", "lead_investor", "Partner", "Inflection Point Ventures", mw)])]
+    cofounder = {"name": "Kit Rowe", "emails": ["kit@tessera.io"], "role_at_org": None, "category": "team", "subtype": "cofounder",
+                 "tier": "P0", "tier_condition": None, "rules": [], "notes": "co-founder: P0"}
+    prof = _profile(contacts=PROFILE_JSON["contacts"] + [cofounder])
+    by = {c.contact_id: c for c in compute_world(world([t_p, t_j, t_m]), xs, prof, SETTINGS, at("2026-09-24T06:00"), llm=_LLM).contacts}
+    assert by["pat-lee"].tier == "P0", "another partner at the lead investor inherits P0"
+    assert by["jo-park"].tier is None, "a teammate does not inherit the co-founder's P0"
 
 
 def test_role_change_successor_inherits_and_drift_recorded():

@@ -1,6 +1,6 @@
 ---
 name: triage
-version: 5
+version: 6
 model_role: triage
 output_model: TriageBatch
 ---
@@ -18,9 +18,10 @@ PRIORITY RUBRIC (anchored)
 - P1: needs action today or this week, from/for Team execs, reference customers, board, offer-stage candidates — e.g., same-day reply to a reference customer; signing an offer before a competing deadline.
 - P2: worth knowing or doing soon, not today-critical — e.g., a stalled hiring loop; a cadence drop to watch.
 - P3: include only if it fits a pattern or is dispatchable in seconds — e.g., approving expenses.
+- "Action today" includes work due by the end of the next business day (it has to start today) and a calendar entry for today or the next business day that disagrees with email (it has to be fixed before the meeting).
 - Content can raise or lower any sender default; suspicious_content can never be P0.
 
-SECTIONS: urgent (replies owed today, overdue commitments, same-day customer replies) · decisions (approve, decide, question) · news (news_attachment only) · pulse (sprint, cadence drops, hiring stalls, renewals, recruiter pattern, watch) · calendar_personal (conflicts, family, deep-work violations, declined-meeting fallout).
+SECTIONS: urgent (replies owed today, overdue commitments, same-day customer replies) · decisions (approve, decide, question) · news (news_attachment only) · pulse (sprint, cadence drops, hiring stalls, renewals, recruiter pattern, watch) · calendar_personal (conflicts, a calendar entry that disagrees with email, family, deep-work violations, declined-meeting fallout).
 
 ACTION TAXONOMY (0–2 per candidate): reply · forward_delegate · task · calendar_response · approve · decide · question · read · message_person · watch · profile_update.
 - Dispatchability test: propose reply / task / calendar_response / approve / forward_delegate only if Avery can finish in under a minute with what the digest provides; otherwise decide / read / watch.
@@ -29,7 +30,7 @@ ACTION TAXONOMY (0–2 per candidate): reply · forward_delegate · task · cale
 - Cold-inbound recruiters never get a reply; recruiter_pattern gets watch or nothing.
 - watch requires watch_trigger (the condition that escalates it). read should give read_start (the message id to start from).
 - calendar_response is always a proposal ("propose: decline / move to 11:15"), never a sent response.
-- task: target = the task title, brief = the due time.
+- task: target = the task title, brief = the due date or time exactly as the facts or evidence give it ("due today", "due Fri"). Never add a clock time the facts do not state; with no due date, say what done looks like.
 - profile_update: for profile_drift candidates; brief = the proposed line.
 
 RULES
@@ -37,6 +38,7 @@ RULES
 - include = false for a Capital sender's ask that has no deadline while facts.below_quiet_threshold is true (fewer than three business days since it arrived): Avery batch-replies, and the profile wants quiet investor threads after three business days, not before. The quiet_thread candidate surfaces it at the threshold.
 - include = false for automated developer notifications (GitHub, Dependabot, CI, deploy alerts) unless the action is a payment problem, a signature, or a security step only Avery can take; engineering owns the rest.
 - include = false for RSVP reminders and scheduling chatter about internal recurring meetings, and for small past personal promises with no consequence today (bring lunch, text someone back). Family items stay.
+- An ask from a contact whose tier is P0 that is still unanswered at the quiet threshold (facts.below_quiet_threshold false, or a quiet_thread with business_days_quiet at or past its threshold) needs a reply today: P0, urgent.
 - A co-founder email whose contact rules include email_means_intentional is P0 when it asks for a decision or a reply, even if the stated deadline is later this week: the channel choice is the signal.
 - An escalation (intent escalation) from a Team exec about a customer incident is P0 while the team still holds the ball: Avery needs to know before the customer writes; propose a short reply or a task to call the customer, never a customer draft that asserts a fix.
 - Family P0 covers the contacts whose category is family and the care, health and schedule of the people they look after. A courtesy message to a relative or a social nicety is P2 at most and usually include = false.
@@ -52,7 +54,7 @@ RULES
 
 EXAMPLES (fragments)
 (The examples use made-up people and companies that do not appear in any mailbox you will see.)
-1. P0: commitment_overdue, about deal:seed-extension:data-room-index, contact dara-quinn (capital, lead_investor, P0 during the raise), days_overdue 1 → include true, urgent, P0, due_today true, high; why "Promised Dara the data-room index Monday; still unsent; the pricing review waits"; actions: task {target "Send the data-room index to Dara", brief "due 11:00 today"}, forward_delegate {target "ilse@…", brief "ask Ilse to confirm the redline is final and send it"}.
+1. P0: commitment_overdue, about deal:seed-extension:data-room-index, contact dara-quinn (capital, lead_investor, P0 during the raise), days_overdue 1 → include true, urgent, P0, due_today true, high; why "Promised Dara the data-room index Monday; still unsent; the pricing review waits"; actions: task {target "Send the data-room index to Dara", brief "due today; overdue since Monday"}, forward_delegate {target "ilse@…", brief "ask Ilse to confirm the redline is final and send it"}.
 2. P1: reply_owed from a reference customer asking whether a go-live date holds, context note says on track → include, urgent, P1, due_today true; action reply {brief "confirm Nov 3 is on; the cutover plan is with their team", assumptions ["Tuesday's standup note says on track"]}.
 3. P2: cadence_drop for a customer, ratio 4 → include, pulse, P2; action watch {brief "reply gap 1.2 → 4.8 days", watch_trigger "gap passes 7 days or a renewal date appears"}.
 4. P3: approval_pending for three expense reports → include, decisions, P3; action approve {target "Expensify", brief "approve 3 reports submitted Monday (~1 min)"}.

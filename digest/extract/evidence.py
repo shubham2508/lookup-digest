@@ -17,7 +17,9 @@ _QUOTES = str.maketrans({"‘": "'", "’": "'", "“": '"', "”": '"', " ": "
 
 
 def normalize_for_match(s: str) -> str:
-    return _WS.sub(" ", s.translate(_QUOTES)).strip()
+    """Typography, whitespace and markdown emphasis ("**closed Thursday**") are not words: both sides drop them before
+    the exact substring test."""
+    return _WS.sub(" ", s.translate(_QUOTES).replace("*", "")).strip()
 
 
 @dataclass

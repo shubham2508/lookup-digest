@@ -42,6 +42,8 @@ def test_source_index_resolves_leniently_and_matches_normalized():
     assert idx.resolve("msg:<zzz>") is None
     assert idx.contains("msg:<a@x>", "I'm reconciling it now - will send") and idx.contains("note:n.md#L2", "second line")
     assert not idx.contains("msg:<a@x>", "tomorrow") and not idx.contains("msg:<a@x>", "")
+    bold = SourceIndex({"msg:<b@x>": "Subject\nThere will be **no pickup on Friday**. Sorry."})
+    assert bold.contains("msg:<b@x>", "There will be no pickup on Friday.") and not bold.contains("msg:<b@x>", "no pickup on Monday")
     assert normalize_for_match(" a  b\n c ") == "a b c" and idx.first_words("msg:a@x", 3) == "I'm reconciling it"
 
 

@@ -25,7 +25,7 @@ from ..schemas import (
 
 SECTION_ORDER: list[Section] = ["urgent", "decisions", "news", "pulse", "calendar_personal"]
 SUMMARY_KEYS = ("summary", "what", "title", "headline", "ask", "commitment", "reason", "subject", "system", "candidate", "org",
-                "task", "field", "proposal", "instructions", "meeting_desc", "email_says", "calendar_says", "values", "cadence",
+                "task", "field", "proposal", "instructions", "meeting_desc", "email_says", "calendar_says", "email_day", "calendar_day", "day", "values", "cadence",
                 "days_overdue", "business_days_quiet", "hours_since_inbound", "overlap_minutes", "overlaps", "block", "start",
                 "deadline", "due", "created", "count", "ratio", "baseline_median_days", "recent_median_days", "current_gap_days",
                 "stage", "days_since_signal", "qualifier", "freshness_note", "attaches_to", "publication", "later_references")

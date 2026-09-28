@@ -36,6 +36,18 @@ def next_business_day(d: date) -> date:
     return d
 
 
+def day_label(d: date, today: date) -> str:
+    """'today (Thu)', 'tomorrow (Fri)', 'next business day (Mon)', or 'Mon 28 Sep' — so the LLM never does date math."""
+    wd = d.strftime("%a")
+    if d == today:
+        return f"today ({wd})"
+    if d == today + timedelta(days=1):
+        return f"tomorrow ({wd})"
+    if d == next_business_day(today):
+        return f"next business day ({wd})"
+    return d.strftime("%a %d %b")
+
+
 def end_of_business_day(dt: datetime) -> datetime:
     """23:59:59 of the business day a message counts as arriving on (weekend mail arrives Monday)."""
     d = dt.date()

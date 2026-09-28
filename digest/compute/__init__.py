@@ -64,22 +64,29 @@ def _extraction_keys(extractions: list[Extraction], slug_map: dict[str, str], ms
     return merger
 
 
-def _inherit_org_tiers(directory) -> None:
-    """DESIGN_LOG §9.6 / P0 cases 5 and 12: a colleague of a profile contact at the same org (another IPV partner, the
-    WSGR associate) inherits that contact's tier during the raise. Rules such as never_draft do not propagate."""
-    from ..util import slugify
+def _inherit_org_tiers(directory, owner_emails) -> None:
+    """DESIGN_LOG §9.6 / P0 cases 5 and 12: a colleague of a profile contact at the same outside org (another IPV
+    partner, the WSGR associate) inherits that contact's tier during the raise. Never inside Avery's own company (a
+    co-founder's P0 is theirs, not every teammate's) and never to automated senders (a firm's billing address). Rules
+    such as never_draft do not propagate."""
+    from ..util import domain_of, slugify
 
+    own = {domain_of(e) for e in owner_emails}
+    higher = lambda a, b: min(a, b, key=lambda x: int(x[1]))   # noqa: E731  P0 beats P1
     org_tier: dict[str, str] = {}
     for c in directory.contacts:
-        if c.relationship.source == "profile" and c.tier and c.org:
-            org_tier[slugify(c.org)] = max(org_tier.get(slugify(c.org), "P9"), c.tier, key=lambda x: -int(x[1]))
-        if c.relationship.source == "profile" and c.tier:
-            for e in c.emails:
-                org_tier[e.split("@")[-1].lower()] = c.tier
-    for c in directory.contacts:
-        if c.tier or c.relationship.source == "profile":
+        if c.relationship.source != "profile" or not c.tier or c.relationship.category == "team":
             continue
-        keys = ([slugify(c.org)] if c.org else []) + [e.split("@")[-1].lower() for e in c.emails]
+        if any(domain_of(e) in own for e in c.emails):
+            continue
+        for k in ([slugify(c.org)] if c.org else []) + [domain_of(e) for e in c.emails]:
+            org_tier[k] = higher(org_tier.get(k, "P9"), c.tier)
+    for c in directory.contacts:
+        if c.tier or c.relationship.source == "profile" or c.relationship.category in ("team", "automated"):
+            continue
+        if any(domain_of(e) in own for e in c.emails):
+            continue
+        keys = ([slugify(c.org)] if c.org else []) + [domain_of(e) for e in c.emails]
         for k in keys:
             if k in org_tier:
                 c.tier = org_tier[k]
@@ -92,14 +99,18 @@ def compute_world(world: NormalizedWorld, extractions: list[Extraction], profile
 
     linker = Linker(llm, ctx, decider=decider)
     directory = build_contacts(world, extractions, profile, linker)
-    _inherit_org_tiers(directory)
+    _inherit_org_tiers(directory, world.owner_emails)
     behavior_stats(directory, world, as_of, settings.thresholds_default.behavior_window_days)
     slug_map = directory.slug_map()
     note_dates = {f"note:{n.path}": n.header_date for n in world.notes}
     facts = effective_facts(profile, collect_claims(extractions, note_dates))
     msg_thread = {f"msg:{m.message_id}": t.thread_id for t in world.threads for m in t.messages}
     merger = _extraction_keys(extractions, slug_map, msg_thread)
-    generic = {"avery", "avery-chen", "tessera"} | set(world.owner_emails)
+    from ..util import domain_of, slugify
+    person = slugify(profile.person or "")
+    generic = {person, person.split("-")[0], slugify(profile.company or ""), *(domain_of(e).split(".")[0] for e in world.owner_emails)}
+    generic |= set(world.owner_emails)
+    generic.discard("")
     for c in directory.contacts:
         if c.relationship.category == "team" or any(e in world.owner_emails for e in c.emails):
             generic |= {c.contact_id, *[e.lower() for e in c.emails], *[n.lower() for n in c.names]}

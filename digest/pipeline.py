@@ -213,8 +213,8 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
         ctx.write_jsonl("triage", triage)
         st.upsert_many("triage_results", [{"run_id": ctx.run_id, "candidate_id": r.candidate_id, "include": r.include, "priority": r.priority,
                                            "section": r.section, **r.model_dump(mode="json")} for r in triage])
-        if tstats.invalid_packs or tstats.missing:
-            stage_notes.append(f"triage skipped {tstats.invalid_packs} pack(s), {len(tstats.missing)} item(s) shown from facts")
+        if tstats.missing:   # a failed pack whose candidates all recovered one by one lost nothing: no header note
+            stage_notes.append(f"triage failed on {len(tstats.missing)} item(s); shown from computed facts")
 
         with ctx.timed("reduce"):
             reduced = reduce_items(triage, comp.candidates, comp, settings.budget.k_cap, comp.about_merges)

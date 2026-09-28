@@ -35,6 +35,7 @@ from .signals import (
     cadence_days,
     cadence_stats,
     days_overdue,
+    day_label,
     days_since,
     due_bucket,
     end_of_business_day,
@@ -529,6 +530,8 @@ def contradictions(ci: ComputeInputs) -> list[Candidate]:
                            {"kind": "schedule", "email_says": sm.when.resolved.isoformat(), "email_raw": sm.when.raw,
                             "email_action": sm.action, "calendar_says": e.start.isoformat(), "event_uid": e.uid,
                             "event_title": e.title, "meeting_desc": sm.meeting_desc, "thread_id": t.thread_id,
+                            "email_day": day_label(sm.when.resolved.date(), ci.today()),
+                            "calendar_day": day_label(e.start.date(), ci.today()),
                             "extra_dependencies": ["calendar"]},
                            [sm.evidence, ci.event_evidence(e)]))
     # (b) task open while email/notes show it done
