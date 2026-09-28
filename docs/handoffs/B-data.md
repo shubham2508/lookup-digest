@@ -30,7 +30,7 @@ Deliver, under `world/dev/`:
 - Contacts touched, with stage timelines and handovers.
 - Which eval.md §3 assertion(s) the storyline satisfies, expressed as `AssertionKind` + args.
 Storyline S3 needs the weekend math to work for the chosen anchor (day 30 is a Thursday; day 26 is Sunday).
-Anchor date is pending (OPEN_QUESTIONS.md #2) but M1 is day-relative, so it does not block you.
+Dev anchor is decided: **2026-09-24** (Thursday, day 30; day 1 = Wed 2026-08-26; run days 26–30 = Sun 20 – Thu 24 Sept; all PDT). Put `anchor: 2026-09-24` in `world/dev/world.yaml`; `digest generate --anchor` overrides it. Storylines stay day-relative.
 
 ## Milestone M2 · generator code + prose + render + validate
 1. **Prose files, written by you** (batches by thread or category; parallel subagents are fine). Recommended layout, yours to adjust as long as the manifest contract holds:

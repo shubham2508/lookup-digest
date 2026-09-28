@@ -20,7 +20,7 @@ Judge calibration, one-time: on the first dev run's ~20 judged items, the Grader
 
 OpenRouter spend on this config ≈ $4–5 (pipeline ≈ $3, judge ≈ $1–1.6, sim_avery ≈ 0). Generation costs nothing on OpenRouter.
 
-### 2. Anchor dates for `dev` and `heldout` — needed at M2 (dev) and M8 (heldout)
+### 2. Anchor date for `heldout` — needed at M8 (dev is decided: 2026-09-24, see bottom)
 
 Day 30 must be a Thursday. Worlds are relative, so any Thursday works; the only real choice is whether the 30-day window crosses a DST change (PT offset flips −07:00 ↔ −08:00 mid-world, which exercises date parsing).
 
@@ -31,7 +31,7 @@ Day 30 must be a Thursday. Worlds are relative, so any Thursday works; the only 
 | heldout A | Thu 2026-03-26 | Wed 2026-02-25 | spring-forward on Mar 8 (day 12) | in the past |
 | heldout B | Thu 2026-11-12 | Wed 2026-10-14 | fall-back on Nov 1 (day 19) | future-dated files |
 
-**Suggestion:** dev A + heldout A. Dev stays clean so bugs are easy to isolate; held-out carries the DST flip in its history (not in its run days) as a fair extra stress; both are past dates, so file mtimes look normal.
+**Decided for dev:** option A, 2026-09-24. **Suggestion for heldout:** option A, 2026-03-26, so held-out carries the DST flip in its history (not in its run days) as a fair extra stress; both are past dates, so file mtimes look normal. Decide at M8.
 
 ### 3. Held-out world size — needed at M8
 
@@ -48,16 +48,12 @@ The key in `.env` works, but `GET /auth/key` reports **limit $3.00, remaining $3
 Options: raise this key's limit · create a new key without a limit.
 **Suggestion:** raise the limit to ~$10. Claude Code stops and asks before any single step that would exceed the remaining limit.
 
-### 6. Who commits on the shared branch — needed for the handoff docs
-
-Three track sessions and the orchestrator all work on `main` in this directory.
-Options: (a) each track session commits its own folders at milestone ends, orchestrator commits foundation, integration, docs · (b) only the orchestrator commits · (c) commit whenever.
-**Suggestion:** (a), with commit messages prefixed `[A-product]`, `[B-data]`, `[C-grader]`, `[orchestrator]`; never `git add -A`; if two sessions run at the same moment, stagger commits (git's index lock is per repo).
-
-### 7. Walkthrough date — sets the cut line
+### 6. Walkthrough date — sets the cut line
 
 CLAUDE.md says: if time runs short, shrink the held-out world and M9 first, never eval. Knowing the date (or the day the repo must be shared) decides how much of M8/M9 is realistic.
 
 ## Decided
 
+- **2026-09-28 · dev anchor = 2026-09-24** (Thursday = day 30; day 1 = 2026-08-26; run days Sun 20 – Thu 24 Sept; all PDT, no DST crossing). `world/dev/world.yaml` carries `anchor: 2026-09-24`; `digest generate --anchor` overrides. Held-out anchor is decided separately at M8.
+- **2026-09-28 · commit policy (a):** each track session commits its own paths at milestone ends with a `[A-product]` / `[B-data]` / `[C-grader]` prefix; the orchestrator commits foundation, integration and docs; never `git add -A`; stagger commits if sessions run at the same moment.
 - **2026-09-28 · generator = Claude Code session (Fable 5.1), not an API model.** The Data track session writes every email body, note, and background item as prose files with labels under `world/<world>/prose/`; `generator/` code turns them into `.eml` / `.ics` / notes / tasks with real headers, threading, and DST-correct dates, emits the manifest, and runs the validator. Reproducible from world files + committed prose; a changed beat means rewriting its prose file. Zero OpenRouter spend for generation. `models.yaml` records `generator: claude-code-session`.
