@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Debug UI (digest ui)",
+      "name": "Digest",
       "type": "debugpy",
       "request": "launch",
       "module": "cli.main",
@@ -11,106 +11,8 @@
       "cwd": "${workspaceFolder}",
       "envFile": "${workspaceFolder}/.env",
       "console": "integratedTerminal",
+      "subProcess": true,
       "justMyCode": true
-    },
-    {
-      "name": "Digest run: dev, Thursday",
-      "type": "debugpy",
-      "request": "launch",
-      "module": "cli.main",
-      "args": ["run", "--world", "dev", "--as-of", "2026-09-24T06:00"],
-      "python": "${workspaceFolder}/.venv/bin/python",
-      "cwd": "${workspaceFolder}",
-      "envFile": "${workspaceFolder}/.env",
-      "console": "integratedTerminal",
-      "justMyCode": true
-    },
-    {
-      "name": "Digest run: pick world and day",
-      "type": "debugpy",
-      "request": "launch",
-      "module": "cli.main",
-      "args": ["run", "--world", "${input:world}", "--as-of", "${input:asOf}"],
-      "python": "${workspaceFolder}/.venv/bin/python",
-      "cwd": "${workspaceFolder}",
-      "envFile": "${workspaceFolder}/.env",
-      "console": "integratedTerminal",
-      "justMyCode": true
-    },
-    {
-      "name": "Digest run: fixture (mini)",
-      "type": "debugpy",
-      "request": "launch",
-      "module": "cli.main",
-      "args": ["run", "--world", "tests/fixtures/mini", "--as-of", "2026-09-24T06:00"],
-      "python": "${workspaceFolder}/.venv/bin/python",
-      "cwd": "${workspaceFolder}",
-      "envFile": "${workspaceFolder}/.env",
-      "console": "integratedTerminal",
-      "justMyCode": true
-    },
-    {
-      "name": "Eval: dev report",
-      "type": "debugpy",
-      "request": "launch",
-      "module": "cli.main",
-      "args": ["eval", "--world", "${input:world}", "--customize-suite", "--baseline"],
-      "python": "${workspaceFolder}/.venv/bin/python",
-      "cwd": "${workspaceFolder}",
-      "envFile": "${workspaceFolder}/.env",
-      "console": "integratedTerminal",
-      "justMyCode": true
-    },
-    {
-      "name": "Eval: full matrix",
-      "type": "debugpy",
-      "request": "launch",
-      "module": "cli.main",
-      "args": ["eval", "--matrix", "--world", "${input:world}", "--keep-going"],
-      "python": "${workspaceFolder}/.venv/bin/python",
-      "cwd": "${workspaceFolder}",
-      "envFile": "${workspaceFolder}/.env",
-      "console": "integratedTerminal",
-      "justMyCode": true
-    },
-    {
-      "name": "Generate world",
-      "type": "debugpy",
-      "request": "launch",
-      "module": "cli.main",
-      "args": ["generate", "--world", "${input:world}"],
-      "python": "${workspaceFolder}/.venv/bin/python",
-      "cwd": "${workspaceFolder}",
-      "console": "integratedTerminal",
-      "justMyCode": true
-    },
-    {
-      "name": "Tests (pytest)",
-      "type": "debugpy",
-      "request": "launch",
-      "module": "pytest",
-      "args": ["-q"],
-      "python": "${workspaceFolder}/.venv/bin/python",
-      "cwd": "${workspaceFolder}",
-      "console": "integratedTerminal",
-      "justMyCode": false
-    }
-  ],
-  "inputs": [
-    {
-      "id": "world",
-      "type": "pickString",
-      "description": "World",
-      "options": ["dev", "heldout", "tests/fixtures/mini"],
-      "default": "dev"
-    },
-    {
-      "id": "asOf",
-      "type": "pickString",
-      "description": "As of (PT)",
-      "options": ["2026-09-20T06:00", "2026-09-21T06:00", "2026-09-22T06:00", "2026-09-23T06:00", "2026-09-24T06:00",
-                  "2026-03-22T06:00", "2026-03-23T06:00", "2026-03-24T06:00", "2026-03-25T06:00", "2026-03-26T06:00"],
-      "default": "2026-09-24T06:00"
     }
   ]
 }

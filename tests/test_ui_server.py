@@ -41,6 +41,11 @@ def test_launch_args():
     assert launch_args({"world": "dev", "as_of": "2026-09-24T06:00", "variant": "", "tag": "sim"}) == ["run", "--world", "dev", "--as-of", "2026-09-24T06:00", "--tag", "sim"]
     assert launch_args({"world": "dev", "baseline": True, "as_of": "x"}) == ["baseline", "--world", "dev", "--as-of", "x"]
     assert launch_args({"world": ""}) is None
+    assert launch_args({"world": "dev", "action": "eval"}) == ["eval", "--world", "dev", "--customize-suite", "--baseline"]
+    assert launch_args({"world": "dev", "action": "matrix"}) == ["eval", "--matrix", "--world", "dev", "--keep-going"]
+    assert launch_args({"world": "dev", "action": "simulate"}) == ["simulate", "--world", "dev", "--days", "5", "--fresh"]
+    assert launch_args({"world": "heldout", "action": "generate"}) == ["generate", "--world", "heldout"]
+    assert launch_args({"world": "dev", "action": "rm -rf"}) is None
 
 
 def test_http_api(tmp_path):

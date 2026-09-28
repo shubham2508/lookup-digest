@@ -5,7 +5,8 @@ GET  /api/runs                 every run under runs/: world, dir, as_of, suffix,
 GET  /api/run?dir=…&artifact=… one artifact of one run (jsonl → list, json → object, md → {"text"})
 GET  /api/worlds               worlds under data/ with the dates their inbox spans
 GET  /api/reports              eval/reports/*.md names; ?name=… returns one report's text
-POST /api/launch               {"world", "as_of", "variant", "customize", "tag", "baseline"} → starts one `digest run`
+POST /api/launch               {"action": run|baseline|eval|matrix|simulate|generate, "world", "as_of", "variant",
+                               "customize", "tag"} → starts one `digest …` command
 GET  /api/launch               state of the last launch: running, returncode, log tail
 
 One run at a time: two pipelines on one machine contend for the LLM cache and the store, so a second launch
@@ -159,15 +160,26 @@ def read_report(name: str) -> tuple[int, dict]:
     return 200, {"name": name, "text": path.read_text(encoding="utf-8", errors="replace")}
 
 
+ACTIONS = ("run", "baseline", "eval", "matrix", "simulate", "generate")
+
+
 def launch_args(body: dict) -> list[str] | None:
+    """Turn a launch request into `digest …` CLI args. action: run (default) | baseline | eval | matrix | simulate | generate."""
     world = (body.get("world") or "").strip()
-    if not world:
+    action = (body.get("action") or ("baseline" if body.get("baseline") else "run")).strip()
+    if not world or action not in ACTIONS:
         return None
-    if body.get("baseline"):
-        args = ["baseline", "--world", world]
-        if body.get("as_of"):
-            args += ["--as-of", body["as_of"].strip()]
-        return args
+    as_of = (body.get("as_of") or "").strip()
+    if action == "baseline":
+        return ["baseline", "--world", world] + (["--as-of", as_of] if as_of else [])
+    if action == "eval":
+        return ["eval", "--world", world, "--customize-suite", "--baseline"]
+    if action == "matrix":
+        return ["eval", "--matrix", "--world", world, "--keep-going"]
+    if action == "simulate":
+        return ["simulate", "--world", world, "--days", str(int(body.get("days") or 5)), "--fresh"]
+    if action == "generate":
+        return ["generate", "--world", world]
     args = ["run", "--world", world]
     for key, flag in (("as_of", "--as-of"), ("variant", "--variant"), ("customize", "--customize"), ("tag", "--tag")):
         v = (body.get(key) or "").strip()

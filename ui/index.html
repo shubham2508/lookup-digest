@@ -72,6 +72,13 @@
         <button class="primary" id="runBtn">Run digest</button>
         <button id="baseBtn">Run baseline</button>
       </div>
+      <h2>Evaluate this world</h2>
+      <div style="display:flex; gap:6px; flex-wrap:wrap">
+        <button id="evalBtn" title="score existing runs against the answer key → report">Score runs</button>
+        <button id="matrixBtn" title="all 5 days, variants, customize, baseline, simulate, then the report (~20 min)">Full matrix</button>
+        <button id="simBtn" title="5-day simulation with sim_avery answering question cards">Simulate 5 days</button>
+        <button id="genBtn" title="re-render data/&lt;world&gt; from world/">Regenerate data</button>
+      </div>
       <div class="small muted" id="launchState" style="margin-top:6px"></div>
       <pre id="launchLog" style="max-height:160px; display:none"></pre>
     </form>
@@ -152,8 +159,8 @@ async function loadReports() {
 }
 
 // ---------- launching ----------
-async function launch(baseline) {
-  const body = { world: $("#world").value, as_of: $("#as_of").value, variant: $("#variant").value, customize: $("#customize").value, tag: $("#tag").value, baseline };
+async function launch(action) {
+  const body = { action, world: $("#world").value, as_of: $("#as_of").value, variant: $("#variant").value, customize: $("#customize").value, tag: $("#tag").value };
   try { const res = await api("/api/launch", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }); $("#launchState").textContent = "started: digest " + res.args.join(" "); pollLaunch(); }
   catch (e) { $("#launchState").textContent = "refused: " + e.message; }
 }
@@ -161,13 +168,17 @@ let pollTimer = null;
 async function pollLaunch() {
   clearTimeout(pollTimer);
   const st = await api("/api/launch");
-  $("#runBtn").disabled = $("#baseBtn").disabled = st.running;
+  document.querySelectorAll("#launch button").forEach(b => b.disabled = st.running);
   $("#launchLog").style.display = st.log ? "block" : "none"; $("#launchLog").textContent = st.log;
   if (st.running) { setStatus("running: digest " + st.args.join(" ")); pollTimer = setTimeout(pollLaunch, 2000); }
-  else { setStatus(st.args.length ? `finished (exit ${st.returncode})` : "idle"); if (st.args.length) { $("#launchState").textContent = `finished with exit ${st.returncode}`; await loadRuns(); } }
+  else { setStatus(st.args.length ? `finished (exit ${st.returncode})` : "idle"); if (st.args.length) { $("#launchState").textContent = `finished with exit ${st.returncode}`; await loadRuns(); await loadReports(); } }
 }
-$("#runBtn").onclick = () => launch(false);
-$("#baseBtn").onclick = () => launch(true);
+$("#runBtn").onclick = () => launch("run");
+$("#baseBtn").onclick = () => launch("baseline");
+$("#evalBtn").onclick = () => launch("eval");
+$("#matrixBtn").onclick = () => launch("matrix");
+$("#simBtn").onclick = () => launch("simulate");
+$("#genBtn").onclick = () => launch("generate");
 
 // ---------- run view ----------
 async function art(name) { const key = current.dir + "|" + name; if (!(key in cache)) { try { cache[key] = await api(`/api/run?dir=${encodeURIComponent(current.dir)}&artifact=${name}`); } catch (e) { cache[key] = e.status === 404 ? null : { error: e.message }; } } return cache[key]; }
