@@ -21,7 +21,7 @@ from digest.runs import ARTIFACTS
 from .digest_md import ParsedDigest, parse_digest
 from .match import SourceIndex, evidence_refs, max_priority
 
-OPTIONAL_ARTIFACTS = {"trace"}  # the debug trace is not a pipeline output; its absence is not a miss
+OPTIONAL_ARTIFACTS = {"trace", "links"}  # the debug trace is not a pipeline output; its absence is not a miss
 DRAFT_TYPES = ("reply", "forward_delegate", "decide", "message_person")
 
 

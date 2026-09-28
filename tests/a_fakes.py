@@ -181,6 +181,44 @@ As of Thu 06:00 PT · inbox synced Wed 21:10 · calendar ok · notes ok · tasks
 """
 
 
+def _json_after(text: str, marker: str):
+    i = text.rindex(marker) + len(marker)
+    return json.loads(text[i:].strip())
+
+
+def fake_topic_groups(text: str) -> dict:
+    """Test stand-in for the linker LLM: keys whose descriptions name the same deliverable (the fixture's cap table,
+    Mei's offer) group; everything else stays apart. The real decision is the LLM's."""
+    topics = _json_after(text, "TOPICS\n")
+    groups = []
+    for _kind, rows in topics.items():
+        by_slug: dict[str, list[str]] = {}
+        for r in rows:
+            slug = r["key"].split(":", 1)[1].replace("captable", "cap-table")
+            by_slug.setdefault(slug, []).append(r["key"])
+        groups += [{"members": m, "reason": "same slug"} for m in by_slug.values() if len(m) > 1]
+    return {"groups": groups}
+
+
+def fake_links(text: str) -> dict:
+    """Test stand-in: an option matches when it shares two or more meaningful words with the item."""
+    qs = _json_after(text, "QUESTIONS\n")
+    stop = {"the", "and", "for", "with", "from", "that", "this", "will", "send", "avery", "email", "to", "of", "a", "on", "in"}
+
+    def words(s: str) -> set[str]:
+        return {w.strip(".,:;()'\"").lower() for w in s.split() if len(w) > 2} - stop
+
+    out = []
+    for q in qs:
+        iw = words(q["item"])
+        strong = {w for w in iw if len(w) >= 5}
+        out.append({"question_id": q["id"], "matches": [o["id"] for o in q["options"]
+                                                        if len(iw & words(o["text"].replace(":", " ").replace("-", " "))) >= 2
+                                                        or strong & words(o["text"].replace(":", " ").replace("-", " "))],
+                    "reason": "shared words (test fake)"})
+    return {"answers": out}
+
+
 class FakeClient:
     def __init__(self, *, bad_quote: bool = False, profile_responses: list[str] | None = None, banned_first: bool = False):
         self.calls: list[dict] = []
@@ -214,6 +252,10 @@ class FakeClient:
             content = json.dumps(fake_customize(text))
         elif name == "BaselineDigest":
             content = json.dumps({"markdown": FAKE_BASELINE_MD})
+        elif name == "TopicGroups":
+            content = json.dumps(fake_topic_groups(text))
+        elif name == "LinkBatch":
+            content = json.dumps(fake_links(text))
         else:
             raise AssertionError(f"unexpected schema {name}")
         usage = SimpleNamespace(prompt_tokens=100, completion_tokens=50, cost=0.0001)

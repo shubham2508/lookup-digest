@@ -35,6 +35,7 @@ ARTIFACTS: dict[str, str] = {
     "run": "run.json",                    # as_of, world, variant, customize, timings, degradations
     "degradations": "degradations.jsonl", # skipped items (LLMOutputInvalid, dropped evidence, ...)
     "trace": "trace.jsonl",               # every LLM call with full input/output (debug UI)
+    "links": "links.jsonl",               # the linker's same-thing decisions with reasons (compute)
 }
 
 

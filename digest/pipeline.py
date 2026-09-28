@@ -176,7 +176,7 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
                 stage_notes.append(f"{kind} {f.state}")
 
         with ctx.timed("compute"):
-            comp = compute_world(norm, extractions, profile.config, settings, as_of_dt)
+            comp = compute_world(norm, extractions, profile.config, settings, as_of_dt, llm=llm, ctx=ctx)
             plain = variant is None and customize is None
             surfaced = times_surfaced(st, world, as_of_dt, tag=tag) if plain else {}
             for c in comp.candidates:
@@ -187,6 +187,7 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
                 ctx.degrade("compute", cid, "answered_after_digest", detail="Avery replied after the digest showed it; not re-surfaced")
             comp.candidates = [c for c in comp.candidates if c.candidate_id not in answered]
         ctx.write_json("contacts", comp.contacts)
+        ctx.write_jsonl("links", comp.links)
         ctx.write_jsonl("candidates", comp.candidates)
         st.upsert_many("contacts", [{"contact_id": c.contact_id, "category": c.relationship.category, "tier": c.tier, **c.model_dump(mode="json")} for c in comp.contacts])
         st.upsert_many("candidates", [{"run_id": ctx.run_id, "candidate_id": c.candidate_id, "type": c.type, "about": c.about, **c.model_dump(mode="json")} for c in comp.candidates])

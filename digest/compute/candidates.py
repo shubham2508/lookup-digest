@@ -7,8 +7,6 @@ from collections.abc import Callable
 from dataclasses import dataclass, field
 from datetime import datetime, time, timedelta
 
-from rapidfuzz import fuzz
-
 from ..config import Settings
 from ..normalize import NormalizedWorld
 from ..schemas import (
@@ -91,6 +89,7 @@ class ComputeInputs:
     facts: list[EffectiveFact]
     about_map: dict[str, str]
     thresholds: Thresholds
+    linker: object | None = None  # digest/compute/linker.Linker; None → exact matches only
     threads: dict[str, NormalizedThread] = field(init=False)
     msg_time: dict[str, datetime] = field(init=False)
     msg_thread: dict[str, str] = field(init=False)
@@ -105,6 +104,10 @@ class ComputeInputs:
                 self.msg_thread[f"msg:{m.message_id}"] = t.thread_id
 
     # ------------------------------------------------------------------ helpers
+    def link(self, task: str, questions: list) -> dict[str, list[str]]:
+        """Batched LLM sameness decisions (compute/linker.py); {} without a linker."""
+        return self.linker.match(task, questions) if self.linker is not None else {}
+
     def canon(self, key: str) -> str:
         c = canonical_key(key, self.directory.slug_map())
         return self.about_map.get(c, c)
@@ -256,18 +259,27 @@ def _all_commitments(ci: ComputeInputs) -> list[tuple[Commitment, str, datetime 
     return out
 
 
-def _fulfilled_elsewhere(ci: ComputeInputs, c: Commitment, when: datetime | None, all_c) -> tuple[bool, dict]:
-    target = ci.canon(c.about)
+def _delivery_options(c: Commitment, when: datetime | None, all_c) -> list[tuple]:
+    """Hard filters only: a later delivery (fulfills_hint set) in another thread, to at least one of the same people."""
+    out = []
     for other, sid, t2, recipients in all_c:
         if other is c or not other.fulfills_hint:
-            continue
-        if ci.canon(other.about) != target and fuzz.token_set_ratio(fold(other.fulfills_hint), fold(c.what)) < 70:
             continue
         if when and t2 and t2 < when:
             continue
         if c.to_whom and not ({a.lower() for a in c.to_whom} & {a.lower() for a in recipients}):
             continue
-        return True, {"fulfilled_by": sid, "fulfills_hint": other.fulfills_hint}
+        out.append((other, sid))
+    return out
+
+
+def _fulfilled_elsewhere(ci: ComputeInputs, c: Commitment, when: datetime | None, all_c, linked: set[str] | None = None,
+                         qid: str = "") -> tuple[bool, dict]:
+    """Same topic key → fulfilled (exact); otherwise the linker decided whether a later delivery is this promise."""
+    target = ci.canon(c.about)
+    for other, sid in _delivery_options(c, when, all_c):
+        if ci.canon(other.about) == target or (linked and f"{qid}|{sid}" in linked):
+            return True, {"fulfilled_by": sid, "fulfills_hint": other.fulfills_hint}
     return False, {}
 
 
@@ -275,12 +287,26 @@ def commitments(ci: ComputeInputs) -> list[Candidate]:
     out = []
     all_c = _all_commitments(ci)
     task_abouts = {ci.canon(tl.about) for tl in ci.task_links().values()}
-    task_titles = [t.title for t in ci.world.tasks if t.status == "open"]
-    todo_abouts = {ci.canon(c.about) for x, n in ci.notes() if n.note_kind == "todo" for c in n.action_items}
-    for c, sid, when, _ in all_c:
-        if c.owner != "avery" or c.status_in_thread != "open":
-            continue
-        done, how = _fulfilled_elsewhere(ci, c, when, all_c)
+    open_tasks = [t for t in ci.world.tasks if t.status == "open"]
+    todos = [c for x, n in ci.notes() if n.note_kind == "todo" for c in n.action_items]
+    todo_abouts = {ci.canon(c.about) for c in todos}
+    mine = [(i, c, sid, when) for i, (c, sid, when, _) in enumerate(all_c) if c.owner == "avery" and c.status_in_thread == "open"]
+    # one linker call: is a later delivery in another thread this promise?
+    from .linker import LinkOption, LinkQuestion
+    q_ful = [LinkQuestion(id=f"p{i}", item=f"{c.what} (to {', '.join(c.to_whom) or 'unknown'})",
+                          options=[LinkOption(id=s, text=o.fulfills_hint or o.what) for o, s in _delivery_options(c, when, all_c)
+                                   if ci.canon(o.about) != ci.canon(c.about)])
+             for i, c, sid, when in mine]
+    ful = ci.link("fulfilled_elsewhere", q_ful)
+    linked = {f"{q}|{s}" for q, ss in ful.items() for s in ss}
+    # one linker call: is this promise already on the task list or todo note?
+    task_opts = [LinkOption(id=f"task:{t.task_id}", text=t.title) for t in open_tasks] + \
+                [LinkOption(id=f"todo:{n}", text=c.what) for n, c in enumerate(todos)]
+    q_tasks = [LinkQuestion(id=f"p{i}", item=f"{c.what} (to {', '.join(c.to_whom) or 'unknown'})", options=task_opts)
+               for i, c, sid, when in mine if ci.canon(c.about) not in task_abouts and ci.canon(c.about) not in todo_abouts]
+    in_tasks_q = {q for q, ss in ci.link("promise_in_tasks", q_tasks).items() if ss}
+    for i, c, sid, when in mine:
+        done, how = _fulfilled_elsewhere(ci, c, when, all_c, linked, f"p{i}")
         if done:
             continue
         about = ci.canon(c.about)
@@ -299,7 +325,7 @@ def commitments(ci: ComputeInputs) -> list[Candidate]:
             out.append(_mk("commitment_overdue", about, who, {**base, "days_overdue": days_overdue(due, ci.as_of)}, [c.evidence]))
         elif bucket == "today":
             out.append(_mk("commitment_due", about, who, {**base, "due_today": True}, [c.evidence]))
-        in_tasks = about in task_abouts or about in todo_abouts or any(fuzz.token_set_ratio(fold(c.what), fold(t)) >= 80 for t in task_titles)
+        in_tasks = about in task_abouts or about in todo_abouts or f"p{i}" in in_tasks_q
         # the profile's target is "I'll send that by Friday" hiding in a thread: a dated promise, or any promise to
         # someone outside the team. Undated soft promises to teammates ("will circle back") are not tracked here.
         external = counterpart is None or counterpart.relationship.category not in ("team", "unresolved")
@@ -362,7 +388,7 @@ def _personal_slots(ci: ComputeInputs) -> list[tuple[datetime, datetime, str, li
             if sm.action == "cancelled" or not sm.when or not sm.when.resolved:
                 continue
             start = sm.when.resolved
-            if any(abs((s[0] - start).total_seconds()) < 3600 and fuzz.partial_ratio(fold(s[2]), fold(sm.meeting_desc)) >= 60 for s in slots):
+            if any(abs((s[0] - start).total_seconds()) < 3600 for s in slots):
                 for s in slots:   # attach the email evidence to the matching calendar slot
                     if abs((s[0] - start).total_seconds()) < 3600:
                         s[3].append(sm.evidence)
@@ -419,33 +445,41 @@ def double_book(ci: ComputeInputs) -> list[Candidate]:
 
 
 def declined_meetings(ci: ComputeInputs) -> list[Candidate]:
-    out = []
+    """A meeting Avery declined, followed by a decision, agreement or ask that came out of it. Code keeps only things
+    dated after the meeting (notes on or after its day; asks from its attendees or on the same topic key); the linker
+    decides which of those actually came out of that meeting."""
+    from .linker import LinkOption, LinkQuestion
+
     since = ci.as_of - timedelta(days=ci.thresholds.declined_lookback_days)
-    for e in ci.world.events:
-        if e.avery_partstat != "DECLINED" or not (since <= e.start <= ci.as_of):
-            continue
+    declined = [e for e in ci.world.events if e.avery_partstat == "DECLINED" and since <= e.start <= ci.as_of]
+    per_event: dict[str, list[tuple[str, str, Evidence]]] = {}
+    for e in declined:
         attendees = {a.email for a in e.attendees}
         key = f"meeting:{slugify(e.title)}"
-        refs: list[tuple[str, str, Evidence]] = []
+        opts: list[tuple[str, str, Evidence]] = []
         for _x, n in ci.notes():
             when = n.meeting_date
             if when and datetime.combine(when, time(0), tzinfo=ci.as_of.tzinfo) < e.start:
                 continue
-            for d in n.decisions:
-                if fuzz.ratio(ci.canon(d.about), key) >= 70 or fuzz.partial_ratio(fold(e.title), fold(d.what)) >= 70:
-                    refs.append(("decision", d.what, d.evidence))
-            for a in n.agreements:
-                if fuzz.partial_ratio(fold(e.title), fold(a.rule)) >= 70:
-                    refs.append(("agreement", a.rule, a.evidence))
+            opts += [("decision", d.what, d.evidence) for d in n.decisions]
+            opts += [("agreement", a.rule, a.evidence) for a in n.agreements]
         for _x, p, t in ci.human():
             if p.ball.last_message_at < e.start:
                 continue
             parts = {m.from_addr for m in t.messages}
-            for a in p.asks:
-                if (attendees & parts and fuzz.partial_ratio(fold(e.title), fold(a.what)) >= 60) or any(fuzz.ratio(ci.canon(k), key) >= 70 for k in p.about):
-                    refs.append(("ask", a.what, a.evidence))
+            if attendees & parts or any(ci.canon(k) == key for k in p.about):
+                opts += [("ask", a.what, a.evidence) for a in p.asks if a.to_avery]
+        per_event[e.uid] = opts
+    q = [LinkQuestion(id=e.uid, item=f"declined meeting: {e.title} · {e.start.strftime('%a %d %b %H:%M')}",
+                      options=[LinkOption(id=f"r{n}", text=f"{k}: {w}") for n, (k, w, _ev) in enumerate(per_event[e.uid])])
+         for e in declined]
+    links = ci.link("declined_meeting_fallout", q)
+    out = []
+    for e in declined:
+        refs = [per_event[e.uid][int(r[1:])] for r in links.get(e.uid, [])]
         if refs:
-            out.append(_mk("declined_meeting", key, [ci.slug(a) or "" for a in attendees if a not in ci.world.owner_emails],
+            attendees = {a.email for a in e.attendees}
+            out.append(_mk("declined_meeting", f"meeting:{slugify(e.title)}", [ci.slug(a) or "" for a in attendees if a not in ci.world.owner_emails],
                            {"uid": e.uid, "title": e.title, "start": e.start.isoformat(),
                             "later_references": [{"kind": k, "what": w} for k, w, _ in refs[:4]]},
                            [ci.event_evidence(e)] + [ev for _, _, ev in refs[:3]]))
@@ -455,51 +489,60 @@ def declined_meetings(ci: ComputeInputs) -> list[Candidate]:
 # ----------------------------------------------------------------------------- contradictions and drift
 def contradictions(ci: ComputeInputs) -> list[Candidate]:
     out = []
-    # (a) schedule mention vs calendar
+    # (a) schedule mention vs calendar. Code narrows to events with the same people within ±7 days (one occurrence per
+    # uid); the linker decides which of those, if any, is the meeting the email talks about.
+    from .linker import LinkOption, LinkQuestion
+    pending: list[tuple] = []
     for _x, p, t in ci.human():
         parts = {m.from_addr for m in t.messages} | {a for m in t.messages for a in m.to + m.cc}
         for sm in p.schedule_mentions:
             if sm.action not in ("moved", "confirmed") or not sm.when or not sm.when.resolved:
                 continue
-            # compare against ONE occurrence per event uid (the one nearest the mention), so a recurring meeting does
-            # not produce a contradiction per expanded occurrence
             ref = sm.previous_when.resolved if sm.previous_when and sm.previous_when.resolved else sm.when.resolved
             nearest: dict[str, tuple[float, object]] = {}
             for e in ci.world.events:
                 att = {a.email for a in e.attendees} | {e.organizer}
                 if not (att & parts - ci.world.owner_emails):
                     continue
-                if fuzz.token_set_ratio(fold(e.title), fold(sm.meeting_desc)) < 55:
-                    continue
                 d = abs((e.start - ref).total_seconds())
-                if e.uid not in nearest or d < nearest[e.uid][0]:
+                if d <= 7 * 86400 and (e.uid not in nearest or d < nearest[e.uid][0]):
                     nearest[e.uid] = (d, e)
-            for d, e in nearest.values():
-                if d > 7 * 86400:
-                    continue  # a different occurrence or meeting
-                att = {a.email for a in e.attendees} | {e.organizer}
-                delta = abs((e.start - sm.when.resolved).total_seconds())
-                same_day = e.start.date() == sm.when.resolved.date()
-                if (sm.when.granularity == "day" and same_day) or delta <= 1800:
-                    continue
-                if sm.previous_when and sm.previous_when.resolved and abs((e.start - sm.previous_when.resolved).total_seconds()) > 86400 * 2:
-                    continue   # the calendar event is a different meeting
-                out.append(_mk("contradiction", ci.canon(p.about[0]) if p.about else f"meeting:{slugify(e.title)}",
-                               [ci.slug(a) or "" for a in (att & parts) - ci.world.owner_emails],
-                               {"kind": "schedule", "email_says": sm.when.resolved.isoformat(), "email_raw": sm.when.raw,
-                                "email_action": sm.action, "calendar_says": e.start.isoformat(), "event_uid": e.uid,
-                                "event_title": e.title, "meeting_desc": sm.meeting_desc, "thread_id": t.thread_id,
-                                "extra_dependencies": ["calendar"]},
-                               [sm.evidence, ci.event_evidence(e)]))
+            if nearest:
+                pending.append((p, t, parts, sm, nearest))
+    q_sched = [LinkQuestion(id=f"m{n}", item=f"email ({sm.action}): {sm.meeting_desc}; now {sm.when.raw}"
+                            + (f"; previously {sm.previous_when.raw}" if sm.previous_when else ""),
+                            options=[LinkOption(id=uid, text=f"{e.title} · {e.start.strftime('%a %d %b %H:%M')}") for uid, (_d, e) in nearest.items()])
+               for n, (p, t, parts, sm, nearest) in enumerate(pending)]
+    sched = ci.link("email_meeting_to_event", q_sched)
+    for n, (p, t, parts, sm, nearest) in enumerate(pending):
+        for uid in sched.get(f"m{n}", []):
+            d, e = nearest[uid]
+            att = {a.email for a in e.attendees} | {e.organizer}
+            delta = abs((e.start - sm.when.resolved).total_seconds())
+            same_day = e.start.date() == sm.when.resolved.date()
+            if (sm.when.granularity == "day" and same_day) or delta <= 1800:
+                continue
+            if sm.previous_when and sm.previous_when.resolved and abs((e.start - sm.previous_when.resolved).total_seconds()) > 86400 * 2:
+                continue   # the calendar event is a different meeting
+            out.append(_mk("contradiction", ci.canon(p.about[0]) if p.about else f"meeting:{slugify(e.title)}",
+                           [ci.slug(a) or "" for a in (att & parts) - ci.world.owner_emails],
+                           {"kind": "schedule", "email_says": sm.when.resolved.isoformat(), "email_raw": sm.when.raw,
+                            "email_action": sm.action, "calendar_says": e.start.isoformat(), "event_uid": e.uid,
+                            "event_title": e.title, "meeting_desc": sm.meeting_desc, "thread_id": t.thread_id,
+                            "extra_dependencies": ["calendar"]},
+                           [sm.evidence, ci.event_evidence(e)]))
     # (b) task open while email/notes show it done
     fulfilled = [(c, sid) for c, sid, _, _ in _all_commitments(ci) if c.status_in_thread == "fulfilled" or c.fulfills_hint]
     links = ci.task_links()
-    for task in ci.world.tasks:
-        if task.status != "open":
-            continue
+    open_tasks = [t for t in ci.world.tasks if t.status == "open"]
+    q_done = [LinkQuestion(id=f"task:{task.task_id}", item=task.title,
+                           options=[LinkOption(id=f"f{n}", text=c.fulfills_hint or c.what) for n, (c, _s) in enumerate(fulfilled)])
+              for task in open_tasks]
+    done_links = ci.link("task_done_in_email", q_done)
+    for task in open_tasks:
         tl = links.get(f"task:{task.task_id}")
-        for c, sid in fulfilled:
-            same = (tl and ci.canon(tl.about) == ci.canon(c.about)) or fuzz.token_set_ratio(fold(task.title), fold(c.what)) >= 80
+        for n, (c, sid) in enumerate(fulfilled):
+            same = (tl and ci.canon(tl.about) == ci.canon(c.about)) or f"f{n}" in done_links.get(f"task:{task.task_id}", [])
             if same:
                 out.append(_mk("contradiction", ci.canon(tl.about) if tl else f"other:{slugify(task.title)}", [],
                                {"kind": "task_vs_email", "task": task.title, "task_id": task.task_id, "shown_done_in": sid,
@@ -771,39 +814,38 @@ def active_about_slugs(ci: ComputeInputs, cands: list[Candidate]) -> set[str]:
 
 
 def news_attachments(ci: ComputeInputs, cands: list[Candidate]) -> list[Candidate]:
-    """architecture §6.4: NewsItem entities/topics ∩ active entities. Entities match a contact/org slug exactly (or as a
-    ≥7-char prefix such as halberd → halberd-manufacturing); topics match a whole active about-key slug (inference-cost →
-    inference-cost-overrun), never a single word, and never the generic stoplist, so market news about "Series A" does
-    not attach to the deal."""
-    out = []
-    ents, _topics = active_entities(ci, cands)
-    ents = {e for e in ents if e and e not in _NEWS_STOP}
-    about_slugs = {a for a in active_about_slugs(ci, cands) if len(a) >= 9}
+    """architecture §6.4: a newsletter item becomes a candidate only if it changes something Avery is dealing with.
+    Code lists the open items (today's candidates); the linker decides which, if any, a story attaches to."""
+    from .linker import LinkOption, LinkQuestion
+
+    active: dict[str, str] = {}
+    for c in cands:
+        if c.type in ("news_attachment", "stale_source", "profile_drift", "recruiter_pattern"):
+            continue
+        f = c.facts
+        desc = f.get("summary") or f.get("subject") or f.get("title") or f.get("what") or ""
+        active.setdefault(c.about, f"{c.type} on {c.about}: {desc}"[:220])
+    options = [LinkOption(id=k, text=v) for k, v in list(active.items())[:80]]
+    stories = []
     for x in ci.extractions:
         if x.type != "newsletter" or not isinstance(x.payload, Newsletter):
             continue
+        for n, item in enumerate(x.payload.items):
+            stories.append((f"{x.source_id}#{n}", x, item))
+    links = ci.link("news_to_open_item", [LinkQuestion(id=sid, item=f"{it.headline}: {it.summary}", options=options)
+                                          for sid, _x, it in stories])
+    out = []
+    for sid, x, item in stories:
+        matched = links.get(sid, [])
+        if not matched:
+            continue
         nl = x.payload
-        for item in nl.items:
-            matched: list[str] = []
-            for e in item.entities:
-                s = slugify(e.name)
-                if not s or s in _NEWS_STOP:
-                    continue
-                if s in ents or (len(s) >= 7 and any(a.startswith(s + "-") for a in ents)):
-                    matched.append(s)
-            for tpc in item.topics:
-                ts = slugify(tpc)
-                if len(ts) < 9 or ts in _NEWS_STOP:
-                    continue
-                if any(a == ts or a.startswith(ts + "-") or ts.startswith(a + "-") for a in about_slugs):
-                    matched.append(f"topic:{ts}")
-            if not matched:
-                continue
-            out.append(_mk("news_attachment", f"other:news:{_short_slug(item.headline)}", [m for m in matched if not m.startswith("topic:")], {
-                "headline": item.headline, "summary": item.summary, "publication": nl.publication, "issue_date": nl.issue_date.isoformat(),
-                "topics": item.topics, "entities": [e.name for e in item.entities], "attaches_to": matched,
-                "effective_date": item.effective_date.resolved.isoformat() if item.effective_date and item.effective_date.resolved else None,
-                "thread_id": x.source_id}, [item.evidence]))
+        out.append(_mk("news_attachment", f"other:news:{_short_slug(item.headline)}", [], {
+            "headline": item.headline, "summary": item.summary, "publication": nl.publication, "issue_date": nl.issue_date.isoformat(),
+            "topics": item.topics, "entities": [e.name for e in item.entities], "attaches_to": matched,
+            "attaches_to_what": [active[m] for m in matched],
+            "effective_date": item.effective_date.resolved.isoformat() if item.effective_date and item.effective_date.resolved else None,
+            "thread_id": x.source_id}, [item.evidence]))
     return out
 
 

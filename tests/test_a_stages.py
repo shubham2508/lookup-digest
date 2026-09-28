@@ -42,8 +42,8 @@ def _stack(mini_dir, tmp_path, **fake):
     world = normalize_world(load_world(mini_dir, AS_OF, TZ), SETTINGS, "Avery Chen")
     xs = [Extraction.model_validate(json.loads(ln)) for ln in Path("tests/fixtures/mini_runs/2026-09-24T06-00/extractions.jsonl").read_text().splitlines()]
     profile = _profile()
-    comp = compute_world(world, xs, profile, SETTINGS, AS_OF)
     llm = fake_llm(tmp_path, **fake)
+    comp = compute_world(world, xs, profile, SETTINGS, AS_OF, llm=llm)
     ctx = RunContext("t", AS_OF, runs_dir=tmp_path / "runs")
     return world, profile, comp, llm, ctx
 

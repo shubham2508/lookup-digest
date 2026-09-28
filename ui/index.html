@@ -381,13 +381,14 @@ function timelineFor(id, kind) {
 }
 
 // ======================= 3. llm calls =======================
-const STAGES = [["compiler", "1 · Compile the profile and customize prompt"], ["extractor", "2 · Extract facts, one call per thread / note / task"], ["triage", "3 · Triage candidates, packs of 6"], ["compose", "4 · Compose the page"], ["materializer", "5 · Write drafts and decisions"], ["judge", "Judge"], ["sim_avery", "Simulated Avery"]];
+const STAGES = [["compiler", "1 · Compile the profile and customize prompt"], ["extractor", "2 · Extract facts, one call per thread / note / task"], ["linker", "2b · Link: which things are the same (topics, promises↔tasks, email↔calendar, news↔items)"], ["triage", "3 · Triage candidates, packs of 6"], ["compose", "4 · Compose the page"], ["materializer", "5 · Write drafts and decisions"], ["judge", "Judge"], ["sim_avery", "Simulated Avery"]];
 function callLabel(r, i) {
   const tag = r.tag || "";
   if (r.role === "extractor") { const s = SUBJ[tag]; return s ? `${s.subject} <span class="muted small">· ${esc(s.from)}</span>` : esc(tag.replace(/^note:notes\//, "note ").replace(/^task:/, "task ")); }
   if (r.role === "triage") { const ids = tag.replace("triage:", "").split(","); const C = WHY?.C || {}; return `${ids.length} candidates: ` + esc(ids.map(id => C[id] ? C[id].type.replace("calendar_conflict:", "cal:") : id).join(", ")); }
   if (r.role === "materializer") { const [k, item, typ] = tag.split(":"); return `${esc(typ || k)} for ${esc(item)}: ` + esc((WHY?.CI?.[item]?.what) || ""); }
   if (r.role === "compose") return "the whole page (one call)";
+  if (r.role === "linker") return esc(tag.replace("link:", "").replace(/_/g, " "));
   return esc(tag || r.role);
 }
 async function callsView() {

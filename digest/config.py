@@ -10,7 +10,7 @@ from pydantic import BaseModel, Field, model_validator
 from .paths import CONFIG_DIR
 
 Effort = Literal["low", "medium", "high"]
-PIPELINE_ROLES = ("extractor", "triage", "compose", "materializer", "compiler")
+PIPELINE_ROLES = ("extractor", "triage", "compose", "materializer", "compiler", "linker")
 ALL_ROLES = PIPELINE_ROLES + ("generator", "judge", "sim_avery")
 SESSION_MODEL = "claude-code-session"  # marker: no API calls for this role
 
