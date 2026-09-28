@@ -1,6 +1,7 @@
-"""The fixed DAG (architecture §1). M3 covers profile compile → ingest → normalize → router → extract; later
-milestones append compute → triage → reduce → compose → materialize → verify → render. Never crashes on bad
-model output or a broken source: it degrades and records why (CLAUDE.md rule 5, DESIGN_LOG §4.4)."""
+"""The fixed DAG (specs/PIVOT_SPEC.md §2): profile → ingest → normalize → spine (contacts) → READ (one LLM reader per
+human thread, raw text) → sweeps → safety nets → reconcile/merge (Track B, when landed) → code floors (enforce) →
+reduce → compose → materialize → verify → render. Never crashes on bad model output or a broken source: it degrades
+and records why (CLAUDE.md rule 5, DESIGN_LOG §4.4)."""
 from __future__ import annotations
 
 import re
@@ -11,9 +12,8 @@ from zoneinfo import ZoneInfo
 
 from .compile.profile import CompiledProfile, compile_profile
 from .compose import compose_digest, title_for
-from .compute import ComputeResult, compute_world
+from .compute import ComputeResult, assemble, build_spine
 from .config import Settings, load_settings
-from .extract import ExtractStats, extract_world
 from .history import (
     answered_after_digest,
     load_rulings,
@@ -28,15 +28,17 @@ from .materialize import materialize, suggested_tasks_md
 from .normalize import NormalizedWorld, normalize_world
 from .normalize.freshness import header_fragment
 from .paths import ROOT, data_dir
+from .read import ReadResult, read_threads
 from .reduce import reduce_items
 from .render import CitationIndex, render_digest
 from .runs import RunContext, parse_as_of
-from .schemas import ComposeResult, CustomizeOverrides, Extraction, ReduceResult, VerifyResult
+from .schemas import ComposeResult, CustomizeOverrides, ReduceResult, VerifyResult
 from .store import Store
-from .triage import triage_candidates
+from .triage import enforce_all
 from .verify import verify
 
-STAGES = ("compile_profile", "ingest", "normalize", "extract", "compute", "triage", "reduce", "compose", "materialize", "verify", "render")
+STAGES = ("compile_profile", "ingest", "normalize", "spine", "read", "sweep", "nets", "merge", "enforce", "reduce", "compose",
+          "materialize", "verify", "render")
 STAGES_PENDING: tuple[str, ...] = ()
 
 
@@ -45,8 +47,7 @@ class PipelineResult:
     ctx: RunContext
     profile: CompiledProfile
     world: NormalizedWorld
-    extractions: list[Extraction]
-    extract_stats: ExtractStats
+    read: ReadResult
     summary: dict
     pending_stages: tuple[str, ...] = ()
     compute: ComputeResult | None = None
@@ -130,7 +131,7 @@ def store_path(settings: Settings, world: str) -> Path:
     return ROOT / settings.store.path_template.format(world=world)
 
 
-def persist(store: Store, ctx: RunContext, world: NormalizedWorld, extractions: list[Extraction]) -> None:
+def persist(store: Store, ctx: RunContext, world: NormalizedWorld) -> None:
     store.upsert_many("messages", [
         {"message_id": m.message_id, "thread_id": t.thread_id, "sent_at": m.sent_at.isoformat(), "from_addr": m.from_addr,
          "subject": m.subject, "is_from_avery": m.is_from_avery, **m.model_dump(mode="json")}
@@ -149,10 +150,6 @@ def persist(store: Store, ctx: RunContext, world: NormalizedWorld, extractions: 
     store.upsert_many("tasks", [
         {"task_id": t.task_id, "title": t.title, "due": t.due.isoformat() if t.due else None, "status": t.status,
          **t.model_dump(mode="json")} for t in world.tasks])
-    store.upsert_many("extractions", [
-        {"input_hash": x.meta.input_hash, "source_id": x.source_id, "type": x.type, "prompt_version": x.meta.prompt_version,
-         "model": x.meta.model, "created_at": x.meta.extracted_at.isoformat(), **x.model_dump(mode="json")}
-        for x in extractions])
     store.upsert("runs", {"run_id": ctx.run_id, "world": ctx.world, "as_of": ctx.as_of.isoformat(), "variant": ctx.variant, "tag": ctx.tag,
                           "customize": str(ctx.customize) if ctx.customize else None, "cost_usd": None,
                           "created_at": datetime.now(ZoneInfo("UTC")).isoformat(timespec="seconds")})
@@ -201,25 +198,29 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
         if norm.owner_email is None:
             ctx.degrade("normalize", "owner", "could not detect Avery's address from the data")
 
-    with ctx.timed("extract"):
-        extractions, stats = extract_world(llm, norm, profile.config, settings, ctx)
-    ctx.write_jsonl("extractions", extractions)
+    rulings = load_rulings(rulings_path(world, settings), as_of_dt)
+    with ctx.timed("spine"):
+        spine = build_spine(norm, profile.config, settings, as_of_dt, llm=llm, ctx=ctx, decider=_decider(llm, settings, ctx))
+    with ctx.timed("read"):
+        read = read_threads(llm, norm, spine.directory, profile.config, settings, as_of_dt, ctx, rulings)
 
     own_store = store is None
     st = store or Store(store_path(settings, world))
     st.connect()
     try:
         with ctx.timed("persist"):
-            persist(st, ctx, norm, extractions)
+            persist(st, ctx, norm)
         stage_notes: list[str] = []
         if profile.degraded:
             stage_notes.append("profile compiled with fallback config")
         for kind, f in norm.freshness.items():
             if f.state != "ok":
                 stage_notes.append(f"{kind} {f.state}")
+        if read.stats.failed:
+            stage_notes.append(f"{len(read.stats.failed)} thread(s) could not be read today (see degradations.jsonl)")
 
         with ctx.timed("compute"):
-            comp = compute_world(norm, extractions, profile.config, settings, as_of_dt, llm=llm, ctx=ctx, decider=_decider(llm, settings, ctx))
+            comp = assemble(norm, spine, read, profile.config, settings, as_of_dt, llm=llm, ctx=ctx)
             plain = variant is None and customize is None
             surfaced = times_surfaced(st, world, as_of_dt, tag=tag) if plain else {}
             for c in comp.candidates:
@@ -229,21 +230,19 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
             for cid in answered:
                 ctx.degrade("compute", cid, "answered_after_digest", detail="Avery replied after the digest showed it; not re-surfaced")
             comp.candidates = [c for c in comp.candidates if c.candidate_id not in answered]
+            comp.triage = [r for r in comp.triage if r.candidate_id not in answered]
         ctx.write_json("contacts", comp.contacts)
         ctx.write_jsonl("links", comp.links)
-        ctx.write_jsonl("findings", [])   # v2 contract: Track A's reader stage fills this; v1 writes an empty file
+        ctx.write_jsonl("findings", comp.findings)
         ctx.write_jsonl("candidates", comp.candidates)
         st.upsert_many("contacts", [{"contact_id": c.contact_id, "category": c.relationship.category, "tier": c.tier, **c.model_dump(mode="json")} for c in comp.contacts])
         st.upsert_many("candidates", [{"run_id": ctx.run_id, "candidate_id": c.candidate_id, "type": c.type, "about": c.about, **c.model_dump(mode="json")} for c in comp.candidates])
 
-        rulings = load_rulings(rulings_path(world, settings), as_of_dt)
-        with ctx.timed("triage"):
-            triage, tstats = triage_candidates(llm, comp.candidates, comp, profile.config, settings, ctx, rulings, as_of=as_of_dt)
+        with ctx.timed("enforce"):
+            triage, tstats = enforce_all(comp.triage, comp.candidates, comp, rulings, ctx, rulings_applied=read.stats.rulings_applied)
         ctx.write_jsonl("triage", triage)
         st.upsert_many("triage_results", [{"run_id": ctx.run_id, "candidate_id": r.candidate_id, "include": r.include, "priority": r.priority,
                                            "section": r.section, **r.model_dump(mode="json")} for r in triage])
-        if tstats.missing:   # a failed pack whose candidates all recovered one by one lost nothing: no header note
-            stage_notes.append(f"triage failed on {len(tstats.missing)} item(s); shown from computed facts")
 
         with ctx.timed("reduce"):
             reduced = reduce_items(triage, comp.candidates, comp, settings.budget.k_cap, comp.about_merges)
@@ -291,7 +290,9 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
         if dropped_n:
             notes.append(f"{dropped_n} item(s) removed by hard rules (see verify.json)")
         if ctx.degradations:
-            skipped = [d for d in ctx.degradations if d["reason"] not in ("code_fix", "evidence_replaced", "evidence_invalid")]
+            failed_reads = set(read.stats.failed)   # already in the header as "could not be read today"
+            skipped = [d for d in ctx.degradations if d["reason"] not in ("code_fix", "evidence_replaced", "evidence_invalid", "rescued_by_safety_net")
+                       and not (d["stage"] == "read" and d["item"] in failed_reads)]
             if skipped:
                 notes.append(f"{len(skipped)} item(s) degraded (see degradations.jsonl)")
         if resolved:
@@ -320,10 +321,8 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
     summary.update({
         "owner_email": norm.owner_email, "threads": len(norm.threads), "messages": len(norm.messages),
         "forwarded_messages": norm.forwarded_count, "events": len(norm.events), "notes": len(norm.notes),
-        "tasks": len(norm.tasks), "extractions": len(extractions), "extract": stats.__dict__,
-        "compute": comp.stats, "triage": {"candidates": tstats.candidates, "packs": tstats.packs, "cached": tstats.cached,
-                                          "invalid_packs": tstats.invalid_packs, "missing": tstats.missing, "fixes": len(tstats.fixes),
-                                          "rulings_applied": tstats.rulings_applied},
+        "tasks": len(norm.tasks), "read": read.stats.as_dict(),
+        "compute": comp.stats, "triage": {"candidates": tstats.candidates, "fixes": len(tstats.fixes), "rulings_applied": tstats.rulings_applied},
         "reduce": {"items": len(reduced.items), "overflow": len(reduced.overflow), "dropped": len(reduced.dropped), "merges": len(reduced.about_merges)},
         "compose": {"cached": cstats.cached, "fallback": cstats.fallback, "fixes": cstats.fixes, "one_thing": composed.one_thing_id,
                     "placed": sum(len(s.item_ids) for s in composed.sections) + (1 if composed.one_thing_id else 0), "cut": len(composed.cut_ids)},
@@ -335,4 +334,4 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
         "profile_cached": profile.cached, "pending_stages": [], "header": header,
     })
     ctx.write_json("run", summary)
-    return PipelineResult(ctx, profile, norm, extractions, stats, summary, (), comp, reduced, ver.compose, ver.result, md)
+    return PipelineResult(ctx, profile, norm, read, summary, (), comp, reduced, ver.compose, ver.result, md)

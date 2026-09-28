@@ -29,97 +29,54 @@ PROFILE_JSON = {
                    "cite_everything": True, "flag_stale_email_hours": 24},
 }
 
-_SRC_RE = re.compile(r"^--- message \d+ · source_id: (msg:<[^>]+>)", re.M)
-_SUBJ_RE = re.compile(r"^subject: (.*)$", re.M)
-_DOC_RE = re.compile(r"^(THREAD|NOTE|TASK) (\S+)", re.M)
-_ROUTER_RE = re.compile(r"^router guess: (\w+)", re.M)
+def _action(type_: str, target: str | None, brief: str) -> dict:
+    return {"type": type_, "target": target, "brief": brief, "assumptions": [], "watch_trigger": None, "read_start": None}
 
 
-def fake_extractor_output(prompt_text: str, *, bad_quote: bool = False) -> dict:
-    """A minimal valid ExtractorOutput for the document in the prompt; quotes come from the document itself."""
-    doc = prompt_text.split("=== DOCUMENT ===", 1)[1]
-    kind, sid = _DOC_RE.search(doc).groups()
-    empty = {"human_thread": None, "newsletter": None, "automated": None, "note": None, "task": None}
-    if kind == "NOTE":
-        return {"type": "note", **empty, "note": {
-            "note_kind": "meeting_notes", "meeting_date": "2026-09-22", "attendees": ["Jordan Liu"], "summary": "standup",
-            "about": ["rollout:halberd"], "decisions": [], "action_items": [], "agreements": [], "open_comments": [],
-            "claims": [{"subject": "rollout_date", "value": "Oct 6", "as_of": None,
-                        "evidence": {"source_id": f"{sid}#L4", "quote": "wrong quote" if bad_quote else "on track for Oct 6"}}],
-            "stage_signals": [], "draft_of": None}}
-    if kind == "TASK":
-        return {"type": "task", **empty, "task": {"about": "report:board-update", "entities": []}}
-    router = _ROUTER_RE.search(doc).group(1)
-    msg_ids = _SRC_RE.findall(doc)
-    subjects = _SUBJ_RE.findall(doc)
-    last_id, last_subject = msg_ids[-1], subjects[-1]
-    ev = {"source_id": last_id, "quote": "not in the source" if bad_quote else last_subject}
-    if router == "newsletter":
-        return {"type": "newsletter", **empty, "newsletter": {"publication": "Fake Brief", "issue_date": "2026-09-23", "items": [
-            {"headline": "h", "summary": "s", "topics": ["inference costs"], "entities": [], "effective_date": None, "evidence": ev}]}}
-    if router == "automated":
-        return {"type": "automated", **empty, "automated": {"system": "DocuSign", "action_bearing": True, "action_kind": "signature",
-                                                             "what": "sign", "deadline": None, "about": "offer:mei-tanaka", "link_present": True, "evidence": ev}}
-    if router == "marketing":
-        return {"type": "marketing", **empty}
-    sent = re.findall(r"^sent: (\S+)", doc, re.M)[-1]
-    frm = re.findall(r"^from: .*?<?([\w.+-]+@[\w.-]+)>?", doc, re.M)[-1]
-    slug = re.sub(r"[^a-z0-9]+", "-", last_subject.lower()).strip("-")[:30].rstrip("-") or "thread"
-    return {"type": "human_thread", **empty, "human_thread": {
-        "summary": "a thread", "about": [f"other:{slug}"], "domain": "work", "intent_primary": "ask", "intent_secondary": [],
-        "ball": {"awaiting": "avery", "awaiting_who": None, "last_message_by": frm, "last_message_at": sent,
-                 "closed_by_courtesy": False, "evidence": ev},
-        "sender_observations": [], "asks": [{"from_email": frm, "to_avery": True, "kind": "information", "what": "answer",
-                                              "deadline": None, "status": "open", "answered_by_message": None, "evidence": ev}],
-        "commitments": [], "deferrals": [], "schedule_mentions": [], "stage_signals": [], "role_changes": [], "claims": [],
-        "suspicious_instructions": []}}
+def _finding(fid: str, cits: list[dict], **over) -> dict:
+    base = {"finding_id": fid, "origin": "thread_reader", "needs_avery": "yes", "title": "Handle the thread", "kind": "other",
+            "why": "fake why", "priority": "P2", "urgency": "this_week", "deadline": None, "stakes": "medium", "confidence": "high",
+            "section": "pulse", "entities": [], "about": ["other:thread"], "citations": cits, "proposed_actions": [], "ambiguity": None,
+            "contradictions": [], "freshness_caveat": None, "suspicious_instructions": []}
+    base.update(over)
+    return base
 
 
-TRIAGE_PLAN = {   # type → (include, section, priority, due_today, action type)
-    "commitment_overdue": (True, "urgent", "P0", True, "task"), "commitment_due": (True, "urgent", "P1", True, "task"),
-    "commitment_not_in_tasks": (True, "urgent", "P1", False, "task"), "reply_owed": (True, "urgent", "P1", True, "reply"),
-    "quiet_thread": (True, "urgent", "P1", True, "reply"), "approval_pending": (True, "decisions", "P1", True, "approve"),
-    "calendar_conflict:deep_work": (True, "calendar_personal", "P2", True, "calendar_response"),
-    "calendar_conflict:family": (True, "calendar_personal", "P0", True, "message_person"),
-    "calendar_conflict:double_book": (True, "calendar_personal", "P1", True, "decide"),
-    "news_attachment": (True, "news", "P2", False, "read"), "task_due": (True, "urgent", "P1", True, "task"),
-    "stale_source": (False, "pulse", "P3", False, None), "suspicious_content": (True, "pulse", "P0", False, "read"),
-    "recruiter_pattern": (True, "pulse", "P2", False, "watch"), "hiring_stall": (True, "pulse", "P2", False, "forward_delegate"),
-    "cadence_drop": (True, "pulse", "P2", False, "watch"), "contradiction": (True, "decisions", "P1", False, "decide"),
-    "profile_drift": (True, "pulse", "P3", False, "profile_update"), "obligation_cadence": (True, "urgent", "P1", True, "task"),
-    "declined_meeting": (True, "calendar_personal", "P2", False, "read"),
-}
-
-
-def fake_triage(prompt_text: str) -> dict:
-    body = prompt_text.split("=== CANDIDATES ===", 1)[1].split("=== END CANDIDATES ===", 1)[0]
-    pack = json.loads(body)
-    results = []
-    for c in pack["candidates"]:
-        inc, sec, pri, due, act = TRIAGE_PLAN.get(c["type"], (True, "pulse", "P2", False, "read"))
-        contacts = c.get("contacts") or []
-        family = any(x.get("category") == "family" for x in contacts)
-        target = None
-        if act in ("reply", "message_person", "forward_delegate"):
-            target = (contacts[0].get("names") or ["x"])[0] if contacts else None
-            if family and act == "reply":
-                act = "reply"   # the code must convert this to message_person (never_draft)
-        elif act == "task":
-            target = f"Do {c['about']}"
-        elif act == "approve":
-            target = c["facts"].get("system") or "the app"
-        elif act == "calendar_response":
-            target = c["facts"].get("uid")
-        actions = [] if act is None else [{"type": act, "target": target, "brief": f"handle {c['about']}", "assumptions": [],
-                                           "watch_trigger": None, "read_start": None}]
-        amb = None
-        if c["type"] == "hiring_stall":
-            amb = {"type": "preference", "question": "Push the loop or hold?", "options": ["push", "hold"], "default": 1}
-            actions.append({"type": "question", "target": None, "brief": "push or hold?", "assumptions": [], "watch_trigger": None, "read_start": None})
-        cits = [dict(e) for e in c["evidence"][:1]] + [{"source_id": "msg:<invented>", "quote": "made up"}]
-        results.append({"candidate_id": c["candidate_id"], "include": inc, "section": sec, "priority": pri, "due_today": due,
-                        "confidence": "high", "why": f"fake why for {c['type']}", "citations": cits, "ambiguity": amb, "proposed_actions": actions})
-    return {"results": results}
+def fake_reader(user_text: str, *, bad_quote: bool = False) -> dict:
+    """A ReaderOutput for the raw thread in the reader's user message. Planted for the code checks: every finding
+    carries one invented quote (dropped), Sam gets a reply (→ message_person), Renee gets a P0 (→ P1, not earned),
+    Marcus gets a second, needs_avery "no" finding (no candidate). bad_quote: every quote invented (finding dropped)."""
+    raw = user_text.split("=== RAW THREAD", 1)[1]
+    blocks = re.split(r"\n--- (?=msg:<)", raw)[1:]
+    msgs = []
+    for b in blocks:
+        sid = b.split("\n", 1)[0].strip()
+        frm = re.search(r"^from: .*?<([^>]+)>(.*)$", b, re.M)
+        subj = re.search(r"^subject: (.*)$", b, re.M).group(1)
+        msgs.append((sid, frm.group(1), "[Avery]" in frm.group(2).split("(")[0], subj))
+    sender = next((a for _, a, me, _ in msgs if not me), msgs[0][1])
+    sid, _, _, subj = msgs[-1]
+    good = {"source_id": sid, "quote": "invented quote" if bad_quote else subj}
+    cits = [good, {"source_id": sid, "quote": "a sentence nobody wrote"}]
+    if "sam@" in sender:
+        fs = [_finding("f1", cits, title="Sort out daycare pickup with Sam", kind="childcare change", priority="P0", urgency="today",
+                       section="calendar_personal", about=["family:daycare"], stakes="high",
+                       proposed_actions=[_action("reply", sender, "who takes pickup on Friday")])]
+    elif "marcus@" in sender:
+        fs = [_finding("f1", cits, title="Send Marcus the updated cap table", kind="overdue promise to lead investor", priority="P0",
+                       urgency="today", section="urgent", about=["deal:series-a:cap-table"], stakes="high",
+                       deadline={"raw": "tonight", "resolved": "2026-09-22T23:59:00-07:00"},
+                       proposed_actions=[_action("task", "Send Marcus the updated cap table", "overdue since Tuesday night")]),
+              _finding("f2", cits, needs_avery="no", title="Marcus's partnership meeting is Thursday", kind="context",
+                       priority="P3", urgency="none", about=["deal:series-a"])]
+    elif "renee" in sender:
+        amb = {"type": "preference", "question": "Confirm Oct 6 or wait for Jordan?", "options": ["confirm", "wait"], "default": 1}
+        fs = [_finding("f1", cits, title="Reply to Renee about the rollout date", kind="reference customer asking about a date",
+                       priority="P0", urgency="today", section="urgent", entities=["Renee Tan"], about=["rollout:halberd"], ambiguity=amb,
+                       proposed_actions=[_action("reply", sender, "confirm Oct 6"), _action("question", None, "confirm or wait?")])]
+    else:
+        fs = [_finding("f1", cits, proposed_actions=[_action("read", None, "skim it")])]
+    return {"thread_summary": f"fake summary of {subj}", "findings": fs}
 
 
 def fake_compose(prompt_text: str) -> dict:
@@ -235,10 +192,8 @@ class FakeClient:
         text = kw["messages"][0]["content"]
         if name == "ProfileConfig":
             content = self.profile_responses.pop(0) if self.profile_responses else json.dumps(PROFILE_JSON)
-        elif name == "ExtractorOutput":
-            content = json.dumps(fake_extractor_output(text, bad_quote=self.bad_quote))
-        elif name == "TriageBatch":
-            content = json.dumps(fake_triage(text))
+        elif name == "ReaderOutput":
+            content = json.dumps(fake_reader(kw["messages"][1]["content"], bad_quote=self.bad_quote))
         elif name == "ComposeResult":
             content = json.dumps(fake_compose(text))
         elif name == "DraftOutput":

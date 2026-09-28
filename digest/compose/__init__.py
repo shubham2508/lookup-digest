@@ -28,7 +28,8 @@ SUMMARY_KEYS = ("summary", "what", "title", "headline", "ask", "commitment", "re
                 "task", "field", "proposal", "instructions", "meeting_desc", "email_says", "calendar_says", "email_day", "calendar_day", "day", "values", "cadence",
                 "days_overdue", "business_days_quiet", "hours_since_inbound", "overlap_minutes", "overlaps", "block", "start",
                 "deadline", "due", "created", "count", "ratio", "baseline_median_days", "recent_median_days", "current_gap_days",
-                "stage", "days_since_signal", "qualifier", "freshness_note", "attaches_to", "publication", "later_references")
+                "stage", "days_since_signal", "qualifier", "freshness_note", "attaches_to", "publication", "later_references",
+                "kind", "urgency", "stakes", "deadline_raw", "contradictions", "origin", "rescued_by_safety_net")   # v2 Finding facts
 
 
 @dataclass
@@ -60,6 +61,8 @@ def title_for(it: ReduceItem, cands: dict[str, Candidate]) -> str:
     f = c.facts if c else {}
     t = c.type if c else it.candidate_types[0] if it.candidate_types else "item"
     name = (f.get("contact") or "").replace("-", " ").title()
+    if f.get("finding_id") and f.get("title") and f.get("origin") != "safety_net":
+        return f["title"]   # v2: readers and sweeps write a verb-first title; safety nets keep the v1 phrasing below
     return {
         "commitment_overdue": f"Deliver: {f.get('what', it.about)} (overdue {f.get('days_overdue', '?')}d)",
         "commitment_due": f"Deliver today: {f.get('what', it.about)}",
@@ -81,7 +84,7 @@ def title_for(it: ReduceItem, cands: dict[str, Candidate]) -> str:
         "obligation_cadence": f"Board update overdue under {f.get('cadence', '?')} cadence",
         "declined_meeting": f"Fallout from the declined {f.get('title', 'meeting')}",
         "stale_source": f"Source stale: {f.get('source', it.about)}",
-    }.get(t, it.about)
+    }.get(t, f.get("title") or it.about)
 
 
 def fallback_compose(reduced: ReduceResult, cands: dict[str, Candidate], k_items: int = 12) -> ComposeResult:
