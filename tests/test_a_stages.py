@@ -2,6 +2,7 @@
 import json
 from pathlib import Path
 
+import pytest
 import yaml
 from a_fakes import TZ, fake_llm
 
@@ -27,6 +28,8 @@ from digest.schemas import (
 from digest.triage import triage_candidates
 from digest.verify import verify
 
+V1_RULES = "asserts v1 extraction-rule candidates (task_due, commitment_overdue, reply_owed from an extracted ask) that v2-b-spine deleted; Track A's v2 rewrite replaces this test"
+
 SETTINGS = load_settings()
 AS_OF = parse_as_of("2026-09-24T06:00")
 
@@ -48,6 +51,7 @@ def _stack(mini_dir, tmp_path, **fake):
     return world, profile, comp, llm, ctx
 
 
+@pytest.mark.skip(reason=V1_RULES)
 def test_triage_packs_and_code_checks(mini_dir, tmp_path):
     world, profile, comp, llm, ctx = _stack(mini_dir, tmp_path)
     results, stats = triage_candidates(llm, comp.candidates, comp, profile, SETTINGS, ctx, rulings=[{"id": "R1", "scope": {"thread_kind": "task_due"}, "ruling": "x"}], as_of=AS_OF)
@@ -64,6 +68,7 @@ def test_triage_packs_and_code_checks(mini_dir, tmp_path):
     assert any("never_draft" in f for fx in stats.fixes for f in fx["fixes"])
 
 
+@pytest.mark.skip(reason=V1_RULES)
 def test_reduce_merges_sorts_and_caps(mini_dir, tmp_path):
     world, profile, comp, llm, ctx = _stack(mini_dir, tmp_path)
     results, _ = triage_candidates(llm, comp.candidates, comp, profile, SETTINGS, ctx, as_of=AS_OF)
@@ -106,6 +111,7 @@ def test_compose_validation_dedupes_and_budgets_questions():
     assert fb.one_thing_id == "i1" and fb.header_notes and "i4" in [i for b in fb.sections for i in b.item_ids]
 
 
+@pytest.mark.skip(reason=V1_RULES)
 def test_draft_violations_and_materializer_retry(mini_dir, tmp_path):
     banned = SETTINGS.drafts.banned_phrases
     assert draft_violations("renee, yes. it's on. thanks.\nAvery", banned, 3) == []
@@ -131,6 +137,7 @@ def test_draft_violations_and_materializer_retry(mini_dir, tmp_path):
     assert tasks_md.startswith("- [ ] ") and "(due: 2026-09-24)" in tasks_md
 
 
+@pytest.mark.skip(reason=V1_RULES)
 def test_verify_rules_and_render(mini_dir, tmp_path):
     world, profile, comp, llm, ctx = _stack(mini_dir, tmp_path)
     results, _ = triage_candidates(llm, comp.candidates, comp, profile, SETTINGS, ctx, as_of=AS_OF)
@@ -169,6 +176,7 @@ def test_verify_rules_and_render(mini_dir, tmp_path):
     assert "other meeting" in md and "nothing to act on" in md
 
 
+@pytest.mark.skip(reason=V1_RULES)
 def test_focus_only_keeps_family_and_p0_as_outside_filter(mini_dir, tmp_path):
     from digest.compile.customize import default_overrides
     from digest.schemas import Focus

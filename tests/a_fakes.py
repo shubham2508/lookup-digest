@@ -256,6 +256,9 @@ class FakeClient:
             content = json.dumps(fake_topic_groups(text))
         elif name == "LinkBatch":
             content = json.dumps(fake_links(text))
+        elif name in ("SignatureFacts", "ContactClassification", "SweepOutput"):   # Track B's v2 spine and sweeps
+            from b_fakes import fake_b_output
+            content = json.dumps(fake_b_output(name, text))
         else:
             raise AssertionError(f"unexpected schema {name}")
         usage = SimpleNamespace(prompt_tokens=100, completion_tokens=50, cost=0.0001)

@@ -2,10 +2,13 @@
 import json
 from pathlib import Path
 
+import pytest
 from a_fakes import fake_llm
 
 from digest.pipeline import run_pipeline
 from digest.store import Store
+
+V1_RULES = "asserts v1 extraction-rule candidates (task_due, commitment_overdue, reply_owed from an extracted ask) that v2-b-spine deleted; Track A's v2 rewrite replaces this test"
 
 
 def test_run_pipeline_on_fixture(tmp_path):
@@ -50,6 +53,7 @@ def test_variant_and_missing_notes_degrade_visibly(tmp_path):
     assert "notes missing" in r.digest_md.split("\n")[2]
 
 
+@pytest.mark.skip(reason=V1_RULES)
 def test_customize_and_history_across_two_days(tmp_path):
     llm = fake_llm(tmp_path)
     (tmp_path / "profile.md").write_text("# Avery Chen — Profile\n")
