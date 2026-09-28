@@ -247,9 +247,9 @@ class LLM:
 
     # ------------------------------------------------------------------ cache
     @staticmethod
-    def cache_key(role: str, prompt_version: str, cfg: RoleConfig, messages: list[dict], schema: dict) -> str:
+    def cache_key(role: str, prompt_version: str, cfg: RoleConfig, messages: list[dict], schema: dict, salt: str | None = None) -> str:
         payload = {
-            "role": role, "prompt_version": prompt_version, "model": cfg.model,
+            "role": role, "prompt_version": prompt_version, "model": cfg.model, "salt": salt,
             "reasoning_effort": cfg.reasoning_effort, "temperature": cfg.temperature,
             "messages": messages, "schema": schema,
         }
@@ -269,10 +269,13 @@ class LLM:
         cache: bool = True,
         tag: str = "",
         max_tokens: int | None = None,
+        cache_salt: str | None = None,
     ) -> LLMResult[T]:
+        """cache_salt: extra key material for calls whose answer depends on something outside the messages, e.g. the
+        as_of date for readers ("does this need Avery today?"); None keeps v1 behaviour."""
         cfg = self.role_config(role)
         schema = strict_schema(output_model)
-        key = self.cache_key(role, prompt_version, cfg, messages, schema)
+        key = self.cache_key(role, prompt_version, cfg, messages, schema, cache_salt)
         path = self._cache_path(role, key)
 
         if cache and path.exists():

@@ -22,6 +22,13 @@ roles:
   compose:      {model: openai/gpt-6-luna, family: openai, reasoning_effort: high, max_tokens: 32000}
   materializer: {model: openai/gpt-6-luna, family: openai, reasoning_effort: low}
   compiler:     {model: openai/gpt-6-luna, family: openai, reasoning_effort: low}
+  # v2 (specs/PIVOT_SPEC.md): readers and sweeps judge raw text; cached per (input, as_of date).
+  thread_reader:      {model: openai/gpt-6-luna, family: openai, reasoning_effort: medium, max_tokens: 16000}
+  calendar_sweep:     {model: openai/gpt-6-luna, family: openai, reasoning_effort: medium, max_tokens: 16000}
+  notes_tasks_sweep:  {model: openai/gpt-6-luna, family: openai, reasoning_effort: medium, max_tokens: 16000}
+  news_sweep:         {model: openai/gpt-6-luna, family: openai, reasoning_effort: medium, max_tokens: 16000}
+  contact_classifier: {model: openai/gpt-6-luna, family: openai, reasoning_effort: low}
+  signature_parser:   {model: openai/gpt-6-luna, family: openai, reasoning_effort: low}
   linker:       {model: openai/gpt-6-luna, family: openai, reasoning_effort: low}   # 'same thing?' decisions in compute (replaces word similarity)
   # Jev (TypeSafe's classifier model, OpenRouter /api/alpha/decisions) answers the linker's pick-one questions first;
   # the linker role above is the fallback. Remove this line to run the linker on the LLM only.

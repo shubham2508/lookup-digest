@@ -416,7 +416,7 @@ class Contact(Model):
 # ----------------------------------------------------------------------------- §5.2 candidates (compute)
 class Candidate(Model):
     candidate_id: str
-    type: CandidateType
+    type: str = Field(description="a v1 rule name (safety nets, CandidateType) or a reader's free-text kind (v2 Finding)")
     about: AboutKey
     entities: list[str] = Field(default_factory=list, description="contact_ids / entity slugs")
     facts: dict[str, Any] = Field(default_factory=dict, description="computed: business_days_quiet, overlap_minutes, days_overdue, ...")
@@ -455,6 +455,72 @@ class TriageResult(Model):
     citations: list[Evidence]
     ambiguity: Ambiguity | None
     proposed_actions: list[ProposedAction] = Field(description="0 to 2")
+
+
+# ----------------------------------------------------------------------------- v2 findings (specs/PIVOT_SPEC.md §4)
+# Readers, sweeps and safety nets all emit Findings. digest/findings.py maps each one onto Candidate + TriageResult so
+# reduce → compose → materialize → verify → render and every artifact keep their v1 shapes. LLM output models here
+# have no defaults: strict JSON mode requires every field.
+FindingOrigin = Literal["thread_reader", "calendar_sweep", "notes_tasks_sweep", "news_sweep", "safety_net"]
+NeedsAvery = Literal["yes", "no", "unsure"]
+Urgency = Literal["today", "this_week", "later", "none"]
+Stakes = Literal["low", "medium", "high"]
+
+
+class FindingDeadline(Model):
+    raw: str = Field(description="the phrase as written")
+    resolved: datetime | None = Field(description="ISO 8601 with offset, resolved against the message timestamp; null if unknown")
+
+
+class Finding(Model):
+    finding_id: str = Field(description="local id: f1, f2, …; code makes it unique per run")
+    origin: FindingOrigin
+    needs_avery: NeedsAvery
+    title: str = Field(description="verb-first, at most 12 words")
+    kind: str = Field(description='free text, e.g. "overdue promise to lead investor", "family calendar collision"')
+    why: str = Field(description="at most 30 words, concrete, cites the deciding evidence")
+    priority: Priority
+    urgency: Urgency
+    deadline: FindingDeadline | None
+    stakes: Stakes
+    confidence: Confidence
+    section: Section
+    entities: list[str] = Field(description="contact_ids / org slugs from the contact records given")
+    about: list[str] = Field(description='light tags for linking, kind:slug, e.g. "deal:series-a", "offer:jun-park"')
+    citations: list[Evidence] = Field(description="at least one; code drops the finding if none survives the substring check")
+    proposed_actions: list[ProposedAction] = Field(description="0 to 2")
+    ambiguity: Ambiguity | None
+    contradictions: list[str] = Field(description='e.g. "calendar says Fri; this thread moves it to Mon"')
+    freshness_caveat: str | None
+    suspicious_instructions: list[Evidence]
+
+
+class ReaderOutput(Model):
+    """One thread reader call."""
+    thread_summary: str = Field(description="at most 40 words, own words; kept for context and history")
+    findings: list[Finding]
+
+
+class SweepOutput(Model):
+    findings: list[Finding]
+
+
+class SignatureFacts(Model):
+    """Signature parser: one cached call per new contact."""
+    name: str | None
+    title: str | None
+    org: str | None
+    evidence: Evidence | None
+
+
+class ContactClassification(Model):
+    """Contact classifier: one cached call per contact (DESIGN_LOG §3.8 dimensions)."""
+    category: RelationshipHint
+    subtype: str | None = Field(description="lead_investor, board, deal_counsel, procurement_lead, retained_search, recruiter, daycare, cofounder, …")
+    stage: str | None = Field(description="lifecycle stage from the vocabulary for that category, or null")
+    confidence: Confidence
+    reason: str = Field(description="at most 30 words")
+    evidence: list[Evidence]
 
 
 # ----------------------------------------------------------------------------- architecture §7 compose (LLM)
@@ -598,7 +664,7 @@ class ReduceItem(Model):
     id: str = Field(description="stable item id; compose refers to items by this id")
     about: AboutKey
     candidate_ids: list[str]
-    candidate_types: list[CandidateType] = Field(default_factory=list)
+    candidate_types: list[str] = Field(default_factory=list)
     priority: Priority
     section: Section
     due_today: bool = False
@@ -677,6 +743,10 @@ LLM_OUTPUT_MODELS: dict[str, type[Model]] = {
     "ExtractorOutput": ExtractorOutput,
     "TriageResult": TriageResult,
     "TriageBatch": TriageBatch,
+    "ReaderOutput": ReaderOutput,
+    "SweepOutput": SweepOutput,
+    "SignatureFacts": SignatureFacts,
+    "ContactClassification": ContactClassification,
     "BaselineDigest": BaselineDigest,
     "ComposeResult": ComposeResult,
     "DraftOutput": DraftOutput,

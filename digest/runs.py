@@ -21,6 +21,7 @@ from .paths import RUNS_DIR
 
 ARTIFACTS: dict[str, str] = {
     "extractions": "extractions.jsonl",   # one Extraction per document
+    "findings": "findings.jsonl",         # v2: one Finding per line (readers, sweeps, safety nets), + thread_id, rescued
     "contacts": "contacts.json",          # list[Contact]
     "candidates": "candidates.jsonl",     # one Candidate per line
     "triage": "triage.jsonl",             # one TriageResult per line (+ candidate_id)

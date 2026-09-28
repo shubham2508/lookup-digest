@@ -1,3 +1,7 @@
+> **2026-09-29 05:00 — superseded for the v2 pivot.** Read `specs/PIVOT_SPEC.md`, `MIGRATION_PLAN.md`, then
+> `docs/handoffs/v2-A-readers.md` / `v2-B-spine.md` / `v2-C-eval.md` (tracks) or `STATUS.md` (orchestrator). The
+> v1 close-out steps below still apply to the v1 tag if the pivot is abandoned.
+
 # Orchestrator handoff — start here (written 2026-09-28, late)
 
 Read `CLAUDE.md` first, then this page, then `docs/handoffs/STATUS.md` and `OPEN_QUESTIONS.md` → Decided (#13–#17).
