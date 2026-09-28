@@ -67,6 +67,11 @@ TASKS = {
     "role_at_org": ("Each item is a sender (name, email, signature title, organization). Options are roles at named "
                     "organizations from the owner's profile. Match only if the sender holds that role at one of those "
                     "organizations (an acting or new holder of the role counts; a colleague in a different role does not)."),
+    "net_covers_finding": ("Each item is a fact a code check computed (a reply waiting N business days, a meeting inside a "
+                           "protected block, a family event over a work meeting, an approval request). Options are issues that "
+                           "readers found in the same threads, events or people. Match the one option that is the same issue "
+                           "the fact is about (the same unanswered message, the same meeting, the same request), or none. "
+                           "Another issue with the same person is not the same issue."),
     "news_to_open_item": ("Each item is a newsletter story. Options are things Avery is dealing with right now. Match only if the "
                           "story changes what Avery should do or say about that item (a price change on a cost Avery is deciding, "
                           "a customer's public statement before a reply to that customer). General industry or fundraising news "
