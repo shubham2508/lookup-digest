@@ -3,13 +3,10 @@ run artifacts), and produces a verified digest from readers alone."""
 import json
 from pathlib import Path
 
-import pytest
 from a_fakes import fake_llm
 
 from digest.pipeline import run_pipeline
 from digest.store import Store
-
-V1_RULES = "asserts v1 extraction-rule candidates (task_due, commitment_overdue, reply_owed from an extracted ask) that v2-b-spine deleted; Track A's v2 rewrite replaces this test"
 
 
 def test_run_pipeline_on_fixture(tmp_path):
@@ -21,8 +18,11 @@ def test_run_pipeline_on_fixture(tmp_path):
     run_dir = r.ctx.run_dir
     assert run_dir == tmp_path / "runs" / "tests/fixtures/mini" / "2026-09-24T06-00"
     rows = [json.loads(ln) for ln in (run_dir / "findings.jsonl").read_text().splitlines()]
-    assert len(rows) == 4 and {r["origin"] for r in rows} == {"thread_reader"} and all(r["thread_id"] for r in rows)
-    assert sum(1 for r in rows if r["candidate_id"] is None) == 1 and all(r["rescued_by_safety_net"] is False for r in rows)
+    readers = [r for r in rows if r["origin"] == "thread_reader"]
+    assert len(readers) == 4 and all(r["thread_id"] for r in readers) and {r["origin"] for r in rows} >= {"calendar_sweep", "safety_net"}
+    assert sum(1 for r in rows if r["candidate_id"] is None) == 1
+    assert all(r["rescued_by_safety_net"] is (r["origin"] == "safety_net") for r in rows), "only uncovered nets are rescues"
+    n_cands = sum(1 for r in rows if r["candidate_id"])
     from digest.runs import ARTIFACTS
     for key, name in ARTIFACTS.items():
         assert (run_dir / name).exists() or key == "extractions", name
@@ -31,7 +31,7 @@ def test_run_pipeline_on_fixture(tmp_path):
     assert run["owner_email"] == "avery@tessera.io" and run["read"]["threads_read"] == 3 and run["pending_stages"] == []
     assert run["read"]["findings"] == 4 and run["read"]["citations_dropped"] == 4 and set(run["timings_s"]) >= {"spine", "read", "enforce"}
     assert run["freshness"]["email"]["state"] == "ok" and run["cost_usd"] > 0 and run["verify"]["stats"]["header_present"]
-    assert run["compute"]["candidates"] == 3 and run["triage"]["fixes"] >= 1 and run["compose"]["one_thing"]
+    assert run["compute"]["candidates"] == n_cands and run["triage"]["fixes"] >= 1 and run["compose"]["one_thing"]
     assert r.freshness_line.startswith("inbox synced Wed 21:10 · calendar ok")
     md = (run_dir / "digest.md").read_text()
     assert md.startswith("# Daily Digest — Thursday, September 24, 2026\n\nAs of Thu 06:00 PT · inbox synced Wed 21:10")
@@ -42,7 +42,7 @@ def test_run_pipeline_on_fixture(tmp_path):
         assert store.count("messages") == 7 and store.count("threads") == 6 and store.count("events") == 19
         assert store.count("notes") == 1 and store.count("tasks") == 3
         assert store.get("threads", thread_id="thread:20260922-1642.marcus@inflectionpoint.vc")["router_type"] == "human"
-        assert store.count("candidates") == 3 and store.count("triage_results") == 3 and store.count("digest_items") == 3
+        assert store.count("candidates") == n_cands and store.count("triage_results") == n_cands and store.count("digest_items") >= 3
         assert store.get("runs", run_id="tests/fixtures/mini/2026-09-24T06-00")["cost_usd"] > 0
 
 
@@ -57,7 +57,6 @@ def test_variant_and_missing_notes_degrade_visibly(tmp_path):
     assert "notes missing" in r.digest_md.split("\n")[2]
 
 
-@pytest.mark.skip(reason=V1_RULES)
 def test_customize_and_history_across_two_days(tmp_path):
     llm = fake_llm(tmp_path)
     (tmp_path / "profile.md").write_text("# Avery Chen — Profile\n")
