@@ -52,6 +52,14 @@ longer occurs. (b) Block the citation match only when the item also cites one of
   types is proposed; (4) no fact in `why`/`title` is absent from the raw thread. Pass = readers match or beat v1 triage
   on ≥4 of 5 and never fail (4). Fail = stop the merge of P3–P5, keep v1, report in the morning. Tracks run
   unattended (defaults from MIGRATION_PLAN.md §5 instead of questions).
+  **Verdict (orchestrator, 2026-09-29 ~06:10): PASS.** Threads 1, 2, 4 beat v1 (one finding instead of three; no
+  invented "8:00"; the calendar contradiction lands in calendar_personal as the key expects); thread 3 matches on
+  priority and section but proposes `task` where the key expects `message_person`/`decide`; thread 5 shares v1's miss
+  (a promise delivered in another thread), which Track A showed disappears once that thread is retrieved (B2 must rank
+  same-participant threads by subject overlap, not only recency). No finding states a fact absent from the raw thread.
+  Carried to integration (A5, orchestrator): compose rewrote Jordan's reply into a customer draft (recipient check in
+  code), reduce joins every same-thread finding (join by shared citation instead), history keyed on free-text tags,
+  freshness qualifier keyed on v1 types. Details: `docs/handoffs/v2-A-checkpoint.md`.
 
 - **2026-09-29 · Orchestrator fixes from the final dev runs (implementing the spec, no design change).** Traced with
   the debug-trap procedure; each is a commit with a test. Tier inheritance only at outside firms (every Tessera

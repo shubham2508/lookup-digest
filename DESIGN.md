@@ -1,7 +1,7 @@
 # Daily Digest — Design
 
 *One page: what we built, what we considered and rejected, how it would run on a schedule, and week two.*
-*Submitted 2026-09-29. Numbers are from `eval/reports/dev_2026-09-29.md` and `heldout_2026-09-29.md`.*
+*Submitted 2026-09-29. Numbers are from `eval/reports/dev_2026-09-29_v1.md` and `heldout_2026-09-29_v1.md` (v1 tag).*
 
 ## What we built
 
