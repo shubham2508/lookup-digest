@@ -125,6 +125,7 @@ class LLMCfg(BaseModel):
 
 class StoreCfg(BaseModel):
     path_template: str = "runs/{world}/store.sqlite"
+    rulings_path_template: str = "runs/{world}/rulings.yaml"
 
 
 class Settings(BaseModel):

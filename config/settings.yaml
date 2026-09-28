@@ -51,3 +51,4 @@ llm:
 
 store:
   path_template: "runs/{world}/store.sqlite"
+  rulings_path_template: "runs/{world}/rulings.yaml"   # written by `digest answer` and `digest simulate`; mirrored into the rulings table
