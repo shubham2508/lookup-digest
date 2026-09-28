@@ -15,6 +15,7 @@ from .compose import compose_digest, title_for
 from .compute import ComputeResult, assemble, build_spine
 from .config import Settings, load_settings
 from .history import (
+    surfaced_count,
     answered_after_digest,
     load_rulings,
     mark_resolved,
@@ -64,13 +65,16 @@ class PipelineResult:
 SYNC_GAP_TYPES = {"quiet_thread", "commitment_overdue", "commitment_due", "reply_owed", "obligation_cadence"}
 
 
-def _freshness_qualifiers(types: set[str], why: str, freshness: dict) -> list[str]:
+def _freshness_qualifiers(types: set[str], why: str, freshness: dict, sources: set[str] | None = None) -> list[str]:
+    """A 'quiet' or 'overdue' conclusion (v1 types) or, for v2 findings, any conclusion resting only on email, drawn
+    while the inbox is stale, says so; a calendar conclusion drawn while the work calendar is unreadable says so."""
     email, cal = freshness.get("email"), freshness.get("calendar")
     email_stale = email is not None and email.state != "ok"
     cal_bad = cal is not None and cal.state in ("unreadable", "missing")
     synced = email.latest_item_time.strftime("%a %H:%M") if email_stale and email.latest_item_time else "unknown"
     add = []
-    if email_stale and types & SYNC_GAP_TYPES and "sync gap" not in why.lower():
+    email_only = bool(sources) and all(s.startswith(("msg:", "thread:")) for s in sources)
+    if email_stale and (types & SYNC_GAP_TYPES or email_only) and "sync gap" not in why.lower():
         add.append(f"May be a sync gap: inbox last synced {synced}.")
     if cal_bad and any(t.startswith("calendar_conflict") for t in types) and "calendar" not in why.lower():
         add.append("Work calendar unreadable; overlaps not checked.")
@@ -80,7 +84,7 @@ def _freshness_qualifiers(types: set[str], why: str, freshness: dict) -> list[st
 def qualify_reduced(reduced, freshness: dict) -> None:
     """The same qualifiers on every reduced item, so an item that ends up in 'Also pending' keeps them too."""
     for it in reduced.items:
-        add = _freshness_qualifiers(set(it.candidate_types), it.why, freshness)
+        add = _freshness_qualifiers(set(it.candidate_types), it.why, freshness, {e.source_id for e in it.citations})
         if add:
             it.why = (it.why.rstrip() + " " + " ".join(add)).strip()
 
@@ -92,7 +96,7 @@ def qualify_for_freshness(composed: ComposeResult, by_item: dict, cands: dict, f
         it = by_item.get(ci.id)
         if it is None:
             continue
-        add = _freshness_qualifiers(set(it.candidate_types), ci.why, freshness)
+        add = _freshness_qualifiers(set(it.candidate_types), ci.why, freshness, {e.source_id for e in it.citations})
         if add:
             ci.why = (ci.why.rstrip() + " " + " ".join(add)).strip()
 
@@ -224,7 +228,7 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
             plain = variant is None and customize is None
             surfaced = times_surfaced(st, world, as_of_dt, tag=tag) if plain else {}
             for c in comp.candidates:
-                c.times_surfaced = surfaced.get(c.about, 0)
+                c.times_surfaced = surfaced_count(surfaced, c.about, c.facts.get("thread_id"))
             resolved = mark_resolved(st, world, as_of_dt, comp.candidates, tag=tag) if plain else 0
             answered = answered_after_digest(st, world, as_of_dt, comp.candidates, {t.thread_id: t for t in norm.threads}, tag=tag) if plain else set()
             for cid in answered:
@@ -258,14 +262,14 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
         with ctx.timed("compose"):
             composed, cstats = compose_digest(llm, reduced, cands, profile.config, settings, ctx, freshness_line=freshness_line,
                                               rulings_applied=tstats.rulings_applied, customize=overrides, stage_notes=stage_notes,
-                                              as_of=as_of_dt.isoformat(), compute=comp)
+                                              as_of=as_of_dt.isoformat(), compute=comp, world=norm)
         if cstats.fallback:
             stage_notes.append("compose fell back to triage order")
         qualify_for_freshness(composed, by_item, cands, norm.freshness, as_of_dt)
         frame_escalation(composed, by_item)
 
         with ctx.timed("materialize"):
-            actions, mstats = materialize(llm, composed, by_item, cands, comp, profile.config, settings, ctx, overrides)
+            actions, mstats = materialize(llm, composed, by_item, cands, comp, profile.config, settings, ctx, overrides, world=norm)
         with ctx.timed("verify"):
             budget = overrides.length_words if overrides and overrides.length_words else settings.budget.length_words
             known = CitationIndex(norm).known

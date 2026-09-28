@@ -57,15 +57,34 @@ def prior_runs(store: Store, world: str, as_of: datetime, suffix_free: bool = Tr
 
 
 def times_surfaced(store: Store, world: str, as_of: datetime, tag: str | None = None) -> dict[str, int]:
-    """about key → number of prior digests (same world, earlier as_of, plain runs) that surfaced it and it stayed open."""
+    """about key → number of prior digests (same world, earlier as_of, plain runs) that surfaced it and it stayed open.
+    Also `thread::<thread_id>` → the same count by source thread: v2 readers tag topics in free text that can change
+    between mornings, the thread does not."""
     runs = {r["run_id"]: r for r in prior_runs(store, world, as_of, tag=tag)}
     if not runs:
         return {}
+    threads = _threads_by_about(store, set(runs))
     counts: dict[str, set[str]] = {}
     for row in store.query("digest_items"):
         if row["run_id"] in runs and row.get("surfaced") and not row.get("resolved_later"):
             counts.setdefault(row["about"], set()).add(row["run_id"])
+            for tid in threads.get((row["run_id"], row["about"]), ()):
+                counts.setdefault(f"thread::{tid}", set()).add(row["run_id"])
     return {k: len(v) for k, v in counts.items()}
+
+
+def _threads_by_about(store: Store, runs: set[str]) -> dict[tuple[str, str], set[str]]:
+    """(run_id, about) → source thread ids of that run's candidates with that key."""
+    out: dict[tuple[str, str], set[str]] = {}
+    for row in store.query("candidates"):
+        tid = (row.get("facts") or {}).get("thread_id") if isinstance(row.get("facts"), dict) else None
+        if row["run_id"] in runs and tid:
+            out.setdefault((row["run_id"], row["about"]), set()).add(tid)
+    return out
+
+
+def surfaced_count(surfaced: dict[str, int], about: str, thread_id: str | None) -> int:
+    return max(surfaced.get(about, 0), surfaced.get(f"thread::{thread_id}", 0) if thread_id else 0)
 
 
 def mark_resolved(store: Store, world: str, as_of: datetime, current: list[Candidate], tag: str | None = None) -> int:
@@ -74,9 +93,12 @@ def mark_resolved(store: Store, world: str, as_of: datetime, current: list[Candi
     if not runs:
         return 0
     open_abouts = {c.about for c in current}
+    open_threads = {c.facts.get("thread_id") for c in current if c.facts.get("thread_id")}
+    threads = _threads_by_about(store, runs)
     n = 0
     for row in store.query("digest_items"):
-        if row["run_id"] in runs and row.get("surfaced") and not row.get("resolved_later") and row["about"] not in open_abouts:
+        still_open = row["about"] in open_abouts or bool(threads.get((row["run_id"], row["about"]), set()) & open_threads)
+        if row["run_id"] in runs and row.get("surfaced") and not row.get("resolved_later") and not still_open:
             row["resolved_later"] = 1
             row["resolved_at"] = as_of.isoformat()
             store.upsert("digest_items", row)

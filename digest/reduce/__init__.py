@@ -50,6 +50,23 @@ def _cap_confidence(conf: str, cap: str) -> str:
     return "medium" if cap != "none" and conf == "high" else conf
 
 
+def join_keys(c: Candidate) -> list[tuple]:
+    """Two candidates are one item when a key matches. A qualified about key (deal:series-a:cap-table) joins across
+    threads; a shared citation (same message, same quote) joins within one. v1 rule candidates (no `origin`) and safety
+    nets still join by thread (reply owed + gone quiet on one email are one item); reader findings do not, because a
+    reader splits one thread into separate issues on purpose (PIVOT_SPEC §5.4)."""
+    keys: list[tuple] = []
+    if c.about.count(":") >= 2:
+        keys.append(("about", c.about))
+    for e in c.evidence:
+        keys.append(("cite", e.source_id, e.quote))
+    if c.facts.get("thread_id") and c.facts.get("origin") in (None, "safety_net"):
+        keys.append(("thread", str(c.facts["thread_id"])))
+    if not keys:
+        keys.append(("about", c.about))
+    return keys
+
+
 def reduce_items(results: list[TriageResult], cands: list[Candidate], compute: ComputeResult, k_cap: int,
                  about_merges: list[AboutMerge] | None = None) -> ReduceResult:
     by_id = {c.candidate_id: c for c in cands}
@@ -72,17 +89,10 @@ def reduce_items(results: list[TriageResult], cands: list[Candidate], compute: C
         if ra != rb:
             parent[rb] = ra
 
-    first_by: dict[tuple[str, str], str] = {}
+    first_by: dict[tuple, str] = {}
     for r in kept:
         c = by_id[r.candidate_id]
-        keys = []
-        if c.about.count(":") >= 2:
-            keys.append(("about", c.about))
-        if c.facts.get("thread_id"):
-            keys.append(("thread", str(c.facts["thread_id"])))
-        if not keys:
-            keys.append(("about", c.about))
-        for k in keys:
+        for k in join_keys(c):
             if k in first_by:
                 join(first_by[k], r.candidate_id)
             else:
