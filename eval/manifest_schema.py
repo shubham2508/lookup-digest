@@ -40,7 +40,7 @@ from digest.schemas import (
     Section,
 )
 
-ItemKind = Literal["thread", "note", "task", "newsletter", "automated", "marketing"]
+ItemKind = Literal["thread", "note", "task", "newsletter", "automated", "marketing", "event"]
 BackgroundCategory = Literal[
     "internal_routine", "notifications", "newsletters", "customers", "saas_marketing", "investors_board",
     "recruiters", "vendors_misc", "hiring", "lawyer", "personal",
@@ -184,7 +184,7 @@ class ExpectedSenderRelationship(M):
 
 class ExpectedExtraction(M):
     """Shaped like the extraction (extraction_schema §7) so the scorer can match field by field."""
-    type: DocType
+    type: DocType | Literal["event"] = Field(description="'event' for code-parsed calendar events, which have no extraction")
     domain: Domain | None = None
     intent_primary: Intent | None = None
     about: list[AboutKey] = Field(default_factory=list)
