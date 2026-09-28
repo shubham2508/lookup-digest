@@ -21,7 +21,8 @@ import httpx
 
 ENDPOINT = "https://openrouter.ai/api/alpha/decisions"
 MAX_OPTIONS = 254          # + "none"
-CHUNK_QUESTIONS = 25       # questions per request
+CHUNK_QUESTIONS = 25       # questions per request, at most
+CHUNK_CHARS = 40_000       # and at most this much question text (Jev rejects ~32k-token requests: max_tokens_exceeded)
 
 
 class JevError(Exception):
@@ -90,8 +91,16 @@ class JevDecider:
         """questions: LinkQuestion list → {question id: (chosen option id or None, probability)}."""
         out: dict[str, tuple[str | None, float]] = {}
         qs = [q for q in questions if q.options]
-        for start in range(0, len(qs), CHUNK_QUESTIONS):
-            chunk = qs[start:start + CHUNK_QUESTIONS]
+        chunks: list[list] = [[]]
+        size = 0
+        for q in qs:
+            qsize = len(q.item[:600]) + sum(len(o.text[:300]) + 12 for o in q.options[:MAX_OPTIONS])
+            if chunks[-1] and (len(chunks[-1]) >= CHUNK_QUESTIONS or size + qsize > CHUNK_CHARS):
+                chunks.append([])
+                size = 0
+            chunks[-1].append(q)
+            size += qsize
+        for chunk in (c for c in chunks if c):
             state = {"task": instructions}
             jq = {}
             for q in chunk:

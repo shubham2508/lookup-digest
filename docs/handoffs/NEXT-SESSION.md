@@ -14,7 +14,8 @@ Shubham wants short, plain answers, tables over paragraphs, and a status line be
 
 ## What to do next, in order
 
-1. **Rerun the live Jev check** of dev Thursday. The first attempt was cut off by a 15-minute tool timeout during
+1. **Live Jev check — done once (it did finish):** Thursday dev gave P0 19 → 12 (key: 8), 12 items on the page, 348 of 448 link decisions by Jev, $0.22 for the run. Jev failed on two question types with `max_tokens_exceeded` (news and topics: too many long options per request); `jev.py` now splits requests by size (commit after 8f6ec60). Rerun Thursday once to confirm no fallback, and look at why compose picked Jordan's Veritas incident as the one thing (the key expects the cap table on day 30; both are P0 due today — check the compose trace before changing anything).
+   Previous note, kept for reference: The first attempt was cut off by a 15-minute tool timeout during
    triage (it got through extraction and linking: Jev 21 calls, $0.02). Run it detached so no timeout kills it:
    `rm -rf runs/dev && mkdir -p runs/dev && nohup uv run digest run --world dev --as-of 2026-09-24T06:00 > runs/dev/thu.log 2>&1 &`
    then wait for `runs/dev/2026-09-24T06-00/run.json`. When it finishes:
