@@ -10,7 +10,7 @@ import sqlite3
 from collections.abc import Iterable
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
+from typing import Any, Self
 
 
 @dataclass(frozen=True)
@@ -72,7 +72,7 @@ class Store:
             self._conn.close()
             self._conn = None
 
-    def __enter__(self) -> Store:
+    def __enter__(self) -> Self:
         return self.connect()
 
     def __exit__(self, *exc: object) -> None:
