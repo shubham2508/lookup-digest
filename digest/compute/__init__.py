@@ -111,6 +111,7 @@ def compute_world(world: NormalizedWorld, extractions: list[Extraction], profile
     generic = {person, person.split("-")[0], slugify(profile.company or ""), *(domain_of(e).split(".")[0] for e in world.owner_emails)}
     generic |= set(world.owner_emails)
     generic.discard("")
+    own = set(generic)   # Avery and Avery's company: shared by every internal thread, so never a context link
     for c in directory.contacts:
         if c.relationship.category == "team" or any(e in world.owner_emails for e in c.emails):
             generic |= {c.contact_id, *[e.lower() for e in c.emails], *[n.lower() for n in c.names]}
@@ -132,7 +133,7 @@ def compute_world(world: NormalizedWorld, extractions: list[Extraction], profile
     about_map, merges = merger.resolve(groups)
     for c in cands:
         c.about = about_map.get(c.about, c.about)
-    idx = ContextIndex(world, extractions, as_of, settings.context.window_days, settings.context.max_items)
+    idx = ContextIndex(world, extractions, as_of, settings.context.window_days, settings.context.max_items, ignore=own)
     apply_context(cands, idx, world.freshness)
     cands.sort(key=lambda c: (c.type, c.about, c.evidence[0].source_id if c.evidence else ""))
     for i, c in enumerate(cands, 1):

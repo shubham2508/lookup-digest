@@ -274,13 +274,33 @@ def _delivery_options(c: Commitment, when: datetime | None, all_c) -> list[tuple
     return out
 
 
+def _sent_options(ci: ComputeInputs, c: Commitment, sid: str, when: datetime | None) -> list[tuple[str, str]]:
+    """Hard filters only: Avery's own mail in another thread, sent after the promise, to one of the same people, on
+    the same topic key. The extractor does not always flag a delivery ("here are my notes, as promised" in a new
+    thread carries no fulfills_hint), so these go to the linker as candidates; only the linker can close the promise."""
+    target, to = ci.canon(c.about), {a.lower() for a in c.to_whom}
+    out = []
+    for x, p, t in ci.human():
+        if x.source_id == sid or target not in {ci.canon(a) for a in p.about}:
+            continue
+        sent = [m for m in t.messages if m.is_from_avery and (when is None or m.sent_at > when)
+                and (not to or to & {a.lower() for a in (*m.to, *m.cc)})]
+        if sent:
+            out.append((f"sent:{x.source_id}", f"Avery's email \"{t.messages[0].subject}\": {p.summary}"))
+    return out
+
+
 def _fulfilled_elsewhere(ci: ComputeInputs, c: Commitment, when: datetime | None, all_c, linked: set[str] | None = None,
-                         qid: str = "") -> tuple[bool, dict]:
-    """Same topic key → fulfilled (exact); otherwise the linker decided whether a later delivery is this promise."""
+                         qid: str = "", sid: str = "") -> tuple[bool, dict]:
+    """Same topic key → fulfilled (exact); otherwise the linker decided whether a later delivery is this promise, or
+    whether a later email of Avery's on the same topic delivered it."""
     target = ci.canon(c.about)
-    for other, sid in _delivery_options(c, when, all_c):
-        if ci.canon(other.about) == target or (linked and f"{qid}|{sid}" in linked):
-            return True, {"fulfilled_by": sid, "fulfills_hint": other.fulfills_hint}
+    for other, osid in _delivery_options(c, when, all_c):
+        if ci.canon(other.about) == target or (linked and f"{qid}|{osid}" in linked):
+            return True, {"fulfilled_by": osid, "fulfills_hint": other.fulfills_hint}
+    for oid, _text in _sent_options(ci, c, sid, when):
+        if linked and f"{qid}|{oid}" in linked:
+            return True, {"fulfilled_by": oid.split(":", 1)[1]}
     return False, {}
 
 
@@ -296,7 +316,8 @@ def commitments(ci: ComputeInputs) -> list[Candidate]:
     from .linker import LinkOption, LinkQuestion
     q_ful = [LinkQuestion(id=f"p{i}", item=f"{c.what} (to {', '.join(c.to_whom) or 'unknown'})",
                           options=[LinkOption(id=s, text=o.fulfills_hint or o.what) for o, s in _delivery_options(c, when, all_c)
-                                   if ci.canon(o.about) != ci.canon(c.about)])
+                                   if ci.canon(o.about) != ci.canon(c.about)]
+                          + [LinkOption(id=oid, text=text) for oid, text in _sent_options(ci, c, sid, when)])
              for i, c, sid, when in mine]
     ful = ci.link("fulfilled_elsewhere", q_ful)
     linked = {f"{q}|{s}" for q, ss in ful.items() for s in ss}
@@ -307,7 +328,7 @@ def commitments(ci: ComputeInputs) -> list[Candidate]:
                for i, c, sid, when in mine if ci.canon(c.about) not in task_abouts and ci.canon(c.about) not in todo_abouts]
     in_tasks_q = {q for q, ss in ci.link("promise_in_tasks", q_tasks).items() if ss}
     for i, c, sid, when in mine:
-        done, how = _fulfilled_elsewhere(ci, c, when, all_c, linked, f"p{i}")
+        done, how = _fulfilled_elsewhere(ci, c, when, all_c, linked, f"p{i}", sid)
         if done:
             continue
         about = ci.canon(c.about)

@@ -275,6 +275,29 @@ def test_commitments_due_overdue_not_in_tasks_and_fulfilled_elsewhere():
                commitments=[commitment("cap table sent", "deal:series-a:cap-table", m3, None, to=["marcus@inflectionpoint.vc"], status="fulfilled", fulfills="cap table sent to Marcus")])
     r3 = compute_world(world([t1, t3]), [x1, x3], PROFILE, SETTINGS, at("2026-09-24T06:00"), llm=_LLM)
     assert not types(r3.candidates, "commitment_overdue") and not types(r3.candidates, "commitment_not_in_tasks")
+    # delivered in a new thread that the extractor did not flag (no fulfills_hint): the linker is asked and closes it
+    m4 = msg("m4", "2026-09-23T09:00", AVERY, to=["marcus@inflectionpoint.vc"], subject="updated cap table", body="attached")
+    x4 = human(thread(m4), about=["deal:series-a:cap-table"], intent="fyi", awaiting="nobody",
+               summary="Avery sent Marcus the updated cap table.")
+    r4 = compute_world(world([t1, thread(m4)]), [x1, x4], PROFILE, SETTINGS, at("2026-09-24T06:00"), llm=_LLM)
+    assert not types(r4.candidates, "commitment_overdue"), "a later same-topic email of Avery's to Marcus delivered it"
+    # the same email on another topic is not offered: the promise stays open
+    x5 = human(thread(m4), about=["deal:series-a:data-room"], intent="fyi", awaiting="nobody", summary="Avery sent Marcus the updated cap table.")
+    r5 = compute_world(world([t1, thread(m4)]), [x1, x5], PROFILE, SETTINGS, at("2026-09-24T06:00"), llm=_LLM)
+    assert types(r5.candidates, "commitment_overdue")
+
+
+def test_context_ranks_same_topic_first_and_ignores_own_company():
+    from digest.compute.context import ContextIndex
+
+    idx = ContextIndex.__new__(ContextIndex)
+    idx.as_of, idx.window, idx.max_items, idx.events = at("2026-09-24T06:00"), __import__("datetime").timedelta(days=14), 2, []
+    idx.ignore = {"tessera"}
+    idx.items = [("thread:new1", {"tessera"}, {"other:standup"}, at("2026-09-23T10:00"), "standup"),
+                 ("thread:new2", {"tessera"}, {"other:lunch"}, at("2026-09-23T11:00"), "lunch"),
+                 ("thread:notes", {"tomas-reyes", "tessera"}, {"pricing:deck"}, at("2026-09-18T14:20"), "notes sent")]
+    assert idx.related({"tomas-reyes", "tessera"}, {"pricing:deck"}, set()) == ["thread:notes"], \
+        "the same-topic delivery ranks first; the company name alone links nothing"
 
 
 def test_calendar_rules_deep_work_family_double_book_declined():

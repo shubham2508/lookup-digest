@@ -24,8 +24,9 @@ class ContextIndex:
     """Extraction source_id → (entity slugs, about keys, time), for retrieval by shared entity within ±window days."""
 
     def __init__(self, world: NormalizedWorld, extractions: list[Extraction], as_of: datetime, window_days: int = 14,
-                 max_items: int = 8):
+                 max_items: int = 8, ignore: set[str] | None = None):
         self.as_of = as_of
+        self.ignore = {s.lower() for s in (ignore or ())}
         self.window = timedelta(days=window_days)
         self.max_items = max_items
         self.items: list[tuple[str, set[str], set[str], datetime | None, str]] = []   # (source_id, entities, abouts, time, summary)
@@ -66,19 +67,24 @@ class ContextIndex:
         self.events = [(f"event:{e.uid}", {a.email for a in e.attendees} | {slugify(e.title)}, e.start, e.title) for e in world.events]
 
     def related(self, entities: set[str], abouts: set[str], exclude: set[str]) -> list[str]:
-        hits: list[tuple[datetime, str]] = []
+        """Most relevant first: same topic key, then more shared people, then newer. Avery and Avery's own company are
+        not a link (every internal thread shares them; they pushed a same-topic delivery out of a triage card)."""
+        entities = {e for e in entities if e.lower() not in self.ignore}
+        hits: list[tuple[tuple, str]] = []
         lo, hi = self.as_of - self.window, self.as_of + self.window
         for sid, ents, abts, when, _ in self.items:
             if sid in exclude:
                 continue
-            if ((ents & entities) or (abts & abouts)) and (when is None or lo <= when <= hi):
-                hits.append((when or self.as_of, sid))
+            shared, topic = ents & entities, bool(abts & abouts)
+            if (shared or topic) and (when is None or lo <= when <= hi):
+                hits.append(((not topic, -len(shared), -(when or self.as_of).timestamp()), sid))
         for sid, ents, when, _ in self.events:
             if sid in exclude:
                 continue
-            if ents & entities and lo <= when <= hi:
-                hits.append((when, sid))
-        hits.sort(key=lambda h: h[0], reverse=True)
+            shared = ents & entities
+            if shared and lo <= when <= hi:
+                hits.append(((True, -len(shared), -when.timestamp()), sid))
+        hits.sort(key=lambda h: h[0])
         out: list[str] = []
         for _, sid in hits:
             if sid not in out:
