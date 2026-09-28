@@ -22,6 +22,24 @@ OpenRouter spend on this config ≈ $4–5 (pipeline ≈ $3, judge ≈ $1–1.6,
 
 ## Decided
 
+- **2026-09-28 · Track C M7–M9 questions (#13, restored below), ruled:**
+  (13a) **`rulings.yaml` lives at `runs/<world>/rulings.yaml`**, now `settings.store.rulings_path_template`; `digest answer` and `digest simulate` write it, the store's `rulings` table mirrors it, per-world so dev rulings never leak into held-out.
+  (13b) **`digest simulate --fresh` (opt-in) stays**: it renames the old `rulings.yaml` and store aside, never deletes. The integration and eval runs always pass `--fresh` so the §7 assertions start from clean state.
+  (13c) **The header phrase is `applied N learned rules`**, exactly as architecture §10 specifies, rendered when N ≥ 1 and omitted when N = 0. Track A also writes `rulings_applied: N` into `run.json`; the scorer prefers that field and falls back to the header regex `applied (\d+) learned rules?`. Track A confirms 13a and 13c by implementing them in M9.
+- **2026-09-28 · Track A's edits to shared files accepted:** `digest/llm.py` `_strip` no longer drops a property that happens to be named like a schema keyword (a real bug: `Ambiguity.default` was being stripped); `TriageBatch` and `BaselineDigest` added to `digest/schemas.py` and `LLM_OUTPUT_MODELS`. A commits them with its milestone.
+
+<details><summary>Track C's #13 as written (restored; my cleanup had dropped it)</summary>
+
+### 13. Track C · M9: where `rulings.yaml` lives, and how `digest simulate` starts clean (C-grader, 2026-09-28): built as suggested
+
+| # | What · where | Options | Implemented (suggestion) |
+|---|---|---|---|
+| 13a | **`rulings.yaml` path.** architecture §10 names the file; no spec says where. The simulation checks that an answered card produced a ruling for that scope. | (1) `runs/<world>/rulings.yaml`, next to `store.sqlite`; (2) repo root; (3) `profile/rulings.yaml` | (1). The scorer reads (1), then falls back to (2). Entries as §10: `{id, scope: {contact\|about\|thread_kind}, ruling, option_chosen, from_question, created, expires}`. |
+| 13b | **Simulation state.** `digest simulate` runs days 26–30 in order, so rulings and digest history must start empty, or earlier runs leak into the escalation and ruling checks. | (1) `simulate --fresh` renames `runs/<world>/rulings.yaml` and `store.sqlite` to `*.bak-<timestamp>` first (reversible, never deletes); (2) product flag `--state-dir`; (3) accept leakage | (1), opt-in; without it the report notes any pre-existing rulings. |
+| 13c | **"applied N learned rules"** in the header (§10) is how the scorer sees a ruling applied when triage output alone is ambiguous. | keep the phrase · redirect | Keep; the scorer matches `applied \d+ learned rule`. |
+
+</details>
+
 - **2026-09-28 · M1 storyline review: approved.** All 16 `world/dev/storylines/*.yaml` are `reviewed: true`; the eight judgment calls (former #5) are confirmed as drafted; S3 keeps the three-business-day rule.
 
 - **2026-09-28 · full scope, no cut line.** Everything through M10 is built today; submission tomorrow morning; walkthrough the following week. Nothing is deferred.
