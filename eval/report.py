@@ -56,7 +56,8 @@ def _summary(scores: dict[tuple[str, str], WorldScore]) -> list[str]:
     lines = ["| metric | " + " | ".join(f"{a} · {b}" for a, b in cols) + " |", "|---|" + "---|" * len(cols)]
     heads = {c: scores[c].headline() for c in cols}
     for label, key in HEADLINE_ROWS:
-        row = [_fmt(heads[c].get(key)) for c in cols]
+        row = [_fmt(heads[c].get(key)) if key != "cost_per_run" or heads[c].get(key) is None
+               else f"${heads[c][key]:.4f}" for c in cols]
         if key == "p0_recall":
             row = [f"{r} {'✅' if heads[c].get('p0_gate') else ('❌' if heads[c].get('p0_gate') is False else '')}".strip()
                    for r, c in zip(row, cols, strict=True)]

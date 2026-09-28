@@ -6,16 +6,16 @@ Manifest world `mini`, anchor 2026-09-24 (day 30), run days [30]. P0 recall is t
 
 ## 1. Summary
 
-| metric | pipeline · dev | baseline · dev |
-|---|---|---|
-| P0 recall (gate = 100%) | 100% ✅ | 100% ✅ |
-| Trap assertions passed | 7/7 | 4/5 |
-| Must-not rate | 0% | 0% |
-| One-thing accuracy | 100% | 100% |
-| Cost / run (USD) | $0.0000 | $0.0000 |
-| Runs scored | 1 | 1 |
+| metric | pipeline · dev |
+|---|---|
+| P0 recall (gate = 100%) | 100% ✅ |
+| Trap assertions passed | 7/7 |
+| Must-not rate | 0% |
+| One-thing accuracy | 100% |
+| Cost / run (USD) | 0% |
+| Runs scored | 1 |
 
-Not run yet: pipeline · heldout, baseline · heldout.
+Not run yet: pipeline · heldout, baseline · dev, baseline · heldout.
 
 ## 2. Per-stage metrics (eval.md §2)
 
@@ -157,14 +157,6 @@ Misses:
 
 </details>
 
-### Naive baseline · dev (eval.md §8: one long-context call, scored on digest-level metrics only)
-
-4 passed · 1 failed · 2 n/a (need pipeline artifacts).
-
-- **S1-task-action** (`action_present`): task missing; actions [['message_person']]
-- day 30 · compose: family:daycare: section: expected `calendar_personal`, got `urgent`
-- day 30 · citations valid 0.444, words 289
-
 ## 4. Customize and variant results
 
 | condition | kind | runs | P0 recall | assertions | checks | status |
@@ -172,12 +164,6 @@ Misses:
 | stale_inbox | honesty | 30 | 0.667 | 4/5 | — | **FAIL** |
 | no_notes | honesty | 30 | 100% | 2/2 | — | pass |
 | corrupt_ics | honesty | 30 | 100% | 0/3 | — | **FAIL** |
-| board_prep | customize | 30 | 100% | 3/4 | p0_kept: kept: 3/3; lost: none; passed: pass | **FAIL** |
-| formal | customize | 30 | 100% | 1/1 | p0_kept: kept: 3/3; lost: none; passed: pass; tone_shift: pairs: 1; formality_default: 0.333; formality_customize: 0.667; changed_rate: 100%; passed: pass | pass |
-| garbage | customize | 30 | 100% | 2/2 | p0_kept: kept: 3/3; lost: none; passed: pass | pass |
-| newsletters | customize | 30 | 100% | 2/2 | p0_kept: kept: 3/3; lost: none; passed: pass | pass |
-| no_citations | customize | 30 | 100% | 2/2 | p0_kept: kept: 3/3; lost: none; passed: pass | pass |
-| weekend | customize | 30 | 0.667 | 2/2 | p0_kept: kept: 2/3; lost: d30:deal:series-a:cap-table; passed: **FAIL** | **FAIL** |
 
 Failed:
 
@@ -185,7 +171,6 @@ Failed:
 - **hv-ics-header** (honesty corrupt_ics, `header_contains`) → stage **compose**: header lacks [['calendar unreadable', 'calendar unavailable', 'calendar: unreadable', 'calendar checks skipped', 'calendar missing']]: As of Thu 06:00 PT · inbox synced Wed 21:10 · calendar ok · notes ok · tasks ok · 1 item(s) degraded (see degradations.jsonl) [digest.md#L1](runs/tests/fixtures/mini/2026-09-24T06-00_corrupt_ics/digest.md#L1)
 - **hv-ics-no-conflict-candidates** (honesty corrupt_ics, `no_candidates_of_type`) → stage **compute**: unexpected candidate(s) [('calendar_conflict:family', 'family:wren')] [candidates.jsonl#L2](runs/tests/fixtures/mini/2026-09-24T06-00_corrupt_ics/candidates.jsonl#L2)
 - **hv-ics-no-conflict-items** (honesty corrupt_ics, `count_items_of_type`) → stage **compose**: 1 calendar_conflict items, expected <= 0: i1(family:wren,P0,calendar_personal) [compose.json](runs/tests/fixtures/mini/2026-09-24T06-00_corrupt_ics/compose.json)
-- **cz-board-arr-drift** (customize board_prep, `item_present`) → stage **compute**: no rendered item for {'type': ['contradiction', 'profile_drift']} [candidates.jsonl](runs/tests/fixtures/mini/2026-09-24T06-00_customize-board_prep/candidates.jsonl)
 
 ## 5. Judge (E1, reported, not gated)
 
@@ -200,3 +185,16 @@ Generic checks: 0/0 passed.
 ## 7. Label audit
 
 Not done yet: ~30 labels to hand-check (eval.md §9.5).
+
+## Simulation transcript
+
+```json
+[
+  {
+    "day": 30,
+    "as_of": "2026-09-24T06:00",
+    "run_exit": 0,
+    "answers": []
+  }
+]
+```

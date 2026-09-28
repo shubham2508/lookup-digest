@@ -160,7 +160,8 @@ def parse_digest(md: str) -> ParsedDigest:
             body = re.sub(r"^[-*]\s+", "", stripped) if not stripped.startswith("**") else stripped
             item.text_lines.append(body)
             words += _words(body)
-        elif _is_action(stripped):
+        elif _is_action(stripped) or (item is not None and item.action_lines and stripped[:1] in ('"', "“", "'")):
+            # a quoted line under an action block is that action's draft text
             if item is not None:
                 item.action_lines.append(stripped)
             else:

@@ -151,6 +151,7 @@ def score_world(world: str, runs_root: Path | None = None, *, suffix: str | None
         ws.notes.append(f"no runs found under {runs_root} for days {manifest.meta.run_days} (suffix {suffix!r})")
     for day, view in sorted(views.items()):
         ws.runs[day] = score_run(view, manifest, day)
+        ws.notes += [f"day {day}: malformed artifact: {m}" for m in view.malformed]
     ex_misses = _extraction_misses(ws.runs[max(ws.runs)] if ws.runs else None)
 
     if suffix in (None, "baseline"):
@@ -163,8 +164,9 @@ def score_world(world: str, runs_root: Path | None = None, *, suffix: str | None
 
             transcript = load_transcript(runs_root)
             if transcript is not None:
-                ws.simulation = score_simulation(manifest, views, transcript, load_rulings(runs_root),
-                                                 rulings_path(runs_root))
+                rp = rulings_path(runs_root, world)
+                ws.simulation = score_simulation(manifest, views, transcript, load_rulings(runs_root, world),
+                                                 rp if rp.exists() else None)
     else:
         kind, cid = ("customize", suffix.removeprefix("customize-")) if suffix.startswith("customize-") else ("honesty", suffix)
         if cid in BUILTIN_VARIANTS:

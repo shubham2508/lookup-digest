@@ -24,8 +24,15 @@ def evaluate(
     calibrate_judge: bool = typer.Option(False, "--calibrate-judge",
                                          help="one-time: judge_reference (Fable) vs judge on the same items"),
     out: Path = typer.Option(None, "--out", help="report directory; default eval/reports/"),
+    matrix: bool = typer.Option(False, "--matrix", help="integration: every run, variant, customize, baseline, "
+                                "simulate --fresh, then this eval (eval/integrate.py)"),
+    dry_run: bool = typer.Option(False, "--dry-run", help="with --matrix: print the plan, run nothing"),
+    keep_going: bool = typer.Option(False, "--keep-going", help="with --matrix: don't stop at the first blocked step"),
 ) -> None:
     """Score runs against the world's manifest and write eval/reports/<world>_<date>.md."""
+    if matrix:
+        _matrix(world, dry_run, keep_going)
+        return
     from eval.judge.judge import calibrate, digest_item, draft_items, judge_items
     from eval.report import render_report, report_name, write_report
     from eval.scorer.runner import load_views, manifest_path, score_world
@@ -77,6 +84,21 @@ def evaluate(
         typer.echo("P0 GATE FAILED")
 
 
+def _matrix(world: str, dry_run: bool, keep_going: bool) -> None:
+    from eval.integrate import run_matrix
+    from eval.scorer.runner import manifest_path
+
+    mpath = manifest_path(world)
+    if not mpath.exists():
+        typer.echo(f"no manifest at {mpath} (Track B writes eval/manifests/<world>.yaml)")
+        raise typer.Exit(2)
+    res = run_matrix(world, load_manifest(mpath), dry_run=dry_run, keep_going=keep_going, log=typer.echo)
+    typer.echo("")
+    typer.echo(res.table())
+    typer.echo(f"\nmatrix: {res.outcome}" + ("" if dry_run else f" · log: runs/{world}/integration.json"))
+    raise typer.Exit(res.exit_code)
+
+
 def simulate(
     world: str = typer.Option("dev", "--world"),
     days: int = typer.Option(5, "--days"),
@@ -100,3 +122,8 @@ def simulate(
     text += "\n## Simulation transcript\n\n```json\n" + json.dumps(transcript, indent=2) + "\n```\n"
     path = write_report(text, report_name(world, suffix="simulate"))
     typer.echo(f"report: {path}")
+    stopped = next((st for st in transcript if st.get("run_exit") or st.get("error")), None)
+    if stopped:  # the matrix (eval/integrate.py) reads this exit code: 3/2 = blocked on the product, else failed
+        code = stopped.get("run_exit") or 1
+        typer.echo(f"simulation stopped on day {stopped['day']}: {stopped.get('error', '')[-160:]}")
+        raise typer.Exit(code if code in (2, 3) else 1)

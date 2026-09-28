@@ -15,7 +15,7 @@ from dataclasses import dataclass, field
 from eval.manifest_schema import Manifest
 
 from .artifacts import RunView
-from .common import claimed_abouts, extractions_for, select_candidates, select_items
+from .common import candidates_for_expected, claimed_abouts, extractions_for, select_candidates, select_items
 from .match import about_match, type_matches
 from .triage import triage_outcome, triage_rows_for
 
@@ -44,10 +44,11 @@ def attribute_missing(view: RunView, manifest: Manifest, about: str | None, cite
         return Attribution("extraction", f"no extraction for {cites}", [view.link("extractions")])
     if extraction_misses:
         bad = [m for s in cites for m in extraction_misses.get(s, [])]
-        if bad and not select_candidates(view, about=about, cites_any=cites, claimed=claimed):
+        if bad and not (candidates_for_expected(view, about, cites, claimed) if about else []):
             return Attribution("extraction", "; ".join(m.what for m in bad[:3]), [m.link for m in bad[:3] if m.link])
 
-    cands = select_candidates(view, about=about, cites_any=cites, claimed=claimed) if about or cites else []
+    cands = candidates_for_expected(view, about, cites, claimed) if about else (
+        select_candidates(view, cites_any=cites) if cites else [])
     if not cands:
         return Attribution("compute", f"no candidate for {about or cites}", [view.link("candidates")]
                            + [view.link("extractions", r.line) for r in ex_rows[:2]])

@@ -112,15 +112,17 @@ def select_items(view: RunView, manifest: Manifest, args: dict, cites_any: list[
     """Rendered items matching every selector given in args.
 
     Selectors: `about` (fuzzy about key, or cites one of `cites_any` unless the item's key belongs to another
-    expected item that `day`), `source_id` (cites that manifest item),
+    expected item that `day`, or the #9 candidate fallback), `source_id` (cites that manifest item),
     `type` (candidate type or a list of alternatives, prefix match), `category` (truth category of a cited sender), `source_kind`
     (manifest kind of a cited source: thread | note | newsletter | ...).
     """
     cites_any = cites_any if cites_any is not None else list(args.get("cites_any") or [])
-    claimed = claimed_abouts(manifest, day if day is not None else view.day, args.get("about"))
+    day = day if day is not None else view.day
+    claimed = claimed_abouts(manifest, day, args.get("about"))
     out = []
     for it in view.rendered:
-        if "about" in args and not (about_match(it.about, args["about"]) or _by_cites(it.about, it.source_ids, cites_any, claimed)):
+        if "about" in args and not (about_match(it.about, args["about"]) or _by_cites(it.about, it.source_ids, cites_any, claimed)
+                                    or _by_candidate_fallback(view, manifest, it, args["about"], day, claimed)):
             continue
         if "source_id" in args and args["source_id"] not in it.source_ids:
             continue
@@ -163,6 +165,25 @@ def fallback_candidate_match(view: RunView, r: Row, about: str, storyline: str |
     return any(tok in blob for tok in about_tokens(about))
 
 
+def _by_candidate_fallback(view: RunView, manifest: Manifest, it: RenderedItem, about: str, day: int | None,
+                           claimed: list[str]) -> bool:
+    """OPEN_QUESTIONS #9 for rendered items: the item's candidate is the day's expected candidate for this key by
+    type + shared labeled citation / storyline / entity token (e.g. compute's `family:wren` whose evidence is
+    `event:wren-pediatrician-…` is the manifest's `family:pediatrician`). Never for a key another expectation claims."""
+    if day is None or not it.candidate_ids or any(about_match(it.about, k) for k in claimed):
+        return False
+    try:
+        expected = [c for c in manifest.run_day(day).candidates if about_match(c.about, about)]
+    except KeyError:
+        return False
+    for ec in expected:
+        for cid in it.candidate_ids:
+            row = view.candidate(cid)
+            if row and type_matches(row.data.get("type"), ec.type) and fallback_candidate_match(view, row, ec.about, ec.storyline):
+                return True
+    return False
+
+
 def select_candidates(view: RunView, ctype: str | None = None, about: str | None = None,
                       cites_any: list[str] | None = None, claimed: list[str] | None = None) -> list[Row]:
     """Candidates of `ctype` about `about`: fuzzy key or cited source first; with a type given and no such match,
@@ -180,6 +201,24 @@ def select_candidates(view: RunView, ctype: str | None = None, about: str | None
                 continue
         out.append(r)
     return out
+
+
+def candidates_for_expected(view: RunView, about: str, cites_any: list[str] | None = None,
+                            claimed: list[str] | None = None) -> list[Row]:
+    """Candidates behind an expected item: direct (fuzzy key / cited source), else via the day's expected candidates
+    for that key, whose types enable the #9 fallback."""
+    rows = select_candidates(view, about=about, cites_any=cites_any, claimed=claimed)
+    if rows or view.day is None:
+        return rows
+    try:
+        expected = [c for c in view.index.manifest.run_day(view.day).candidates if about_match(c.about, about)]
+    except KeyError:
+        return []
+    seen: dict[int, Row] = {}
+    for ec in expected:
+        for r in select_candidates(view, ec.type, about, cites_any, claimed):
+            seen[r.line] = r
+    return list(seen.values())
 
 
 def extractions_for(view: RunView, source_ids: set[str], about: str | None = None) -> list[Row]:

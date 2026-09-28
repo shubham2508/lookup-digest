@@ -36,7 +36,7 @@ ACTION_TYPES = [
     (re.compile(r"^☐\s*(.*)$"), "task"),
     (re.compile(r"^Q\d+\s*[·:.\-]\s*(.*)$"), "question"),
     (re.compile(r"^Watching:\s*(.*)$", re.I), "watch"),
-    (re.compile(r"^(?:Options|Recommend\w*)\b:?\s*(.*)$", re.I), "decide"),
+    (re.compile(r"^(?:↳\s*Decide|Options|Recommend\w*)\b:?\s*(.*)$", re.I), "decide"),
 ]
 
 
@@ -99,6 +99,9 @@ def parse_actions(lines: list[str]) -> list[dict]:
         line = raw.strip().lstrip("*_ ").strip()
         if line.lower().startswith("assumptions:") and out:
             out[-1]["assumptions"] = [a.strip() for a in line.split(":", 1)[1].split(";") if a.strip()]
+            continue
+        if line[:1] in ('"', "“") and out and out[-1]["type"] in ("reply", "forward_delegate", "decide") and not out[-1]["draft"]:
+            out[-1]["draft"] = line.strip('"“” ')
             continue
         if line.startswith(">") and out:
             prev = out[-1]

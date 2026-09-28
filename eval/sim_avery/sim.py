@@ -27,6 +27,7 @@ from eval.scorer.common import contact_label, sender_emails
 from eval.scorer.digest_md import QuestionCard
 from eval.scorer.match import SourceIndex, about_match, norm_text, type_matches
 from eval.scorer.runner import as_of_for, find_runs
+from eval.scorer.simulation import rulings_path
 
 
 class SimAveryChoice(BaseModel):
@@ -128,12 +129,19 @@ def run_digest_cli(args: list[str]) -> tuple[int, str]:
     return r.returncode, (r.stdout + r.stderr).strip()
 
 
-def set_aside_state(runs_root: Path) -> list[str]:
-    """OPEN_QUESTIONS #13b `--fresh`: rename rulings.yaml and store.sqlite* to *.bak-<ts>. Reversible; never deletes."""
+def set_aside_state(runs_root: Path, world: str | None = None) -> list[str]:
+    """OPEN_QUESTIONS #13b `--fresh`: rename the world's rulings.yaml and store.sqlite* (paths from settings.store)
+    to *.bak-<ts>. Reversible; never deletes."""
+    from digest.config import load_settings
+    from eval.scorer.simulation import state_path
+
+    store = load_settings().store
     ts = datetime.now().strftime("%Y%m%d-%H%M%S")
+    rulings = state_path(store.rulings_path_template, runs_root, world)
+    db = state_path(store.path_template, runs_root, world)
     moved = []
-    for p in [runs_root / "rulings.yaml", *sorted(runs_root.glob("store.sqlite*"))]:
-        if p.exists():
+    for p in [rulings, *sorted(db.parent.glob(db.name + "*"))]:
+        if p.exists() and ".bak-" not in p.name:
             dst = p.with_name(f"{p.name}.bak-{ts}")
             p.rename(dst)
             moved.append(f"{p.name} → {dst.name}")
@@ -148,9 +156,9 @@ def simulate(world: str, days: int, manifest: Manifest, runs_root: Path, log=pri
     runs_root.mkdir(parents=True, exist_ok=True)
     transcript: list[dict] = []
     if fresh:
-        for m in set_aside_state(runs_root):
+        for m in set_aside_state(runs_root, world):
             log(f"fresh: {m}")
-    elif (runs_root / "rulings.yaml").exists():
+    elif rulings_path(runs_root, world).exists():
         log("note: rulings.yaml already exists; earlier rulings will shape this simulation (use --fresh)")
     for day in manifest.meta.run_days[-days:]:
         as_of = as_of_for(manifest, day).strftime("%Y-%m-%dT%H:%M")

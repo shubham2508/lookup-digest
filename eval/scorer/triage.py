@@ -9,11 +9,11 @@ from .artifacts import Row, RunView
 from .common import (
     Miss,
     StageMetrics,
+    candidates_for_expected,
     claimed_abouts,
     contact_label,
     prf,
     rate,
-    select_candidates,
     sender_emails,
 )
 from .match import PRIORITY_ORDER, max_priority
@@ -23,7 +23,7 @@ PRIORITIES = ("P0", "P1", "P2", "P3")
 
 def triage_rows_for(view: RunView, about: str, cites_any: list[str], claimed: list[str] | None = None) -> list[Row]:
     rows: list[Row] = []
-    for c in select_candidates(view, about=about, cites_any=cites_any, claimed=claimed):
+    for c in candidates_for_expected(view, about, cites_any, claimed):
         rows.extend(view.triage_for(c.data.get("candidate_id")))
     return rows
 

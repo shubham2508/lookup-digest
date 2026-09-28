@@ -77,7 +77,12 @@ class RunView:
         self.actions_rows = self._jsonl("actions")
         self.degradations = self._jsonl("degradations")
         self.cost_rows = self._jsonl("cost_log")
-        self.contacts: list[dict] = self._json("contacts", [])
+        self.malformed: list[str] = []
+        raw_contacts = self._json("contacts", [])
+        self.contacts: list[dict] = [c for c in raw_contacts if isinstance(c, dict)]
+        if len(self.contacts) < len(raw_contacts):
+            self.malformed.append(f"contacts.json: {len(raw_contacts) - len(self.contacts)} of {len(raw_contacts)} rows are "
+                                  "not JSON objects (e.g. model reprs), so contact metrics read them as missing")
         self.reduce: dict = self._json("reduce", {})
         self.compose: dict = self._json("compose", {})
         self.verify: dict = self._json("verify", {})

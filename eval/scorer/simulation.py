@@ -7,8 +7,8 @@ checks need no labels, so they hold on any world:
 
 - sim-ruling-recorded:  every card sim_avery answered produced a ruling in rulings.yaml (scope about or contact
                         matches the carded item, option_chosen matches the answer).
-- sim-ruling-applied:   the day after an answer, the same scope is not carded again, and the header reports
-                        "applied N learned rule(s)" with N ≥ 1 (architecture §10).
+- sim-ruling-applied:   the day after an answer, the same scope is not carded again, and N ≥ 1 rulings were
+                        applied: run.json `rulings_applied`, else the header's "applied N learned rules" (#13c).
 - sim-escalation:       an item rendered on ≥ 3 run days in a row (times_surfaced ≥ 2 by the third) is framed as
                         an escalation from the third day on ("third time", "still", "again", ...).
 """
@@ -20,6 +20,7 @@ from pathlib import Path
 
 import yaml
 
+from digest.config import load_settings
 from digest.paths import ROOT
 from eval.manifest_schema import Manifest
 
@@ -27,23 +28,39 @@ from .artifacts import RenderedItem, RunView
 from .assertions import ESCALATION_RE, AssertionResult
 from .match import about_match, norm_text
 
-APPLIED_RE = re.compile(r"applied\s+(\d+)\s+learned\s+rule", re.I)
+APPLIED_RE = re.compile(r"applied (\d+) learned rules?", re.I)
 TRANSCRIPT = "simulation.json"
 
 
-def rulings_path(runs_root: Path) -> Path | None:
-    for p in (runs_root / "rulings.yaml", ROOT / "rulings.yaml"):  # OPEN_QUESTIONS #13a
-        if p.exists():
-            return p
-    return None
+def state_path(template: str, runs_root: Path, world: str | None = None) -> Path:
+    """Resolve a `settings.store` path template. One under `runs/{world}/` follows `runs_root`, so a `--runs`
+    override moves the product state together with the runs it belongs to."""
+    prefix = "runs/{world}/"
+    if template.startswith(prefix):
+        return runs_root / template[len(prefix):]
+    return ROOT / template.format(world=world or runs_root.name)
 
 
-def load_rulings(runs_root: Path) -> list[dict]:
-    p = rulings_path(runs_root)
-    if p is None:
+def rulings_path(runs_root: Path, world: str | None = None) -> Path:
+    """OPEN_QUESTIONS #13a (ruled): `settings.store.rulings_path_template`, per world (runs/<world>/rulings.yaml)."""
+    return state_path(load_settings().store.rulings_path_template, runs_root, world)
+
+
+def load_rulings(runs_root: Path, world: str | None = None) -> list[dict]:
+    p = rulings_path(runs_root, world)
+    if not p.exists():
         return []
     data = yaml.safe_load(p.read_text(encoding="utf-8")) or []
     return data.get("rulings", []) if isinstance(data, dict) else list(data)
+
+
+def rulings_applied(view: RunView) -> int:
+    """OPEN_QUESTIONS #13c (ruled): run.json `rulings_applied` first, else the header's "applied N learned rules"."""
+    n = view.run.get("rulings_applied")
+    if isinstance(n, int):
+        return n
+    m = APPLIED_RE.search(view.digest.header)
+    return int(m.group(1)) if m else 0
 
 
 def load_transcript(runs_root: Path) -> list[dict] | None:
@@ -103,8 +120,7 @@ def score_simulation(manifest: Manifest, views: dict[int, RunView], transcript: 
         nd = later[0]
         nview = views[nd]
         again = _carded(nview, a.get("about"))
-        m = APPLIED_RE.search(nview.digest.header)
-        applied = int(m.group(1)) if m else 0
+        applied = rulings_applied(nview)
         ok = not again and applied >= 1
         why = [] if ok else ([f"carded again: {[i.id for i in again]}"] if again else []) + (
             [] if applied else ["header does not report applied learned rules"])
@@ -119,7 +135,7 @@ def score_simulation(manifest: Manifest, views: dict[int, RunView], transcript: 
     for d in days:
         view = views[d]
         now = {i.about for i in view.rendered if i.about and i.placement != "also_pending"}
-        for key in now:
+        for key in sorted(now):  # deterministic order for the report
             streak[key] = streak.get(key, 0) + 1 if key in prev else 1
             if streak[key] >= 3:
                 it = next(i for i in view.rendered if i.about == key)
