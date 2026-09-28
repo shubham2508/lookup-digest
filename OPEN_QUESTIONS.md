@@ -20,6 +20,15 @@ Judge plan (Shubham, 2026-09-28): the first judging round runs on Fable via the 
 
 OpenRouter spend on this config ≈ $4–5 (pipeline ≈ $3, judge ≈ $1–1.6, sim_avery ≈ 0). Generation costs nothing on OpenRouter.
 
+
+## Decided
+
+- **2026-09-28 · Track A M4–M9 notes (#14), all accepted as implemented:** (14a) a personal-domain slot inside the workday is a `calendar_conflict:family` candidate even without an overlapping work event, with `facts.overlaps_work_event=false` for triage to weigh; (14b) calendar freshness = max(event stamps, `.ics` mtime); (14c) the `_strip` fix stands (reviewed: correct, keys inside `properties` are field names); (14d) the handoff example was wrong, #8(a) rules: Fri→Tue = 1; (14e) `TriageBatch`, `BaselineDigest`; (14f) `test_cli.py`; (14g) `digest answer` targets the latest plain run.
+- **2026-09-28 · #15 simulate runs get their own folder.** `digest simulate` re-runs days 26–30 with rulings applied, so if it wrote to the plain run dirs the eval would score rulings-applied digests. Decision: `RunContext.tag` (added; joins the suffix) → `digest run --tag sim` writes `runs/<world>/<as_of>_sim/`; simulate passes `--tag sim` and the §7 checks read the `_sim` dirs; plain runs stay rulings-free for P0 recall and trap assertions. Small edits to `digest/cli.py` (`--tag`) and `eval/cli.py`/`sim_avery` (pass and read the tag); the orchestrator makes them at integration.
+- **2026-09-28 · integration findings to verify on the real dev run** (from C's matrix on the fixture against A's pipeline; may predate A's final commit): `corrupt_ics` header must say the calendar is unreadable and no calendar conflicts may appear; `stale_inbox` must qualify overdue/quiet items with "may be a sync gap"; `weekend.md` must keep the cap-table P0 as a one-liner (locked invariant). Owner: orchestrator at integration, routed to A only if larger than a small fix.
+
+<details><summary>Track A's #14 as written</summary>
+
 ### 14. Track A · M4–M9 notes (A-product, 2026-09-28): implemented as suggested; confirm or redirect
 
 | # | What · where | Options | Implemented (suggestion) |
@@ -32,7 +41,7 @@ OpenRouter spend on this config ≈ $4–5 (pipeline ≈ $3, judge ≈ $1–1.6,
 | 14f | **`tests/test_cli.py`** lost `test_stubs_say_not_implemented`: every command is real now (A: run/answer/baseline; B: generate; C: eval/simulate). Replaced by no-state checks for `answer` and `baseline`. | — | done |
 | 14g | **`digest answer` picks the latest plain run** (no variant/customize/baseline suffix) of the world; a question number refers to that digest only. `digest simulate` runs days in order, so this is the intended card. | — | done |
 
-## Decided
+</details>
 
 - **2026-09-28 · Track C M7–M9 questions (#13, restored below), ruled:**
   (13a) **`rulings.yaml` lives at `runs/<world>/rulings.yaml`**, now `settings.store.rulings_path_template`; `digest answer` and `digest simulate` write it, the store's `rulings` table mirrors it, per-world so dev rulings never leak into held-out.

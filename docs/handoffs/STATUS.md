@@ -6,6 +6,7 @@ Each session appends a dated line when it finishes a milestone or gets blocked. 
 **Full scope today, 2026-09-28. Submission tomorrow morning; walkthrough the following week.** Nothing deferred. Next up: A → M4/M5 then M7/M8/M9 · B → M2 after Shubham's approval, then M8 held-out (anchor 2026-03-26) in a fresh session · C → M7/M8/M9 halves · orchestrator → integration as soon as A M5 + B M2 land, then M10.
 
 ## Orchestrator
+- 2026-09-28 15:05 · Ruled #13, #14 (accepted), #15 (simulate → `_sim` run dirs via `RunContext.tag`). Fixed `runs.py` list-of-models JSON bug (C's finding). Board: A done M3–M9 · C done M6–M9 + matrix · B mid-M2 (90 threads, 10 notes, generator 1.4k lines, validator not yet green) and mid-M8. Integration starts the moment `data/dev` + `eval/manifests/dev.yaml` land.
 - 2026-09-28 · Ruled on OPEN_QUESTIONS #2, #3, #6–#12 (all accepted as the tracks implemented); pinned reduce/actions/verify models and run-dir suffixes; labeled every fixture manifest item. Suite green.
 - 2026-09-28 · M0 done. 43 tests green; `digest llm-check` shows a live Luna call costed ($0.000035) and cached. Handoffs written. Next: integration once A M5 + B M2 + C M6 land.
 
