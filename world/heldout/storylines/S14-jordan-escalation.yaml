@@ -1,0 +1,88 @@
+id: S14
+name: jordan-escalation
+reviewed: false
+tier_truth: P0
+summary: >
+  Jordan (Head of Eng, P1, "escalates rarely") emails at 21:12 on Wednesday day 29 (Mar 25): since Halberd's MES
+  firmware push on Line 3 that evening, every Line 3 station event arrives with timestamps 8 hours off (the firmware
+  now stamps UTC; Tessera's parser still reads Line 3 as local). Halberd's night-shift supervisors are getting false
+  late alerts and their 6am shift planning runs off Tessera's board. Arjun is on call and has confirmed it with
+  Sanjay (Halberd MES integration). Both ways out — Halberd rolls back the firmware, or Tessera patches its parser —
+  need Halberd's OK, and after the procurement handover (S7) that contact is Tobias Weller, whom Avery meets for the
+  first time at the 11:00 "Halberd QBR - Tobias intro" on day 30. Context: eng-standup.md (day 28) lists the Line 3
+  MES upgrade for Wednesday evening with Arjun on call. Tests: content overrides the sender tier — an incident at a
+  reference customer whose renewal has already slipped twice is P0 (P0 case 13); the action is a decision/reply to
+  Jordan and/or a task to call Tobias before the QBR, not a customer-facing draft that asserts a fix.
+
+threads:
+  - {id: t-halberd-timestamps, subject: "Halberd Line 3 - timestamps 8h off since MES push", category: internal_routine}
+
+beats:
+  - {ref: S14.n1, day: 28, time: "09:40", source: note, note: eng-standup.md,
+     event: "Eng standup (Tue Mar 24): Northstar SAP connector on track for Apr 1 (S5); Halberd Line 3 MES upgrade Wednesday evening, Arjun on call; two non-blocking issues",
+     must_include: ["Line 3 MES upgrade", "Arjun on call"]}
+  - {ref: S14.b1, day: 29, time: "21:12", source: email, thread: t-halberd-timestamps, from: jordan, to: [avery], cc: [priya, arjun],
+     event: "Since Halberd's Line 3 MES firmware push (~18:40) station events arrive 8 hours off (UTC vs local); night-shift false late alerts; 6am shift planning runs off Tessera's board; Arjun on call, confirmed with Sanjay; rollback or parser patch both need Halberd's OK — contact is now Tobias; asks Avery to decide who calls Tobias and when, before the 11:00 QBR intro",
+     must_include: ["8 hours off", "false late alerts", "Line 3"], hardness: [structured_bullets]}
+
+labels:
+  - thread: t-halberd-timestamps
+    category: internal_routine
+    storyline: S14
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: escalation
+      about: [incident:halberd:timestamps]
+      ball_awaiting: avery
+      closed_by_courtesy: false
+      sender_relationship: {category: team, subtype: exec}
+      asks: [{to_avery: true, kind: decision, deadline_day: 30, status: open}]
+      stage_signals: [{entity: halberd, stage: at_risk, day: 29}]
+      claims: [{subject: halberd_line3_timestamps, value: "8 hours off"}]
+      suspicious: false
+    messages:
+      - {beat_ref: S14.b1, day: 29, time: "21:12", from: jordan, to: [avery], cc: [priya, arjun], must_include: ["8 hours off", "false late alerts", "Line 3"]}
+  - note: eng-standup.md          # shared with S5 (which owns "on track for Apr 1" / "non-blocking"); the emitter keeps the first storyline's label
+    storyline: S14
+    expected:
+      type: note
+      note_kind: status
+      about: [rollout:northstar:apr-1, rollout:halberd:line-3-mes]
+      claims: [{subject: halberd_line3_mes_upgrade, value: "Arjun on call"}]
+
+contacts:
+  - {id: jordan, category: team, subtype: exec, tier: P1, in_profile: true, rules: [escalates_rarely]}
+  - {id: arjun,  category: team, subtype: ic,   tier: null, in_profile: false, note: "on call for the MES push; cc'd on the escalation"}
+
+about_keys:
+  should_merge: [[incident:halberd:timestamps, incident:halberd:line-3-timestamps], [incident:halberd:timestamps, incident:halberd:mes-timestamps]]
+  should_not_merge: [[incident:halberd:timestamps, renewal:halberd], [incident:halberd:timestamps, rollout:northstar:apr-1], [incident:halberd:timestamps, meeting:halberd-qbr]]
+
+expectations:
+  - run_day: 26
+    absent: [incident:halberd:timestamps]
+  - run_day: 27
+    absent: [incident:halberd:timestamps]
+  - run_day: 28
+    absent: [incident:halberd:timestamps]
+  - run_day: 29
+    absent: [incident:halberd:timestamps]
+    notes: "the email is at 21:12 on day 29; eng-standup.md (day 28 09:40) only mentions the planned upgrade"
+  - run_day: 30
+    candidates: [{type: reply_owed, about: incident:halberd:timestamps, facts_hint: {intent: escalation, sender_tier: P1, content_tier: P0}}]
+    items: [{about: incident:halberd:timestamps, priority: P0, section: urgent, actions_any: [reply, decide, task, message_person], cites_any: [t-halberd-timestamps],
+             notes: "reply to Jordan: acknowledge, decide who contacts Tobias (Avery, first thing, before the 11:00 QBR intro); task: call Tobias before 9. No customer-facing draft claiming a fix; don't forward Jordan's internal detail to Halberd."}]
+
+assertions:
+  - {id: S14-d30-p0,          kind: priority_is,      run_day: 30, args: {about: incident:halberd:timestamps, priority: P0}, description: "eval.md §3 S14 / P0 case 13: Jordan escalation is P0 despite the P1 sender"}
+  - {id: S14-d30-present,     kind: item_present,     run_day: 30, args: {about: incident:halberd:timestamps, section: urgent}}
+  - {id: S14-d29-absent,      kind: item_absent,      run_day: 29, args: {about: incident:halberd:timestamps}}
+  - {id: S14-no-customer-fix-draft, kind: draft_not_contains, run_day: 30, args: {recipient: tobias.weller@halberd.com, phrases: ["fixed", "resolved"]},
+     description: "no draft to Halberd asserting a fix that hasn't happened"}
+  - {id: S14-stale-inbox-absent, kind: item_absent,   run_day: 30, variant: stale_inbox, args: {about: incident:halberd:timestamps},
+     description: "eval.md §5 stale_inbox: the 21:12 email is after the 30h cutoff; the digest must not know about it and must say the inbox is stale"}
+
+sim_avery: []
+simulate: []
+variants: []

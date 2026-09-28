@@ -1,0 +1,25 @@
+thread_id: t-clara-nudge
+subject: "Checking in - designer role"
+storyline: S9
+category: hiring
+labels: null
+messages:
+  - id: m1
+    beat_ref: S9.b8
+    day: 28
+    time: "08:50"
+    from: clara
+    to: [jordan]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi Jordan (and Avery),
+
+      Hope the week is off to a good start! Just checking in on timing after last Wednesday - is there any update on next steps? I really enjoyed the day, especially the ticket exercise with you and the plant-floor conversation with Hana, and I'm still very much interested.
+
+      In case it's useful for the debrief, I put the two scheduler explorations I sketched afterwards here: claravoss.design/tessera
+
+      Thanks!

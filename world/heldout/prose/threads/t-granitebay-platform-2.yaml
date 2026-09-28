@@ -1,0 +1,43 @@
+thread_id: t-granitebay-platform-2
+subject: "Save the date: Granite Bay annual meeting, June 11 + updated portfolio perks"
+storyline: null
+category: investors_board
+labels:
+  kind: thread
+  must_not: true
+  reason: fyi_bulk
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [other:granitebay-annual-meeting]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: capital, subtype: existing_investor_ops}
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 19
+    time: "08:00"
+    from: granitebay_office
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    bulk: true
+    signature: default
+    body: |
+      Dear Granite Bay founders,
+
+      Please save the date for our annual meeting: Thursday, June 11, 2026, Cavallo Point, Sausalito. The founder program runs 9:00 to 15:00, followed by the LP session (LPs only) and a dinner for everyone at 18:30. Formal invitations and the agenda go out in early May; hotel rooms are held under "Granite Bay" through May 15.
+
+      Portfolio perks, updated for 2026
+      - AWS Activate and Google Cloud credits: refreshed tiers, apply through the portal
+      - Brex and Mercury: fee waivers extended through December
+      - Carta: 25% off the first year of Launch for companies under 30 employees
+      - The full list, with codes, is at granitebay.vc/portal/perks
+
+      As always, no reply needed.

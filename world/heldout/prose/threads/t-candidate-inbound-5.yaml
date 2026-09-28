@@ -1,0 +1,42 @@
+thread_id: t-candidate-inbound-5
+subject: "Application: Product Designer - Celeste Nguyen"
+storyline: null
+category: hiring
+labels:
+  kind: thread
+  must_not: true
+  reason: routed_to_jordan
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [candidate:celeste-nguyen]
+    ball_awaiting: other
+    closed_by_courtesy: false
+    sender_relationship: {category: hiring, subtype: candidate, stage: applied}
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 20
+    time: "10:05"
+    from: {name: "Celeste Nguyen via Ashby", email: "reply+e91c44f0@inbound.ashbyhq.com"}
+    to: [jordan]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      New candidate message on "Product Designer (Oakland / hybrid)". Reply to this email to respond; your reply is sent to the candidate and logged in Ashby.
+
+      ---
+      Hello Tessera,
+
+      Applying for the product designer role. Most of my work has been operational tools for people who do not sit at a desk: a dispatch console for a regional trucking company, and a tablet app for warehouse receiving. Both are in my portfolio (celestenguyen.work, case studies 1 and 3), and both taught me that a plant floor is a hostile environment for a dropdown.
+
+      Available for a conversation any weekday after 2pm.
+
+      Thank you,
+      Celeste Nguyen

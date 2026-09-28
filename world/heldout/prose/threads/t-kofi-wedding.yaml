@@ -1,0 +1,39 @@
+thread_id: t-kofi-wedding
+subject: "save the date - June 13!"
+storyline: BG-wedding
+category: personal
+labels:
+  kind: thread
+  must_not: true
+  reason: personal_social_far_deadline
+  classification_case: colleague_wedding_invite
+  expected:
+    type: human_thread
+    domain: personal
+    intent_primary: social
+    about: [other:kofi-wedding]
+    ball_awaiting: avery
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+    asks: [{to_avery: true, kind: other, deadline_day: 66, status: open}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 26
+    time: "10:30"
+    from: kofi
+    to: [team_list]
+    cc: [{name: "Kofi & Adaeze", email: "kofi.and.adaeze@gmail.com"}]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      hi everyone,
+
+      Sorry for the Sunday email, I wanted to get this out before the week ate it. Adaeze and I are getting married on Saturday, June 13, at a small place in Point Reyes (Inverness, technically, but the drive is worth it). You are all invited, partners and kids very much included. Wren would have company.
+
+      Proper invites with the address, the hotel block, and a ride-share plan from Oakland go out in April from our personal email (cc'd here so it doesn't land in spam). For now, just a save-the-date. Please RSVP by May 1 to that address so we can give the caterer a number; they are strict about it and I am a little scared of them.
+
+      Is it okay to use the team list for this? I figured yes but tell me if not. Also: no gifts, we mean it.

@@ -1,0 +1,29 @@
+thread_id: t-kenji-thanks
+subject: "Thank you - Tessera onsite"
+storyline: S8
+category: hiring
+labels: null
+messages:
+  - id: m1
+    beat_ref: S8.b2
+    day: 10
+    time: "20:40"
+    from: kenji
+    to: [jordan]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi Jordan, hi Avery,
+
+      Thank you for today. I came away with a much clearer picture of how the ingest layer actually behaves inside a plant, and of how much of the hard part is the messiness of the data rather than the volume. That is exactly the kind of problem I want to spend the next few years on.
+
+      Please pass my thanks to Arjun, Felix and Priya as well. The systems design session in particular was the most enjoyable interview I have had in a long time.
+
+      No questions from my side for now. I understand the debrief is a week or so out and I am happy to wait. My wife and I are going through our daughter's school calendar this weekend, so if any timing questions come up on my end I will bring them to you then rather than guess now.
+
+      Warm regards,
+
+      P.S. The coffee in the small kitchen is genuinely good. Whoever chose it, thank you.

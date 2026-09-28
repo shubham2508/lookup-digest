@@ -1,0 +1,57 @@
+thread_id: t-internal-hackday
+subject: "hack day demos - recording + winners"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: last_word_avery
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [other:hack-day]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 16
+    time: "18:10"
+    from: felix
+    to: [eng_list]
+    cc: [avery, tomas, hana]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      recording: https://drive.google.com/tessera/hackday-2026-03-12 (52 min, demos start at 3:10)
+
+      results per our judge:
+      1. kofi - pager-bot: summarizes the overnight pages into 3 lines in slack at 07:00. judge's comment: "I would read this"
+      2. arjun - "truck arrived" event on the shift board, from the gate camera feed. two customers asked for this in the same week, so
+      3. carmen - fixture visualizer, shows what each IDoc fixture does to the board. hana already wants it for workshops
+
+      honorable mention: me, for the export panel dark mode, which the judge described as "fine"
+
+      thanks avery for judging. thanks nora for the pizza. back to sprint 15 tomorrow.
+
+      Felix
+  - id: m2
+    beat_ref: null
+    day: 16
+    time: "19:30"
+    from: avery
+    to: [felix]
+    cc: [eng_list, tomas, hana]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      great day, thanks all. the pager-bot should find its way into a sprint. dark mode was fine. I stand by fine.
+
+      Avery

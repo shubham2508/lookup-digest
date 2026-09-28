@@ -1,0 +1,51 @@
+thread_id: t-internal-support-macro
+subject: "Updated the 'scheduled export' help macro (CS-2231, CS-2240)"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_by_team
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [other:support-macro-export]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 2
+    time: "11:20"
+    from: ruth
+    to: [hana]
+    cc: [avery, jordan]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hana,
+
+      FYI: I rewrote the "Scheduled export - setup and troubleshooting" macro after two cases this week where customers followed the old text and got stuck.
+
+      CS-2231 (Coastline, purchasing mailbox): "we set the export for 02:00 and it never runs" - the old macro didn't say the schedule is in plant-local time, not the browser's. Added a line and a screenshot.
+      CS-2240 (Halberd, Line 1 scheduler): "where do I see if last night's export actually ran?" - added the Export history panel steps. Their words: "found it, that panel is hiding in plain sight".
+
+      Both cases closed. The macro is in the help center under Exports > Scheduled exports, and I've linked it from the in-app tooltip. No action for anyone; sharing since you send this one to prospects during scoping.
+  - id: m2
+    beat_ref: null
+    day: 2
+    time: "11:50"
+    from: hana
+    to: [ruth]
+    cc: [avery, jordan]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Perfect, thank you Ruth. The plant-local time line is the one I explain on every scoping call, so this saves me a slide. Sending the new link to Coastline's purchasing mailbox today; they asked about it again **last Friday**.

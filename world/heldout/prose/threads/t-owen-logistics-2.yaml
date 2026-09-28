@@ -1,0 +1,57 @@
+thread_id: t-owen-logistics-2
+subject: "Data room - folder naming for the technical diligence materials"
+storyline: null
+category: investors_board
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_closed
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [deal:series-a:data-room]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: capital, subtype: investor_associate, stage: diligence}
+    asks: [{to_avery: false, kind: other, deadline_day: null, status: answered}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 20
+    time: "09:30"
+    from: owen
+    to: [priya]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi Priya,
+
+      Ahead of the technical diligence session, Marcus has asked that the technical materials sit in their own folder so the analysts and our technical advisor are not searching across the room. Could you place them under:
+
+      Technical / 01 Architecture (system diagrams, data flow, tenancy model)
+      Technical / 02 Security (SOC 2 report, February pen-test summary, policies)
+      Technical / 03 Reliability (incident log for the last 12 months, uptime by customer)
+      Technical / 04 Roadmap (the H1 plan, in whatever form it is in)
+
+      No new documents are needed at this stage; this is only about where the existing ones live. If a different structure makes more sense on your side, that is fine too, as long as it is consistent.
+
+      Best regards,
+  - id: m2
+    beat_ref: null
+    day: 20
+    time: "10:15"
+    from: priya
+    to: [owen]
+    cc: [avery]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      done. 01-04 as listed, 31 files. pen-test summary is the same one we sent northstar. roadmap folder has the h1 doc draft; it changes weekly, read the date.

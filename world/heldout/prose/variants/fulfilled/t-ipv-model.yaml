@@ -1,0 +1,19 @@
+thread_id: t-ipv-model
+messages:
+  - id: v1
+    beat_ref: S1.v1
+    day: 29
+    time: "07:15"
+    from: avery
+    to: [marcus]
+    cc: [ben]
+    reply_to: m2
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      marcus, revised operating model attached (v4, the 24-month plan, same file Ben's team is using for the schedules). the hiring ramp took longer than I said it would; that one is on me.
+
+      Avery
+
+      [attachment: Tessera_OperatingModel_v4_2026-03-25.xlsx]

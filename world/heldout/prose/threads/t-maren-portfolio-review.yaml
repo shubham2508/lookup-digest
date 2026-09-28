@@ -1,0 +1,43 @@
+thread_id: t-maren-portfolio-review
+subject: "Tomorrow at 4 - walkthrough or files ahead?"
+storyline: BG-maren
+category: hiring
+labels:
+  kind: thread
+  must_not: false
+  reason: null
+  classification_case: unknown_attendee_of_todays_meeting
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [candidate:maren-holt]
+    ball_awaiting: avery
+    closed_by_courtesy: false
+    sender_relationship: {category: hiring, subtype: candidate, stage: screen}
+    asks: [{to_avery: true, kind: information, deadline_day: 30, status: open}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 29
+    time: "19:35"
+    from: maren
+    to: [avery]
+    cc: [priya]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Dear Avery,
+
+      I hope it is all right to write to you directly; Priya mentioned you would join for the last part of our conversation tomorrow at 4, and I am looking forward to it.
+
+      Two questions on format, so that I prepare the right thing:
+      1. Would you prefer that I walk through the portfolio live, or send a few files ahead of time for you to look at on your own? I have a short PDF (six case studies, about twenty pages) and a Figma file with the working versions.
+      2. Is this over video or in person? The invitation lists a Meet link, but I wanted to be sure, since I am happy to come to your office if that is easier.
+
+      Thank you, and apologies for the evening email.
+
+      Kind regards,

@@ -1,0 +1,104 @@
+id: S3
+name: marcus-grr-quiet-weekend
+reviewed: false
+tier_truth: P0
+summary: >
+  Held-out disguise of dev S3. A separate Marcus thread ("Retention numbers"). On Thursday day 23 Marcus asks for
+  the gross figure behind the 104% net retention on the deck; Avery answers the same afternoon (96% gross, one idle
+  Coastline line). On Friday day 24 at 16:48 Marcus asks for gross revenue retention by cohort, split by segment
+  (the three reference accounts versus everyone else, FY24 and FY25 cohorts), and adds that his model still carries
+  the $3.2M ARR from the February deck. The ball is with Avery and Avery never replies. test_s3 — quiet business
+  days at 06:00 (weekday dates strictly after Fri 03-20 and strictly before the run date): Sun 03-22 (day 26) → 0
+  [Sat 21 only]; Mon 03-23 (day 27) → 0 [Sat 21, Sun 22]; Tue 03-24 (day 28) → 1 [Mon 23]; Wed 03-25 (day 29) → 2
+  [Mon 23, Tue 24]; Thu 03-26 (day 30) → 3 [Mon 23, Tue 24, Wed 25]. So the quiet-investor item is absent on days
+  26–29 and present on day 30 only (P0 cases 1–3); calendar-day counting would surface it on Monday (3 calendar
+  days): the trap. The reply draft must use $3.6M ARR from finance-review.md (day 21), not the profile's $3.2M, and
+  flag the drift (P0 case 8). The day-23 exchange is history so the thread looks real; Avery's answer there is
+  complete (no offer, no promise) so it cannot seed a commitment. Depends on OPEN_QUESTIONS #8.
+
+threads:
+  - {id: t-marcus-grr, subject: "Retention numbers", category: investors_board}
+
+beats:
+  - {ref: S3.h1, day: 23, time: "11:05", source: email, thread: t-marcus-grr, from: marcus, to: [avery],
+     event: "asks for the gross figure behind the 104% net retention shown for the FY25 cohort on the deck",
+     must_include: ["104%"], hardness: []}
+  - {ref: S3.h2, day: 23, time: "14:30", source: email, thread: t-marcus-grr, from: avery, to: [marcus],
+     event: "answers: 96% gross for the FY25 cohort; the gap to net is one Coastline line that went idle in Q3, still a customer; workings are in the data room",
+     must_include: ["96%"], hardness: [lowercase]}
+  - {ref: S3.b1, day: 24, time: "16:48", source: email, thread: t-marcus-grr, from: marcus, to: [avery],
+     event: "asks for gross revenue retention by cohort, split by segment (three reference accounts vs everyone else), FY24 and FY25 cohorts, as a table; adds that his model still carries the $3.2M ARR from the February deck and would rather hear from Avery if the retention view moves it; no deadline stated",
+     must_include: ["gross revenue retention by cohort", "split by segment", "$3.2M"], hardness: [indirect_phrasing]}
+
+labels:
+  - thread: t-marcus-grr
+    category: investors_board
+    storyline: S3
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [deal:series-a:retention-question, deal:series-a:arr]
+      ball_awaiting: avery
+      closed_by_courtesy: false
+      sender_relationship: {category: capital, subtype: lead_investor, stage: diligence}
+      asks:
+        - {to_avery: true, kind: information, deadline_day: null, status: answered}    # day 23: the gross figure
+        - {to_avery: true, kind: information, deadline_day: null, status: open}        # day 24: GRR by cohort, split by segment
+      commitments: []
+      claims: [{subject: ARR, value: "$3.2M"}]      # Marcus's number; the data's current ARR is $3.6M (finance-review.md)
+      stage_signals: [{entity: ipv, stage: diligence, day: 24}]
+      suspicious: false
+    messages:
+      - {beat_ref: S3.h1, day: 23, time: "11:05", from: marcus, to: [avery],  must_include: ["104%"]}
+      - {beat_ref: S3.h2, day: 23, time: "14:30", from: avery,  to: [marcus], must_include: ["96%"], is_from_avery: true}
+      - {beat_ref: S3.b1, day: 24, time: "16:48", from: marcus, to: [avery],  must_include: ["gross revenue retention by cohort", "split by segment", "$3.2M"]}
+
+contacts:
+  - {id: marcus, category: capital, subtype: lead_investor, tier: P0, in_profile: true}
+
+about_keys:
+  should_merge:
+    - [deal:series-a:retention-question, deal:series-a:grr]
+    - [deal:series-a:retention-question, deal:series-a:gross-revenue-retention]
+  should_not_merge:
+    - [deal:series-a:retention-question, deal:series-a:operating-model]     # S1
+    - [deal:series-a:retention-question, deal:series-a:larkspur]            # S4: Farah's cohort question is a different investor and a different ask
+
+expectations:
+  - run_day: 26
+    absent: [deal:series-a:retention-question]
+    notes: "0 business days elapsed (weekend); reply_owed exists as a candidate but must not be surfaced as quiet; a plain reply_owed P0 item on a Sunday is NOT wanted either — the profile's rule is three business days"
+  - run_day: 27
+    absent: [deal:series-a:retention-question]
+    notes: "3 calendar days, 0 business days → absent (the trap for calendar-day counting)"
+  - run_day: 28
+    absent: [deal:series-a:retention-question]
+    notes: "1 business day (Mon 03-23)"
+  - run_day: 29
+    absent: [deal:series-a:retention-question]
+    notes: "2 business days (Mon, Tue) → absent (P0 case 2)"
+  - run_day: 30
+    candidates:
+      - {type: quiet_thread, about: deal:series-a:retention-question, facts_hint: {business_days_quiet: 3, calendar_days_quiet: 5}}
+    items:
+      - {about: deal:series-a:retention-question, priority: P0, section: urgent, actions_any: [reply, decide],
+         cites_any: [t-marcus-grr],
+         notes: "reply draft: the cohort table is Nora's (finance-review.md attendees); acknowledge, say when it lands, give ARR as $3.6M per finance-review.md with an assumption line noting the profile says $3.2M. A `decide` (send the table as-is vs with Nora's segment split) or a forward_delegate to Nora is acceptable alongside."}
+    notes: "3 business days (Mon, Tue, Wed) → present (P0 case 1). One thing stays S1."
+
+assertions:
+  - {id: S3-d27-absent,        kind: item_absent,       run_day: 27, args: {about: deal:series-a:retention-question}, description: "P0 case 3: Fri→Mon is 0 business days"}
+  - {id: S3-d28-absent,        kind: item_absent,       run_day: 28, args: {about: deal:series-a:retention-question}}
+  - {id: S3-d29-absent,        kind: item_absent,       run_day: 29, args: {about: deal:series-a:retention-question}, description: "P0 case 2: quiet 2 business days → don't surface"}
+  - {id: S3-d29-no-quiet-cand, kind: candidate_absent,  run_day: 29, args: {type: quiet_thread, about: deal:series-a:retention-question}}
+  - {id: S3-d30-present,       kind: item_present,      run_day: 30, args: {about: deal:series-a:retention-question, priority: P0}, description: "P0 case 1: quiet 3 business days → surface"}
+  - {id: S3-d30-cand,          kind: candidate_present, run_day: 30, args: {type: quiet_thread, about: deal:series-a:retention-question}}
+  - {id: S3-d30-arr-data,      kind: draft_contains,    run_day: 30, args: {about: deal:series-a:retention-question, phrases: ["3.6"]},
+     description: "P0 case 8: a draft to Marcus needing ARR uses the data's $3.6M (finance-review.md), not the profile's $3.2M"}
+  - {id: S3-d30-arr-drift-flagged, kind: item_qualified_with, run_day: 30, args: {about: deal:series-a:retention-question, phrase: "3.2"},
+     description: "the item or its assumptions mention the profile's $3.2M so the drift is visible"}
+
+sim_avery: []
+simulate: []
+variants: []

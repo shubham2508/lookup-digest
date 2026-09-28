@@ -1,0 +1,39 @@
+thread_id: t-internal-weekend-deploy
+subject: "dedupe one week in: alerts -38%, 0 overnight pages"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: internal_fyi
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [other:pr-527-alert-dedupe]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 11
+    time: "09:50"
+    from: felix
+    to: [eng_list]
+    cc: [jordan, avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      saturday stats, because I was up anyway:
+
+      #527 has been live since monday. late-lot alerts sent: 214 vs 347 the week before (-38%). alerts folded: 133. overnight pages: 0. veritas night shift got 4 texts on thursday instead of 19.
+
+      no config changes needed, 600s window seems right. lmk if anyone sees a fold that shouldnt have folded.
+
+      back to my weekend
+
+      Felix

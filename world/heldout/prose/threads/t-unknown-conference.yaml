@@ -1,0 +1,55 @@
+thread_id: t-unknown-conference
+subject: "speaking slot - Plant Ops Summit (May)"
+storyline: BG-conference
+category: vendors_misc
+labels:
+  kind: thread
+  must_not: true
+  reason: last_word_avery
+  classification_case: unresolved_must_not
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [other:plant-ops-summit-talk]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: unresolved, subtype: null}
+    asks: [{to_avery: true, kind: other, deadline_day: null, status: answered}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 20
+    time: "13:00"
+    from: {name: "Noor Haddad", email: "noor.haddad.events@gmail.com"}
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      Hi Avery,
+
+      My name is Noor Haddad and I am organizing the speaker program for the Plant Ops Summit, a two-day event for plant and operations leaders in Sacramento on May 19-20 (about 400 attendees, mostly food, packaging and metals). Your Halberd case study was passed to me by one of our advisory board members, and I think the story of what actually changed on the floor would land well with this audience.
+
+      Would you be open to a 25-minute talk or a fireside slot on the second day? We cover travel, and I can send the current agenda and last year's attendee breakdown if it helps you decide.
+
+      Thank you for considering it,
+      Noor
+  - id: m2
+    beat_ref: null
+    day: 20
+    time: "19:40"
+    from: avery
+    to: [{name: "Noor Haddad", email: "noor.haddad.events@gmail.com"}]
+    cc: []
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      hi Noor - thanks for thinking of us. not before the summer, this spring is spoken for. ping me in June and if there's a fall edition I'll take a proper look.
+
+      Avery

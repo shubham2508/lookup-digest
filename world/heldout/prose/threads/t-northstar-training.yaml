@@ -1,0 +1,83 @@
+thread_id: t-northstar-training
+subject: "Scheduler training for the Fresno planners"
+storyline: S5
+category: customers
+labels: null
+messages:
+  - id: m1
+    beat_ref: S5.b14
+    day: 20
+    time: "14:05"
+    from: elise
+    to: [hana]
+    cc: [avery, rosa]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hana,
+
+      With UAT under way, can we get the Fresno planners trained before the freeze? Rosa (cc'd) will coordinate on our side.
+
+      - We have nine planners across two shifts. One session is fine if it can be recorded.
+      - Week of March 23 preferred.
+
+      Elise
+  - id: m2
+    beat_ref: S5.b15
+    day: 20
+    time: "16:50"
+    from: hana
+    to: [elise]
+    cc: [avery, rosa]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Hi Elise, hi Rosa,
+
+      Two options, both recorded:
+      - **Tuesday, March 24, 09:00–10:30 PT**
+      - **Thursday, March 26, 13:00–14:30 PT**
+
+      Agenda: release view, exception queue, what changes on April 1, and 20 minutes of questions. I will send a one-page quick guide the day before.
+
+      Hana
+  - id: m3
+    beat_ref: S5.b18
+    day: 24
+    time: "11:30"
+    from: rosa
+    to: [hana]
+    cc: [avery, elise]
+    reply_to: m2
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Hi Hana,
+
+      Tuesday the 24th works for us, I'll have all nine planners on. Quick question before then: on the release view, when I hover the little clock icon next to an order it shows two dates (screenshot attached, the one circled in red). Which one is the SAP planned start and which one is yours? A couple of the planners have been reading the wrong one.
+
+      Thanks,
+  - id: m4
+    beat_ref: S5.b19
+    day: 24
+    time: "13:45"
+    from: hana
+    to: [rosa]
+    cc: [avery, elise]
+    reply_to: m3
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Hi Rosa,
+
+      Confirmed for **Tuesday, March 24, 09:00 PT**; calendar invite and the quick guide are attached.
+
+      The clock icon: the top date is the SAP planned start (read-only, from the connector); the bottom date is the scheduled start in Tessera, which is the one planners should work from. We will cover this first thing on Tuesday since it trips people up.
+
+      Hana

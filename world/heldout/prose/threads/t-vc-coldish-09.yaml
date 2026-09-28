@@ -1,0 +1,39 @@
+thread_id: t-vc-coldish-09
+subject: "Saw the Plant Ops Digest mention - Greywater Ventures"
+storyline: null
+category: investors_board
+labels:
+  kind: thread
+  must_not: true
+  reason: cold_vc_associate_no_engagement
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [other:vc-inbound-greywater]
+    ball_awaiting: avery
+    closed_by_courtesy: false
+    sender_relationship: {category: capital, subtype: cold_vc_associate}
+    asks: [{to_avery: true, kind: meeting, deadline_day: null, status: open}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 27
+    time: "07:55"
+    from: {name: "Samir Qureshi", email: "samir@greywater.vc"}
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: "Samir Qureshi | Greywater Ventures"
+    body: |
+      Avery,
+
+      Saw the Plant Ops Digest mention and then the Northstar reference on your site. Greywater is a $180M Series A fund with two plant-floor companies in the portfolio already, so we come with some pattern recognition and a couple of useful customer introductions.
+
+      Would love to learn more about Tessera. 20 minutes this week or next?
+
+      Samir

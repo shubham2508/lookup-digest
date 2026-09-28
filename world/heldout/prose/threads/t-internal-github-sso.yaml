@@ -1,0 +1,59 @@
+thread_id: t-internal-github-sso
+subject: "GitHub org: SSO enforced from Monday Mar 2 - re-auth your CLI"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_by_team
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [other:github-sso]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 2
+    time: "10:30"
+    from: arjun
+    to: [eng_list]
+    cc: [avery, nora]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi all,
+
+      As agreed at January's security review, SAML SSO becomes required on the tessera-io GitHub organization on Monday, March 2 at 09:00 PT. After that, any personal access token or SSH key that has not been authorized for SSO stops working against org repositories.
+
+      What you need to do, before Monday:
+      1. Sign in to GitHub in the browser once via Google Workspace (you will be prompted).
+      2. Authorize your existing SSH key and any personal access tokens for the org: Settings > SSH and GPG keys > "Configure SSO", then the same under Developer settings > Tokens.
+      3. Run `gh auth refresh -s read:org` if you use the CLI.
+
+      Deploy keys and the CI runner tokens are org-owned and are already fine; I tested the release pipeline against a staging org this morning. The steps with screenshots are in the runbook: https://runbooks.tessera.io/access/github-sso
+
+      Nora, cc'ing you because this closes the "source control access" line in the Bastion evidence checklist; nothing for you to do.
+
+      Thanks,
+  - id: m2
+    beat_ref: null
+    day: 3
+    time: "08:15"
+    from: felix
+    to: [arjun]
+    cc: [eng_list, avery, nora]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      done, all 3 steps. deploy keys confirmed fine on my side too (pushed #527 through CI this morning). 👍
+
+      Felix

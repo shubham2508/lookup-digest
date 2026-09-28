@@ -1,0 +1,38 @@
+thread_id: t-sam-tk-form
+subject: "tk application + jun's birthday"
+storyline: S11
+category: personal
+labels: null
+messages:
+  - id: m1
+    beat_ref: S11.b1
+    day: 27
+    time: "21:22"
+    from: sam
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      hey. the tk application is in the blue folder on the counter, it needs both of us to sign the last page and the district wants it back by friday. i did my part, your pen is on top of it.
+
+      also jun's birthday is the 4th. host or go out? if we host i need to know by wed so i can order the cake from that place on piedmont.
+
+      wren fell asleep in the car again so bath got skipped, don't tell anyone
+  - id: m2
+    beat_ref: S11.b2
+    day: 28
+    time: "07:12"
+    from: avery
+    to: [sam]
+    cc: []
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      signed the last page before I left, it's back in the folder. jun: ours, I'll text them tonight and tell them to bring the kid chairs.
+
+      bath tonight. definitely.

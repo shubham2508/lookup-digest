@@ -1,0 +1,139 @@
+# world/heldout/prose/bulk/personal_marketing.yaml - personal marketing mail (Track B, M8).
+# background.yaml must_not_items: mkt-personal-* x5, category personal, reason marketing: gym renewal, dentist recall,
+# library hold, pharmacy refill ready, museum membership. All fictional senders; bulk: true; signature: none.
+# Day 1 = Wed 2026-02-25; day 12 = Sun 03-08 (nothing 02:00-03:00); day 30 = Thu 03-26.
+category: personal
+items:
+  - id: mkt-personal-gym
+    day: 7
+    time: "18:30"
+    from: {name: "Bayline Fitness", email: "members@baylinefitness.com"}
+    to: [avery]
+    subject: "Your Bayline membership renews in April - lock in this year's rate"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Your Bayline Fitness membership (Lake Merritt location) is set to renew on April 12. Rates for new members go up on April 1, but renewing members who switch to an annual plan before then keep this year's monthly rate for another 12 months.
+
+      Annual plan: $79/month, billed monthly, no initiation fee, includes guest passes (2 per month) and the new 6am small-group classes.
+
+      Nothing to do if you'd like to keep your current month-to-month plan; it renews automatically.
+
+      Switch to annual: https://baylinefitness.com/members/renew
+
+      See you at the gym,
+      The Bayline Team
+
+      Bayline Fitness, 3200 Lakeshore Ave, Oakland, CA 94610. Unsubscribe from member offers: https://baylinefitness.com/u/2k8d
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-personal-dentist
+    day: 14
+    time: "09:00"
+    from: {name: "Grand Lake Dental", email: "reminders@grandlakedental.com"}
+    to: [avery]
+    subject: "Time for your 6-month cleaning - book online in 30 seconds"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Our records show it has been about six months since your last cleaning and exam at Grand Lake Dental. Regular visits keep small things small.
+
+      We have openings in the next three weeks, including early mornings (7:30am) on Tuesdays and Thursdays and one Saturday a month.
+
+      Book online: https://grandlakedental.com/book
+      Or call (510) 555-0134.
+
+      New this spring: we now offer same-day crowns and have added evening hours on Wednesdays.
+
+      If you've already scheduled, please disregard this message.
+
+      Grand Lake Dental
+      3251 Grand Ave, Oakland, CA 94610
+
+      To stop receiving recall reminders by email, update your preferences: https://grandlakedental.com/prefs
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-personal-library
+    day: 19
+    time: "10:15"
+    from: {name: "Lakeview Public Library", email: "notices@lakeviewlibrary.org"}
+    to: [avery]
+    subject: "Your hold is ready for pickup (and spring programs for families)"
+    bulk: true
+    signature: none
+    body: |
+      Hello,
+
+      Good news: an item you placed on hold is ready for pickup at the Main Branch.
+
+      Title: The Gruffalo's Child (picture book)
+      Pickup by: Sunday, March 22
+      Pickup location: Main Branch holds shelf, 2nd floor
+
+      Items not picked up by the date above return to circulation.
+
+      While you're here: spring family programs start next week. Toddler storytime is Tuesdays and Thursdays at 10:30am, and the Saturday maker hour for ages 4-7 returns March 21. No registration needed.
+
+      Lakeview Public Library
+      Main Branch, 125 14th St, Oakland, CA 94612 | Mon-Sat 10am-6pm
+
+      You're receiving this because you opted in to email notices. Manage preferences: https://lakeviewlibrary.org/account/notices
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-personal-pharmacy
+    day: 25
+    time: "12:00"
+    from: {name: "Hillcrest Pharmacy", email: "notifications@hillcrestrx.com"}
+    to: [avery]
+    subject: "Your refill is ready for pickup at Hillcrest Pharmacy"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Your prescription refill is ready for pickup.
+
+      Ready since: Saturday, March 21, 11:40am
+      Pickup by: Saturday, March 28 (items not picked up in 7 days are returned to stock)
+      Pharmacy hours: Mon-Fri 9am-7pm, Sat 9am-5pm, Sun closed
+
+      Skip the line: text READY to (510) 555-0190 when you're on your way and we'll have it at the counter.
+
+      Also at Hillcrest this month: spring allergy relief is 20% off, and we're now offering vaccinations without an appointment on weekdays.
+
+      Hillcrest Pharmacy
+      4100 Piedmont Ave, Oakland, CA 94611
+
+      Manage how we notify you: https://hillcrestrx.com/notify
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-personal-museum
+    day: 28
+    time: "17:00"
+    from: {name: "East Bay Children's Museum", email: "membership@eastbaychildrensmuseum.org"}
+    to: [avery]
+    subject: "Your Family Membership expires April 30 - renew early and get a free guest pass"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Thank you for being a member this year. Your Family Membership expires on April 30, 2026.
+
+      Renew before April 15 and we'll add a free guest pass to your account, good for one adult and one child on any regular day.
+
+      Family Membership: $165/year, unlimited admission for 2 adults and up to 4 children, member-only mornings on the first Sunday of each month, and 10% off camps and birthday parties.
+
+      Coming this spring: the new Water Works exhibit opens April 4, and summer camp registration for members opens April 1, two weeks before the public.
+
+      Renew now: https://eastbaychildrensmuseum.org/renew
+
+      With thanks,
+      The Membership Team
+
+      East Bay Children's Museum, 400 Grand Ave, Oakland, CA 94610. Unsubscribe from membership emails: https://eastbaychildrensmuseum.org/u/f0q2
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}

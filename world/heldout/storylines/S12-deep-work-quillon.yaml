@@ -1,0 +1,120 @@
+id: S12
+name: deep-work-quillon
+reviewed: false
+tier_truth: P2
+summary: >
+  Held-out disguise of dev S12. Avery blocks Tue/Thu 09:00–11:00 as "Deep work" (recurring, organizer Avery). Avery
+  also organizes the weekly Thursday 10:30–11:00 "Architecture review - Priya / Avery", which sits inside the block by
+  Avery's own choice. On Tuesday day 28 at 16:50 Maya Castellanos (Quillon Security, the compliance vendor under
+  consideration to replace Bastion) sends an invite for a demo on Thursday day 30 09:30–10:15 (organizer Maya, Avery
+  NEEDS-ACTION, Priya ACCEPTED) and an email asking Avery to choose between a pen-test scoping session and a SOC 2
+  evidence automation walkthrough. h1-planning.md says the Quillon decision hinges on evidence collection coverage
+  and that Bastion renews 3/27. Tests: organizer-aware deep-work flag (Quillon yes, architecture review no);
+  `calendar_response` phrased as a proposal plus a `decide` on the agenda with a recommendation; the Bastion
+  auto-renewal notice (background item, day 31) is the context.
+
+threads:
+  - {id: t-quillon-demo, subject: "Quillon Security - demo scheduling + agenda", category: vendors_misc}
+events:
+  - {uid: deep-work-tue-thu, calendar: work, title: "Deep work", rrule: "FREQ=WEEKLY;BYDAY=TU,TH", start: "09:00", end: "11:00", organizer: avery, attendees: [], from_day: -21}
+  - {uid: arch-review-thu, calendar: work, title: "Architecture review - Priya / Avery", rrule: "FREQ=WEEKLY;BYDAY=TH", start: "10:30", end: "11:00", organizer: avery,
+     attendees: [{id: priya, partstat: ACCEPTED}], from_day: -35, note: "inside the deep-work block by Avery's choice: never a violation"}
+  - {uid: quillon-demo-20260326, calendar: work, title: "Quillon Security <> Tessera - demo", day: 30, start: "09:30", end: "10:15", organizer: maya,
+     attendees: [{id: avery, partstat: NEEDS-ACTION}, {id: priya, partstat: ACCEPTED}, {id: maya, partstat: ACCEPTED}], created_day: 28, created_time: "16:50",
+     last_modified_day: 28, location: "Google Meet (link in description)"}
+
+beats:
+  - {ref: S12.b1, day: 20, time: "11:05", source: email, thread: t-quillon-demo, from: maya, to: [priya], cc: [avery],
+     event: "after Priya's intro call: proposes a 45-minute working demo with Avery in the room, bullet agenda; asks for times the week of March 23", must_include: ["demo"]}
+  - {ref: S12.b2, day: 20, time: "16:20", source: email, thread: t-quillon-demo, from: priya, to: [maya], cc: [avery],
+     event: "week of the 23rd or the one after; Avery should be there; send options", hardness: [terse]}
+  - {ref: S12.c1, day: 28, time: "16:50", source: calendar, event: quillon-demo-20260326, from: maya,
+     event: "invite created for Thu day 30 09:30–10:15 inside Avery's deep-work block; Priya accepts"}
+  - {ref: S12.b3, day: 28, time: "16:50", source: email, thread: t-quillon-demo, from: maya, to: [avery], cc: [priya],
+     event: "booked Thursday 9:30 (invite sent, Priya accepted); asks Avery to pick: (1) pen-test scoping session or (2) SOC 2 evidence automation walkthrough; 'reply with 1 or 2'; P.S. about Bastion's renewal",
+     must_include: ["9:30", "pen-test scoping", "SOC 2 evidence automation"], hardness: [salesy, postscript]}
+  - {ref: S12.n1, day: 27, time: "17:20", source: note, note: h1-planning.md,
+     event: "H1 planning doc (Avery owns; pinned in README): security-compliance line says the Quillon decision hinges on evidence collection coverage; Bastion renews 3/27; two open comments (BG-h1)",
+     must_include: ["evidence collection"]}
+
+labels:
+  - thread: t-quillon-demo
+    category: vendors_misc
+    storyline: S12
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [meeting:quillon-demo]
+      ball_awaiting: avery
+      closed_by_courtesy: false
+      sender_relationship: {category: vendor, subtype: evaluating, stage: evaluating}
+      asks: [{to_avery: true, kind: decision, deadline_day: 30, status: open}]
+      schedule_mentions: [{action: confirmed, participants: [maya, avery, priya], when_day: 30, when_time: "09:30"}]
+      stage_signals: [{entity: quillon, stage: evaluating, day: 20}]
+      suspicious: false
+    messages:
+      - {beat_ref: S12.b1, day: 20, time: "11:05", from: maya,  to: [priya], cc: [avery], must_include: ["demo"]}
+      - {beat_ref: S12.b2, day: 20, time: "16:20", from: priya, to: [maya],  cc: [avery]}
+      - {beat_ref: S12.b3, day: 28, time: "16:50", from: maya,  to: [avery], cc: [priya], must_include: ["9:30", "pen-test scoping", "SOC 2 evidence automation"]}
+  - event: quillon-demo-20260326
+    storyline: S12
+    note: "code-parsed; organizer_is_avery=false; 45 min inside the deep-work block; Avery NEEDS-ACTION"
+    expected: {type: event}
+  - event: arch-review-thu
+    storyline: S12
+    must_not_surface: true
+    must_not_reason: avery_organized_over_own_block
+    note: "code-parsed; organizer_is_avery=true → never a deep-work violation"
+    expected: {type: event}
+  - note: h1-planning.md
+    storyline: S12
+    note: "shared pinned note (README): also carries BG-h1's two open comments; labeled once by the notes owner, this block records what S12 relies on"
+    expected:
+      type: note
+      note_kind: draft
+      draft_of: "H1 planning doc"
+      about: [report:h1-planning, meeting:quillon-demo, renewal:bastion]
+      claims: [{subject: quillon_decision_criteria, value: "evidence collection coverage"}, {subject: bastion_renewal, value: "3/27"}]
+
+contacts:
+  - {id: maya,            category: vendor, subtype: evaluating,      tier: null, stages: [{from_day: 20, stage: evaluating}]}
+  - {id: bastion_billing, category: vendor, subtype: active_contract, tier: null, stages: [{from_day: 1, stage: active_contract}, {from_day: 30, stage: renewal_due}], note: "context only; the renewal notice is a background item"}
+
+about_keys:
+  should_merge: [[meeting:quillon-demo, meeting:quillon-security-demo]]
+  should_not_merge: [[meeting:quillon-demo, meeting:architecture-review], [meeting:quillon-demo, renewal:bastion]]
+
+expectations:
+  - run_day: 26
+    absent: [meeting:quillon-demo, meeting:architecture-review]
+    notes: "no non-Avery event over the block this week; the Mar 17 on-call & infra review over Tuesday's block was DECLINED (S15) → not a violation"
+  - run_day: 27
+    absent: [meeting:quillon-demo, meeting:architecture-review]
+  - run_day: 28
+    absent: [meeting:quillon-demo, meeting:architecture-review]
+    notes: "invite arrives 16:50; Tuesday's block today carries only Avery-organized events (assumed; calendar.yaml must not add a non-Avery Tue event)"
+  - run_day: 29
+    candidates: [{type: "calendar_conflict:deep_work", about: meeting:quillon-demo, facts_hint: {overlap_minutes: 45, organizer_is_avery: false, event_day: 30}}]
+    items: [{about: meeting:quillon-demo, priority: P2, section: calendar_personal, actions: [calendar_response, decide], cites_any: ["event:quillon-demo-20260326", t-quillon-demo],
+             notes: "next business day; propose moving it out of the block (e.g. 13:15 Thu, after the Tidewater intro, or Friday) or decline; decide the agenda: recommend option 2, the evidence automation walkthrough (h1-planning.md)"}]
+    absent: [meeting:architecture-review]
+  - run_day: 30
+    candidates: [{type: "calendar_conflict:deep_work", about: meeting:quillon-demo, facts_hint: {overlap_minutes: 45, organizer_is_avery: false, event_day: 30}}]
+    items: [{about: meeting:quillon-demo, priority: P2, section: calendar_personal, actions: [calendar_response, decide], cites_any: ["event:quillon-demo-20260326", t-quillon-demo],
+             notes: "today 09:30; Maya is waiting on the 1-or-2 choice; Priya has accepted; the 10:30 architecture review right after is Avery's own"}]
+    absent: [meeting:architecture-review]
+
+assertions:
+  - {id: S12-quillon-flagged,        kind: candidate_present,   run_day: 30, args: {type: "calendar_conflict:deep_work", about: meeting:quillon-demo}, description: "eval.md §3 S12: vendor booking over the block is flagged"}
+  - {id: S12-quillon-flagged-d29,    kind: candidate_present,   run_day: 29, args: {type: "calendar_conflict:deep_work", about: meeting:quillon-demo}}
+  - {id: S12-archreview-not-flagged, kind: candidate_absent,    run_day: 30, args: {type: "calendar_conflict:deep_work", about: meeting:architecture-review}, description: "eval.md §3 S12: Avery-organized event inside the block is not flagged"}
+  - {id: S12-archreview-absent-item, kind: item_absent,         run_day: 30, args: {about: meeting:architecture-review}}
+  - {id: S12-calendar-response,      kind: action_present,      run_day: 30, args: {about: meeting:quillon-demo, action: calendar_response}}
+  - {id: S12-decide-agenda,          kind: action_present,      run_day: 30, args: {about: meeting:quillon-demo, action: decide}}
+  - {id: S12-proposal-phrasing,      kind: item_qualified_with, run_day: 30, args: {about: meeting:quillon-demo, phrase: "Propose"}, description: "architecture §8.10: calendar_response is phrased as a proposal"}
+
+sim_avery:
+  - {scope_about: meeting:quillon-demo, intended_option: 2, rationale: "the SOC 2 evidence automation walkthrough; the Quillon decision hinges on evidence collection coverage (h1-planning.md)"}
+simulate: []
+variants: []

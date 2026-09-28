@@ -1,0 +1,40 @@
+thread_id: t-internal-happy-hour-pics
+subject: "pics from friday + a quick win on the venue"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: internal_fyi
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: social
+    about: [other:team-social]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 4
+    time: "10:20"
+    from: leo
+    to: [team_list]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: |
+      Leo Marchetti | Account Executive | Tessera
+      +1 (510) 555-0177 | tessera.io
+      Book time: cal.tessera.io/leo
+    body: |
+      Morning all,
+
+      Photos from Friday's happy hour are in the shared album: https://photos.app.goo.gl/tessera-feb27-hh (Carmen's ring-toss streak is documented at 0:42 for the record).
+
+      Quick win: El Farolito on Grand does half-price pitchers 4-6 on Fridays and let us keep the back patio. I've told them we'll probably be back on the 27th. No RSVP or anything, just so you know where to find people.
+
+      Enjoy the weekend.

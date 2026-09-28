@@ -1,0 +1,142 @@
+id: S8
+name: kenji-offer
+reviewed: false
+tier_truth: P1
+summary: >
+  Kenji Mori, backend engineer candidate for the first backend req: onsite Friday day 10, debrief Monday day 20
+  (Jordan recommends an offer at the top of the band), offer approved at the Wednesday day-22 hiring sync
+  (hiring-sync.md), verbal made Friday day 24 (a stage signal that keeps days-since-stage at 3 on the day-27 run, so
+  the offer-stage candidate never trips the 5-day stall rule), letter sent Monday day 27 through Dropbox Sign,
+  "awaiting your signature" lands Tuesday day 28 at 08:15 (21.75 h pending at the day-29 run, 45.75 h at day 30).
+  Tuesday 18:35 Jordan emails that Kenji signed Monday night, Jordan countersigned Tuesday morning, and Kenji's
+  competing offer expires Friday noon. Tests: `approve` with a deadline from an automated action-bearing email plus a
+  human thread; Dropbox Sign (action) vs Linear/Ashby/Sentry notifications (FYI); the candidate's own courtesy note
+  must not surface; second-day escalation framing.
+
+threads:
+  - {id: t-kenji-loop,    subject: "Kenji Mori - backend loop",                              category: hiring}
+  - {id: t-kenji-offer,   subject: "Kenji - offer letter in Dropbox Sign, deadline Friday",   category: hiring}
+  - {id: t-kenji-thanks,  subject: "Thank you - Tessera onsite",                              category: hiring}
+automated:
+  - {id: auto-dropboxsign-kenji, system: "Dropbox Sign", day: 28, time: "08:15", category: notifications,
+     subject: "Nora Blake has requested your signature: Offer Letter - Kenji Mori.pdf"}
+
+beats:
+  - {ref: S8.b1, day: 10, time: "17:35", source: email, thread: t-kenji-loop,   from: jordan, to: [avery], cc: [nora],
+     event: "onsite done today (Friday); panel positive; debrief held to the week of the 16th because Arjun is out"}
+  - {ref: S8.b2, day: 10, time: "20:40", source: email, thread: t-kenji-thanks, from: kenji,  to: [jordan], cc: [avery],
+     event: "thank-you note after the onsite; explicitly no questions; mentions family logistics without asking anything", must_include: ["Thank you"], hardness: [ps, mixed_topics]}
+  - {ref: S8.b3, day: 20, time: "12:20", source: email, thread: t-kenji-loop,   from: jordan, to: [avery], cc: [nora],
+     event: "debrief done: unanimous hire; recommends the offer at the top of the band ($198k base); asks Avery to approve at Wednesday's hiring sync", must_include: ["top of the band"]}
+  - {ref: S8.b4, day: 20, time: "13:45", source: email, thread: t-kenji-loop,   from: avery,  to: [jordan], cc: [nora],
+     event: "approved in principle; make it official at the hiring sync so Nora can walk through the grant math", must_include: ["hiring sync"], hardness: [indirect]}
+  - {ref: S8.n1, day: 22, time: "11:30", source: note, note: hiring-sync.md,
+     event: "hiring sync records 'Kenji offer approved' (the note is planted and labeled by S9; S8 cites it only as history)"}
+  - {ref: S8.b5, day: 24, time: "16:50", source: email, thread: t-kenji-loop,   from: jordan, to: [avery], cc: [nora],
+     event: "verbal offer made and accepted this afternoon; Kenji wants the weekend for family logistics; letter goes out Monday via Dropbox Sign, routing Kenji → Jordan → Avery; 'no action for you until the envelope reaches you'", must_include: ["verbal"]}
+  - {ref: S8.b6, day: 27, time: "10:40", source: email, thread: t-kenji-loop,   from: jordan, to: [avery], cc: [nora],
+     event: "letter went out 09:30 via Dropbox Sign; Kenji signs tonight; Avery gets the Dropbox Sign email 'probably tomorrow'; two unrelated FYIs", must_include: ["Dropbox Sign"], hardness: [mixed_topics]}
+  - {ref: S8.b7, day: 28, time: "08:15", source: automated, automated: auto-dropboxsign-kenji, from: dropboxsign, to: [avery],
+     event: "Dropbox Sign: Offer Letter - Kenji Mori.pdf awaiting your signature; Kenji Mori signed Mar 23 19:48, Jordan Liu signed Mar 24 08:12", must_include: ["awaiting your signature", "Kenji Mori"]}
+  - {ref: S8.b8, day: 28, time: "18:35", source: email, thread: t-kenji-offer,  from: jordan, to: [avery], cc: [nora],
+     event: "Kenji signed Monday night, Jordan countersigned Tuesday 08:12; the envelope is in Avery's Dropbox Sign queue; Kenji's other offer expires Friday noon and he wants Tessera's letter executed first; unrelated Coastline FYI", must_include: ["Friday noon", "Dropbox Sign"], hardness: [mixed_topics]}
+
+labels:
+  - thread: t-kenji-loop
+    category: hiring
+    storyline: S8
+    must_not_surface: true
+    must_not_reason: fyi_progress_thread
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: commitment_update
+      about: [candidate:kenji-mori, offer:kenji-mori]
+      ball_awaiting: nobody
+      closed_by_courtesy: false
+      sender_relationship: {category: team, subtype: exec}
+      stage_signals:
+        - {entity: kenji-mori, stage: onsite, day: 10}
+        - {entity: kenji-mori, stage: debrief, day: 20}
+        - {entity: kenji-mori, stage: offer_extended, day: 24}    # verbal, accepted on the call
+        - {entity: kenji-mori, stage: offer_extended, day: 27}    # written letter sent
+      asks: [{to_avery: true, kind: approval, status: answered}]
+      commitments: [{owner: other, about: offer:kenji-mori, due_day: 27, status_in_thread: fulfilled}]   # "letter goes out Monday" → sent day 27
+  - thread: t-kenji-thanks
+    category: hiring
+    storyline: S8
+    must_not_surface: true
+    must_not_reason: courtesy_no_ask
+    classification_case: candidate_courtesy_note
+    expected: {type: human_thread, domain: work, intent_primary: social, about: [candidate:kenji-mori], ball_awaiting: nobody, closed_by_courtesy: true,
+               sender_relationship: {category: hiring, subtype: candidate, stage: onsite}}
+  - automated: auto-dropboxsign-kenji
+    category: notifications
+    storyline: S8
+    classification_case: docusign_action_vs_github_fyi     # spec §6 case name kept; the held-out instance is Dropbox Sign vs Linear/Ashby/Sentry
+    expected:
+      type: automated
+      automated: {system: "Dropbox Sign", action_bearing: true, action_kind: signature, about: offer:kenji-mori}
+  - thread: t-kenji-offer
+    category: hiring
+    storyline: S8
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [offer:kenji-mori]
+      ball_awaiting: avery
+      closed_by_courtesy: false
+      sender_relationship: {category: team, subtype: exec}
+      asks: [{to_avery: true, kind: signature, deadline_day: 31, status: open}]
+      stage_signals: [{entity: kenji-mori, stage: offer_extended, day: 27}]
+      claims: [{subject: competing_offer_deadline, value: "Friday noon"}]
+      suspicious: false
+    messages:
+      - {beat_ref: S8.b8, day: 28, time: "18:35", from: jordan, to: [avery], cc: [nora], must_include: ["Friday noon", "Dropbox Sign"]}
+
+contacts:
+  - {id: kenji, category: hiring, subtype: candidate, tier: P1, stages: [{from_day: 10, stage: onsite}, {from_day: 20, stage: debrief}, {from_day: 27, stage: offer_extended}],
+     note: "offer-stage candidate → high prior; the day-24 verbal (t-kenji-loop m4) is the stage signal that keeps days-since-stage at 3 on the day-27 run"}
+
+about_keys:
+  should_merge: [[offer:kenji-mori, offer:kenji], [offer:kenji-mori, candidate:kenji-mori]]
+  should_not_merge: [[offer:kenji-mori, candidate:clara-voss], [offer:kenji-mori, hiring-req:backend-2]]
+
+expectations:
+  - run_day: 26
+    absent: [offer:kenji-mori]
+    notes: "verbal made Friday; letter not yet sent; 2 days since the last stage signal → no stall, nothing for Avery"
+    noise: [t-kenji-thanks, t-kenji-loop]
+  - run_day: 27
+    absent: [offer:kenji-mori]
+    notes: "3 days since the day-24 verbal (< 5, no stall); the letter goes out 09:30 today, after the run"
+    noise: [t-kenji-thanks, t-kenji-loop]
+  - run_day: 28
+    absent: [offer:kenji-mori]
+    notes: "Dropbox Sign arrives 08:15, after the run; Jordan's day-27 'letter went out' is FYI"
+    noise: [t-kenji-thanks, t-kenji-loop]
+  - run_day: 29
+    candidates: [{type: approval_pending, about: offer:kenji-mori, facts_hint: {hours_pending: 21.75, deadline_day: 31}}]
+    items: [{about: offer:kenji-mori, priority: P1, section: decisions, actions: [approve], cites_any: [auto-dropboxsign-kenji, t-kenji-offer],
+             notes: "'Sign Kenji's offer letter'; competing offer expires Friday noon; one click in Dropbox Sign"}]
+    noise: [t-kenji-thanks, t-kenji-loop]
+  - run_day: 30
+    candidates: [{type: approval_pending, about: offer:kenji-mori, facts_hint: {hours_pending: 45.75, deadline_day: 31}}]
+    items: [{about: offer:kenji-mori, priority: P1, section: decisions, actions: [approve], cites_any: [auto-dropboxsign-kenji, t-kenji-offer],
+             notes: "pending ~46h; deadline tomorrow noon; second time surfaced"}]
+    noise: [t-kenji-thanks, t-kenji-loop]
+
+assertions:
+  - {id: S8-d29-approve,         kind: item_present,      run_day: 29, args: {about: offer:kenji-mori, priority: P1, section: decisions, actions_any: [approve]}}
+  - {id: S8-d30-approve,         kind: action_present,    run_day: 30, args: {about: offer:kenji-mori, action: approve}}
+  - {id: S8-d30-cand,            kind: candidate_present, run_day: 30, args: {type: approval_pending, about: offer:kenji-mori}}
+  - {id: S8-thanks-absent,       kind: item_absent,       run_day: 30, args: {source_id: t-kenji-thanks}}
+  - {id: S8-d30-deadline-named,  kind: item_mentions_all, run_day: 30, args: {about: offer:kenji-mori, phrases: ["Friday"]}}
+  - {id: S8-no-kenji-stall-d27,  kind: candidate_absent,  run_day: 27, args: {type: hiring_stall, about: candidate:kenji-mori},
+     description: "verbal offer day 24 → 3 days since the last stage signal; an offer in paperwork is progress, not a stall"}
+
+sim_avery: []
+simulate:
+  - {id: S8-sim-escalates, kind: escalation_framing, run_day: 30, args: {about: offer:kenji-mori, min_times_surfaced: 2, mode: simulate}}
+variants: []

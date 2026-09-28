@@ -1,0 +1,40 @@
+thread_id: t-northstar-expansion
+subject: "Modesto and Fresno - expansion planning"
+storyline: BG-catherine
+category: customers
+labels:
+  kind: thread
+  must_not: false
+  reason: null
+  classification_case: new_customer_exec
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [contract:northstar:expansion]
+    ball_awaiting: avery
+    closed_by_courtesy: false
+    sender_relationship: {category: customer, subtype: reference_exec, stage: active}
+    asks: [{to_avery: true, kind: meeting, deadline_day: null, status: open}]
+    stage_signals: [{entity: northstar, stage: active, day: 28}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 28
+    time: "10:35"
+    from: catherine
+    to: [avery]
+    cc: [elise]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      We have not met; I lead supply chain for Northstar and Elise's team reports into my organization. The Fresno SAP connector work has been the most reliable systems project on my calendar this year, which is not something I say often, and once the April 1 Fresno go-live lands I would like to talk about what comes next. Specifically: rolling Tessera across Modesto and Fresno on one contract rather than plant by plant, with a shared exception view for my planners.
+
+      Could we find 30 minutes next week? My assistant, Renata Ellis, will send a few times that work on our side; please include whoever you would want in the room. Our FY budget locks April 15, so I would like to have a shape for this before then.
+
+      Regards,

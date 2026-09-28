@@ -1,0 +1,59 @@
+thread_id: t-internal-eng-week-0227
+subject: "Eng week in review - Feb 27"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: last_word_avery
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [report:eng-week-review]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: exec}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 3
+    time: "17:05"
+    from: jordan
+    to: [eng_list]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Short one, it's Friday.
+
+      Shipped:
+      - Spec-reference custom field on lot records, flowing to the CSV export (Hana + Felix). Veritas's AS9100 auditor is now a satisfied person.
+      - Late-lot alert dedupe, #527 (Felix). Merged this morning; goes out with Monday's release.
+      - SSO enforced on GitHub from Monday (Arjun). If your push fails Monday, read Arjun's email before you page anyone.
+
+      In progress:
+      - SAP IDoc parser, DELVRY03 first (Arjun). Fixtures from Northstar's sandbox arrived Thursday.
+      - Export scheduler retries (Kofi). Design agreed, code next week.
+      - Connector regression suite v1 (Carmen). 12 of 40 cases written.
+
+      Watching:
+      - Ingest p95 on the two largest feeds crept to ~800ms this week. Not customer-visible. Arjun suspects the new field's index; he'll look Monday.
+
+      Have a good weekend.
+  - id: m2
+    beat_ref: null
+    day: 3
+    time: "18:15"
+    from: avery
+    to: [jordan]
+    cc: [eng_list]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      nice week, thanks all. the veritas field in under two days was a good look for us.

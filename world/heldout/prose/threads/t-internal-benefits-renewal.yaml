@@ -1,0 +1,43 @@
+thread_id: t-internal-benefits-renewal
+subject: "Benefits renewal (plan year from Jul 1) - first numbers, no action yet"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: internal_fyi
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [other:benefits-renewal-2026]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 23
+    time: "15:30"
+    from: nora
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      The medical and dental renewal quote for the plan year starting July 1 came in from the benefits broker this morning:
+
+      | Plan | Current monthly (company share) | Renewal | Change |
+      |---|---|---|---|
+      | Medical (PPO + HDHP) | $9,420 | $9,966 | +5.8% |
+      | Dental | $1,180 | $1,204 | +2.0% |
+      | Vision | $196 | $196 | 0% |
+
+      That is under the 8% we budgeted, so nothing changes for the team and nothing changes in the model. Open enrollment would be the first two weeks of June.
+
+      I'll bring two options to the May finance sync: keep the plans as they are, or add an HSA contribution to the HDHP so the higher-deductible option is a real choice for people. No action needed now; I just did not want the number to be a surprise later.

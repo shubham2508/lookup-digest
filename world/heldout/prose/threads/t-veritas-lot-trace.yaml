@@ -1,0 +1,82 @@
+thread_id: t-veritas-lot-trace
+subject: "Lot traceability - spec references for the AS9100 audit"
+storyline: S6
+category: customers
+labels: null
+messages:
+  - id: m1
+    beat_ref: S6.b1
+    day: 2
+    time: "10:20"
+    from: dmitri
+    to: [hana]
+    cc: [avery, anika]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hana, looping in Anika from our quality team. Our AS9100 auditor wants the spec reference to show up in the lot record we pull from your system, and Anika can explain what that means far better than I can. I mostly nod.
+
+      Dmitri
+  - id: m2
+    beat_ref: S6.b2
+    day: 2
+    time: "11:05"
+    from: anika
+    to: [hana]
+    cc: [avery, dmitri]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hello Hana,
+
+      To be precise about the request:
+
+      - Our lot records (e.g. lot 26008-A, lot 26011-C) must show the governing specification and revision, currently VC-QS-114 rev D, section 7.5.
+      - Today the export from your system carries lot number, quantity, work center and timestamps, but not the spec reference.
+      - The auditor is on site March 16–17 and will sample five lots.
+
+      Is there a way to carry a spec-reference field on the lot record and include it in the CSV export? If it requires a configuration change, please tell me the lead time.
+
+      Regards,
+  - id: m3
+    beat_ref: S6.b3
+    day: 2
+    time: "16:30"
+    from: hana
+    to: [anika]
+    cc: [avery, dmitri]
+    reply_to: m2
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Hi Anika,
+
+      Yes. A custom field on the lot record does this, and it flows into the CSV export automatically.
+
+      - [ ] I add a text field "Spec reference" to your lot record today
+      - [ ] You set the default value to VC-QS-114 rev D §7.5 (Settings → Lot records → Fields); per-lot overrides are allowed
+      - [ ] The export picks it up as the last column from the next run
+
+      No lead time beyond today. I will send a screenshot once the field is live, by **Tuesday, March 3, 10:00 PT**, so you have two weeks before the auditors arrive on **March 16**.
+
+      Hana
+  - id: m4
+    beat_ref: S6.b4
+    day: 3
+    time: "09:15"
+    from: dmitri
+    to: [hana]
+    cc: [avery, anika]
+    reply_to: m3
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      field is live, Anika's tested it, the auditor gets what he asked for. you are a lifesaver. first round at the QBR is on me.
+
+      Dmitri

@@ -1,0 +1,72 @@
+thread_id: t-veritas-alerts
+subject: "Night-shift alerts - shared number instead of my cell?"
+storyline: S6
+category: customers
+labels: null
+messages:
+  - id: m1
+    beat_ref: S6.b5
+    day: 6
+    time: "08:50"
+    from: dmitri
+    to: [avery]
+    cc: [tomas]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery, small favor. The late-lot alerts go to my cell at the moment. I got three texts at 2am on Saturday, and to be fair one of them was even correct.
+
+      Can they go to the night-shift shared number instead (the supervisor phone; I'll send the number to whoever needs it)? I'd like to keep the email alerts for myself and just drop the texts.
+
+      Dmitri
+  - id: m2
+    beat_ref: S6.b6
+    day: 6
+    time: "12:10"
+    from: avery
+    to: [dmitri]
+    cc: [tomas]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      yes, easy. hana will switch the texts to the supervisor phone this week and leave you on email. send her the number.
+
+      Avery
+  - id: m3
+    beat_ref: S6.b7
+    day: 7
+    time: "09:40"
+    from: dmitri
+    to: [avery]
+    cc: [tomas, hana]
+    reply_to: m2
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      thanks, number sent to Hana. one more while we're in there: can the text include the line number? the supervisors cover two lines and "late lot" on its own has them guessing.
+
+      Dmitri
+  - id: m4
+    beat_ref: S6.b8
+    day: 7
+    time: "13:25"
+    from: hana
+    to: [dmitri]
+    cc: [avery, tomas]
+    reply_to: m3
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Hi Dmitri,
+
+      Done as of **13:00 PT today**:
+      - texts now go to the supervisor phone; you stay on email only
+      - the text body includes line and work center ("Line 4 / WC-12: lot 26014-C late 40 min")
+
+      Hana

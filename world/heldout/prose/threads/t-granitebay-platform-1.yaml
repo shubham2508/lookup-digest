@@ -1,0 +1,50 @@
+thread_id: t-granitebay-platform-1
+subject: "Granite Bay portfolio update - March 2026"
+storyline: null
+category: investors_board
+labels:
+  kind: thread
+  must_not: true
+  reason: fyi_bulk
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [other:granitebay-portfolio-newsletter]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: capital, subtype: existing_investor_ops}
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 8
+    time: "10:00"
+    from: granitebay_office
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    bulk: true
+    signature: default
+    body: |
+      Dear Granite Bay founders,
+
+      The March portfolio update is below. As always, nothing here needs a reply.
+
+      New this month
+      - Two new Fund IV investments closed in February (one in construction software, one in cold-chain logistics); introductions to the founders on request.
+      - Our annual founder survey closes March 13. Eleven minutes, anonymous, and the results shape our platform priorities for the year: granitebay.vc/survey-2026
+
+      Portfolio notes
+      - Three portfolio companies have closed rounds in Q1 so far; median time from first partner meeting to signed term sheet was seven weeks, up from five last year. Plan accordingly.
+      - Reminder that our hiring partner network (fractional finance, first sales hire, EA search) is available at no cost; reply to platform@ for a warm intro.
+
+      Upcoming
+      - March 19, virtual: Pricing for vertical SaaS, a working session with two portfolio CFOs
+      - April (date to follow), San Francisco: founder dinner, invitation to follow
+      - June: annual meeting, save-the-date to follow
+
+      Thank you, and congratulations to the teams who closed this quarter.

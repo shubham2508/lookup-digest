@@ -1,0 +1,67 @@
+thread_id: t-internal-release-notes-03-1
+subject: "Release 2026.03.1 (Monday) - customer-facing notes, wording review"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_by_team
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [report:release-notes]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: exec}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 6
+    time: "17:00"
+    from: jordan
+    to: [hana, ruth]
+    cc: [avery, tomas]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hana, Ruth,
+
+      Release 2026.03.1 went out at 16:00 today; no incidents, no rollbacks. Draft customer-facing notes below. Could one of you do a wording pass by tomorrow 10:00, then Ruth posts to the help center and the in-app changelog? Nobody outside the two of you needs to do anything.
+
+      Draft:
+
+      New
+      - Spec references on lot records. Add a specification ID and revision to any lot; it appears on the lot page and in the CSV export. (Requested by a quality team preparing for an AS9100 audit.)
+      - Export history. Every scheduled export now shows its last 30 runs, with status and row counts, under Reports > Scheduled exports.
+
+      Improved
+      - Late-lot alerts are grouped. If the same station trips several times within ten minutes you now get one alert with a count, e.g. "Station 3B late (x4)", instead of four texts.
+      - Clearer error message when an ingest feed's column count changes.
+
+      Fixed
+      - Plant names with accented characters no longer break the PDF shift report.
+      - The shift board no longer scrolls to the top after a filter change.
+
+      Avery, Tomás: FYI only.
+  - id: m2
+    beat_ref: null
+    day: 7
+    time: "08:30"
+    from: hana
+    to: [jordan]
+    cc: [ruth, avery, tomas]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Done, two tweaks applied directly in the doc:
+
+      - "Spec references" → "Specification references" in the heading (customers search for the long word).
+      - Dropped "e.g." from the alerts line and wrote out the example as its own sentence.
+
+      Ready to post. Ruth, all yours. I'll send the Veritas and Coastline contacts the link once it's live, since both asked for one of these.

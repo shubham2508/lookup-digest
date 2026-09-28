@@ -1,0 +1,41 @@
+thread_id: t-internal-allhands-0227
+subject: "all hands today 3pm - agenda"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: last_word_avery
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [meeting:all-hands]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: self}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 3
+    time: "09:40"
+    from: avery
+    to: [team_list]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      hi all, agenda for 3pm today (big room + zoom link in the invite):
+
+      1. numbers + a short recap of yesterday's board meeting (me, 10)
+      2. eng: sprint 14 and the connector (jordan, 10)
+      3. gtm: northstar, pinewood, and the spring events list (tomás, 10)
+      4. ops: expense policy refresher, 3 minutes I promise (nora)
+      5. q&a
+
+      no prep. see you at 3.
+
+      Avery

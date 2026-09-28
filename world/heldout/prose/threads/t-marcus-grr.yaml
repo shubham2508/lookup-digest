@@ -1,0 +1,57 @@
+thread_id: t-marcus-grr
+subject: "Retention numbers"
+storyline: S3
+category: investors_board
+labels: null
+messages:
+  - id: m1
+    beat_ref: S3.h1
+    day: 23
+    time: "11:05"
+    from: marcus
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      The retention slide shows 104% net for the FY25 cohort. What is the gross figure behind it?
+
+      Marcus
+  - id: m2
+    beat_ref: S3.h2
+    day: 23
+    time: "14:30"
+    from: avery
+    to: [marcus]
+    cc: []
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      96% gross for the FY25 cohort, blended across plants. the gap to net is one Coastline line that went idle in Q3 — still a customer, smaller footprint. the workings are in the data room under Metrics / retention.
+
+      Avery
+  - id: m3
+    beat_ref: S3.b1
+    day: 24
+    time: "16:48"
+    from: marcus
+    to: [avery]
+    cc: []
+    reply_to: m2
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      Helpful. Before we go further I'd like to see gross revenue retention by cohort, split by segment: the three reference accounts on one side, everyone else on the other, FY24 and FY25 cohorts. A table is fine; no narrative needed.
+
+      One more thing while I have you. The number in my model is still the $3.2M ARR from the February deck. If the retention view moves that, I'd rather hear it from you than find it in the data room.
+
+      Marcus

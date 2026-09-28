@@ -1,0 +1,39 @@
+thread_id: t-vc-coldish-07
+subject: "Coffee? Pillar Forge Ventures"
+storyline: null
+category: investors_board
+labels:
+  kind: thread
+  must_not: true
+  reason: cold_vc_associate_no_engagement
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [other:vc-inbound-pillar-forge]
+    ball_awaiting: avery
+    closed_by_courtesy: false
+    sender_relationship: {category: capital, subtype: cold_vc_associate}
+    asks: [{to_avery: true, kind: meeting, deadline_day: null, status: open}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 21
+    time: "13:35"
+    from: {name: "Mira Sandoval", email: "mira@pillarforge.vc"}
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: "Mira Sandoval\nPillar Forge Ventures | Oakland"
+    body: |
+      Hi Avery,
+
+      Mira Sandoval, Pillar Forge Ventures. We are an Oakland-based seed fund, so I will skip the "I saw Tessera in Plant Ops Digest" line, though I did. I am a few blocks from your office and would love to learn more about Tessera over coffee, on my dime, whenever a half hour opens up.
+
+      We are probably too early-stage to be relevant to your current round, so consider this purely a get-to-know-you.
+
+      Thanks,

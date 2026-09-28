@@ -1,0 +1,61 @@
+thread_id: t-disclosure-schedules
+subject: "Tessera - Series A disclosure schedules (draft 1)"
+storyline: S1
+category: lawyer
+labels: null
+messages:
+  - id: m1
+    beat_ref: S1.b1
+    day: 27
+    time: "10:20"
+    from: ben
+    to: [avery]
+    cc: [imogen]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: |
+      Ben Schaffer
+      Partner
+      Wilson Sonsini Goodrich & Rosati
+      650 Page Mill Road, Palo Alto, CA 94304
+      bschaffer@wsgr.com | +1 (650) 555-0188 | wsgr.com
+
+      This message may contain confidential and privileged material for the sole use of the intended recipient. Any review, reliance or distribution by others is strictly prohibited. If you are not the intended recipient, please contact the sender and delete all copies.
+    body: |
+      Avery,
+
+      Attached is the first draft of the disclosure schedules to the Series A Stock Purchase Agreement (Tessera_SeriesA_DisclosureSchedules_Draft1_2026-03-23.docx). Four points:
+
+      1. Schedules 3.5 (Capitalization) and 3.9 (Material Contracts) are complete on our side. The Halberd, Northstar and Veritas agreements are listed by title and date; please confirm there are no amendments we have not seen.
+      2. Schedule 3.12 (Financial Statements; Projections) is the one that needs you. IPV's counsel has asked that the 24-month projections referenced in the term sheet be summarized there. I have bracketed the revenue, headcount and cash figures pending the revised operating model. Once that model is final, Imogen will drop the numbers in.
+      3. Schedule 3.14 (Intellectual Property) reflects the assignment agreements from the January clean-up. Nothing further needed.
+      4. Imogen will keep a running list of open items and circulate it with each turn.
+
+      Please send me any changes before this goes to IPV's counsel; we would like a clean draft out by the end of the week. If I hear nothing I will treat the schedules other than 3.12 as agreed.
+
+      Ben
+  - id: m2
+    beat_ref: S1.b4
+    day: 29
+    time: "10:30"
+    from: imogen
+    to: [avery]
+    cc: [ben]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Dear Avery,
+
+      Following up on Ben's note below. Open items on the disclosure schedules as of this morning:
+
+      1. Schedule 3.12 - the bracketed figures. IPV's counsel asked us yesterday afternoon whether the projections under 3.12 are final. Marcus's team told them they were still waiting on the revised model from you, and we said we would revert today.
+      2. Schedule 3.9 - please confirm there are no amendments to the three customer agreements beyond those listed.
+      3. Everything else is agreed on our side.
+
+      If the model is not ready, a one-line note saying when it will be would let us manage IPV's counsel. I am happy to take the figures over the phone if that is quicker than sending the file.
+
+      Kind regards,
+      Imogen

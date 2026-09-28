@@ -1,0 +1,63 @@
+thread_id: t-internal-index-rebuild-window
+subject: "Maintenance window Thu Mar 12, 21:00-22:00 PT - search index rebuild"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_by_team
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [other:maintenance-window-index-rebuild]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 13
+    time: "16:20"
+    from: arjun
+    to: [eng_list, hana, ruth]
+    cc: [avery, tomas]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi all,
+
+      Proposed maintenance window: Thursday, March 12, 21:00-22:00 PT, to rebuild the search index on the new storage class. Jordan has approved it.
+
+      What customers will see: lot search and the shift-board filter return "index updating" for roughly 25 minutes in the middle of the window; ingest, alerts and exports are unaffected. No plant we serve runs a shift change in that hour; I checked the three reference plants' shift calendars and Coastline's.
+
+      What I need from Hana and Ruth: the usual status-page notice plus an email to the customer contacts, ideally by tomorrow. Text you can paste:
+
+      "Tessera will perform scheduled maintenance on Thursday, March 12 from 9:00 to 10:00 pm Pacific. Lot search and board filters may be briefly unavailable; data collection, alerts and exports continue normally. No action is needed."
+
+      Rollback: the old index stays warm until Friday noon; switching back is one flag. Steps: https://runbooks.tessera.io/maintenance/search-index-rebuild
+
+      Avery, Tomás: FYI only.
+
+      Thanks,
+  - id: m2
+    beat_ref: null
+    day: 14
+    time: "09:00"
+    from: hana
+    to: [arjun]
+    cc: [eng_list, ruth, avery, tomas]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Done this morning:
+      - [x] Status page notice posted for **Thu Mar 12, 21:00-22:00 PT**
+      - [x] Email to procurement + plant contacts at Northstar, Veritas, Halberd and Coastline (Ruth sent the Coastline one via the support mailbox)
+      - [x] Pinewood not notified (no account yet)
+
+      Nothing came back except Elise's "thanks for the heads-up". Arjun, all yours Thursday night.

@@ -1,0 +1,104 @@
+thread_id: t-kenji-loop
+subject: "Kenji Mori - backend loop"
+storyline: S8
+category: hiring
+labels: null
+messages:
+  - id: m1
+    beat_ref: S8.b1
+    day: 10
+    time: "17:35"
+    from: jordan
+    to: [avery]
+    cc: [nora]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      Kenji's onsite wrapped at 5. Short version: the panel wants to move forward.
+
+      - Arjun (systems design): strong. Clean decomposition of the ingest problem, asked about backpressure before we brought it up.
+      - Felix (coding): solid, a little slow to start, finished with tests.
+      - Priya (architecture): positive; wants one more reference on how he handles ambiguity.
+      - Your closer: your call, but he mentioned the conversation with you twice on the way out.
+
+      Arjun is out all next week, so I'd rather hold the debrief until the week of the 16th than run it without him. Scorecards are in Ashby.
+
+  - id: m2
+    beat_ref: S8.b3
+    day: 20
+    time: "12:20"
+    from: jordan
+    to: [avery]
+    cc: [nora]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      Debrief done this morning with Arjun, Felix and Priya. Unanimous hire.
+
+      Recommendation: make Kenji the offer for the first backend role at the top of the band - $198k base, the standard grant for the level, start date mid-April. Nora has confirmed the number sits inside what we planned for the role. Priya's reference question was answered by his former manager on Friday: very positive, no flags.
+
+      Why the top of the band: he has a competing process running and he is the strongest backend candidate we have seen this year. I'd rather not lose him over $10k.
+
+      Can you approve at Wednesday's hiring sync, or before if you're comfortable? I'd like to make the verbal by end of week.
+
+  - id: m3
+    beat_ref: S8.b4
+    day: 20
+    time: "13:45"
+    from: avery
+    to: [jordan]
+    cc: [nora]
+    reply_to: m2
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      jordan - yes in principle, the number is fine. let's make it official at the hiring sync wednesday so nora can walk through the grant math, then you make the verbal.
+
+      Avery
+
+  - id: m4
+    beat_ref: S8.b5
+    day: 24
+    time: "16:50"
+    from: jordan
+    to: [avery]
+    cc: [nora]
+    reply_to: m3
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Update on Kenji:
+
+      - Made the verbal this afternoon per Wednesday's sync: top of band, mid-April start. He accepted on the call.
+      - He asked for the weekend to walk his family through the logistics before anything is signed. Reasonable, and it doesn't change the plan.
+      - Nora has the letter drafted. It goes out Monday morning through Dropbox Sign; routing is Kenji, then me, then you.
+
+      No action for you until the envelope reaches you.
+
+  - id: m5
+    beat_ref: S8.b6
+    day: 27
+    time: "10:40"
+    from: jordan
+    to: [avery]
+    cc: [nora]
+    reply_to: m4
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Letter went out to Kenji at 9:30 this morning via Dropbox Sign. He said he'd sign tonight after his kids are down. Once he does it comes to me, then to you - you'll get the Dropbox Sign email directly, probably tomorrow.
+
+      Two small things while I have you:
+      - Kofi asked to shift his quarterly review to the week of the 30th; I said yes.
+      - The replacement laptops for Carmen and Kofi arrive Wednesday; Nora has the invoices.

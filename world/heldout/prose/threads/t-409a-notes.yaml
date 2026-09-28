@@ -1,0 +1,43 @@
+thread_id: t-409a-notes
+subject: "409A - my notes"
+storyline: S16
+category: internal_routine
+labels: null
+messages:
+  - id: m1
+    beat_ref: S16.b3
+    day: 24
+    time: "15:35"
+    from: avery
+    to: [nora]
+    cc: [priya]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      nora, as promised, my notes on the 409A draft. page numbers from the pdf.
+
+      - p.3: valuation date reads Feb 27 in the header table, Feb 28 everywhere else. typo, but it's the cover.
+      - p.6: drop the paragraph on financing plans entirely. fine to say the company is exploring options, nothing more.
+      - p.9: time to liquidity: push to 4.0 years. matches what we told the board in February. Dennis can push back if the model breaks.
+      - p.11: DLOM 25% is fine. don't fight it.
+      - p.14: two of the comps are pure-play logistics software with no factory exposure. swap them for two from the September set.
+      - general: $1.42 is fine if the above nets out near there. I care more about the narrative being clean than the number.
+
+      send to Dennis whenever you're ready. no need to loop me on the next turn unless the number moves more than 10%.
+
+      Avery
+  - id: m2
+    beat_ref: S16.b4
+    day: 24
+    time: "16:10"
+    from: nora
+    to: [avery]
+    cc: [priya]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Perfect, thanks. All clear; sending them to Dennis this afternoon with the header fix so he has them Monday. I'll only come back to you if the number moves more than 10%, per your note.

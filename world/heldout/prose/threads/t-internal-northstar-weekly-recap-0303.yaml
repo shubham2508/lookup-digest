@@ -1,0 +1,60 @@
+thread_id: t-internal-northstar-weekly-recap-0303
+subject: "Northstar weekly #1 - notes (Mar 3)"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: last_word_avery
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [rollout:northstar:apr-1]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 7
+    time: "15:10"
+    from: hana
+    to: [jordan, tomas]
+    cc: [avery, arjun]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Notes from the first Northstar SAP connector weekly (Tuesdays 14:00, Elise + Avery + me). Jordan, Arjun: for you, since you're not on the call.
+
+      Status: on plan for go-live **Wed Apr 1** at Fresno.
+
+      Agreed today:
+      - [x] Field-mapping workshop: **Thu Mar 5, 10:00-12:00**, Rosa Jimenez (plant scheduler) + two planners, me + Arjun for the first hour. Output is mapping table v1.
+      - [x] Northstar's SAP team sends sandbox IDoc fixtures (arrived last Thursday, 31 files).
+      - [x] Cutover approach: parallel run **Mon Mar 30 - Tue Mar 31**, connector live **Wed Apr 1 06:00**, Hana on site at Fresno for cutover.
+      - [ ] Plant codes for both Fresno lines: Rosa, after the workshop.
+      - [ ] Scheduler training for the Fresno planners: Elise to confirm which week works for the plant; my proposal is the week of Mar 23.
+      - [ ] Pen-test summary for their vendor security file: Elise mentioned it, no date yet; I'll bring it up with Jordan when she asks formally.
+
+      Risks: none open. Elise's words: "the only question I get asked is whether the date is real, and I keep saying yes."
+
+      Next weekly: **Tue Mar 10, 14:00**.
+
+      No action for anyone on this email.
+  - id: m2
+    beat_ref: null
+    day: 7
+    time: "17:45"
+    from: avery
+    to: [hana]
+    cc: [jordan, tomas, arjun]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      thanks hana, this is exactly the format I want for these. keep them coming.

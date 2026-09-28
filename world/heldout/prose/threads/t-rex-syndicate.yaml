@@ -1,0 +1,37 @@
+thread_id: t-rex-syndicate
+subject: "following up from the founders dinner"
+storyline: BG-rex
+category: investors_board
+labels:
+  kind: thread
+  must_not: false
+  reason: null
+  classification_case: unresolved_surface
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [other:rex-harlan-intro]
+    ball_awaiting: avery
+    closed_by_courtesy: false
+    sender_relationship: {category: unresolved, subtype: null}
+    asks: [{to_avery: true, kind: meeting, deadline_day: null, status: open}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 28
+    time: "20:15"
+    from: rex
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      Avery - Rex here, from the Oakland founders dinner back in January (the long table at the place on Grand; I was across from you and the Loomwork founder). You said something about plant managers and forecasts that I have repeated at least four times since.
+
+      Quick one. My syndicate is putting together an allocation for industrial AI this spring and Tessera fits the thesis almost exactly. Would love 30 min this week to hear where things stand and see if there's a fit, no deck needed. I'm around Wednesday afternoon or Friday.
+
+      Rex

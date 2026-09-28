@@ -1,0 +1,37 @@
+thread_id: t-h1-comment-jordan
+subject: "left a comment on the H1 doc"
+storyline: BG-h1
+category: internal_routine
+labels:
+  kind: thread
+  must_not: false
+  reason: null
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [report:h1-planning]
+    ball_awaiting: avery
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: exec}
+    asks: [{to_avery: true, kind: review, deadline_day: 30, status: open}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 28
+    time: "17:35"
+    from: jordan
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Left a comment on the H1 doc, section 2 (engineering headcount).
+
+      Short version: "hold at the current team" plus a paid on-call rotation still leaves five people carrying the pager, and if Kenji's start slips past May the rotation math does not work. I would rather we say explicitly what happens if the round closes after June than leave it implied.
+
+      Not urgent tonight. I'd like ten minutes on it at Thursday's planning sync rather than resolving it in comments.

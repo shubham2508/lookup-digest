@@ -1,0 +1,57 @@
+thread_id: t-imogen-nda-turnaround
+subject: "Pinewood Dairy NDA - our redline"
+storyline: null
+category: lawyer
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_closed
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [contract:pinewood:nda]
+    ball_awaiting: nobody
+    closed_by_courtesy: true
+    sender_relationship: {category: capital, subtype: deal_counsel}
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 20
+    time: "15:30"
+    from: imogen
+    to: [tomas]
+    cc: [avery, ben]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Dear Tomás,
+
+      Attached is our redline of the Pinewood Dairy Cooperative mutual NDA (Pinewood_Tessera_NDA_WSGR_redline_2026-03-16.docx) together with a clean copy. Ben has reviewed.
+
+      Open items, all minor:
+      1. Term: reduced from five years to three, consistent with your other customer NDAs.
+      2. Section 4(b) residuals clause: struck. As drafted it would have let Pinewood use anything their team remembered from the pilot discussions without restriction.
+      3. Governing law: changed from California to Delaware, matching Tessera's other agreements. If Pinewood insists on California we can live with it.
+      4. Added a carve-out allowing Tessera to disclose the existence of the relationship to investors under their own confidentiality obligations.
+
+      Everything else is as Pinewood sent it. If they push back on any of the four, send me their comments and I will turn them the same day.
+
+      Kind regards,
+  - id: m2
+    beat_ref: null
+    day: 20
+    time: "17:45"
+    from: tomas
+    to: [imogen]
+    cc: [avery, ben]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Imogen, this is perfect, thank you!! Sending it to Lucia first thing tomorrow - she said their legal team is quick, so with a bit of luck we have signatures by the end of the week and Leo can get the scoping document over the same day. Point 3 I'll flag as flexible, like you said. Will let you know the second I hear anything!

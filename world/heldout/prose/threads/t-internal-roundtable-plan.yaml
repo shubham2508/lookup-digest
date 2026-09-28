@@ -1,0 +1,70 @@
+thread_id: t-internal-roundtable-plan
+subject: "Customer roundtable Thu May 7 - the plan!!"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_by_team
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [meeting:customer-roundtable]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: exec}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 14
+    time: "11:30"
+    from: tomas
+    to: [hana, leo]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hana, Leo!
+
+      Avery gave the roundtable the green light last week (small, in May, forty shirts maximum, I have it in writing). So here's the plan, tell me what I've missed!
+
+      WHAT: Tessera customer roundtable. Thursday May 7, 14:00-18:00 at the office, dinner after at Duende (I've asked for the back room, holding for 20).
+
+      WHO: 15-20 people. Northstar (Elise + a Fresno planner, Rosa if she'll come), Halberd (procurement + one of the line supervisors), Veritas (Dmitri, Anika), Coastline (purchasing), plus 3-4 prospects who are far enough along that they won't feel sold to. Pinewood if the pilot's going. Internal: the three of us, Avery for the opening, Jordan and Arjun for the roadmap bit, Ruth because customers love Ruth.
+
+      AGENDA (draft!!): 14:00 welcome (Avery, 10 min). 14:15 "what we shipped and why" (Jordan). 15:00 customer stories, two of them, 15 min each, I'd love Fresno and a Halberd line. 16:00 roadmap + open discussion (Arjun/Hana). 17:00 drinks. 18:30 dinner.
+
+      BUDGET: $4,000 all-in including dinner and the shirts. Nora's OK'd it from the events line.
+
+      Save-the-dates go out the week after the Northstar go-live, so week of April 6. Invites proper late April.
+
+      Hana, can you own logistics + the customer-story asks? Leo, prospects list + the shirts (FORTY). I'll do agenda and the dinner. No need for Avery to do anything until the opening remarks exist, which is my problem.
+
+      Tomás
+  - id: m2
+    beat_ref: null
+    day: 14
+    time: "14:20"
+    from: hana
+    to: [tomas]
+    cc: [leo, avery]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Happy to own logistics. Checklist so it's in one place:
+
+      - [ ] Room + AV for 20: **by Apr 10**
+      - [ ] Save-the-dates: draft **Apr 3**, send **week of Apr 6** (after go-live)
+      - [ ] Customer-story asks: Northstar (after Apr 1), Halberd (after their QBR on the 26th); I'll ask each contact in person, not by email
+      - [ ] Dietary form with the invite
+      - [ ] Name badges, agenda print, the good coffee
+
+      One suggestion: 14:00 start is tight for the Fresno drive. 15:00 start, dinner at 19:00? Leo agrees. Tomás, your call, just change the hold if yes.
+
+      Nothing for Avery here.

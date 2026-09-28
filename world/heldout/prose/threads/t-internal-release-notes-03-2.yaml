@@ -1,0 +1,57 @@
+thread_id: t-internal-release-notes-03-2
+subject: "Release 2026.03.2 (Monday) - customer-facing notes"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_by_team
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [report:release-notes]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: exec}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 20
+    time: "17:15"
+    from: jordan
+    to: [hana, ruth]
+    cc: [avery, tomas, leo]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Release 2026.03.2 went out at 16:00, clean. Notes below; Hana already did the wording pass on Friday so Ruth can post these as-is. Tomás, Leo: FYI, and feel free to send the link to anyone who asked for the export change.
+
+      New
+      - Scheduled exports retry automatically. If your nightly export fails (ERP unreachable, network blip), Tessera retries up to five times over about half an hour. If it still fails, the export shows as "Failed" with the reason in Export history, instead of quietly not appearing.
+      - Audit log export (beta). Administrators can export the last 90 days of user and configuration changes as CSV, under Settings > Audit log.
+
+      Improved
+      - Grouped alert counts now appear in the SMS text as well as in the app: "Station 3B late (x4)".
+
+      Fixed
+      - The PDF shift report no longer breaks a table across pages on Letter paper.
+      - Export history shows the correct local time for jobs that ran on the night the clocks changed.
+
+      Next release is the go-live build for the SAP connector; after that we freeze until April 2.
+  - id: m2
+    beat_ref: null
+    day: 21
+    time: "08:20"
+    from: leo
+    to: [jordan]
+    cc: [hana, ruth, avery, tomas]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Perfect timing. Sending the retry note to Coastline's purchasing mailbox this morning (they asked about exactly this at the check-in) and to Lucia at Pinewood as a "this is what shipped while we were scoping" note. Quick win on both. Thanks Jordan.

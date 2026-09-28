@@ -1,0 +1,44 @@
+thread_id: t-internal-support-weekly-0306
+subject: "Support weekly - Mar 6: 16 in, 14 closed, 2 open (both S3)"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: internal_fyi
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [report:support-weekly]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 10
+    time: "16:30"
+    from: ruth
+    to: [jordan, tomas]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Week of Mar 2. 16 cases in, 14 closed, 2 open, both S3. Median first response 41 min, median close 6.2 h. No S1/S2. Nothing for anyone outside support.
+
+      By customer:
+      - Coastline (5): four how-to on the new export history panel (all closed same day; the macro rewrite paid for itself), one CSV encoding question closed with the UTF-8 BOM note.
+      - Halberd (4): three "station offline" alerts on Line 3 during Sanjay's MES prep windows; all false alarms while stations were deliberately down. Closed; I've asked Sanjay's team to send us the prep schedule so we can mute Line 3 during windows. Their words: "sorry, we should have said." One password reset.
+      - Veritas (3): Anika's team, two questions on the spec-reference field in the CSV export (closed), one on the (x4) alert grouping ("is this a bug?" - no, it's the new dedupe; closed with the release note).
+      - Northstar (2): two from Rosa Jimenez on the shift board filters, closed; she is going to be a power user.
+      - Prospect/other (2): a Pinewood scheduler found the help center before their discovery call and asked about scheduled exports (closed, and Leo now knows). One spam.
+
+      Open (S3):
+      - CS-2251 Coastline: PDF shift report page breaks mid-table on Letter paper. Kofi has a fix in the next release.
+      - CS-2254 Halberd: wants the (x4) count in the SMS text, not just the app. Felix says one line; next release.
+
+      Trend: export questions are down 60% since the panel shipped.

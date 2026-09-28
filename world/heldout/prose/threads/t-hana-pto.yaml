@@ -1,0 +1,47 @@
+thread_id: t-hana-pto
+subject: "PTO Mar 27-30 - ok? (need to book by Thursday)"
+storyline: BG-pto
+category: internal_routine
+labels:
+  kind: thread
+  must_not: false
+  reason: null
+  classification_case: pto_approval_today
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [approval:pto-hana]
+    ball_awaiting: avery
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+    asks: [{to_avery: true, kind: approval, deadline_day: 30, status: open}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 29
+    time: "16:45"
+    from: hana
+    to: [avery]
+    cc: [tomas]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi Avery,
+
+      Could I take Fri Mar 27 - Mon Mar 30 off? That is *Mar 27-30*, back in the office *Tue, Mar 31*, the day before the Northstar go-live. Tomás is on the road through Friday and said to ask you directly rather than wait for him.
+
+      Why the short notice: a flight to Vancouver for my brother's citizenship ceremony that only holds its price if I book by Thursday end of day.
+
+      Coverage, so nothing slips:
+      - *Thu, Mar 26* Halberd QBR (11:00): I am there, and the deck went to Tomás yesterday.
+      - *Fri, Mar 27* Pinewood scoping call (10:00): Leo takes it; he has the SOW draft and my notes.
+      - *Mon, Mar 30* Northstar go-live freeze begins: cutover runbook v2 is already with Elise and Rosa, Kofi is on point, and I will be reachable by phone for anything that cannot wait a day.
+      - Nothing else customer-facing on my calendar those two days.
+
+      A yes or no by Thursday is all I need. Happy to move the dates if that week is bad.
+
+      Thanks,

@@ -1,0 +1,56 @@
+thread_id: t-ben-board-consent
+subject: "Written consent - February new-hire option grants (signature needed)"
+storyline: null
+category: lawyer
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_closed
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [approval:option-grants-february]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: capital, subtype: deal_counsel}
+    asks: [{to_avery: true, kind: signature, deadline_day: 7, status: answered}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 5
+    time: "16:00"
+    from: ben
+    to: [avery]
+    cc: [nora, imogen]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      Attached for signature via Dropbox Sign (link in the separate notification): the unanimous written consent of the board approving the February new-hire option grants.
+
+      1. Grants: Wagner 15,000; Ortiz 12,000; standard four-year vest with a one-year cliff, early exercise permitted, at the exercise price set by the 409A currently in effect.
+      2. Diane signed Friday; Priya's signature is in.
+      3. Please sign by Tuesday so the grant date falls in the first week of March. Imogen will prepare the grant notices as soon as the consent is fully executed.
+
+      Apologies for the Sunday email; I wanted it in your queue for Monday.
+  - id: m2
+    beat_ref: null
+    day: 6
+    time: "08:20"
+    from: avery
+    to: [ben]
+    cc: [nora, imogen]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      signed just now. imogen, go ahead with the notices whenever you have the executed copy.
+
+      Avery

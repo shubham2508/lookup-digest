@@ -1,0 +1,53 @@
+thread_id: t-talia-social
+subject: "so good catching up saturday"
+storyline: null
+category: vendors_misc
+labels:
+  kind: thread
+  must_not: true
+  reason: social_no_ask
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: social
+    about: [other:talia-social]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: network, subtype: founder_peer}
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 22
+    time: "12:15"
+    from: talia
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      so good catching up Saturday - I had forgotten how much better a board-deck complaint session is when the other person actually has a board. also your Halberd night-shift story is going in my next all-hands, with credit.
+
+      here's the link I mentioned: https://www.loomwork.co/blog/what-we-got-wrong-about-pilots - it's our post-mortem on the first three pilots. the "pilot that never ends" section is the one I think applies to you.
+
+      also! Loomwork is hosting a small founders dinner April 9 (ten people, Oakland, no investors). details next week once I have the venue, but I'm holding you a seat.
+  - id: m2
+    beat_ref: null
+    day: 22
+    time: "13:05"
+    from: avery
+    to: [talia]
+    cc: []
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      same! the "pilot that never ends" section is uncomfortably accurate, I sent it to Tomás.
+
+      april 9, yes in principle. send details when you have them.
+
+      Avery

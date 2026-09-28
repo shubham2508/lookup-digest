@@ -1,0 +1,36 @@
+category: personal
+items:
+  - id: auto-lakeshore-confirm
+    day: 29
+    time: "22:14"
+    from: lakeshore_reminders
+    to: [avery, sam]
+    subject: "Appointment confirmed: Thu, Mar 26 at 11:15 AM - Lakeshore Pediatric ENT"
+    bulk: false
+    signature: none
+    body: |
+      Appointment confirmed
+
+      Patient: Wren Park-Chen
+      Provider: Dr. Anna Lindqvist, Pediatric Otolaryngology
+      Date: Thursday, March 26, 2026
+      Time: 11:15 AM (please arrive 10 minutes early for check-in)
+      Location: Lakeshore Pediatric ENT, 2nd floor. Garage parking under the building is validated at the front desk.
+
+      Visit type: follow-up (hearing recheck). Please bring your insurance card.
+
+      To reschedule or cancel, reply to this message or call (510) 555-0171 at least 24 hours in advance. A $50 fee applies to same-day cancellations.
+
+      This message was sent to the contacts on file for this patient. Please do not reply with medical questions; use the patient portal or call the office.
+
+      Lakeshore Pediatric ENT
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_personal_fyi
+      classification_case: null
+      expected:
+        type: automated
+        domain: personal
+        about: [family:ent-appointment]
+        automated: {system: "Lakeshore Pediatric ENT", action_bearing: false, action_kind: none, about: family:ent-appointment}

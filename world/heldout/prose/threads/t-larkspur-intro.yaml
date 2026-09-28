@@ -1,0 +1,99 @@
+thread_id: t-larkspur-intro
+subject: "Intro: Farah Siddiqui (Larkspur) <> Avery Chen (Tessera)"
+storyline: S4
+category: investors_board
+labels: null
+messages:
+  - id: m1
+    beat_ref: S4.h1
+    day: 2
+    time: "18:10"
+    from: diane
+    to: [avery, farah]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery, Farah — connecting you as promised.
+
+      Farah, Avery Chen is the co-founder and CEO of Tessera, the company I described this afternoon: plant-floor forecasting for mid-size manufacturers, three reference customers live, raising a Series A this spring. I have been on the board since the seed.
+
+      Avery, Farah Siddiqui is a General Partner at Larkspur Partners. Larkspur has spent the last year building a thesis around software for industrial operators, and Farah asked me which company in our portfolio to talk to first. Tessera was the obvious answer.
+
+      I'll leave you two to find a time. No need to keep me on the thread.
+
+      Diane
+  - id: m2
+    beat_ref: S4.h2
+    day: 3
+    time: "08:50"
+    from: farah
+    to: [avery]
+    cc: [diane]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Thank you, Diane.
+
+      Avery, good to meet you, if only by email so far. Diane has told me just enough about Tessera to make me want the rest from you directly. I have twenty minutes free at 1pm today if that suits; otherwise Monday afternoon is open. Which works better?
+
+      Farah
+  - id: m3
+    beat_ref: S4.h3
+    day: 3
+    time: "09:20"
+    from: avery
+    to: [farah]
+    cc: [diane]
+    reply_to: m2
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      1pm today works. my mobile is +1 (415) 555-0136, or send a link, either is fine.
+
+      thanks Diane.
+
+      Avery
+  - id: m4
+    beat_ref: S4.h4
+    day: 3
+    time: "14:35"
+    from: farah
+    to: [avery]
+    cc: []
+    reply_to: m3
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      Thank you for making the time on short notice. Two things from the call stayed with me. First, that your customers measure you against the schedule they would have run without you, not against a dashboard; that is a much harder bar and a better one. Second, that the procurement lead, not the plant manager, is the person who renews you. I would like to understand both more carefully.
+
+      Could we do a proper working session next week with Priya in the room? An hour would be plenty. I'd like to walk the architecture at the level a non-engineer can follow and then spend most of the time on how a plant goes from the first line to the second. Wednesday, March 4 at 2pm works on my side, as does Thursday morning.
+
+      One question in the meantime, since it will shape how I prepare: when a plant adds a second line, is that usually the same buyer signing again, or a new one?
+
+      Farah
+  - id: m5
+    beat_ref: S4.h5
+    day: 3
+    time: "16:50"
+    from: avery
+    to: [farah]
+    cc: []
+    reply_to: m4
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      wed the 4th at 2pm works — invite coming from me, Priya will be on.
+
+      on your question: same buyer nine times out of ten, the procurement lead who signed the first line. the tenth is the interesting one. we can get into it wednesday.
+
+      Avery

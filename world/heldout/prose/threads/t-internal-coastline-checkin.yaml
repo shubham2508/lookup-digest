@@ -1,0 +1,48 @@
+thread_id: t-internal-coastline-checkin
+subject: "Coastline quarterly check-in - notes (green)"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: internal_fyi
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [other:coastline-check-in]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 16
+    time: "17:15"
+    from: hana
+    to: [tomas]
+    cc: [avery, ruth]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: |
+      Hana Okada
+      Solutions Engineering, Tessera
+      hana@tessera.io | +1 (510) 555-0163
+      Customer help center: help.tessera.io
+    body: |
+      Notes from today's Coastline Corrugated quarterly check-in (their purchasing lead + the two line supervisors, me + Ruth). Status: **green**.
+
+      What they said:
+      - Second corrugator line has been on the platform since **Feb 12**; exception counts match what we forecast in the expansion proposal (within 5%).
+      - Late-lot alerts are "finally useful" since the grouping change; the night supervisor was getting 15+ texts a night before.
+      - The nightly ERP export failed twice in February and they only noticed the next morning; they were pleased to hear the retry work ships Monday and that failures will now show in the history panel.
+
+      Asked for (none urgent, all in the ideas list):
+      - A "truck arrived" event on the board (second customer to ask for this in a week).
+      - Export to their ERP's fixed column order rather than ours. Ruth explained the export settings can pin it; she'll send them the steps.
+
+      Renewal: not until **Oct 1**; nobody raised it and neither did I.
+
+      Next check-in: **Thu Jun 11**. Nothing for anyone to do.

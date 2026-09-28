@@ -1,0 +1,63 @@
+thread_id: t-ironclad-intro
+subject: "Ironclad Castings - next steps after the roundtable"
+storyline: null
+category: customers
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_by_leo
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [deal:ironclad:trial]
+    ball_awaiting: other
+    closed_by_courtesy: false
+    sender_relationship: {category: customer, subtype: prospect, stage: prospect}
+    asks: [{to_avery: false, kind: information, deadline_day: null, status: open}]
+    stage_signals: [{entity: ironclad, stage: prospect, day: 15}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 15
+    time: "14:45"
+    from: leo
+    to: [gordon]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi Gordon,
+
+      Great to meet you at the foundry roundtable last week. Following up as promised, and copying Avery Chen, our CEO, who you asked about.
+
+      Quick recap of where I think we landed: you have a scrap-rate problem on the two DISA lines at Stockton that nobody can predict shift to shift, and you want to see it work on a real foundry line before anyone shows you a slide. Fair. Here is what I'd suggest as a quick win:
+
+      - I send you a one-page summary of the Halberd Line 3 results (a machining line, not a foundry, but the same kind of "why is the night shift worse" question)
+      - A 30-minute call with Hana, our solutions engineer, to check what your line controllers can export
+      - If that looks good, a site visit in April to scope a one-line trial
+
+      No demo until you have seen the one-pager, as you said. Does Wednesday or Thursday next week work for the call?
+
+      Best,
+  - id: m2
+    beat_ref: null
+    day: 16
+    time: "07:10"
+    from: gordon
+    to: [leo]
+    cc: [avery]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Leo
+
+      Send the one pager. Not intrested in a call untill I read it. Machining line is not a foundry but ok, I want to see the numbers not the story.
+
+      April site visit is fine, second week is better, we have a shutdown the first week. Ask your Fresno customer if I can call them, I dont take vendor refrences from the vendor.

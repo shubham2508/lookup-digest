@@ -1,0 +1,114 @@
+id: S15
+name: declined-infra-review
+reviewed: false
+tier_truth: P1
+summary: >
+  Jordan organized an "On-call & infra review" for Tuesday day 21 (Mar 17) 09:30–10:30, over Avery's deep-work
+  block; Avery DECLINED on day 19 ("deep-work block, send me the notes"). Priya, Arjun, Felix and Nora attended. The
+  review decided an on-call stipend of $400/week for whoever holds primary, starting Apr 1 (day 36); infra-review.md
+  (day 21 10:45) records "needs Avery's sign-off". Nobody asks Avery until Jordan's recap email on Monday day 27 at
+  13:05, which asks for sign-off by Friday 3/27 (day 31), Nora's payroll cutoff for the April 1 run. Origin thread:
+  Felix's on-call gripe on day 15, answered by Jordan ("adding it to the infra review"), handled by the team. Tests:
+  declined-meeting fallout (a decision made where Avery wasn't needs Avery); `decide`/`approve` with a
+  recommendation; the DECLINED event over the block is not a deep-work violation; the origin thread must not surface.
+
+threads:
+  - {id: t-oncall-stipend,  subject: "On-call stipend - need your sign-off before payroll cutoff", category: internal_routine}
+  - {id: t-oncall-rotation, subject: "on-call load",                                              category: internal_routine}
+events:
+  - {uid: infra-review-20260317, calendar: work, title: "On-call & infra review", day: 21, start: "09:30", end: "10:30", organizer: jordan,
+     attendees: [{id: avery, partstat: DECLINED}, {id: jordan, partstat: ACCEPTED}, {id: priya, partstat: ACCEPTED}, {id: arjun, partstat: ACCEPTED}, {id: felix, partstat: ACCEPTED}, {id: nora, partstat: ACCEPTED}],
+     created_day: 17, created_time: "14:40", last_modified_day: 19, note: "S15: over the deep-work block (Tue 09:00–11:00); Avery DECLINED on day 19"}
+
+beats:
+  - {ref: S15.b1, day: 15, time: "09:05", source: email, thread: t-oncall-rotation, from: felix, to: [jordan], cc: [avery],
+     event: "on-call last week: 6 pages, 2 overnight; the 4-person rotation is thin with Northstar ramping; asks Jordan about comp for primary or a 5th person", hardness: [terse]}
+  - {ref: S15.b2, day: 15, time: "10:20", source: email, thread: t-oncall-rotation, from: jordan, to: [felix], cc: [avery, arjun],
+     event: "adding on-call comp and rotation size to the infra review on the 17th; Arjun to pull page counts; 'Avery, nothing needed from you yet'", hardness: [quoted_history]}
+  - {ref: S15.c1, day: 17, time: "14:40", source: calendar, event: infra-review-20260317, from: jordan,
+     event: "invite for Tue day 21 09:30–10:30 (over the block); Avery declines on day 19 with 'deep-work block, send me the notes'"}
+  - {ref: S15.n1, day: 21, time: "10:45", source: note, note: infra-review.md,
+     event: "Infra review notes (Tue Mar 17), Avery declined: decision: on-call stipend $400/week per primary from Apr 1, needs Avery's sign-off; Nora: payroll cutoff for the Apr 1 run is Fri 3/27; alert re-tiering (Arjun); Q2 infra budget draft owed",
+     must_include: ["$400/week", "needs Avery's sign-off"]}
+  - {ref: S15.b3, day: 27, time: "13:05", source: email, thread: t-oncall-stipend, from: jordan, to: [avery], cc: [nora, priya],
+     event: "recap of the review Avery skipped: (1) stipend $400/week to whoever holds primary from Apr 1, ~$1,700/month all-in; Priya and Nora for it; Nora needs sign-off by Friday 3/27 for the payroll cutoff; invites a counter; (2) alert routing, no action; (3) Q2 infra budget draft coming, no action",
+     must_include: ["sign-off", "by Friday", "$400/week"], hardness: [long, mixed_topics]}
+
+labels:
+  - thread: t-oncall-stipend
+    category: internal_routine
+    storyline: S15
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [approval:oncall-stipend]
+      ball_awaiting: avery
+      closed_by_courtesy: false
+      sender_relationship: {category: team, subtype: exec}
+      asks: [{to_avery: true, kind: approval, deadline_day: 31, status: open}]
+      claims: [{subject: oncall_stipend_amount, value: "$400/week"}]
+      suspicious: false
+    messages:
+      - {beat_ref: S15.b3, day: 27, time: "13:05", from: jordan, to: [avery], cc: [nora, priya], must_include: ["sign-off", "by Friday", "$400/week"]}
+  - thread: t-oncall-rotation
+    category: internal_routine
+    storyline: S15
+    must_not_surface: true
+    must_not_reason: handled_by_team
+    expected: {type: human_thread, domain: work, intent_primary: ask, about: [other:oncall-rotation], ball_awaiting: other, closed_by_courtesy: false,
+               sender_relationship: {category: team, subtype: ic}, asks: [{to_avery: false, kind: other, deadline_day: null, status: answered}]}
+    messages:
+      - {beat_ref: S15.b1, day: 15, time: "09:05", from: felix,  to: [jordan], cc: [avery]}
+      - {beat_ref: S15.b2, day: 15, time: "10:20", from: jordan, to: [felix],  cc: [avery, arjun]}
+  - event: infra-review-20260317
+    storyline: S15
+    expected: {type: event, note: "code-parsed; avery_partstat DECLINED; day 21; declined_meeting candidate joins by about key / participants"}
+  - note: infra-review.md
+    storyline: S15
+    expected:
+      type: note
+      note_kind: meeting_notes
+      about: [approval:oncall-stipend]
+      decisions: [{what: "on-call stipend $400/week per primary from Apr 1", decided_by: "infra review 3/17", about: approval:oncall-stipend}]
+      action_items: [{owner: avery, about: approval:oncall-stipend, due_day: 31, status_in_thread: open}]
+
+contacts:
+  - {id: jordan, category: team, subtype: exec, tier: P1,   in_profile: true,  rules: [escalates_rarely]}
+  - {id: nora,   category: team, subtype: ic,   tier: null, in_profile: false, note: "runs payroll; needs the sign-off by the 3/27 cutoff"}
+  - {id: felix,  category: team, subtype: ic,   tier: null, in_profile: false}
+
+about_keys:
+  should_merge: [[approval:oncall-stipend, approval:on-call-stipend], [approval:oncall-stipend, approval:oncall-stipend-400]]
+  should_not_merge: [[approval:oncall-stipend, report:409a-draft]]
+
+expectations:
+  - run_day: 26
+    unasserted: "infra-review.md (day 21) is visible and says the stipend needs Avery's sign-off, but nobody has asked Avery yet; Sunday; a declined_meeting item is acceptable but not required until Jordan's email"
+  - run_day: 27
+    unasserted: "Jordan's recap lands at 13:05 on day 27, after this run; same as day 26"
+  - run_day: 28
+    candidates:
+      - {type: declined_meeting, about: approval:oncall-stipend, facts_hint: {event: infra-review-20260317, declined_day: 19, decision_source: "note:infra-review.md"}}
+      - {type: reply_owed,       about: approval:oncall-stipend, facts_hint: {deadline_day: 31}}
+    items: [{about: approval:oncall-stipend, priority: P1, section: decisions, actions_any: [decide, reply, approve], cites_any: [t-oncall-stipend, "note:infra-review.md"],
+             notes: "'A decision was made at the review you declined; Jordan needs sign-off by Fri 3/27 for Nora's payroll cutoff.' decide: approve $400/week / counter ($300, secondary at half) / hold, with a recommendation"}]
+  - run_day: 29
+    candidates: [{type: declined_meeting, about: approval:oncall-stipend}, {type: reply_owed, about: approval:oncall-stipend}]
+    items: [{about: approval:oncall-stipend, priority: P1, section: decisions, actions_any: [decide, reply, approve], cites_any: [t-oncall-stipend, "note:infra-review.md"]}]
+  - run_day: 30
+    candidates: [{type: declined_meeting, about: approval:oncall-stipend}, {type: reply_owed, about: approval:oncall-stipend}]
+    items: [{about: approval:oncall-stipend, priority: P1, section: decisions, actions_any: [decide, reply, approve], cites_any: [t-oncall-stipend, "note:infra-review.md"],
+             notes: "deadline is tomorrow (Fri 3/27)"}]
+
+assertions:
+  - {id: S15-d28-present,        kind: item_present,      run_day: 28, args: {about: approval:oncall-stipend, priority: P1, section: decisions}}
+  - {id: S15-d28-declined-cand,  kind: candidate_present, run_day: 28, args: {type: declined_meeting, about: approval:oncall-stipend}}
+  - {id: S15-d30-decide,         kind: item_present,      run_day: 30, args: {about: approval:oncall-stipend, actions_any: [decide, reply, approve]}}
+  - {id: S15-declined-not-deep-work, kind: candidate_absent, run_day: 28, args: {type: "calendar_conflict:deep_work", about: meeting:infra-review}, description: "a DECLINED event over the block is not a violation"}
+  - {id: S15-rotation-noise,     kind: item_absent,       run_day: 30, args: {source_id: t-oncall-rotation}, description: "Felix's on-call gripe was answered by Jordan; handled by the team"}
+
+sim_avery:
+  - {scope_about: approval:oncall-stipend, intended_option: 1, rationale: "approve $400/week per primary from Apr 1; Nora loads it before the 3/27 payroll cutoff"}
+simulate: []
+variants: []

@@ -1,0 +1,1507 @@
+# world/heldout/prose/bulk/newsletters_a.yaml - newsletters, batch A (Track B, M8)
+# Supply Chain Morning: 22 weekday issues #299-#320 (#318 on day 28 07:00 is the EU Cyber Resilience Act decoy) plus
+# 8 unnumbered Weekend Reads (days 4, 5, 11, 12, 18, 19, 25, 26) - Compute Ledger #33-#40 (Mon/Wed; #41 on day 29
+# is owned by S13 in newsletters-S13.yaml) - Plant Ops Digest #108-#111 (Wed; #112 on day 29 is owned by S5) plus
+# one Friday Extra. 43 items; every item bulk: true, signature: none. Bodies are ASCII; the renderer adds headers.
+# Day 1 = Wed 2026-02-25; day 12 = Sun 03-08 (nothing 02:00-03:00); day 30 = Thu 03-26.
+category: newsletters
+items:
+  # ---------------------------------------------------------------- Supply Chain Morning (weekdays, ~06:05)
+  - id: nl-scmorning-299
+    day: 1
+    time: "06:04"
+    from: {name: "Supply Chain Morning", email: "morning@scmorning.co"}
+    to: [avery]
+    subject: "Supply Chain Morning #299: Transpacific spot slips again, FMC detention rule takes effect, Class 8 orders"
+    bulk: true
+    signature: none
+    body: |
+      SUPPLY CHAIN MORNING
+      Issue 299 | Wednesday, February 25, 2026
+
+      Good morning. Three stories and a number.
+
+      1) Transpacific spot rates slip for a fourth week
+      Shanghai to Los Angeles spot pricing fell another 6% to $1,910 per FEU, the lowest since November. Carriers blanked eleven sailings for the first half of March, which is more than they blanked for all of February, and it still has not put a floor under the market. Contract season starts in earnest next week; shippers we spoke with are going in asking for flat.
+
+      2) The FMC's detention and demurrage billing rule is now fully in force
+      As of yesterday, carriers and marine terminals must issue invoices within 30 days and include the thirteen data elements the Commission finalized last year, or the invoice is not enforceable. The trade groups say most carriers are compliant; two forwarders told us the same three carriers are still sending invoices with the container number and nothing else.
+
+      3) Class 8 orders fall to a 24-month low
+      January orders came in at 14,800 units, down 31% year on year. Fleets are running trucks longer and waiting on the emissions-rule outcome before committing to 2027 model-year equipment. Used truck prices ticked up for the first time in eighteen months, which tells you where the demand went.
+
+      NUMBER OF THE DAY: 1.38. The US inventory-to-sales ratio for December, unchanged from November and still above the pre-2020 norm. Nobody is destocking, nobody is restocking.
+
+      That's the morning. Reply with tips; we read all of them.
+
+      Supply Chain Morning is an independent daily brief written in Oakland. Manage your subscription: https://scmorning.co/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scmorning-300
+    day: 2
+    time: "06:07"
+    from: {name: "Supply Chain Morning", email: "morning@scmorning.co"}
+    to: [avery]
+    subject: "Supply Chain Morning #300: Issue 300, Section 232 aluminum review, Laredo crossings, a warehouse robotics round"
+    bulk: true
+    signature: none
+    body: |
+      SUPPLY CHAIN MORNING
+      Issue 300 | Thursday, February 26, 2026
+
+      Good morning, and thank you for three hundred issues. We started this as a Monday email for forty people in a Slack group. No fanfare; on with the day.
+
+      1) Commerce opens a Section 232 review on aluminum extrusions
+      The department opened a review of whether the current aluminum tariff structure "adequately addresses" imported extrusions routed through third countries. Comments are due April 10. Window and door manufacturers are the exposed group; the extruders themselves are quietly pleased.
+
+      2) Laredo truck crossings set a February record
+      Northbound commercial crossings at the World Trade Bridge ran 8% above last February, the strongest month since the nearshoring wave began. Auto parts and appliances led. The bridge is at capacity from 10am to 2pm most weekdays; the new Laredo 4/5 bridge does not open until 2027.
+
+      3) Corvid Robotics raises $140M for pallet-handling robots
+      The Series C values the company at $1.1B. Their pitch is that the piece-picking robots everyone funded in 2021 solved the wrong problem: pallets and cases move most of the volume in a mid-size distribution center, and that work is where the labor shortage actually bites. We have seen two of their deployments and they are not wrong.
+
+      NUMBER OF THE DAY: 22 weeks. Current lead time on 40-foot high-cube dry containers ordered from the two largest Chinese box makers, up from 9 weeks a year ago.
+
+      That's the morning. Reply with tips.
+
+      Supply Chain Morning is an independent daily brief written in Oakland. Manage your subscription: https://scmorning.co/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scmorning-301
+    day: 3
+    time: "06:02"
+    from: {name: "Supply Chain Morning", email: "morning@scmorning.co"}
+    to: [avery]
+    subject: "Supply Chain Morning #301: Red Sea routings, Savannah's berth 1, ISM manufacturing at 50.4"
+    bulk: true
+    signature: none
+    body: |
+      SUPPLY CHAIN MORNING
+      Issue 301 | Friday, February 27, 2026
+
+      Good morning. It is Friday; we will keep it short.
+
+      1) Two more carriers say they will stay around the Cape through Q2
+      Both cited insurance pricing rather than security. War-risk premiums for Red Sea transits are quoted at 0.7% of hull value per voyage, which on a 15,000 TEU ship is more than the fuel saved by not going around Africa. The Suez Canal Authority extended its 15% transit discount again; nobody is taking it.
+
+      2) Savannah opens Berth 1 at Ocean Terminal
+      The renovated berth adds capacity for two 16,000 TEU ships at once. Savannah has been the fastest-growing major US gateway for six years, and the terminal now handles more than 6 million TEU a year. The bottleneck has moved inland to the rail ramps, which is where it always moves.
+
+      3) ISM manufacturing 50.4, first reading above 50 since October
+      New orders rose to 52.1; supplier deliveries slowed slightly, which in this index means demand is picking up. Prices paid climbed to 58, driven by copper and steel. One respondent from a food processor: "Customers are ordering closer to need. Our forecast error has never been higher."
+
+      NUMBER OF THE DAY: $4.02. The national average diesel price, down eleven cents from a month ago and the lowest since 2021.
+
+      Have a good weekend. The Weekend Read lands tomorrow.
+
+      Supply Chain Morning is an independent daily brief written in Oakland. Manage your subscription: https://scmorning.co/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scmorning-wknd-04
+    day: 4
+    time: "07:30"
+    from: {name: "Supply Chain Morning", email: "morning@scmorning.co"}
+    to: [avery]
+    subject: "The Weekend Read: how a 1961 pallet standard still shapes every warehouse you walk into"
+    bulk: true
+    signature: none
+    body: |
+      SUPPLY CHAIN MORNING - THE WEEKEND READ
+      Saturday, February 28, 2026
+
+      In 1961 the Grocery Manufacturers Association settled on a 48-by-40-inch wooden pallet, mostly because that was the size that fit two-across in a boxcar door. Sixty-five years later, rack spacing, dock heights, forklift mast widths, trailer interiors and the footprint of every automated storage system sold in North America are all descended from that decision.
+
+      This matters for the current wave of warehouse automation more than the vendors like to admit. A robot that handles cases beautifully but expects a European 1200-by-800 footprint will spend its life in re-palletizing cells at the dock. The most successful automation deployments we have visited did not start with the robot; they started with a floor survey of what actually arrives, on what, in what condition. About a fifth of inbound pallets at a typical food distributor are damaged, mixed, or the wrong size, and no amount of machine vision fixes a splintered stringer.
+
+      There is a second lesson. Standards that look arbitrary are load-bearing. The 48-by-40 pallet is also why a 53-foot trailer holds 26 pallets and not 30, why "pallet positions" is the unit in every 3PL contract, and why the plastic pallet pools that promised to replace wood in the 2000s never got past 10% share: you cannot change one dimension of a system that has spent six decades optimizing around it.
+
+      If you are selling software into plants and warehouses, the analogous standard is often a decades-old spreadsheet. Treat it with the same respect.
+
+      Further reading and photos on the site: https://scmorning.co/weekend/pallets
+
+      Back Monday.
+
+      Supply Chain Morning is an independent daily brief written in Oakland. Manage your subscription: https://scmorning.co/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scmorning-wknd-05
+    day: 5
+    time: "07:35"
+    from: {name: "Supply Chain Morning", email: "morning@scmorning.co"}
+    to: [avery]
+    subject: "Sunday: the week ahead in supply chain (Mar 2-6)"
+    bulk: true
+    signature: none
+    body: |
+      SUPPLY CHAIN MORNING - THE WEEK AHEAD
+      Sunday, March 1, 2026
+
+      What we are watching this week.
+
+      Monday: The Port of Los Angeles and Long Beach release February volumes. Expect a soft month after a front-loaded January; the interesting number is empties, which tell you whether carriers are repositioning for a spring bump.
+
+      Tuesday: The STB holds its second public hearing on the rail merger application. Shipper groups have filed 400 pages of comments; the railroads have filed 900. Watch the questions on reciprocal switching, not the opening statements.
+
+      Wednesday: Comment deadline for the proposed changes to the hours-of-service split-sleeper provision. Trucking groups support it; safety groups do not; the agency has signaled it wants a pilot rather than a rule.
+
+      Thursday: TPM, the big transpacific conference, wraps in Long Beach. Contract rate gossip will leak all week. Our read from the hallways so far: shippers are asking for flat, carriers are asking for up 10%, and both sides know the answer is down.
+
+      Friday: The February jobs report. Transportation and warehousing employment has been flat for fourteen months; the wage line is what to read.
+
+      Also this week: a big-box retailer's investor day, a Panama Canal draft announcement for the dry season, and the annual pallet association meeting, which we are attending so you do not have to.
+
+      See you tomorrow at 6.
+
+      Supply Chain Morning is an independent daily brief written in Oakland. Manage your subscription: https://scmorning.co/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scmorning-302
+    day: 6
+    time: "06:05"
+    from: {name: "Supply Chain Morning", email: "morning@scmorning.co"}
+    to: [avery]
+    subject: "Supply Chain Morning #302: LA/LB February volumes, TPM contract chatter, FSMA traceability extension"
+    bulk: true
+    signature: none
+    body: |
+      SUPPLY CHAIN MORNING
+      Issue 302 | Monday, March 2, 2026
+
+      Good morning.
+
+      1) LA and Long Beach: February down 9% on January, up 3% on last year
+      Loaded imports at the two ports totaled 790,000 TEU. Empties out rose 14%, which is carriers repositioning boxes to Asia ahead of an anticipated spring uptick. Long Beach's executive director called it "a normal February," a phrase nobody has used about a February since 2019.
+
+      2) TPM hallway consensus: contracts settle 5-8% below last year
+      Shippers went in asking for flat and got better than flat. Carriers are holding the line on the surcharge structure instead, and several are pushing two-year deals with a rate-review clause. If you sign one, read the review clause twice.
+
+      3) FDA gives food traceability rule another year
+      Enforcement of the FSMA 204 traceability recordkeeping requirements moves to January 2028. Produce and seafood distributors get the breathing room they asked for; the software vendors who built their 2026 pipeline on the deadline do not. Expect a quiet quarter in that corner of the market.
+
+      NUMBER OF THE DAY: 47 feet. The Panama Canal's maximum draft for the Neopanamax locks through the dry season, unchanged from last year and a relief after 2024.
+
+      That's the morning. Reply with tips.
+
+      Supply Chain Morning is an independent daily brief written in Oakland. Manage your subscription: https://scmorning.co/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scmorning-303
+    day: 7
+    time: "06:03"
+    from: {name: "Supply Chain Morning", email: "morning@scmorning.co"}
+    to: [avery]
+    subject: "Supply Chain Morning #303: STB rail merger hearing, copper at a record, a 3PL bankruptcy"
+    bulk: true
+    signature: none
+    body: |
+      SUPPLY CHAIN MORNING
+      Issue 303 | Tuesday, March 3, 2026
+
+      Good morning.
+
+      1) The rail merger hearing: board members asked about switching, a lot
+      Four of the five STB members pressed the applicants on whether they would accept a reciprocal-switching condition at the twelve gateways shipper groups named. The railroads said they would "consider commercially reasonable arrangements," which is not yes. A decision is not due until Q4, but the tone yesterday was cooler than the applicants wanted.
+
+      2) Copper closes above $11,400 a tonne
+      A new record, driven by grid buildouts and data-center demand. Wire and cable lead times are stretching past 30 weeks. If you buy electrical components, this is the input cost to watch this year; it has replaced resin as the number procurement teams complain about first.
+
+      3) Meridian Logistics files Chapter 11
+      The Midwest 3PL ran 4 million square feet across nine buildings and lost two anchor customers in Q4. About 600 jobs. Its customers are being asked to sign new agreements with the stalking-horse bidder by March 20 or find space elsewhere. Freight-broker failures are up 40% year on year and warehouse operators are starting to follow.
+
+      NUMBER OF THE DAY: 31%. Share of US importers who say they have shifted at least one product line's sourcing out of China since 2023, per a survey out this morning. In 2023 the same survey had it at 12%.
+
+      That's the morning. Reply with tips.
+
+      Supply Chain Morning is an independent daily brief written in Oakland. Manage your subscription: https://scmorning.co/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scmorning-304
+    day: 8
+    time: "06:06"
+    from: {name: "Supply Chain Morning", email: "morning@scmorning.co"}
+    to: [avery]
+    subject: "Supply Chain Morning #304: Air cargo yields, CBP's de minimis data rule, almond bloom"
+    bulk: true
+    signature: none
+    body: |
+      SUPPLY CHAIN MORNING
+      Issue 304 | Wednesday, March 4, 2026
+
+      Good morning.
+
+      1) Air cargo yields fall 12% as e-commerce volumes normalize
+      The transpacific air market had two years of e-commerce parcels filling freighters at premium rates. That is ending: the de minimis changes cut the parcel flow, and the freighters that were pulled into the lane are now chasing general cargo. Forwarders say spot rates from Hong Kong to Chicago are back at 2019 levels in real terms.
+
+      2) CBP finalizes the enhanced entry data requirement
+      From July 1, low-value shipments must be filed with a ten-digit HTS code, the seller's identity, and the URL of the product listing. The agency says it is about enforcement; the express carriers say it is about $2 per parcel in filing cost. Both are right.
+
+      3) Almond bloom is early and heavy
+      Central Valley growers report the strongest bloom since 2021, helped by a warm February. Good news for the crop, bad news for anyone booking reefer capacity out of Oakland in September, when it all has to move. Book early; we say this every year and every year someone does not.
+
+      NUMBER OF THE DAY: 3.1 days. Median dwell time for import containers at the Port of New York and New Jersey in February, the best since the Commission started publishing it.
+
+      That's the morning. Reply with tips.
+
+      Supply Chain Morning is an independent daily brief written in Oakland. Manage your subscription: https://scmorning.co/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scmorning-305
+    day: 9
+    time: "06:04"
+    from: {name: "Supply Chain Morning", email: "morning@scmorning.co"}
+    to: [avery]
+    subject: "Supply Chain Morning #305: Truckload spot bottoms out, the EU packaging regulation, Mexico's rail plan"
+    bulk: true
+    signature: none
+    body: |
+      SUPPLY CHAIN MORNING
+      Issue 305 | Thursday, March 5, 2026
+
+      Good morning.
+
+      1) Dry van spot rates rise for a third straight week
+      National average dry van spot at $2.14 a mile excluding fuel, up nine cents since mid-February. Carriers have been exiting for two years; capacity is finally tight enough that a modest demand bump moves the price. Contract rates lag spot by about six months, so the shipper budgets set in January will look optimistic by summer.
+
+      2) The EU's packaging rule starts to bite
+      The Packaging and Packaging Waste Regulation's first obligations apply from August: minimum recycled content in plastic packaging and a ban on several single-use formats in food service. US exporters of packaged food to the EU are the ones scrambling. Compliance consultants have doubled their prices, which is how you know a rule is real.
+
+      3) Mexico announces a $12B rail freight plan
+      Six new corridors, mostly connecting the Bajio industrial belt to the Gulf ports and to Laredo. Whether it gets built is a different question; the last two plans did not. What is different this time is that the automakers are co-funding the Bajio segment.
+
+      NUMBER OF THE DAY: 56%. Share of US warehouses in a survey out today that report using at least one autonomous mobile robot, up from 39% two years ago. The median site has eleven robots and one person who knows how to reset them.
+
+      That's the morning. Reply with tips.
+
+      Supply Chain Morning is an independent daily brief written in Oakland. Manage your subscription: https://scmorning.co/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scmorning-306
+    day: 10
+    time: "06:08"
+    from: {name: "Supply Chain Morning", email: "morning@scmorning.co"}
+    to: [avery]
+    subject: "Supply Chain Morning #306: February jobs, a chemicals force majeure, Oakland's new gate hours"
+    bulk: true
+    signature: none
+    body: |
+      SUPPLY CHAIN MORNING
+      Issue 306 | Friday, March 6, 2026
+
+      Good morning. Friday, so a quick one.
+
+      1) Transportation and warehousing added 4,000 jobs in February
+      Fifteenth flat month in a row, essentially. Average hourly earnings in warehousing rose 4.1% year on year, which is above the economy-wide number and the reason every automation vendor's sales deck opens with a wage chart.
+
+      2) Force majeure on a Gulf Coast ethylene cracker
+      A compressor failure took a major Texas cracker offline for what the operator says is "four to six weeks." Polyethylene spot prices rose 8 cents a pound in two days. Film and packaging converters are the first to feel it; the rest of you will feel it in your packaging invoices in May.
+
+      3) Port of Oakland extends terminal gate hours
+      The largest terminal at Oakland will run a Saturday gate from March 21 through the summer peak and add a 6pm to 10pm weekday window at reduced fees. Local truckers have asked for this for years. The port's stated goal is to pull some Central Valley ag exports back from LA/LB, where they have drifted since 2021.
+
+      NUMBER OF THE DAY: 9. Blank sailings announced for the second half of March on the transpacific, down from eleven in the first half. Carriers think demand is coming back. We will see.
+
+      Have a good weekend.
+
+      Supply Chain Morning is an independent daily brief written in Oakland. Manage your subscription: https://scmorning.co/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scmorning-wknd-11
+    day: 11
+    time: "07:32"
+    from: {name: "Supply Chain Morning", email: "morning@scmorning.co"}
+    to: [avery]
+    subject: "The Weekend Read: what the freight-broker failures are telling us"
+    bulk: true
+    signature: none
+    body: |
+      SUPPLY CHAIN MORNING - THE WEEKEND READ
+      Saturday, March 7, 2026
+
+      Freight brokerages fail quietly. There is no bankruptcy filing for most of them; the phones stop being answered, the carriers stop being paid, and a few weeks later the factoring company sends a letter. By our count 210 brokerages with more than $5M in annual revenue have closed in the last twelve months, about 40% more than the year before, and the pace is picking up rather than slowing.
+
+      The easy explanation is the freight recession: two and a half years of falling rates squeezed the spread brokers live on. That is true and incomplete. The brokers failing now are not the small ones. They are mid-size firms that grew fast in 2021, hired sales teams on the assumption that spreads stay wide, and built their operations on people rather than software. When rates fell, their cost per load stayed where it was.
+
+      The survivors have a different shape. They run fewer people per load, price with algorithms rather than gut, and have quietly become software companies that happen to move freight. Two of the largest now make more gross profit from their carrier-facing tools than from brokerage itself. That is the shape of the industry in five years, and it is worth noticing that it happened through attrition rather than through any one firm winning.
+
+      A practical note for shippers: check your brokers' payment terms to carriers. A broker stretching carriers to 60 days is a broker three months from a phone that does not answer.
+
+      The full piece with the closure data: https://scmorning.co/weekend/brokers
+
+      Back Monday.
+
+      Supply Chain Morning is an independent daily brief written in Oakland. Manage your subscription: https://scmorning.co/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scmorning-wknd-12
+    day: 12
+    time: "07:40"
+    from: {name: "Supply Chain Morning", email: "morning@scmorning.co"}
+    to: [avery]
+    subject: "Sunday: the week ahead in supply chain (Mar 9-13), and yes, the clocks moved"
+    bulk: true
+    signature: none
+    body: |
+      SUPPLY CHAIN MORNING - THE WEEK AHEAD
+      Sunday, March 8, 2026
+
+      Clocks went forward overnight. If your dock schedules run on a system that does not know that, today is the day you find out. What we are watching this week.
+
+      Monday: The National Retail Federation's monthly port tracker. The trade group has been forecasting a soft first half; watch whether they revise March up after the TPM chatter.
+
+      Tuesday: A Senate hearing on the proposed port-fee structure for foreign-built vessels. The ocean carriers have said they would pass the fees through as a surcharge; the retailers have said they would rather the fees not exist. Expect noise, not law.
+
+      Wednesday: February CPI. The goods component has been flat; the freight and warehousing components inside services are what we read.
+
+      Thursday: The big Chicago industrial real-estate conference. Warehouse vacancy in the top 20 markets sits at 7.1%, up from 3.3% at the 2022 trough, and new construction starts are at a decade low. Landlords will say the bottom is in. Tenants will not.
+
+      Friday: Preliminary March consumer sentiment, and the deadline for comments on the STB's proposed data-reporting rule for first-mile/last-mile rail service.
+
+      Also: a Canadian rail labor deadline on Wednesday that has not gotten enough attention, and a produce-industry conference in Monterey where the traceability-rule delay will be the only topic.
+
+      See you tomorrow at 6, Pacific Daylight Time.
+
+      Supply Chain Morning is an independent daily brief written in Oakland. Manage your subscription: https://scmorning.co/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scmorning-307
+    day: 13
+    time: "06:05"
+    from: {name: "Supply Chain Morning", email: "morning@scmorning.co"}
+    to: [avery]
+    subject: "Supply Chain Morning #307: NRF port tracker, Canadian rail deadline, a cold-chain sensor rollup"
+    bulk: true
+    signature: none
+    body: |
+      SUPPLY CHAIN MORNING
+      Issue 307 | Monday, March 9, 2026
+
+      Good morning.
+
+      1) NRF port tracker: March imports now seen at 2.05M TEU
+      That is a revision up from 1.94M, and the first upward revision since last summer. The trade group credits "modest restocking" and earlier-than-usual back-to-school ordering. April is still forecast down year on year because of last April's tariff-driven front-loading.
+
+      2) Canadian rail: the two sides are still talking, which is the news
+      The union's strike deadline is Wednesday 00:01 Eastern. Both Class I railroads have started embargoing hazmat and refrigerated shipments as of yesterday, which is standard 72 hours ahead of a possible stoppage. US shippers of Canadian grain, potash and lumber should assume a week of disruption even if a deal lands.
+
+      3) Frostline acquires two cold-chain telemetry startups
+      The reefer-monitoring company bought both a sensor maker and a small analytics shop for a combined $85M. Cold-chain telemetry has had eleven venture-backed companies chasing perhaps four real buyers; consolidation was overdue. Customers on the acquired platforms have been told nothing changes "for now."
+
+      NUMBER OF THE DAY: 7.1%. Warehouse vacancy in the top 20 US markets, the highest since 2013. Landlords are offering six months free on a five-year term in the Inland Empire.
+
+      That's the morning. Reply with tips.
+
+      Supply Chain Morning is an independent daily brief written in Oakland. Manage your subscription: https://scmorning.co/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scmorning-308
+    day: 14
+    time: "06:03"
+    from: {name: "Supply Chain Morning", email: "morning@scmorning.co"}
+    to: [avery]
+    subject: "Supply Chain Morning #308: Senate port-fee hearing, resin prices, a 4PL loses its biggest customer"
+    bulk: true
+    signature: none
+    body: |
+      SUPPLY CHAIN MORNING
+      Issue 308 | Tuesday, March 10, 2026
+
+      Good morning.
+
+      1) Port-fee hearing: senators from both parties like the idea, hate the pass-through
+      The proposed fee on foreign-built vessels calling at US ports drew support in principle and a lot of questions about who pays. Carriers testified they would add a per-container surcharge; a retailer's supply chain chief testified it would add $200 per FEU to landed cost. Nobody mentioned that US shipyards cannot build a container ship of any relevant size before 2032.
+
+      2) Polyethylene up another 5 cents
+      The Gulf Coast cracker outage plus a scheduled turnaround at a second plant have taken about 9% of North American ethylene capacity offline. Converters are on allocation. If you buy stretch film, pallets wrap, or anything in a poly bag, expect a surcharge letter this month.
+
+      3) Cascade Supply Chain Services loses its largest account
+      The 4PL confirmed that a national grocery chain is taking its transportation management in-house after eleven years. The account was about a quarter of Cascade's revenue. Two things worth noticing: the grocer built the replacement on a mid-market TMS in nine months, and it hired Cascade's account team to run it.
+
+      NUMBER OF THE DAY: 190. Days of forward coverage of rare-earth magnets held by a large US appliance maker, per its annual filing, up from 45 days two years ago. Inventory is the new hedge.
+
+      That's the morning. Reply with tips.
+
+      Supply Chain Morning is an independent daily brief written in Oakland. Manage your subscription: https://scmorning.co/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scmorning-309
+    day: 15
+    time: "06:06"
+    from: {name: "Supply Chain Morning", email: "morning@scmorning.co"}
+    to: [avery]
+    subject: "Supply Chain Morning #309: Canadian rail deal, CPI freight components, the drayage electrification deadline"
+    bulk: true
+    signature: none
+    body: |
+      SUPPLY CHAIN MORNING
+      Issue 309 | Wednesday, March 11, 2026
+
+      Good morning.
+
+      1) Canada: tentative agreement at 11:40pm, no strike
+      The railroads and the union reached a deal twenty minutes before the deadline. Terms are not public; the union statement mentions "scheduling predictability," which was the sticking point. Embargoes lift today; the backlog clears by the weekend. Potash and grain shippers can exhale.
+
+      2) CPI: transportation services up 0.4% on the month
+      The freight-relevant pieces were mixed. Motor vehicle insurance keeps rising, and it is now the single biggest cost pressure trucking fleets name in surveys, ahead of drivers. Warehouse and storage services rose 0.2%. Goods inflation overall was flat again.
+
+      3) California's drayage zero-emission deadline stays put
+      The air board declined to delay the rule that bars new diesel drayage trucks from registering in the state's port system. Truck makers say they can deliver; drayage operators say the chargers are not there. Both are true. Expect a fleet-age spike in the port drayage pool this year as operators hang on to the trucks they have.
+
+      NUMBER OF THE DAY: 14%. Share of US container imports arriving through Gulf Coast ports in February, up from 10% five years ago. Houston is the winner.
+
+      That's the morning. Reply with tips.
+
+      Supply Chain Morning is an independent daily brief written in Oakland. Manage your subscription: https://scmorning.co/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scmorning-310
+    day: 16
+    time: "06:04"
+    from: {name: "Supply Chain Morning", email: "morning@scmorning.co"}
+    to: [avery]
+    subject: "Supply Chain Morning #310: Warehouse real estate 'bottom', a tariff exclusion process, tire cord shortage"
+    bulk: true
+    signature: none
+    body: |
+      SUPPLY CHAIN MORNING
+      Issue 310 | Thursday, March 12, 2026
+
+      Good morning.
+
+      1) Chicago: landlords declare the bottom, tenants shrug
+      The theme of the industrial real-estate conference was that new construction starts have collapsed, so vacancy has to fall from here. Probably right on a two-year view. The tenant panel pointed out that the sublease pipeline is still 60 million square feet nationally and that 3PLs are consolidating into fewer, larger buildings. Rents are flat to down for the year, whatever the landlords say.
+
+      2) USTR opens a product-exclusion process for the new steel derivative tariffs
+      Requests due by April 30, decisions within 90 days. The last round approved about 40% of requests and took eleven months. Manufacturers importing fasteners, springs and precision stampings are the obvious filers.
+
+      3) A tire cord shortage nobody saw coming
+      A fire at a Southeast Asian nylon-6 plant took out a meaningful share of the tire-cord fabric supply. Tire makers say they have eight weeks of inventory. Fleets already dealing with insurance and driver costs now get to add tire allocations to the list.
+
+      NUMBER OF THE DAY: 2.7. Average number of software systems a mid-size manufacturer uses to schedule a single production line, per a survey out this week. The mode was "a spreadsheet plus the ERP plus a whiteboard."
+
+      That's the morning. Reply with tips.
+
+      Supply Chain Morning is an independent daily brief written in Oakland. Manage your subscription: https://scmorning.co/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scmorning-311
+    day: 17
+    time: "06:07"
+    from: {name: "Supply Chain Morning", email: "morning@scmorning.co"}
+    to: [avery]
+    subject: "Supply Chain Morning #311: Transpacific rates find a floor, Panama Canal slot auction, robotaxi freight pilot"
+    bulk: true
+    signature: none
+    body: |
+      SUPPLY CHAIN MORNING
+      Issue 311 | Friday, March 13, 2026
+
+      Good morning. Friday the 13th, and the freight market is behaving accordingly: calmly.
+
+      1) Transpacific spot flat for the first week since January
+      Shanghai to LA held at $1,890 per FEU. The blank sailings finally matched demand. Carriers are announcing a $300 general rate increase for April 1 that nobody expects to stick in full; half of it might.
+
+      2) Panama Canal auctions extra transit slots for April
+      The authority will auction eight additional daily Neopanamax slots through April, a sign that water levels are comfortable. Slot prices in the last auction averaged $310,000. LNG carriers took most of them.
+
+      3) An autonomous truck operator wins a middle-mile pilot with a national parcel carrier
+      Dallas to Houston, 240 miles, no safety driver, starting in May. The parcel carrier's own drivers will do the first and last miles. The operator's stock rose 22%. We have seen four of these pilots announced and one become a contract; the odds are what they are.
+
+      NUMBER OF THE DAY: $1.6B. Venture funding into supply chain software in Q1 so far, per a tracker out this morning, on pace for the weakest quarter since 2019. The money that is flowing is going to AI-flavored planning and to robotics; everything else is quiet.
+
+      Have a good weekend.
+
+      Supply Chain Morning is an independent daily brief written in Oakland. Manage your subscription: https://scmorning.co/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scmorning-wknd-18
+    day: 18
+    time: "07:31"
+    from: {name: "Supply Chain Morning", email: "morning@scmorning.co"}
+    to: [avery]
+    subject: "The Weekend Read: the quiet return of the regional distribution center"
+    bulk: true
+    signature: none
+    body: |
+      SUPPLY CHAIN MORNING - THE WEEKEND READ
+      Saturday, March 14, 2026
+
+      For twenty years the logic of distribution ran one direction: fewer, bigger buildings. A national retailer could serve the country from six million-square-foot facilities, because trucking was cheap, service expectations were loose, and the inventory savings from pooling demand were enormous.
+
+      The last three years have bent that logic. Truckload rates are structurally higher than the 2010s, next-day delivery is the baseline for consumer goods, and tariff volatility has made everyone hold more inventory closer to where it sells. The result, visible in the leasing data, is a resurgence of the 200,000-to-400,000-square-foot regional DC in secondary markets: Columbus, Indianapolis, Reno, Savannah's hinterland, the Central Valley.
+
+      What makes this round different from the 1990s version is software. A regional network only works if you can see inventory across it and route orders to the right building in real time. That capability used to require a seven-figure warehouse management deployment per site. Now it is a subscription, and the mid-market companies that could never afford the old systems are the ones building regional networks fastest.
+
+      There is a labor angle too. A 300,000-square-foot building in Reno can be staffed; a million-square-foot building in the Inland Empire increasingly cannot, at any wage the operator is willing to pay. Automation vendors love the mega-site pitch, but the actual growth in robot deployments is in the regional tier, where the business case is "we cannot hire" rather than "we want to be efficient."
+
+      The full piece with the leasing data by market: https://scmorning.co/weekend/regional-dcs
+
+      Back Monday.
+
+      Supply Chain Morning is an independent daily brief written in Oakland. Manage your subscription: https://scmorning.co/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scmorning-wknd-19
+    day: 19
+    time: "07:36"
+    from: {name: "Supply Chain Morning", email: "morning@scmorning.co"}
+    to: [avery]
+    subject: "Sunday: the week ahead in supply chain (Mar 16-20)"
+    bulk: true
+    signature: none
+    body: |
+      SUPPLY CHAIN MORNING - THE WEEK AHEAD
+      Sunday, March 15, 2026
+
+      What we are watching this week.
+
+      Monday: February retail sales. Inventory-to-sales is the derived number we care about; a strong sales print with flat inventories means restocking orders in April.
+
+      Tuesday: The Fed meets Tuesday and Wednesday. Rates matter to this industry through equipment financing and warehouse cap rates more than through demand.
+
+      Wednesday: The ocean carriers' April 1 general rate increase announcements are due by mid-week under the FMC's 30-day notice rule. Count how many carriers file the full $300 and how many file $150.
+
+      Thursday: Existing home sales, which drive the appliance, furniture and building-materials freight that fills a lot of dry vans. Also the quarterly earnings of the largest US LTL carrier, whose tonnage commentary is the best real-time read on industrial demand we have.
+
+      Friday: Quarterly options expiry, which has nothing to do with freight, and the Port of Oakland's first Saturday gate the next day, which does.
+
+      Also: a big robotics trade show in Chicago all week; a Coast Guard hearing on the Baltimore bridge rebuild timeline; and the first stone-fruit shipments of the season out of the southern Central Valley, two weeks earlier than average.
+
+      See you tomorrow at 6.
+
+      Supply Chain Morning is an independent daily brief written in Oakland. Manage your subscription: https://scmorning.co/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scmorning-312
+    day: 20
+    time: "06:05"
+    from: {name: "Supply Chain Morning", email: "morning@scmorning.co"}
+    to: [avery]
+    subject: "Supply Chain Morning #312: Retail sales and inventories, a robotics show, semiconductors export rule"
+    bulk: true
+    signature: none
+    body: |
+      SUPPLY CHAIN MORNING
+      Issue 312 | Monday, March 16, 2026
+
+      Good morning.
+
+      1) Retail sales up 0.6% in February; inventories flat
+      The combination points to restocking orders in the second quarter. Furniture and building materials led, which matches the LTL carriers' recent tonnage commentary. Sporting goods and electronics were down; the tariff-driven pull-forward from last spring is still working through those categories.
+
+      2) Chicago robotics show: the humanoids are a sideshow, the forklifts are the story
+      Every booth had a humanoid demo and every operator we spoke with wanted to talk about autonomous forklifts, which are shipping in volume at prices that pencil against a $24-an-hour operator. Three vendors announced pallet-jack robots under $60,000. The piece-picking arms were quieter than at any show since 2019.
+
+      3) Commerce publishes the revised chip export rule
+      The update tightens the license requirement for advanced packaging equipment and adds two dozen entities to the list. Electronics manufacturers with Southeast Asian assembly say the compliance paperwork is now the long pole in their lead times, not the parts.
+
+      NUMBER OF THE DAY: 18 months. Average age of the planning spreadsheet in use at mid-size manufacturers, per a survey a consultancy released this morning. The oldest respondent reported one from 2009, still in daily use.
+
+      That's the morning. Reply with tips.
+
+      Supply Chain Morning is an independent daily brief written in Oakland. Manage your subscription: https://scmorning.co/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scmorning-313
+    day: 21
+    time: "06:04"
+    from: {name: "Supply Chain Morning", email: "morning@scmorning.co"}
+    to: [avery]
+    subject: "Supply Chain Morning #313: GRI filings, a container-lessor merger, Baltimore's channel"
+    bulk: true
+    signature: none
+    body: |
+      SUPPLY CHAIN MORNING
+      Issue 313 | Tuesday, March 17, 2026
+
+      Good morning.
+
+      1) Seven carriers file the full $300 April GRI; three file $150
+      The split tells you who has ships to fill. The three filing the smaller increase are the ones that added the most capacity to the transpacific last year. Shippers with contracts signed in the last two weeks are insulated; everyone else should assume $150 sticks for a month and fades.
+
+      2) The two largest container lessors agree to merge
+      Combined fleet of about 12 million TEU, roughly a third of the world's leased boxes. Regulators in three jurisdictions will look at it. Carriers are unhappy, which is the point; lessors have had no pricing power since 2022 and a merger is how you get some.
+
+      3) Baltimore's shipping channel returns to full depth
+      Two years after the bridge collapse, the Coast Guard confirmed the 50-foot channel is fully restored and the temporary restrictions are lifted. The port lost about 15% of its container volume to Norfolk and New York in the interim and has recovered perhaps half of it. Autos and farm equipment never left.
+
+      NUMBER OF THE DAY: 4.6%. The 10-year Treasury yield this morning, which is why every warehouse developer is telling you the deal "doesn't pencil."
+
+      That's the morning. Reply with tips.
+
+      Supply Chain Morning is an independent daily brief written in Oakland. Manage your subscription: https://scmorning.co/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scmorning-314
+    day: 22
+    time: "06:06"
+    from: {name: "Supply Chain Morning", email: "morning@scmorning.co"}
+    to: [avery]
+    subject: "Supply Chain Morning #314: Fed day, Gulf Coast cracker restarts, an ERP outage at a grocery distributor"
+    bulk: true
+    signature: none
+    body: |
+      SUPPLY CHAIN MORNING
+      Issue 314 | Wednesday, March 18, 2026
+
+      Good morning.
+
+      1) The Fed decides today; equipment lenders are already moving
+      Two of the largest trailer lessors raised their rate cards last week in anticipation. Fleets that deferred equipment purchases in 2025 are now facing higher financing and higher tariffs on the equipment itself. Trailer orders fell to 9,000 units in February, the lowest since 2010.
+
+      2) The Texas cracker is back at 60% of capacity
+      Two weeks earlier than the operator's own guidance. Polyethylene spot gave back 3 cents. Converters expect allocation to end in April. The surcharge letters, however, have already gone out and will take longer to come back.
+
+      3) A regional grocery distributor's ERP outage stops shipments for two days
+      A failed upgrade over the weekend left the distributor's 40 stores without automated replenishment from Sunday night to Tuesday afternoon. Store managers ordered by phone. The distributor's statement blamed "a third-party integration"; the integrator's statement blamed the upgrade. Shelves were mostly fine, which says something about how much buffer stock these systems quietly carry.
+
+      NUMBER OF THE DAY: 11. Consecutive months of year-on-year decline in US Class 8 truck production. Suppliers are furloughing.
+
+      That's the morning. Reply with tips.
+
+      Supply Chain Morning is an independent daily brief written in Oakland. Manage your subscription: https://scmorning.co/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scmorning-315
+    day: 23
+    time: "06:03"
+    from: {name: "Supply Chain Morning", email: "morning@scmorning.co"}
+    to: [avery]
+    subject: "Supply Chain Morning #315: LTL earnings, USMCA review prep, drone delivery gets a rule"
+    bulk: true
+    signature: none
+    body: |
+      SUPPLY CHAIN MORNING
+      Issue 315 | Thursday, March 19, 2026
+
+      Good morning.
+
+      1) The largest LTL carrier: tonnage per day up 2.1% in Q1 to date
+      First positive quarter in nine. The CEO called it "the early innings of an industrial recovery" and then spent the rest of the call lowering the bar for Q2. Yields rose 6%; the LTL industry has priced its way through the downturn and intends to keep the discipline on the way up.
+
+      2) The USMCA joint review is fourteen weeks out and the lobbying has started
+      Automakers want the rules-of-origin thresholds left alone; steel wants them raised; the agricultural groups want dairy access to Canada on the table. The review can end with the agreement extended, renegotiated, or put on a one-year clock. Bet on the clock.
+
+      3) The FAA finalizes beyond-visual-line-of-sight rules for delivery drones
+      Operators no longer need a case-by-case waiver for routine flights under 400 feet in approved corridors. Two rural pharmacy chains and one big-box retailer announced expansions within the hour. For freight this is a rounding error; for the last mile in low-density areas it is a real cost curve change.
+
+      NUMBER OF THE DAY: 38 hours. Median time from PO to confirmed ship date at mid-market manufacturers with automated order promising, versus 4.5 days at those without, per a benchmarking report out today.
+
+      That's the morning. Reply with tips.
+
+      Supply Chain Morning is an independent daily brief written in Oakland. Manage your subscription: https://scmorning.co/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scmorning-316
+    day: 24
+    time: "06:05"
+    from: {name: "Supply Chain Morning", email: "morning@scmorning.co"}
+    to: [avery]
+    subject: "Supply Chain Morning #316: Oakland's Saturday gate, a fertilizer squeeze, the week's rates"
+    bulk: true
+    signature: none
+    body: |
+      SUPPLY CHAIN MORNING
+      Issue 316 | Friday, March 20, 2026
+
+      Good morning. Friday, so a short one and the weekly rate table.
+
+      1) Oakland's first Saturday gate is tomorrow
+      Truckers have booked about 600 appointments for the 7am-3pm window, which the terminal called "encouraging." Central Valley ag exporters are the target; if the first month works, the port has said it will make the Saturday gate permanent through October.
+
+      2) Fertilizer: urea up 18% in three weeks
+      A combination of natural-gas prices in Europe, an export restriction in a major producing country, and the spring application window arriving early. Growers who did not pre-buy are paying up. Barge traffic on the upper Mississippi is running two weeks early because of the mild winter, which helps.
+
+      3) The week in rates
+      Transpacific spot: $1,905/FEU, flat. Dry van spot: $2.19/mile ex-fuel, up 5 cents. Diesel: $4.06, up 4 cents. Air, Hong Kong-Chicago: $4.10/kg, down 3%. Warehouse asking rents, national: flat.
+
+      NUMBER OF THE DAY: 2.4 million. Stone-fruit cartons forecast to ship from the southern Central Valley in the next six weeks, the earliest start to the season in a decade. Reefer capacity out of Fresno and Oakland is already tight.
+
+      Have a good weekend.
+
+      Supply Chain Morning is an independent daily brief written in Oakland. Manage your subscription: https://scmorning.co/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scmorning-wknd-25
+    day: 25
+    time: "07:33"
+    from: {name: "Supply Chain Morning", email: "morning@scmorning.co"}
+    to: [avery]
+    subject: "The Weekend Read: why every plant has a person named Dave who knows where the parts are"
+    bulk: true
+    signature: none
+    body: |
+      SUPPLY CHAIN MORNING - THE WEEKEND READ
+      Saturday, March 21, 2026
+
+      Visit enough mid-size factories and you meet him: the veteran who knows that the bin count on line 4 is always fifty short, that the Tuesday supplier ships on Wednesday, that the machine the system says is available is down every third shift for a reason nobody documented. The name changes; the role does not. Every scheduling and inventory system in the building is, in practice, a suggestion that this person corrects.
+
+      The software industry has spent thirty years trying to replace him and has mostly failed, for two reasons. The first is data: his knowledge is exactly the set of facts that never got into the ERP, because entering them was nobody's job. The second is trust: when the system and the veteran disagree, the plant manager sides with the veteran, because the veteran has been right before and the system has not.
+
+      The newest wave of plant-floor tools is taking a different approach. Instead of replacing his judgment, they try to capture it: they watch what he overrides, ask why, and feed the answer back. The pitch to the plant manager is not "the system is smarter than Dave"; it is "the system remembers what Dave knows when Dave retires," which is a pitch plant managers, staring at an average workforce age of 51, actually respond to.
+
+      Whether this works at scale is the open question of the decade for industrial software. What is clear from the deployments we have seen is that the tools that ship a line-side tablet and a way to say "no, because" get used, and the ones that ship a dashboard for the VP do not.
+
+      The full piece, with three case studies: https://scmorning.co/weekend/dave
+
+      Back Monday.
+
+      Supply Chain Morning is an independent daily brief written in Oakland. Manage your subscription: https://scmorning.co/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scmorning-wknd-26
+    day: 26
+    time: "07:38"
+    from: {name: "Supply Chain Morning", email: "morning@scmorning.co"}
+    to: [avery]
+    subject: "Sunday: the week ahead in supply chain (Mar 23-27)"
+    bulk: true
+    signature: none
+    body: |
+      SUPPLY CHAIN MORNING - THE WEEK AHEAD
+      Sunday, March 22, 2026
+
+      What we are watching this week.
+
+      Monday: Durable goods orders for February. Core capital goods orders have risen four months straight; a fifth would be the longest streak since 2021 and would confirm what the LTL carriers are saying about industrial demand.
+
+      Tuesday: The FMC's open meeting, where the Commission is due to vote on whether to open a formal inquiry into the container-lessor merger. Also the Port of Oakland's March volume preview.
+
+      Wednesday: The final GDP revision for Q4. Nobody in freight cares about GDP, but the inventory-investment component is the best quarterly read of whether businesses are building stock.
+
+      Thursday: The February trade balance, with the country-level import detail that shows where sourcing has actually moved, as opposed to where the press releases say it has.
+
+      Friday: Personal income and spending for February, and the last trading day of the quarter, which is when a surprising number of annual freight contracts quietly renew.
+
+      Also: the largest US 3PL's investor day on Tuesday; a hearing on the proposed federal truck-parking grant program; and, for the Bay Area readers, the start of stone-fruit season in earnest, with the first full reefer trains out of Fresno.
+
+      See you tomorrow at 6.
+
+      Supply Chain Morning is an independent daily brief written in Oakland. Manage your subscription: https://scmorning.co/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scmorning-317
+    day: 27
+    time: "06:04"
+    from: {name: "Supply Chain Morning", email: "morning@scmorning.co"}
+    to: [avery]
+    subject: "Supply Chain Morning #317: Durable goods, a 3PL investor day, Oakland's Saturday gate by the numbers"
+    bulk: true
+    signature: none
+    body: |
+      SUPPLY CHAIN MORNING
+      Issue 317 | Monday, March 23, 2026
+
+      Good morning.
+
+      1) Core capital goods orders up 0.8% in February, the fifth straight rise
+      Machinery and electrical equipment led. Combined with the ISM new-orders reading and the LTL tonnage numbers, this is the most consistent set of industrial-demand signals in three years. The transportation-equipment component was the exception, down 4%, which is the truck and trailer weakness showing up in the national data.
+
+      2) The largest US 3PL guides to flat revenue and higher margin
+      The investor day message was that the company will let low-margin brokerage volume go to competitors and keep the contract-logistics and managed-transportation business. The CEO used the word "software" 41 times, by our count, and "trucks" nine times.
+
+      3) Oakland's Saturday gate: 540 moves, no line
+      The terminal called the first Saturday "a success"; truckers called it "fine." The real test is the second half of April when the almond and stone-fruit export volume peaks. Several Central Valley shippers told us they will move bookings back from LA/LB if the gate holds.
+
+      NUMBER OF THE DAY: 1,040. Warehouse-management-system implementations that went live in North America last year, per a market tracker published this morning, a 15-year low. Everyone bought during 2021-2022 and is now trying to make it work.
+
+      That's the morning. Reply with tips.
+
+      Supply Chain Morning is an independent daily brief written in Oakland. Manage your subscription: https://scmorning.co/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scmorning-318
+    day: 28
+    time: "07:00"
+    from: {name: "Supply Chain Morning", email: "morning@scmorning.co"}
+    to: [avery]
+    subject: "Supply Chain Morning #318: EU Cyber Resilience Act reporting obligations for connected industrial software, Central Valley cold storage, Port of Oakland March volumes"
+    bulk: true
+    signature: none
+    body: |
+      SUPPLY CHAIN MORNING
+      Issue 318 | Tuesday, March 24, 2026
+
+      Good morning. We are an hour late today; a server in Virginia decided otherwise. Three stories and a number.
+
+      1) EU Cyber Resilience Act: reporting obligations for connected industrial software - what suppliers to EU plants must file from 2027
+      The European Commission published the implementing guidance for the Cyber Resilience Act's reporting regime yesterday. From September 2027, any vendor whose software or connected device is installed in a plant inside the EU must report actively exploited vulnerabilities to the ENISA single reporting platform within 24 hours of becoming aware, with a fuller notification at 72 hours and a final report within 14 days. The guidance confirms that this covers US vendors selling into EU manufacturing sites, including SaaS products with an on-premises agent or gateway. Products classified as "important" (the guidance lists industrial control software and plant-floor data collection among the examples) also need a third-party conformity assessment before the CE marking can be applied. Trade groups called the 24-hour window "unworkable for small vendors"; the Commission said the window is for notification, not for a fix. If you sell connected software into European plants, your 2027 roadmap just acquired a compliance line, and your customers' procurement teams will start asking about it well before then.
+
+      2) Central Valley cold-storage capacity tightens ahead of stone-fruit season
+      Public refrigerated warehouse occupancy in the Fresno-Visalia corridor hit 94% last week, the highest March reading on record, with the early stone-fruit season colliding with carryover almond and citrus inventory. Spot storage rates are up 20% on last year. Two new facilities totaling 450,000 square feet are under construction but do not open until 2027. Packers are trucking to Stockton and even Reno for space.
+
+      3) Port of Oakland March volumes
+      The port's preview puts March loaded imports up 6% year on year and exports up 9%, the best export month since 2022, helped by the early ag season and the new gate hours. Empties are down, which is the healthiest combination the port has reported in years.
+
+      NUMBER OF THE DAY: 24 hours. The Cyber Resilience Act's initial notification window, which is now the tightest security-reporting deadline in any major jurisdiction.
+
+      That's the morning. Reply with tips.
+
+      Supply Chain Morning is an independent daily brief written in Oakland. Manage your subscription: https://scmorning.co/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter_non_attaching_decoy
+      classification_case: null
+      expected:
+        type: newsletter
+        news_items:
+          - {headline_hint: "EU Cyber Resilience Act: reporting obligations for connected industrial software - what suppliers to EU plants must file from 2027", topics: [regulation], entities: [], attaches_to: []}
+          - {headline_hint: "Central Valley cold-storage capacity tightens ahead of stone-fruit season", topics: [supply-chain], entities: [], attaches_to: []}
+          - {headline_hint: "Port of Oakland March volumes", topics: [supply-chain], entities: [], attaches_to: []}
+
+  - id: nl-scmorning-319
+    day: 29
+    time: "06:05"
+    from: {name: "Supply Chain Morning", email: "morning@scmorning.co"}
+    to: [avery]
+    subject: "Supply Chain Morning #319: FMC opens the lessor inquiry, Q4 inventory investment, a reefer shortage"
+    bulk: true
+    signature: none
+    body: |
+      SUPPLY CHAIN MORNING
+      Issue 319 | Wednesday, March 25, 2026
+
+      Good morning. Back on time.
+
+      1) The FMC votes 4-1 to open a formal inquiry into the container-lessor merger
+      The Commission wants data on lease rates by trade lane and on the lessors' contracts with the carrier alliances. The companies said they "welcome the review," which is what you say. A decision from the antitrust agencies is still the one that matters; the FMC's inquiry mostly guarantees the paperwork lasts through the year.
+
+      2) Q4 GDP revision: inventory investment revised up
+      Businesses added more stock in the fourth quarter than first estimated. That fits the pattern in every other dataset this month: modest restocking, concentrated in industrial and building-related goods, with retail inventories still lean.
+
+      3) A reefer container shortage develops out of Oakland
+      The early ag season plus the port's new gate hours have pulled more export bookings to Oakland than the carriers positioned reefers for. Two carriers are repositioning empties from LA by rail; one is quoting a $400 reefer surcharge for April. Shippers with contracts that fix equipment availability are fine. Most do not have those.
+
+      NUMBER OF THE DAY: 6%. The rise in the average price of a new dry van trailer since January, mostly tariffs on the aluminum and steel that go into it.
+
+      That's the morning. Reply with tips.
+
+      Supply Chain Morning is an independent daily brief written in Oakland. Manage your subscription: https://scmorning.co/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-scmorning-320
+    day: 30
+    time: "06:06"
+    from: {name: "Supply Chain Morning", email: "morning@scmorning.co"}
+    to: [avery]
+    subject: "Supply Chain Morning #320: February trade detail, a truck-parking grant, the Class 8 order bounce"
+    bulk: true
+    signature: none
+    body: |
+      SUPPLY CHAIN MORNING
+      Issue 320 | Thursday, March 26, 2026
+
+      Good morning.
+
+      1) February trade: imports from Vietnam and Mexico up, China down again
+      The country detail shows the pattern that has held for two years: China's share of US goods imports fell to 12.8%, Mexico is at 16.1%, and Vietnam passed Japan for the first time. The category detail is more interesting: the shift is concentrated in electronics assembly and furniture. Industrial machinery imports from China actually rose.
+
+      2) A federal truck-parking grant program clears committee
+      $755M over five years for states to build or expand truck parking along interstate corridors. Drivers lose about an hour a day looking for parking, per the industry's own surveys. The bill has bipartisan support and has died in committee twice before; third time is not necessarily different.
+
+      3) Class 8 orders bounce to 19,200 in March to date
+      Still weak against history, but the first month-over-month increase since last summer. Fleets say the emissions-rule clarity, however grudging, was the trigger. Suppliers who furloughed in February are calling people back.
+
+      NUMBER OF THE DAY: 96%. Occupancy at public refrigerated warehouses in the Fresno-Visalia corridor as of this week, up from 94% a week ago. Stone fruit waits for no one.
+
+      That's the morning. Reply with tips.
+
+      Supply Chain Morning is an independent daily brief written in Oakland. Manage your subscription: https://scmorning.co/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  # ---------------------------------------------------------------- Compute Ledger (Mon/Wed 07:00; #41 on day 29 is S13's)
+  - id: nl-computeledger-33
+    day: 1
+    time: "07:00"
+    from: {name: "Compute Ledger", email: "issue@computeledger.co"}
+    to: [avery]
+    subject: "Compute Ledger #33: Sable-3 lands / speculative decoding goes mainstream / the HBM4 queue"
+    bulk: true
+    signature: none
+    body: |
+      COMPUTE LEDGER - Issue 33 - Wednesday, February 25, 2026
+
+      Three things this week.
+
+      1. Sable-3 is out, and the interesting number is the small one
+
+      Aurelian Labs shipped Sable-3 in three sizes on Tuesday. The large model tops the usual leaderboards by a hair, which is what large models do now. The one to look at is Sable-3 Mini: it matches last spring's frontier on the extraction and classification suites at $0.12 per million input tokens. For most production workloads, that is the model, and the price of doing routine work with a language model just fell by half again. Our full table is on the site.
+
+      2. Speculative decoding is now the default, not the trick
+
+      Two of the three largest inference providers turned speculative decoding on by default for all hosted open-weight models this month. Throughput gains of 1.8x to 2.6x on chat-shaped traffic, less on long-output generation. If you self-host, the reference implementations in the two major serving frameworks are finally stable; we ran them for a week without a crash, which we could not say in December.
+
+      3. HBM4 lead times are the real capacity constraint
+
+      Every conversation we had this month about cluster timelines ended at memory, not accelerators. The three HBM makers are sold out through Q1 2027, and one integrator told us the accelerator vendor is now allocating cards based on which customers can prove they have racks and power ready. If your provider is quoting Q3 capacity, ask whether the memory is booked.
+
+      That is the issue. Reply with tips; we read everything.
+
+      Compute Ledger is written by two people in Oakland and supported by readers. Forward it to someone who runs a GPU budget.
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-computeledger-34
+    day: 6
+    time: "07:00"
+    from: {name: "Compute Ledger", email: "issue@computeledger.co"}
+    to: [avery]
+    subject: "Compute Ledger #34: an open 200B from Shenzhen / serving-framework shootout / the interconnection queue"
+    bulk: true
+    signature: none
+    body: |
+      COMPUTE LEDGER - Issue 34 - Monday, March 2, 2026
+
+      Three things this week.
+
+      1. Tianhe Research releases a 200B-parameter mixture-of-experts model under Apache 2.0
+
+      Sixteen experts, two active per token, so it serves like a 30B model and reasons like something much bigger. It is the strongest open model on our multilingual and code suites and within a point of the closed frontier on long-context retrieval. The US hosting providers had it up within 36 hours. Whether enterprises will run a model from a Shenzhen lab in production is a procurement question, not a technical one; two of the three enterprises we asked said their security teams have already said no.
+
+      2. We benchmarked the four major serving frameworks so you do not have to
+
+      Same hardware, same model, same traffic replay from a real customer-support workload. The spread in cost per million output tokens was 2.3x between the best and worst configurations, and most of the gap was default settings: batch size, KV-cache quantization, and whether prefix caching was on. The full results and configs are on the site. The takeaway is boring and expensive: a week of tuning pays for itself in a month.
+
+      3. The interconnection queue is the new GPU queue
+
+      Utilities in Virginia, Texas and Arizona now quote five to seven years for new large-load interconnections. Data-center developers are responding with on-site gas turbines, which are themselves on a three-year lead time. The practical effect for anyone renting compute is that the capacity coming online in 2026 was permitted in 2022, and there is not much of it.
+
+      That is the issue. Reply with tips; we read everything.
+
+      Compute Ledger is written by two people in Oakland and supported by readers. Forward it to someone who runs a GPU budget.
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-computeledger-35
+    day: 8
+    time: "07:00"
+    from: {name: "Compute Ledger", email: "issue@computeledger.co"}
+    to: [avery]
+    subject: "Compute Ledger #35: Aurelian cuts API prices 40% / Halyard Cloud files to go public / batch tiers everywhere"
+    bulk: true
+    signature: none
+    body: |
+      COMPUTE LEDGER - Issue 35 - Wednesday, March 4, 2026
+
+      Three things this week.
+
+      1. Aurelian cuts Sable-3 API prices by 40%, a week after launch
+
+      Input tokens on the large model drop to $1.80 per million, output to $9. Aurelian said the cut reflects "serving efficiencies," which is what you say when a competitor is about to launch. The two other frontier labs have not matched yet; one of them told a customer on the record that it will "not compete on list price," which is a sentence that ages badly. For application companies the arithmetic is simple: if your model spend is more than a fifth of COGS, this cut is worth a re-quote this week.
+
+      2. Halyard Cloud files its S-1
+
+      The neocloud reports $1.4B in trailing revenue, 71% of it from three customers, and $6B in committed purchase obligations for accelerators it has not yet received. The filing is a good read if you want to understand how the capacity you rent is financed: mostly debt, secured by the chips, with the debt covenants tied to utilization. When utilization drops, the incentives get strange.
+
+      3. Everyone has a batch tier now
+
+      All three frontier labs and the two largest hosting providers offer a 50% discount for asynchronous requests with a 24-hour completion window. Our survey of forty production teams found that about 30% of their token volume could move to batch with no product change, and almost none of it has. The savings are real; the engineering ticket to route the traffic keeps losing to the next feature.
+
+      That is the issue. Reply with tips; we read everything.
+
+      Compute Ledger is written by two people in Oakland and supported by readers. Forward it to someone who runs a GPU budget.
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-computeledger-36
+    day: 13
+    time: "07:00"
+    from: {name: "Compute Ledger", email: "issue@computeledger.co"}
+    to: [avery]
+    subject: "Compute Ledger #36: agents flip the token mix / a new inference ASIC ships / liquid cooling by default"
+    bulk: true
+    signature: none
+    body: |
+      COMPUTE LEDGER - Issue 36 - Monday, March 9, 2026
+
+      Three things this week.
+
+      1. Agentic workloads have inverted the token mix, and the pricing has not caught up
+
+      A year ago the typical production workload was 10 input tokens for every output token. Agent loops, with their tool calls and long reasoning traces, run closer to 3 to 1, and for coding agents it is under 2 to 1. Output tokens cost four to five times input tokens at every provider, so the effective price per request has risen even as list prices fell. Three teams told us their per-user model cost doubled in six months with no change in model or list price. If you are budgeting on input-token math, redo it.
+
+      2. Lattice Silicon ships its inference ASIC in volume
+
+      The chip does one thing: run transformer inference at high batch with 8-bit weights. On the two open models we tested it delivers about 60% of the cost per token of a general-purpose accelerator at equivalent latency. The catch is model support: new architectures take the vendor two to three months to bring up. For stable workloads on stable models it is real; for anyone chasing the latest release it is a liability.
+
+      3. Liquid cooling is now the default in new builds
+
+      Every data center project announced this quarter at more than 50MW specifies direct-to-chip liquid cooling. Air-cooled halls are being retrofitted or left for CPUs. The knock-on is that a lot of 2021-vintage colocation space is now the wrong shape for AI, which is why colocation rates for AI-ready space are up 30% while general-purpose rates are flat.
+
+      That is the issue. Reply with tips; we read everything.
+
+      Compute Ledger is written by two people in Oakland and supported by readers. Forward it to someone who runs a GPU budget.
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-computeledger-37
+    day: 15
+    time: "07:00"
+    from: {name: "Compute Ledger", email: "issue@computeledger.co"}
+    to: [avery]
+    subject: "Compute Ledger #37: distillation results that matter / a benchmark gets retired / a 40-hour cluster outage"
+    bulk: true
+    signature: none
+    body: |
+      COMPUTE LEDGER - Issue 37 - Wednesday, March 11, 2026
+
+      Three things this week.
+
+      1. A distillation paper with production-grade numbers
+
+      A group at a Swiss university distilled a frontier model's behavior on a narrow task (structured extraction from industrial maintenance logs) into a 3B model and matched the teacher on their held-back set at 1/40th the serving cost. What makes this paper different from the hundred before it is that they published the failure analysis: the small model fails on exactly the inputs where the teacher's answer was itself inconsistent. Distill the task, not the model, and check your teacher first.
+
+      2. The most-cited reasoning benchmark is retired after a contamination audit
+
+      The maintainers found that 31% of its problems appear, with solutions, in a widely used pretraining corpus. Every frontier model's score on it is now uninterpretable. Nobody is surprised and everybody is annoyed. If your vendor's marketing quotes this benchmark, ask for the private-set number.
+
+      3. A large hosting provider lost a 4,000-accelerator cluster for 40 hours
+
+      The cause was a firmware update to the networking switches that had passed staging and failed at scale. Customers on the affected cluster were moved to other regions with, per three of them, no notice and a 20% latency hit. The provider's status page said "degraded performance" for the whole 40 hours. Read your SLA; most of them define availability in a way that made this incident a non-event.
+
+      That is the issue. Reply with tips; we read everything.
+
+      Compute Ledger is written by two people in Oakland and supported by readers. Forward it to someone who runs a GPU budget.
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-computeledger-38
+    day: 20
+    time: "07:00"
+    from: {name: "Compute Ledger", email: "issue@computeledger.co"}
+    to: [avery]
+    subject: "Compute Ledger #38: prompt caching economics / memory bandwidth is the moat / an optics vendor's quarter"
+    bulk: true
+    signature: none
+    body: |
+      COMPUTE LEDGER - Issue 38 - Monday, March 16, 2026
+
+      Three things this week.
+
+      1. Prompt caching pays, but not the way the pricing pages suggest
+
+      All three frontier labs now discount cached input tokens by 75-90%. We instrumented four production applications for two weeks. The ones with long, stable system prompts and short user turns (support bots, extraction pipelines) saved 55-70% on input cost. The ones with long, varying documents in context saved under 10%, because the cache never hits. The pricing pages show the discount; they do not show the hit rate. Measure yours before you build a budget on it.
+
+      2. Memory bandwidth, not FLOPs, is what you are paying for
+
+      A useful reframing from a talk at last week's systems conference: for inference at realistic batch sizes, the accelerator is memory-bound almost all the time, and the cost per token is set by how fast weights and KV-cache move, not by how many multiplies the chip can do. This is why the inference ASICs and the HBM4 parts matter more to your bill than the headline TFLOPS on the next GPU generation.
+
+      3. The largest optical-transceiver maker guides to a 60% revenue increase
+
+      Its earnings call was the clearest signal yet about where the bottleneck in cluster builds has moved. Lead times on 800G parts are 22 weeks; 1.6T parts are "allocated." The company is building a second plant in Thailand that opens in 2027. Until then, new cluster timelines are set by optics, not chips.
+
+      That is the issue. Reply with tips; we read everything.
+
+      Compute Ledger is written by two people in Oakland and supported by readers. Forward it to someone who runs a GPU budget.
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-computeledger-39
+    day: 22
+    time: "07:00"
+    from: {name: "Compute Ledger", email: "issue@computeledger.co"}
+    to: [avery]
+    subject: "Compute Ledger #39: small models on CPUs / a fine-tuning service shuts down / Virginia's grid says no"
+    bulk: true
+    signature: none
+    body: |
+      COMPUTE LEDGER - Issue 39 - Wednesday, March 18, 2026
+
+      Three things this week.
+
+      1. Sub-4B models on ordinary CPUs are good enough for a surprising amount of work
+
+      We ran the current crop of 1B-4B models on a standard cloud CPU instance with the newest quantized runtimes. Classification, routing, entity extraction and short summarization all ran at 20-40 tokens per second per core with accuracy within two points of the hosted mid-tier models. The cost per million tokens on that hardware is a few cents. If you are paying a hosted provider to classify support tickets, you are probably overpaying by two orders of magnitude.
+
+      2. Finetune.dev shuts down; customers have 60 days to export
+
+      The fine-tuning-as-a-service startup raised $40M in 2024 and could not make the unit economics work as base models got good enough that fine-tuning became a niche. Customers get their weights back; the hosted endpoints go dark on May 15. This is the third company in the category to close in a year. Fine-tuning is not dead, but the market for it as a standalone product appears to be.
+
+      3. A Virginia utility stops accepting new large-load applications
+
+      The largest utility in the state's data-center corridor said it will not take new interconnection requests above 100MW until 2028 while it works through the existing queue. Developers are moving to Ohio, Texas and Wyoming. The capacity you rent in 2027 is being sited right now, and it is not in Ashburn.
+
+      That is the issue. Reply with tips; we read everything.
+
+      Compute Ledger is written by two people in Oakland and supported by readers. Forward it to someone who runs a GPU budget.
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-computeledger-40
+    day: 27
+    time: "07:00"
+    from: {name: "Compute Ledger", email: "issue@computeledger.co"}
+    to: [avery]
+    subject: "Compute Ledger #40: a frontier model with a 'flex' tier / 4-bit is the new 8-bit / data-center REITs"
+    bulk: true
+    signature: none
+    body: |
+      COMPUTE LEDGER - Issue 40 - Monday, March 23, 2026
+
+      Three things this week.
+
+      1. Meridian AI launches Cobalt-4 with a "flex" service tier
+
+      The model itself is a solid frontier release, strongest on agentic tool use in our tests. The pricing is the news: a flex tier at 50% of standard price with a stated p99 latency of 30 seconds, aimed at background and agentic jobs that do not have a human waiting. It sits between the interactive tier and the 24-hour batch tier, and it is the first time a lab has priced latency as a dial rather than a switch. Expect the others to copy it by summer.
+
+      2. 4-bit weights are now the production default for open models
+
+      The two largest hosting providers switched their default open-model deployments to 4-bit quantization this month, after a year of 8-bit. Quality loss on the standard suites is under half a point; throughput roughly doubles. If your vendor is still serving you 16-bit weights and charging you for it, that is a conversation.
+
+      3. Data-center REITs report record leasing and warn about 2027
+
+      Two of the three largest reported the strongest quarterly leasing in their history and then spent their calls warning that power constraints mean 2027 deliveries will be well below demand. Pre-leasing on 2027 space is already at 80%. The message for anyone planning to rent a lot of compute two years out: the price of that space is being set now, and it is going up, not down.
+
+      That is the issue. Reply with tips; we read everything.
+
+      Compute Ledger is written by two people in Oakland and supported by readers. Forward it to someone who runs a GPU budget.
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  # ---------------------------------------------------------------- Plant Ops Digest (Wed 07:30; #112 on day 29 is S5's)
+  - id: nl-plantops-108
+    day: 1
+    time: "07:30"
+    from: {name: "Plant Ops Digest", email: "weekly@plantopsdigest.com"}
+    to: [avery]
+    subject: "Plant Ops Digest #108: Tamarack's changeover win, the OEE argument, a scheduler's reader question"
+    bulk: true
+    signature: none
+    body: |
+      PLANT OPS DIGEST
+      Issue 108 | Wednesday, February 25, 2026
+
+      For people who run plants and the people who sell to them. Four items this week.
+
+      PLANT OF THE WEEK: Tamarack Metalworks, Erie, PA
+      A 220-person job shop cut average changeover time on its CNC cells from 48 minutes to 19 by doing nothing more sophisticated than filming twenty changeovers and having the operators watch them together. The software they bought afterward to schedule around the new times was, in the plant manager's words, "the easy part." We visited; the whiteboard is still there.
+
+      THE OEE ARGUMENT, AGAIN
+      A consulting firm published a piece this week saying overall equipment effectiveness is "the most misused number in manufacturing." They are right that plants game it (redefining planned downtime is the classic move), and wrong that the answer is to stop tracking it. The answer is to track the three components separately and never let anyone report the product. Our take on the site.
+
+      AI ON THE FLOOR: what is actually deployed
+      We surveyed 140 plants with under 500 employees. Deployed in production: vision inspection (44%), predictive maintenance on at least one asset class (31%), scheduling assistance (18%), anything involving a language model (9%). Piloted and abandoned: 27% had at least one. The abandonments cluster around tools that needed data the plant did not have.
+
+      READER QUESTION
+      "Our scheduler retires in June and the schedule lives in his head. Where do we start?" Start by having him narrate a week of scheduling decisions into a recorder. Transcribe it. You will find the rules. Then decide whether to buy software, and buy the software that lets you encode those rules rather than the one with the nicest Gantt chart.
+
+      Plant Ops Digest is published every Wednesday. Forward freely. Manage your subscription: https://plantopsdigest.com/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-plantops-109
+    day: 8
+    time: "07:30"
+    from: {name: "Plant Ops Digest", email: "weekly@plantopsdigest.com"}
+    to: [avery]
+    subject: "Plant Ops Digest #109: Redwood Bottling's line-4 rebuild, maintenance backlogs, who owns the historian"
+    bulk: true
+    signature: none
+    body: |
+      PLANT OPS DIGEST
+      Issue 109 | Wednesday, March 4, 2026
+
+      Four items this week.
+
+      PLANT OF THE WEEK: Redwood Bottling, Sacramento, CA
+      A co-packer rebuilt its slowest line over a single long weekend, replacing a 1998 filler and re-laying the conveyor so the labeler is no longer the bottleneck. Throughput up 35%. The interesting decision was what they did not do: they kept the old PLCs and put a gateway in front of them rather than rip and replace. "We wanted the data, not a new control system," the operations director told us. That sentence is the whole industrial-software market in nine words.
+
+      MAINTENANCE BACKLOGS ARE AT A TEN-YEAR HIGH
+      A trade association survey puts the average deferred-maintenance backlog at mid-size plants at 14 weeks, up from 9 in 2019. The causes are the usual: a retiring workforce, parts lead times, and capital that went to automation instead. Predictive-maintenance vendors will tell you this is their moment. It might be; it is also why the pilots stall, because the team that would act on the predictions is the team that is 14 weeks behind.
+
+      WHO OWNS THE HISTORIAN
+      An argument breaking out at several plants we talk to: the process historian was IT's system for twenty years, and now three different software vendors want to read from it, write to it, or replace it. The plants that are handling this well have one person, usually in operations, who owns data access and says yes or no in a week. The ones handling it badly have a committee.
+
+      READER QUESTION
+      "How much should a scheduling tool cost for a two-line food plant?" Less than the scheduler's salary, more than the ERP module you already own and do not use. If a vendor quotes six figures for two lines, they are pricing the enterprise and hoping you do not notice.
+
+      Plant Ops Digest is published every Wednesday. Forward freely. Manage your subscription: https://plantopsdigest.com/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-plantops-110
+    day: 15
+    time: "07:30"
+    from: {name: "Plant Ops Digest", email: "weekly@plantopsdigest.com"}
+    to: [avery]
+    subject: "Plant Ops Digest #110: Bexley Foods' allergen changeovers, the ERP-upgrade season, a cobot that pays"
+    bulk: true
+    signature: none
+    body: |
+      PLANT OPS DIGEST
+      Issue 110 | Wednesday, March 11, 2026
+
+      Four items this week.
+
+      PLANT OF THE WEEK: Bexley Foods, Grand Rapids, MI
+      A snack manufacturer running eleven allergen profiles on three lines got its sequencing under control by treating allergen changeovers as the primary scheduling constraint rather than a cleanup afterthought. Wash-downs per week fell from 31 to 18; the plant added a shift's worth of capacity without adding a shift. The tool they used was a mid-market scheduler; the work was in getting the allergen matrix out of a binder and into a table.
+
+      IT IS ERP-UPGRADE SEASON, AND THE FLOOR IS NERVOUS
+      Roughly a third of the plants in our reader base are mid-upgrade on their ERP this year, most of them moving to a cloud edition on a deadline set by the vendor's end-of-support date. The floor-level worry is the same everywhere: every integration that touches production will need re-testing, and the plant does not have a test line. Our advice, from the plants that did this last year: freeze every other floor-system change for the upgrade window, and get the integrator to commit in writing to which interfaces change.
+
+      A COBOT THAT ACTUALLY PAID BACK
+      Case packing at a 90-person coffee roaster. One collaborative arm, $68,000 installed, replaced a rotation of temp workers the roaster could not keep. Payback in eleven months, not because the robot is fast (it is not) but because it runs the second shift nobody would work. The vendor's ROI calculator said fourteen months; the roaster's said eleven. Both were right for once.
+
+      READER QUESTION
+      "Our vision system flags 4% of product and 3.5% of those are false rejects. Vendor says retrain. Thoughts?" Retrain, yes, but first check the lighting. Half the false-reject problems we have seen were a fluorescent tube that changed color temperature as it aged.
+
+      Plant Ops Digest is published every Wednesday. Forward freely. Manage your subscription: https://plantopsdigest.com/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-plantops-extra-17
+    day: 17
+    time: "12:05"
+    from: {name: "Plant Ops Digest", email: "weekly@plantopsdigest.com"}
+    to: [avery]
+    subject: "Plant Ops Digest Extra: notes from the Pacific Plant Automation Expo floor"
+    bulk: true
+    signature: none
+    body: |
+      PLANT OPS DIGEST - EXTRA
+      Friday, March 13, 2026
+
+      A short one between issues. We spent two days at the Pacific Plant Automation Expo in San Jose. Five notes.
+
+      1. Every booth said "AI." About one in six could show a deployment at a plant with under 500 people and a named reference willing to talk. Ask for the reference before the demo, not after.
+
+      2. The autonomous forklift vendors have won the floor. Four companies, all shipping, all quoting under $120,000 per unit with a two-year payback against a $24-an-hour operator. The humanoid demos drew crowds and zero purchase orders that we could find.
+
+      3. The MES vendors are scared of the scheduling startups and are pricing accordingly. Two of the big ones announced "lite" scheduling modules bundled free with the MES license. Whether free software that nobody configures beats paid software that someone does is the question of the next two years.
+
+      4. Vision inspection is a commodity now. Six vendors, roughly the same accuracy, roughly the same price. The differentiation has moved to how fast you can add a new SKU without a vendor visit. One vendor claimed four hours; a plant manager in the audience said "prove it" and they did, on stage, with a bag of pretzels.
+
+      5. The most-attended session was not about AI at all. It was a panel of three plant managers on how they got their maintenance teams to actually use a CMMS. The answer, in all three cases, was a tablet at the machine and a manager who checked the log every morning.
+
+      Full notes and photos on the site. The regular issue lands Wednesday.
+
+      Plant Ops Digest is published every Wednesday. Forward freely. Manage your subscription: https://plantopsdigest.com/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-plantops-111
+    day: 22
+    time: "07:30"
+    from: {name: "Plant Ops Digest", email: "weekly@plantopsdigest.com"}
+    to: [avery]
+    subject: "Plant Ops Digest #111: Corvid Packaging's second-shift problem, the tariff pass-through, scheduling by exception"
+    bulk: true
+    signature: none
+    body: |
+      PLANT OPS DIGEST
+      Issue 111 | Wednesday, March 18, 2026
+
+      Four items this week.
+
+      PLANT OF THE WEEK: Corvid Packaging, Reno, NV
+      A corrugated converter with a first shift that hits plan and a second shift that runs 20% behind on the same equipment. The usual explanation is people; the actual explanation, once they instrumented it, was that the second shift inherited every job the first shift did not want. The scheduler now sequences across both shifts as a single day. Second-shift output is up 14% and nobody was hired, fired or retrained.
+
+      THE TARIFF PASS-THROUGH IS SHOWING UP IN CAPEX
+      A survey of 300 plant managers out this week: 61% have deferred at least one equipment purchase this year because of tariff-driven price increases on imported machinery and on the steel in domestic machinery. The deferrals fall hardest on packaging lines and material handling. Vendors are responding with financing and with "refurbished" programs that would have been unthinkable two years ago.
+
+      SCHEDULING BY EXCEPTION
+      A pattern from the plants getting the most out of new scheduling tools: they do not have the software produce the schedule. They have the scheduler produce it, as before, and the software flag the ten places where it is likely to break: a maintenance window nobody moved, a material that has not been received, a changeover that has never been done in the sequence proposed. The scheduler fixes those ten and ignores the rest. Adoption is high because the scheduler is still the scheduler.
+
+      READER QUESTION
+      "Our ERP vendor says their new planning module makes our third-party scheduler redundant. Is it?" Ask them to schedule one week of your actual plant, live, with your actual constraints, in front of your actual scheduler. The answer will be obvious within an hour.
+
+      Plant Ops Digest is published every Wednesday. Forward freely. Manage your subscription: https://plantopsdigest.com/manage
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null

@@ -1,0 +1,143 @@
+id: S13
+name: priya-gpu-commit
+reviewed: false
+tier_truth: P0
+summary: >
+  Held-out disguise of dev S13. Priya (co-founder, CTO) never emails Avery; on Tuesday day 28 at 20:41 she does,
+  on purpose: the reserved-capacity commitment on the GPU pool at Kestrel Compute expires Mar 31 and Kestrel raises
+  on-demand prices 18% on April 1. She lays out the numbers (one-year commit $153k/yr vs ~$222k/yr on demand at the
+  new rate vs a smaller commit plus burst), recommends yes, and needs a yes/no by Friday because Kestrel wants the
+  signed order by Monday 3/30. Avery does not reply. On Wednesday day 29 at 07:00 the Compute Ledger newsletter
+  reports Kestrel's April 1 price increase. Tests: the profile's "if Priya emails instead of slacks, it's intentional"
+  rule → P0 (P0 case 9); `decide` with options and a recommendation, not a fake approval; the news item attaches to
+  the open item on day 30; Priya's "+1" cc reply on the closed GPU autoscaler thread (day 22) must not surface.
+
+threads:
+  - {id: t-priya-gpu,      subject: "gpu reserved commit - need a yes/no by friday", category: internal_routine}
+  - {id: t-gpu-autoscaler, subject: "gpu pool autoscaler: drop min nodes to 4 off-hours?", category: internal_routine}
+newsletters:
+  - {id: nl-computeledger-41, publication: "Compute Ledger", from: {name: "Compute Ledger", email: "issue@computeledger.co"}, day: 29, time: "07:00", category: newsletters,
+     items: [{headline_hint: "Kestrel Compute raises on-demand GPU pricing 18% on April 1; committed-use rates unchanged for existing terms", attaches_to: [other:gpu-commit-decision]},
+             {headline_hint: "Marigold-2 open-weights release and benchmark table", attaches_to: []},
+             {headline_hint: "800G optical transceiver lead times (the interconnect squeeze)", attaches_to: []}]}
+
+beats:
+  - {ref: S13.h1, day: 22, time: "10:05", source: email, thread: t-gpu-autoscaler, from: arjun, to: [jordan], cc: [priya, avery],
+     event: "proposes dropping the GPU pool autoscaler minimum from 6 to 4 nodes outside business hours for Halberd backfill jobs; runbook link; asks Jordan for the OK", hardness: [technical_jargon]}
+  - {ref: S13.h2, day: 22, time: "11:40", source: email, thread: t-gpu-autoscaler, from: jordan, to: [arjun], cc: [priya, avery],
+     event: "approves with two conditions: queue-latency alert, revert if the morning backfill slips"}
+  - {ref: S13.h3, day: 22, time: "11:52", source: email, thread: t-gpu-autoscaler, from: priya, to: [jordan], cc: [arjun, avery],
+     event: "'+1. ship it.' keep the reserved 8 warm regardless; FYI-only cc reply on a closed thread (must-not: Priya FYI cc)", must_include: ["+1"]}
+  - {ref: S13.n1, day: 21, time: "16:00", source: note, note: finance-review.md,
+     event: "finance review (pinned in README): 'GPU reserved commit' ends 3/31, Priya to recommend", must_include: ["GPU reserved commit"]}
+  - {ref: S13.b1, day: 28, time: "20:41", source: email, thread: t-priya-gpu, from: priya, to: [avery], cc: [],
+     event: "reserved commit on the 8-GPU pool expires Mar 31; Kestrel raises on-demand 18% April 1; numbers: 1yr commit $153k/yr ($12.75k/mo) vs on-demand ~$18.5k/mo (~$222k/yr) vs 6-gpu commit + burst ~$170k/yr; 81% utilization, Northstar adds ~10% Apr 1; rec: yes, 1yr, 8 gpus; counter: cash during the raise; needs yes/no by friday, Kestrel wants the signed order by Monday 3/30; 'emailing so there's a paper trail'",
+     must_include: ["$153k", "Mar 31", "April 1", "yes/no by friday", "paper trail"], hardness: [lowercase, terse]}
+  - {ref: S13.b2, day: 29, time: "07:00", source: newsletter, newsletter: nl-computeledger-41, from: {name: "Compute Ledger", email: "issue@computeledger.co"},
+     event: "Compute Ledger #41: Kestrel Compute raises on-demand GPU pricing 18% on April 1, committed-use rates unchanged for existing terms; two unrelated items",
+     must_include: ["Kestrel Compute", "April 1", "18%"]}
+
+labels:
+  - thread: t-priya-gpu
+    category: internal_routine
+    storyline: S13
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [other:gpu-commit-decision]
+      ball_awaiting: avery
+      closed_by_courtesy: false
+      sender_relationship: {category: team, subtype: cofounder}
+      asks: [{to_avery: true, kind: decision, deadline_day: 31, status: open}]
+      claims: [{subject: gpu_commit_annual_cost, value: "$153k"}, {subject: gpu_commit_expiry, value: "Mar 31"}, {subject: on_demand_price_increase, value: "18% on April 1"}]
+      suspicious: false
+    messages:
+      - {beat_ref: S13.b1, day: 28, time: "20:41", from: priya, to: [avery], must_include: ["$153k", "Mar 31", "April 1", "yes/no by friday", "paper trail"]}
+  - thread: t-gpu-autoscaler
+    category: internal_routine
+    storyline: S13
+    must_not_surface: true
+    must_not_reason: handled_by_team
+    classification_case: priya_fyi_cc_on_closed_thread
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [other:gpu-autoscaler]
+      ball_awaiting: nobody
+      closed_by_courtesy: false
+      sender_relationship: {category: team, subtype: ic}
+      asks: [{to_avery: false, kind: approval, deadline_day: null, status: answered}]
+      suspicious: false
+    messages:
+      - {beat_ref: S13.h1, day: 22, time: "10:05", from: arjun,  to: [jordan], cc: [priya, avery]}
+      - {beat_ref: S13.h2, day: 22, time: "11:40", from: jordan, to: [arjun],  cc: [priya, avery]}
+      - {beat_ref: S13.h3, day: 22, time: "11:52", from: priya,  to: [jordan], cc: [arjun, avery], must_include: ["+1"]}
+  - newsletter: nl-computeledger-41
+    category: newsletters
+    storyline: S13
+    expected:
+      type: newsletter
+      news_items:
+        - {headline_hint: "Kestrel Compute on-demand GPU price increase April 1", topics: [gpu-pricing, inference-cost], entities: [Kestrel Compute], attaches_to: [other:gpu-commit-decision]}
+        - {headline_hint: "Marigold-2 open-weights benchmark table", topics: [ai-models], entities: [], attaches_to: []}
+        - {headline_hint: "800G transceiver lead times", topics: [infrastructure], entities: [], attaches_to: []}
+  - note: finance-review.md
+    storyline: S13
+    note: "shared pinned note (README); labeled once by the notes owner (S10 owns ARR $3.6M); this block records what S13 relies on"
+    expected:
+      type: note
+      note_kind: meeting_notes
+      about: [other:gpu-commit-decision, other:profile-arr]
+      claims: [{subject: gpu_reserved_commit_end, value: "3/31"}]
+
+contacts:
+  - {id: priya, category: team, subtype: cofounder, tier: P0,   in_profile: true, rules: [email_means_intentional]}
+  - {id: arjun, category: team, subtype: ic,        tier: null, in_profile: false}
+  - {id: jordan, category: team, subtype: exec,     tier: P1,   in_profile: true, rules: [escalates_rarely], note: "context only in S13"}
+
+about_keys:
+  should_merge: [[other:gpu-commit-decision, other:gpu-reserved-commit], [other:gpu-commit-decision, other:gpu-capacity-commit]]
+  should_not_merge: [[other:gpu-commit-decision, rollout:northstar:apr-1], [other:gpu-commit-decision, other:gpu-autoscaler]]
+
+expectations:
+  - run_day: 26
+    absent: [other:gpu-commit-decision]
+    noise: [t-gpu-autoscaler]
+  - run_day: 27
+    absent: [other:gpu-commit-decision]
+    noise: [t-gpu-autoscaler]
+  - run_day: 28
+    absent: [other:gpu-commit-decision]
+    notes: "email is at 20:41, after the run; finance-review.md (day 21) mentions the GPU reserved commit only as 'Priya to recommend'"
+    noise: [t-gpu-autoscaler]
+  - run_day: 29
+    candidates: [{type: reply_owed, about: other:gpu-commit-decision, facts_hint: {deadline_day: 31, sender_rule: email_means_intentional}}]
+    items: [{about: other:gpu-commit-decision, priority: P0, section: decisions, actions_any: [decide, reply], cites_any: [t-priya-gpu],
+             notes: "'Priya emailed (Priya never does): the GPU reserved commit expires Mar 31; yes/no on a one-year $153k commit by Friday.' decide with options + Priya's recommendation; a short reply draft is acceptable only if it commits to an option; never an approve"}]
+    noise: [t-gpu-autoscaler]
+  - run_day: 30
+    candidates:
+      - {type: reply_owed,      about: other:gpu-commit-decision}
+      - {type: news_attachment, about: other:gpu-commit-decision, facts_hint: {source: nl-computeledger-41}}
+    items:
+      - {about: other:gpu-commit-decision, priority: P0, section: decisions, actions_any: [decide, reply], cites_any: [t-priya-gpu], notes: "second day; escalate framing; Friday is tomorrow"}
+      - {about: other:gpu-commit-decision, priority_band: [P1, P2], section: news, actions_any: [read, decide], cites_any: [nl-computeledger-41],
+         notes: "news attachment: Kestrel's 18% April 1 increase is now public and confirms Priya's on-demand math; compose may fold it into the decision item as long as the newsletter is cited"}
+    noise: [t-gpu-autoscaler]
+
+assertions:
+  - {id: S13-d29-p0,               kind: item_present,      run_day: 29, args: {about: other:gpu-commit-decision, priority: P0}, description: "P0 case 9: Priya emails → ranked high"}
+  - {id: S13-d29-not-fake-approve, kind: action_absent,     run_day: 29, args: {about: other:gpu-commit-decision, action: approve}}
+  - {id: S13-d30-p0,               kind: item_present,      run_day: 30, args: {about: other:gpu-commit-decision, priority: P0}}
+  - {id: S13-d30-news-attached,    kind: candidate_present, run_day: 30, args: {type: news_attachment, about: other:gpu-commit-decision}, description: "eval.md §3 Newsletter: the S13 item attaches"}
+  - {id: S13-d30-news-cited,       kind: item_present,      run_day: 30, args: {about: other:gpu-commit-decision, cites_any: [nl-computeledger-41]}}
+  - {id: S13-d29-news-not-yet,     kind: candidate_absent,  run_day: 29, args: {type: news_attachment, about: other:gpu-commit-decision}, description: "newsletter arrives 07:00 on day 29"}
+  - {id: S13-priya-fyi-noise,      kind: item_absent,       run_day: 30, args: {source_id: t-gpu-autoscaler}, description: "Priya's '+1' cc on the closed autoscaler thread must not surface"}
+
+sim_avery:
+  - {scope_about: other:gpu-commit-decision, intended_option: 1, rationale: "yes: sign the one-year commit at $153k; on-demand at Kestrel's April rate is ~$69k/yr more, utilization is 81% and Northstar adds load Apr 1; revisit node count after the round closes"}
+simulate:
+  - {id: S13-sim-escalates, kind: escalation_framing, run_day: 30, args: {about: other:gpu-commit-decision, min_times_surfaced: 2, mode: simulate}}
+variants: []

@@ -1,0 +1,90 @@
+id: S16
+name: fulfilled-409a-comments
+reviewed: false
+tier_truth: none
+summary: >
+  Monday day 20 (Mar 16) Nora sends the 409A valuation draft from Ledgerline and asks for comments by Friday
+  (3/20); Avery replies in that thread that evening, indirectly, "give me the week, comments by Friday". On Friday
+  day 24 at 15:35 Avery sends the comments in a NEW thread ("409A - my notes") with a different subject; Nora
+  acknowledges at 16:10. The promise is fulfilled across threads before the run window and must not surface on any
+  run day; there is no todo for it anywhere. Tests: cross-thread fulfillment via `fulfills_hint` + about key +
+  recipient + time order (extraction_schema §6.3). Distinct from S15's on-call stipend sign-off (also a
+  Nora/finance item).
+
+threads:
+  - {id: t-409a-draft, subject: "409A draft from Ledgerline - comments by Friday?", category: internal_routine}
+  - {id: t-409a-notes, subject: "409A - my notes",                                  category: internal_routine}
+
+beats:
+  - {ref: S16.b1, day: 20, time: "11:20", source: email, thread: t-409a-draft, from: nora, to: [avery], cc: [priya],
+     event: "409A draft attached (Ledgerline); preliminary common at $1.42/share; inputs table pasted inline; two flags; asks for comments by Friday (3/20) so Dennis can finalize by Wed 3/25 before the March option grants go to the board", must_include: ["comments by Friday"], hardness: [long]}
+  - {ref: S16.b2, day: 20, time: "18:12", source: email, thread: t-409a-draft, from: avery, to: [nora], cc: [priya],
+     event: "indirect: 'give me the week, comments by Friday'", must_include: ["comments by Friday"], hardness: [indirect_phrasing, quoted_history]}
+  - {ref: S16.b3, day: 24, time: "15:35", source: email, thread: t-409a-notes, from: avery, to: [nora], cc: [priya],
+     event: "new thread '409A - my notes': six notes on the draft by page; 'as promised'", must_include: ["my notes on the 409A draft", "as promised"]}
+  - {ref: S16.b4, day: 24, time: "16:10", source: email, thread: t-409a-notes, from: nora, to: [avery], cc: [priya],
+     event: "thanks, sending to Dennis this afternoon — courtesy", must_include: ["thanks"]}
+
+labels:
+  - thread: t-409a-draft
+    category: internal_routine
+    storyline: S16
+    must_not_surface: true
+    must_not_reason: commitment_fulfilled_cross_thread
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [report:409a-draft]
+      ball_awaiting: avery            # within this thread alone; compute must close it via t-409a-notes
+      closed_by_courtesy: false
+      sender_relationship: {category: team, subtype: ic}
+      asks: [{to_avery: true, kind: review, deadline_day: 24, status: open}]
+      commitments: [{owner: avery, about: report:409a-draft, due_day: 24, due_time: "23:59", status_in_thread: open, fulfilled_by_source: t-409a-notes}]
+    messages:
+      - {beat_ref: S16.b1, day: 20, time: "11:20", from: nora,  to: [avery], cc: [priya], must_include: ["comments by Friday"]}
+      - {beat_ref: S16.b2, day: 20, time: "18:12", from: avery, to: [nora],  cc: [priya], must_include: ["comments by Friday"], is_from_avery: true}
+  - thread: t-409a-notes
+    category: internal_routine
+    storyline: S16
+    must_not_surface: true
+    must_not_reason: last_word_courtesy_fulfilment
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: commitment_update
+      about: [report:409a-draft]
+      ball_awaiting: nobody
+      closed_by_courtesy: true
+      sender_relationship: {category: team, subtype: ic}
+      commitments: [{owner: avery, about: report:409a-draft, due_day: 24, status_in_thread: fulfilled}]   # fulfills_hint set here
+    messages:
+      - {beat_ref: S16.b3, day: 24, time: "15:35", from: avery, to: [nora],  cc: [priya], must_include: ["my notes on the 409A draft", "as promised"], is_from_avery: true}
+      - {beat_ref: S16.b4, day: 24, time: "16:10", from: nora,  to: [avery], cc: [priya], must_include: ["thanks"]}
+  - task_absent: report:409a-draft
+
+contacts:
+  - {id: nora, category: team, subtype: ic, tier: null, in_profile: false}
+
+about_keys:
+  should_merge: [[report:409a-draft, report:409a], [report:409a-draft, report:409a-valuation]]
+  should_not_merge: [[report:409a-draft, approval:oncall-stipend]]
+
+expectations:
+  - {run_day: 26, absent: [report:409a-draft], noise: [t-409a-draft, t-409a-notes]}
+  - {run_day: 27, absent: [report:409a-draft], noise: [t-409a-draft, t-409a-notes]}
+  - {run_day: 28, absent: [report:409a-draft], noise: [t-409a-draft, t-409a-notes]}
+  - {run_day: 29, absent: [report:409a-draft], noise: [t-409a-draft, t-409a-notes]}
+  - {run_day: 30, absent: [report:409a-draft], noise: [t-409a-draft, t-409a-notes]}
+
+assertions:
+  - {id: S16-absent-d26,        kind: item_absent,      run_day: 26, args: {about: report:409a-draft}, description: "eval.md §3 S16: fulfilled 409A comments absent (sent Fri day 24 in a separate thread)"}
+  - {id: S16-absent-d30,        kind: item_absent,      run_day: 30, args: {about: report:409a-draft}}
+  - {id: S16-no-overdue-d26,    kind: candidate_absent, run_day: 26, args: {type: commitment_overdue, about: report:409a-draft}, description: "the deadline (day 24 23:59) has passed; the cross-thread fulfillment must be recognised on the first run"}
+  - {id: S16-no-overdue-cand,   kind: candidate_absent, run_day: 30, args: {type: commitment_overdue, about: report:409a-draft}}
+  - {id: S16-no-not-in-tasks,   kind: candidate_absent, run_day: 30, args: {type: commitment_not_in_tasks, about: report:409a-draft}}
+  - {id: S16-thread-noise,      kind: item_absent,      run_day: 30, args: {source_id: t-409a-draft}}
+
+sim_avery: []
+simulate: []
+variants: []

@@ -1,0 +1,30 @@
+thread_id: t-jun-photos
+subject: "tide pool pics from saturday"
+storyline: S11
+category: personal
+labels: null
+messages:
+  - id: m1
+    beat_ref: S11.b3
+    day: 26
+    time: "10:15"
+    from: jun
+    to: [avery, sam]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi both,
+
+      Finally got the tide pool pictures off my phone. Album is here: https://albums.driftbox.app/s/k2m9-pillarpoint (should open without a login, tell me if it asks for one).
+
+      Highlights: Wren holding the hermit crab like it owed money. The three of you on the rocks where you can't tell who is more soaked. The anemone Wren insisted I photograph "for science." Also one very unflattering picture of me that you are welcome to delete.
+
+      Other things, no rush on any of it:
+      - Mom's flight is confirmed for the 11th, landing 2:40, I'll pick her up. She is asking whether the 12th works for dinner; I said probably and that I'd check with you two.
+      - My birthday: I genuinely don't need anything, but if Sam is making the lemon thing again I will not object.
+      - I found a copy of the first book from that series Wren likes at Walden Pond, I'll bring it over.
+
+      Anyway, no need to reply to any of this. Talk this week.

@@ -1,0 +1,54 @@
+thread_id: t-internal-kofi-course
+subject: "ok to expense a Postgres course ($249)?"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_by_team
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [other:training-expense-kofi]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 8
+    time: "16:20"
+    from: kofi
+    to: [jordan]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hey Jordan,
+
+      Quick one, and sorry if this is the wrong way to ask. Is it ok if I expense the "Postgres Internals for Application Developers" course ($249, self-paced, about 12 hours)? It's the one Arjun did last year and keeps quoting at me. The export scheduler work has me deep in the job queue tables and I'd rather understand what the planner is doing than keep guessing, so it's directly relevant, but I know it's not nothing and I didn't want to just put it on the card and surprise Nora.
+
+      If yes I'd do it evenings over the next two weeks, so no impact on the sprint. If no, totally fine, I'll do the free version and complain gently.
+
+      Cc'ing Avery only because the expense policy slide on Friday said training goes to your manager with Avery cc'd, and I am nothing if not compliant.
+
+      Thanks!
+  - id: m2
+    beat_ref: null
+    day: 8
+    time: "16:45"
+    from: jordan
+    to: [kofi]
+    cc: [avery]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Yes. Expense it under Training in Brex; anything under $500 that's job-relevant is a yes by default, you don't need to ask. Good pick; the planner chapter will pay for itself the first time the queue table gets a bad plan.
+
+      Avery, nothing needed.

@@ -1,0 +1,80 @@
+thread_id: t-imogen-option-grants
+subject: "February new-hire option grants - grant notices"
+storyline: null
+category: lawyer
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_closed
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [approval:option-grants-february]
+    ball_awaiting: nobody
+    closed_by_courtesy: true
+    sender_relationship: {category: capital, subtype: deal_counsel}
+    asks: [{to_avery: false, kind: information, deadline_day: null, status: answered}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 9
+    time: "11:00"
+    from: imogen
+    to: [nora]
+    cc: [avery, ben]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Dear Nora,
+
+      Now that the written consent for the February grants is fully executed (Avery signed on Monday), I am preparing the grant paperwork. To finalize, could you confirm the following:
+
+      1. Felix Wagner: start date February 2, 2026; 15,000 options; vesting commencement date = start date.
+      2. Carmen Ortiz: start date February 9, 2026; 12,000 options; vesting commencement date = start date.
+      3. Exercise price: per the 409A valuation currently in effect; Ben will confirm the figure in the notices.
+      4. Early exercise: permitted for both, per the consent.
+
+      Once confirmed I will send the Notice of Stock Option Grant and Option Agreement for each to you for distribution via Carta, and I will update the cap table in the data room.
+
+      Kind regards,
+  - id: m2
+    beat_ref: null
+    day: 9
+    time: "14:20"
+    from: nora
+    to: [imogen]
+    cc: [avery, ben]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Hi Imogen,
+
+      Confirmed, with one correction on Felix's start date:
+
+      | Name          | Start date | Options | VCD        | Early exercise |
+      | Felix Wagner  | 2026-02-03 | 15,000  | 2026-02-03 | yes            |
+      | Carmen Ortiz  | 2026-02-09 | 12,000  | 2026-02-09 | yes            |
+
+      Felix started Tuesday, February 3 (the 2nd was a company holiday). Please send the notices when ready and I will distribute via Carta the same day.
+  - id: m3
+    beat_ref: null
+    day: 9
+    time: "16:05"
+    from: imogen
+    to: [nora]
+    cc: [avery, ben]
+    reply_to: m2
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Thank you, Nora; corrected to February 3 for Felix. Both notices and option agreements are attached (Grant_Notice_Wagner_2026-03-05.pdf, Grant_Notice_Ortiz_2026-03-05.pdf, with agreements). The cap table in the data room has been updated to reflect the grants. Nothing further is needed from Avery.
+
+      Kind regards,

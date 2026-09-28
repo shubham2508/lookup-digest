@@ -1,0 +1,71 @@
+thread_id: t-veritas-qbr
+subject: "QBR - April dates"
+storyline: S6
+category: customers
+labels: null
+messages:
+  - id: m1
+    beat_ref: S6.b15
+    day: 16
+    time: "13:50"
+    from: dmitri
+    to: [tomas]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Tomás, QBR. Can we aim for the week of April 6? Things I'd want on the agenda, in no particular order:
+
+      - Line 4 seats: usage after a month, are the supervisors actually using it or just logging in
+      - the automatic lot-hold idea Anika keeps bringing up
+      - roadmap: what's coming in Q2 that we should plan around
+
+      Our office if you can face the drive; the coffee has improved.
+
+      Dmitri
+  - id: m2
+    beat_ref: S6.b16
+    day: 16
+    time: "17:35"
+    from: tomas
+    to: [dmitri]
+    cc: [avery]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Dmitri!
+
+      Love it. Three options for the QBR, all 90 minutes, your office (I accept the coffee challenge):
+
+      Option A: Tuesday, April 7, 10:00–11:30
+      Option B: Wednesday, April 8, 13:00–14:30
+      Option C: Thursday, April 9, 09:00–10:30
+
+      Agenda draft, building on yours:
+      1. Line 4 after one month: adoption by shift, exceptions caught, the supervisor-phone alerts (Hana has the numbers)
+      2. Quality: spec refs on lot records (live), the automatic lot hold (Hana will bring a sketch of what it could look like)
+      3. Roadmap for Q2: CSV export improvements, mobile approvals, and the ERP connector work we're doing for another customer that may be relevant for you
+      4. Anything Hugo's team wants covered; happy to have him join for the last 30 minutes
+
+      I'll bring Hana and, if the date works, Avery for the first hour. Once you pick, I'll send the invite to you and whoever you want on your side.
+
+      Talk soon!
+  - id: m3
+    beat_ref: S6.b17
+    day: 17
+    time: "09:00"
+    from: dmitri
+    to: [tomas]
+    cc: [avery]
+    reply_to: m2
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      B, Wednesday April 8, tentatively. our office. I'll confirm who's joining from our side once Hugo's calendar settles, he's in quarter-end mode.
+
+      Dmitri

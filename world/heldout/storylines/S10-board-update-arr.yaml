@@ -1,0 +1,131 @@
+id: S10
+name: board-update-arr
+reviewed: false
+tier_truth: P1
+summary: >
+  board-meeting-minutes.md (board meeting Thursday day 2, Feb 26) records that Diane asked for a short written update
+  every month until the round closes and Avery agreed; the last update went out Feb 9. Nothing since: at day 30 the
+  last update is 45 days old, 17 days past a monthly cadence (due Mar 9). tasks.md lists "Send Diane the March
+  investor update" due day 20 (Mar 16) and avery-todos.md lists the same item "(by 3/13)" (duplicate, different
+  date). Avery's investor-update-draft.md (Sunday day 19) is half-written and says "$3.2M" with Pipeline "TBD";
+  finance-review.md (Tuesday day 21) says "ARR $3.6M" as of Mar 15. The profile says quarterly updates and ~$3.2M
+  ARR. Diane's one check-in (Wednesday day 15) closes itself with "no rush"; she never nags. Tests: obligation
+  computed from the newer (monthly) cadence, not the profile's quarterly; the ARR claim contradiction inside Avery's
+  own draft; any investor/board draft uses $3.6M and flags the drift; `profile_update` for the cadence and the ARR;
+  tasks-vs-todo duplicate noted, not doubled; the Diane thread is noise.
+
+threads:
+  - {id: t-diane-checkin, subject: "How's the round going?", category: investors_board}
+
+beats:
+  - {ref: S10.n1, day: 2,  time: "16:45", source: note, note: board-meeting-minutes.md,
+     event: "board meeting minutes (Feb 26): attendees Avery, Priya, Diane, Nora; 'Diane: a short written update every month until the round closes. Agreed. Last update sent Feb 9.'; ARR $3.2M as of Jan 31; other agenda",
+     must_include: ["every month until the round closes", "Feb 9"]}
+  - {ref: S10.b1, day: 15, time: "10:20", source: email, thread: t-diane-checkin, from: diane, to: [avery], event: "warm check-in on the raise two weeks after the board meeting; no ask beyond 'how is it feeling'; says she will introduce Marco Bellini (Tidewater) later in the week (the intro itself is background, day 17)", hardness: [mixed_topics]}
+  - {ref: S10.b2, day: 15, time: "13:40", source: email, thread: t-diane-checkin, from: avery, to: [diane], event: "IPV in diligence; welcomes the Marco intro; 'i owe you the March update - it's half written. i'll get it to you next week' (soft, never sent)", must_include: ["update"]}
+  - {ref: S10.b3, day: 15, time: "15:05", source: email, thread: t-diane-checkin, from: diane, to: [avery], event: "'no rush on the update' — courtesy close", must_include: ["no rush"]}
+  - {ref: S10.n2, day: 19, time: "22:05", source: note, note: investor-update-draft.md,
+     event: "Avery's half-written March update: 'ARR: $3.2M' in the metrics block; 'Pipeline: TBD'; hiring and ask sections unfinished", must_include: ["$3.2M", "TBD"]}
+  - {ref: S10.n3, day: 20, time: "07:40", source: note, note: avery-todos.md,
+     event: "personal scratch todo: 'send Diane the March update (by 3/13)' — duplicates tasks.md task 1 (due 3/16) with a different date; labeled in notes.yaml, cited here", must_include: ["March update"]}
+  - {ref: S10.n4, day: 21, time: "16:00", source: note, note: finance-review.md,
+     event: "finance review (Tue Mar 17): Avery, Nora, Priya; 'ARR $3.6M as of Mar 15'; GPU reserved commit ends 3/31, Priya to recommend (S13); payroll funding account switched to the new bank (BG Gusto)", must_include: ["ARR $3.6M"]}
+
+labels:
+  - thread: t-diane-checkin
+    category: investors_board
+    storyline: S10
+    must_not_surface: true
+    must_not_reason: closed_by_courtesy
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: social
+      about: [board-update:monthly]
+      ball_awaiting: nobody
+      closed_by_courtesy: true
+      sender_relationship: {category: capital, subtype: board_member, stage: existing}
+      commitments: [{owner: avery, about: board-update:monthly, due_day: 22, status_in_thread: open}]    # "i'll get it to you next week", soft
+  - note: board-meeting-minutes.md
+    storyline: S10
+    expected:
+      type: note
+      note_kind: meeting_notes
+      about: [board-update:monthly]
+      agreements: [{rule: "a short written update every month until the round closes", cadence: monthly}]
+      claims: [{subject: last_board_update_sent, value: "Feb 9"}, {subject: ARR, value: "$3.2M"}]
+  - note: investor-update-draft.md
+    storyline: S10
+    expected:
+      type: note
+      note_kind: draft
+      draft_of: "investor update"
+      about: [board-update:monthly]
+      claims: [{subject: ARR, value: "$3.2M"}]
+  - note: finance-review.md
+    storyline: S10
+    expected:
+      type: note
+      note_kind: meeting_notes
+      about: [board-update:monthly, other:gpu-commit-decision]
+      claims: [{subject: ARR, value: "$3.6M"}]
+      action_items: [{owner: other, about: other:gpu-commit-decision, due_day: null, status_in_thread: open}]
+  - task: task:1
+    storyline: S10
+    expected: {type: task, about: [board-update:monthly]}
+    note: "tasks.md 'Send Diane the March investor update (due: 2026-03-16)'; file mtime day 18; duplicated in avery-todos.md with 3/13"
+
+contacts:
+  - {id: diane, category: capital, subtype: board_member, tier: P1, in_profile: true, stages: [{from_day: 1, stage: existing}]}
+
+about_keys:
+  should_merge: [[board-update:monthly, board-update:march], [board-update:monthly, board-update:diane]]
+  should_not_merge: [[board-update:monthly, deal:series-a:operating-model]]
+
+expectations:
+  - run_day: 26
+    candidates:
+      - {type: obligation_cadence, about: board-update:monthly, facts_hint: {cadence: monthly, last_sent: "Feb 9", days_since: 41, days_overdue: 13}}
+      - {type: task_due,           about: board-update:monthly, facts_hint: {due: "2026-03-16", days_overdue: 6}}
+      - {type: contradiction,      about: board-update:monthly, facts_hint: {claim_a: "$3.2M (investor-update-draft.md)", claim_b: "$3.6M (finance-review.md)", subject: ARR}}
+      - {type: profile_drift,      about: other:profile-board-cadence, facts_hint: {profile_value: quarterly, data_value: monthly}}
+      - {type: profile_drift,      about: other:profile-arr, facts_hint: {profile_value: "$3.2M", data_value: "$3.6M"}}
+    items:
+      - {about: board-update:monthly, priority: P1, section: urgent, actions_any: [task, decide], cites_any: ["note:board-meeting-minutes.md", "task:1", "note:investor-update-draft.md", "note:avery-todos.md"],
+         notes: "'Send Diane the March update — 13 days overdue under the monthly cadence you agreed Feb 26; your draft still says $3.2M, finance review says $3.6M.' One item, not one per source (minutes + task + todo + draft)."}
+      - {about: other:profile-board-cadence, priority: P3, section: pulse, actions: [profile_update], cites_any: ["note:board-meeting-minutes.md"]}
+      - {about: other:profile-arr, priority: P3, section: pulse, actions: [profile_update], cites_any: ["note:finance-review.md"]}
+    noise: [t-diane-checkin]
+  - run_day: 27
+    candidates: [{type: obligation_cadence, about: board-update:monthly, facts_hint: {days_since: 42, days_overdue: 14}}, {type: task_due, about: board-update:monthly, facts_hint: {days_overdue: 7}}, {type: contradiction, about: board-update:monthly}]
+    items: [{about: board-update:monthly, priority: P1, section: urgent, actions_any: [task, decide], cites_any: ["note:board-meeting-minutes.md", "task:1"]}]
+    noise: [t-diane-checkin]
+  - run_day: 28
+    candidates: [{type: obligation_cadence, about: board-update:monthly, facts_hint: {days_since: 43, days_overdue: 15}}, {type: task_due, about: board-update:monthly, facts_hint: {days_overdue: 8}}, {type: contradiction, about: board-update:monthly}]
+    items: [{about: board-update:monthly, priority: P1, section: urgent, actions_any: [task, decide], cites_any: ["note:board-meeting-minutes.md", "task:1"]}]
+    noise: [t-diane-checkin]
+  - run_day: 29
+    candidates: [{type: obligation_cadence, about: board-update:monthly, facts_hint: {days_since: 44, days_overdue: 16}}, {type: task_due, about: board-update:monthly, facts_hint: {days_overdue: 9}}, {type: contradiction, about: board-update:monthly}]
+    items: [{about: board-update:monthly, priority: P1, section: urgent, actions_any: [task, decide], cites_any: ["note:board-meeting-minutes.md", "task:1"]}]
+    noise: [t-diane-checkin]
+  - run_day: 30
+    candidates: [{type: obligation_cadence, about: board-update:monthly, facts_hint: {days_since: 45, days_overdue: 17}}, {type: task_due, about: board-update:monthly, facts_hint: {days_overdue: 10}}, {type: contradiction, about: board-update:monthly}]
+    items: [{about: board-update:monthly, priority: P1, section: urgent, actions_any: [task, decide], cites_any: ["note:board-meeting-minutes.md", "task:1"]}]
+    noise: [t-diane-checkin]
+
+assertions:
+  - {id: S10-overdue-monthly,     kind: item_present,        run_day: 30, args: {about: board-update:monthly, priority: P1}, description: "eval.md §3 S10: board update overdue under monthly cadence"}
+  - {id: S10-cadence-cand,        kind: candidate_present,   run_day: 30, args: {type: obligation_cadence, about: board-update:monthly}}
+  - {id: S10-arr-contradiction,   kind: candidate_present,   run_day: 30, args: {type: contradiction, about: board-update:monthly}, description: "$3.2M draft vs $3.6M finance review"}
+  - {id: S10-item-mentions-36,    kind: item_mentions_all,   run_day: 30, args: {about: board-update:monthly, phrases: ["3.6"]}, description: "the item names the data's number"}
+  - {id: S10-cadence-drift,       kind: action_present,      run_day: 30, args: {about: other:profile-board-cadence, action: profile_update}}
+  - {id: S10-arr-drift,           kind: action_present,      run_day: 26, args: {about: other:profile-arr, action: profile_update}}
+  - {id: S10-diane-thread-noise,  kind: item_absent,         run_day: 30, args: {source_id: t-diane-checkin}}
+  - {id: S10-one-item-not-three,  kind: count_items_of_type, run_day: 30, args: {type: obligation_cadence, max: 1}}
+  - {id: S10-board-prep-first,    kind: section_is,          run_day: 30, customize: board_prep, args: {about: board-update:monthly, section: urgent},
+     description: "eval.md §6 board_prep: capital/board items first; ARR drift surfaced (checker reads order within urgent)"}
+
+sim_avery: []
+simulate:
+  - {id: S10-sim-escalates, kind: escalation_framing, run_day: 28, args: {about: board-update:monthly, min_times_surfaced: 2, mode: simulate}}
+variants: []

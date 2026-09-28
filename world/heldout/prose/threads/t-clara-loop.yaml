@@ -1,0 +1,60 @@
+thread_id: t-clara-loop
+subject: "Clara Voss - designer onsite Wed 3/18"
+storyline: S9
+category: hiring
+labels: null
+messages:
+  - id: m1
+    beat_ref: S9.b3
+    day: 13
+    time: "09:15"
+    from: jordan
+    to: [avery]
+    cc: [tomas]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      Clara Voss passed the portfolio screen this morning. Priya and Hana both rated her walkthrough the strongest we've seen for the designer role. Onsite is set for Wednesday the 18th.
+
+      Plan:
+      - 10:00 Priya - product sense
+      - 11:00 Hana - working with customers (she'll bring the plant-scheduler screens)
+      - 13:00 Jordan - design/eng collaboration, a real ticket
+      - 14:00 Tomás - GTM and demo craft
+      - 16:00 Avery - closer, 30 minutes (invite sent)
+
+      Two things to know going in: she's at a design agency today and has been clear she wants an in-house product role; and her portfolio is at claravoss.design if you want ten minutes with it beforehand.
+
+  - id: m2
+    beat_ref: S9.b4
+    day: 21
+    time: "08:45"
+    from: jordan
+    to: [avery]
+    cc: [tomas]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Confirming tomorrow's schedule for Clara - unchanged from below, your closer at 16:00 in the small room. Hana's slot moved to 11:15 to clear standup. Scorecards are in Ashby under "Product Designer - Clara Voss".
+
+  - id: m3
+    beat_ref: S9.b5
+    day: 22
+    time: "18:05"
+    from: jordan
+    to: [avery]
+    cc: [tomas]
+    reply_to: m2
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Clara's onsite is done. Scores are in Ashby - four of five submitted, Tomás's pending. Early read is positive: Priya and Hana both leaning hire, I'm a hire, and I know your closer ran long, which I'll take as a good sign.
+
+      I'll get the debrief on the calendar once Tomás's scorecard is in.

@@ -1,0 +1,62 @@
+thread_id: t-kofi-oncall-swap
+subject: "on-call swap for the weekend of 3/28?"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: not_for_avery
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [other:oncall-swap]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 26
+    time: "19:30"
+    from: kofi
+    to: [felix]
+    cc: [jordan, avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hey Felix,
+
+      Sorry for the Sunday email. Would you be up for swapping on-call with me for next weekend? I've got primary Sat 3/28 and Sun 3/29 and it turns out that's the weekend Adaeze's parents are in town for the venue tasting (yes, that thing I sent round this morning, sorry again, I promise that's the last wedding email until the actual wedding). I would happily take your weekend of 4/11 in return, or 4/18 if that's better, honestly whichever you want.
+
+      I know it's the weekend right before the Northstar freeze so if you'd rather not carry the pager that weekend I completely understand and I'll ask Arjun instead, or just do it from my phone at the tasting, which Adaeze has already said is not an option.
+
+      Jordan, Avery, cc'ing you because the rotation doc says swaps get cc'd to Jordan, and Avery is on the doc's cc line for reasons lost to history. Nothing for either of you to do unless Jordan wants to veto.
+
+      Is it ok if I go ahead and change the schedule once you say yes? I'll leave it alone until then.
+
+      Thanks!
+  - id: m2
+    beat_ref: null
+    day: 27
+    time: "08:50"
+    from: jordan
+    to: [kofi]
+    cc: [felix, avery]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Kofi,
+
+      Fine by me. Felix said yes on Slack last night, so:
+
+      - You and Felix swap the weekends of 3/28 and 4/11.
+      - Go ahead and make the change in PagerDuty yourself; ping me when it's done so I can eyeball it.
+      - Arjun stays primary through the MES upgrade Wednesday night; this doesn't touch that.
+
+      Enjoy the tasting.

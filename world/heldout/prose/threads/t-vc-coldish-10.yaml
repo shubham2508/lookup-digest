@@ -1,0 +1,39 @@
+thread_id: t-vc-coldish-10
+subject: "Lantern Peak - would love to learn more about Tessera"
+storyline: null
+category: investors_board
+labels:
+  kind: thread
+  must_not: true
+  reason: cold_vc_associate_no_engagement
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [other:vc-inbound-lantern-peak]
+    ball_awaiting: avery
+    closed_by_courtesy: false
+    sender_relationship: {category: capital, subtype: cold_vc_associate}
+    asks: [{to_avery: true, kind: meeting, deadline_day: null, status: open}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 29
+    time: "11:30"
+    from: {name: "Isabel Moreno", email: "isabel@lanternpeak.vc"}
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: "Isabel Moreno\nAssociate | Lantern Peak Partners"
+    body: |
+      Hi Avery,
+
+      Isabel Moreno from Lantern Peak Partners. We are a Series A fund focused on software for regulated and physical industries, and Tessera has come up twice this month, once from a founder in our portfolio and once in Plant Ops Digest.
+
+      I would love to learn more about Tessera. If you have 20 minutes in the next couple of weeks I would be grateful; if the timing is wrong I completely understand, and I will check back in the summer.
+
+      Warm regards,

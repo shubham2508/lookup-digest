@@ -1,0 +1,68 @@
+thread_id: t-halberd-handover
+subject: "Introduction - Tobias Weller, Procurement"
+storyline: S7
+category: customers
+labels: null
+messages:
+  - id: m1
+    beat_ref: S7.b11
+    day: 14
+    time: "09:20"
+    from: tobias
+    to: [avery]
+    cc: [tomas, greta]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: |
+      Tobias Weller
+      Procurement Lead | Halberd Manufacturing
+      2200 Industrial Parkway, Sparks, NV 89431
+      Office +1 (775) 555-0163
+      tobias.weller@halberd.com
+    body: |
+      Dear Avery,
+
+      My name is Tobias Weller. As Greta mentioned, I am taking over from Greta as procurement lead at Halberd Manufacturing, effective today. I joined Halberd in January and will be the primary contact for the Tessera agreement going forward.
+
+      To get oriented I would appreciate the following:
+
+      1. The current master services agreement and the active order form, so that I am working from the executed versions.
+      2. Your understanding of the renewal timeline. Greta has told me that Martin asked to resume the discussion in the week of April 13; please confirm that matches your notes.
+      3. A 30-minute introduction with you and Tomás in the next two weeks, ideally with a short walk-through of what Halberd is using today.
+
+      Thank you in advance.
+  - id: m2
+    beat_ref: S7.b12
+    day: 14
+    time: "12:15"
+    from: avery
+    to: [tobias]
+    cc: [tomas, greta]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      welcome, tobias. tomás will send the executed MSA and order form and set up the intro. on the renewal: yes, martin asked us to pick it up the week of April 13; tomás will reach out then.
+
+      Avery
+  - id: m3
+    beat_ref: S7.b13
+    day: 16
+    time: "13:30"
+    from: tomas
+    to: [tobias]
+    cc: [avery]
+    reply_to: m2
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Hi Tobias, welcome aboard!
+
+      Attached: the executed MSA (February 2025) and the current order form (Halberd-OF-003: Lines 1–3 plus the Reno pilot). Let me know if you need the earlier order forms too.
+
+      For the intro I've sent an invite for Thursday, March 26, 11:00–11:45 PT titled "Halberd QBR - Tobias intro": Avery for the first 20 minutes, then Hana and I walk through what each line is using, exceptions caught, and the Line 3 MES upgrade plan. If a different slot is better, say so and I'll move it.
+
+      Looking forward to working with you!

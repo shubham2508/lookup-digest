@@ -1,0 +1,180 @@
+id: S6
+name: veritas-cadence
+reviewed: false
+tier_truth: P1
+summary: >
+  Veritas Components' procurement lead Dmitri Volkov emails often in days 1–20 (11 inbound messages on days 2, 3, 6, 7,
+  9, 10, 13, 14, 16, 17, 20; median gap ~1.5 days; quick, informal, jokes; mostly cc'ing Avery on threads with Hana,
+  Tomás and Nora) and then almost stops: one inbound on Friday day 24 at 15:45 ("sorted, AP released it"), nothing
+  after. Note: world.yaml's cadence truth says "one inbound (day 25)"; day 25 is a Saturday, so the message is placed
+  on Friday day 24 late afternoon and world.yaml should read day 24. Current gap at 06:00: day 26 → 1.59 days,
+  day 27 → 2.59 (absent), day 28 → 3.59 (present), day 29 → 4.59, day 30 → 5.59. Current gap ≥ 3 from day 28 and
+  ratio recent/baseline ≥ 2.4. customer-health-review.md (Tue day 21, 15:30) already notes Dmitri "slower to
+  respond"; gtm-weekly.md (Mon day 27, 16:10) records "Dmitri quieter, Hugo running a vendor review" with no ask.
+  Separately, on Wednesday day 29 at 22:05 Tomás forwards a 12-message Veritas thread (Hugo Lambert's Q1 true-up
+  questions, msgs 1–5; Anika Berg's automatic lot-hold request, msgs 6–9 and 12; and, at message 10, Hugo saying that
+  as part of their annual vendor review Tessera's renewal will go through the formal vendor review this quarter)
+  with only "thoughts?". Tests: cadence_drop computed in code → `watch` (pattern, not action); the forward →
+  `question` or `read` with `read_start` at Hugo's message 10; the two must stay separate items; a day-28 question
+  card whose ruling is overridden by the forward's content in simulate mode (M9).
+
+threads:
+  - {id: t-veritas-lot-trace,          subject: "Lot traceability - spec references for the AS9100 audit", category: customers}
+  - {id: t-veritas-alerts,             subject: "Night-shift alerts - shared number instead of my cell?",  category: customers}
+  - {id: t-veritas-po,                 subject: "PO 88-4471 - add-on seats for Line 4",                     category: customers}
+  - {id: t-veritas-qbr,                subject: "QBR - April dates",                                        category: customers}
+  - {id: t-fwd-veritas-vendor-review,  subject: "Fwd: Q1 true-up invoice - questions from Finance",         category: customers}
+
+beats:
+  # baseline: Dmitri inbound days 2, 3, 6, 7, 9, 10, 13, 14, 16, 17, 20 (times 08:50–15:10); Anika once on day 2
+  - {ref: S6.b1,  day: 2,  time: "10:20", source: email, thread: t-veritas-lot-trace, from: dmitri, to: [hana],   cc: [avery, anika], event: "loops in Anika: the AS9100 auditor wants the spec reference on the lot record"}
+  - {ref: S6.b2,  day: 2,  time: "11:05", source: email, thread: t-veritas-lot-trace, from: anika,  to: [hana],   cc: [avery, dmitri], event: "precise request: spec VC-QS-114 rev D on lot records and in the CSV export; auditor on site Mar 16–17", hardness: [technical_jargon]}
+  - {ref: S6.b3,  day: 2,  time: "16:30", source: email, thread: t-veritas-lot-trace, from: hana,   to: [anika],  cc: [avery, dmitri], event: "custom field, flows to the export; steps; live by Tue Mar 3"}
+  - {ref: S6.b4,  day: 3,  time: "09:15", source: email, thread: t-veritas-lot-trace, from: dmitri, to: [hana],   cc: [avery, anika], event: "field live, auditor happy, 'you are a lifesaver' — courtesy close with a joke"}
+  - {ref: S6.b5,  day: 6,  time: "08:50", source: email, thread: t-veritas-alerts,    from: dmitri, to: [avery],  cc: [tomas],        event: "asks Avery directly to route late-lot texts to the night-shift supervisor phone instead of his cell"}
+  - {ref: S6.b6,  day: 6,  time: "12:10", source: email, thread: t-veritas-alerts,    from: avery,  to: [dmitri], cc: [tomas],        event: "yes; Hana will switch it this week"}
+  - {ref: S6.b7,  day: 7,  time: "09:40", source: email, thread: t-veritas-alerts,    from: dmitri, to: [avery],  cc: [tomas, hana],  event: "thanks; asks for the line number in the text"}
+  - {ref: S6.b8,  day: 7,  time: "13:25", source: email, thread: t-veritas-alerts,    from: hana,   to: [dmitri], cc: [avery, tomas], event: "done: routing switched, line and work center in the text"}
+  - {ref: S6.b9,  day: 9,  time: "10:35", source: email, thread: t-veritas-po,        from: dmitri, to: [tomas],  cc: [avery],        event: "PO 88-4471 for six Line 4 add-on seats; when live?"}
+  - {ref: S6.b10, day: 9,  time: "15:20", source: email, thread: t-veritas-po,        from: tomas,  to: [dmitri], cc: [avery],        event: "long: seats live by Friday; buries 'confirm the billing contact'; QBR and reference-call asides", hardness: [long, mixed_topics]}
+  - {ref: S6.b11, day: 10, time: "09:05", source: email, thread: t-veritas-po,        from: dmitri, to: [tomas],  cc: [avery],        event: "seats live; billing contact confirmed (Hugo's team); reference calls after the QBR"}
+  - {ref: S6.b12, day: 13, time: "11:20", source: email, thread: t-veritas-po,        from: dmitri, to: [tomas],  cc: [avery, nora],  event: "AP bounced the seat invoice: no PO number; asks Nora for a reissue"}
+  - {ref: S6.b13, day: 13, time: "14:45", source: email, thread: t-veritas-po,        from: nora,   to: [dmitri], cc: [avery, tomas], event: "reissued TS-1181-R1 with the PO; table inline"}
+  - {ref: S6.b14, day: 14, time: "08:55", source: email, thread: t-veritas-po,        from: dmitri, to: [nora],   cc: [avery, tomas], event: "got it, in the queue"}
+  - {ref: S6.b15, day: 16, time: "13:50", source: email, thread: t-veritas-qbr,       from: dmitri, to: [tomas],  cc: [avery],        event: "proposes the QBR in the week of Apr 6; agenda items"}
+  - {ref: S6.b16, day: 16, time: "17:35", source: email, thread: t-veritas-qbr,       from: tomas,  to: [dmitri], cc: [avery],        event: "long reply with three date options and an agenda draft", hardness: [long]}
+  - {ref: S6.b17, day: 17, time: "09:00", source: email, thread: t-veritas-qbr,       from: dmitri, to: [tomas],  cc: [avery],        event: "picks Wed Apr 8 tentatively; Hugo's calendar pending"}
+  - {ref: S6.b18, day: 20, time: "15:10", source: email, thread: t-veritas-po,        from: dmitri, to: [tomas],  cc: [avery, nora],  event: "AP kicked TS-1181-R1 back: remit-to address mismatch; asks for a vendor form + W-9 — first one-liner, slower tone"}
+  - {ref: S6.b19, day: 20, time: "17:40", source: email, thread: t-veritas-po,        from: tomas,  to: [dmitri], cc: [avery, nora],  event: "yes, we changed banks in Feb; Nora will send the form tomorrow"}
+  - {ref: S6.b20, day: 21, time: "10:05", source: email, thread: t-veritas-po,        from: nora,   to: [dmitri], cc: [avery, tomas], event: "updated vendor form + W-9 attached"}
+  # the drop: one inbound on Friday day 24, then silence
+  - {ref: S6.b21, day: 24, time: "15:45", source: email, thread: t-veritas-po,        from: dmitri, to: [nora],   cc: [avery, tomas], event: "'sorted, AP released it. have a good weekend' — one line, courtesy close", must_include: ["sorted"]}
+  # the forward (12 messages inside; participants Hugo, Leo, Anika, Hana; Dmitri and Tomás cc'd only; Avery not on the inner chain)
+  - {ref: S6.b22, day: 29, time: "22:05", source: email, thread: t-fwd-veritas-vendor-review, from: tomas, to: [avery], cc: [],
+     event: "forwards a 12-message thread (days 20–29) with the single word 'thoughts?'; inside: Hugo Lambert (Finance Director) on the Q1 true-up invoice TS-1172 (msgs 1–5, settled with credit memo CM-0211), Anika asking Hana for an automatic lot hold (msgs 6–9), Hugo at msg 10 saying that as part of their annual vendor review Tessera's renewal will go through the formal vendor review this quarter and any proposal should be held, Leo's soft reply (11), Anika again (12)",
+     must_include: ["thoughts?", "annual vendor review", "formal vendor review"], hardness: [forward_block, long, mixed_topics]}
+  - {ref: S6.n1, day: 21, time: "15:30", source: note, note: customer-health-review.md,
+     event: "customer health review (Tue day 21): Veritas: Dmitri slower to respond this week, no tickets; Northstar green, Apr 1; Halberd: Tobias new since 3/10, renewal timing unclear",
+     must_include: ["slower to respond", "green"]}
+
+labels:
+  - thread: t-veritas-lot-trace
+    category: customers
+    storyline: S6
+    must_not_surface: true
+    must_not_reason: closed_by_courtesy
+    expected: {type: human_thread, domain: work, intent_primary: ask, about: [other:veritas-lot-traceability], ball_awaiting: nobody, closed_by_courtesy: true,
+               sender_relationship: {category: customer, subtype: reference, stage: active}, asks: [{to_avery: false, kind: information, status: answered}]}
+  - thread: t-veritas-alerts
+    category: customers
+    storyline: S6
+    must_not_surface: true
+    must_not_reason: answered_by_avery_then_handled_by_team
+    expected: {type: human_thread, domain: work, intent_primary: ask, about: [other:veritas-alert-routing], ball_awaiting: nobody, closed_by_courtesy: false,
+               sender_relationship: {category: customer, subtype: reference, stage: active}, asks: [{to_avery: true, kind: decision, status: answered}, {to_avery: false, kind: other, status: answered}]}
+  - thread: t-veritas-po
+    category: customers
+    storyline: S6
+    must_not_surface: true
+    must_not_reason: closed_by_courtesy
+    expected: {type: human_thread, domain: work, intent_primary: ask, about: [invoice:veritas:po-88-4471], ball_awaiting: nobody, closed_by_courtesy: true,
+               sender_relationship: {category: customer, subtype: reference, stage: active}, asks: [{to_avery: false, kind: other, status: answered}]}
+    messages:
+      - {beat_ref: S6.b21, day: 24, time: "15:45", from: dmitri, to: [nora], cc: [avery, tomas], must_include: ["sorted"]}
+  - thread: t-veritas-qbr
+    category: customers
+    storyline: S6
+    must_not_surface: true
+    must_not_reason: handled_by_team
+    expected: {type: human_thread, domain: work, intent_primary: ask, about: [meeting:veritas-qbr], ball_awaiting: other, closed_by_courtesy: false,
+               sender_relationship: {category: customer, subtype: reference, stage: active},
+               schedule_mentions: [{action: proposed, participants: [dmitri, tomas, avery], when_day: 43, when_time: "13:00"}]}
+  - thread: t-fwd-veritas-vendor-review
+    category: customers
+    storyline: S6
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [renewal:veritas, invoice:veritas:ts-1172, other:veritas-lot-hold-request]
+      ball_awaiting: avery
+      closed_by_courtesy: false
+      sender_relationship: {category: team, subtype: exec, stage: null}
+      asks: [{to_avery: true, kind: review, deadline_day: null, status: open}]
+      stage_signals: [{entity: veritas, stage: renewal_window, day: 29}]
+      claims: [{subject: veritas_renewal, value: "formal vendor review"}]
+      suspicious: false
+    messages:
+      - {beat_ref: S6.b22, day: 29, time: "22:05", from: tomas, to: [avery], must_include: ["thoughts?", "annual vendor review", "formal vendor review"]}
+  - note: customer-health-review.md
+    storyline: S6
+    expected:
+      type: note
+      note_kind: meeting_notes
+      about: [other:veritas-cadence, rollout:northstar:apr-1, renewal:halberd, other:halberd-procurement-lead]
+      stage_signals: [{entity: veritas, stage: active, day: 21}, {entity: northstar, stage: active, day: 21}, {entity: halberd, stage: active, day: 21}]
+      claims: [{subject: veritas_responsiveness, value: "slower to respond"}, {subject: northstar_health, value: "green"}]
+
+contacts:
+  - {id: dmitri, category: customer, subtype: reference, tier: P1, rules: [same_day_reply], stages: [{from_day: 1, stage: active}],
+     note: "cadence: baseline median ~1.5 days (11 inbound, days 1–20), then one inbound on Fri day 24 15:45; current gap ≥ 3.59 days from day 28. world.yaml truth should say day 24, not day 25 (a Saturday)"}
+  - {id: hugo,   category: customer, subtype: reference_exec, tier: P1, stages: [{from_day: 29, stage: renewal_window}],
+     note: "appears only inside Tomás's forward (msgs 1, 3, 5, 10); Tomás's forward at 22:05 day 29 is when Avery first sees him"}
+  - {id: anika,  category: customer, subtype: reference_ic, tier: null}
+
+about_keys:
+  should_merge: [[renewal:veritas, renewal:veritas-components], [other:veritas-cadence, other:veritas-reply-cadence]]
+  should_not_merge: [[other:veritas-cadence, renewal:veritas], [renewal:veritas, renewal:halberd], [renewal:veritas, invoice:veritas:po-88-4471], [renewal:veritas, other:veritas-lot-hold-request]]
+
+expectations:
+  - run_day: 26
+    absent: [other:veritas-cadence, renewal:veritas]
+    notes: "current gap 1.59 days (Dmitri's last inbound Fri day 24 15:45)"
+    noise: [t-veritas-lot-trace, t-veritas-alerts, t-veritas-po, t-veritas-qbr]
+  - run_day: 27
+    absent: [other:veritas-cadence, renewal:veritas]
+    notes: "current gap 2.59 days < 3 → no candidate yet; gtm-weekly.md lands at 16:10, after the run"
+    noise: [t-veritas-lot-trace, t-veritas-alerts, t-veritas-po, t-veritas-qbr]
+  - run_day: 28
+    candidates: [{type: cadence_drop, about: other:veritas-cadence, facts_hint: {baseline_median_days: 1.5, recent_median_days: 3.8, current_gap_days: 3.59}}]
+    items: [{about: other:veritas-cadence, priority: P2, section: pulse, actions: [watch], cites_any: [t-veritas-po, "note:customer-health-review.md"],
+             ambiguity: preference, notes: "'pattern, not action'; a question card (Tomás checks in / Avery reaches out / keep watching) is welcome but optional on a normal run"}]
+    unasserted: "renewal:veritas — gtm-weekly.md (day 27) mentions Hugo running a vendor review with no ask and Leo on the thread; a pulse one-liner is acceptable, not required, so neither present nor absent is scored"
+    noise: [t-veritas-lot-trace, t-veritas-alerts, t-veritas-po, t-veritas-qbr]
+  - run_day: 29
+    candidates: [{type: cadence_drop, about: other:veritas-cadence, facts_hint: {current_gap_days: 4.59}}]
+    items: [{about: other:veritas-cadence, priority: P2, section: pulse, actions: [watch], cites_any: [t-veritas-po, "note:customer-health-review.md"]}]
+    unasserted: "renewal:veritas — same as day 28"
+    noise: [t-veritas-lot-trace, t-veritas-alerts, t-veritas-po, t-veritas-qbr]
+  - run_day: 30
+    candidates:
+      - {type: cadence_drop, about: other:veritas-cadence, facts_hint: {current_gap_days: 5.59}}
+      - {type: reply_owed,   about: renewal:veritas, facts_hint: {note: "Tomás's forward, 'thoughts?'"}}
+    items:
+      - {about: other:veritas-cadence, priority: P2, section: pulse, actions: [watch], cites_any: [t-veritas-po, "note:customer-health-review.md"]}
+      - {about: renewal:veritas, priority: P1, section: decisions, actions_any: [question, read], cites_any: [t-fwd-veritas-vendor-review],
+         ambiguity: preference,
+         notes: "read_start = Hugo's message (msg 10, 'annual vendor review' / 'formal vendor review'); if a question card: (1) Avery calls Hugo (2) Tomás owns it (3) watch. Must not be summarised as 'billing thread' or 'lot-hold feature request'."}
+    noise: [t-veritas-lot-trace, t-veritas-alerts, t-veritas-po, t-veritas-qbr]
+    notes: "the forward's inner messages are from Hugo/Anika to Leo/Hana (Dmitri and Tomás cc'd); they must not count as Dmitri's inbound (cadence stays dropped)"
+
+assertions:
+  - {id: S6-d27-no-cadence,        kind: candidate_absent,    run_day: 27, args: {type: cadence_drop, about: other:veritas-cadence}, description: "gap 2.59 < 3"}
+  - {id: S6-d28-cadence,           kind: candidate_present,   run_day: 28, args: {type: cadence_drop, about: other:veritas-cadence}}
+  - {id: S6-d28-watch,             kind: item_present,        run_day: 28, args: {about: other:veritas-cadence, section: pulse, actions_any: [watch]}}
+  - {id: S6-d30-cadence-watch,     kind: action_present,      run_day: 30, args: {about: other:veritas-cadence, action: watch}}
+  - {id: S6-d30-fwd-present,       kind: item_present,        run_day: 30, args: {about: renewal:veritas, priority: P1, actions_any: [question, read]}}
+  - {id: S6-d30-fwd-no-fake-draft, kind: action_absent,       run_day: 30, args: {about: renewal:veritas, action: reply},
+     description: "a 12-message forward with no context is not dispatchable; no fake reply draft"}
+  - {id: S6-d30-two-items,         kind: count_items_of_type, run_day: 30, args: {type: cadence_drop, equals: 1}}
+  - {id: S6-dmitri-category,       kind: contact_category_is, run_day: 30, args: {email: dmitri.volkov@veritascomponents.com, category: customer, subtype: reference}}
+  - {id: S6-po-absent,             kind: item_absent,         run_day: 30, args: {source_id: t-veritas-po}}
+
+sim_avery:
+  - {scope_about: other:veritas-cadence, intended_option: 1, rationale: "Tomás checks in with Dmitri; stop showing the cadence unless something changes"}
+  - {scope_about: renewal:veritas,       intended_option: 1, rationale: "Avery calls Hugo personally; a formal vendor review on a reference account is a renewal risk"}
+simulate:
+  - {id: S6-sim-ruling-applied, kind: ruling_applied, run_day: 29, args: {question_scope: other:veritas-cadence, expected_change: "day 29 cadence item suppressed or one-liner; header counts an applied rule", mode: simulate}}
+  - {id: S6-sim-content-overrides, kind: content_overrides_ruling, run_day: 30, args: {about: renewal:veritas, mode: simulate},
+     description: "the day-28 ruling (delegate, suppress) does not hide Hugo's 'formal vendor review'"}
+variants: []

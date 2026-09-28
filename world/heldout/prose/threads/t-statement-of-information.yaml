@@ -1,0 +1,47 @@
+thread_id: t-statement-of-information
+subject: "Forwarded notice: California Statement of Information overdue - penalty assessed, file by March 31"
+storyline: BG-soi
+category: lawyer
+labels:
+  kind: thread
+  must_not: false
+  reason: null
+  classification_case: tax_compliance_notice
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [other:statement-of-information]
+    ball_awaiting: avery
+    closed_by_courtesy: false
+    sender_relationship: {category: legal_gov, subtype: registered_agent}
+    asks: [{to_avery: true, kind: signature, deadline_day: 35, status: open}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 27
+    time: "11:20"
+    from: pacificagents_notices
+    to: [avery]
+    cc: [nora]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Client: Tessera, Inc. (California entity no. C4817736)
+      Notice type: Statement of Information - Delinquent / Penalty Assessed
+      Received by agent: March 20, 2026
+
+      Pacific Registered Agent Services received the notice below from the California Secretary of State on behalf of Tessera, Inc. The text is reproduced for your records; the scanned original is attached (SOS_Notice_C4817736_2026-03-20.pdf). We do not prepare or file Statements of Information; please route this to your accountant or corporate counsel.
+
+      ---------- NOTICE ----------
+      The Statement of Information (Form SI-550) due for the filing period ending January 31, 2026 has not been received. A penalty of $250.00 has been assessed pursuant to Corporations Code section 2204 and referred to the Franchise Tax Board for collection.
+
+      To avoid suspension of the corporation's powers, rights and privileges in California, the Statement of Information must be filed, and the penalty paid, on or before March 31, 2026. The statement must be executed by an authorized officer of the corporation.
+      ---------- END NOTICE ----------
+
+      What is needed: an officer's signature on the SI-550 and payment of the $250.00 penalty before March 31. Filing can be completed online at bizfileOnline.sos.ca.gov; the $25 filing fee is in addition to the penalty. If you would like us to forward the original to a different address, reply to this email with the recipient.
+
+      Ref: PRA-2026-031177

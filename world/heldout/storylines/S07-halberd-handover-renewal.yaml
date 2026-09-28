@@ -1,0 +1,197 @@
+id: S7
+name: halberd-handover-renewal
+reviewed: false
+tier_truth: P1
+summary: >
+  Halberd Manufacturing's procurement lead Greta Olsen emails steadily in days 1–13 (February usage report with
+  Tomás, days 2–10; renewal paperwork for the May 1 anniversary, day 3, first pushed by CFO Martin Hale on Monday
+  day 6: "the week of April 13, once the books are closed"). On Monday day 13 Greta writes that Tobias Weller is
+  "taking over from" her as procurement lead from Tuesday; on Tuesday day 14 Tobias introduces himself ("taking over
+  from Greta as procurement lead") and then emails at Greta's cadence with methodical document requests (days 14, 17,
+  21, 23, 29; Sanjay Kulkarni once on day 28). Tomás books "Halberd QBR - Tobias intro" for Thu day 30 11:00–11:45
+  (invite created day 16). gtm-weekly.md (Monday day 27, 16:10) records that Martin pushed the renewal a second time,
+  to "after our fiscal close" (2nd push), and Tomás logged it without escalating. Tests: role resolution (Tobias gets
+  the reference-customer P1 via the role-at-org rule, not a name); handover flagged as profile drift → `profile_update`;
+  cadence must merge predecessor + successor (no false drop on Greta, whose last inbound is day 13; none on Tobias
+  alone); the second renewal slip surfaces as a pulse/decision item. The S14 Line 3 timestamp incident (Jordan, day 29
+  21:12, in t-halberd-timestamps) is on the same account and stays a separate item; this storyline's Line 3 MES thread
+  is the run-up to it.
+
+threads:
+  - {id: t-halberd-usage,       subject: "February usage report - before our budget meeting",   category: customers}
+  - {id: t-halberd-renewal,     subject: "Renewal timing - May 1 anniversary",                    category: customers}
+  - {id: t-halberd-handover,    subject: "Introduction - Tobias Weller, Procurement",             category: customers}
+  - {id: t-halberd-vendor-docs, subject: "Vendor file - SOC 2, continuity summary, COI",          category: customers}
+  - {id: t-halberd-line3-mes,   subject: "Line 3 MES upgrade - change window Wed 3/25",           category: customers}
+
+beats:
+  - {ref: S7.b1,  day: 2,  time: "10:15", source: email, thread: t-halberd-usage,    from: greta,  to: [tomas],  cc: [avery], event: "asks for the February usage report before their budget meeting on Thu Mar 5; chatty opener, P.S.", hardness: [ps]}
+  - {ref: S7.b2,  day: 2,  time: "16:30", source: email, thread: t-halberd-usage,    from: tomas,  to: [greta],  cc: [avery], event: "report attached; long notes by line; Line 3 caveat (MES prep)", hardness: [long]}
+  - {ref: S7.b3,  day: 3,  time: "10:15", source: email, thread: t-halberd-renewal,  from: greta,  to: [avery],  cc: [tomas], event: "renewal paperwork for the May 1 anniversary; asks for the proposed terms with Reno folded in; Martin will look"}
+  - {ref: S7.b4,  day: 3,  time: "15:40", source: email, thread: t-halberd-renewal,  from: avery,  to: [greta],  cc: [tomas], event: "Tomás will send proposed terms next week; glad to do a call with Martin", must_include: ["terms"]}
+  - {ref: S7.b5,  day: 6,  time: "13:20", source: email, thread: t-halberd-renewal,  from: martin, to: [avery],  cc: [greta, tomas],
+     event: "CFO: fiscal year ends March 31; no commitments during year-end close; pick the renewal up the week of April 13 (first push); hold the terms", must_include: ["week of April 13"]}
+  - {ref: S7.b6,  day: 6,  time: "17:05", source: email, thread: t-halberd-renewal,  from: avery,  to: [martin], cc: [greta, tomas], event: "understood; Tomás will reach out the week of April 13; scope unchanged meanwhile"}
+  - {ref: S7.b7,  day: 9,  time: "14:15", source: email, thread: t-halberd-usage,    from: greta,  to: [tomas],  cc: [avery], event: "budget meeting this morning went fine; two questions from Martin: what counts as an active seat; Reno pilot rate", hardness: [typo]}
+  - {ref: S7.b8,  day: 9,  time: "16:40", source: email, thread: t-halberd-usage,    from: tomas,  to: [greta],  cc: [avery], event: "answers: activity not logins; Reno at pilot rate until May 1"}
+  - {ref: S7.b9,  day: 10, time: "08:30", source: email, thread: t-halberd-usage,    from: greta,  to: [tomas],  cc: [avery], event: "perfect, thanks — courtesy close"}
+  - {ref: S7.b10, day: 13, time: "09:05", source: email, thread: t-halberd-renewal,  from: greta,  to: [avery],  cc: [tomas],
+     event: "heads-up: moving to plant operations at Reno at the end of the week; Tobias Weller is taking over from her as procurement lead from Tuesday; she has briefed him", must_include: ["taking over from"]}
+  # handover
+  - {ref: S7.b11, day: 14, time: "09:20", source: email, thread: t-halberd-handover, from: tobias, to: [avery],  cc: [tomas, greta],
+     event: "introduces himself: taking over from Greta as procurement lead at Halberd effective today; numbered requests: executed MSA + order form, the renewal timeline as understood, a 30-minute intro",
+     must_include: ["taking over from Greta", "procurement lead"], hardness: [new_signature]}
+  - {ref: S7.b12, day: 14, time: "12:15", source: email, thread: t-halberd-handover, from: avery,  to: [tobias], cc: [tomas, greta], event: "welcome; Tomás will send the docs and set up the intro; renewal: Martin asked to pick it up the week of April 13"}
+  - {ref: S7.b13, day: 16, time: "13:30", source: email, thread: t-halberd-handover, from: tomas,  to: [tobias], cc: [avery],
+     event: "MSA + order form attached; invite sent for Thu Mar 26 11:00–11:45 'Halberd QBR - Tobias intro' (Avery first 20 min, then Hana and Tomás)", hardness: [long]}
+  - {ref: S7.b14, day: 17, time: "11:00", source: email, thread: t-halberd-vendor-docs, from: tobias, to: [avery], cc: [jordan], event: "asks by name for the SOC 2 Type II report (or bridge letter), a BC/DR summary and a certificate of insurance, by Fri Mar 20"}
+  - {ref: S7.b15, day: 17, time: "14:25", source: email, thread: t-halberd-vendor-docs, from: jordan, to: [tobias], cc: [avery], event: "SOC 2 + bridge letter via the trust portal, BC/DR summary attached; Nora will send the COI Monday", must_include: ["SOC 2"]}
+  - {ref: S7.b16, day: 20, time: "15:30", source: email, thread: t-halberd-vendor-docs, from: nora,   to: [tobias], cc: [avery, jordan], event: "certificate of insurance attached"}
+  - {ref: S7.b17, day: 21, time: "08:50", source: email, thread: t-halberd-vendor-docs, from: tobias, to: [nora],   cc: [avery, jordan], event: "received; vendor file complete — courtesy close"}
+  - {ref: S7.b18, day: 23, time: "10:30", source: email, thread: t-halberd-line3-mes, from: tobias, to: [jordan], cc: [avery, sanjay],
+     event: "Halberd upgrades the Line 3 MES Wed Mar 25 18:00–22:00 PT; numbered asks: what Tessera needs, who is available, Sanjay to send the spec", must_include: ["Line 3"]}
+  - {ref: S7.b19, day: 23, time: "15:40", source: email, thread: t-halberd-line3-mes, from: jordan, to: [tobias], cc: [avery, sanjay],
+     event: "impact first: alerts could misfire if the event format changes; needs spec, station map, test events; Arjun on call; rollback needs Halberd's OK"}
+  - {ref: S7.b20, day: 28, time: "11:45", source: email, thread: t-halberd-line3-mes, from: sanjay, to: [jordan], cc: [avery, tobias],
+     event: "interface spec v4.2 + station map attached; two new payload fields; station IDs unchanged; log excerpt; window confirmed", hardness: [technical_jargon]}
+  - {ref: S7.b21, day: 29, time: "09:00", source: email, thread: t-halberd-line3-mes, from: tobias, to: [jordan], cc: [avery, sanjay],
+     event: "confirms the Line 3 MES upgrade goes ahead tonight 18:00–22:00 PT; FYI, no action before the window", must_include: ["tonight"]}
+  - {ref: S7.n1,  day: 27, time: "16:10", source: note, note: gtm-weekly.md,
+     event: "GTM weekly (Mon day 27): 'Halberd: Martin pushed the renewal again — after our fiscal close (2nd push). Tomás to follow up with Tobias.' plus Veritas (Dmitri quieter, Hugo running a vendor review) and Pinewood pilot scoping",
+     must_include: ["after our fiscal close", "2nd push"]}
+
+labels:
+  - thread: t-halberd-usage
+    category: customers
+    storyline: S7
+    must_not_surface: true
+    must_not_reason: closed_by_courtesy
+    expected: {type: human_thread, domain: work, intent_primary: ask, about: [report:halberd:usage], ball_awaiting: nobody, closed_by_courtesy: true,
+               sender_relationship: {category: customer, subtype: reference, stage: active}, asks: [{to_avery: false, kind: information, status: answered}]}
+  - thread: t-halberd-renewal
+    category: customers
+    storyline: S7
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: commitment_update
+      about: [renewal:halberd]
+      ball_awaiting: other          # Tomás owes the outreach the week of April 13; Avery had the last word to Martin
+      closed_by_courtesy: false
+      sender_relationship: {category: customer, subtype: reference, stage: renewal_window}
+      commitments: [{owner: other, about: renewal:halberd, due_day: 48, status_in_thread: open}]     # Tomás: reach out the week of April 13 (day 48 = Mon 04-13)
+      stage_signals: [{entity: halberd, stage: renewal_window, day: 6}]
+      claims: [{subject: halberd_renewal_timing, value: "week of April 13"}]
+      role_changes: [{person: greta, replaces: null, org: halberd, day: 13}]     # "moving to plant operations; Tobias is taking over from me"
+      suspicious: false
+    messages:
+      - {beat_ref: S7.b5,  day: 6,  time: "13:20", from: martin, to: [avery], cc: [greta, tomas], must_include: ["week of April 13"]}
+      - {beat_ref: S7.b10, day: 13, time: "09:05", from: greta,  to: [avery], cc: [tomas],        must_include: ["taking over from"]}
+  - thread: t-halberd-handover
+    category: customers
+    storyline: S7
+    must_not_surface: true
+    must_not_reason: handled_by_team_closed
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: fyi
+      about: [other:halberd-procurement-lead]
+      ball_awaiting: nobody
+      closed_by_courtesy: false
+      sender_relationship: {category: customer, subtype: reference, stage: active}
+      role_changes: [{person: tobias, replaces: greta, org: halberd, day: 14}]
+      asks: [{to_avery: true, kind: information, status: answered}, {to_avery: true, kind: meeting, status: answered}]
+      schedule_mentions: [{action: confirmed, participants: [tobias, avery, tomas, hana], when_day: 30, when_time: "11:00"}]
+      suspicious: false
+    messages:
+      - {beat_ref: S7.b11, day: 14, time: "09:20", from: tobias, to: [avery], cc: [tomas, greta], must_include: ["taking over from Greta", "procurement lead"]}
+  - thread: t-halberd-vendor-docs
+    category: customers
+    storyline: S7
+    must_not_surface: true
+    must_not_reason: closed_by_courtesy
+    expected: {type: human_thread, domain: work, intent_primary: ask, about: [report:soc2-halberd], ball_awaiting: nobody, closed_by_courtesy: true,
+               sender_relationship: {category: customer, subtype: reference, stage: active}, asks: [{to_avery: true, kind: information, deadline_day: 24, status: answered}]}
+  - thread: t-halberd-line3-mes
+    category: customers
+    storyline: S7
+    must_not_surface: true
+    must_not_reason: fyi_handled_by_team
+    expected: {type: human_thread, domain: work, intent_primary: fyi, about: [other:halberd-line3-mes-upgrade], ball_awaiting: nobody, closed_by_courtesy: false,
+               sender_relationship: {category: customer, subtype: reference, stage: active}, asks: [{to_avery: false, kind: information, status: answered}],
+               claims: [{subject: halberd_line3_mes_window, value: "tonight (day 29 18:00–22:00 PT)"}]}
+  - note: gtm-weekly.md
+    storyline: S7
+    expected:
+      type: note
+      note_kind: meeting_notes
+      about: [renewal:halberd, other:veritas-cadence]
+      stage_signals: [{entity: halberd, stage: at_risk, day: 27}]
+      claims: [{subject: halberd_renewal_timing, value: "after our fiscal close"}]
+      commitments: [{owner: other, about: renewal:halberd, due_day: null, status_in_thread: open}]     # "Tomás to follow up with Tobias" (note action item)
+
+contacts:
+  - {id: greta,  category: customer, subtype: reference, tier: P1, rules: [same_day_reply], stages: [{from_day: 1, stage: active}], note: "until day 13; last inbound day 13 09:05"}
+  - {id: tobias, category: customer, subtype: reference, tier: P1, rules: [same_day_reply], replaces: greta,
+     stages: [{from_day: 14, stage: active}, {from_day: 27, stage: at_risk}],
+     note: "not in the profile; role-at-org rule + signature 'Procurement Lead | Halberd Manufacturing' → P1; handover flagged; on the day-30 calendar (Halberd QBR - Tobias intro, 11:00)"}
+  - {id: martin, category: customer, subtype: reference_exec, tier: P1, stages: [{from_day: 6, stage: renewal_window}]}
+  - {id: sanjay, category: customer, subtype: reference_ic, tier: null}
+
+about_keys:
+  should_merge: [[renewal:halberd, renewal:halberd-manufacturing], [other:halberd-procurement-lead, other:halberd-handover]]
+  should_not_merge: [[renewal:halberd, incident:halberd:timestamps], [renewal:halberd, other:halberd-line3-mes-upgrade], [renewal:halberd, report:soc2-halberd]]
+
+expectations:
+  - run_day: 26
+    candidates: [{type: profile_drift, about: other:halberd-procurement-lead, facts_hint: {field: "procurement lead at Halberd", data_value: "Tobias Weller (since day 14)"}}]
+    items: [{about: other:halberd-procurement-lead, priority: P3, section: pulse, actions: [profile_update], cites_any: [t-halberd-handover, t-halberd-renewal],
+             notes: "footer line 'Suggested profile updates'; renders every run day until the profile is edited"}]
+    absent: [renewal:halberd]
+    notes: "the first push (day 6) was handled; nothing open on the renewal until the note lands"
+    noise: [t-halberd-usage, t-halberd-vendor-docs]
+  - run_day: 27
+    candidates: [{type: profile_drift, about: other:halberd-procurement-lead}]
+    items: [{about: other:halberd-procurement-lead, priority: P3, section: pulse, actions: [profile_update], cites_any: [t-halberd-handover, t-halberd-renewal]}]
+    absent: [renewal:halberd]
+    notes: "gtm-weekly.md lands at 16:10 day 27, after the run"
+    noise: [t-halberd-usage, t-halberd-vendor-docs]
+  - run_day: 28
+    candidates:
+      - {type: profile_drift, about: other:halberd-procurement-lead}
+      - {type: contradiction, about: renewal:halberd, facts_hint: {note: "note says after our fiscal close (2nd push); email said the week of April 13; second slip on a reference renewal"}}
+    items:
+      - {about: other:halberd-procurement-lead, priority: P3, section: pulse, actions: [profile_update], cites_any: [t-halberd-handover, t-halberd-renewal]}
+      - {about: renewal:halberd, priority: P1, section: pulse, actions_any: [question, decide, watch, task], cites_any: ["note:gtm-weekly.md", t-halberd-renewal],
+         ambiguity: preference, notes: "second slip on a reference renewal; Tomás logged it without escalating. Question (1) Avery calls Martin (2) Tomás owns it (3) wait for the fiscal close. A `decide`/`task` with the same content also passes."}
+    noise: [t-halberd-usage, t-halberd-vendor-docs, t-halberd-handover]
+  - run_day: 29
+    candidates: [{type: profile_drift, about: other:halberd-procurement-lead}, {type: contradiction, about: renewal:halberd}]
+    items:
+      - {about: other:halberd-procurement-lead, priority: P3, section: pulse, actions: [profile_update], cites_any: [t-halberd-handover, t-halberd-renewal]}
+      - {about: renewal:halberd, priority: P1, section: pulse, actions_any: [question, decide, watch, task], cites_any: ["note:gtm-weekly.md"]}
+    noise: [t-halberd-usage, t-halberd-vendor-docs, t-halberd-handover, t-halberd-line3-mes]
+  - run_day: 30
+    candidates: [{type: profile_drift, about: other:halberd-procurement-lead}, {type: contradiction, about: renewal:halberd}]
+    items:
+      - {about: other:halberd-procurement-lead, priority: P3, section: pulse, actions: [profile_update], cites_any: [t-halberd-handover, t-halberd-renewal]}
+      - {about: renewal:halberd, priority: P1, section: pulse, actions_any: [question, decide, watch, task], cites_any: ["note:gtm-weekly.md"],
+         notes: "on day 30 the S14 Line 3 timestamp incident on the same account is a separate P0 item and the 11:00 'Halberd QBR - Tobias intro' is on today's calendar (S11 owns the ENT overlap); compose may cross-link them (raise the timing with Tobias at 11:00) but both about keys must be present"}
+    noise: [t-halberd-usage, t-halberd-vendor-docs, t-halberd-handover, t-halberd-line3-mes]
+
+assertions:
+  - {id: S7-handover-flagged,      kind: candidate_present,   run_day: 26, args: {type: profile_drift, about: other:halberd-procurement-lead}, description: "eval.md §3 S7: handover flagged"}
+  - {id: S7-profile-update-footer, kind: action_present,      run_day: 30, args: {about: other:halberd-procurement-lead, action: profile_update}, description: "eval.md §3 S7: profile_update in the footer"}
+  - {id: S7-tobias-tier-p1,        kind: contact_tier_is,     run_day: 30, args: {email: tobias.weller@halberd.com, tier: P1}, description: "eval.md §3 S7: new lead treated as reference-customer tier"}
+  - {id: S7-tobias-category,       kind: contact_category_is, run_day: 30, args: {email: tobias.weller@halberd.com, category: customer, subtype: reference}}
+  - {id: S7-no-greta-cadence-drop, kind: candidate_absent,    run_day: 30, args: {type: cadence_drop, about: other:halberd-cadence}, description: "cadence merges predecessor + successor; Greta's last inbound is day 13 but Tobias carries the account"}
+  - {id: S7-d30-renewal-present,   kind: item_present,        run_day: 30, args: {about: renewal:halberd, priority: P1}}
+  - {id: S7-d27-renewal-absent,    kind: item_absent,         run_day: 27, args: {about: renewal:halberd}, description: "the note that records the second push lands at 16:10 day 27, after the run"}
+  - {id: S7-handover-thread-noise, kind: item_absent,         run_day: 30, args: {source_id: t-halberd-handover}, description: "the intro thread itself is closed; only the drift line cites it"}
+
+sim_avery:
+  - {scope_about: renewal:halberd, intended_option: 1, rationale: "Avery calls Martin this week and raises the timing with Tobias at the 11:00 intro; two slips on a reference renewal is an at-risk signal"}
+simulate:
+  - {id: S7-sim-ruling-applied, kind: ruling_applied, run_day: 30, args: {question_scope: renewal:halberd, expected_change: "day 30 shows a task/reply for Avery's call instead of re-asking the question", mode: simulate}}
+variants: []

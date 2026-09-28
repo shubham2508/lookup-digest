@@ -1,0 +1,39 @@
+thread_id: t-oncall-rotation
+subject: "on-call load"
+storyline: S15
+category: internal_routine
+labels: null
+messages:
+  - id: m1
+    beat_ref: S15.b1
+    day: 15
+    time: "09:05"
+    from: felix
+    to: [jordan]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      on-call last week: 6 pages, 2 of them overnight (TES-412, TES-418). 4-person rotation is thin with the Northstar work ramping. can we talk comp for primary, or a 5th person? lmk
+  - id: m2
+    beat_ref: S15.b2
+    day: 15
+    time: "10:20"
+    from: jordan
+    to: [felix]
+    cc: [avery, arjun]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Felix,
+
+      Fair. A week like that isn't sustainable and I'd rather fix it than rotate people out.
+
+      - I'm adding on-call comp and rotation size to the infra review on the 17th. Invite coming.
+      - Arjun, can you pull page counts per week since Feb 1, split primary/secondary, so we decide on numbers?
+
+      Avery, nothing needed from you yet. I'll bring you a proposal after the review.

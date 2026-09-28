@@ -1,0 +1,1272 @@
+# world/heldout/prose/bulk/newsletters_b.yaml - newsletters, batch B (Track B, M8)
+# Runway Notes (Thu, 5 letters + one Monday reader-questions short) - Inference Weekly (Fri x4 + one Tuesday outage
+# bulletin) - Term Sheet Sunday (Sun x4 + one midweek Extra) - Platform Notes (Mon/Wed/Fri x13) - East Bay Founders
+# Weekly (Fri x4 + two event reminders). 35 items; every item bulk: true, signature: none; none carries an
+# attachable item. Day 1 = Wed 2026-02-25; day 12 = Sun 03-08 (nothing 02:00-03:00); day 30 = Thu 03-26.
+category: newsletters
+items:
+  # ---------------------------------------------------------------- Runway Notes (Thu 05:45)
+  - id: nl-runwaynotes-1
+    day: 2
+    time: "05:45"
+    from: {name: "Runway Notes", email: "letters@runwaynotes.co"}
+    to: [avery]
+    subject: "Runway Notes: Burn multiple is a lagging indicator"
+    bulk: true
+    signature: none
+    body: |
+      RUNWAY NOTES
+      Thursday, February 26, 2026
+
+      Burn multiple is a lagging indicator
+
+      Every board deck I have seen this quarter has a burn multiple on it, and every one presents it as a health metric. It is not. It is an autopsy metric. Net burn divided by net new ARR tells you, precisely and too late, how efficient the last two quarters were. By the time it moves, the hiring decisions that moved it are nine months old.
+
+      The leading indicators are less tidy. Three I watch:
+
+      Sales capacity ramp. How many quota-carrying reps are fully ramped versus hired? A company with six reps, two ramped, has a burn multiple that looks terrible today and will look fine in two quarters if the ramp works. If the ramp does not work, no metric on the deck will save you.
+
+      Pipeline created per dollar of marketing and SDR spend, trailing 90 days. This moves a quarter before bookings and two quarters before burn multiple. When it turns down, the fix is cheap; when burn multiple turns, the fix is layoffs.
+
+      Gross margin trajectory, not level. A 68% gross margin that was 61% two quarters ago is a company learning to deliver. A 78% margin that was 84% is a company that started doing services to close deals and has not told the board yet.
+
+      Benchmarks, because you will ask: median burn multiple for Series A software companies in our dataset is 1.9x, top quartile under 1.2x. Companies below $5M ARR with a multiple above 3x raised their next round 40% of the time; above 2x but under 3x, 71%. The line is real but it is a line drawn through the past.
+
+      Put burn multiple on the deck. Put the three above in front of it.
+
+      THIS WEEK'S ROUND-UP
+      - A public SaaS company reported net revenue retention of 118% and its stock fell 20%; the guide was the problem.
+      - The venture data providers disagree by 30% on Q1 deal count. Believe the lower one.
+      - A good thread on why usage-based companies should still report ARR, with the definition attached.
+
+      Runway Notes is a weekly letter for operators. Reply to reach a person. Unsubscribe: https://runwaynotes.co/u
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-runwaynotes-2
+    day: 9
+    time: "05:45"
+    from: {name: "Runway Notes", email: "letters@runwaynotes.co"}
+    to: [avery]
+    subject: "Runway Notes: Usage pricing without pricing yourself out"
+    bulk: true
+    signature: none
+    body: |
+      RUNWAY NOTES
+      Thursday, March 5, 2026
+
+      Usage pricing without pricing yourself out
+
+      A founder asked me last week whether to move from seats to usage. The honest answer is that the question is wrong. Nobody moves from seats to usage; they move from one bundle of predictability and upside to a different one, and the work is in choosing the bundle.
+
+      Pure usage is what your finance team fears: revenue that goes down when the customer has a quiet month, a forecast that is a guess, and a renewal conversation in which the customer has a spreadsheet of exactly what they used and exactly what it cost you. It is also what your customers' procurement teams increasingly demand, because it looks like risk transfer.
+
+      The compromise that works, in the companies I have watched do it well, has three parts. A platform fee that covers your fixed cost of serving the account and is not negotiable. A committed usage tier, bought annually, priced at a discount to the rack rate. And overage priced at rack, billed monthly, with a mechanism to true up the commitment mid-year if the customer is consistently over.
+
+      The committed tier does most of the work. It gives finance an ARR number they can defend, it gives the customer a budget number they can defend, and it converts the awkward "you used more than you paid for" conversation into "you are growing, let's raise the commitment," which is a conversation salespeople like having.
+
+      One warning. If your cost of goods scales with usage (compute, tokens, third-party data), price the overage with a margin that survives the customer's worst month, not their average one. I have seen two companies this year with negative gross margin on their largest account because the overage was priced off a model cost that has since doubled.
+
+      Benchmarks: among the Series A and B companies in our set that report a hybrid model, the platform fee is 20-35% of the average contract, the committed tier covers 70-85% of realized usage, and overage runs 10-25% above the committed rate.
+
+      THIS WEEK'S ROUND-UP
+      - The public SaaS median EV/revenue multiple is 6.1x, flat for six months.
+      - A useful post on why "expansion ARR" should exclude price increases, with worked examples.
+
+      Runway Notes is a weekly letter for operators. Reply to reach a person. Unsubscribe: https://runwaynotes.co/u
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-runwaynotes-3
+    day: 16
+    time: "05:45"
+    from: {name: "Runway Notes", email: "letters@runwaynotes.co"}
+    to: [avery]
+    subject: "Runway Notes: CAC payback lies in year two"
+    bulk: true
+    signature: none
+    body: |
+      RUNWAY NOTES
+      Thursday, March 12, 2026
+
+      CAC payback lies in year two
+
+      Customer acquisition cost payback is the metric every early-stage board loves because it is simple: months of gross profit to recover what you spent to win the customer. Under 18 months is good, under 12 is great, and a company at 9 months looks like it has found something.
+
+      The lie is in what the metric assumes: that the gross profit is stable and the customer stays. In year one both are usually true. In year two the customer that was cheap to win because it was small asks for the integration, the SSO, the dedicated support channel, and the price concession at renewal, and the gross profit on that account falls by a third. Meanwhile the "sales and marketing" cost that went into the denominator did not include the founder's time, the solutions engineer who spent six weeks on the pilot, or the discount that was booked as a pricing decision rather than an acquisition cost.
+
+      Two corrections I ask companies to make.
+
+      First, fully load the acquisition cost. Include the pilot engineering, the discount against list, and a fair share of founder time. The payback usually moves from 11 months to 17. That is still fine; it is just true.
+
+      Second, compute payback on year-two gross profit for the customers that have reached year two, and show the two numbers side by side. If year-two payback is worse than year-one, your customers are getting more expensive to serve as they grow, which is a product problem wearing a finance costume.
+
+      Benchmarks from our dataset for Series A companies with average contracts under $50K: median stated CAC payback 14 months; median fully loaded, 21 months. Top quartile fully loaded, under 13. The gap between stated and loaded is the number to close, and the boards that ask about it are the good ones.
+
+      THIS WEEK'S ROUND-UP
+      - A well-known growth fund published its Series A benchmarks; the ARR bar moved up again.
+      - A thoughtful piece on why "multi-year" and "prepaid" are different words.
+      - The best thing I read this week was a plant manager's blog post on scheduling, which has nothing to do with SaaS and everything to do with constraints.
+
+      Runway Notes is a weekly letter for operators. Reply to reach a person. Unsubscribe: https://runwaynotes.co/u
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-runwaynotes-short-20
+    day: 20
+    time: "06:10"
+    from: {name: "Runway Notes", email: "letters@runwaynotes.co"}
+    to: [avery]
+    subject: "Runway Notes: a short one - four reader questions"
+    bulk: true
+    signature: none
+    body: |
+      RUNWAY NOTES - MONDAY SHORT
+      Monday, March 16, 2026
+
+      The mailbag got long. Four questions, short answers. The regular letter is Thursday.
+
+      "Should we report ARR or annualized revenue if 30% of our revenue is usage?" Report both, define both in a footnote, and never let anyone say ARR without the definition attached. The companies that get in trouble are the ones whose ARR definition changed between rounds.
+
+      "A customer wants a 20% discount for a three-year prepaid contract. Take it?" Price the discount against your cost of capital, not against list. If a bank would lend you the same money at 12%, a 20% discount for cash up front is expensive money. Offer 10% for prepaid, or 20% for a three-year commitment billed annually, and let them choose.
+
+      "We have a services line that is 15% of revenue at 30% gross margin. Hide it in COGS or break it out?" Break it out. Investors can do arithmetic; what they cannot do is trust a blended margin they know is blended. A visible services line at 30% is fine. A software margin that turns out to include services is a diligence problem.
+
+      "How many quota-carrying reps should a $4M ARR company have?" Fewer than you think. Median in our set at that stage is three, with the founder still closing the largest deals. Companies that went to six or more reps before $6M had a worse burn multiple two years later in almost every case.
+
+      Back Thursday.
+
+      Runway Notes is a weekly letter for operators. Reply to reach a person. Unsubscribe: https://runwaynotes.co/u
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-runwaynotes-4
+    day: 23
+    time: "05:45"
+    from: {name: "Runway Notes", email: "letters@runwaynotes.co"}
+    to: [avery]
+    subject: "Runway Notes: Hiring ahead of the round, or behind it"
+    bulk: true
+    signature: none
+    body: |
+      RUNWAY NOTES
+      Thursday, March 19, 2026
+
+      Hiring ahead of the round, or behind it
+
+      There is a moment in every raise when the founder has a term sheet in hand, or nearly, and a hiring plan that assumes the money. The question is whether to start the searches now or wait for the wire. The conventional advice is to wait. The conventional advice is mostly wrong, with one big exception.
+
+      The argument for waiting is obvious: rounds fall apart, and a company that has hired three people against money that did not arrive has a short, unpleasant year. The argument for starting is that senior searches take four to six months, the round takes two, and the people you want will not be more available in June than they are in March.
+
+      The resolution is to separate starting a search from making an offer. Open the searches, run the process, and calibrate the market. Do not extend offers that the current balance sheet cannot cover for twelve months. If the round closes on schedule, you are two months ahead. If it does not, you have a shortlist and no obligations.
+
+      The big exception is any hire that changes the story you are telling the investors. If the deck says "we will hire a VP of Sales after the round," and you hire one during diligence, you have introduced a variable into a process that rewards stability. Investors are underwriting a plan; changing it mid-underwriting, even for the better, costs you.
+
+      A second, quieter exception: engineering hires that were already open. Pausing an open search because a round is in process signals something to the candidates in the pipeline, and they will draw the wrong conclusion. Keep those running at their normal pace.
+
+      Benchmarks: in our dataset, companies that closed a Series A grew headcount by a median 55% in the following twelve months; the top quartile by revenue growth grew headcount by only 40%. The correlation between hiring speed and outcome is negative at this stage, which is worth sitting with.
+
+      THIS WEEK'S ROUND-UP
+      - Q1 venture funding is tracking flat year on year; deal count is down 15%. Bigger checks, fewer companies.
+
+      Runway Notes is a weekly letter for operators. Reply to reach a person. Unsubscribe: https://runwaynotes.co/u
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-runwaynotes-5
+    day: 30
+    time: "05:45"
+    from: {name: "Runway Notes", email: "letters@runwaynotes.co"}
+    to: [avery]
+    subject: "Runway Notes: Services revenue is not a sin"
+    bulk: true
+    signature: none
+    body: |
+      RUNWAY NOTES
+      Thursday, March 26, 2026
+
+      Services revenue is not a sin
+
+      The software industry has spent two decades teaching founders that services revenue is a confession. Low margin, unrepeatable, a sign the product does not work on its own.
+
+      I want to make the opposite case, narrowly. In vertical software sold to operationally complex customers (plants, hospitals, logistics networks), a services line in the first few years is not a weakness; it is how the product gets built. Every implementation is a lesson in what the product should do without a human, and the companies that charge for that lesson learn faster than the ones that give it away, because a customer who pays for a week of an engineer's time takes the week seriously.
+
+      The discipline is in what happens next. Services revenue is fine at 20% of the total when the company is at $3M in ARR and unacceptable at 20% when it is at $30M. The trajectory matters more than the level. Each engagement should retire a category of work: the connector that took three weeks becomes a configuration option, the data cleanup that took two becomes an import wizard. If services as a share of revenue is not falling by a few points a year, the product is not learning.
+
+      Investors, in my experience, respond well to this story when it is told plainly and badly when it is discovered. "We run a services line at 35% margin, it is 18% of revenue, down from 30% two years ago, and here are the three product features it paid for" is a sentence that closes rounds. A blended gross margin that turns out on inspection to include services is a sentence that reopens them.
+
+      Benchmarks: among vertical SaaS companies in our set at $2-5M ARR, median services share is 16%, median services gross margin 28%. At $10-20M ARR the median share is 8%. The companies that got from the first band to the second fastest had the higher services share at the start, not the lower.
+
+      THIS WEEK'S ROUND-UP
+      - Public vertical-software companies are trading at a premium to horizontal for the first time in four years.
+
+      Runway Notes is a weekly letter for operators. Reply to reach a person. Unsubscribe: https://runwaynotes.co/u
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  # ---------------------------------------------------------------- Inference Weekly (Fri 09:00)
+  - id: nl-inferenceweekly-1
+    day: 3
+    time: "09:00"
+    from: {name: "Inference Weekly", email: "hello@inferenceweekly.ai"}
+    to: [avery]
+    subject: "Inference Weekly: Sable-3 Mini in production, the cost of long context, five links"
+    bulk: true
+    signature: none
+    body: |
+      INFERENCE WEEKLY
+      Friday, February 27, 2026
+
+      Hello. The week in running models, for people who pay the bill.
+
+      IN PRODUCTION: Sable-3 Mini
+      Three days after release, it is already the default routing target at two of the larger inference gateways for classification and extraction traffic. Early reports: latency to first token around 180ms at p50, quality on par with last year's mid-tier, and the price is the price. One team told us they moved 40% of their volume to it in an afternoon by changing a routing rule.
+
+      COST CORNER: long context is not free, even when it is cached
+      A 200K-token context at current input prices is about $0.40 per request on a frontier model before caching and $0.06 after. That is fine at a thousand requests a day and ruinous at a million. Retrieval is not dead; it just moved from "necessary" to "cheaper."
+
+      FIVE LINKS
+      1. A clear write-up of how continuous batching actually works, with diagrams.
+      2. The serving framework release that finally makes multi-LoRA serving stable.
+      3. A benchmark of six embedding models on industrial-document retrieval. The small ones win.
+      4. A post-mortem from a team whose test set leaked into their fine-tuning data. Honest and useful.
+      5. The talk from last week's systems conference on KV-cache compression, now with slides.
+
+      ONE NUMBER: 2.6x. Median throughput gain from turning on speculative decoding for chat-shaped traffic, across the twelve deployments readers sent us this week.
+
+      That's the week. Reply with what you are running.
+
+      Inference Weekly is free and reader-supported. Unsubscribe: https://inferenceweekly.ai/u/x
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-inferenceweekly-2
+    day: 10
+    time: "09:00"
+    from: {name: "Inference Weekly", email: "hello@inferenceweekly.ai"}
+    to: [avery]
+    subject: "Inference Weekly: the 40% price cut a week later, batch tiers, routing gateways compared"
+    bulk: true
+    signature: none
+    body: |
+      INFERENCE WEEKLY
+      Friday, March 6, 2026
+
+      Hello. The week in running models, for people who pay the bill.
+
+      THE PRICE CUT, ONE WEEK ON
+      Aurelian's 40% cut on Sable-3 has not been matched. What it has done is move traffic: the two gateways that publish routing stats both show Sable-3 large taking share from the other two frontier models on cost-sensitive workloads. If you are on an annual commitment with another lab, this is your leverage at renewal, and the account managers know it.
+
+      BATCH TIERS: who is actually using them
+      We asked. Of 60 teams that replied, 14 route any traffic to a batch tier, and those 14 route a median 35% of their tokens there. The other 46 said "on the roadmap." The savings are 50% on the routed volume. The blocker in every case was the same: someone has to write the queue.
+
+      ROUTING GATEWAYS COMPARED
+      We ran the same 10,000-request workload through four routing gateways. Cost spread: 1.7x between best and worst, most of it from how aggressively they downgrade easy requests to small models. Latency spread: 1.3x. The cheapest one was also the least transparent about why it chose a model. Full table on the site.
+
+      FIVE LINKS
+      1. A practical guide to structured-output modes across providers, with the edge cases.
+      2. The open-source project that turns provider usage exports into one cost dashboard.
+      3. A short paper on why output tokens cost more, from the hardware up.
+      4. A team's story of cutting their model bill 60% with three routing rules.
+      5. The interconnect lead-time data, if you want to know why your cluster is late.
+
+      ONE NUMBER: $0.12. Per million input tokens on the model that now handles most classification traffic we can see. Two years ago that work cost $3.
+
+      That's the week. Reply with what you are running.
+
+      Inference Weekly is free and reader-supported. Unsubscribe: https://inferenceweekly.ai/u/x
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-inferenceweekly-bulletin-14
+    day: 14
+    time: "11:30"
+    from: {name: "Inference Weekly", email: "hello@inferenceweekly.ai"}
+    to: [avery]
+    subject: "Inference Weekly bulletin: a major API provider is down for most customers (ongoing)"
+    bulk: true
+    signature: none
+    body: |
+      INFERENCE WEEKLY - BULLETIN
+      Tuesday, March 10, 2026, 11:30am Pacific
+
+      A short one outside the usual Friday slot because a lot of you are affected.
+
+      One of the three frontier API providers has been returning elevated error rates since about 8:40am Pacific. Readers report 30-70% of requests failing with 5xx errors across all model tiers; the batch tier appears unaffected because it is queued. The provider's status page moved from "investigating" to "identified" at 10:15 and says a fix is rolling out region by region. No cause has been given.
+
+      What teams are doing, from the replies so far:
+      - Those with a routing gateway in front of the API flipped a fallback to a second provider within minutes and are mostly fine, at a higher cost per token.
+      - Those calling the API directly are either retrying with backoff and eating the latency or have degraded the feature.
+      - Two teams discovered that their fallback path had never been tested and does not work. Both are fixing it live.
+
+      If you have a fallback configured, now is when you learn whether it works. If you do not, the cheapest insurance is a gateway with a second provider key, and it takes an afternoon.
+
+      We will have the full picture and the provider's post-mortem in Friday's issue. Reply with your experience; anonymized reports help everyone.
+
+      Inference Weekly is free and reader-supported. Unsubscribe: https://inferenceweekly.ai/u/x
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-inferenceweekly-3
+    day: 17
+    time: "09:00"
+    from: {name: "Inference Weekly", email: "hello@inferenceweekly.ai"}
+    to: [avery]
+    subject: "Inference Weekly: the outage post-mortem, agent token math, small models on CPUs"
+    bulk: true
+    signature: none
+    body: |
+      INFERENCE WEEKLY
+      Friday, March 13, 2026
+
+      Hello. The week in running models, for people who pay the bill.
+
+      THE OUTAGE: what the post-mortem said
+      Tuesday's four-hour incident was a configuration push to the request-routing layer that sent a majority of traffic to one region's capacity. The provider is offering service credits to affected customers; the credits are calculated against committed spend, so the pay-as-you-go customers get nothing. Twenty-two readers sent us their experience. The ones with a tested fallback lost minutes; the ones without lost the afternoon. The median cost of running on the fallback provider for four hours was 1.4x normal.
+
+      AGENT TOKEN MATH
+      Following up on a point several of you made: agentic workloads produce far more output tokens per request than chat, and output tokens cost 4-5x input. We collected traces from eleven agent deployments. Median input-to-output ratio: 2.8 to 1. Median cost per task: $0.31, of which 68% was output tokens. If you are quoting customers a per-task price, this is the number to model.
+
+      SMALL MODELS ON CPUS
+      Compute Ledger ran the numbers this week and we independently confirm them: 1-4B models on ordinary cloud CPUs handle classification and routing at a few cents per million tokens. We moved our own newsletter's spam filter to one and it is fine.
+
+      FIVE LINKS
+      1. The provider's post-mortem, which is better than most.
+      2. A fallback-routing configuration guide for the two most common gateways.
+      3. The ASIC vendor's benchmark disclosure, with the caveats in the footnotes.
+      4. A paper on why quantized small models fail on long inputs, and where the cliff is.
+      5. A very good thread on rate-limit strategy for bursty agent traffic.
+
+      ONE NUMBER: 68%. Share of agent task cost that is output tokens, in our sample.
+
+      That's the week. Reply with what you are running.
+
+      Inference Weekly is free and reader-supported. Unsubscribe: https://inferenceweekly.ai/u/x
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-inferenceweekly-4
+    day: 24
+    time: "09:00"
+    from: {name: "Inference Weekly", email: "hello@inferenceweekly.ai"}
+    to: [avery]
+    subject: "Inference Weekly: Cobalt-4 early access, cache hit rates, a serving framework's breaking release"
+    bulk: true
+    signature: none
+    body: |
+      INFERENCE WEEKLY
+      Friday, March 20, 2026
+
+      Hello. The week in running models, for people who pay the bill.
+
+      COBALT-4: early-access notes
+      Meridian AI's next model is in early access with about 200 customers ahead of a launch reported for Monday. What we can say from the readers under NDA who replied in generalities: tool use is noticeably better, latency is similar to the current generation, and there is a new pricing tier for non-interactive traffic that sits between standard and batch. We will cover the pricing in detail once it is public.
+
+      CACHE HIT RATES, MEASURED
+      We asked readers to report prompt-cache hit rates from their provider dashboards. Forty replies. Support and extraction workloads with a fixed system prompt: 60-85% hit rate. Document-heavy workloads with varying context: 5-20%. Agent loops: 30-50%, because the conversation prefix stays stable while the tail grows. The pricing pages show the discount; the hit rate is what you actually get.
+
+      A SERVING FRAMEWORK BREAKS ITS API
+      The most widely used open-source inference server shipped a major release this week with a changed configuration schema and a new default scheduler. Teams that upgraded without reading the notes report throughput regressions of up to 30% until they re-tuned. The old defaults are available behind a flag. Pin your versions.
+
+      FIVE LINKS
+      1. The migration guide for the serving framework release, which you should read before upgrading.
+      2. A well-argued post on treating model choice as a procurement decision.
+      3. A dataset of real prompt-cache hit rates by workload type (ours, from the replies above).
+      4. A hardware teardown of the new inference ASIC.
+      5. The best explanation of 4-bit quantization for people who do not want the math.
+
+      ONE NUMBER: 30%. The throughput regression from upgrading the serving framework without re-tuning. Read the notes.
+
+      That's the week. Reply with what you are running.
+
+      Inference Weekly is free and reader-supported. Unsubscribe: https://inferenceweekly.ai/u/x
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  # ---------------------------------------------------------------- Term Sheet Sunday (Sun 08:00)
+  - id: nl-termsheetsunday-1
+    day: 5
+    time: "08:00"
+    from: {name: "Term Sheet Sunday", email: "sunday@termsheetsunday.com"}
+    to: [avery]
+    subject: "Term Sheet Sunday: February's rounds, the bridge-round comeback, one clause to read twice"
+    bulk: true
+    signature: none
+    body: |
+      TERM SHEET SUNDAY
+      Sunday, March 1, 2026
+
+      The week in venture, for founders who read the documents.
+
+      FEBRUARY IN NUMBERS
+      US venture deal count in February: 1,140, down 12% year on year. Dollars: $18.2B, up 9%, because four AI infrastructure rounds accounted for a third of it. Series A median pre-money: $42M, flat for three quarters. Seed median: $14M, down slightly. The market is bifurcated and has been for a year; the only new information is that the bifurcation is stable.
+
+      THE BRIDGE ROUND IS BACK, WITH BETTER MANNERS
+      Insider-led extensions were 22% of all early-stage rounds in February, the highest share since 2023. What is different from the last bridge wave: the terms are cleaner. Most are priced, not converting, and most come with a stated milestone for the next round rather than an open-ended runway extension. Existing investors have learned that an unpriced bridge with a discount creates a fight at the next round that nobody wins.
+
+      ONE CLAUSE TO READ TWICE
+      Information rights. The standard clause gives major investors monthly or quarterly financials. The clause to watch is the one that extends information rights to "any affiliate," which in a multi-strategy firm can mean the growth fund, the hedge fund and the public-markets desk. Ask for the affiliate language to be narrowed to the fund and its general partner. Most firms agree without argument; the ones that do not are telling you something.
+
+      ROUNDS THIS WEEK
+      - Corvid Robotics, $140M Series C, warehouse robotics, led by a growth fund.
+      - Halyard Cloud, pre-IPO secondary at a reported $9B.
+      - Three industrial-software Series As between $12M and $20M, all led by specialist funds, none by the generalists. Pattern worth noting.
+
+      See you next Sunday.
+
+      Term Sheet Sunday is written by a former deal lawyer. It is not legal advice. Unsubscribe: https://termsheetsunday.com/u
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-termsheetsunday-2
+    day: 12
+    time: "08:00"
+    from: {name: "Term Sheet Sunday", email: "sunday@termsheetsunday.com"}
+    to: [avery]
+    subject: "Term Sheet Sunday: the pro-rata squeeze, secondaries at seed, what a 'clean' term sheet means now"
+    bulk: true
+    signature: none
+    body: |
+      TERM SHEET SUNDAY
+      Sunday, March 8, 2026
+
+      The week in venture, for founders who read the documents. Clocks moved overnight; this is still 8am.
+
+      THE PRO-RATA SQUEEZE
+      In hot rounds, lead investors are increasingly asking existing investors to waive or reduce pro-rata to make room. In February we counted eleven Series A and B rounds where seed investors were cut back below their contractual right. Founders are caught between a lead who wants ownership and a seed investor who has a signed right. The playbook that works: raise the round size slightly, let the seed investors take a partial pro-rata, and document the waiver formally. Informal waivers come back as grievances.
+
+      SECONDARIES AT SEED
+      Founders selling a small slice of their own stock at the Series A is no longer unusual. In our sample, 18% of Series A rounds over $15M included a founder secondary, median 3% of the founder's holding. Investors have mostly stopped objecting, on the theory that a founder with a paid-off mortgage takes better long-term risks. Two cautions: the secondary is usually at a discount to the round price, and the tax treatment depends on holding period, so talk to an accountant before the term sheet, not after.
+
+      WHAT "CLEAN" MEANS IN 2026
+      A clean Series A term sheet today: 1x non-participating preference, broad-based weighted-average anti-dilution, a board of two founders, one investor and one independent, standard protective provisions, and an employee equity refresh sized to an actual hiring plan rather than a round number. Anything beyond that is a negotiation, and you should know why the other side wants it.
+
+      ROUNDS THIS WEEK
+      - Two vertical AI companies in logistics raised Series Bs above $50M, both from specialist leads.
+      - A well-known seed fund announced a $400M fund IV, larger than its first three combined.
+      - An industrial-software company we like quietly extended its seed rather than raise an A. Smart, in this market.
+
+      See you next Sunday.
+
+      Term Sheet Sunday is written by a former deal lawyer. It is not legal advice. Unsubscribe: https://termsheetsunday.com/u
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-termsheetsunday-3
+    day: 19
+    time: "08:00"
+    from: {name: "Term Sheet Sunday", email: "sunday@termsheetsunday.com"}
+    to: [avery]
+    subject: "Term Sheet Sunday: Q1 is shaping up flat, the independent director problem, reading a side letter"
+    bulk: true
+    signature: none
+    body: |
+      TERM SHEET SUNDAY
+      Sunday, March 15, 2026
+
+      The week in venture, for founders who read the documents.
+
+      Q1, WITH TWO WEEKS LEFT
+      Dollars are tracking flat year on year; deal count is down about 15%. Bigger checks into fewer companies, concentrated in AI infrastructure and in vertical software with a hardware or plant-floor component. Generalist funds are writing fewer Series A checks and more Series B checks into companies the specialists found. If you are raising an A from a generalist right now, expect a longer process and a lower valuation than the specialist would offer.
+
+      THE INDEPENDENT DIRECTOR PROBLEM
+      Almost every Series A term sheet calls for an independent board seat. Almost nobody fills it before the round closes, and about a third of the companies in our sample had not filled it a year later. The seat matters most in exactly the situations founders do not anticipate: a down round, a founder dispute, an acquisition offer. Fill it in the first ninety days, with someone who has run a company at the stage you are going to be at, not the stage you are at.
+
+      READING A SIDE LETTER
+      Side letters are where the terms the lead did not want in the main documents go. Common ones: most-favored-nation on future terms, a right to co-invest in future rounds beyond pro-rata, a consent right over a specific decision (a sale, a new office, a pivot). Read them as carefully as the charter, because they bind the company, and ask that every side letter be disclosed to every investor. A side letter one investor does not know about is a lawsuit waiting for a bad quarter.
+
+      ROUNDS THIS WEEK
+      - A plant-floor analytics company raised a $28M Series A led by a specialist industrial fund, with a well-known generalist following.
+      - A cold-chain telemetry rollup raised debt, not equity. Watch for more of that.
+      - The largest seed fund in the Bay Area closed its new vehicle a third smaller than the last one, by choice.
+
+      See you next Sunday.
+
+      Term Sheet Sunday is written by a former deal lawyer. It is not legal advice. Unsubscribe: https://termsheetsunday.com/u
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-termsheetsunday-extra-22
+    day: 22
+    time: "16:00"
+    from: {name: "Term Sheet Sunday", email: "sunday@termsheetsunday.com"}
+    to: [avery]
+    subject: "Term Sheet Sunday Extra: Cobalt Ridge closes a $900M fund IV, and what it signals"
+    bulk: true
+    signature: none
+    body: |
+      TERM SHEET SUNDAY - MIDWEEK EXTRA
+      Wednesday, March 18, 2026
+
+      A short one because the news is worth the interruption.
+
+      Cobalt Ridge Partners closed its fourth fund this morning at $900M, above its $750M target and nearly double fund III. Cobalt Ridge is the largest of the specialist funds that invest only in industrial and supply-chain software, and until about two years ago the generalists treated the category as a backwater. The oversubscription tells you the limited partners no longer agree.
+
+      Three things this means for founders in the category.
+
+      First, there is more Series A and B capital aimed specifically at plant-floor, logistics and industrial-AI companies than at any point in the history of the sector. Cobalt Ridge alone will write 25-30 checks from this fund; the three next-largest specialists have all raised in the last eighteen months.
+
+      Second, the generalists will follow. They always do. Expect the large multi-stage funds to announce "industrial AI" theses and hire partners from the specialists by summer. Their checks will be larger and their processes slower, and they will want to see a specialist in the round with them.
+
+      Third, valuations in the category will drift up, at least for the companies with reference customers and a live deployment. The specialists know what a plant rollout costs and price it; the generalists will pay for the story. Founders should take the specialist's money and the generalist's valuation, in that order, if they can get both.
+
+      The fund's announcement lists its first three investments from fund IV, all Series B extensions into existing portfolio companies, which is how specialists tend to start a fund. New Series A activity from it will show up in Q2.
+
+      Back to the regular schedule Sunday.
+
+      Term Sheet Sunday is written by a former deal lawyer. It is not legal advice. Unsubscribe: https://termsheetsunday.com/u
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-termsheetsunday-4
+    day: 26
+    time: "08:00"
+    from: {name: "Term Sheet Sunday", email: "sunday@termsheetsunday.com"}
+    to: [avery]
+    subject: "Term Sheet Sunday: quarter-end dynamics, the option-pool shuffle explained, LPs are tired"
+    bulk: true
+    signature: none
+    body: |
+      TERM SHEET SUNDAY
+      Sunday, March 22, 2026
+
+      The week in venture, for founders who read the documents.
+
+      QUARTER-END DYNAMICS
+      The last two weeks of a quarter are when funds close deals they want to mark in the quarter's reporting. Founders in process right now should know two things. Investors are more willing to sign this week than they were three weeks ago, and less willing to negotiate; the trade is speed for terms. If you have a term sheet you like, sign it. If you have one you do not, the leverage to change it improves on April 1, when the clock resets and the partner has time to argue.
+
+      THE PREFERENCE STACK, EXPLAINED ONCE
+      Each priced round adds a class of preferred stock, and each class wants to be paid back before common in a sale. By the Series C a company can have four classes with different preferences, different seniority and, if someone was careless at the B, participation. The founder's share of a $200M exit can vary by tens of millions depending on how the stack was built three rounds earlier. The defense is boring: insist on pari passu (all preferred paid together, not in order of round) from the A onward, and refuse participation at every round, even when it is offered as a trade for a higher headline valuation.
+
+      LPS ARE TIRED
+      Two large university endowments told a conference this week that they are cutting venture allocations for 2027 because distributions have not kept up with capital calls for four years. This is the pressure behind the secondaries boom and behind the specialists' rise: a specialist fund with a clear thesis and modest size is an easier re-up than a generalist mega-fund with a long tail of 2021 marks. For founders, the practical effect is that funds are more sensitive to time-to-liquidity than they were, and will ask about it.
+
+      ROUNDS THIS WEEK
+      - Cobalt Ridge's fund IV (see Wednesday's Extra). Three more specialists are said to be in market.
+      - A robotics company raised a $75M B at a valuation below its 2022 A. It is fine; the company is better.
+      - Seed rounds were quiet; quarter-end is not a seed phenomenon.
+
+      See you next Sunday.
+
+      Term Sheet Sunday is written by a former deal lawyer. It is not legal advice. Unsubscribe: https://termsheetsunday.com/u
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  # ---------------------------------------------------------------- Platform Notes (Mon/Wed/Fri 06:45)
+  - id: nl-platformnotes-1
+    day: 1
+    time: "06:45"
+    from: {name: "Platform Notes", email: "notes@platformnotes.io"}
+    to: [avery]
+    subject: "Platform Notes: Vertical software's second act"
+    bulk: true
+    signature: none
+    body: |
+      PLATFORM NOTES
+      Wednesday, February 25, 2026
+
+      Vertical software's second act
+
+      The first act of vertical software, roughly 2010 to 2020, was about replacing paper and spreadsheets with a system of record for one industry: dental practices, restaurants, construction sites, auto dealers. The winners built a database shaped like the industry's workflow, sold it to owners who had never bought software before, and charged a subscription that looked expensive per seat and cheap per business.
+
+      The second act, underway now, is different in kind. The system of record exists; the question is what you can do with the data in it. And the answer, increasingly, is: run the business. Scheduling, pricing, ordering, staffing, the decisions the owner used to make on instinct, are being made or at least proposed by software that has seen a thousand businesses like theirs.
+
+      This changes the buyer. The first-act buyer was the owner, who wanted less paperwork. The second-act buyer is the operator, who wants a better Tuesday. It changes the pricing, from seats to outcomes. And it changes the competitive dynamics, because the incumbent system of record has the data but usually not the talent to do anything with it, and the startup has the talent but has to get the data out of the incumbent.
+
+      The pattern to watch is the connector war: incumbents locking down APIs, startups building around them, and the industry's customers stuck in the middle asking why their two vendors cannot talk to each other. It played out in accounting a decade ago and it is playing out in manufacturing and healthcare now. The incumbents won the first round of that war in accounting. I do not think they win it this time.
+
+      Read on the web: https://platformnotes.io/2026/second-act
+
+      Platform Notes goes out Monday, Wednesday and Friday. Unsubscribe: https://platformnotes.io/u
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-platformnotes-3
+    day: 3
+    time: "06:45"
+    from: {name: "Platform Notes", email: "notes@platformnotes.io"}
+    to: [avery]
+    subject: "Platform Notes: The connector is the product"
+    bulk: true
+    signature: none
+    body: |
+      PLATFORM NOTES
+      Friday, February 27, 2026
+
+      The connector is the product
+
+      Ask a software company what it sells and it will describe its interface. Ask its customers what they bought and, in operationally heavy industries, they will describe the integration: the thing that finally got the order data out of the ERP and into a place where someone could act on it.
+
+      This is embarrassing for the software company, which spent its design budget on the interface. It should not be. In a world where the model layer is a commodity and the interface layer is increasingly generated, the durable engineering asset is the thing that knows how to read a twenty-year-old system's export format, handle its edge cases, and keep working when the customer's IT department upgrades it without telling anyone.
+
+      Connectors have three properties that make them good business. They are expensive to build the first time and cheap the tenth; the hundredth customer on the same ERP costs nothing to connect. They are painful to replace, because the customer's IT department remembers how long the first one took. And they compound: each new system you can read makes the next customer's implementation shorter and the product's data richer.
+
+      The strategic implication is that a vertical software company should treat its connector library the way a platform company treats its API: as the product, with a roadmap, a team, and a public list of what it supports. The companies that do this end up as the integration hub for their industry, which is a position that outlasts any particular feature.
+
+      The tactical implication is smaller and more useful. When a prospect asks "does it integrate with X," the answer that wins is a list, not a yes.
+
+      Read on the web: https://platformnotes.io/2026/connector-is-the-product
+
+      Platform Notes goes out Monday, Wednesday and Friday. Unsubscribe: https://platformnotes.io/u
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-platformnotes-6
+    day: 6
+    time: "06:45"
+    from: {name: "Platform Notes", email: "notes@platformnotes.io"}
+    to: [avery]
+    subject: "Platform Notes: Why platform take rates are falling"
+    bulk: true
+    signature: none
+    body: |
+      PLATFORM NOTES
+      Monday, March 2, 2026
+
+      Why platform take rates are falling
+
+      Thirty percent was the number for fifteen years. App stores, marketplaces, payment platforms: the platform took roughly a third, and the sellers grumbled and paid. In the last two years the number has been sliding everywhere at once, to 15%, to 12%, in a few cases to a flat fee. The regulators get the credit in the press coverage. I think they are a minority of the story.
+
+      The larger cause is that the platforms' leverage came from distribution, and distribution is fragmenting. When a developer could only reach phone users through one store, the store could charge what it liked. When a seller can reach buyers through a dozen channels, some of them owned by AI assistants that do not care which store the app came from, the store is a channel among channels, and channels get paid like channels: single digits.
+
+      The second cause is that the sellers got better at the parts the platform used to do for them. Payments are a commodity. Trust is handled by reviews that live everywhere. Discovery is search, and search is being unbundled from the platforms by the assistants. What is left for the platform to charge for is hosting and compliance, which are worth something, but not a third.
+
+      For companies that sell through a platform, the implication is to negotiate now, while the take rate is falling and the platform is nervous. For companies that are a platform, or hope to be, it is to stop modeling on 30%. The businesses being built now on marketplace economics will have to make money at 10%, and that is a different business.
+
+      Read on the web: https://platformnotes.io/2026/take-rates
+
+      Platform Notes goes out Monday, Wednesday and Friday. Unsubscribe: https://platformnotes.io/u
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-platformnotes-8
+    day: 8
+    time: "06:45"
+    from: {name: "Platform Notes", email: "notes@platformnotes.io"}
+    to: [avery]
+    subject: "Platform Notes: Interoperability as a sales strategy"
+    bulk: true
+    signature: none
+    body: |
+      PLATFORM NOTES
+      Wednesday, March 4, 2026
+
+      Interoperability as a sales strategy
+
+      Incumbents defend by closing; challengers attack by opening. This is old, but the current version has a twist worth noting: the challengers are not just opening their own systems, they are building the interoperability their customers wish the incumbent offered, and using it as the wedge.
+
+      The mechanics work like this. A mid-market customer runs an incumbent system of record it cannot replace. A challenger arrives with a narrow product that sits beside it, reads from it, and does one thing better. The challenger's connector to the incumbent is better than the incumbent's own export, because the challenger's survival depends on it and the incumbent's does not. Within a year the customer is running reports out of the challenger, because that is where the data is usable. Within two, the challenger is proposing to become the system of record for the next plant, the next region, the next division.
+
+      Incumbents see this coming and respond by throttling APIs and charging for exports. It rarely works, because the customer experiences the throttling as the incumbent's fault, which it is, and because there is always a file export, a database replica, or a screen to scrape.
+
+      For challengers, the strategic discipline is to resist becoming the system of record too early. The narrow product beside the incumbent is a good business with a short sales cycle. The replacement is a great business with a two-year sales cycle and a services organization. Get to the second by earning it through the first, not by pitching it on day one.
+
+      Read on the web: https://platformnotes.io/2026/interoperability
+
+      Platform Notes goes out Monday, Wednesday and Friday. Unsubscribe: https://platformnotes.io/u
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-platformnotes-10
+    day: 10
+    time: "06:45"
+    from: {name: "Platform Notes", email: "notes@platformnotes.io"}
+    to: [avery]
+    subject: "Platform Notes: The workflow is the moat, not the model"
+    bulk: true
+    signature: none
+    body: |
+      PLATFORM NOTES
+      Friday, March 6, 2026
+
+      The workflow is the moat, not the model
+
+      Every AI application pitch of 2024 had a slide about the model. Every AI application pitch of 2026 has a slide about how the model does not matter. Both slides were made by people responding to their investors' last question, and both miss where the defensibility actually sits.
+
+      It is not in the model, which is rented. It is not in the data, at least not in the sense the pitch decks mean; most application companies' proprietary data is a modest advantage that shrinks as the base models improve. It is in the workflow: the sequence of steps by which the software's output becomes an action in the customer's business, and the trust that sequence has accumulated.
+
+      Consider two companies with the same model doing the same extraction from the same documents. One shows the results in a dashboard. The other writes them into the customer's ERP, flags the three it is unsure about for a human, learns from the human's corrections, and has done so for eighteen months without an incident. The second company is not easier to replace because its model is better. It is harder to replace because replacing it means re-earning eighteen months of trust with a plant manager who does not want to.
+
+      The implication for builders is to invest where the workflow touches the customer's real operations, which is unglamorous: permissions, audit logs, undo, escalation paths, the "why did it do that" button. The implication for investors is to stop asking about the model and start asking how many of the customer's daily decisions the product is in the loop for, and how many it has been in the loop for without anyone getting fired.
+
+      Read on the web: https://platformnotes.io/2026/workflow-moat
+
+      Platform Notes goes out Monday, Wednesday and Friday. Unsubscribe: https://platformnotes.io/u
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-platformnotes-13
+    day: 13
+    time: "06:45"
+    from: {name: "Platform Notes", email: "notes@platformnotes.io"}
+    to: [avery]
+    subject: "Platform Notes: Bundling is back"
+    bulk: true
+    signature: none
+    body: |
+      PLATFORM NOTES
+      Monday, March 9, 2026
+
+      Bundling is back
+
+      The 2010s were the unbundling decade. Every feature of the enterprise suite became a startup, every startup raised on the premise that best-of-breed beats good-enough, and the average mid-size company ended up with ninety software subscriptions and a procurement team whose job was to count them.
+
+      The pendulum is swinging. The proximate cause is cost: CFOs who spent 2023 and 2024 cutting seats have discovered that the cheapest seat is the one in a suite they already pay for. The deeper cause is that the AI layer rewards bundling. An assistant that can see the calendar, the documents, the tickets and the chat is more useful than four assistants that can each see one, and the suites have the data in one place.
+
+      Startups selling a point solution should read this carefully but not fearfully. The suites bundle well and integrate badly; their "good enough" modules are good enough for the median customer and useless for the one with a real problem. The point solution's defense is depth in a workflow the suite treats as a checkbox. The point solution's risk is being a checkbox itself.
+
+      Two tactical notes. First, if a suite vendor announces a "lite" version of what you do, treat it as validation and as a deadline: you have perhaps two years before the lite version is good enough for your smaller customers. Second, the counter-move to bundling is not to build a suite yourself; it is to make your product the one that the suite's assistant calls when the checkbox does not work.
+
+      Read on the web: https://platformnotes.io/2026/bundling
+
+      Platform Notes goes out Monday, Wednesday and Friday. Unsubscribe: https://platformnotes.io/u
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-platformnotes-15
+    day: 15
+    time: "06:45"
+    from: {name: "Platform Notes", email: "notes@platformnotes.io"}
+    to: [avery]
+    subject: "Platform Notes: The seat is dying slowly"
+    bulk: true
+    signature: none
+    body: |
+      PLATFORM NOTES
+      Wednesday, March 11, 2026
+
+      The seat is dying slowly
+
+      Per-seat pricing was the great invention of the SaaS era: a unit the buyer understood, that scaled with the customer's growth, and that made the vendor's revenue look like a utility bill. It is now in structural decline, and the decline is slower and stranger than the obituaries suggest.
+
+      The cause is well known. When software does the work rather than helping a person do it, the number of people is the wrong denominator. A tool that drafts the report needs no seats for the people who used to draft it. Vendors that price per seat are pricing against their own product's success.
+
+      What is less well understood is why the seat persists anyway. Buyers like it. Procurement teams have fifteen years of muscle memory for negotiating seat counts and none for negotiating "outcomes." Budgets are built per head. And usage pricing, the obvious replacement, transfers risk to the buyer in a way that makes the CFO's forecast worse.
+
+      The result is a decade of hybrids. A platform fee plus a usage component. Seats for the humans who supervise, usage for the work the software does. Outcome pricing for the narrow cases where the outcome is countable and attributable, which are fewer than the pitch decks claim.
+
+      For founders, the practical advice is to pick the hybrid your buyer can put in a budget line, and to instrument usage from day one even if you do not price on it yet, because the day you want to switch is the day you will wish you had two years of data.
+
+      Read on the web: https://platformnotes.io/2026/seat
+
+      Platform Notes goes out Monday, Wednesday and Friday. Unsubscribe: https://platformnotes.io/u
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-platformnotes-17
+    day: 17
+    time: "06:45"
+    from: {name: "Platform Notes", email: "notes@platformnotes.io"}
+    to: [avery]
+    subject: "Platform Notes: Regulation as a wedge"
+    bulk: true
+    signature: none
+    body: |
+      PLATFORM NOTES
+      Friday, March 13, 2026
+
+      Regulation as a wedge
+
+      Founders treat regulation as weather: something that happens to the industry, to be endured. The better founders treat it as terrain. Every new rule creates a deadline, and every deadline creates a buyer who did not exist the day before and who has a budget line and a date.
+
+      The pattern repeats across industries. A traceability requirement in food creates a market for lot-tracking software. A reporting obligation in finance creates a market for the reporting. An emissions rule creates a market for the measuring. In each case the incumbents, who have the customers, respond slowly, because the rule is one of forty things on their roadmap. The startup, for which the rule is the whole roadmap, ships first and sells against the deadline.
+
+      Two cautions from watching this play out. First, the deadline moves. Regulators extend, courts delay, and a company that built its pipeline around a date can find the date gone. The defense is to sell the product on its operational merit and treat the deadline as the reason to buy this quarter rather than the reason to buy at all. Second, the market created by a rule is finite. Once everyone is compliant, the compliance product is a maintenance business unless it has become something else along the way.
+
+      The companies that get this right use the regulatory wedge to get in the door and the operational product to stay. The compliance module is the first purchase; the workflow it is bolted to is the second, and the second is the business.
+
+      Read on the web: https://platformnotes.io/2026/regulation-wedge
+
+      Platform Notes goes out Monday, Wednesday and Friday. Unsubscribe: https://platformnotes.io/u
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-platformnotes-20
+    day: 20
+    time: "06:45"
+    from: {name: "Platform Notes", email: "notes@platformnotes.io"}
+    to: [avery]
+    subject: "Platform Notes: Search is a distribution channel again"
+    bulk: true
+    signature: none
+    body: |
+      PLATFORM NOTES
+      Monday, March 16, 2026
+
+      Search is a distribution channel again
+
+      For a decade, being found meant ranking in a search engine, and a whole industry grew up around ranking. Then the assistants arrived, and the question became whether anyone would click a link again. Eighteen months of data now say: fewer people, but the ones who do are worth more, and the assistants themselves have become a channel with its own rules.
+
+      The new rules are not mysterious. Assistants cite sources that answer the question directly, in plain language, with specifics. They prefer pages that have been cited before. They are indifferent to the things the old ranking industry optimized for: keyword density, backlink counts, the length of the page. A short, precise page that says exactly what a product does and does not do gets cited; a long marketing page does not.
+
+      For B2B software, the interesting shift is in the buyer's research process. A procurement lead asking an assistant "which scheduling tools integrate with our ERP" gets a list of three, with reasons. Being on that list is the new page one. Getting on it means publishing the boring specifics: the list of integrations, the pricing, the limits. The companies that hid those behind a demo form are invisible to the assistants and, increasingly, to the buyer.
+
+      The strategic version of this is that distribution is fragmenting again after a decade of consolidation, which is good for small companies with specific products and bad for anyone whose advantage was a marketing budget.
+
+      Read on the web: https://platformnotes.io/2026/search-channel
+
+      Platform Notes goes out Monday, Wednesday and Friday. Unsubscribe: https://platformnotes.io/u
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-platformnotes-22
+    day: 22
+    time: "06:45"
+    from: {name: "Platform Notes", email: "notes@platformnotes.io"}
+    to: [avery]
+    subject: "Platform Notes: On-prem is not coming back, but the gateway is"
+    bulk: true
+    signature: none
+    body: |
+      PLATFORM NOTES
+      Wednesday, March 18, 2026
+
+      On-prem is not coming back, but the gateway is
+
+      Every few years someone predicts the return of on-premises software, and every few years the cloud share goes up anyway. The prediction is wrong, but it is wrong about something real: a growing number of buyers, especially in industrial settings, want the software in the cloud and the data connection under their control.
+
+      The shape that satisfies both is the gateway: a small piece of software, sometimes on a small box, that sits inside the customer's network, talks to the machines and the legacy systems, and sends what it is allowed to send to the cloud. It is not on-prem software in the old sense; nothing important runs there. It is a controlled door.
+
+      Gateways are having a moment for three reasons. Plant networks are air-gapped or nearly so, and the security team will not open them to a SaaS vendor's IP range. Regulators in several jurisdictions now ask where data physically crosses a boundary, and a gateway gives a clean answer. And the machines themselves speak protocols from the 1990s that no cloud service is going to learn.
+
+      For vendors, the gateway is a cost and a moat. It is a cost because it is a deployed artifact that has to be updated, monitored and supported at a hundred sites. It is a moat because once it is installed and trusted, the customer does not want a second one from a competitor. The vendors that treat the gateway as a first-class product, with its own release notes and its own uptime number, are the ones the plant's IT team stops arguing with.
+
+      Read on the web: https://platformnotes.io/2026/gateway
+
+      Platform Notes goes out Monday, Wednesday and Friday. Unsubscribe: https://platformnotes.io/u
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-platformnotes-24
+    day: 24
+    time: "06:45"
+    from: {name: "Platform Notes", email: "notes@platformnotes.io"}
+    to: [avery]
+    subject: "Platform Notes: Why incumbents ship 'lite' versions"
+    bulk: true
+    signature: none
+    body: |
+      PLATFORM NOTES
+      Friday, March 20, 2026
+
+      Why incumbents ship 'lite' versions
+
+      A pattern from this month's trade shows: the large enterprise vendors in manufacturing software are announcing "lite" scheduling, "lite" analytics, "lite" quality modules, bundled free or nearly free with the core license. Startups in those categories are alarmed. They should be attentive rather than alarmed, because the lite module is a specific kind of move with a specific kind of failure.
+
+      The incumbent ships lite for two reasons. It wants to remove the budget line the startup would have used, and it wants to buy time until it can acquire or build the real thing. Lite is a placeholder with a marketing budget.
+
+      Lite fails, when it fails, for reasons that are also predictable. It is built by a team that does not own the outcome, so it is never quite finished. It is configured by the customer's IT department rather than by the operations team that would use it, so it is never quite right. And it is free, so nobody inside the customer is accountable for making it work. Two years later the plant is still running the spreadsheet, the lite module is still "being rolled out," and the startup's salesperson is back in the building.
+
+      The startup's correct response is not to compete on features, which the incumbent will match on slides. It is to compete on deployment: how fast a plant gets to a working schedule, how many of the plant's own rules it captures, and how many weeks the startup's people spend on site making it true. Lite cannot do that, because lite does not have people.
+
+      Read on the web: https://platformnotes.io/2026/lite
+
+      Platform Notes goes out Monday, Wednesday and Friday. Unsubscribe: https://platformnotes.io/u
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-platformnotes-27
+    day: 27
+    time: "06:45"
+    from: {name: "Platform Notes", email: "notes@platformnotes.io"}
+    to: [avery]
+    subject: "Platform Notes: Data gravity in industrial software"
+    bulk: true
+    signature: none
+    body: |
+      PLATFORM NOTES
+      Monday, March 23, 2026
+
+      Data gravity in industrial software
+
+      "Data gravity" was coined to describe why applications cluster around large datasets: moving the data is expensive, so the compute comes to it. In industrial software the gravity is not about volume. Plant data is not big. It is about location and format, and the pull is toward whoever first makes the data usable.
+
+      Here is the dynamic. A plant has a historian, an ERP, a maintenance system and a quality system. None of them talk. The first vendor to pull all four into one place and make the result readable becomes, without anyone deciding it, the plant's data layer. Every subsequent tool the plant buys asks to read from that vendor rather than from the four systems, because it is easier. The vendor's product might be a scheduler or a dashboard; its position is a platform.
+
+      This is why the current land grab in plant-floor software looks the way it does. Companies with narrow products are building broad connectors, not because the connectors sell but because the connectors accrete gravity. The narrow product is the reason to install; the data layer is what makes uninstalling unthinkable.
+
+      For the incumbents, the ERP and MES vendors, this is the actual threat, and it is why they are throttling APIs and shipping lite modules. They understand that the layer above them is being built and that whoever builds it will be the one the plant calls first. For startups, the discipline is to build the gravity deliberately: expose what you collect, make it easy for the plant's other tools to read, and become the place the data lives even when you are not the tool that uses it.
+
+      Read on the web: https://platformnotes.io/2026/data-gravity
+
+      Platform Notes goes out Monday, Wednesday and Friday. Unsubscribe: https://platformnotes.io/u
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-platformnotes-29
+    day: 29
+    time: "06:45"
+    from: {name: "Platform Notes", email: "notes@platformnotes.io"}
+    to: [avery]
+    subject: "Platform Notes: The consultant's dilemma"
+    bulk: true
+    signature: none
+    body: |
+      PLATFORM NOTES
+      Wednesday, March 25, 2026
+
+      The consultant's dilemma
+
+      Software companies in complex industries face a choice their investors hate: do the implementation yourself, or hand it to a partner. The partner route is the one the venture playbook recommends. It keeps gross margin high, it scales without headcount, and it lets the company call itself a software company with a straight face. It is also, in the early years, usually wrong.
+
+      The problem is knowledge. In the first two years of a vertical product, nobody knows how to deploy it, including the company that built it. Every implementation teaches something that changes the product. A partner learns those lessons and keeps them; the company learns them second-hand, late, and filtered through a partner whose incentive is to bill hours, not to make the product need fewer of them.
+
+      The companies that have navigated this well followed a similar arc. Do every implementation yourself until the pattern is boring. Write the pattern down. Then, and only then, hand it to partners, with the pattern as the certification. The gross margin is ugly for two years and then it is not, and the product that emerges is one that can actually be deployed by someone who did not build it.
+
+      The companies that got it wrong went to partners early, saved the margin, and found three years later that the partners were the only people who knew how the product worked in the field. At that point the partner is the platform and the software company is the vendor. That is the dilemma: the margin you save early is the moat you give away.
+
+      Read on the web: https://platformnotes.io/2026/consultant-dilemma
+
+      Platform Notes goes out Monday, Wednesday and Friday. Unsubscribe: https://platformnotes.io/u
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  # ---------------------------------------------------------------- East Bay Founders Weekly (Fri 12:00 + reminders)
+  - id: nl-eastbayfounders-1
+    day: 3
+    time: "12:00"
+    from: {name: "East Bay Founders Weekly", email: "hello@eastbayfounders.org"}
+    to: [avery]
+    subject: "East Bay Founders Weekly: demo night Mar 5, the Uptown coworking opening, member news"
+    bulk: true
+    signature: none
+    body: |
+      EAST BAY FOUNDERS WEEKLY
+      Friday, February 27, 2026
+
+      Hi all. What's happening for founders in Oakland, Berkeley, Emeryville and Alameda this week.
+
+      THIS WEEK
+      - Demo Night, Thursday March 5, 6:00pm, Jack London Square. Six member companies, five minutes each, no slides over ten. Sign up to present by Monday; there are two slots left. Beer and tacos after.
+      - Founder Office Hours with two local seed investors, Wednesday 3-5pm at the Temescal space. Twenty-minute slots; book through the member portal.
+      - The Berkeley hardware meetup is Tuesday at the Marina; not ours, but half of you go.
+
+      NEWS
+      The Uptown coworking space that took over the old bank building on Broadway opens March 16. Founders' Weekly members get the first three months at 20% off; details in the portal. It has a machine shop in the basement, which two of our hardware members have already toured.
+
+      The city council voted Tuesday to extend the small-business permit fast track through 2027. If you have been waiting on a sign permit, this is your moment.
+
+      MEMBER NEWS
+      - A member's robotics company closed a large Series C (you know who). Congratulations.
+      - A B2B payments member is hiring a first sales lead; posting on the job board.
+      - Two members are looking for a shared office in Alameda; reply and we will connect you.
+
+      JOB BOARD: 14 open roles this week, mostly engineering, two in ops, one in sales. https://eastbayfounders.org/jobs
+
+      See you Thursday.
+
+      East Bay Founders Weekly is a volunteer-run community newsletter. Unsubscribe: https://eastbayfounders.org/u
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-eastbayfounders-reminder-8
+    day: 8
+    time: "10:00"
+    from: {name: "East Bay Founders Weekly", email: "hello@eastbayfounders.org"}
+    to: [avery]
+    subject: "Reminder: Demo Night is tomorrow (Thu Mar 5, 6pm, Jack London Square)"
+    bulk: true
+    signature: none
+    body: |
+      EAST BAY FOUNDERS - EVENT REMINDER
+
+      Hi all, quick reminder that Demo Night is tomorrow, Thursday March 5, at 6:00pm at the Jack London Square space (second floor, the door next to the coffee roaster; ring the bell if it is locked).
+
+      The lineup is set: six member companies presenting, five minutes each, including a plant-floor robotics team, a climate fintech, a consumer app that we are told involves houseplants, and three others we will let surprise you. Q&A is two questions per presenter, moderated with a bell.
+
+      Doors at 5:45pm. Presentations start at 6:15pm sharp. Tacos and drinks after, until about 8:30pm. The space holds about 80 and we have 74 RSVPs, so if you are bringing a guest, please add them in the portal today so we can count for food.
+
+      Parking: the garage on Embarcadero validates for two hours. BART to 12th Street is a fifteen-minute walk. The ferry from SF lands two blocks away and the 5:30pm boat gets you there in time.
+
+      If you RSVP'd and can no longer make it, please cancel in the portal so someone on the waitlist can come.
+
+      See you tomorrow.
+
+      East Bay Founders Weekly is a volunteer-run community newsletter. Unsubscribe: https://eastbayfounders.org/u
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-eastbayfounders-2
+    day: 10
+    time: "12:00"
+    from: {name: "East Bay Founders Weekly", email: "hello@eastbayfounders.org"}
+    to: [avery]
+    subject: "East Bay Founders Weekly: demo night recap, Uptown opening, a founder breakfast on Mar 20"
+    bulk: true
+    signature: none
+    body: |
+      EAST BAY FOUNDERS WEEKLY
+      Friday, March 6, 2026
+
+      Hi all. What's happening for founders in Oakland, Berkeley, Emeryville and Alameda this week.
+
+      DEMO NIGHT RECAP
+      Seventy-nine people, six companies, one projector failure handled gracefully by a founder who demoed from a laptop held over her head. The houseplant app got the loudest applause; the plant-floor robotics team got the most follow-up conversations. Photos in the portal. Thank you to everyone who presented and to the roaster downstairs for staying open.
+
+      COMING UP
+      - Founder Breakfast, Friday March 20, 8:00am, Temescal. Informal, no agenda, coffee and pastries, 25 people max. RSVP in the portal.
+      - Uptown coworking opens March 16; the member discount is live in the portal.
+      - A members-only session on state payroll tax changes with a local CPA, Tuesday March 17, noon, online. Boring and useful.
+
+      NEWS
+      Two of our members are on the speaker list for the Pacific Plant Automation Expo in San Jose next week. If you are going, the member meetup is Thursday evening at the hotel bar; reply for details.
+
+      The Alameda office-share request from last week found a match. This is the newsletter working as intended.
+
+      MEMBER NEWS
+      - A member's climate fintech announced a seed round. Congratulations.
+      - A hardware member is looking for a contract firmware engineer for six weeks; posting on the job board.
+      - Someone left a very nice jacket at Demo Night. It is at the space.
+
+      JOB BOARD: 17 open roles. https://eastbayfounders.org/jobs
+
+      Have a good weekend.
+
+      East Bay Founders Weekly is a volunteer-run community newsletter. Unsubscribe: https://eastbayfounders.org/u
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-eastbayfounders-3
+    day: 17
+    time: "12:00"
+    from: {name: "East Bay Founders Weekly", email: "hello@eastbayfounders.org"}
+    to: [avery]
+    subject: "East Bay Founders Weekly: Uptown opens Monday, breakfast next Friday, a note on the ferry schedule"
+    bulk: true
+    signature: none
+    body: |
+      EAST BAY FOUNDERS WEEKLY
+      Friday, March 13, 2026
+
+      Hi all. What's happening for founders in Oakland, Berkeley, Emeryville and Alameda this week.
+
+      THIS WEEK AND NEXT
+      - Uptown coworking opens Monday March 16. Members' open house is Monday 5-7pm; come see the machine shop. The 20% discount applies to the first three months of any desk or office plan.
+      - Payroll tax session with a local CPA, Tuesday March 17, noon, online. Link in the portal. Forty signed up so far.
+      - Founder Breakfast, Friday March 20, 8:00am, Temescal. 25 max, 19 RSVPs. A reminder will go out Thursday.
+
+      NEWS
+      The SF-Oakland ferry moves to its spring schedule on March 23, which adds a 7:15am departure from the Ferry Building. Several of you asked. The last evening boat is still 8:40pm.
+
+      The city's small-business grant program opened its spring round: up to $25,000 for businesses under 25 employees that took a commercial lease in Oakland in the last year. Applications due April 15. Two members received grants last round.
+
+      The Pacific Plant Automation Expo member meetup happened Thursday; a dozen of us, and two members who had never met discovered they have the same customer. Small world, small region.
+
+      MEMBER NEWS
+      - A member's B2B payments company hired the sales lead posted here three weeks ago. The board works.
+      - A logistics-software member is running a customer advisory day in April and is looking for two more mid-size manufacturers to invite; reply if you can introduce one.
+
+      JOB BOARD: 15 open roles. https://eastbayfounders.org/jobs
+
+      Have a good weekend.
+
+      East Bay Founders Weekly is a volunteer-run community newsletter. Unsubscribe: https://eastbayfounders.org/u
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-eastbayfounders-reminder-23
+    day: 23
+    time: "09:30"
+    from: {name: "East Bay Founders Weekly", email: "hello@eastbayfounders.org"}
+    to: [avery]
+    subject: "Reminder: Founder Breakfast tomorrow (Fri Mar 20, 8am, Temescal)"
+    bulk: true
+    signature: none
+    body: |
+      EAST BAY FOUNDERS - EVENT REMINDER
+
+      Hi all, a reminder that the Founder Breakfast is tomorrow, Friday March 20, at 8:00am at the Temescal space (the storefront on Telegraph with the green door; the code is in the portal).
+
+      We are at 24 RSVPs for 25 seats, so if you are on the list and cannot make it, please release your spot today; there are six people on the waitlist.
+
+      Format, such as it is: coffee and pastries from the bakery two doors down, a round of thirty-second intros at 8:15am, and then conversation until people drift off to work around 9:30am. No slides, no pitching, no agenda. If you have a specific ask (an intro, a hire, a question about a vendor), say it in your thirty seconds; that is what the room is for.
+
+      Street parking on Telegraph is metered from 8am; the lot behind the space has eight spots and is first come. The 6 bus stops outside.
+
+      If you have a dietary restriction we do not know about, reply today and we will make sure there is something you can eat.
+
+      See you in the morning.
+
+      East Bay Founders Weekly is a volunteer-run community newsletter. Unsubscribe: https://eastbayfounders.org/u
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null
+
+  - id: nl-eastbayfounders-4
+    day: 24
+    time: "12:00"
+    from: {name: "East Bay Founders Weekly", email: "hello@eastbayfounders.org"}
+    to: [avery]
+    subject: "East Bay Founders Weekly: breakfast recap, April events, the grant deadline, member news"
+    bulk: true
+    signature: none
+    body: |
+      EAST BAY FOUNDERS WEEKLY
+      Friday, March 20, 2026
+
+      Hi all. What's happening for founders in Oakland, Berkeley, Emeryville and Alameda this week.
+
+      BREAKFAST RECAP
+      Twenty-three people this morning, two intros made on the spot, one member hired a contractor from across the table, and the bakery ran out of the almond croissants by 8:20am. We will order more next time. Thank you to everyone who came; the next one is in May.
+
+      APRIL, TENTATIVELY
+      - Demo Night returns Thursday April 9, Jack London Square. Presenter sign-ups open Monday.
+      - A hardware-founders roundtable at the Uptown machine shop, date to be set.
+      - A session on hiring your first salesperson with three members who have done it, mid-April, online.
+
+      NEWS
+      The city small-business grant deadline is April 15. Two members have asked for help with the application; a member who received one last round has offered to review drafts. Reply and we will connect you.
+
+      Uptown coworking's first week: about 60 desks taken of 140, and the machine shop already has a waitlist for the CNC router on weekends. The coffee is reportedly good.
+
+      MEMBER NEWS
+      - A member's logistics-software company found its two manufacturers for the advisory day through this list. Two for two on asks this month.
+      - A consumer-app member is looking for beta testers who own more than ten houseplants. You know who you are.
+      - Congratulations to the two members who got into the spring cohort of a well-known accelerator; the East Bay is well represented this year.
+
+      JOB BOARD: 18 open roles, the most since November. https://eastbayfounders.org/jobs
+
+      Have a good weekend.
+
+      East Bay Founders Weekly is a volunteer-run community newsletter. Unsubscribe: https://eastbayfounders.org/u
+    labels:
+      kind: newsletter
+      must_not: true
+      reason: newsletter
+      classification_case: null
+      expected: null

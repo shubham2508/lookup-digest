@@ -1,0 +1,73 @@
+thread_id: t-northbeam-shortlist
+subject: "Senior Backend Engineer - first shortlist"
+storyline: S9
+category: hiring
+labels: null
+messages:
+  - id: m1
+    beat_ref: S9.b6
+    day: 23
+    time: "14:40"
+    from: harriet
+    to: [avery]
+    cc: [jordan]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery, Jordan,
+
+      Per our agreement, here is the first shortlist for the Senior Backend Engineer search: three candidates, all pre-screened by me this week and all aware of Tessera by name.
+
+      1. Devika Raman - 7 yrs, staff-adjacent backend at a freight-visibility startup; owns their Kafka-to-Postgres pipeline. Open to hybrid Oakland. northbeamtalent.com/c/draman
+      2. Tom Aldridge - 9 yrs, ex-industrial IoT (vibration sensors), Go and Rust, remote in Denver. Strong on time-series compaction. northbeamtalent.com/c/taldridge
+      3. Wei Zhang - 5 yrs, Python, built the ingestion layer for a mid-size MES vendor; wants a smaller team. San Francisco. northbeamtalent.com/c/wzhang
+
+      Who should run the first screen on your side - Jordan directly, or would you like me to hold them for a week? All three can do a 30-minute call next week.
+
+  - id: m2
+    beat_ref: S9.b7
+    day: 27
+    time: "10:20"
+    from: harriet
+    to: [avery]
+    cc: [jordan]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: |
+      Harriet Cole
+      Partner, Northbeam Talent | retained engineering search
+      Northbeam Talent LLC | 2261 Market St #4120, San Francisco, CA 94114
+      Mobile +1 (415) 555-0173 | harriet@northbeamtalent.com | northbeamtalent.com
+      This message is intended for the named recipients and may contain candidate information shared in confidence. If you received it in error, please delete it and let us know.
+    body: |
+      Avery, Jordan,
+
+      Two more names to add to the shortlist, and one of them I'd move on quickly:
+
+      4. Yusuf Demir - 8 yrs, backend lead at a Berlin logistics-software company, relocating to the Bay Area in May on a spouse visa, so no sponsorship needed. Python and Go; built a streaming ingest for 40k telematics devices. Reading his GitHub was the best hour of my week: northbeamtalent.com/c/ydemir. He is the standout of the search so far.
+      5. Renata Quon - 6 yrs, Python, currently at a cold-chain monitoring company; remote in Portland. northbeamtalent.com/c/rquon
+
+      And per our agreement, I'd like your read on the first three before I go further. Even a one-word yes/no per person keeps the seach pointed the right way. I haven't heard from Jordan on screening slots yet; happy to hold everyone another week if the timing is off, just say so.
+
+  - id: m3
+    beat_ref: S9.b9
+    day: 29
+    time: "15:10"
+    from: harriet
+    to: [avery]
+    cc: [jordan]
+    reply_to: m2
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      Quick one. I now have five names in front of you and no signal back, which usually means one of two things: the shortlist is off, or the two of you are underwater. Either is fine, but I'd like to know which.
+
+      Could you or Jordan give me 20 minutes this week or early next to calibrate? Fifteen minutes on what you liked or didn't about the five saves me a month of pointing the search the wrong way. Yusuf in particular is talking to two other companies and I'd like to tell him something true.
+
+      My calendar: northbeamtalent.com/meet/harriet

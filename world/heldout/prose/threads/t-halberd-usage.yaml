@@ -1,0 +1,109 @@
+thread_id: t-halberd-usage
+subject: "February usage report - before our budget meeting"
+storyline: S7
+category: customers
+labels: null
+messages:
+  - id: m1
+    beat_ref: S7.b1
+    day: 2
+    time: "10:15"
+    from: greta
+    to: [tomas]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi Tomás,
+
+      Hope the week is treating you well! We survived our first real snow of the year at the Reno site, which mostly means everyone forgot how to drive.
+
+      Could you send me the February usage report before our budget meeting on Thursday the 5th? Martin wants seat utilization by line, and I would like to walk in with your numbers rather than mine.
+
+      Thanks!
+      Greta
+
+      P.S. Copying Avery so nobody has to forward anything later; I promise not to make a habit of it.
+  - id: m2
+    beat_ref: S7.b2
+    day: 2
+    time: "16:30"
+    from: tomas
+    to: [greta]
+    cc: [avery]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Greta!
+
+      Snow in Reno, the horror! Report attached (Halberd_Usage_Feb2026.pdf), and a few notes so Martin gets the story and not just the table:
+
+      - Line 1 and Line 2: 96% and 91% of seats active weekly, up from 88% and 84% in January. The Line 2 jump is the second-shift rollout in mid-February.
+      - Line 3: 71%, which looks low, but Line 3 ran reduced shifts for the MES prep, so the denominator is the story there, not the usage.
+      - Exceptions caught: 412 in February vs 380 in January; median time-to-acknowledge 11 minutes (was 18).
+      - Reno: 3 seats, all active, still a pilot.
+
+      One thing I'd flag for the budget conversation: Line 3 utilization will look different again in March once the MES upgrade lands, so if Martin wants a clean comparison, Q2 is the quarter to look at.
+
+      Happy to walk Martin through any of it, and looking forward to talking renewal timing whenever you're ready.
+
+      Talk soon!
+  - id: m3
+    beat_ref: S7.b7
+    day: 9
+    time: "14:15"
+    from: greta
+    to: [tomas]
+    cc: [avery]
+    reply_to: m2
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi Tomás,
+
+      The budget meeting this morning went fine, thank you, the report did most of the talking. Two questions Martin asked that I couldnt answer on the spot:
+
+      1. Does "seats active weekly" count a login, or actual scheduling activity? He suspects a few supervisors log in and do nothing.
+      2. Is the Reno pilot billed at the same per-seat rate as the main plant, or at the pilot rate we discussed in the fall?
+
+      No rush before Friday.
+
+      Greta
+  - id: m4
+    beat_ref: S7.b8
+    day: 9
+    time: "16:40"
+    from: tomas
+    to: [greta]
+    cc: [avery]
+    reply_to: m3
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Hi Greta,
+
+      1. Activity, not logins. A seat counts as active if it created, moved or acknowledged at least one item in the week. A login with no action doesn't count, so Martin's suspicion, if true, isn't inflating the number.
+      2. Reno is at the pilot rate ($140/seat/month) through the end of the pilot on May 1; after that it moves to the plant rate unless we fold it into the renewal, which I'd suggest.
+
+      Tell Martin I'm happy to get on a call anytime!
+  - id: m5
+    beat_ref: S7.b9
+    day: 10
+    time: "08:30"
+    from: greta
+    to: [tomas]
+    cc: [avery]
+    reply_to: m4
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Perfect, that clears both up. Thanks Tomás, I'll pass it along to Martin.
+
+      Greta

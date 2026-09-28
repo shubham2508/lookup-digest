@@ -1,0 +1,55 @@
+thread_id: t-tomas-pipeline-weekly-2
+subject: "Pipeline Monday!! (week of Mar 9)"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: routine_pipeline_fyi
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [report:pipeline-weekly]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: exec}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 13
+    time: "08:30"
+    from: tomas
+    to: [avery]
+    cc: [leo, hana]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Happy Monday team!! (Everyone remember to be confused about what time it is today. I have already been confused twice.)
+
+      Rundown for the week. FYI only, as always.
+
+      PINEWOOD - Thursday's discovery call was GREAT. Lucia brought their plant manager from Turlock and two of her schedulers, which in my experience is what a buyer does and a browser doesn't. They want a six-week pilot scoped by the end of the month and asked for two references. Leo is writing up the scoping doc with Hana this week. I am not counting my chickens. I am however looking at the chickens.
+
+      NORTHSTAR - field-mapping workshop with the Fresno planners went well per Elise, no open questions, Rosa is sending plant codes. First weekly with Elise's team is done and Hana's running them like a Swiss train. April 1 holds.
+
+      HALBERD - Greta hinted on Friday's call that procurement is getting reshuffled on their side; I'll do the intro dance with whoever it is when it happens. The usage report landed well with Martin; his two follow-up questions (active seats, Reno pilot rate) are answered. Renewal conversation is parked until mid-April at Martin's request, which is fine, the plant teams are happy and that is what actually renews a contract.
+
+      VERITAS - the six add-on seats for Line 4 are live, PO is in, and AP bounced the first invoice because it was missing the PO number, which Nora is fixing today. Dmitri wants a QBR in early April. Anika's auditor is on site the 16th and 17th and we are apparently "the easy part of the audit". Framing that.
+
+      COASTLINE - quiet in the good way. Check-in on the calendar for the 12th.
+
+      IRONCLAD CASTINGS (Reno) - not in the pipeline yet but Leo met their plant manager at the Nevada manufacturers' breakfast on Friday. Foundry, three shifts, hates software, loves a spreadsheet. Leo is following up this week. These are my favorite kind.
+
+      Numbers: 12 open opportunities, $1.4M weighted, 2 pilots in scoping (Pinewood would make 3). Reference calls for Pinewood: I'll ask Elise and Dmitri after the QBRs, not before, so nobody's doing us favors during their own busy weeks.
+
+      Events: I put a hold on the customer roundtable for Thursday May 7 at the office (afternoon + dinner). Invites go out after the Northstar go-live so nobody's distracted. Hana and I are planning it, more on that soon!!
+
+      Have a great week!!
+
+      Tomás
+
+      P.S. Leo's Ironclad guy asked whether we "run on the cloud or on a real computer". We are going to have such a good time.

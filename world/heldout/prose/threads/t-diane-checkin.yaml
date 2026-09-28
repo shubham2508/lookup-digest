@@ -1,0 +1,61 @@
+thread_id: t-diane-checkin
+subject: "How's the round going?"
+storyline: S10
+category: investors_board
+labels: null
+messages:
+  - id: m1
+    beat_ref: S10.b1
+    day: 15
+    time: "10:20"
+    from: diane
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      No agenda here. I realized it has been two weeks since the board meeting and wanted to check in. How is the IPV process feeling from your side? Marcus has a reputation for being slow and then very fast, so don't read too much into quiet weeks.
+
+      Separately, I'd like to introduce you to Marco Bellini at Tidewater Capital. He's a principal there, thoughtful about industrial software, and they like to come in alongside a lead. I'll send a proper intro note once he's back from travel later this week - nothing for you to do until then.
+
+      Wren must be nearly five. Give the whole household my best.
+
+  - id: m2
+    beat_ref: S10.b2
+    day: 15
+    time: "13:40"
+    from: avery
+    to: [diane]
+    cc: []
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      diane, thanks for this. IPV moved us into diligence on Monday and the pace has been good so far - Owen's data-room requests are steady and Marcus has been direct about what he needs. cautiously optimistic.
+
+      marco intro would be great, thank you.
+
+      i owe you the March update - it's half written. i'll get it to you next week.
+
+      Avery
+
+  - id: m3
+    beat_ref: S10.b3
+    day: 15
+    time: "15:05"
+    from: diane
+    to: [avery]
+    cc: []
+    reply_to: m2
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      That all sounds right. And no rush on the update - whenever it's ready is fine. I'd rather have your real attention on IPV.
+
+      Talk soon.

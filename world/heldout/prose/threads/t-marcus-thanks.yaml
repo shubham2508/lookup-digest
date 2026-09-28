@@ -1,0 +1,47 @@
+thread_id: t-marcus-thanks
+subject: "Data room - diligence folder"
+storyline: null
+category: investors_board
+labels:
+  kind: thread
+  must_not: true
+  reason: courtesy_close
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [deal:series-a:data-room]
+    ball_awaiting: nobody
+    closed_by_courtesy: true
+    sender_relationship: {category: capital, subtype: lead_investor, stage: diligence}
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 16
+    time: "09:00"
+    from: avery
+    to: [marcus]
+    cc: [owen]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      marcus — the diligence folder is live: tessera.io/dataroom/ipv (same login as the pitch materials). added this morning: the FY25 cohort tab, the customer contracts for all three references, and the February close. owen's two analysts already have access.
+
+      Avery
+  - id: m2
+    beat_ref: null
+    day: 16
+    time: "09:35"
+    from: marcus
+    to: [avery]
+    cc: [owen]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Thanks, got it. Owen's team starts on the contracts today.

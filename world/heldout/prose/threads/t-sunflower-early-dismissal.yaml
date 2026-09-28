@@ -1,0 +1,38 @@
+thread_id: t-sunflower-early-dismissal
+subject: "Reminder: early dismissal tomorrow, Thursday 3/26 (12:30)"
+storyline: S11
+category: personal
+labels: null
+messages:
+  - id: m1
+    beat_ref: S11.b4
+    day: 29
+    time: "15:40"
+    from: marisol
+    to: [parents_list]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Dear Sunflower families,
+
+      A reminder that tomorrow, Thursday, March 26, is an early dismissal day. All classrooms dismiss at 12:30 so that our teaching staff can complete their pediatric CPR and first-aid recertification in the afternoon.
+
+      What this means for pickup:
+      - The pickup window is 12:15 to 12:30 at the front gate.
+      - There is no extended day and no late room on Thursday.
+      - Lunch is served at 11:45 as usual, so please pack a lunch as normal.
+      - If someone other than a parent is picking up, they must be on your authorized list and bring photo ID.
+
+      Friday, March 27 is a regular day.
+
+      Looking ahead:
+      - Spring break is April 6 through April 10; the school is closed that week.
+      - The spring work-party sign-up sheet is on the bulletin board by the cubbies. We still need two families for the sandbox refill.
+      - Snack calendar for April goes out Monday.
+
+      Thank you for your flexibility, and thank you to the families who covered snack this week.
+
+      Warmly,

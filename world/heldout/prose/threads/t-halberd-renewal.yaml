@@ -1,0 +1,93 @@
+thread_id: t-halberd-renewal
+subject: "Renewal timing - May 1 anniversary"
+storyline: S7
+category: customers
+labels: null
+messages:
+  - id: m1
+    beat_ref: S7.b3
+    day: 3
+    time: "10:15"
+    from: greta
+    to: [avery]
+    cc: [tomas]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi Avery,
+
+      Hope you're well! I'll keep this one short, which for me is an achievement.
+
+      Our agreement renews on the May 1 anniversary and I would like to start the paperwork earlier than last year. Could you or Tomás send over the proposed renewal terms? Ideally with the Reno seats folded in so it is one line for Martin, who will want to look at it himself.
+
+      Greta
+  - id: m2
+    beat_ref: S7.b4
+    day: 3
+    time: "15:40"
+    from: avery
+    to: [greta]
+    cc: [tomas]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      greta, thanks for starting early. tomás will send the proposed terms next week with reno folded in. happy to do a call with you and martin once you've had a look.
+
+      Avery
+  - id: m3
+    beat_ref: S7.b5
+    day: 6
+    time: "13:20"
+    from: martin
+    to: [avery]
+    cc: [greta, tomas]
+    reply_to: m2
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      Greta forwarded the renewal thread. Our fiscal year ends March 31 and I am not opening any multi-year commitments during year-end close. Let's pick the renewal up the week of April 13, once the books are closed. Hold the terms until then.
+
+      Budget for the current scope is not in question.
+  - id: m4
+    beat_ref: S7.b6
+    day: 6
+    time: "17:05"
+    from: avery
+    to: [martin]
+    cc: [greta, tomas]
+    reply_to: m3
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      understood, martin. tomás will reach out the week of April 13. nothing changes on the current scope in the meantime.
+
+      Avery
+  - id: m5
+    beat_ref: S7.b10
+    day: 13
+    time: "09:05"
+    from: greta
+    to: [avery]
+    cc: [tomas]
+    reply_to: m4
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi Avery,
+
+      Some news from my side: I'm moving to a plant operations role at our Reno site at the end of this week. It has been a genuine pleasure working with you and Tomás, and I'm a little sad to hand this over.
+
+      Tobias Weller is taking over from me as procurement lead from Tuesday. He is new to Halberd (joined in January from a tier-1 automotive supplier) and very thorough, so expect requests for documents by name. I've briefed him on the renewal, on Martin's timing, and on the Line 3 MES work; he'll introduce himself directly.
+
+      Thank you for everything. I'll still be at Halberd, just with more hi-vis.
+
+      Greta

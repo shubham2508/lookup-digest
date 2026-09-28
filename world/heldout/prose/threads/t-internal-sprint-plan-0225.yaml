@@ -1,0 +1,60 @@
+thread_id: t-internal-sprint-plan-0225
+subject: "Sprint 14 plan (Feb 25 - Mar 10)"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_by_team
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [report:sprint-plan]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: exec}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 1
+    time: "11:20"
+    from: jordan
+    to: [eng_list]
+    cc: [avery, hana]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Sprint 14 as planned this morning. Goal: the Northstar SAP connector parses real Fresno IDocs end to end by the sprint review.
+
+      Committed:
+      - SAP IDoc parser: DELVRY03 and WHSCON message types, mapping table driven (Arjun). This is the sprint.
+      - Late-lot alert dedupe per station, 10-minute window (Felix). Veritas asked, Halberd will want it too.
+      - Export scheduler: retry with backoff for the nightly CSV jobs (Kofi). Coastline's nightly job is the motivating case.
+      - Connector regression suite v1: fixture IDocs, 40 cases to start (Carmen).
+      - Field-mapping workshop with Northstar's Fresno planners, output is the mapping table Arjun's parser reads (Hana).
+
+      Stretch:
+      - Audit log export (Felix), only if dedupe lands early.
+
+      Not this sprint: plant-timezone display work, the search index rebuild (needs a maintenance window; Arjun will propose one).
+
+      Sprint review Tue Mar 10, 15:00. Standup notes go to Notion as usual; I will only email if something changes.
+  - id: m2
+    beat_ref: null
+    day: 1
+    time: "11:35"
+    from: felix
+    to: [jordan]
+    cc: [eng_list, avery, hana]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      ack. dedupe PR should be up by fri, audit log after. lmk if priorites move.
+
+      Felix

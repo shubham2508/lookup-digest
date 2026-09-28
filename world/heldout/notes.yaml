@@ -1,0 +1,169 @@
+# world/heldout/notes.yaml — the 10 notes and tasks.md (specs/data_generation.md §7). Each note's first line is
+# "Date: YYYY-MM-DD | Attendees: …" (dates resolve from `day` via the anchor 2026-03-26). File mtimes are set to the
+# note's day at `time`. The prose files under prose/notes/ carry the full text; this file fixes what each must plant.
+# Same shape as world/dev/notes.yaml; the README's "Pinned shared sources" table is binding for file/kind/day/time/
+# attendees/must_include. Day → date: 2 = Thu 02-26 · 19 = Sun 03-15 · 20 = Mon 03-16 · 21 = Tue 03-17 · 22 = Wed 03-18
+# · 27 = Mon 03-23 · 28 = Tue 03-24 · 29 = Wed 03-25 · 30 = Thu 03-26.
+
+notes:
+  - file: board-meeting-minutes.md
+    kind: meeting_notes
+    day: 2
+    time: "16:45"
+    attendees: [avery, priya, diane, nora]
+    title: "Board meeting - Feb 26"
+    plants:
+      - "Diane: a short written update to the board every month until the round closes. Agreed (Avery). Last one went out Feb 9; next due around Mar 9."
+      - "ARR $3.2M as of Jan 31 (consistent with the profile at the time)"
+      - "Series A: IPV partnership pitch second week of March (Owen running logistics); Larkspur first call Feb 27 via Diane"
+      - "Hiring: two backend reqs (one via Northbeam, retained) + designer open"
+    must_include: ["every month until the round closes", "Feb 9"]
+    labels: {storyline: S10, about: [board-update:monthly], agreements: [{rule: "a short written update every month until the round closes", cadence: monthly}],
+             claims: [{subject: last_board_update_sent, value: "Feb 9"}, {subject: ARR, value: "$3.2M"}]}
+    cadence_math: "Feb 9 + 1 month = Mar 9; on day 26 (Mar 22) days_since 41 / days_overdue 13; on day 30 (Mar 26) days_since 45 / days_overdue 17"
+  - file: investor-update-draft.md
+    kind: draft
+    day: 19
+    time: "22:05"
+    attendees: []
+    title: "March investor update - DRAFT"
+    plants:
+      - "half-written Sunday-night draft; metrics block says 'ARR: $3.2M' (stale); 'Net revenue retention: TBD'; 'Pipeline: TBD'; asks section unfinished"
+    must_include: ["$3.2M", "TBD"]
+    labels: {storyline: S10, about: [board-update:monthly], note_kind: draft, draft_of: "investor update", claims: [{subject: ARR, value: "$3.2M"}]}
+  - file: finance-review.md
+    kind: meeting_notes
+    day: 21
+    time: "16:00"
+    attendees: [avery, nora, priya]
+    title: "Finance review - Mar 17"
+    plants:
+      - "ARR $3.6M as of Mar 15 (Northstar SAP connector + second plant, Coastline expansion, Halberd Line 3 pilot uplift)"
+      - "GPU reserved commit ends 3/31; provider raises on-demand pricing Apr 1; Priya to recommend before the 31st; needs Avery's yes/no (→ S13)"
+      - "Payroll funding account switched to the new bank (Cascade Community Bank) effective the Mar 25 run; Nora to confirm the first debit clears (→ background Gusto failure day 28)"
+      - "Feb expenses: three Brex reports still unsubmitted; approvals to Avery once they land (→ BG-expenses, day 27)"
+      - "Cash $3.9M, ~16 months pre-round"
+    must_include: ["ARR $3.6M", "GPU reserved commit"]
+    labels: {storyline: [S10, S13], about: [board-update:monthly, other:gpu-commit-decision], claims: [{subject: ARR, value: "$3.6M"}, {subject: gpu_commit_expiry, value: "3/31"}],
+             action_items: [{owner: other, about: other:gpu-commit-decision, due_day: null, status_in_thread: open}]}
+  - file: h1-planning.md
+    kind: draft
+    day: 27
+    time: "17:20"
+    attendees: []
+    title: "H1 FY27 (Apr-Sep) planning doc - owner Avery"
+    plants:
+      - "two open comments: Jordan (day 28 17:35, on-call headcount if Kenji slips) and Priya (day 29 08:44, budget assumes a 1-year GPU renewal nobody has approved) - rendered as inline comment blocks with dates"
+      - "security line: 'Quillon Security trial — decision hinges on evidence collection coverage'; 'Bastion Compliance ... auto-renews 3/27 for 12 months unless we cancel'"
+      - "review at the Thu 3/26 14:00 planning sync"
+    must_include: ["evidence collection", "open comment"]
+    labels: {storyline: BG-h1, about: [report:h1-planning, meeting:quillon-demo, renewal:bastion], note_kind: draft, draft_of: "H1 planning doc",
+             open_comments: [{by: jordan, status: open}, {by: priya, status: open}], claims: [{subject: quillon_eval_criteria, value: "evidence collection coverage"}, {subject: bastion_renewal, value: "3/27"}]}
+    mtime_note: "file mtime = day 29 08:50 (Priya's comment), so on day 30 the note is fresh"
+  - file: eng-standup.md
+    kind: status
+    day: 28
+    time: "09:40"
+    attendees: [jordan, arjun, felix, kofi, carmen, hana]
+    title: "Standup notes - week of Mar 23"
+    plants:
+      - "Northstar SAP connector: on track for Apr 1 (cutover runbook v2 sent to Elise and Rosa)"
+      - "Two non-blocking issues from Carmen's regression pass: NS-412 CSV export plant-code column; NS-415 date picker shows UTC - neither in the go-live path"
+      - "Halberd Line 3 MES upgrade (Sanjay's team) Wed evening 3/25 from 18:00; Arjun on call, Felix backup (→ S14 incident that night)"
+    must_include: ["on track for Apr 1", "non-blocking"]
+    labels: {storyline: [S5, S14], about: [rollout:northstar:apr-1, incident:halberd:timestamps], note_kind: status,
+             claims: [{subject: northstar_connector_status, value: "on track for Apr 1"}, {subject: halberd_mes_upgrade, value: "Wed evening 3/25, Arjun on call"}]}
+    about_note: "the MES-upgrade line is the pre-incident context S14 cites (dev: jordan-1on1.md's schema-risk line); labeled with the incident key so the note joins the incident item"
+  - file: gtm-weekly.md
+    kind: meeting_notes
+    day: 27
+    time: "16:10"
+    attendees: [avery, tomas, leo, hana]
+    title: "GTM weekly - Mar 23"
+    plants:
+      - "Halberd: Martin (CFO) pushed the renewal again — now 'after our fiscal close' (FY ends Apr 30). 2nd push; first was mid-Feb → end of March. Tomás to get a date in writing."
+      - "Veritas: Dmitri quieter; Hugo (finance director) running an annual vendor review, long back-and-forth with Tomás; Avery not needed unless Hugo asks for a call"
+      - "Pinewood: 6-week pilot scoping (Leo + Hana), kickoff tentatively Apr 3; Ironclad site visit April"
+      - "Tidewater intro Thu 12:30 - Avery only"
+    must_include: ["after our fiscal close", "2nd push"]
+    labels: {storyline: [S7, S6], about: [renewal:halberd, other:veritas-cadence, renewal:veritas],
+             stage_signals: [{entity: halberd, stage: at_risk, day: 27}],
+             claims: [{subject: halberd_renewal_timing, value: "after our fiscal close"}, {subject: veritas_vendor_review, value: "Hugo running an annual vendor review"}],
+             action_items: [{owner: other, about: renewal:halberd, due_day: null, status_in_thread: open}]}
+  - file: hiring-sync.md
+    kind: meeting_notes
+    day: 22
+    time: "11:30"
+    attendees: [avery, jordan, tomas]
+    title: "Hiring sync - Mar 18"
+    plants:
+      - "Backend #2 (Northbeam retained search): paused until the A closes — Avery's call. Jordan to tell Harriet at Northbeam and ask her to hold the shortlist."
+      - "Clara Voss (designer): onsite today; Avery closer 16:00; debrief TBD (Jordan)"
+      - "Kenji Mori: offer approved at L4; Jordan to send Monday 3/23 via Dropbox Sign; Kenji mentioned a competing process"
+      - "Maren Holt (designer): portfolio review next Thu 3/26 16:00 with Priya; Avery joins for the last 15"
+      - "Open: backend #1 (Kenji), designer; backend #2 paused"
+    must_include: ["paused until the A closes", "debrief TBD"]
+    labels: {storyline: [S9, S8], about: [hiring-req:backend-2, candidate:clara-voss, offer:kenji-mori, candidate:maren-holt],
+             stage_signals: [{entity: backend-2-req, stage: paused, day: 22}, {entity: clara-voss, stage: onsite, day: 22}, {entity: kenji-mori, stage: offer_approved, day: 22}],
+             claims: [{subject: open_reqs, value: "one backend (offer going to Kenji) and a designer; second backend paused"}],
+             action_items: [{owner: other, about: hiring-req:backend-2, due_day: null, status_in_thread: open}, {owner: other, about: candidate:clara-voss, due_day: null, status_in_thread: open}]}
+  - file: infra-review.md
+    kind: meeting_notes
+    day: 21
+    time: "10:45"
+    attendees: [jordan, priya, arjun, felix, nora]
+    title: "On-call & infra review - Mar 17"
+    plants:
+      - "Avery declined (deep-work block) and asked for the notes"
+      - "Decision: on-call stipend $400/week to the primary, starting with the Apr 1 rotation; ≈ $20.8k/yr; comp change so it needs Avery's sign-off; Nora needs it in Gusto by Fri 3/27; Jordan to write it up for Avery"
+      - "Northstar go-live freeze Mon 3/30 – Thu 4/2; GPU commit 3/31 (Priya); Halberd Line 3 MES upgrade tentatively Wed 3/25 evening (Arjun with Sanjay)"
+    must_include: ["$400/week", "needs Avery's sign-off"]
+    labels: {storyline: S15, about: [approval:oncall-stipend],
+             decisions: [{what: "on-call stipend $400/week per primary from Apr 1", decided_by: "on-call & infra review 3/17 (Avery declined)", about: approval:oncall-stipend}],
+             action_items: [{owner: avery, about: approval:oncall-stipend, due_day: 31, status_in_thread: open}, {owner: other, about: approval:oncall-stipend, due_day: null, status_in_thread: open}]}
+  - file: avery-todos.md
+    kind: todo
+    day: 20
+    time: "07:40"
+    attendees: []
+    title: "todos (personal scratch)"
+    plants:
+      - "- send Diane the March update (by 3/13)        ← duplicated in tasks.md (task:1, due 3/16) with a different date; both are one item"
+      - "- pen-test summary to Northstar                 ← already done per email on day 16 (S5 history); with tasks.md task:4 → one tasks-vs-email contradiction"
+      - "- Quillon: get Priya's must-haves before we take the demo"
+      - "- book the Mendocino house for 4/4"
+      - "- call Jun back"
+    must_include: ["March update", "pen-test summary to Northstar"]
+    labels: {storyline: [S10, BG-pentest], note_kind: todo, about: [board-update:monthly, report:pentest-northstar, meeting:quillon-demo],
+             action_items: [{owner: avery, about: board-update:monthly, due_day: 17, status_in_thread: open}, {owner: avery, about: report:pentest-northstar, due_day: null, status_in_thread: open}]}
+    expectations_note: "the duplicate must not become two board-update items; the pen-test line plus tasks.md task:4 vs the day-16 email → one tasks-vs-email contradiction"
+  - file: customer-health-review.md
+    kind: meeting_notes
+    day: 21
+    time: "15:30"
+    attendees: [avery, tomas, jordan, hana]
+    title: "Customer health review - Mar 17"
+    plants:
+      - "Northstar: green; SAP connector go-live Apr 1; pen-test summary sent last week"
+      - "Halberd: yellow; Tobias new since 3/10 (Greta left); renewal timing unclear (Martin, 'after fiscal close'); QBR Thu 3/26"
+      - "Veritas: green / watch; Dmitri slower to respond the last few days, no tickets; renewal June; Tomás to check in casually"
+      - "Coastline: green"
+    must_include: ["slower to respond", "green"]
+    labels: {storyline: [S6, S5, S7], about: [other:veritas-cadence, rollout:northstar:apr-1, renewal:halberd, other:halberd-procurement-lead],
+             stage_signals: [{entity: veritas, stage: active, day: 21}, {entity: northstar, stage: active, day: 21}, {entity: halberd, stage: active, day: 21}],
+             claims: [{subject: halberd_procurement_lead, value: "Tobias, new since 3/10"}, {subject: veritas_cadence, value: "slower to respond"}]}
+
+last_modified_header: "every rendered note and tasks.md starts with '<!-- last-modified: <ISO datetime PT> -->' (OPEN_QUESTIONS #6c) so staleness survives git clone; the file mtime is set to the same instant"
+
+tasks:
+  file: tasks.md
+  mtime_day: 18                 # Sat 03-14; 12 days before day 30 (data_generation §7); stale on every run day (>7 days; 8 on day 26)
+  mtime_time: "18:05"
+  format: "- [ ] <title> (due: YYYY-MM-DD)"
+  items:
+    - {id: "task:1", title: "Send Diane the March investor update", due_day: 20, status: open, labels: {about: board-update:monthly, storyline: S10}, note: "due Mon 3/16; overdue on every run day; duplicated in avery-todos.md with 'by 3/13'"}
+    - {id: "task:2", title: "Finalize H1 planning doc for Thursday's sync", due_day: 30, status: open, labels: {about: report:h1-planning, storyline: BG-h1}, note: "the one due today (day 30); h1-planning-sync-20260326 14:00 is the review"}
+    - {id: "task:3", title: "Approve February expenses in Brex", due_day: 25, status: open, labels: {about: approval:expenses-february, storyline: BG-expenses}, note: "Sat 3/21; merges with the three Brex reports of day 27"}
+    - {id: "task:4", title: "Send Northstar the pen-test summary", due_day: 16, status: open, labels: {about: report:pentest-northstar, storyline: BG-pentest}, note: "due Thu 3/12; already done per email on day 16 (S5 history) → stale task / tasks-vs-email contradiction"}
+    - {id: "task:5", title: "Review cyber policy renewal from Keel", due_day: 55, status: open, labels: {about: other:cyber-renewal, storyline: BG-keel}, note: "Mon 4/20; far out; must not surface"}
+  absent: [deal:series-a:operating-model, report:409a-draft]     # S1 promise and S16 promise are in no task or todo

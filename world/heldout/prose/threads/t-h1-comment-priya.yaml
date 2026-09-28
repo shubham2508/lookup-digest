@@ -1,0 +1,33 @@
+thread_id: t-h1-comment-priya
+subject: "h1 doc - one comment"
+storyline: BG-h1
+category: internal_routine
+labels:
+  kind: thread
+  must_not: false
+  reason: null
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [report:h1-planning]
+    ball_awaiting: avery
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: cofounder}
+    asks: [{to_avery: true, kind: decision, deadline_day: 30, status: open}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 29
+    time: "08:50"
+    from: priya
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      left a comment on the h1 doc, section 5. budget line assumes a 1-year gpu renewal and nobody has said yes to that. on-demand is ~$9k/mo higher from apr. need the call before the doc is final thursday.

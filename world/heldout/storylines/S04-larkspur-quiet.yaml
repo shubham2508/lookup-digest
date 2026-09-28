@@ -1,0 +1,133 @@
+id: S4
+name: larkspur-quiet
+reviewed: false
+tier_truth: P0
+summary: >
+  Held-out disguise of dev S4. Farah Siddiqui (General Partner, Larkspur Partners; not in the profile) came in
+  through Diane's intro email on the evening of day 2 (Thu Feb 26, after the board meeting); board-meeting-minutes.md
+  records "Larkspur first call Feb 27 via Diane". Day 3 (Fri Feb 27): a 20-minute intro call at 1pm, then Farah asks
+  for a working session with Priya; Avery books Wednesday day 8 (Mar 4) 14:00 and has the last word (thread
+  t-larkspur-intro, closed). Day 10 (Fri Mar 6): Farah's thoughtful follow-up on the session ends with one pointed
+  question about plant-expansion cohorts (new thread t-larkspur-followup); Avery replies "I'll send the cohort data
+  and we'll find time after the 15th". Nothing since. Avery owns the next step and the 15th (Sun Mar 15, day 19) is
+  a week gone by the first run. Capital thread with Avery's own open commitment → quiet_thread on every run day:
+  business days quiet (weekdays strictly after Fri 03-06, strictly before the run date) = 10 on days 26 and 27, 11
+  on day 28, 12 on day 29, 13 on day 30. Tests: quiet prospective investor during an active raise; Larkspur is
+  classified capital from the signature/domain (plus Diane's intro); the closed intro thread shares the about key
+  without producing its own item; the draft is dispatchable (propose two slots, say when the cohort data lands).
+
+threads:
+  - {id: t-larkspur-intro,    subject: "Intro: Farah Siddiqui (Larkspur) <> Avery Chen (Tessera)", category: investors_board}
+  - {id: t-larkspur-followup, subject: "Following up from Wednesday",                                category: investors_board}
+
+beats:
+  - {ref: S4.h1, day: 2, time: "18:10", source: email, thread: t-larkspur-intro, from: diane, to: [avery, farah],
+     event: "intro after the board meeting: Farah is building a thesis around software for industrial operators and asked who in Granite Bay's portfolio to talk to; leaves them to find a time",
+     must_include: ["Farah"], hardness: []}
+  - {ref: S4.h2, day: 3, time: "08:50", source: email, thread: t-larkspur-intro, from: farah, to: [avery], cc: [diane],
+     event: "thanks Diane; offers twenty minutes at 1pm today or Monday afternoon",
+     must_include: ["1pm"], hardness: []}
+  - {ref: S4.h3, day: 3, time: "09:20", source: email, thread: t-larkspur-intro, from: avery, to: [farah], cc: [diane],
+     event: "1pm today works; mobile number",
+     must_include: ["1pm"], hardness: [lowercase]}
+  - {ref: S4.h4, day: 3, time: "14:35", source: email, thread: t-larkspur-intro, from: farah, to: [avery],
+     event: "after the call: two things that stayed with her; asks for a proper working session next week with Priya in the room, proposes Wednesday March 4 at 2pm; one question about who signs the second line",
+     must_include: ["Priya", "March 4"], hardness: [long]}
+  - {ref: S4.h5, day: 3, time: "16:50", source: email, thread: t-larkspur-intro, from: avery, to: [farah],
+     event: "wed the 4th at 2pm works, invite coming, Priya will be on; answers the question in one line; last word Avery (closed)",
+     must_include: ["2pm"], hardness: [lowercase]}
+  - {ref: S4.b1, day: 10, time: "10:40", source: email, thread: t-larkspur-followup, from: farah, to: [avery], cc: [priya],
+     event: "thanks both for Wednesday; Larkspur is interested and wants to bring Tessera to the April partner meeting; one pointed question: by cohort of plants (grouped by go-live quarter), how many added a second line, how quickly, and what it did to contract value; asks for the data behind the sentence Avery said on Wednesday",
+     must_include: ["cohort"], hardness: [long, indirect_phrasing]}
+  - {ref: S4.b2, day: 10, time: "16:05", source: email, thread: t-larkspur-followup, from: avery, to: [farah], cc: [priya],
+     event: "the cohort view exists (Nora keeps it by go-live quarter); will send the cohort data and find time after the 15th, once the partnership pitch is behind us",
+     must_include: ["I'll send the cohort data and we'll find time after the 15th"], hardness: [lowercase]}
+
+labels:
+  - thread: t-larkspur-intro
+    category: investors_board
+    storyline: S4
+    must_not_surface: false          # closed history for the same about key; it may be cited inside the Larkspur item but must not produce its own item
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [deal:series-a:larkspur]
+      ball_awaiting: nobody
+      closed_by_courtesy: true
+      sender_relationship: {category: capital, subtype: prospective_vc, stage: first_contact}   # Farah is the counterpart; the opener is Diane's (board_member) intro
+      asks: [{to_avery: true, kind: meeting, deadline_day: null, status: answered}]
+      commitments: []
+      schedule_mentions: [{action: confirmed, participants: [farah, avery, priya], when_day: 8, when_time: "14:00"}]
+      stage_signals: [{entity: larkspur, stage: first_contact, day: 3}]
+      suspicious: false
+    messages:
+      - {beat_ref: S4.h1, day: 2, time: "18:10", from: diane, to: [avery, farah], must_include: ["Farah"]}
+      - {beat_ref: S4.h2, day: 3, time: "08:50", from: farah, to: [avery], cc: [diane], must_include: ["1pm"]}
+      - {beat_ref: S4.h3, day: 3, time: "09:20", from: avery, to: [farah], cc: [diane], must_include: ["1pm"], is_from_avery: true}
+      - {beat_ref: S4.h4, day: 3, time: "14:35", from: farah, to: [avery], must_include: ["Priya", "March 4"]}
+      - {beat_ref: S4.h5, day: 3, time: "16:50", from: avery, to: [farah], must_include: ["2pm"], is_from_avery: true}
+  - thread: t-larkspur-followup
+    category: investors_board
+    storyline: S4
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [deal:series-a:larkspur]
+      ball_awaiting: avery
+      closed_by_courtesy: false
+      sender_relationship: {category: capital, subtype: prospective_vc, stage: in_conversation}
+      asks: [{to_avery: true, kind: information, deadline_day: null, status: open}]
+      commitments:
+        - {owner: avery, about: deal:series-a:larkspur, due_day: null, status_in_thread: open}   # "after the 15th" is a soft anchor (Sun day 19); an extractor that sets due_day 19–20 is acceptable
+      stage_signals: [{entity: larkspur, stage: in_conversation, day: 10}]
+      suspicious: false
+    messages:
+      - {beat_ref: S4.b1, day: 10, time: "10:40", from: farah, to: [avery], cc: [priya], must_include: ["cohort"]}
+      - {beat_ref: S4.b2, day: 10, time: "16:05", from: avery, to: [farah], cc: [priya], must_include: ["I'll send the cohort data and we'll find time after the 15th"], is_from_avery: true}
+
+contacts:
+  - {id: farah, category: capital, subtype: prospective_vc, tier: P0, in_profile: false,
+     stages: [{from_day: 3, stage: first_contact}, {from_day: 8, stage: in_conversation}],
+     note: "'another VC' in the profile's quiet-investor rule; tier P0 during the raise is a judgment — P1 acceptable (band); introduced by Diane (board-meeting-minutes.md)"}
+  - {id: diane, category: capital, subtype: board_member, tier: P1, in_profile: true, rules: [owed_updates], note: "context only in S4 (the intro)"}
+
+about_keys:
+  should_merge:
+    - [deal:series-a:larkspur, deal:larkspur]
+    - [deal:series-a:larkspur, deal:series-a:larkspur-partners]
+  should_not_merge:
+    - [deal:series-a:larkspur, deal:series-a:retention-question]     # S3: Marcus's GRR-by-cohort ask is a different investor and a different ask
+    - [deal:series-a:larkspur, deal:series-a:operating-model]        # S1
+
+expectations:
+  - run_day: 26
+    candidates: [{type: quiet_thread, about: deal:series-a:larkspur, facts_hint: {business_days_quiet: 10}}]
+    items: [{about: deal:series-a:larkspur, priority_band: [P0, P1], section: urgent, actions: [reply], cites_any: [t-larkspur-followup],
+             notes: "draft: propose two slots next week, say when the cohort data lands (or attach it via a task to Nora); the 15th is a week gone"}]
+  - run_day: 27
+    candidates: [{type: quiet_thread, about: deal:series-a:larkspur, facts_hint: {business_days_quiet: 10}}]
+    items: [{about: deal:series-a:larkspur, priority_band: [P0, P1], section: urgent, actions: [reply], cites_any: [t-larkspur-followup]}]
+  - run_day: 28
+    candidates: [{type: quiet_thread, about: deal:series-a:larkspur, facts_hint: {business_days_quiet: 11}}]
+    items: [{about: deal:series-a:larkspur, priority_band: [P0, P1], section: urgent, actions: [reply], cites_any: [t-larkspur-followup]}]
+  - run_day: 29
+    candidates: [{type: quiet_thread, about: deal:series-a:larkspur, facts_hint: {business_days_quiet: 12}}]
+    items: [{about: deal:series-a:larkspur, priority_band: [P0, P1], section: urgent, actions: [reply], cites_any: [t-larkspur-followup]}]
+  - run_day: 30
+    candidates: [{type: quiet_thread, about: deal:series-a:larkspur, facts_hint: {business_days_quiet: 13}}]
+    items: [{about: deal:series-a:larkspur, priority_band: [P0, P1], section: urgent, actions: [reply], cites_any: [t-larkspur-followup]}]
+
+assertions:
+  - {id: S4-d26-present,   kind: item_present,        run_day: 26, args: {about: deal:series-a:larkspur}}
+  - {id: S4-d30-present,   kind: item_present,        run_day: 30, args: {about: deal:series-a:larkspur, actions_any: [reply]}}
+  - {id: S4-d30-cand,      kind: candidate_present,   run_day: 30, args: {type: quiet_thread, about: deal:series-a:larkspur}}
+  - {id: S4-farah-capital, kind: contact_category_is, run_day: 30, args: {email: farah@larkspur.vc, category: capital}}
+  - {id: S4-d30-not-p3,    kind: priority_not,        run_day: 30, args: {about: deal:series-a:larkspur, priority: P3}}
+
+sim_avery: []
+simulate:
+  - {id: S4-sim-escalates, kind: escalation_framing, run_day: 28, args: {about: deal:series-a:larkspur, min_times_surfaced: 2, mode: simulate},
+     description: "surfaced on days 26 and 27 → day 28 framing escalates ('third time')"}
+variants: []

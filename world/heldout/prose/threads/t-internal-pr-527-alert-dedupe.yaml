@@ -1,0 +1,58 @@
+thread_id: t-internal-pr-527-alert-dedupe
+subject: "PR #527 - late-lot alert dedupe (10 min window per station)"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_by_team
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [other:pr-527-alert-dedupe]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 2
+    time: "15:10"
+    from: felix
+    to: [arjun]
+    cc: [jordan, avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      https://github.com/tessera-io/platform/pull/527
+
+      dedupes late-lot alerts per (plant, line, station) within a 10 min sliding window. first alert goes out, repeats get folded into it with a count. window is a config knob, default 600s. tests cover the boundary + the midnight rollover thing that bit us in jan.
+
+      small pr, ~180 lines. lmk
+
+      Felix
+  - id: m2
+    beat_ref: null
+    day: 3
+    time: "09:30"
+    from: arjun
+    to: [felix]
+    cc: [jordan, avery]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Reviewed, approved with one small request that does not need a re-review.
+
+      - The fold count is stored in the alert payload but not in the notification text; the night-shift supervisors will want to see "(x4)" in the SMS. One-line change in notify/format.py.
+      - Window key: you include station but the Veritas Line 4 stations report as a shared station ID after their MES change. Not your problem to solve here; I opened TES-431 so we remember.
+      - Runbook updated to mention the knob: https://runbooks.tessera.io/alerts/late-lot#dedupe
+
+      Merge when CI is green. Nice test on the midnight rollover.
+
+      Thanks,

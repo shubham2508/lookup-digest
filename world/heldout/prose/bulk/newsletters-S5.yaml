@@ -1,0 +1,37 @@
+category: newsletters
+items:
+  - id: nl-plantops-112
+    day: 29
+    time: "06:45"
+    from: {name: "Plant Ops Digest", email: "weekly@plantopsdigest.com"}
+    to: [avery]
+    subject: "Plant Ops Digest #112: Northstar's Fresno plant goes SAP-connected, the FSMA 204 clock, PdM ROI survey"
+    bulk: true
+    signature: none
+    body: |
+      PLANT OPS DIGEST #112 | Wednesday, March 25, 2026
+
+      1. Northstar Foods brings SAP-connected scheduling to Fresno
+
+      Northstar Foods is digitizing production scheduling at its Fresno, California plant, replacing a spreadsheet-and-whiteboard process with a scheduling layer connected directly to its SAP production orders. The company told us the Fresno cutover is planned for the start of April, with two more plants to follow later in the year if the first goes cleanly. Northstar declined to name the software vendor. "The win is that the planners stop retyping SAP," a member of the supply-chain group said. "The scheduling tool reads the orders; the planners make the calls."
+
+      2. FSMA 204: the traceability clock is running
+
+      With the FDA's food traceability rule compliance date now less than a year out, mid-size processors are finding that the key data elements are scattered across ERP, WMS and paper. Three things the compliant plants we spoke to did first: pick a single lot-code format, name one owner per critical tracking event, and run a mock traceback before the auditors do.
+
+      3. Predictive maintenance ROI: what 140 plants reported
+
+      Our annual PdM survey is in. Median payback on vibration-and-thermal programs was 14 months; the plants that saw payback under a year all started with fewer than 30 assets. Full tables in the member report.
+
+      Next issue: April 8.
+    labels:
+      kind: newsletter
+      must_not: false
+      reason: null
+      classification_case: null
+      expected:
+        type: newsletter
+        news_items:
+          - {headline_hint: "Northstar Foods Fresno SAP-connected scheduling", topics: [customers, plant-digitization], entities: [Northstar Foods], attaches_to: [rollout:northstar:apr-1]}
+          - {headline_hint: "FSMA 204 traceability compliance date", topics: [food-safety, regulation], entities: [], attaches_to: []}
+          - {headline_hint: "predictive maintenance ROI survey", topics: [maintenance], entities: [], attaches_to: []}

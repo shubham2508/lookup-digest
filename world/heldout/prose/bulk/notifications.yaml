@@ -1,0 +1,2340 @@
+# world/heldout/prose/bulk/notifications.yaml — automated notifications, held-out world (Track B, M8).
+# 69 items: Linear 20, Google Calendar 12, Ashby 8, SaaS receipts 8, Gusto 6 routine + 1 payroll-funding failure,
+# Brex 6 card alerts + 3 expense reports, Sentry 4, Google Cloud bill 1. auto-dropboxsign-kenji (S8) lives in
+# notifications-S8.yaml and completes the category's 70.
+# Only the three Brex expense reports and the Gusto funding failure are action-bearing. No List-Unsubscribe on any item.
+# Day → date: day 1 = Wed 2026-02-25 (PST) … day 12 = Sun 03-08 (spring-forward, nothing 02:00–03:00) … day 30 = Thu 03-26.
+category: notifications
+items:
+  # ------------------------------------------------------------------ day 1 · Wed Feb 25
+  - id: auto-receipts-1-1
+    day: 1
+    time: "04:12"
+    from: {name: "Notion", email: "team@makenotion.com"}
+    to: [avery]
+    subject: "Your Notion receipt - Feb 25, 2026"
+    bulk: false
+    signature: none
+    body: |
+      Receipt from Notion Labs, Inc.
+
+      Your payment was received. Thank you!
+
+      Amount paid: $120.00
+      Date paid: Feb 25, 2026
+      Payment method: Visa •••• 7702
+      Receipt number: 2418-0931
+
+      Summary
+        Notion Plus - 12 members x $10.00 (Feb 25 - Mar 25, 2026)      $120.00
+        Amount paid                                                    $120.00
+
+      Billed to: Tessera, Inc., 2201 Broadway, Suite 300, Oakland, CA 94612
+
+      Manage your billing: https://www.notion.so/settings/billing
+      Questions? team@makenotion.com
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Notion, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-gusto-1-1
+    day: 1
+    time: "06:30"
+    from: gusto
+    to: [avery]
+    subject: "Your Feb 27 payroll has been processed"
+    bulk: false
+    signature: none
+    body: |
+      Hi Avery,
+
+      Payroll for Feb 16 - Feb 28 has been processed. Your team will be paid on Fri, Feb 27.
+
+      Pay period: Feb 16 - Feb 28, 2026
+      Pay date: Fri, Feb 27, 2026
+      Employees paid: 12
+      Total debit: $84,930.12 (from the account ending in 2210 on Wed, Feb 25)
+
+      Submitted by Nora Blake on Feb 24 at 4:41 PM PST.
+
+      View payroll details: https://app.gusto.com/payrolls/pr_3Kd8Wq2
+
+      Questions? Visit the Gusto Help Center at support.gusto.com.
+
+      Gusto, 525 20th Street, San Francisco, CA 94107
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Gusto, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-linear-1-1
+    day: 1
+    time: "09:40"
+    from: linear
+    to: [avery]
+    subject: "Jordan Liu created PLT-231 in H1 planning"
+    bulk: false
+    signature: none
+    body: |
+      Jordan Liu created a new issue in the project H1 planning
+
+      PLT-231 · H1 planning doc: outline and owners per section
+      Project: H1 planning · Cycle 6
+      Assignee: Jordan Liu
+      Priority: Medium
+
+      Outline for the H1 doc ahead of the Mar 26 sync. One owner per section; product and hiring sections need input from Avery and Priya, GTM from Tomás.
+
+      View issue: https://linear.app/tessera/issue/PLT-231
+
+      --
+      You are receiving this because you are a member of the project H1 planning. Manage notifications: https://linear.app/tessera/settings/notifications
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: docusign_action_vs_github_fyi
+      expected: {type: automated, automated: {system: Linear, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 2 · Thu Feb 26
+  - id: auto-receipts-2-1
+    day: 2
+    time: "03:40"
+    from: {name: "Zoom", email: "no-reply@zoom.us"}
+    to: [avery]
+    subject: "Your Zoom payment was received - Invoice INV14880233"
+    bulk: false
+    signature: none
+    body: |
+      Hi Avery Chen,
+
+      Thank you for your payment. This email confirms that your payment was received.
+
+      Invoice number: INV14880233
+      Invoice date: Feb 26, 2026
+      Amount paid: $263.88
+      Payment method: Visa ending in 7702
+
+      Plan details
+        Zoom Workplace Business - 12 licenses (monthly)        $263.88
+        Billing period: Feb 26 - Mar 25, 2026
+
+      Account: Tessera, Inc. (tessera.zoom.us)
+
+      View or download your invoice: https://zoom.us/billing/invoices
+
+      Thank you for choosing Zoom.
+      -The Zoom Team
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Zoom, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-linear-2-1
+    day: 2
+    time: "14:15"
+    from: linear
+    to: [avery]
+    subject: "Priya Iyer changed the status of NS-388 to Done"
+    bulk: false
+    signature: none
+    body: |
+      Priya Iyer changed the status from In Review to Done
+
+      NS-388 · IDoc parser: handle repeated E1EDP01 segments in a single message
+      Project: Northstar SAP connector · Cycle 6
+      Assignee: Priya Iyer
+
+      View issue: https://linear.app/tessera/issue/NS-388
+
+      --
+      You are receiving this because you are subscribed to this issue. Manage notifications: https://linear.app/tessera/settings/notifications
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: docusign_action_vs_github_fyi
+      expected: {type: automated, automated: {system: Linear, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 3 · Fri Feb 27
+  - id: auto-ashby-3-1
+    day: 3
+    time: "07:50"
+    from: ashby
+    to: [avery]
+    subject: "New application: Backend Engineer - Daniel Okonkwo"
+    bulk: false
+    signature: none
+    body: |
+      Hi Avery,
+
+      A new candidate applied to Backend Engineer.
+
+      Candidate: Daniel Okonkwo
+      Job: Backend Engineer (Oakland, CA / Remote US)
+      Source: LinkedIn (job post)
+      Applied: Feb 27, 2026, 7:49 AM PST
+      Resume: available in Ashby
+
+      View candidate: https://app.ashbyhq.com/candidates/c_8f21a4d9
+
+      --
+      You are receiving this email because you follow the Backend Engineer job in Ashby. Manage your notifications in Ashby.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Ashby, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-brex-card-3-1
+    day: 3
+    time: "09:12"
+    from: brex
+    to: [avery]
+    subject: "Card transaction: $1,912.40 at Datadog"
+    bulk: false
+    signature: none
+    body: |
+      Brex
+
+      A transaction was posted on a Tessera card.
+
+      Amount: $1,912.40
+      Merchant: Datadog
+      Card: Infra & monitoring (virtual) •••• 3318
+      Cardholder: Priya Iyer
+      Date: Feb 27, 2026, 9:11 AM PST
+      Category: Software
+
+      A receipt was matched automatically from the Datadog invoice email.
+
+      View transaction: https://dashboard.brex.com/transactions/tx_5Hq2Lm8Rz
+
+      You are receiving this because you are an admin on the Tessera Brex account and this card has transaction alerts on for amounts over $1,000.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Brex, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 4 · Sat Feb 28
+  - id: auto-receipts-4-1
+    day: 4
+    time: "05:15"
+    from: {name: "Slack", email: "feedback@slack.com"}
+    to: [avery]
+    subject: "Your Slack invoice has been paid (Tessera)"
+    bulk: false
+    signature: none
+    body: |
+      Hi Avery,
+
+      Your payment was received. Here is your receipt for the Tessera workspace.
+
+      Invoice: SLK-2026-02-77410
+      Date: Feb 28, 2026
+      Amount paid: $105.00
+      Payment method: Visa ending in 7702
+
+      Details
+        Slack Pro - 12 active members x $8.75 (Feb 28 - Mar 27, 2026)      $105.00
+
+      You can view and download invoices from your workspace's billing page: https://tessera.slack.com/admin/billing
+
+      Thanks,
+      The team at Slack
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Slack, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 5 · Sun Mar 1
+  - id: auto-gcp-bill
+    day: 5
+    time: "06:10"
+    from: gcp
+    to: [avery]
+    subject: "Your Google Cloud invoice for February 2026 is available"
+    bulk: false
+    signature: none
+    body: |
+      Google Cloud
+
+      Your invoice for billing account Tessera Production (01A2B3-C4D5E6-F7G8H9) is now available.
+
+      Invoice number: 4471820933
+      Invoice date: Mar 1, 2026
+      Billing period: Feb 1 - Feb 28, 2026
+      Amount due: $38,214.67
+      Payment: charged automatically to the payment method on file
+
+      Top services this period
+        Compute Engine (GPU reserved capacity)      $24,880.00
+        Compute Engine (general purpose)             $6,412.19
+        Cloud SQL                                    $3,208.40
+        Cloud Storage and networking                 $2,101.58
+        Other                                        $1,612.50
+
+      View invoice: https://console.cloud.google.com/billing/01A2B3-C4D5E6-F7G8H9/history
+
+      This is an automated message. Replies are not monitored.
+      Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: "Google Cloud Billing", action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-brex-card-5-1
+    day: 5
+    time: "06:30"
+    from: brex
+    to: [avery]
+    subject: "Your February statement is ready"
+    bulk: false
+    signature: none
+    body: |
+      Brex
+
+      Your February statement for Tessera, Inc. is ready.
+
+      Statement period: Feb 1 - Feb 28, 2026
+      Total spend: $23,418.66
+      Transactions: 61
+      Payment: the balance will be paid automatically from the account ending in 2210 on Mar 5, 2026
+      Unmatched receipts: 9 (reminders have been sent to the cardholders)
+
+      Download statement: https://dashboard.brex.com/statements/2026-02
+
+      You are receiving this because you are an admin on the Tessera Brex account.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Brex, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 6 · Mon Mar 2
+  - id: auto-receipts-6-1
+    day: 6
+    time: "04:50"
+    from: {name: "Figma", email: "receipts@figma.com"}
+    to: [avery]
+    subject: "Your Figma receipt"
+    bulk: false
+    signature: none
+    body: |
+      Figma
+
+      Your payment was received.
+
+      Amount paid: $80.00
+      Date: Mar 2, 2026
+      Payment method: Visa •••• 7702
+      Receipt: FGM-31904-2026
+
+      Summary
+        Figma Professional - 5 full seats x $16.00 (Mar 2 - Apr 1, 2026)      $80.00
+
+      Team: Tessera
+      Billing contact: avery@tessera.io
+
+      Manage billing: https://www.figma.com/settings/billing
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Figma, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-gcal-09
+    day: 6
+    time: "10:50"
+    from: {name: "Nora Blake (Google Calendar)", email: "calendar-notification@google.com"}
+    to: [avery]
+    subject: "Accepted: Leadership sync @ Weekly from 10am to 10:45am on Monday (Nora Blake)"
+    bulk: false
+    signature: none
+    body: |
+      Nora Blake has accepted this invitation.
+
+      Leadership sync
+
+      When
+      Weekly from 10:00am to 10:45am on Monday (Pacific Time - Los Angeles)
+
+      Where
+      Tessera office, Room 1
+
+      Guests
+      Avery Chen - organizer
+      Priya Iyer - accepted
+      Jordan Liu - accepted
+      Tomás Reyes - accepted
+      Nora Blake - accepted
+      View all guest info
+
+      View event: https://calendar.google.com/calendar/event?action=VIEW&eid=bGVhZGVyc2hpcC1zeW5jLW1vbg
+
+      Invitation from Google Calendar
+
+      You are receiving this email because you are an organizer of the event.
+    labels:
+      kind: automated
+      must_not: true
+      reason: accepted_meeting_confirmation
+      classification_case: null
+      expected: {type: automated, automated: {system: "Google Calendar", action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-linear-6-1
+    day: 6
+    time: "11:20"
+    from: linear
+    to: [avery]
+    subject: "Felix Wagner mentioned you in a comment on PLT-204"
+    bulk: false
+    signature: none
+    body: |
+      Felix Wagner mentioned you in a comment
+
+      PLT-204 · Alerting: route pages by customer tenant, not by service
+      Project: Platform reliability · Cycle 6
+      Assignee: Felix Wagner
+
+      "@avery fyi this is the alerting change we talked about at all hands. no action for you, just so the pager noise makes sense if you see it in the channel. lmk if anything looks off"
+
+      Reply in Linear: https://linear.app/tessera/issue/PLT-204#comment-9a12f
+
+      --
+      You are receiving this because you were mentioned. Manage notifications: https://linear.app/tessera/settings/notifications
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: docusign_action_vs_github_fyi
+      expected: {type: automated, automated: {system: Linear, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 7 · Tue Mar 3
+  - id: auto-gusto-7-1
+    day: 7
+    time: "05:40"
+    from: gusto
+    to: [avery]
+    subject: "Your March benefits invoice is ready"
+    bulk: false
+    signature: none
+    body: |
+      Hi Avery,
+
+      Your March benefits invoice is ready.
+
+      Total: $13,860.00
+        Medical (12 enrolled): $11,280.00
+        Dental (11 enrolled): $1,320.00
+        Vision (10 enrolled): $360.00
+        Benefits administration: $900.00
+
+      This amount will be debited from the account ending in 2210 on Tue, Mar 10.
+
+      View invoice: https://app.gusto.com/benefits/invoices/inv_2026-03
+
+      Gusto, 525 20th Street, San Francisco, CA 94107
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Gusto, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-sentry-7-1
+    day: 7
+    time: "14:02"
+    from: sentry
+    to: [avery]
+    subject: "[tessera-api] Critical: API error rate above 2% for 5 minutes (production)"
+    bulk: false
+    signature: none
+    body: |
+      Sentry
+
+      Metric alert: API error rate (production)
+      Status: Critical
+      Triggered: Mar 3, 2026, 2:02 PM PST
+
+      The error rate is 3.4% over the last 5 minutes (critical threshold: 2%).
+
+      Top issue in the window
+        KeyError: 'plant_code' in api/handlers/lines.py (get_line_status)
+        142 events · 3 users · first seen 1:56 PM PST
+        https://tessera.sentry.io/issues/5120833104/
+
+      Environment: production · Project: tessera-api
+      View alert: https://tessera.sentry.io/alerts/rules/details/2214/
+
+      --
+      You are receiving this because you are on this alert rule's notification list. Manage alert rules: https://tessera.sentry.io/alerts/rules/
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Sentry, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-sentry-7-2
+    day: 7
+    time: "14:41"
+    from: sentry
+    to: [avery]
+    subject: "[tessera-api] Resolved: API error rate above 2% for 5 minutes (production)"
+    bulk: false
+    signature: none
+    body: |
+      Sentry
+
+      Metric alert: API error rate (production)
+      Status: Resolved
+      Resolved: Mar 3, 2026, 2:41 PM PST (open for 39 minutes)
+
+      The error rate has been below 2% for 15 minutes. Current value: 0.3%.
+
+      Related issue
+        KeyError: 'plant_code' in api/handlers/lines.py (get_line_status)
+        Marked resolved by Felix Wagner at 2:27 PM PST in the next release (api 2026.03.03-1).
+
+      Environment: production · Project: tessera-api
+      View alert: https://tessera.sentry.io/alerts/rules/details/2214/
+
+      --
+      You are receiving this because you are on this alert rule's notification list. Manage alert rules: https://tessera.sentry.io/alerts/rules/
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Sentry, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 8 · Wed Mar 4
+  - id: auto-ashby-8-1
+    day: 8
+    time: "09:30"
+    from: ashby
+    to: [avery]
+    subject: "Interview scheduled: Kenji Mori - Backend Engineer (Onsite)"
+    bulk: false
+    signature: none
+    body: |
+      An interview has been scheduled.
+
+      Candidate: Kenji Mori
+      Job: Backend Engineer
+      Stage: Onsite
+      Scheduled by: Jordan Liu
+
+      Fri, Mar 6, 2026 (PST)
+        10:00 AM - 11:00 AM   Systems design - Arjun Rao
+        11:15 AM - 12:15 PM   Coding - Felix Wagner
+        1:30 PM - 2:15 PM     Architecture - Priya Iyer
+        2:30 PM - 3:00 PM     Hiring manager - Jordan Liu
+        4:15 PM - 4:45 PM     Closer - Avery Chen
+
+      Calendar invites have been sent to each interviewer. Scorecards open in Ashby when each interview starts.
+
+      View candidate: https://app.ashbyhq.com/candidates/c_2b7e9c40
+
+      --
+      You are receiving this email because you are an interviewer on this loop.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Ashby, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-linear-8-1
+    day: 8
+    time: "16:02"
+    from: linear
+    to: [avery]
+    subject: "Kofi Mensah changed the status of NS-396 to Done"
+    bulk: false
+    signature: none
+    body: |
+      Kofi Mensah changed the status from In Review to Done
+
+      NS-396 · Fresno tenant: plant-code mapping table and import
+      Project: Northstar SAP connector · Cycle 6
+      Assignee: Kofi Mensah
+
+      View issue: https://linear.app/tessera/issue/NS-396
+
+      --
+      You are receiving this because you are subscribed to this issue. Manage notifications: https://linear.app/tessera/settings/notifications
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: docusign_action_vs_github_fyi
+      expected: {type: automated, automated: {system: Linear, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 9 · Thu Mar 5
+  - id: auto-linear-9-1
+    day: 9
+    time: "10:30"
+    from: linear
+    to: [avery]
+    subject: "Arjun Rao assigned HB-118 to Priya Iyer"
+    bulk: false
+    signature: none
+    body: |
+      Arjun Rao assigned this issue to Priya Iyer
+
+      HB-118 · Halberd Line 3 pilot: review the station event schema before the MES upgrade
+      Project: Halberd Line 3 · Cycle 6
+      Assignee: Priya Iyer
+      Priority: High
+
+      Sanjay's team is upgrading the Line 3 MES later this month. Need a second pair of eyes on the station event schema and the timestamp handling before then.
+
+      View issue: https://linear.app/tessera/issue/HB-118
+
+      --
+      You are receiving this because you are subscribed to the project Halberd Line 3. Manage notifications: https://linear.app/tessera/settings/notifications
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: docusign_action_vs_github_fyi
+      expected: {type: automated, automated: {system: Linear, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 10 · Fri Mar 6
+  - id: auto-gusto-10-1
+    day: 10
+    time: "12:05"
+    from: gusto
+    to: [avery]
+    subject: "Felix Wagner updated their Form W-4"
+    bulk: false
+    signature: none
+    body: |
+      Hi Avery,
+
+      Felix Wagner updated their federal tax withholding (Form W-4) in Gusto. The change applies starting with the Mar 13 payroll.
+
+      No action is needed from you. Admins are notified of withholding changes so payroll records stay in sync.
+
+      View team: https://app.gusto.com/team
+
+      Gusto, 525 20th Street, San Francisco, CA 94107
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Gusto, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-brex-card-10-1
+    day: 10
+    time: "12:45"
+    from: brex
+    to: [avery]
+    subject: "New virtual card created: Prospect travel - Leo Marchetti"
+    bulk: false
+    signature: none
+    body: |
+      Brex
+
+      A new virtual card was created on the Tessera account.
+
+      Card name: Prospect travel - Leo Marchetti
+      Cardholder: Leo Marchetti
+      Created by: Nora Blake
+      Limit: $2,500.00 per month
+      Merchant categories: travel, lodging, ground transport
+      Card number ends in: 9046
+
+      Spend on this card follows the Tessera travel policy and is submitted in the monthly expense report.
+
+      View card: https://dashboard.brex.com/cards/card_7Vt3Nq1Xp
+
+      You are receiving this because you are an admin on the Tessera Brex account.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Brex, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-ashby-10-1
+    day: 10
+    time: "17:10"
+    from: ashby
+    to: [avery]
+    subject: "Scorecard submitted: Arjun Rao for Kenji Mori (Backend Engineer)"
+    bulk: false
+    signature: none
+    body: |
+      Arjun Rao submitted a scorecard.
+
+      Candidate: Kenji Mori
+      Job: Backend Engineer
+      Interview: Onsite - Systems design (Mar 6, 2026, 10:00 AM PST)
+      Overall recommendation: Strong Yes
+
+      Highlights (from the scorecard):
+      - Decomposed the ingest problem cleanly and raised backpressure unprompted.
+      - Knew when a Postgres index would hurt more than help.
+      - Talks through tradeoffs without being asked.
+
+      View scorecard: https://app.ashbyhq.com/candidates/c_2b7e9c40/scorecards/sc_4e18
+
+      --
+      You are receiving this email because you are on the hiring team for Backend Engineer.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Ashby, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 12 · Sun Mar 8 (spring-forward; nothing 02:00–03:00)
+  - id: auto-linear-12-1
+    day: 12
+    time: "16:45"
+    from: linear
+    to: [avery]
+    subject: "Priya Iyer changed the status of PLT-219 to In Progress"
+    bulk: false
+    signature: none
+    body: |
+      Priya Iyer changed the status from Todo to In Progress
+
+      PLT-219 · GPU pool autoscaler: scale to a lower floor off-hours
+      Project: Platform reliability · Cycle 6
+      Assignee: Priya Iyer
+
+      View issue: https://linear.app/tessera/issue/PLT-219
+
+      --
+      You are receiving this because you are subscribed to this issue. Manage notifications: https://linear.app/tessera/settings/notifications
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: docusign_action_vs_github_fyi
+      expected: {type: automated, automated: {system: Linear, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 13 · Mon Mar 9
+  - id: auto-ashby-13-1
+    day: 13
+    time: "09:05"
+    from: ashby
+    to: [avery]
+    subject: "Interview scheduled: Clara Voss - Product Designer (Onsite)"
+    bulk: false
+    signature: none
+    body: |
+      An interview has been scheduled.
+
+      Candidate: Clara Voss
+      Job: Product Designer
+      Stage: Onsite
+      Scheduled by: Jordan Liu
+
+      Wed, Mar 18, 2026 (PDT)
+        10:00 AM - 11:00 AM   Product sense - Priya Iyer
+        11:00 AM - 12:00 PM   Working with customers - Hana Okada
+        1:00 PM - 2:00 PM     Design / eng collaboration - Jordan Liu
+        2:00 PM - 3:00 PM     GTM and demo craft - Tomás Reyes
+        4:00 PM - 4:30 PM     Closer - Avery Chen
+
+      Calendar invites have been sent to each interviewer. Scorecards open in Ashby when each interview starts.
+
+      View candidate: https://app.ashbyhq.com/candidates/c_6d03fa71
+
+      --
+      You are receiving this email because you are an interviewer on this loop.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Ashby, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 14 · Tue Mar 10
+  - id: auto-brex-card-14-1
+    day: 14
+    time: "18:22"
+    from: brex
+    to: [avery]
+    subject: "Card transaction: $412.60 at United Airlines"
+    bulk: false
+    signature: none
+    body: |
+      Brex
+
+      A transaction was posted on a Tessera card.
+
+      Amount: $412.60
+      Merchant: United Airlines
+      Card: Hana Okada •••• 5527
+      Cardholder: Hana Okada
+      Date: Mar 10, 2026, 6:21 PM PDT
+      Category: Airlines
+      Memo (from cardholder): SFO-FAT round trip, Northstar Fresno cutover prep
+
+      A receipt reminder has been sent to the cardholder.
+
+      View transaction: https://dashboard.brex.com/transactions/tx_9Rk4Wd2Bn
+
+      You are receiving this because you are an admin on the Tessera Brex account and travel transactions are set to notify admins.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Brex, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 15 · Wed Mar 11
+  - id: auto-linear-15-1
+    day: 15
+    time: "06:05"
+    from: linear
+    to: [avery]
+    subject: "Cycle 6 has ended - Tessera Engineering"
+    bulk: false
+    signature: none
+    body: |
+      Cycle 6 summary · Feb 25 - Mar 10
+
+      Tessera Engineering
+
+      Completed: 23 of 27 issues (85%)
+      Scope added mid-cycle: 4 issues
+      Moved to Cycle 7: 4 issues (NS-401, PLT-219, HB-118, PLT-231)
+
+      By project
+        Northstar SAP connector    11 done · 1 carried over
+        Halberd Line 3              3 done · 1 carried over
+        Platform reliability        6 done · 1 carried over
+        H1 planning                 1 done · 1 carried over
+        Support                     2 done
+
+      Cycle 7 starts today and ends Mar 24.
+
+      View cycle: https://linear.app/tessera/team/ENG/cycle/6
+
+      --
+      You are receiving this because cycle summaries are on for the team Tessera Engineering. Manage notifications: https://linear.app/tessera/settings/notifications
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: docusign_action_vs_github_fyi
+      expected: {type: automated, automated: {system: Linear, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-gusto-15-1
+    day: 15
+    time: "06:30"
+    from: gusto
+    to: [avery]
+    subject: "Your Mar 13 payroll has been processed"
+    bulk: false
+    signature: none
+    body: |
+      Hi Avery,
+
+      Payroll for Mar 1 - Mar 15 has been processed. Your team will be paid on Fri, Mar 13.
+
+      Pay period: Mar 1 - Mar 15, 2026
+      Pay date: Fri, Mar 13, 2026
+      Employees paid: 12
+      Total debit: $85,102.77 (from the account ending in 2210 on Wed, Mar 11)
+
+      Submitted by Nora Blake on Mar 10 at 5:02 PM PDT.
+
+      View payroll details: https://app.gusto.com/payrolls/pr_6Pn1Ct7
+
+      Questions? Visit the Gusto Help Center at support.gusto.com.
+
+      Gusto, 525 20th Street, San Francisco, CA 94107
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Gusto, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-gcal-10
+    day: 15
+    time: "14:20"
+    from: {name: "Nora Blake (Google Calendar)", email: "calendar-notification@google.com"}
+    to: [avery]
+    subject: "Invitation: Finance review @ Tue Mar 17, 2026 3:15pm - 4pm (PDT) (avery@tessera.io)"
+    bulk: false
+    signature: none
+    body: |
+      You have been invited to the following event.
+
+      Finance review
+
+      When
+      Tuesday Mar 17, 2026 ⋅ 3:15pm – 4:00pm (Pacific Time - Los Angeles)
+
+      Where
+      Tessera office, Room 1
+
+      Organizer
+      Nora Blake - nora@tessera.io
+
+      Guests
+      Nora Blake - organizer
+      Avery Chen
+      Priya Iyer
+      View all guest info
+
+      Description
+      Revenue bridge as of Mar 15, cost (GPU commit ends 3/31), cash, Feb expenses, payroll bank switch. Right after the customer health review so we are all in the room already.
+
+      Reply for avery@tessera.io and view more details
+      Yes - Maybe - No
+      https://calendar.google.com/calendar/event?action=RESPOND&eid=ZmluYW5jZS1yZXZpZXctMjAyNjAzMTc
+
+      Invitation from Google Calendar
+
+      You are receiving this email because you are a guest on the event. To stop receiving future updates for this event, decline this event.
+    labels:
+      kind: automated
+      must_not: true
+      reason: accepted_meeting_confirmation
+      classification_case: null
+      expected: {type: automated, automated: {system: "Google Calendar", action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 16 · Thu Mar 12
+  - id: auto-gcal-11
+    day: 16
+    time: "09:05"
+    from: {name: "Tomás Reyes (Google Calendar)", email: "calendar-notification@google.com"}
+    to: [avery]
+    subject: "Invitation: Customer health review @ Tue Mar 17, 2026 2:30pm - 3:15pm (PDT) (avery@tessera.io)"
+    bulk: false
+    signature: none
+    body: |
+      You have been invited to the following event.
+
+      Customer health review
+
+      When
+      Tuesday Mar 17, 2026 ⋅ 2:30pm – 3:15pm (Pacific Time - Los Angeles)
+
+      Where
+      Tessera office, Room 1 / Google Meet
+
+      Organizer
+      Tomás Reyes - tomas@tessera.io
+
+      Guests
+      Tomás Reyes - organizer
+      Avery Chen
+      Jordan Liu
+      Hana Okada
+      View all guest info
+
+      Description
+      Monthly walk through the three reference accounts plus Coastline! Hana brings the health scores, Jordan the ticket view. 45 minutes, then Nora has the room for finance.
+
+      Reply for avery@tessera.io and view more details
+      Yes - Maybe - No
+      https://calendar.google.com/calendar/event?action=RESPOND&eid=Y3VzdG9tZXItaGVhbHRoLTIwMjYwMzE3
+
+      Invitation from Google Calendar
+
+      You are receiving this email because you are a guest on the event. To stop receiving future updates for this event, decline this event.
+    labels:
+      kind: automated
+      must_not: true
+      reason: accepted_meeting_confirmation
+      classification_case: null
+      expected: {type: automated, automated: {system: "Google Calendar", action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-gcal-01
+    day: 16
+    time: "09:20"
+    from: {name: "Tomás Reyes (Google Calendar)", email: "calendar-notification@google.com"}
+    to: [avery]
+    subject: "Invitation: Halberd QBR - Tobias intro @ Thu Mar 26, 2026 11:00am - 11:45am (PDT) (avery@tessera.io)"
+    bulk: false
+    signature: none
+    body: |
+      You have been invited to the following event.
+
+      Halberd QBR - Tobias intro
+
+      When
+      Thursday Mar 26, 2026 ⋅ 11:00am – 11:45am (Pacific Time - Los Angeles)
+
+      Where
+      Google Meet (link in the description)
+
+      Organizer
+      Tomás Reyes - tomas@tessera.io
+
+      Guests
+      Tomás Reyes - organizer
+      Avery Chen
+      Tobias Weller - tobias.weller@halberd.com
+      Hana Okada
+      View all guest info
+
+      Description
+      Quarterly review with Halberd and a proper introduction to Tobias, who is taking over procurement from Greta. Hana has the deck (Line 3 pilot numbers, roadmap). Renewal timing is Martin's call, so we keep it light on commercials!
+
+      Reply for avery@tessera.io and view more details
+      Yes - Maybe - No
+      https://calendar.google.com/calendar/event?action=RESPOND&eid=aGFsYmVyZC1xYnItMjAyNjAzMjY
+
+      Invitation from Google Calendar
+
+      You are receiving this email because you are a guest on the event. To stop receiving future updates for this event, decline this event.
+    labels:
+      kind: automated
+      must_not: true
+      reason: accepted_meeting_confirmation
+      classification_case: null
+      expected: {type: automated, automated: {system: "Google Calendar", action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-gcal-12
+    day: 16
+    time: "13:45"
+    from: {name: "Tomás Reyes (Google Calendar)", email: "calendar-notification@google.com"}
+    to: [avery]
+    subject: "Invitation: Hiring sync @ Wed Mar 18, 2026 11am - 11:30am (PDT) (avery@tessera.io)"
+    bulk: false
+    signature: none
+    body: |
+      You have been invited to the following event.
+
+      Hiring sync
+
+      When
+      Wednesday Mar 18, 2026 ⋅ 11:00am – 11:30am (Pacific Time - Los Angeles)
+
+      Where
+      Tessera office, Room 2
+
+      Organizer
+      Tomás Reyes - tomas@tessera.io
+
+      Guests
+      Tomás Reyes - organizer
+      Avery Chen
+      Jordan Liu
+      View all guest info
+
+      Description
+      Kenji's offer, the second backend req, designer loop status (Clara onsite that day!), and Maren's portfolio review. 30 minutes, Wednesday so it stays clear of the morning block.
+
+      Reply for avery@tessera.io and view more details
+      Yes - Maybe - No
+      https://calendar.google.com/calendar/event?action=RESPOND&eid=aGlyaW5nLXN5bmMtMjAyNjAzMTg
+
+      Invitation from Google Calendar
+
+      You are receiving this email because you are a guest on the event. To stop receiving future updates for this event, decline this event.
+    labels:
+      kind: automated
+      must_not: true
+      reason: accepted_meeting_confirmation
+      classification_case: null
+      expected: {type: automated, automated: {system: "Google Calendar", action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-linear-16-1
+    day: 16
+    time: "15:20"
+    from: linear
+    to: [avery]
+    subject: "Hana Okada mentioned you in a comment on NS-405"
+    bulk: false
+    signature: none
+    body: |
+      Hana Okada mentioned you in a comment
+
+      NS-405 · Cutover runbook v2 for the Apr 1 go-live (Fresno + Modesto schedulers)
+      Project: Northstar SAP connector · Cycle 7
+      Assignee: Hana Okada
+
+      "@avery for visibility only: v2 of the runbook goes to Elise and Rosa on Friday Mar 20, and I walk the Fresno schedulers through it the Thursday after. Dates are in bold on page 1. Nothing needed from you."
+
+      Reply in Linear: https://linear.app/tessera/issue/NS-405#comment-c31d7
+
+      --
+      You are receiving this because you were mentioned. Manage notifications: https://linear.app/tessera/settings/notifications
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: docusign_action_vs_github_fyi
+      expected: {type: automated, automated: {system: Linear, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 17 · Fri Mar 13
+  - id: auto-ashby-17-1
+    day: 17
+    time: "10:40"
+    from: ashby
+    to: [avery]
+    subject: "New application: Product Designer - Sofia Marlow"
+    bulk: false
+    signature: none
+    body: |
+      Hi Avery,
+
+      A new candidate applied to Product Designer.
+
+      Candidate: Sofia Marlow
+      Job: Product Designer (Oakland, CA / Remote US)
+      Source: Company careers page
+      Applied: Mar 13, 2026, 10:39 AM PDT
+      Portfolio: link on the candidate profile
+
+      View candidate: https://app.ashbyhq.com/candidates/c_a91c0e58
+
+      --
+      You are receiving this email because you follow the Product Designer job in Ashby. Manage your notifications in Ashby.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Ashby, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-linear-17-1
+    day: 17
+    time: "11:10"
+    from: linear
+    to: [avery]
+    subject: "Jordan Liu changed the status of PLT-210 to Done"
+    bulk: false
+    signature: none
+    body: |
+      Jordan Liu changed the status from In Review to Done
+
+      PLT-210 · Page on-call only for customer-facing error budgets; everything else goes to the channel
+      Project: Platform reliability · Cycle 7
+      Assignee: Felix Wagner
+
+      View issue: https://linear.app/tessera/issue/PLT-210
+
+      --
+      You are receiving this because you are subscribed to this issue. Manage notifications: https://linear.app/tessera/settings/notifications
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: docusign_action_vs_github_fyi
+      expected: {type: automated, automated: {system: Linear, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 20 · Mon Mar 16
+  - id: auto-receipts-20-1
+    day: 20
+    time: "04:55"
+    from: {name: "Figma", email: "receipts@figma.com"}
+    to: [avery]
+    subject: "Your Figma receipt - seat added"
+    bulk: false
+    signature: none
+    body: |
+      Figma
+
+      Your payment was received.
+
+      Amount paid: $9.03
+      Date: Mar 16, 2026
+      Payment method: Visa •••• 7702
+      Receipt: FGM-32277-2026
+
+      Summary
+        Figma Professional - 1 full seat added, prorated (Mar 16 - Apr 1, 2026)      $9.03
+
+      Team: Tessera
+      Seat added by: Priya Iyer
+      Your next full invoice on Apr 2 will include 6 full seats.
+
+      Manage billing: https://www.figma.com/settings/billing
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Figma, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-linear-20-1
+    day: 20
+    time: "09:50"
+    from: linear
+    to: [avery]
+    subject: "Jordan Liu created PLT-240 in H1 planning"
+    bulk: false
+    signature: none
+    body: |
+      Jordan Liu created a new issue in the project H1 planning
+
+      PLT-240 · H1 headcount scenarios: with and without the second backend hire
+      Project: H1 planning · Cycle 7
+      Assignee: Jordan Liu
+      Priority: Medium
+
+      Two versions of the eng headcount table for the H1 doc so the hiring sync on Wednesday can pick one.
+
+      View issue: https://linear.app/tessera/issue/PLT-240
+
+      --
+      You are receiving this because you are a member of the project H1 planning. Manage notifications: https://linear.app/tessera/settings/notifications
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: docusign_action_vs_github_fyi
+      expected: {type: automated, automated: {system: Linear, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-gcal-02
+    day: 20
+    time: "10:30"
+    from: {name: "Tomás Reyes (Google Calendar)", email: "calendar-notification@google.com"}
+    to: [avery]
+    subject: "Invitation: GTM weekly @ Mon Mar 23, 2026 3pm - 3:45pm (PDT) (avery@tessera.io)"
+    bulk: false
+    signature: none
+    body: |
+      You have been invited to the following event.
+
+      GTM weekly
+
+      When
+      Monday Mar 23, 2026 ⋅ 3:00pm – 3:45pm (Pacific Time - Los Angeles)
+
+      Where
+      Tessera office, Room 1 / Google Meet
+
+      Organizer
+      Tomás Reyes - tomas@tessera.io
+
+      Guests
+      Tomás Reyes - organizer
+      Avery Chen
+      Leo Marchetti
+      Hana Okada
+      View all guest info
+
+      Description
+      Pipeline, renewals (Halberd, Veritas), Pinewood scoping, and one customer story! Ends before your 4pm with Priya.
+
+      Reply for avery@tessera.io and view more details
+      Yes - Maybe - No
+      https://calendar.google.com/calendar/event?action=RESPOND&eid=Z3RtLXdlZWtseS0yMDI2MDMyMw
+
+      Invitation from Google Calendar
+
+      You are receiving this email because you are a guest on the event. To stop receiving future updates for this event, decline this event.
+    labels:
+      kind: automated
+      must_not: true
+      reason: accepted_meeting_confirmation
+      classification_case: null
+      expected: {type: automated, automated: {system: "Google Calendar", action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 21 · Tue Mar 17
+  - id: auto-brex-card-21-1
+    day: 21
+    time: "09:02"
+    from: brex
+    to: [avery]
+    subject: "Card transaction: $2,199.00 at Apple"
+    bulk: false
+    signature: none
+    body: |
+      Brex
+
+      A transaction was posted on a Tessera card.
+
+      Amount: $2,199.00
+      Merchant: Apple
+      Card: Equipment (virtual) •••• 1183
+      Cardholder: Kofi Mensah
+      Date: Mar 17, 2026, 9:01 AM PDT
+      Category: Computers & electronics
+      Memo (from cardholder): laptop replacement, approved by Jordan under the equipment policy
+
+      A receipt was matched automatically from the Apple order confirmation.
+
+      View transaction: https://dashboard.brex.com/transactions/tx_2Lw8Gh5Qm
+
+      You are receiving this because you are an admin on the Tessera Brex account and this card has transaction alerts on for amounts over $1,000.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Brex, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-linear-21-1
+    day: 21
+    time: "13:30"
+    from: linear
+    to: [avery]
+    subject: "Arjun Rao changed the status of HB-121 to In Progress"
+    bulk: false
+    signature: none
+    body: |
+      Arjun Rao changed the status from Todo to In Progress
+
+      HB-121 · Halberd MES upgrade (Mar 25): get sample station-event payloads from Halberd's staging MES
+      Project: Halberd Line 3 · Cycle 7
+      Assignee: Arjun Rao
+
+      View issue: https://linear.app/tessera/issue/HB-121
+
+      --
+      You are receiving this because you are subscribed to the project Halberd Line 3. Manage notifications: https://linear.app/tessera/settings/notifications
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: docusign_action_vs_github_fyi
+      expected: {type: automated, automated: {system: Linear, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-gusto-21-1
+    day: 21
+    time: "17:20"
+    from: gusto
+    to: [avery]
+    subject: "Company bank account updated"
+    bulk: false
+    signature: none
+    body: |
+      Hi Avery,
+
+      Nora Blake changed the bank account Gusto uses for payroll debits.
+
+      New account: Cascade Community Bank, checking ending in 8837
+      Previous account: checking ending in 2210 (kept on file until the new account is verified)
+      Applies to: payroll debits starting with your Mar 31 payroll
+
+      Gusto has sent two small test deposits to the new account. Once they post (1-2 business days), an admin confirms the two amounts in Gusto to complete verification.
+
+      No action is needed from you right now. Admins are notified of bank account changes for security.
+
+      View company bank accounts: https://app.gusto.com/company/bank-accounts
+
+      Gusto, 525 20th Street, San Francisco, CA 94107
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Gusto, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 22 · Wed Mar 18
+  - id: auto-gusto-22-1
+    day: 22
+    time: "08:10"
+    from: gusto
+    to: [avery]
+    subject: "Q1 2026 payroll tax filings: what Gusto files for you"
+    bulk: false
+    signature: none
+    body: |
+      Hi Avery,
+
+      The first quarter closes on Mar 31. Your Q1 filing calendar is ready. Here is what Gusto will file and pay on Tessera's behalf after the quarter ends:
+
+      - Federal Form 941 (quarterly federal tax return)
+      - California DE 9 and DE 9C (quarterly contribution and wage reports)
+      - Associated federal and state tax deposits
+
+      Copies will be on your Tax documents page once filed, usually by Apr 30. No action is needed from you.
+
+      View tax documents: https://app.gusto.com/taxes/documents
+
+      Gusto, 525 20th Street, San Francisco, CA 94107
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Gusto, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-gcal-08
+    day: 22
+    time: "12:05"
+    from: {name: "Priya Iyer (Google Calendar)", email: "calendar-notification@google.com"}
+    to: [avery]
+    subject: "Accepted: Architecture review - Priya / Avery (Priya Iyer)"
+    bulk: false
+    signature: none
+    body: |
+      Priya Iyer has accepted this invitation.
+
+      Architecture review - Priya / Avery
+
+      When
+      Weekly from 10:30am to 11:00am on Thursday (Pacific Time - Los Angeles)
+
+      Where
+      Tessera office, small room
+
+      Guests
+      Avery Chen - organizer
+      Priya Iyer - accepted
+      View all guest info
+
+      View event: https://calendar.google.com/calendar/event?action=VIEW&eid=YXJjaC1yZXZpZXctdGh1
+
+      Invitation from Google Calendar
+
+      You are receiving this email because you are an organizer of the event.
+    labels:
+      kind: automated
+      must_not: true
+      reason: accepted_meeting_confirmation
+      classification_case: null
+      expected: {type: automated, automated: {system: "Google Calendar", action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-linear-22-1
+    day: 22
+    time: "12:10"
+    from: linear
+    to: [avery]
+    subject: "Priya Iyer changed the status of PLT-219 to In Review"
+    bulk: false
+    signature: none
+    body: |
+      Priya Iyer changed the status from In Progress to In Review
+
+      PLT-219 · GPU pool autoscaler: scale to a lower floor off-hours
+      Project: Platform reliability · Cycle 7
+      Assignee: Priya Iyer
+
+      View issue: https://linear.app/tessera/issue/PLT-219
+
+      --
+      You are receiving this because you are subscribed to this issue. Manage notifications: https://linear.app/tessera/settings/notifications
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: docusign_action_vs_github_fyi
+      expected: {type: automated, automated: {system: Linear, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-brex-card-22-1
+    day: 22
+    time: "13:30"
+    from: brex
+    to: [avery]
+    subject: "New virtual card created: Ashby - recruiting"
+    bulk: false
+    signature: none
+    body: |
+      Brex
+
+      A new virtual card was created on the Tessera account.
+
+      Card name: Ashby - recruiting
+      Cardholder: Jordan Liu
+      Created by: Nora Blake
+      Limit: $600.00 per month
+      Merchant lock: Ashby
+      Card number ends in: 4402
+
+      View card: https://dashboard.brex.com/cards/card_3Ym6Kp9Tr
+
+      You are receiving this because you are an admin on the Tessera Brex account.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Brex, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-ashby-22-1
+    day: 22
+    time: "15:05"
+    from: ashby
+    to: [avery]
+    subject: "Scorecard submitted: Tomás Reyes for Clara Voss (Product Designer)"
+    bulk: false
+    signature: none
+    body: |
+      Tomás Reyes submitted a scorecard.
+
+      Candidate: Clara Voss
+      Job: Product Designer
+      Interview: Onsite - GTM and demo craft (Mar 18, 2026, 2:00 PM PDT)
+      Overall recommendation: Yes
+
+      Highlights (from the scorecard):
+      - Reworked the plant-scheduler demo flow live; the before/after was genuinely clearer!
+      - Asked good questions about who actually sits in front of the screen on a night shift.
+      - Less depth on pricing-page work, which is fine for this role.
+
+      View scorecard: https://app.ashbyhq.com/candidates/c_6d03fa71/scorecards/sc_7b22
+
+      --
+      You are receiving this email because you are on the hiring team for Product Designer.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Ashby, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 23 · Thu Mar 19
+  - id: auto-receipts-23-1
+    day: 23
+    time: "05:20"
+    from: {name: "Slack", email: "feedback@slack.com"}
+    to: [avery]
+    subject: "Your Slack receipt - 1 member added (Tessera)"
+    bulk: false
+    signature: none
+    body: |
+      Hi Avery,
+
+      Your payment was received. Here is your receipt for a prorated charge on the Tessera workspace.
+
+      Invoice: SLK-2026-03-02218
+      Date: Mar 19, 2026
+      Amount paid: $2.63
+      Payment method: Visa ending in 7702
+
+      Details
+        Slack Pro - 1 member added, prorated (Mar 19 - Mar 27, 2026)      $2.63
+
+      Your next regular invoice on Mar 28 will reflect 13 active members.
+
+      View invoices: https://tessera.slack.com/admin/billing
+
+      Thanks,
+      The team at Slack
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Slack, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-linear-23-1
+    day: 23
+    time: "17:25"
+    from: linear
+    to: [avery]
+    subject: "Kofi Mensah mentioned you in a comment on NS-401"
+    bulk: false
+    signature: none
+    body: |
+      Kofi Mensah mentioned you in a comment
+
+      NS-401 · SAP IDoc retry logic: idempotent retry on ack timeout
+      Project: Northstar SAP connector · Cycle 7
+      Assignee: Kofi Mensah
+
+      "@avery so you're not surprised if it comes up on the Northstar weekly: Elise asked whether the retry change lands before go-live. Yes, it does, I'm aiming to merge Monday and load test against their QA tenant Wednesday. Nothing you need to do, just wanted you to have it. Hope that's ok to tag you here!"
+
+      Reply in Linear: https://linear.app/tessera/issue/NS-401#comment-e8f04
+
+      --
+      You are receiving this because you were mentioned. Manage notifications: https://linear.app/tessera/settings/notifications
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: docusign_action_vs_github_fyi
+      expected: {type: automated, automated: {system: Linear, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-sentry-23-1
+    day: 23
+    time: "22:07"
+    from: sentry
+    to: [avery]
+    subject: "[tessera-ingest] Critical: p95 ingest latency above 30s for 10 minutes (production)"
+    bulk: false
+    signature: none
+    body: |
+      Sentry
+
+      Metric alert: Ingest latency p95 (production)
+      Status: Critical
+      Triggered: Mar 19, 2026, 10:07 PM PDT
+
+      p95 ingest latency is 48.2s over the last 10 minutes (critical threshold: 30s).
+
+      Top issue in the window
+        TimeoutError: gateway replay buffer flush exceeded 20s (ingest/replay.py)
+        61 events · tenant: veritas-prod · first seen 9:55 PM PDT
+        https://tessera.sentry.io/issues/5148877210/
+
+      Environment: production · Project: tessera-ingest
+      View alert: https://tessera.sentry.io/alerts/rules/details/2231/
+
+      --
+      You are receiving this because you are on this alert rule's notification list. Manage alert rules: https://tessera.sentry.io/alerts/rules/
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Sentry, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-sentry-23-2
+    day: 23
+    time: "22:39"
+    from: sentry
+    to: [avery]
+    subject: "[tessera-ingest] Resolved: p95 ingest latency above 30s for 10 minutes (production)"
+    bulk: false
+    signature: none
+    body: |
+      Sentry
+
+      Metric alert: Ingest latency p95 (production)
+      Status: Resolved
+      Resolved: Mar 19, 2026, 10:39 PM PDT (open for 32 minutes)
+
+      p95 ingest latency has been below 30s for 15 minutes. Current value: 2.1s.
+
+      Related issue
+        TimeoutError: gateway replay buffer flush exceeded 20s (ingest/replay.py)
+        Marked resolved by Arjun Rao at 10:24 PM PDT (gateway reconnect on the veritas-prod tenant; replay buffer drained).
+
+      Environment: production · Project: tessera-ingest
+      View alert: https://tessera.sentry.io/alerts/rules/details/2231/
+
+      --
+      You are receiving this because you are on this alert rule's notification list. Manage alert rules: https://tessera.sentry.io/alerts/rules/
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Sentry, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 24 · Fri Mar 20
+  - id: auto-linear-24-1
+    day: 24
+    time: "10:15"
+    from: linear
+    to: [avery]
+    subject: "Ruth Adeyemi created VC-88"
+    bulk: false
+    signature: none
+    body: |
+      Ruth Adeyemi created a new issue
+
+      VC-88 · Veritas: lot-number format question from Anika Berg (support #2284)
+      Project: Support · Cycle 7
+      Assignee: Ruth Adeyemi
+      Priority: Low
+
+      Anika asked whether the lot-number field accepts the new 14-character spec references. Checking with Kofi; answer to Anika by Monday.
+
+      View issue: https://linear.app/tessera/issue/VC-88
+
+      --
+      You are receiving this because you are subscribed to the project Support. Manage notifications: https://linear.app/tessera/settings/notifications
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: docusign_action_vs_github_fyi
+      expected: {type: automated, automated: {system: Linear, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-ashby-24-1
+    day: 24
+    time: "11:30"
+    from: ashby
+    to: [avery]
+    subject: "New candidate added: Product Designer - Maren Holt"
+    bulk: false
+    signature: none
+    body: |
+      Hi Avery,
+
+      A new candidate was added to Product Designer.
+
+      Candidate: Maren Holt
+      Job: Product Designer (Oakland, CA / Remote US)
+      Source: Referral (added by Priya Iyer)
+      Added: Mar 20, 2026, 11:29 AM PDT
+      Stage: Sourced
+      Portfolio: link on the candidate profile
+
+      View candidate: https://app.ashbyhq.com/candidates/c_5e77b2c9
+
+      --
+      You are receiving this email because you follow the Product Designer job in Ashby. Manage your notifications in Ashby.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Ashby, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-gcal-03
+    day: 24
+    time: "15:05"
+    from: {name: "Marco Bellini (Google Calendar)", email: "calendar-notification@google.com"}
+    to: [avery]
+    subject: "Invitation: Tidewater intro - Marco Bellini @ Thu Mar 26, 2026 12:30pm - 1:00pm (PDT)"
+    bulk: false
+    signature: none
+    body: |
+      You have been invited to the following event.
+
+      Tidewater intro - Marco Bellini
+
+      When
+      Thursday Mar 26, 2026 ⋅ 12:30pm – 1:00pm (Pacific Time - Los Angeles)
+
+      Where
+      Zoom (link in the description)
+
+      Organizer
+      Marco Bellini - marco@tidewatercap.com
+
+      Guests
+      Marco Bellini - organizer
+      Avery Chen
+      View all guest info
+
+      Description
+      Thank you for making time. I have read the deck; I would like to hear how you think about the next eighteen months and the reference customers. Zoom: https://tidewatercap.zoom.us/j/88412093316
+
+      Reply for avery@tessera.io and view more details
+      Yes - Maybe - No
+      https://calendar.google.com/calendar/event?action=RESPOND&eid=dGlkZXdhdGVyLWludHJvLTIwMjYwMzI2
+
+      Invitation from Google Calendar
+
+      You are receiving this email because you are a guest on the event. To stop receiving future updates for this event, decline this event.
+    labels:
+      kind: automated
+      must_not: true
+      reason: accepted_meeting_confirmation
+      classification_case: null
+      expected: {type: automated, automated: {system: "Google Calendar", action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 25 · Sat Mar 21
+  - id: auto-gcal-04
+    day: 25
+    time: "11:40"
+    from: {name: "Priya Iyer (Google Calendar)", email: "calendar-notification@google.com"}
+    to: [avery]
+    subject: "Invitation: Portfolio review - Maren Holt @ Thu Mar 26, 2026 4:00pm - 4:45pm (PDT)"
+    bulk: false
+    signature: none
+    body: |
+      You have been invited to the following event.
+
+      Portfolio review - Maren Holt
+
+      When
+      Thursday Mar 26, 2026 ⋅ 4:00pm – 4:45pm (Pacific Time - Los Angeles)
+
+      Where
+      Google Meet (link in the description)
+
+      Organizer
+      Priya Iyer - priya@tessera.io
+
+      Guests
+      Priya Iyer - organizer
+      Avery Chen
+      Maren Holt - maren.holt.studio@gmail.com
+      View all guest info
+
+      Description
+      designer candidate via my network. portfolio walkthrough first 30, avery joins for the last 15. meet link: https://meet.google.com/kqv-rtxa-mzd
+
+      Reply for avery@tessera.io and view more details
+      Yes - Maybe - No
+      https://calendar.google.com/calendar/event?action=RESPOND&eid=cG9ydGZvbGlvLXJldmlldy1tYXJlbi0yMDI2MDMyNg
+
+      Invitation from Google Calendar
+
+      You are receiving this email because you are a guest on the event. To stop receiving future updates for this event, decline this event.
+    labels:
+      kind: automated
+      must_not: true
+      reason: accepted_meeting_confirmation
+      classification_case: null
+      expected: {type: automated, automated: {system: "Google Calendar", action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 27 · Mon Mar 23
+  - id: auto-gcal-05
+    day: 27
+    time: "09:15"
+    from: {name: "Priya Iyer (Google Calendar)", email: "calendar-notification@google.com"}
+    to: [avery]
+    subject: "Accepted: H1 planning sync @ Thu Mar 26, 2026 2:00pm - 3:00pm (Priya Iyer)"
+    bulk: false
+    signature: none
+    body: |
+      Priya Iyer has accepted this invitation.
+
+      H1 planning sync
+
+      When
+      Thursday Mar 26, 2026 ⋅ 2:00pm – 3:00pm (Pacific Time - Los Angeles)
+
+      Where
+      Tessera office, Room 1
+
+      Guests
+      Avery Chen - organizer
+      Priya Iyer - accepted
+      Jordan Liu
+      Tomás Reyes
+      Nora Blake
+      View all guest info
+
+      View event: https://calendar.google.com/calendar/event?action=VIEW&eid=aDEtcGxhbm5pbmctc3luYy0yMDI2MDMyNg
+
+      Invitation from Google Calendar
+
+      You are receiving this email because you are an organizer of the event.
+    labels:
+      kind: automated
+      must_not: true
+      reason: accepted_meeting_confirmation
+      classification_case: null
+      expected: {type: automated, automated: {system: "Google Calendar", action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-gcal-06
+    day: 27
+    time: "09:40"
+    from: {name: "Jordan Liu (Google Calendar)", email: "calendar-notification@google.com"}
+    to: [avery]
+    subject: "Accepted: H1 planning sync @ Thu Mar 26, 2026 2:00pm - 3:00pm (Jordan Liu)"
+    bulk: false
+    signature: none
+    body: |
+      Jordan Liu has accepted this invitation.
+
+      H1 planning sync
+
+      When
+      Thursday Mar 26, 2026 ⋅ 2:00pm – 3:00pm (Pacific Time - Los Angeles)
+
+      Where
+      Tessera office, Room 1
+
+      Guests
+      Avery Chen - organizer
+      Priya Iyer - accepted
+      Jordan Liu - accepted
+      Tomás Reyes
+      Nora Blake
+      View all guest info
+
+      View event: https://calendar.google.com/calendar/event?action=VIEW&eid=aDEtcGxhbm5pbmctc3luYy0yMDI2MDMyNg
+
+      Invitation from Google Calendar
+
+      You are receiving this email because you are an organizer of the event.
+    labels:
+      kind: automated
+      must_not: true
+      reason: accepted_meeting_confirmation
+      classification_case: null
+      expected: {type: automated, automated: {system: "Google Calendar", action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-brex-exp-1
+    day: 27
+    time: "10:02"
+    from: brex
+    to: [avery]
+    subject: "Expense report from Arjun Rao needs your approval ($742.16)"
+    bulk: false
+    signature: none
+    body: |
+      Arjun Rao submitted an expense report that needs your approval.
+
+      Report: February expenses
+      Amount: $742.16
+      Submitted: Mar 23, 2026, 10:01 AM PDT
+      Approver: Avery Chen
+
+      Line items
+        Feb 3    Amazon              USB to RS-485 isolators (x2), bench rig             $138.90
+        Feb 10   Lyft                Halberd site visit (round trip)                     $64.20
+        Feb 12   Digi-Key            Modbus gateway spares                               $221.46
+        Feb 19   Souvla              Team lunch, on-call retro (4)                       $147.60
+        Feb 24   Manning             Books, 2 titles                                     $170.00
+
+      All five line items have receipts attached and match the card transactions.
+
+      Approve: https://dashboard.brex.com/approvals/exp_4Kd9Wq2Lm
+      Review in Brex: https://dashboard.brex.com/expenses/reports/exp_4Kd9Wq2Lm
+
+      You are receiving this because you are the expense approver for Arjun Rao.
+    labels:
+      kind: automated
+      must_not: false
+      reason: null
+      classification_case: null
+      expected: {type: automated, automated: {system: Brex, action_bearing: true, action_kind: approval, about: approval:expenses-february}}
+
+  - id: auto-brex-exp-2
+    day: 27
+    time: "10:02"
+    from: brex
+    to: [avery]
+    subject: "Expense report from Leo Marchetti needs your approval ($1,318.55)"
+    bulk: false
+    signature: none
+    body: |
+      Leo Marchetti submitted an expense report that needs your approval.
+
+      Report: February expenses
+      Amount: $1,318.55
+      Submitted: Mar 23, 2026, 10:02 AM PDT
+      Approver: Avery Chen
+
+      Line items
+        Feb 4    United Airlines             SFO-FAT round trip, Pinewood Dairy visit       $318.60
+        Feb 4    Hampton Inn                 1 night, Turlock CA                            $189.75
+        Feb 5    Hertz                       Rental car, 2 days                             $146.20
+        Feb 5    The Branding Iron           Dinner with prospect (3)                       $212.00
+        Feb 18   Pacific Manufacturing Expo  Exhibitor badge                                $395.00
+        Feb 18   Lyft                        To/from expo                                   $57.00
+
+      All six line items have receipts attached and match the card transactions.
+
+      Approve: https://dashboard.brex.com/approvals/exp_8Rn3Vt6Zq
+      Review in Brex: https://dashboard.brex.com/expenses/reports/exp_8Rn3Vt6Zq
+
+      You are receiving this because you are the expense approver for Leo Marchetti.
+    labels:
+      kind: automated
+      must_not: false
+      reason: null
+      classification_case: null
+      expected: {type: automated, automated: {system: Brex, action_bearing: true, action_kind: approval, about: approval:expenses-february}}
+
+  - id: auto-brex-exp-3
+    day: 27
+    time: "10:03"
+    from: brex
+    to: [avery]
+    subject: "Expense report from Hana Okada needs your approval ($296.40)"
+    bulk: false
+    signature: none
+    body: |
+      Hana Okada submitted an expense report that needs your approval.
+
+      Report: February expenses
+      Amount: $296.40
+      Submitted: Mar 23, 2026, 10:03 AM PDT
+      Approver: Avery Chen
+
+      Line items
+        Feb 11   Chevron                  Fuel, Northstar Fresno site visit                  $71.40
+        Feb 11   La Elegante Taqueria     Lunch with the Fresno scheduling team (4)          $88.00
+        Feb 17   FedEx Office             Printed cutover runbooks (x6)                      $62.00
+        Feb 20   Amazon                   HDMI adapters, plant-floor demo kit                $75.00
+
+      All four line items have receipts attached and match the card transactions.
+
+      Approve: https://dashboard.brex.com/approvals/exp_1Pf7Hc4Yb
+      Review in Brex: https://dashboard.brex.com/expenses/reports/exp_1Pf7Hc4Yb
+
+      You are receiving this because you are the expense approver for Hana Okada.
+    labels:
+      kind: automated
+      must_not: false
+      reason: null
+      classification_case: null
+      expected: {type: automated, automated: {system: Brex, action_bearing: true, action_kind: approval, about: approval:expenses-february}}
+
+  - id: auto-ashby-27-1
+    day: 27
+    time: "10:35"
+    from: ashby
+    to: [avery]
+    subject: "New candidate: Senior Backend Engineer - Yusuf Demir (agency submission)"
+    bulk: false
+    signature: none
+    body: |
+      Hi Avery,
+
+      A new candidate was submitted to Senior Backend Engineer through the agency portal.
+
+      Candidate: Yusuf Demir
+      Job: Senior Backend Engineer (Oakland, CA / Remote US)
+      Source: Agency - Northbeam Talent (submitted by Harriet Cole)
+      Submitted: Mar 23, 2026, 10:34 AM PDT
+      Stage: Sourced
+      Resume and GitHub: on the candidate profile
+
+      View candidate: https://app.ashbyhq.com/candidates/c_d40b8a16
+
+      --
+      You are receiving this email because you follow the Senior Backend Engineer job in Ashby. Manage your notifications in Ashby.
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Ashby, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-linear-27-1
+    day: 27
+    time: "15:40"
+    from: linear
+    to: [avery]
+    subject: "Carmen Ortiz created NS-412"
+    bulk: false
+    signature: none
+    body: |
+      Carmen Ortiz created a new issue
+
+      NS-412 · CSV export drops the plant-code column when the filter is empty
+      Project: Northstar SAP connector · Cycle 7
+      Assignee: Kofi Mensah
+      Priority: Medium
+
+      Found in the go-live regression pass on the Northstar QA tenant. Repro: export with no plant filter; the plant_code column is missing from the header row. Not in the go-live path; targeting the Apr 7 patch. Regression suite: 411/412.
+
+      View issue: https://linear.app/tessera/issue/NS-412
+
+      --
+      You are receiving this because you are subscribed to the project Northstar SAP connector. Manage notifications: https://linear.app/tessera/settings/notifications
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: docusign_action_vs_github_fyi
+      expected: {type: automated, automated: {system: Linear, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-linear-27-2
+    day: 27
+    time: "16:05"
+    from: linear
+    to: [avery]
+    subject: "Carmen Ortiz created NS-415"
+    bulk: false
+    signature: none
+    body: |
+      Carmen Ortiz created a new issue
+
+      NS-415 · Dashboard date picker shows UTC on the Fresno tenant
+      Project: Northstar SAP connector · Cycle 7
+      Assignee: Felix Wagner
+      Priority: Medium
+
+      Fresno tenant only; the Modesto tenant renders local time correctly. Cosmetic, not in the go-live path; Apr 7 patch. Ticket key for Rosa's report: support #2296.
+
+      View issue: https://linear.app/tessera/issue/NS-415
+
+      --
+      You are receiving this because you are subscribed to the project Northstar SAP connector. Manage notifications: https://linear.app/tessera/settings/notifications
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: docusign_action_vs_github_fyi
+      expected: {type: automated, automated: {system: Linear, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 28 · Tue Mar 24
+  - id: auto-gusto-funding-failed
+    day: 28
+    time: "04:40"
+    from: gusto
+    to: [avery]
+    subject: "Payroll funding debit of $86,412.30 failed - bank account verification required"
+    bulk: false
+    signature: none
+    body: |
+      Hi Avery,
+
+      The ACH debit to fund your Mar 31 payroll was returned by your bank.
+
+      Amount: $86,412.30
+      Bank account: Cascade Community Bank, checking ending in 8837
+      Debit initiated: Mon, Mar 23, 2026
+      Returned: Tue, Mar 24, 2026
+      Return code: R03 - unable to locate account
+      Status: bank account verification required
+
+      What this means
+      Gusto has not received the funds for the Mar 31 pay date. To pay your team on time, Gusto must receive cleared funds by the funding deadline, Fri, Mar 27, 2026.
+
+      What to do
+      1. Verify the new bank account in Gusto: Company > Bank accounts > Verify. Confirm the two test deposit amounts, or re-enter the routing and account numbers if the test deposits never posted.
+      2. Once the account is verified, Gusto retries the debit automatically. If the retry has not cleared by Mar 27, the Mar 31 payroll will be paid late.
+
+      No action is needed if you already re-verified the account today.
+
+      Verify bank account: https://app.gusto.com/company/bank-accounts
+
+      Questions? Visit the Gusto Help Center at support.gusto.com or reply to this email to reach payroll support.
+
+      Gusto, 525 20th Street, San Francisco, CA 94107
+    labels:
+      kind: automated
+      must_not: false
+      reason: null
+      classification_case: null
+      expected: {type: automated, automated: {system: Gusto, action_bearing: true, action_kind: payment_issue, about: other:gusto-payroll-funding}}
+
+  - id: auto-linear-28-1
+    day: 28
+    time: "09:05"
+    from: linear
+    to: [avery]
+    subject: "Kofi Mensah changed the status of NS-401 to Done"
+    bulk: false
+    signature: none
+    body: |
+      Kofi Mensah changed the status from In Review to Done
+
+      NS-401 · SAP IDoc retry logic: idempotent retry on ack timeout
+      Project: Northstar SAP connector · Cycle 7
+      Assignee: Kofi Mensah
+
+      Merged in #1187. Load test against the Northstar QA tenant Wednesday.
+
+      View issue: https://linear.app/tessera/issue/NS-401
+
+      --
+      You are receiving this because you are subscribed to this issue. Manage notifications: https://linear.app/tessera/settings/notifications
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: docusign_action_vs_github_fyi
+      expected: {type: automated, automated: {system: Linear, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-linear-28-2
+    day: 28
+    time: "10:20"
+    from: linear
+    to: [avery]
+    subject: "Jordan Liu created PLT-247"
+    bulk: false
+    signature: none
+    body: |
+      Jordan Liu created a new issue
+
+      PLT-247 · Quillon integration spike (half day): evidence collector API against our staging tenant
+      Project: Platform reliability · Cycle 7
+      Assignee: Kofi Mensah
+      Priority: Medium
+
+      Half a day, not a full one. Goal: know before Thursday's demo whether their collector can read our audit log without a custom connector.
+
+      View issue: https://linear.app/tessera/issue/PLT-247
+
+      --
+      You are receiving this because you are subscribed to the project Platform reliability. Manage notifications: https://linear.app/tessera/settings/notifications
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: docusign_action_vs_github_fyi
+      expected: {type: automated, automated: {system: Linear, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-gcal-07
+    day: 28
+    time: "16:50"
+    from: {name: "Maya Castellanos (Google Calendar)", email: "calendar-notification@google.com"}
+    to: [avery]
+    subject: "Invitation: Quillon Security <> Tessera - demo @ Thu Mar 26, 2026 9:30am - 10:15am (PDT)"
+    bulk: false
+    signature: none
+    body: |
+      You have been invited to the following event.
+
+      Quillon Security <> Tessera - demo
+
+      When
+      Thursday Mar 26, 2026 ⋅ 9:30am – 10:15am (Pacific Time - Los Angeles)
+
+      Where
+      Google Meet (link in the description)
+
+      Organizer
+      Maya Castellanos - maya.castellanos@quillonsec.com
+
+      Guests
+      Maya Castellanos - organizer
+      Avery Chen
+      Priya Iyer
+      View all guest info
+
+      Description
+      Agenda
+      - 10 min: where Quillon fits next to (or instead of) your current compliance tooling
+      - 20 min: live demo, your choice of focus (SOC 2 evidence walkthrough or pen-test scoping - let me know!)
+      - 15 min: pricing and pilot options
+      Happy to flex on time if this slot does not work. Meet: https://meet.google.com/qsd-bnkt-wvr
+
+      Reply for avery@tessera.io and view more details
+      Yes - Maybe - No
+      https://calendar.google.com/calendar/event?action=RESPOND&eid=cXVpbGxvbi1kZW1vLTIwMjYwMzI2
+
+      Invitation from Google Calendar
+
+      You are receiving this email because you are a guest on the event. To stop receiving future updates for this event, decline this event.
+      Forwarding this invitation could allow any recipient to send a response to the organizer, be added to the guest list, invite others regardless of their own invitation status, or modify your RSVP.
+    labels:
+      kind: automated
+      must_not: true
+      reason: accepted_meeting_confirmation
+      classification_case: null
+      expected: {type: automated, automated: {system: "Google Calendar", action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 29 · Wed Mar 25
+  - id: auto-receipts-29-1
+    day: 29
+    time: "04:12"
+    from: {name: "Notion", email: "team@makenotion.com"}
+    to: [avery]
+    subject: "Your Notion receipt - Mar 25, 2026"
+    bulk: false
+    signature: none
+    body: |
+      Receipt from Notion Labs, Inc.
+
+      Your payment was received. Thank you!
+
+      Amount paid: $120.00
+      Date paid: Mar 25, 2026
+      Payment method: Visa •••• 7702
+      Receipt number: 2466-1187
+
+      Summary
+        Notion Plus - 12 members x $10.00 (Mar 25 - Apr 25, 2026)      $120.00
+        Amount paid                                                    $120.00
+
+      Billed to: Tessera, Inc., 2201 Broadway, Suite 300, Oakland, CA 94612
+
+      Manage your billing: https://www.notion.so/settings/billing
+      Questions? team@makenotion.com
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Notion, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-linear-29-1
+    day: 29
+    time: "06:05"
+    from: linear
+    to: [avery]
+    subject: "Cycle 7 has ended - Tessera Engineering"
+    bulk: false
+    signature: none
+    body: |
+      Cycle 7 summary · Mar 11 - Mar 24
+
+      Tessera Engineering
+
+      Completed: 19 of 25 issues (76%)
+      Scope added mid-cycle: 6 issues
+      Moved to Cycle 8: 6 issues (NS-412, NS-415, HB-121, PLT-240, PLT-247, VC-88)
+
+      By project
+        Northstar SAP connector     9 done · 2 carried over
+        Halberd Line 3              2 done · 1 carried over
+        Platform reliability        5 done · 2 carried over
+        H1 planning                 1 done · 1 carried over
+        Support                     2 done · 1 carried over (answered, awaiting close)
+
+      Cycle 8 starts today and ends Apr 7.
+
+      View cycle: https://linear.app/tessera/team/ENG/cycle/7
+
+      --
+      You are receiving this because cycle summaries are on for the team Tessera Engineering. Manage notifications: https://linear.app/tessera/settings/notifications
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: docusign_action_vs_github_fyi
+      expected: {type: automated, automated: {system: Linear, action_bearing: false, action_kind: none, about: null}}
+
+  - id: auto-linear-29-2
+    day: 29
+    time: "11:35"
+    from: linear
+    to: [avery]
+    subject: "Priya Iyer changed the status of PLT-219 to Done"
+    bulk: false
+    signature: none
+    body: |
+      Priya Iyer changed the status from In Review to Done
+
+      PLT-219 · GPU pool autoscaler: scale to a lower floor off-hours
+      Project: Platform reliability · Cycle 8
+      Assignee: Priya Iyer
+
+      shipped. floor is 4 nodes 22:00-06:00, 6 otherwise. watching the morning ramp for a week.
+
+      View issue: https://linear.app/tessera/issue/PLT-219
+
+      --
+      You are receiving this because you are subscribed to this issue. Manage notifications: https://linear.app/tessera/settings/notifications
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: docusign_action_vs_github_fyi
+      expected: {type: automated, automated: {system: Linear, action_bearing: false, action_kind: none, about: null}}
+
+  # ------------------------------------------------------------------ day 30 · Thu Mar 26
+  - id: auto-receipts-30-1
+    day: 30
+    time: "03:40"
+    from: {name: "Zoom", email: "no-reply@zoom.us"}
+    to: [avery]
+    subject: "Your Zoom payment was received - Invoice INV15027781"
+    bulk: false
+    signature: none
+    body: |
+      Hi Avery Chen,
+
+      Thank you for your payment. This email confirms that your payment was received.
+
+      Invoice number: INV15027781
+      Invoice date: Mar 26, 2026
+      Amount paid: $263.88
+      Payment method: Visa ending in 7702
+
+      Plan details
+        Zoom Workplace Business - 12 licenses (monthly)        $263.88
+        Billing period: Mar 26 - Apr 25, 2026
+
+      Account: Tessera, Inc. (tessera.zoom.us)
+
+      View or download your invoice: https://zoom.us/billing/invoices
+
+      Thank you for choosing Zoom.
+      -The Zoom Team
+    labels:
+      kind: automated
+      must_not: true
+      reason: automated_fyi
+      classification_case: null
+      expected: {type: automated, automated: {system: Zoom, action_bearing: false, action_kind: none, about: null}}

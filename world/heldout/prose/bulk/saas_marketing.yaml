@@ -1,0 +1,1653 @@
+# world/heldout/prose/bulk/saas_marketing.yaml - SaaS marketing mail (Track B, M8).
+# 59 mkt-* items + t-cfp-massmail (day 17 07:00) = 60. Tools Tessera pays for (Notion, Linear, Zoom, Slack, Figma,
+# Brex, Gusto, Ashby) send product-update and renewal-upsell mail; Vanta, Carta and the rest are webinars, cold promos,
+# trials and discount codes. Every item bulk: true, signature: none, must_not, reason marketing (mass_mailing for the
+# CFP blast). Day 1 = Wed 2026-02-25; day 12 = Sun 03-08 (nothing 02:00-03:00); day 30 = Thu 03-26.
+category: saas_marketing
+items:
+  - id: mkt-notion-1
+    day: 1
+    time: "07:12"
+    from: {name: "Notion", email: "team@mail.notion.so"}
+    to: [avery]
+    subject: "What's new in Notion: February release notes"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Here's what shipped in Notion this month for your workspace:
+
+      - Custom agents can now run on a schedule. Set one to summarize a database every Monday at 8am and post the result to a page or a Slack channel.
+      - Database charts: bar, line and donut views straight from any database, no export.
+      - Meeting notes now attach to the calendar event they came from, and transcripts are searchable.
+      - Permissions audit: admins get a one-page view of who can see what, with one-click fixes.
+
+      Read the full release notes: https://mail.notion.so/c/feb-release-7q1n
+
+      Tip of the month: type /chart in any page to visualize a linked database inline.
+
+      Thanks for building with us,
+      The Notion Team
+
+      You're receiving this because you're an admin of a Notion workspace. Unsubscribe: https://mail.notion.so/u/k22pd
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-gong-1
+    day: 1
+    time: "10:40"
+    from: {name: "Gong", email: "hello@gong.io"}
+    to: [avery]
+    subject: "Avery, what did your team actually say on last week's calls?"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Most CEOs we talk to at companies your size learn what happened on a sales call from a two-line CRM note written three days later.
+
+      Gong records, transcribes and analyzes every customer conversation so you can see which deals are real, which are stalling, and what your best rep says that the others don't.
+
+      For teams under 25 sellers we now offer a starter plan with:
+      - Deal boards with risk warnings based on what customers actually said
+      - Coaching scorecards for new reps
+      - A forecast view your board will believe
+
+      See a 12-minute demo: https://go.gong.io/demo/h-3k9w
+
+      Best,
+      Rachel Ambrose
+      Growth, Gong
+
+      Gong.io, Inc. | 201 Spear Street, San Francisco, CA
+      Unsubscribe from Gong emails: https://go.gong.io/unsub/c41m
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-linear-1
+    day: 2
+    time: "09:05"
+    from: {name: "Linear", email: "hello@linear.app"}
+    to: [avery]
+    subject: "Linear Changelog: Customer requests, initiative updates, and a faster mobile app"
+    bulk: true
+    signature: none
+    body: |
+      This week in Linear
+
+      Customer requests
+      Link support conversations and sales calls to issues so your team can see which customers asked for what. Requests roll up by customer and by revenue, so prioritization stops being a guess.
+
+      Initiative updates
+      Initiative owners can post a short weekly update with a health status. Updates appear in a single feed for leadership and can be sent to Slack automatically.
+
+      Mobile
+      The iOS and Android apps are rebuilt on a new rendering engine. Issue lists open in half the time and offline edits sync when you're back online.
+
+      Also shipped: SLA reminders in triage, a redesigned keyboard shortcut reference, and GitLab merge request linking.
+
+      Full changelog: https://linear.app/changelog/2026-02-26
+
+      Manage email preferences or unsubscribe: https://linear.app/e/pref/9m1kd
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-carta-1
+    day: 2
+    time: "11:30"
+    from: {name: "Carta", email: "events@carta.com"}
+    to: [avery]
+    subject: "[Webinar] What Series A cap tables look like in 2026: data from 1,200 rounds"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      You're invited to a live session with Carta's equity and data teams:
+
+      What Series A cap tables look like in 2026
+      Thursday, March 12 - 10:00am PT - 45 minutes
+
+      Using anonymized data from 1,200 priced Series A rounds closed on Carta in the past twelve months, we'll cover:
+      - Founder ownership after the A, by sector and round size
+      - Employee equity pool sizes and how they've shifted since 2023
+      - Investor composition: how many funds are in a typical A now
+      - What changes between the term sheet and the closing documents
+
+      Speakers: Ingrid Solberg (Head of Equity Advisory, Carta) and Priyanka Rao (Data Insights, Carta).
+
+      Save your seat: https://events.carta.com/r/sa-captables-0312
+
+      Can't make it live? Register anyway and we'll send the recording.
+
+      The Carta Events Team
+
+      Carta, 333 Bush Street, San Francisco, CA 94104. Unsubscribe: https://events.carta.com/u/8xk2a
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-figma-1
+    day: 3
+    time: "08:20"
+    from: {name: "Figma", email: "news@figma.com"}
+    to: [avery]
+    subject: "Config 2026 early-bird tickets are open"
+    bulk: true
+    signature: none
+    body: |
+      Config is back. May 5-7, 2026, Moscone West, San Francisco.
+
+      Three days of talks, workshops and product announcements for everyone who designs and builds. Early-bird tickets are available through March 31, or until they sell out.
+
+      Early bird: $499 (regular $749)
+      Team packs (5+): $399 each
+
+      This year's tracks: design systems at scale, prototyping with real data, and building with AI in the design process. The full speaker list lands in April.
+
+      Get your ticket: https://config.figma.com/tickets?src=eb26
+
+      Can't travel? The keynote and main-stage talks stream free.
+
+      See you in May,
+      The Figma Team
+
+      Figma, Inc. 760 Market St, San Francisco, CA. Manage preferences: https://figma.com/e/prefs/w7q2
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-hubspot-1
+    day: 3
+    time: "13:15"
+    from: {name: "HubSpot", email: "marketing@hubspot.com"}
+    to: [avery]
+    subject: "Your CRM shouldn't need a full-time admin"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Growing B2B teams tell us the same thing: the CRM they bought for the sales team ends up needing an admin, a consultant, and a quarterly cleanup project.
+
+      HubSpot's Starter Customer Platform is built for teams of 5 to 50: contacts, deals, email sequences and reporting in one place, set up in an afternoon, no admin required.
+
+      Starting at $20 per seat per month, and we'll migrate your data from your current CRM for free through March 31.
+
+      Start a free trial: https://www.hubspot.com/starter?utm=founder-0227
+
+      Or see a 10-minute walkthrough: https://www.hubspot.com/demo/starter
+
+      Best,
+      The HubSpot Team
+
+      HubSpot, Inc., 2 Canal Park, Cambridge, MA 02141. Unsubscribe: https://www.hubspot.com/u/3jq0p
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-canva-1
+    day: 4
+    time: "09:00"
+    from: {name: "Canva", email: "hello@engage.canva.com"}
+    to: [avery]
+    subject: "Your pitch deck, but faster: new templates for founders"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      We added 40 new presentation templates built for startup teams: investor updates, board decks, sales one-pagers and customer case studies. Each one comes with brand-kit support, so your colors and fonts apply in one click.
+
+      New this month in Canva for Teams:
+      - Magic Resize turns a 16:9 deck into a one-page PDF or a LinkedIn carousel
+      - Charts pull live from a Google Sheet
+      - Comment threads with @mentions on any element
+
+      Try the founder templates: https://canva.com/t/founders-2026
+
+      Canva for Teams starts at $10 per person per month. Your first 30 days are free.
+
+      The Canva Team
+
+      Canva Pty Ltd, 110 Kippax St, Surry Hills NSW 2010, Australia. Unsubscribe: https://engage.canva.com/u/n5r1
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-grammarly-1
+    day: 5
+    time: "10:30"
+    from: {name: "Grammarly", email: "info@em.grammarly.com"}
+    to: [avery]
+    subject: "Your weekly writing update: 4,120 words checked"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Here's your writing snapshot for the week of February 23:
+
+      Words checked: 4,120
+      Suggestions accepted: 61
+      Most common fix: comma before a coordinating conjunction
+      Tone most often detected: confident
+
+      You were more productive than 78% of Grammarly users this week.
+
+      Try Grammarly Business for your team: shared style guides, brand tone settings, and a snippets library for the phrases your team types every day. Teams of 3 or more save 20% on annual plans.
+
+      Learn more: https://grammarly.com/business?ref=weekly
+
+      Keep writing,
+      The Grammarly Team
+
+      Grammarly, Inc., 548 Market St #35410, San Francisco, CA 94104. Unsubscribe from weekly updates: https://em.grammarly.com/u/q90z
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-slack-1
+    day: 6
+    time: "08:00"
+    from: {name: "Slack", email: "feedback@slack.com"}
+    to: [avery]
+    subject: "What's new in Slack: agents in channels, Canvas templates, and a quieter Monday"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      A quick tour of what shipped in your Slack workspace this month.
+
+      Agents in channels
+      Add an agent to any channel and ask it to summarize a thread, draft a reply, or pull up a file. Agents follow your workspace's permissions, so they only see what you can see.
+
+      Canvas templates
+      Meeting notes, project briefs and weekly updates now start from a template. Pick one from the + menu in any channel.
+
+      A quieter Monday
+      The new weekly recap collects everything you missed over the weekend into one message at the time you choose, instead of a wall of notifications.
+
+      See everything that's new: https://slack.com/whats-new?e=0302
+
+      The Slack Team
+
+      Slack Technologies, LLC, 415 Mission St, San Francisco, CA 94105. Manage email preferences: https://slack.com/prefs/e/7lm3
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-datadog-1
+    day: 6
+    time: "11:10"
+    from: {name: "Datadog", email: "info@datadoghq.com"}
+    to: [avery]
+    subject: "[Live session] Observability on a startup budget: what to monitor before Series B"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Join us for a 40-minute live session for engineering leaders at early-stage companies.
+
+      Observability on a startup budget
+      Wednesday, March 11 - 11:00am PT
+
+      We'll cover:
+      - The five signals worth paying for at under 20 engineers, and the twenty that can wait
+      - How to set up alerting so on-call doesn't burn out your team
+      - Cost controls: sampling, retention tiers, and the log-volume mistakes everyone makes once
+
+      Presented by two Datadog solutions engineers who work with seed and Series A teams every day. Live Q&A after.
+
+      Register: https://www.datadoghq.com/events/startup-observability-0311
+
+      Startups under $5M in funding may qualify for Datadog for Startups credits. Check eligibility: https://www.datadoghq.com/startups
+
+      The Datadog Team
+
+      Datadog, Inc., 620 8th Ave, New York, NY 10018. Unsubscribe: https://www.datadoghq.com/u/2vv8k
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-zoom-1
+    day: 6
+    time: "14:00"
+    from: {name: "Zoom", email: "no-reply@zoom.us"}
+    to: [avery]
+    subject: "New in Zoom Workplace: AI Companion 3, shared whiteboards, and clips"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Here's what's new for your Zoom Workplace account this month.
+
+      AI Companion 3
+      Meeting summaries now include action items assigned to attendees, and you can ask Companion about any past meeting from the desktop app. Included with your plan at no extra cost.
+
+      Shared whiteboards
+      Whiteboards persist across meetings and can be shared with people outside your account by link.
+
+      Clips
+      Record a short video message from any Zoom window and share it by link, no meeting required.
+
+      Explore what's new: https://zoom.us/whats-new?m=0302
+
+      Tip: turn on "smart recording" in Settings > Recording to get chapters and highlights automatically.
+
+      The Zoom Team
+
+      Zoom Communications, Inc., 55 Almaden Blvd, San Jose, CA 95113. Manage email preferences: https://zoom.us/prefs/mk/6h2a
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-vanta-1
+    day: 7
+    time: "09:30"
+    from: {name: "Vanta", email: "hello@vanta.com"}
+    to: [avery]
+    subject: "[Webinar] SOC 2 in 2026: what enterprise buyers actually check"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Security questionnaires are getting longer and buyers are reading the reports. Join our security and compliance team for a 45-minute session on what's changed.
+
+      SOC 2 in 2026: what enterprise buyers actually check
+      Tuesday, March 17 - 10:00am PT
+
+      Topics:
+      - The controls procurement teams now ask about by name
+      - Type I vs Type II: when each is enough
+      - Continuous monitoring vs annual audits, and what auditors think about it
+      - Trust centers: how much to publish
+
+      Speakers: Vanta's Head of Security Compliance and a partner at an audit firm that has completed 900+ SOC 2 engagements.
+
+      Register: https://vanta.com/webinars/soc2-2026
+
+      The Vanta Team
+
+      Vanta Inc., 369 Hayes St, San Francisco, CA 94102. Unsubscribe: https://vanta.com/u/rt55q
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-mixpanel-1
+    day: 7
+    time: "12:45"
+    from: {name: "Mixpanel", email: "team@mixpanel.com"}
+    to: [avery]
+    subject: "Which features do your customers actually use? Find out in 15 minutes."
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      B2B products ship features nobody uses. Mixpanel shows you which ones, which accounts use them, and what the accounts that renew have in common.
+
+      New this quarter:
+      - Account-level analytics: roll up events by customer, not just by user
+      - Feature adoption by plan, side by side
+      - Warehouse connectors for Snowflake, BigQuery and Postgres, no SDK required
+
+      Free up to 1M events a month. Growth plans from $28/month.
+
+      Start free: https://mixpanel.com/signup?ref=b2b-0303
+
+      Or watch a 15-minute product tour: https://mixpanel.com/tour
+
+      The Mixpanel Team
+
+      Mixpanel, Inc., One Front St, San Francisco, CA 94111. Unsubscribe: https://mixpanel.com/u/e8w1
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-brex-1
+    day: 8
+    time: "07:45"
+    from: {name: "Brex", email: "hello@brex.com"}
+    to: [avery]
+    subject: "New in Brex: travel booking, budget alerts, and faster reimbursements"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Here's what's new in your Brex account this month.
+
+      Travel booking
+      Book flights and hotels inside Brex with your company's policy applied automatically. Receipts and itemization happen on their own.
+
+      Budget alerts
+      Set a threshold on any budget and the owner gets a Slack or email nudge at 50%, 80% and 100%.
+
+      Faster reimbursements
+      Employee reimbursements now pay out same day when approved before 2pm PT.
+
+      Also: the mobile app has a redesigned approvals inbox, and card controls now support per-merchant limits.
+
+      See everything new: https://brex.com/product-updates/march-2026
+
+      The Brex Team
+
+      Brex Inc., 650 S 500 W, Salt Lake City, UT 84101. Manage preferences: https://brex.com/e/prefs/4gg7
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-vercel-1
+    day: 8
+    time: "10:20"
+    from: {name: "Vercel", email: "newsletter@vercel.com"}
+    to: [avery]
+    subject: "Vercel this month: Fluid compute pricing, AI Gateway GA, and Ship 2026 dates"
+    bulk: true
+    signature: none
+    body: |
+      Vercel Newsletter - March 2026
+
+      Fluid compute pricing
+      Functions now bill on active CPU time rather than wall-clock duration. For most apps that wait on databases and APIs, that means a lower bill with no code change. See the pricing page for details.
+
+      AI Gateway is generally available
+      One endpoint, every major model provider, with automatic failover, spend limits and per-model usage reports. Bring your own keys or use ours.
+
+      Ship 2026
+      Our annual conference is June 24, New York and online. Registration opens next month.
+
+      Also this month: Next.js 16.2 with faster builds, a new observability dashboard for edge requests, and Vercel Agent in preview.
+
+      Read the full changelog: https://vercel.com/changelog
+
+      Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723. Unsubscribe: https://vercel.com/e/u/9ppz
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-gusto-1
+    day: 9
+    time: "08:30"
+    from: {name: "Gusto", email: "hello@gusto.com"}
+    to: [avery]
+    subject: "Q1 checklist for small-business payroll (and a Gusto Plus preview)"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      A few things to have on your radar this quarter, from the Gusto team:
+
+      - Q1 federal and state filings are due April 30. Gusto files these for you; you'll get a confirmation email when each is submitted.
+      - New-hire reporting: remember that most states require it within 20 days of a start date. Gusto handles this automatically when you add an employee.
+      - Benefits renewals: if your health plan renews mid-year, now is when brokers start quoting.
+
+      Coming soon in Gusto Plus: performance reviews, a compensation-band tool, and headcount planning that syncs with your payroll data. Plus is $60/month plus $9 per person. Preview it: https://gusto.com/plus?ref=q1-2026
+
+      The Gusto Team
+
+      Gusto, 525 20th St, San Francisco, CA 94107. This is a marketing message. Manage preferences: https://gusto.com/e/prefs/b7c2
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-rippling-1
+    day: 9
+    time: "11:00"
+    from: {name: "Rippling", email: "hello@rippling.com"}
+    to: [avery]
+    subject: "Avery, running payroll, IT and benefits in three tools? Here's the math."
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Companies between 10 and 50 employees spend, on average, 14 hours a week on HR, IT and finance admin across four or five disconnected tools.
+
+      Rippling runs payroll, benefits, device management, app provisioning and expenses from one employee record. Add a hire once and their laptop ships, their accounts are created, and their first paycheck is scheduled.
+
+      We'll show you the switching math for a 12-person company in a 20-minute call, and we cover implementation at no cost for teams under 50 who sign by March 31.
+
+      Book a time: https://rippling.com/demo?utm=founder-0305
+
+      Best,
+      Owen Park
+      Rippling
+
+      Rippling, 55 2nd St, San Francisco, CA 94105. Unsubscribe: https://rippling.com/u/a1d9
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-loom-1
+    day: 9
+    time: "15:30"
+    from: {name: "Loom", email: "team@loom.com"}
+    to: [avery]
+    subject: "Fewer meetings this quarter? Start with these 5 async templates"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Teams that replace one recurring meeting a week with a Loom save about 40 hours per person per year. Here are five places to start:
+
+      1. Weekly team update: record once, everyone watches at 1.5x
+      2. Product walkthroughs for sales: one recording, reused on every call
+      3. Code review context: talk through the PR instead of typing a novel
+      4. Customer onboarding: a personal welcome that scales
+      5. Bug reports: show, don't describe
+
+      New in Loom: AI-generated titles, chapters and summaries on every recording, and a "watch later" queue.
+
+      Try Loom Business free for 14 days: https://loom.com/business?ref=async5
+
+      The Loom Team
+
+      Loom, Inc., 140 2nd St, San Francisco, CA 94105. Unsubscribe: https://loom.com/u/f3n7
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-ashby-1
+    day: 10
+    time: "09:15"
+    from: {name: "Ashby", email: "product@ashbyhq.com"}
+    to: [avery]
+    subject: "Ashby product news: interview plans, structured debriefs, and a new sourcing extension"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      What's new in Ashby this month:
+
+      Interview plans
+      Define the stages, interviewers and scorecards for a role once, and every candidate in that pipeline follows the same plan. Deviations are flagged.
+
+      Structured debriefs
+      Debriefs now pull every scorecard into one view with a summary of where interviewers agreed and disagreed, so the meeting is about the disagreements.
+
+      Sourcing extension
+      The new browser extension adds candidates from LinkedIn and GitHub to a pipeline in one click and de-duplicates against your existing database.
+
+      Also: offer-letter templates with e-signature, and a redesigned analytics page for time-to-hire by stage.
+
+      See the release notes: https://ashbyhq.com/changelog/march-2026
+
+      The Ashby Team
+
+      Ashby, 548 Market St, San Francisco, CA 94104. Manage preferences: https://ashbyhq.com/e/prefs/m0kq
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-calendly-1
+    day: 10
+    time: "12:00"
+    from: {name: "Calendly", email: "hello@calendly.com"}
+    to: [avery]
+    subject: "Round-robin for sales teams, now in Calendly Teams"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      New for teams: round-robin scheduling that routes inbound meetings to the right rep based on territory, deal size or availability, with a fallback so no lead waits.
+
+      Also new:
+      - Routing forms that qualify a lead before showing a calendar
+      - Meeting polls for finding a time with a group
+      - Salesforce and HubSpot sync that writes the meeting to the right record
+
+      Calendly Teams is $16 per seat per month. Try it free for 14 days: https://calendly.com/teams?ref=rr-0306
+
+      The Calendly Team
+
+      Calendly LLC, 1315 Peachtree St NE, Atlanta, GA 30309. Unsubscribe: https://calendly.com/u/x4rm
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-miro-1
+    day: 11
+    time: "09:30"
+    from: {name: "Miro", email: "hello@miro.com"}
+    to: [avery]
+    subject: "Your team's next planning session, on one board"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Quarterly planning season is here. Miro's new planning templates give your team one board for goals, roadmap, capacity and risks, with timeline and table views of the same data.
+
+      New this month:
+      - Import a Linear or Jira project and lay it out as a timeline in one click
+      - AI clustering for sticky-note brainstorms
+      - Presentation mode with frame-by-frame navigation
+
+      Miro Starter is $8 per member per month. Teams of 5+ get 25% off an annual plan with code PLAN25 through March 20.
+
+      Start planning: https://miro.com/planning?ref=q2-2026
+
+      The Miro Team
+
+      Miro, 201 Spear St, San Francisco, CA 94105. Unsubscribe: https://miro.com/u/j61s
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-1password-1
+    day: 12
+    time: "11:00"
+    from: {name: "1Password", email: "hello@1password.com"}
+    to: [avery]
+    subject: "Shared vaults, device trust, and a spring offer for teams under 50"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Growing teams share more passwords than they should, in more places than they should. 1Password Business gives every employee a private vault, every team a shared one, and admins a report on who has access to what.
+
+      New: Device Trust checks that the laptop signing in is managed, encrypted and up to date before it can open a vault.
+
+      Spring offer: teams under 50 get 25% off the first year of 1Password Business with code SPRING25, through March 31.
+
+      Start a free 14-day trial: https://1password.com/business?ref=spring26
+
+      The 1Password Team
+
+      AgileBits Inc., 4711 Yonge St, Toronto, ON M2N 6K8. Unsubscribe: https://1password.com/u/v8t3
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-notion-2
+    day: 13
+    time: "07:10"
+    from: {name: "Notion", email: "team@mail.notion.so"}
+    to: [avery]
+    subject: "Notion for startups: the operating docs 500 seed-to-Series-B teams use"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      We asked 500 startup teams on Notion which pages they open most. The top five, now available as templates:
+
+      1. Weekly leadership update
+      2. Hiring pipeline with interview scorecards
+      3. Customer feedback database linked to roadmap
+      4. Company wiki with onboarding checklist
+      5. Investor update draft with metrics table
+
+      Get the bundle: https://mail.notion.so/c/startup-ops-9v3e
+
+      Also: Notion for Startups gives eligible companies 6 months of Plus with unlimited AI free. Check eligibility: https://notion.so/startups
+
+      The Notion Team
+
+      You're receiving this because you're an admin of a Notion workspace. Unsubscribe: https://mail.notion.so/u/k22pd
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-github-1
+    day: 13
+    time: "10:00"
+    from: {name: "GitHub", email: "noreply@github.com"}
+    to: [avery]
+    subject: "GitHub Changelog: Copilot coding agent for Teams, Actions cost controls, and code review summaries"
+    bulk: true
+    signature: none
+    body: |
+      GitHub Changelog - March 2026
+
+      Copilot coding agent for Teams
+      Assign an issue to Copilot and it opens a pull request with the change, tests, and a description. Now included in Copilot Business at no additional cost.
+
+      Actions cost controls
+      Set a monthly spend limit per repository and get notified at 75%. Runner minutes now show per workflow in the billing page.
+
+      Code review summaries
+      Every pull request gets a generated summary of what changed and why, with links to the relevant lines.
+
+      Also: secret scanning for 40 new token types, and a redesigned repository insights page.
+
+      Read the changelog: https://github.blog/changelog/2026-03
+
+      GitHub, Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107. Manage email preferences: https://github.com/settings/emails
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-intercom-1
+    day: 13
+    time: "13:20"
+    from: {name: "Intercom", email: "team@intercom.com"}
+    to: [avery]
+    subject: "Fin resolves 60% of support conversations. Here's what the other 40% look like."
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Across the B2B companies using Fin, our AI agent resolves about 60% of inbound support conversations without a human. We wrote up what the remaining 40% have in common: billing questions, account-specific bugs, and requests that need a decision.
+
+      Read the report: https://intercom.com/reports/fin-2026
+
+      Fin works with your existing help desk or inside Intercom, is priced per resolution ($0.99), and can be live in a day using your help center as its knowledge base.
+
+      Try Fin free for 14 days: https://intercom.com/fin?ref=report-0309
+
+      The Intercom Team
+
+      Intercom, Inc., 55 2nd St, San Francisco, CA 94105. Unsubscribe: https://intercom.com/u/p2ld
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-carta-2
+    day: 14
+    time: "09:00"
+    from: {name: "Carta", email: "events@carta.com"}
+    to: [avery]
+    subject: "Reminder: Series A cap tables webinar is Thursday - 400 founders registered"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      A reminder that our live session is this Thursday:
+
+      What Series A cap tables look like in 2026
+      Thursday, March 12 - 10:00am PT - 45 minutes
+
+      More than 400 founders and finance leads have registered. We'll walk through founder ownership, employee equity pools and investor composition across 1,200 rounds, with live Q&A.
+
+      Save your seat: https://events.carta.com/r/sa-captables-0312
+
+      Can't make it? Register anyway and we'll send the recording and the data slides.
+
+      The Carta Events Team
+
+      Carta, 333 Bush Street, San Francisco, CA 94104. Unsubscribe: https://events.carta.com/u/8xk2a
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-retool-1
+    day: 14
+    time: "14:15"
+    from: {name: "Retool", email: "hello@retool.com"}
+    to: [avery]
+    subject: "Your ops team is building internal tools in spreadsheets. There's a better way."
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Every growing company has a spreadsheet that became an internal tool: the customer list with the manual status column, the approval tracker, the onboarding checklist.
+
+      Retool turns those into real apps in an afternoon: connect a database or API, drag in a table and a form, add permissions, ship. No frontend engineer required.
+
+      New this month: Retool Agents, which let an internal app take actions across your systems with a human approval step, and a free tier for up to 5 users.
+
+      See how a 12-person company replaced six spreadsheets: https://retool.com/customers/ops-story
+
+      Start free: https://retool.com/signup?ref=ops-0310
+
+      The Retool Team
+
+      Retool, 1 Bluxome St, San Francisco, CA 94107. Unsubscribe: https://retool.com/u/h7yy
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-linear-2
+    day: 15
+    time: "09:05"
+    from: {name: "Linear", email: "hello@linear.app"}
+    to: [avery]
+    subject: "Linear Changelog: Agents in Linear, project milestones, and a new API"
+    bulk: true
+    signature: none
+    body: |
+      This week in Linear
+
+      Agents in Linear
+      Delegate an issue to a coding agent from any of the supported providers directly in Linear. The agent's progress, branches and pull requests show up on the issue.
+
+      Project milestones
+      Break a project into milestones with their own target dates and progress bars. Milestones roll up into the project's health.
+
+      New API
+      A rebuilt GraphQL API with webhooks for every object type, higher rate limits, and typed SDKs for TypeScript and Python.
+
+      Also shipped: issue templates per team, a redesigned inbox with grouping, and support for custom emoji reactions.
+
+      Full changelog: https://linear.app/changelog/2026-03-11
+
+      Manage email preferences or unsubscribe: https://linear.app/e/pref/9m1kd
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-lattice-1
+    day: 15
+    time: "11:40"
+    from: {name: "Lattice", email: "hello@lattice.com"}
+    to: [avery]
+    subject: "When should a 12-person company start doing performance reviews?"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      The short answer from the 5,000 companies on Lattice: earlier than you think, and lighter than you fear.
+
+      Our new guide covers what a review cycle looks like at 10, 25 and 50 people, how to set goals that survive a quarter, and why the first cycle should be a conversation, not a form.
+
+      Read the guide: https://lattice.com/library/first-review-cycle
+
+      Lattice for small teams starts at $11 per person per month, with 1:1s, goals, feedback and reviews included. Free for 30 days.
+
+      Start a trial: https://lattice.com/trial?ref=guide-0311
+
+      The Lattice Team
+
+      Lattice, 360 Spear St, San Francisco, CA 94105. Unsubscribe: https://lattice.com/u/t5ck
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-snowflake-1
+    day: 15
+    time: "15:00"
+    from: {name: "Snowflake", email: "marketing@snowflake.com"}
+    to: [avery]
+    subject: "Snowflake Startup Program: $400 in credits and a data architecture review"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Startups building data-heavy products spend too long deciding on a warehouse and too little time using one. The Snowflake Startup Program is designed to remove the first problem.
+
+      Eligible companies (under $10M raised, under 5 years old) receive:
+      - $400 in Snowflake credits to start
+      - A one-hour architecture review with a Snowflake solutions engineer
+      - Access to the startup community and partner perks
+
+      Apply in five minutes: https://snowflake.com/startups/apply?ref=0311
+
+      Also this month: Snowflake Intelligence, which lets your team ask questions of your data in plain language, is generally available on all plans.
+
+      The Snowflake Startup Team
+
+      Snowflake Inc., 106 East Babcock St, Bozeman, MT 59715. Unsubscribe: https://snowflake.com/u/d9wa
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-slack-2
+    day: 16
+    time: "08:00"
+    from: {name: "Slack", email: "feedback@slack.com"}
+    to: [avery]
+    subject: "Avery, your workspace qualifies for Business+ at the Pro price until March 31"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Your Slack workspace has grown, and it now qualifies for a limited upgrade offer: move to Business+ and pay the Pro rate for the first 12 months.
+
+      What you get with Business+:
+      - Data exports for compliance and audits
+      - SAML-based single sign-on
+      - 99.99% uptime SLA
+      - 24/7 support with a 4-hour response time
+      - Slack AI included for every member
+
+      The offer applies to annual plans upgraded before March 31, 2026. Your billing date and renewal terms stay the same.
+
+      Upgrade in Settings > Billing, or compare plans: https://slack.com/pricing?offer=bplus-pro
+
+      Questions? Reply to this email and a member of our team will get back to you.
+
+      The Slack Team
+
+      Slack Technologies, LLC, 415 Mission St, San Francisco, CA 94105. Manage email preferences: https://slack.com/prefs/e/7lm3
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-deel-1
+    day: 16
+    time: "12:30"
+    from: {name: "Deel", email: "hello@deel.com"}
+    to: [avery]
+    subject: "Hiring outside the US this year? Here's what it costs, country by country."
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Our new Global Hiring Guide covers employer costs, notice periods and mandatory benefits in 90 countries, with a calculator that shows the fully loaded cost of a hire in any of them.
+
+      Get the guide: https://deel.com/guides/global-hiring-2026
+
+      Deel lets you hire employees and contractors anywhere without setting up an entity: we handle contracts, payroll, taxes and compliance, and you see one invoice.
+
+      Employer of record from $599/month per employee. Contractors from $49/month.
+
+      Book a 15-minute walkthrough: https://deel.com/demo?ref=guide-0312
+
+      The Deel Team
+
+      Deel Inc., 425 1st St, San Francisco, CA 94105. Unsubscribe: https://deel.com/u/g8ka
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: t-cfp-massmail
+    day: 17
+    time: "07:00"
+    from: {name: "Industrial Software Summit", email: "speakers@indsoftsummit.com"}
+    to: [avery]
+    subject: "Call for Proposals: Industrial Software Summit 2026, Denver, September 15-17"
+    bulk: true
+    signature: none
+    body: |
+      Dear founders, operators and technologists,
+
+      The Industrial Software Summit returns to Denver on September 15-17, 2026, and the call for proposals is now open.
+
+      We are looking for 30-minute talks and 60-minute workshops on:
+      - AI on the plant floor: deployments, not demos
+      - Integrating with legacy MES, ERP and historian systems
+      - Scheduling, quality and maintenance software at mid-market manufacturers
+      - Buying and selling industrial software: lessons from both sides of the table
+      - Data infrastructure for operations teams
+
+      Proposals are due April 24. Speakers receive a complimentary full-conference pass and travel support for accepted workshops. Customer co-presentations are strongly encouraged.
+
+      Submit a proposal: https://indsoftsummit.com/cfp-2026
+
+      Last year's summit drew 1,400 attendees from 600 manufacturers and software companies. The 2026 program will be announced in June.
+
+      Questions: speakers@indsoftsummit.com
+
+      Industrial Software Summit | Produced by Foundry Events LLC, Denver, CO
+      You are receiving this because you attended or registered interest in a previous event. Unsubscribe: https://indsoftsummit.com/u/1x9v
+    labels: {kind: marketing, must_not: true, reason: mass_mailing, classification_case: null, expected: null}
+
+  - id: mkt-figma-2
+    day: 17
+    time: "08:30"
+    from: {name: "Figma", email: "news@figma.com"}
+    to: [avery]
+    subject: "Figma Make is now available on every plan"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Figma Make, which turns a prompt or an existing design into a working prototype with real code, is now available on every plan, including Starter.
+
+      What's new:
+      - Start from a Figma design and get a clickable, editable prototype
+      - Connect to sample data or your own API to test real flows
+      - Publish to a shareable link, or export the code
+
+      Also this month: Dev Mode now shows component usage across your codebase, and the Figma MCP server lets coding agents read your design files directly.
+
+      Try Figma Make: https://figma.com/make?ref=ga-0313
+
+      The Figma Team
+
+      Figma, Inc. 760 Market St, San Francisco, CA. Manage preferences: https://figma.com/e/prefs/w7q2
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-gong-2
+    day: 17
+    time: "10:45"
+    from: {name: "Gong", email: "hello@gong.io"}
+    to: [avery]
+    subject: "Following up: 12-minute Gong demo for teams under 25 sellers"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      I wrote a couple of weeks ago about how Gong helps CEOs at growing companies see what's actually happening in their pipeline. Wanted to make sure it didn't get lost.
+
+      Quick version: Gong captures every sales call and email, flags deals at risk based on what customers said (or didn't), and gives you a forecast built on conversations rather than rep optimism.
+
+      The starter plan for teams under 25 sellers is live, with a 30-day free pilot on your own calls.
+
+      Watch the 12-minute demo: https://go.gong.io/demo/h-3k9w
+      Or grab a time with me: https://go.gong.io/meet/rachel
+
+      Best,
+      Rachel Ambrose
+      Growth, Gong
+
+      Gong.io, Inc. | 201 Spear Street, San Francisco, CA
+      Unsubscribe from Gong emails: https://go.gong.io/unsub/c41m
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-airtable-1
+    day: 18
+    time: "10:00"
+    from: {name: "Airtable", email: "hello@airtable.com"}
+    to: [avery]
+    subject: "Airtable Cobuilder: describe the app, get the app"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Cobuilder builds a working Airtable app from a description. Type "a customer feedback tracker linked to our roadmap with a weekly summary" and get tables, views, an interface and an automation, ready to edit.
+
+      New this month:
+      - Cobuilder available on Team plans and above
+      - AI fields that summarize, categorize or translate records automatically
+      - Sync from HubSpot, Salesforce and Jira with two-way updates
+
+      Team plans start at $20 per seat per month. Try Cobuilder free for 14 days: https://airtable.com/cobuilder?ref=0314
+
+      The Airtable Team
+
+      Formagrid Inc. (Airtable), 799 Market St, San Francisco, CA 94103. Unsubscribe: https://airtable.com/u/r3mn
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-webflow-1
+    day: 19
+    time: "09:45"
+    from: {name: "Webflow", email: "team@webflow.com"}
+    to: [avery]
+    subject: "Your marketing site shouldn't need an engineer for every change"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      If updating a pricing page means opening a ticket, your website is slowing your team down. Webflow gives marketing a visual editor with real design control, and engineering a clean codebase they never have to touch.
+
+      For B2B companies under 50 people, Webflow's Startup plan includes:
+      - The visual designer and CMS
+      - Localization for one additional language
+      - Analyze and Optimize (A/B testing) at no extra cost for the first year
+
+      Migrate from your current site free with our partner program through April 15.
+
+      See the plan: https://webflow.com/startups?ref=0315
+
+      The Webflow Team
+
+      Webflow, Inc., 398 11th St, San Francisco, CA 94103. Unsubscribe: https://webflow.com/u/u6bb
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-vanta-2
+    day: 20
+    time: "09:30"
+    from: {name: "Vanta", email: "hello@vanta.com"}
+    to: [avery]
+    subject: "Tomorrow: SOC 2 in 2026 webinar (10am PT) + a new Trust Center launch"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      A reminder that our live session is tomorrow, Tuesday March 17 at 10:00am PT: SOC 2 in 2026 - what enterprise buyers actually check. If you registered, your link is in your calendar invite; if not, there is still room.
+
+      Register: https://vanta.com/webinars/soc2-2026
+
+      Also launching this week: Vanta Trust Center 2.0. Publish your security posture, policies and reports on a branded page, let prospects request access with one click, and answer security questionnaires from the same source of truth. Customers report a 40% drop in questionnaire turnaround time.
+
+      See Trust Center: https://vanta.com/trust-center
+
+      The Vanta Team
+
+      Vanta Inc., 369 Hayes St, San Francisco, CA 94102. Unsubscribe: https://vanta.com/u/rt55q
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-hubspot-2
+    day: 20
+    time: "13:00"
+    from: {name: "HubSpot", email: "marketing@hubspot.com"}
+    to: [avery]
+    subject: "The 2026 State of B2B Sales report is out"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      We surveyed 3,200 sales leaders at B2B companies for our annual report. A few findings:
+
+      - Average sales cycle for deals over $25K grew 11% year over year
+      - 64% of buyers say they had already decided on a shortlist before talking to a rep
+      - Teams using AI for call notes and follow-ups report 5 hours saved per rep per week
+      - Founder-led sales is still the norm below $5M in revenue
+
+      Download the report: https://www.hubspot.com/state-of-sales-2026
+
+      Inside, you'll also find benchmarks for pipeline coverage, win rate and rep ramp time by company size.
+
+      The HubSpot Team
+
+      HubSpot, Inc., 2 Canal Park, Cambridge, MA 02141. Unsubscribe: https://www.hubspot.com/u/3jq0p
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-datadog-2
+    day: 20
+    time: "16:00"
+    from: {name: "Datadog", email: "info@datadoghq.com"}
+    to: [avery]
+    subject: "Recording available: Observability on a startup budget"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Thanks for your interest in last week's session. The recording and slides are now available.
+
+      Watch: https://www.datadoghq.com/events/startup-observability-0311/recording
+
+      Highlights from the Q&A:
+      - The five signals to start with: error rate, latency p95, saturation, deploy markers and one business metric
+      - Log volume: sample debug logs at 10% in production from day one
+      - On-call: page on symptoms, not causes
+
+      If you'd like to talk through your setup, our startup team offers a free 30-minute architecture review: https://www.datadoghq.com/startups/review
+
+      The Datadog Team
+
+      Datadog, Inc., 620 8th Ave, New York, NY 10018. Unsubscribe: https://www.datadoghq.com/u/2vv8k
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-zoom-2
+    day: 21
+    time: "08:15"
+    from: {name: "Zoom", email: "no-reply@zoom.us"}
+    to: [avery]
+    subject: "Before your Zoom plan renews in May: Business plan features you're not using yet"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Your Zoom Workplace annual plan renews in May. Ahead of that, here are a few features included in your plan that most accounts your size haven't turned on:
+
+      - Zoom Scheduler: booking pages that sync with Google Calendar, included with Workplace Business
+      - Team Chat channels with external guests
+      - Zoom Docs: collaborative documents generated from meeting summaries
+      - Workspace reservations, if you have an office
+
+      Upgrade paths: accounts moving from Business to Business Plus before renewal get the first three months of the difference waived. Details in the billing portal.
+
+      Explore your plan: https://zoom.us/account/plan?ref=pre-renewal
+
+      The Zoom Team
+
+      Zoom Communications, Inc., 55 Almaden Blvd, San Jose, CA 95113. Manage email preferences: https://zoom.us/prefs/mk/6h2a
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-mixpanel-2
+    day: 21
+    time: "12:00"
+    from: {name: "Mixpanel", email: "team@mixpanel.com"}
+    to: [avery]
+    subject: "[Guide] Product analytics for B2B: the 8 metrics that predict renewal"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      We analyzed usage data across 400 B2B products to find which behaviors, in the first 90 days, predicted whether an account renewed a year later. Eight stood out. Some are obvious (weekly active seats). Some aren't (time to first shared artifact).
+
+      Read the guide: https://mixpanel.com/guides/b2b-renewal-metrics
+
+      Every metric in the guide is a saved report in Mixpanel's B2B template, so you can have them on a board in an afternoon.
+
+      Start free: https://mixpanel.com/signup?ref=guide-0317
+
+      The Mixpanel Team
+
+      Mixpanel, Inc., One Front St, San Francisco, CA 94111. Unsubscribe: https://mixpanel.com/u/e8w1
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-brex-2
+    day: 22
+    time: "07:45"
+    from: {name: "Brex", email: "hello@brex.com"}
+    to: [avery]
+    subject: "[Webinar] Closing the books in 5 days: how lean finance teams do it"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Join Brex and two finance leaders from Series A companies for a 30-minute session on running a fast, clean month-end close with a team of one or two.
+
+      Closing the books in 5 days
+      Thursday, March 26 - 11:00am PT
+
+      We'll cover:
+      - Getting receipts and memos at the point of spend, not at month end
+      - Accounting-system sync that doesn't need a re-mapping every quarter
+      - What to automate first when finance is one person
+
+      Register: https://brex.com/events/five-day-close
+
+      Also new in Brex: a redesigned accounting page with rule-based GL coding and a QuickBooks and NetSuite sync that runs hourly.
+
+      The Brex Team
+
+      Brex Inc., 650 S 500 W, Salt Lake City, UT 84101. Manage preferences: https://brex.com/e/prefs/4gg7
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-segment-1
+    day: 22
+    time: "11:30"
+    from: {name: "Segment", email: "hello@segment.com"}
+    to: [avery]
+    subject: "One customer data pipeline instead of five integrations"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Every tool your team adds wants the same customer events, and every integration is one more place the data can drift. Segment collects events once and sends them everywhere: your warehouse, your analytics, your CRM, your support tool.
+
+      For startups: the Segment Startup Program gives eligible companies (under $5M raised) $50,000 in credits for the first year, plus partner deals on analytics and warehouse tools.
+
+      Apply: https://segment.com/startups?ref=0318
+
+      Also new: Segment's warehouse-first mode, which reads from your data warehouse rather than requiring SDKs, is generally available.
+
+      The Segment Team
+
+      Twilio Segment, 101 Spear St, San Francisco, CA 94105. Unsubscribe: https://segment.com/u/c2vp
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-pagerduty-1
+    day: 22
+    time: "14:40"
+    from: {name: "PagerDuty", email: "marketing@pagerduty.com"}
+    to: [avery]
+    subject: "On-call that doesn't burn out a 6-person engineering team"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Small engineering teams face a specific on-call problem: everyone is in the rotation, every alert wakes someone up, and the same three people carry most of the load.
+
+      PagerDuty's Professional plan for teams under 20 includes:
+      - Schedules with fair rotation and automatic overrides for time off
+      - Alert grouping that turns 40 alerts into one incident
+      - AI-generated incident summaries and post-incident reviews
+      - Slack-native acknowledgement and escalation
+
+      $21 per user per month, free for 14 days, no credit card.
+
+      Start a trial: https://pagerduty.com/trial?ref=small-teams-0318
+
+      The PagerDuty Team
+
+      PagerDuty, Inc., 600 Townsend St, San Francisco, CA 94103. Unsubscribe: https://pagerduty.com/u/w9hj
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-gusto-2
+    day: 23
+    time: "08:30"
+    from: {name: "Gusto", email: "hello@gusto.com"}
+    to: [avery]
+    subject: "New in Gusto: time tracking, PTO policies, and the Gusto Wallet app"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      A few things that shipped in Gusto this month:
+
+      Time tracking
+      Hourly and salaried employees can log hours from the mobile app; approved hours flow into payroll automatically.
+
+      PTO policies
+      Build accrual rules per employee group, set carryover limits, and see a team calendar of who's out.
+
+      Gusto Wallet
+      Employees can see pay stubs, set savings goals and split direct deposits from a free app. No setup on your side.
+
+      Also: the new hiring checklist walks a new employee through their paperwork, benefits enrollment and direct deposit before day one.
+
+      See what's new: https://gusto.com/product-updates/march-2026
+
+      The Gusto Team
+
+      Gusto, 525 20th St, San Francisco, CA 94107. This is a marketing message. Manage preferences: https://gusto.com/e/prefs/b7c2
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-loom-2
+    day: 23
+    time: "13:10"
+    from: {name: "Loom", email: "team@loom.com"}
+    to: [avery]
+    subject: "Your Loom Business trial ends in 3 days - 30% off if you upgrade now"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Your Loom Business trial ends on March 22. Upgrade before then and take 30% off your first year with code STAY30.
+
+      With Business you keep:
+      - Unlimited recording length and unlimited videos
+      - AI titles, summaries and chapters
+      - Custom branding and password-protected links
+      - Engagement insights: who watched, and how much
+
+      Upgrade: https://loom.com/upgrade?code=STAY30
+
+      If Business isn't the right fit, your recordings stay on the free plan (up to 25 videos, 5 minutes each).
+
+      The Loom Team
+
+      Loom, Inc., 140 2nd St, San Francisco, CA 94105. Unsubscribe: https://loom.com/u/f3n7
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-ashby-2
+    day: 24
+    time: "09:15"
+    from: {name: "Ashby", email: "product@ashbyhq.com"}
+    to: [avery]
+    subject: "Ashby Analytics: a pipeline health dashboard for founders"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      New in Ashby Analytics: a one-page pipeline health view built for founders and hiring managers rather than recruiters.
+
+      For every open role you see: candidates per stage, days in stage against your targets, pass-through rates, and where candidates drop out. Roles that have gone quiet are flagged.
+
+      Also new:
+      - Weekly hiring digest to Slack or email, per role or per department
+      - Source effectiveness: which channels produce hires, not just applicants
+      - Interviewer load balancing to spread interviews across the team
+
+      See the dashboard: https://ashbyhq.com/analytics/pipeline-health
+
+      The Ashby Team
+
+      Ashby, 548 Market St, San Francisco, CA 94104. Manage preferences: https://ashbyhq.com/e/prefs/m0kq
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-vercel-2
+    day: 24
+    time: "12:20"
+    from: {name: "Vercel", email: "newsletter@vercel.com"}
+    to: [avery]
+    subject: "Ship 2026 registration is open, and a Pro plan offer for teams"
+    bulk: true
+    signature: none
+    body: |
+      Ship 2026
+
+      Registration is open for Ship, June 24 in New York and streamed online. Product keynotes, deep-dive sessions on Next.js and the AI SDK, and a hallway track that people tell us is the best part.
+
+      In-person: $199 early bird through April 30. Online: free.
+
+      Register: https://vercel.com/ship?ref=nl-0320
+
+      Pro plan offer
+      Teams moving from Hobby to Pro before April 15 get two months free on an annual plan. Pro includes team collaboration, preview deployments with comments, and 1TB of bandwidth.
+
+      Also this month: Vercel Agent is generally available, and Fluid compute is now the default for all new projects.
+
+      Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723. Unsubscribe: https://vercel.com/e/u/9ppz
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-postman-1
+    day: 24
+    time: "15:45"
+    from: {name: "Postman", email: "help@postman.com"}
+    to: [avery]
+    subject: "Postman for teams: shared workspaces, API docs and monitors from $14/user"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Your engineers probably already use Postman. Postman for teams adds the parts that matter once more than one person owns an API:
+
+      - Shared workspaces with version history
+      - Published API documentation that stays in sync with your collections
+      - Monitors that run your test collections on a schedule and alert on failures
+      - Role-based access for external partners
+
+      Basic team plans start at $14 per user per month. Teams migrating from another API tool get onboarding help at no cost.
+
+      Start a team workspace: https://postman.com/teams?ref=0320
+
+      The Postman Team
+
+      Postman, Inc., 201 Mission St, San Francisco, CA 94105. Unsubscribe: https://postman.com/u/l0sa
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-asana-1
+    day: 25
+    time: "10:00"
+    from: {name: "Asana", email: "hello@asana.com"}
+    to: [avery]
+    subject: "AI Studio is now on Asana Starter: automate the work about work"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      AI Studio lets you build workflows that read incoming requests, fill in the fields, assign an owner and draft a first response, with no code. It's now available on Starter plans.
+
+      Popular starting points:
+      - Triage inbound requests from a form into the right project
+      - Turn meeting notes into tasks with owners and due dates
+      - Generate a weekly status summary for each project
+
+      Asana Starter is $10.99 per user per month. Try it free for 30 days: https://asana.com/ai-studio?ref=starter-0321
+
+      The Asana Team
+
+      Asana, Inc., 633 Folsom St, San Francisco, CA 94107. Unsubscribe: https://asana.com/u/y4dr
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-rippling-2
+    day: 26
+    time: "11:15"
+    from: {name: "Rippling", email: "hello@rippling.com"}
+    to: [avery]
+    subject: "Re: running payroll, IT and benefits in three tools"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Circling back on my note from a couple of weeks ago. I know March is busy.
+
+      We put together a short comparison of what a 12-person company typically pays across separate payroll, benefits and device-management tools versus Rippling's bundled pricing. For most teams your size the bundle comes in 20-30% lower, and the switching is done by our team.
+
+      The free-implementation offer for teams under 50 runs through March 31.
+
+      See the comparison: https://rippling.com/compare/12-person?utm=fu-0322
+      Or book 20 minutes: https://rippling.com/demo?utm=founder-0322
+
+      Best,
+      Owen Park
+      Rippling
+
+      Rippling, 55 2nd St, San Francisco, CA 94105. Unsubscribe: https://rippling.com/u/a1d9
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-notion-3
+    day: 27
+    time: "07:12"
+    from: {name: "Notion", email: "team@mail.notion.so"}
+    to: [avery]
+    subject: "Your Notion workspace in February: 312 pages edited, 4 new databases"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Here's how your workspace was used in February:
+
+      Pages edited: 312
+      New databases: 4
+      Most active page: Eng standup notes
+      AI requests: 190
+
+      Based on this, a few things that might help:
+      - Turn on database automations for your most-edited database to cut manual status updates
+      - Try scheduled agents to summarize the standup notes every Friday
+      - Your workspace is at 8 of 10 guest seats on your plan; Business includes unlimited guests
+
+      Compare plans: https://notion.so/pricing?ref=usage-0323
+
+      The Notion Team
+
+      You're receiving this because you're an admin of a Notion workspace. Unsubscribe: https://mail.notion.so/u/k22pd
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-carta-3
+    day: 27
+    time: "10:30"
+    from: {name: "Carta", email: "events@carta.com"}
+    to: [avery]
+    subject: "Recording + slides: What Series A cap tables look like in 2026"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Thanks to the 600+ founders who joined our session on Series A cap tables. The recording and the data slides are now available.
+
+      Watch the recording: https://events.carta.com/r/sa-captables-0312/recording
+      Download the slides: https://events.carta.com/r/sa-captables-0312/slides
+
+      A few numbers from the session:
+      - Median founder team ownership after the A: 53%
+      - Median employee equity pool after the A: 12%
+      - Median number of investors on a Series A cap table: 9
+
+      Next up: "Board meetings that work" with two independent directors, Thursday April 9, 10:00am PT. Register: https://events.carta.com/r/board-0409
+
+      The Carta Events Team
+
+      Carta, 333 Bush Street, San Francisco, CA 94104. Unsubscribe: https://events.carta.com/u/8xk2a
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-amplitude-1
+    day: 27
+    time: "14:00"
+    from: {name: "Amplitude", email: "hello@amplitude.com"}
+    to: [avery]
+    subject: "Amplitude Startup Scholarship: 1 year free for companies under $10M raised"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      The Amplitude Startup Scholarship gives eligible companies our Growth plan free for a year: product analytics, session replay, feature flags and experimentation, up to 200,000 monthly tracked users.
+
+      Eligibility: under $10M raised, fewer than 20 employees, not a current customer.
+
+      Apply in five minutes: https://amplitude.com/startups?ref=0323
+
+      Also new: Amplitude AI Agents watch your product data and surface changes you didn't ask about, like a drop in activation for one customer segment.
+
+      The Amplitude Team
+
+      Amplitude, Inc., 201 3rd St, San Francisco, CA 94103. Unsubscribe: https://amplitude.com/u/k7pe
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-linear-3
+    day: 28
+    time: "09:05"
+    from: {name: "Linear", email: "hello@linear.app"}
+    to: [avery]
+    subject: "Linear Changelog: Cycle insights, sub-team views, and Linear for Sales"
+    bulk: true
+    signature: none
+    body: |
+      This week in Linear
+
+      Cycle insights
+      Every completed cycle now gets a summary: planned vs. shipped, scope added mid-cycle, and the issues that carried over. Compare cycles side by side.
+
+      Sub-team views
+      Large teams can define sub-teams with their own views and triage without splitting the issue database.
+
+      Linear for Sales
+      A lightweight view for account teams: see the status of every customer-linked issue without a full Linear seat. Included with Business plans.
+
+      Also shipped: Asks in Slack now supports threads as issues, and the Notion integration embeds issue lists in pages.
+
+      Full changelog: https://linear.app/changelog/2026-03-24
+
+      Manage email preferences or unsubscribe: https://linear.app/e/pref/9m1kd
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-github-2
+    day: 28
+    time: "12:40"
+    from: {name: "GitHub", email: "noreply@github.com"}
+    to: [avery]
+    subject: "GitHub Universe 2026: early registration and a call for talks"
+    bulk: true
+    signature: none
+    body: |
+      GitHub Universe 2026
+      October 28-29, Fort Mason, San Francisco
+
+      Early registration is open. In-person passes are $799 through May 31 (regular $1,199); the online pass is free.
+
+      The call for talks is also open through April 30. We're looking for sessions on AI-assisted development in production, security at small teams, and open-source maintenance.
+
+      Register or submit a talk: https://githubuniverse.com?ref=nl-0324
+
+      Also this month: GitHub Copilot's coding agent is now available on all Team plans, and Actions has a new spend dashboard.
+
+      GitHub, Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107. Manage email preferences: https://github.com/settings/emails
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-slack-3
+    day: 29
+    time: "08:00"
+    from: {name: "Slack", email: "feedback@slack.com"}
+    to: [avery]
+    subject: "Last week for the Business+ offer, plus your workspace's February recap"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      A quick recap of your Slack workspace in February:
+
+      Messages sent: 9,840
+      Most active channel: #eng
+      Huddles: 61
+      Files shared: 412
+
+      And a reminder: the Business+ at the Pro price offer for your workspace ends March 31. Business+ adds SSO, data exports, a 99.99% uptime SLA and Slack AI for every member.
+
+      Compare plans: https://slack.com/pricing?offer=bplus-pro
+
+      Tip: pin your team's canvas of standing links to #general so nobody has to ask for the Zoom link again.
+
+      The Slack Team
+
+      Slack Technologies, LLC, 415 Mission St, San Francisco, CA 94105. Manage email preferences: https://slack.com/prefs/e/7lm3
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-figma-3
+    day: 29
+    time: "11:00"
+    from: {name: "Figma", email: "news@figma.com"}
+    to: [avery]
+    subject: "Config early-bird pricing ends March 31"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Early-bird tickets for Config 2026 (May 5-7, San Francisco) end March 31. After that, tickets go to the regular price of $749.
+
+      Early bird: $499
+      Team packs (5+): $399 each
+
+      The first speakers are announced: design leaders from three of the largest software companies, two founders building design tools, and a keynote on where AI-generated interfaces are actually good.
+
+      Get your ticket: https://config.figma.com/tickets?src=eb26-last
+
+      Not traveling? Main-stage talks stream free; register for the online pass at the same link.
+
+      The Figma Team
+
+      Figma, Inc. 760 Market St, San Francisco, CA. Manage preferences: https://figma.com/e/prefs/w7q2
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}
+
+  - id: mkt-pulley-1
+    day: 30
+    time: "08:40"
+    from: {name: "Pulley", email: "hello@pulley.com"}
+    to: [avery]
+    subject: "Cap table management shouldn't cost more than your first hire"
+    bulk: true
+    signature: none
+    body: |
+      Hi Avery,
+
+      Founders tell us their cap table tool got expensive the moment they had employees. Pulley's pricing is flat by stage, not by stakeholder, and includes annual valuation reports, option grants with e-signature, and scenario modeling for your next round.
+
+      For companies under 25 stakeholders: $1,200 per year, all in.
+
+      Switching from another platform? We import your cap table and grant history for free and have you live in a week.
+
+      See pricing: https://pulley.com/pricing?ref=founder-0326
+      Book a 15-minute walkthrough: https://pulley.com/demo
+
+      The Pulley Team
+
+      Pulley, 548 Market St, San Francisco, CA 94104. Unsubscribe: https://pulley.com/u/n3zt
+    labels: {kind: marketing, must_not: true, reason: marketing, classification_case: null, expected: null}

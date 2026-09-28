@@ -1,0 +1,78 @@
+thread_id: t-internal-pr-512-idoc-parser
+subject: "PR #512 - SAP IDoc parser (DELVRY03), mapping-table driven"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_by_team
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [other:pr-512-idoc-parser]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 7
+    time: "14:40"
+    from: arjun
+    to: [felix, kofi]
+    cc: [jordan, avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi both,
+
+      https://github.com/tessera-io/platform/pull/512
+
+      This is the first half of the Northstar SAP connector: a parser for DELVRY03 IDocs that is driven entirely by the field-mapping table Hana is producing with the Fresno planners. The parser itself knows nothing about Northstar; every field name, unit and default lives in connectors/sap/mappings/northstar-fresno.yaml, so a second plant is a second file.
+
+      Please read in this order:
+      1. connectors/sap/mapping_loader.py - validates the table against the IDoc segment schema at load time, so a typo in the mapping fails at startup instead of at 02:00 on cutover night.
+      2. connectors/sap/idoc.py - the segment iterator. It streams; a 40 MB IDoc batch does not get loaded into memory.
+      3. tests/connectors/sap/ - 31 fixtures from Northstar's sandbox, including the two malformed ones their team sent us on purpose.
+
+      WHSCON is a follow-up PR; the loader is shared. Runbook page for operators is drafted: https://runbooks.tessera.io/connectors/sap-idoc
+
+      It is ~900 lines with tests, so take your time; I would like it merged by Thursday so Carmen can point the regression suite at it.
+
+      Thanks,
+  - id: m2
+    beat_ref: null
+    day: 8
+    time: "09:10"
+    from: felix
+    to: [arjun]
+    cc: [kofi, jordan, avery]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      read all 3. lgtm, approved.
+
+      one nit, non blocking: the segment iterator allocs a dict per segment, fine at 40mb but worth a slots class later. left a comment. also the malformed fixture #2 error message says "segement". typo, but customers will see it.
+
+      Felix
+  - id: m3
+    beat_ref: null
+    day: 8
+    time: "10:05"
+    from: arjun
+    to: [felix]
+    cc: [kofi, jordan, avery]
+    reply_to: m2
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Typo fixed (good catch, that string is customer-visible), slots noted as TES-436 for after go-live. Kofi gave a thumbs-up in the PR. Merged at 10:00. WHSCON next.
+
+      Thanks,

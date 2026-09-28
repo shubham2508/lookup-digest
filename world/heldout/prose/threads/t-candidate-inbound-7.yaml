@@ -1,0 +1,40 @@
+thread_id: t-candidate-inbound-7
+subject: "Platform engineer - Tessera"
+storyline: null
+category: hiring
+labels:
+  kind: thread
+  must_not: true
+  reason: routed_to_jordan
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [candidate:beatriz-costa]
+    ball_awaiting: other
+    closed_by_courtesy: false
+    sender_relationship: {category: hiring, subtype: candidate, stage: applied}
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 28
+    time: "12:40"
+    from: {name: "Beatriz Costa", email: "beatriz.costa.eng@gmail.com"}
+    to: [avery]
+    cc: [jordan]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      Hi Avery, hi Jordan,
+
+      I applied this morning for the backend engineer role through Ashby and am writing here as well because a former colleague, now at Halberd, told me the team is small enough that the founders still read these. If that is not true anymore, apologies for the noise.
+
+      I am a platform engineer (Kubernetes, Postgres, observability) with seven years at two industrial IoT companies, most recently owning the ingest and alerting stack for about 2,000 connected machines. I am looking for a smaller team where the infrastructure decisions are still being made rather than inherited.
+
+      Everything else is in the application. Thank you for reading.
+
+      Beatriz

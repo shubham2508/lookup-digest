@@ -1,0 +1,44 @@
+thread_id: t-ipv-diligence-date
+subject: "Technical diligence - Friday 3/27 instead of Tuesday?"
+storyline: S2
+category: investors_board
+labels: null
+messages:
+  - id: m1
+    beat_ref: S2.b2
+    day: 27
+    time: "14:05"
+    from: marcus
+    to: [avery]
+    cc: [julia, owen]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      Can we pull technical diligence forward to Friday, March 27, 11am? Julia Brandt, our operating partner for go-to-market, wants to sit in, and she is traveling the week of the 30th. Same dial-in, still an hour.
+
+      Copying Julia and Owen.
+
+      Separately: Owen has the data-room index you sent Friday. Nothing further needed on that.
+
+      Marcus
+  - id: m2
+    beat_ref: S2.b3
+    day: 27
+    time: "18:20"
+    from: avery
+    to: [marcus]
+    cc: [julia, owen, priya]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      Friday 11 works. Julia, welcome — Priya will be on too, the architecture side is hers.
+
+      Owen, could you update the calendar hold so we're all looking at the same time?
+
+      Avery

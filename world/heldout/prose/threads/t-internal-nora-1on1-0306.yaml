@@ -1,0 +1,60 @@
+thread_id: t-internal-nora-1on1-0306
+subject: "1:1 notes - Mar 6"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: last_word_avery
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [other:nora-1on1-notes]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 10
+    time: "12:05"
+    from: nora
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      Notes from this morning, all owned by me unless marked:
+
+      | Item | Status | Next |
+      |---|---|---|
+      | February close | Done Mar 5 | Package posted to the finance folder Monday |
+      | K-1s for the seed angels | Ledgerline on track | Out by Mar 31 |
+      | New bank (Cascade Community Bank) | Receivables live since Feb 20 | Payroll funding moves to Cascade with the Mar 25 run; I'll watch the first debit |
+      | Laptops (Kofi, Carmen) | Ordered Mar 2, $5,911.24 | ETA week of Mar 23 |
+      | Parking hangtags | Ordered from the new lot vendor | Pick-up when they land |
+      | Q1 estimated taxes | Dennis to confirm the figure | Scheduled with Ledgerline, no signature needed |
+      | 2FA keys | 9 of 12 collected | Reminder in April |
+
+      One flag, not an ask: the office lease has a renewal option window starting in June; the property manager will send the formal notice at some point. I'll handle the paperwork when it arrives and bring you the numbers then.
+
+      Have a good weekend,
+  - id: m2
+    beat_ref: null
+    day: 10
+    time: "13:10"
+    from: avery
+    to: [nora]
+    cc: []
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      thanks nora, all good on my side. enjoy the weekend.

@@ -1,0 +1,48 @@
+thread_id: t-internal-eng-week-0306
+subject: "Eng week in review - Mar 6"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: internal_fyi
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [report:eng-week-review]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: exec}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 10
+    time: "17:20"
+    from: jordan
+    to: [eng_list]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Shipped:
+      - Release 2026.03.1 on Monday: spec references, export history, grouped late-lot alerts. Zero incidents; two support cases were people asking whether the grouping was a bug. It is not.
+      - SAP IDoc parser for DELVRY03, #512 (Arjun). Merged Wednesday. Mapping table v1 from Hana's Fresno workshop loads clean.
+      - SSO on GitHub enforced Monday. One person locked out for eleven minutes; it was me.
+
+      In progress:
+      - WHSCON parser (Arjun), PR next week.
+      - Export scheduler retries (Kofi), #538 up for review Tuesday.
+      - Connector regression suite: 25 of 40 cases, now running against the real parser (Carmen).
+      - Audit log export (Felix), stretch, started.
+
+      Watching:
+      - Ingest p95 back down to ~600ms after Arjun rebuilt the index on the new field. Closed.
+      - Sentry noise: the overnight pager is too chatty. Arjun is re-tiering alerts; I'm going to pull an on-call and infra review together for mid-March to look at it properly.
+
+      Reminder: hack day is Thursday the 12th, demos at 17:00, Avery is judging. No prep, that's the point.
+
+      Good weekend.

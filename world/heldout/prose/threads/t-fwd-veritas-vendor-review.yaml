@@ -1,0 +1,178 @@
+thread_id: t-fwd-veritas-vendor-review
+subject: "Fwd: Q1 true-up invoice - questions from Finance"
+storyline: S6
+category: customers
+labels: null
+messages:
+  - id: m1
+    beat_ref: S6.b22
+    day: 29
+    time: "22:05"
+    from: tomas
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of:
+      - from: hugo
+        day: 20
+        time: "10:20"
+        to: [leo]
+        cc: [dmitri, tomas]
+        subject: "Q1 true-up invoice - questions from Finance"
+        body: |
+          Dear Leo,
+
+          As part of our quarterly close I have three questions on the Q1 true-up invoice (TS-1172): first, the seat count used for the true-up appears to include the six Line 4 seats that were ordered separately under PO 88-4471; second, the proration for February does not match our records; third, we have not seen the service credit that was agreed after the January outage. I would be grateful for a reconciliation before we can approve payment.
+
+          Regards,
+          Hugo Lambert
+          Finance Director, Veritas Components
+      - from: leo
+        day: 20
+        time: "14:05"
+        to: [hugo]
+        cc: [dmitri, tomas]
+        subject: "Re: Q1 true-up invoice - questions from Finance"
+        body: |
+          Hi Hugo,
+
+          Thanks for the detailed look. Quick answers: (1) you're right, the six Line 4 seats should not be in the true-up count since they're billed under the PO, we'll correct that; (2) February proration was computed from Feb 3 rather than Feb 9, our miss, will fix; (3) the January service credit ($1,850) hasn't been issued yet, I'm checking with Nora on the cleanest way. Quick win: we could net it against the corrected true-up so you only process one document.
+
+          Leo Marchetti | Account Executive | Tessera
+      - from: hugo
+        day: 21
+        time: "09:40"
+        to: [leo]
+        cc: [dmitri, tomas]
+        subject: "Re: Q1 true-up invoice - questions from Finance"
+        body: |
+          Leo,
+
+          The netting approach is acceptable provided the credit is documented in a separate credit memo for our records, and the corrected invoice references the memo number. Please also confirm the corrected true-up amount in writing before issuing.
+
+          Regards,
+          Hugo Lambert
+      - from: leo
+        day: 22
+        time: "11:15"
+        to: [hugo]
+        cc: [dmitri, tomas]
+        subject: "Re: Q1 true-up invoice - questions from Finance"
+        body: |
+          Hi Hugo,
+
+          Attached: credit memo CM-0211 ($1,850, January service credit) and corrected invoice TS-1172-R1 for $9,430 net, referencing CM-0211. Seat count and proration fixed per your notes. Nora reviewed both.
+
+          Leo
+      - from: hugo
+        day: 22
+        time: "16:30"
+        to: [leo]
+        cc: [dmitri, tomas]
+        subject: "Re: Q1 true-up invoice - questions from Finance"
+        body: |
+          Received, thank you. Approved for payment on our side.
+
+          Hugo Lambert
+      - from: anika
+        day: 23
+        time: "13:10"
+        to: [hana]
+        cc: [leo, tomas]
+        subject: "Re: Q1 true-up invoice - questions from Finance"
+        body: |
+          Hello Hana,
+
+          While this thread is open with the right people on it: Quality would like an automatic lot hold. When a lot fails incoming inspection (recorded in our QMS with the disposition code), we would like the scheduler to block that lot from being released to Line 4 until the disposition is cleared. Reference: VC-QS-114 rev D, section 6.2 (nonconforming material control).
+
+          Is this something the product does today, and if not, what would it take?
+
+          Regards,
+          Anika Berg | Quality Systems | Veritas Components
+      - from: hana
+        day: 23
+        time: "17:20"
+        to: [anika]
+        cc: [leo, tomas]
+        subject: "Re: Q1 true-up invoice - questions from Finance"
+        body: |
+          Hi Anika,
+
+          Today:
+          - a lot can be put on hold manually (Lot → Hold), which blocks release; supervisors see a red banner
+          - there is no automatic hold driven by an external disposition code
+
+          New (what you are asking for):
+          - an inbound "disposition" field per lot, set via CSV import or API
+          - a rule: disposition in {NCR-open, quarantine} → hold
+
+          To size it I need: how many holds per month, and whether your QMS can export dispositions on a schedule. I will bring a sketch to the QBR on **Wednesday, April 8**.
+
+          Hana Okada
+          Solutions Engineering, Tessera
+      - from: anika
+        day: 24
+        time: "10:05"
+        to: [hana]
+        cc: [leo, tomas]
+        subject: "Re: Q1 true-up invoice - questions from Finance"
+        body: |
+          Hana,
+
+          Roughly 6–10 holds per month. February lots with an open NCR at the time of release: 26011-A, 26014-C, 26019-B, 26022-A. Our QMS can export a CSV nightly; the API would need IT involvement.
+
+          Anika
+      - from: hana
+        day: 27
+        time: "09:50"
+        to: [anika]
+        cc: [leo, tomas]
+        subject: "Re: Q1 true-up invoice - questions from Finance"
+        body: |
+          Hi Anika,
+
+          Logged as a feature request (FR-318, "automatic lot hold from disposition"). Product review is in April; I will confirm the timing by **Friday, April 3**. The nightly CSV is enough for a first version.
+
+          Hana
+      - from: hugo
+        day: 27
+        time: "16:45"
+        to: [leo]
+        cc: [dmitri, anika, tomas]
+        subject: "Re: Q1 true-up invoice - questions from Finance"
+        body: |
+          Dear Leo,
+
+          One further item, unrelated to the invoice. As part of our annual vendor review, Veritas will be consolidating its software suppliers for the coming fiscal year. Tessera's renewal will therefore go through the formal vendor review this quarter rather than being extended on the current terms. Procurement will send the supplier questionnaire in April, and I would ask that any renewal proposal be held until the review has concluded.
+
+          Regards,
+          Hugo Lambert
+          Finance Director, Veritas Components
+      - from: leo
+        day: 28
+        time: "08:30"
+        to: [hugo]
+        cc: [dmitri, anika, tomas]
+        subject: "Re: Q1 true-up invoice - questions from Finance"
+        body: |
+          Hi Hugo,
+
+          Understood, and happy to support the review however is easiest for your team. Send the questionnaire whenever it's ready and we'll turn it around quickly. In the meantime everything on the account keeps running as normal: the Line 4 seats are live and TS-1172-R1 is settled.
+
+          Leo Marchetti | Account Executive | Tessera
+      - from: anika
+        day: 29
+        time: "15:35"
+        to: [hana]
+        cc: [leo, tomas]
+        subject: "Re: Q1 true-up invoice - questions from Finance"
+        body: |
+          Hana,
+
+          Two more February lots for the list: 26025-C and 26027-A. Also, when the hold flag exists, could it appear as a column in the CSV export so our auditors can see it?
+
+          Anika
+    signature: default
+    body: |
+      thoughts?

@@ -1,0 +1,51 @@
+thread_id: t-tomas-pipeline-weekly-1
+subject: "Pipeline Monday!! (week of Mar 2)"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: routine_pipeline_fyi
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [report:pipeline-weekly]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: exec}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 6
+    time: "08:30"
+    from: tomas
+    to: [avery]
+    cc: [leo, hana]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Happy Monday!!
+
+      March! Here's the rundown for the week. Nothing in here needs anything from anyone, I just like everyone starting the week on the same page.
+
+      NORTHSTAR - Elise is sending the Fresno contact list this morning and Hana will line up the field-mapping workshop with the planners this week. April 1 for the SAP connector is the date on everyone's whiteboard and I have not heard a single wobble from their side. Elise is a joy to work with, honestly. If every procurement lead ran their inbox like her we would all be home by five.
+
+      HALBERD - the February usage report went to Greta on Thursday with the line-by-line notes, so Martin has it ahead of their budget meeting on the 5th. Greta also asked for the renewal paperwork for the May 1 anniversary, so I'm putting the proposed terms together with Reno folded in. Line 3 is the one to watch: usage dipped a little while Sanjay's team preps the MES upgrade, which is normal for a prep window and I flagged it in the report before anyone else could.
+
+      VERITAS - Anika's spec-reference field went live last week and the AS9100 auditor is apparently a happy person now. Dmitri sent Hana a gif. That is what a healthy account looks like!! Renewal is June, nothing to do until the QBR.
+
+      COASTLINE - second corrugator line has been on the platform since mid-February and the exception counts are exactly where we said they'd be. Hana's doing a quarterly check-in with them in a couple of weeks.
+
+      PINEWOOD DAIRY COOPERATIVE - NEW!! Inbound from the website Friday night (10:48pm, which tells you something about dairy hours). Lucia Ferraro, VP Operations, four plants across the Central Valley, wants to talk implementation time and references. Leo has a discovery call booked for Thursday and I'll sit in the back and behave.
+
+      Numbers: 11 open opportunities, $1.3M weighted (up from $1.1M at the start of Feb), 2 pilots in scoping. If Pinewood turns into a pilot we're at three and I definately think it does.
+
+      Also! I'm working up a spring events list (two regional manufacturing shows, a customer roundtable, one podcast that keeps emailing me). More when it's ready.
+
+      Have a great week!!
+
+      Tomás

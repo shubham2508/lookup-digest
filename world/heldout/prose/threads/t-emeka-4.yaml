@@ -1,0 +1,35 @@
+thread_id: t-emeka-4
+subject: "20 min thursday?"
+storyline: BG-emeka
+category: vendors_misc
+labels:
+  kind: thread
+  must_not: false
+  reason: null
+  classification_case: mentor_by_behavior
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [meeting:emeka-catchup]
+    ball_awaiting: avery
+    closed_by_courtesy: false
+    sender_relationship: {category: network, subtype: mentor}
+    asks: [{to_avery: true, kind: meeting, deadline_day: 30, status: open}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 29
+    time: "08:25"
+    from: emeka
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      got 20 minutes Thursday afternoon? I want to hear where the IPV term sheet landed, and I have a thought on the option pool you should hear before the A closes rather than after.
+
+      small thought. bad timing if it's late.

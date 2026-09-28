@@ -1,0 +1,37 @@
+thread_id: t-internal-team-lunch
+subject: "team lunch friday 12:30 (no need to reply)"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: internal_fyi
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: social
+    about: [other:team-social]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 9
+    time: "12:15"
+    from: kofi
+    to: [team_list]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi all,
+
+      Team lunch tomorrow (Friday) 12:30 at Taqueria Los Comales on 14th, the one with the big table in the back. I've booked the big table for 12, which is optimistic, so if you're in just show up, no need to reply to this and please don't reply-all, Nora has asked me to say that specifically.
+
+      It's on the team card (Nora said the March social budget covers it, I checked first, I'm learning).
+
+      If you're remote or heads-down, no worries at all, there will be other tacos.

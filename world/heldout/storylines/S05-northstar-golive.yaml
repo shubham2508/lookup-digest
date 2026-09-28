@@ -1,0 +1,258 @@
+id: S5
+name: northstar-golive
+reviewed: false
+tier_truth: P1
+summary: >
+  Northstar Foods is the healthiest reference customer this month: procurement lead Elise Moreau emails on a steady
+  ~3-day cadence all month (inbound days 2, 6, 9, 13, 16, 17, 20, 23, 27, 29: SAP connector go-live planning with
+  Hana, a pen-test summary for their vendor security file sent by Arjun on day 16, an invoice reissue closed by Nora,
+  scheduler training for the Fresno planners). On Wednesday day 29 at 13:52 Elise asks Avery whether the April 1 SAP
+  connector go-live is still on; her ops council meets Friday 7am and she needs to confirm by end of Thursday.
+  eng-standup.md (Tue day 28, 09:40) says the connector is on track for Apr 1 with two non-blocking issues. Plant Ops
+  Digest #112 (day 29 06:45) reports Northstar's Fresno plant digitization without naming Tessera. tasks.md task 4
+  ("Send Northstar the pen-test summary", due day 16) and avery-todos.md ("pen-test summary to Northstar", day 20) are
+  both stale: Arjun sent it on day 16 and Elise confirmed receipt the same afternoon (tasks-vs-email contradiction
+  about report:pentest-northstar). Tests: same-day `reply` grounded in the note; the news item attaches to the
+  rollout; the closed pen-test thread (Priya's "+1" FYI cc is its last message) and the invoice thread must not
+  surface; the cadence must NOT be flagged as a drop; the stale task is a contradiction, never a to-do.
+
+threads:
+  - {id: t-northstar-connector-plan, subject: "SAP connector go-live - Apr 1 plan and owners",   category: customers}
+  - {id: t-northstar-invoice,        subject: "Invoice TS-1187 - bill-to entity",               category: customers}
+  - {id: t-northstar-pentest,        subject: "Pen-test summary for our vendor security file",  category: customers}
+  - {id: t-northstar-training,       subject: "Scheduler training for the Fresno planners",     category: customers}
+  - {id: t-northstar-golive,         subject: "April 1 - still on?",                            category: customers}
+newsletters:
+  - {id: nl-plantops-112, publication: "Plant Ops Digest", day: 29, time: "06:45", category: newsletters,
+     sender: {name: "Plant Ops Digest", email: "weekly@plantopsdigest.com"},
+     items: [{headline_hint: "Northstar Foods brings SAP-connected scheduling to Fresno", attaches_to: [rollout:northstar:apr-1]},
+             {headline_hint: "FSMA 204 traceability compliance clock", attaches_to: []},
+             {headline_hint: "Predictive maintenance ROI survey (140 plants)", attaches_to: []}]}
+
+beats:
+  # baseline cadence (Elise inbound days 2, 6, 9, 13, 16, 17, 20, 23, 27, 29 → steady ~3-day gaps, no drop)
+  - {ref: S5.b1,  day: 2,  time: "09:35", source: email, thread: t-northstar-connector-plan, from: elise, to: [avery], cc: [tomas, hana],
+     event: "proposes April 1 as the SAP connector go-live at Fresno; asks who owns the plan and whether Avery joins the weekly call", must_include: ["April 1"]}
+  - {ref: S5.b2,  day: 2,  time: "13:20", source: email, thread: t-northstar-connector-plan, from: avery, to: [elise], cc: [tomas, hana],
+     event: "confirms April 1; Hana owns the plan; Avery joins the weekly call", must_include: ["April 1"]}
+  - {ref: S5.b3,  day: 6,  time: "10:05", source: email, thread: t-northstar-connector-plan, from: elise, to: [hana], cc: [avery],
+     event: "sends the Fresno contact list (Rosa Jimenez); asks for the field-mapping workshop date and a template"}
+  - {ref: S5.b4,  day: 6,  time: "15:40", source: email, thread: t-northstar-connector-plan, from: hana, to: [elise], cc: [avery],
+     event: "workshop Thu Mar 5; mapping template attached; checklist"}
+  - {ref: S5.b5,  day: 9,  time: "17:10", source: email, thread: t-northstar-connector-plan, from: elise, to: [hana], cc: [avery],
+     event: "workshop went well; no open questions; Rosa will send plant codes; nothing needed"}
+  - {ref: S5.b6,  day: 13, time: "09:10", source: email, thread: t-northstar-pentest, from: elise, to: [avery], cc: [hana],
+     event: "asks for the pen-test summary for their vendor security file by Thu the 12th", must_include: ["pen-test summary"]}
+  - {ref: S5.b7,  day: 13, time: "12:40", source: email, thread: t-northstar-pentest, from: avery, to: [elise], cc: [hana, arjun],
+     event: "Arjun ran point on the test and will send the summary by Thursday"}
+  - {ref: S5.b8,  day: 16, time: "10:25", source: email, thread: t-northstar-pentest, from: arjun, to: [elise], cc: [avery, hana],
+     event: "sends the pen-test summary (PDF), scope, findings by severity, remediation status; trust-portal link for the full report",
+     must_include: ["pen-test summary"]}
+  - {ref: S5.b9,  day: 16, time: "15:30", source: email, thread: t-northstar-pentest, from: elise, to: [arjun], cc: [avery, hana],
+     event: "received, forwarded to security, marked complete — courtesy close"}
+  - {ref: S5.b10, day: 17, time: "08:05", source: email, thread: t-northstar-pentest, from: priya, to: [arjun], cc: [elise, avery, hana],
+     event: "'+1, clean summary' — FYI-only cc reply on a closed thread (must-not: Priya FYI cc)", must_include: ["+1"]}
+  - {ref: S5.b11, day: 17, time: "10:15", source: email, thread: t-northstar-invoice, from: victor, to: [nora], cc: [elise, avery],
+     event: "invoice TS-1187 names the wrong bill-to entity; asks for a reissue to Northstar Foods Manufacturing LLC (Fresno)"}
+  - {ref: S5.b12, day: 17, time: "13:30", source: email, thread: t-northstar-invoice, from: nora, to: [victor], cc: [elise, avery],
+     event: "reissued as TS-1187-R1; table inline"}
+  - {ref: S5.b13, day: 17, time: "15:20", source: email, thread: t-northstar-invoice, from: elise, to: [nora], cc: [victor, avery],
+     event: "thanks, all set — courtesy close", must_include: ["Thanks"]}
+  - {ref: S5.b14, day: 20, time: "14:05", source: email, thread: t-northstar-training, from: elise, to: [hana], cc: [avery, rosa],
+     event: "asks for scheduler training for nine Fresno planners in the week of Mar 23; introduces Rosa as coordinator"}
+  - {ref: S5.b15, day: 20, time: "16:50", source: email, thread: t-northstar-training, from: hana, to: [elise], cc: [avery, rosa],
+     event: "offers Tue Mar 24 09:00 and Thu Mar 26 13:00; agenda; quick guide the day before"}
+  - {ref: S5.b16, day: 23, time: "09:05", source: email, thread: t-northstar-connector-plan, from: elise, to: [avery], cc: [hana, tomas],
+     event: "check-in: UAT 3 of 5 scenarios passed; asks Avery to confirm nothing else is outstanding after the corrected invoice cleared — mixed topics", hardness: [mixed_topics]}
+  - {ref: S5.b17, day: 23, time: "12:30", source: email, thread: t-northstar-connector-plan, from: avery, to: [elise], cc: [hana, tomas],
+     event: "nothing outstanding; Nora confirms TS-1187 settled; UAT looks good"}
+  - {ref: S5.b18, day: 24, time: "11:30", source: email, thread: t-northstar-training, from: rosa, to: [hana], cc: [avery, elise],
+     event: "takes Tue Mar 24 for nine planners; how-to question about the two dates on the clock icon (screenshot described)"}
+  - {ref: S5.b19, day: 24, time: "13:45", source: email, thread: t-northstar-training, from: hana, to: [rosa], cc: [avery, elise],
+     event: "confirmed; quick guide attached; answers the clock-icon question; Avery has nothing to do"}
+  - {ref: S5.b20, day: 27, time: "10:40", source: email, thread: t-northstar-connector-plan, from: elise, to: [hana], cc: [avery],
+     event: "asks for the cutover checklist and the freeze window"}
+  - {ref: S5.b21, day: 27, time: "15:10", source: email, thread: t-northstar-connector-plan, from: hana, to: [elise], cc: [avery],
+     event: "checklist attached; freeze Mon Mar 30 17:00 → Wed Apr 1 06:00; go-live call Apr 1 06:00; Avery has nothing to do"}
+  # the trap
+  - {ref: S5.b22, day: 29, time: "13:52", source: email, thread: t-northstar-golive, from: elise, to: [avery], cc: [],
+     event: "asks whether the April 1 SAP connector go-live is still on; ops council meets Friday 7am; needs to confirm by end of Thursday; Rosa heard about 'a couple of open issues' at Tuesday's training",
+     must_include: ["April 1", "still on", "by end of Thursday"], hardness: [indirect_phrasing]}
+  - {ref: S5.b23, day: 29, time: "06:45", source: newsletter, newsletter: nl-plantops-112, from: {name: "Plant Ops Digest", email: "weekly@plantopsdigest.com"},
+     event: "Plant Ops Digest #112: Northstar's Fresno plant goes SAP-connected (vendor unnamed); FSMA 204 clock; PdM ROI survey",
+     must_include: ["Northstar Foods", "Fresno"]}
+  - {ref: S5.n1, day: 28, time: "09:40", source: note, note: eng-standup.md,
+     event: "standup notes: Northstar SAP connector on track for Apr 1; two non-blocking issues (Carmen); Halberd Line 3 MES upgrade Wed evening, Arjun on call",
+     must_include: ["on track for Apr 1", "non-blocking"]}
+
+labels:
+  - thread: t-northstar-connector-plan
+    category: customers
+    storyline: S5
+    must_not_surface: true
+    must_not_reason: last_word_by_team_no_open_ask
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: commitment_update
+      about: [rollout:northstar:apr-1]
+      ball_awaiting: nobody
+      closed_by_courtesy: false
+      sender_relationship: {category: customer, subtype: reference, stage: active}
+      asks: [{to_avery: true, kind: information, status: answered}]
+      claims: [{subject: rollout_date, value: "April 1"}]
+      suspicious: false
+  - thread: t-northstar-invoice
+    category: customers
+    storyline: S5
+    must_not_surface: true
+    must_not_reason: closed_by_courtesy
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [invoice:northstar:ts-1187]
+      ball_awaiting: nobody
+      closed_by_courtesy: true
+      sender_relationship: {category: customer, subtype: reference_ic, stage: active}
+      asks: [{to_avery: false, kind: other, status: answered}]
+      suspicious: false
+  - thread: t-northstar-pentest
+    category: customers
+    storyline: S5
+    must_not_surface: true
+    must_not_reason: priya_fyi_cc_closed
+    classification_case: resolved_reference_customer_thread
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [report:pentest-northstar]
+      ball_awaiting: nobody
+      closed_by_courtesy: true
+      sender_relationship: {category: customer, subtype: reference, stage: active}
+      asks: [{to_avery: true, kind: information, deadline_day: 16, status: answered}]
+      commitments: [{owner: other, about: report:pentest-northstar, due_day: 16, status_in_thread: fulfilled, fulfilled_by_source: t-northstar-pentest}]
+      suspicious: false
+    messages:
+      - {beat_ref: S5.b8,  day: 16, time: "10:25", from: arjun, to: [elise], cc: [avery, hana], must_include: ["pen-test summary"]}
+      - {beat_ref: S5.b10, day: 17, time: "08:05", from: priya, to: [arjun], cc: [elise, avery, hana], must_include: ["+1"]}
+  - thread: t-northstar-training
+    category: customers
+    storyline: S5
+    must_not_surface: true
+    must_not_reason: handled_by_team
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [rollout:northstar:apr-1]
+      ball_awaiting: nobody
+      closed_by_courtesy: false
+      sender_relationship: {category: customer, subtype: reference, stage: active}
+      asks: [{to_avery: false, kind: meeting, status: answered}, {to_avery: false, kind: information, status: answered}]
+      schedule_mentions: [{action: confirmed, participants: [hana, rosa], when_day: 28, when_time: "09:00"}]
+      suspicious: false
+  - thread: t-northstar-golive
+    category: customers
+    storyline: S5
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [rollout:northstar:apr-1]
+      ball_awaiting: avery
+      closed_by_courtesy: false
+      sender_relationship: {category: customer, subtype: reference, stage: active}
+      asks: [{to_avery: true, kind: information, deadline_day: 30, status: open}]
+      suspicious: false
+    messages:
+      - {beat_ref: S5.b22, day: 29, time: "13:52", from: elise, to: [avery], must_include: ["April 1", "still on", "by end of Thursday"]}
+  - newsletter: nl-plantops-112
+    category: newsletters
+    storyline: S5
+    expected:
+      type: newsletter
+      news_items:
+        - {headline_hint: "Northstar Foods Fresno SAP-connected scheduling", topics: [customers, plant-digitization], entities: [Northstar Foods], attaches_to: [rollout:northstar:apr-1]}
+        - {headline_hint: "FSMA 204 traceability compliance date", topics: [food-safety, regulation], entities: [], attaches_to: []}
+        - {headline_hint: "predictive maintenance ROI survey", topics: [maintenance], entities: [], attaches_to: []}
+  - note: eng-standup.md
+    storyline: S5
+    expected:
+      type: note
+      note_kind: status
+      about: [rollout:northstar:apr-1, other:halberd-line3-mes-upgrade]
+      claims: [{subject: northstar_connector_status, value: "on track for Apr 1"}]
+
+contacts:
+  - {id: elise,  category: customer, subtype: reference,    tier: P1, rules: [same_day_reply], stages: [{from_day: 1, stage: active}],
+     note: "role-at-org rule: 'procurement lead at Northstar' → P1 (signature says Procurement Lead); cadence steady all month, current gap 0.67 days on day 30"}
+  - {id: victor, category: customer, subtype: reference_ic, tier: null}
+  - {id: rosa,   category: customer, subtype: reference_ic, tier: null}
+
+about_keys:
+  should_merge: [[rollout:northstar:apr-1, rollout:northstar], [rollout:northstar:apr-1, rollout:northstar:sap-connector], [rollout:northstar:apr-1, rollout:northstar:fresno]]
+  should_not_merge: [[rollout:northstar:apr-1, report:pentest-northstar], [rollout:northstar:apr-1, invoice:northstar:ts-1187], [rollout:northstar:apr-1, rollout:halberd]]
+
+expectations:
+  - run_day: 26
+    candidates:
+      - {type: contradiction, about: report:pentest-northstar, facts_hint: {task: "task:4", task_due_day: 16, email_source: t-northstar-pentest, email_day: 16, note: "tasks.md task 4 open vs Arjun's day-16 email and Elise's receipt"}}
+    absent: [rollout:northstar:apr-1]
+    notes: "steady cadence, everything answered by the team; the stale pen-test task may render as a one-liner ('looks done per email'), never as a to-do"
+    noise: [t-northstar-connector-plan, t-northstar-invoice, t-northstar-pentest, t-northstar-training]
+  - run_day: 27
+    candidates:
+      - {type: contradiction, about: report:pentest-northstar, facts_hint: {task: "task:4", email_source: t-northstar-pentest}}
+    absent: [rollout:northstar:apr-1]
+    noise: [t-northstar-connector-plan, t-northstar-invoice, t-northstar-pentest, t-northstar-training]
+  - run_day: 28
+    candidates:
+      - {type: contradiction, about: report:pentest-northstar, facts_hint: {task: "task:4", email_source: t-northstar-pentest}}
+    absent: [rollout:northstar:apr-1]
+    noise: [t-northstar-connector-plan, t-northstar-invoice, t-northstar-pentest, t-northstar-training]
+  - run_day: 29
+    candidates:
+      - {type: contradiction, about: report:pentest-northstar, facts_hint: {task: "task:4", email_source: t-northstar-pentest}}
+    absent: [rollout:northstar:apr-1]
+    notes: "Elise's ask is at 13:52 and the newsletter at 06:45, both after the 06:00 run"
+    noise: [t-northstar-connector-plan, t-northstar-invoice, t-northstar-pentest, t-northstar-training]
+  - run_day: 30
+    candidates:
+      - {type: reply_owed,      about: rollout:northstar:apr-1, facts_hint: {deadline_day: 30, same_day_rule: true}}
+      - {type: quiet_thread,    about: rollout:northstar:apr-1, facts_hint: {note: "reference-customer ask not answered by end of the business day it arrived"}}
+      - {type: news_attachment, about: rollout:northstar:apr-1, facts_hint: {source: nl-plantops-112}}
+      - {type: contradiction,   about: report:pentest-northstar, facts_hint: {task: "task:4", email_source: t-northstar-pentest}}
+    items:
+      - {about: rollout:northstar:apr-1, priority: P1, section: urgent, actions: [reply], cites_any: [t-northstar-golive],
+         notes: "draft: yes, April 1 is on; the two open issues are non-blocking (eng-standup.md); optionally mention the Plant Ops Digest item. Must cite the note as the grounding."}
+      - {about: rollout:northstar:apr-1, priority_band: [P2, P3], section: news, actions_any: [read, reply], cites_any: [nl-plantops-112],
+         notes: "news attachment: a reference customer's go-live written up without naming Tessera; worth a casual ask to Elise"}
+    noise: [t-northstar-connector-plan, t-northstar-invoice, t-northstar-pentest, t-northstar-training]
+
+assertions:
+  - {id: S5-d30-reply,            kind: item_present,        run_day: 30, args: {about: rollout:northstar:apr-1, priority: P1, section: urgent, actions_any: [reply]}}
+  - {id: S5-d30-draft-grounded,   kind: draft_contains,      run_day: 30, args: {about: rollout:northstar:apr-1, phrases: ["April 1"]},
+     description: "the reply confirms the date, grounded in eng-standup.md"}
+  - {id: S5-d30-news-attached,    kind: candidate_present,   run_day: 30, args: {type: news_attachment, about: rollout:northstar:apr-1},
+     description: "eval.md §3 Newsletter: the S5 item attaches"}
+  - {id: S5-d29-golive-absent,    kind: item_absent,         run_day: 29, args: {about: rollout:northstar:apr-1},
+     description: "Elise's ask (13:52) and the newsletter (06:45) both land after the day-29 run"}
+  - {id: S5-pentest-absent,       kind: item_absent,         run_day: 30, args: {source_id: t-northstar-pentest},
+     description: "resolved reference-customer thread whose last message is Priya's '+1' FYI cc must not surface"}
+  - {id: S5-invoice-absent,       kind: item_absent,         run_day: 30, args: {source_id: t-northstar-invoice}}
+  - {id: S5-no-cadence-drop,      kind: candidate_absent,    run_day: 30, args: {type: cadence_drop, about: other:northstar-cadence}}
+  - {id: S5-pentest-task-contradiction, kind: candidate_present, run_day: 30, args: {type: contradiction, about: report:pentest-northstar},
+     description: "tasks.md task 4 (due day 16, open) vs Arjun's day-16 email: a tasks-vs-email contradiction, not a to-do"}
+  - {id: S5-elise-tier,           kind: contact_tier_is,     run_day: 30, args: {email: elise.moreau@northstarfoods.com, tier: P1}}
+  - {id: S5-elise-category,       kind: contact_category_is, run_day: 30, args: {email: elise.moreau@northstarfoods.com, category: customer, subtype: reference}}
+
+sim_avery:
+  - {scope_about: rollout:northstar:apr-1, intended_option: 1, rationale: "confirm April 1; eng-standup.md says on track and the two issues are non-blocking"}
+simulate: []
+variants: []
+honesty:
+  no_notes:
+    - {id: S5-no-notes-hedged, kind: draft_not_contains, run_day: 30, variant: no_notes, args: {about: rollout:northstar:apr-1, phrases: ["on track"]},
+       description: "eval.md §5: without notes the Elise draft cannot assert 'on track' unhedged; a `decide` instead of a draft also passes (checker treats no draft as pass)"}

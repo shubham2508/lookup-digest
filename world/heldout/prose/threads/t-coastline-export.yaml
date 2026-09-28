@@ -1,0 +1,82 @@
+thread_id: t-coastline-export
+subject: "Scheduled ERP export - CSV column order"
+storyline: BG-coastline
+category: customers
+labels:
+  kind: thread
+  must_not: true
+  reason: answered_by_engineer_courtesy_close
+  classification_case: answered_non_reference_customer
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [incident:coastline:export]
+    ball_awaiting: nobody
+    closed_by_courtesy: true
+    sender_relationship: {category: customer, subtype: active, stage: active}
+    asks: [{to_avery: false, kind: information, deadline_day: null, status: answered}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 27
+    time: "09:20"
+    from: coastline_purchasing
+    to: [{name: "Tessera Support", email: "support@tessera.io"}]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hello Tessera Support,
+
+      Since Saturday night the scheduled ERP export (nightly CSV, "coastline_orders_daily") has arrived with a different column order. Our ERP import (Epicor) maps by position and rejected the Sunday and Monday files with "field 7: non-numeric value".
+
+      Nothing changed on our side. Could you tell us how to restore the previous column order? Our planners load this file at 06:00 and have been keying the changes by hand for two days.
+
+      We have copied Avery Chen as the account contact on file.
+
+      Thank you,
+  - id: m2
+    beat_ref: null
+    day: 27
+    time: "11:40"
+    from: ruth
+    to: [coastline_purchasing]
+    cc: [avery]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Hello Coastline Purchasing,
+
+      Case TS-5581 opened for this. What you reported: "the scheduled ERP export ... has arrived with a different column order" since Saturday, and Epicor rejects the file on field 7.
+
+      Cause: the March 21 release added a header row and two new columns (plant_code, line_id) to scheduled exports. They were inserted at positions 3 and 4 rather than appended at the end, which shifts everything after them for imports that map by position. Nothing on your side caused it.
+
+      Fix, about two minutes:
+      1. Settings > Exports > Scheduled > coastline_orders_daily > Edit
+      2. Under "Column layout", choose "Legacy (pinned)" and untick "Include header row"
+      3. Save, then "Run now" to regenerate today's file
+
+      The pinned layout keeps the exact column order you had before March 21 and will not change on future releases. I ran a test export against your account and confirmed the output matches the March 20 layout column for column. If you want the new columns later, "Custom" lets you place them at the end.
+
+      Please let me know once tonight's import goes through and I will close the case.
+  - id: m3
+    beat_ref: null
+    day: 28
+    time: "08:05"
+    from: coastline_purchasing
+    to: [ruth]
+    cc: [avery]
+    reply_to: m2
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hello Ruth,
+
+      Confirmed - last night's file imported cleanly and the planners had it at 06:00 as usual. Thank you for the quick turnaround. Please close TS-5581.

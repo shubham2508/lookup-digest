@@ -1,0 +1,56 @@
+thread_id: t-angel-k1
+subject: "K-1 timing for 2025?"
+storyline: null
+category: investors_board
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_by_nora
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [other:k1-timing]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: capital, subtype: angel}
+    asks: [{to_avery: true, kind: information, deadline_day: null, status: answered}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 13
+    time: "12:10"
+    from: {name: "Walter Feng", email: "walter@fengfamilyoffice.com"}
+    to: [avery]
+    cc: [nora]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: "Walter Feng\nFeng Family Office"
+    body: |
+      Hi Avery,
+
+      Hope the IPV meeting went well this morning; Diane mentioned it was today.
+
+      Quick administrative one: do you know when the 2025 K-1s for the seed SPV will go out? My accountant is trying to decide whether to file in April or extend. Copying Nora, since I suspect this is really a question for the finance side.
+
+      No rush on anything else, and congratulations on the Halberd write-up.
+  - id: m2
+    beat_ref: null
+    day: 13
+    time: "14:00"
+    from: nora
+    to: [{name: "Walter Feng", email: "walter@fengfamilyoffice.com"}]
+    cc: [avery]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Hi Walter,
+
+      Ledgerline CPA is preparing the seed SPV's 2025 K-1s now and has committed to sending them by March 31, so your accountant will have it well before the April 15 deadline. It will come by secure email from Dennis Ho at Ledgerline to the address on your investor record (this one, unless you tell me otherwise).
+
+      I will confirm once they have gone out.

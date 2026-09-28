@@ -1,0 +1,64 @@
+thread_id: t-candidate-inbound-6
+subject: "Application: Senior Backend Engineer - Tomasz Nowak"
+storyline: null
+category: hiring
+labels:
+  kind: thread
+  must_not: true
+  reason: routed_to_jordan
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [candidate:tomasz-nowak]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: hiring, subtype: candidate, stage: applied}
+    asks: [{to_avery: false, kind: information, deadline_day: null, status: answered}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 24
+    time: "15:30"
+    from: {name: "Tomasz Nowak via Ashby", email: "reply+3f8ab6c7@inbound.ashbyhq.com"}
+    to: [jordan]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      New candidate message on "Senior Backend Engineer (Oakland / hybrid)". Reply to this email to respond; your reply is sent to the candidate and logged in Ashby.
+
+      ---
+      Hi,
+
+      I applied for the senior backend engineer role two weeks ago and noticed the careers page now shows one backend opening where it showed two. Is the second position still active, or has it been filled? I am in a process elsewhere and would rather know than guess.
+
+      Background: eight years backend, mostly Go and Postgres, last three at an energy-monitoring company doing high-volume sensor ingest.
+
+      Thanks,
+      Tomasz Nowak
+  - id: m2
+    beat_ref: null
+    day: 24
+    time: "16:20"
+    from: jordan
+    to: [{name: "Tomasz Nowak via Ashby", email: "reply+3f8ab6c7@inbound.ashbyhq.com"}]
+    cc: [avery]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Hi Tomasz,
+
+      Thanks for asking directly; that is the right call.
+
+      - The first backend position is at offer stage and will close shortly.
+      - The second is on hold for now; we will reopen it later this spring, and your profile stays active in our system.
+      - If your other process moves faster than ours, take it. If the timing lines up when we reopen, I would like to talk.
+
+      I will reach out as soon as the second search resumes.

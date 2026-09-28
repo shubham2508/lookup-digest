@@ -1,0 +1,60 @@
+thread_id: t-internal-eng-week-0313
+subject: "Eng week in review - Mar 13"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: last_word_avery
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [report:eng-week-review]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: exec}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 17
+    time: "17:30"
+    from: jordan
+    to: [eng_list]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Shipped:
+      - Search index rebuild, Thursday 21:00-21:27, no customer reports (Arjun). Old index retired at noon today.
+      - Export scheduler retries, #538 (Kofi). Merged Wednesday with a test behind it; goes out Monday.
+      - Fold count in SMS alerts, CS-2254 (Felix). Halberd's night shift will see "(x4)" from Monday.
+      - Pen-test summary for Northstar's vendor security file, sent to Elise yesterday (Arjun, with Priya's review). Closes that ask.
+      - Cutover runbook v1 (Arjun + Hana), walked at all hands this afternoon; to Northstar next week.
+      - Hack day. Kofi's pager-bot is going into sprint 16 as a small item.
+
+      In progress:
+      - WHSCON parser (Arjun), PR Monday.
+      - Regression suite 36/40 (Carmen); Northstar nightly smoke suite starts Monday.
+      - Audit log export (Felix).
+
+      Watching:
+      - Nothing red. Overnight pages this week: 3, all Sentry error-rate noise, all self-resolved. Alert tiers are Tuesday's topic.
+
+      Good weekend.
+  - id: m2
+    beat_ref: null
+    day: 17
+    time: "19:05"
+    from: avery
+    to: [jordan]
+    cc: [eng_list]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      good week. the runbook walk was the right call. thanks all.

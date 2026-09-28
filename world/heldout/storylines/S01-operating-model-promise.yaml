@@ -1,0 +1,167 @@
+id: S1
+name: operating-model-promise
+reviewed: false
+tier_truth: P0
+summary: >
+  Held-out disguise of dev S1. Ben (deal counsel) sends the first draft of the Series A disclosure schedules on
+  Monday day 27 (Mar 23) at 10:20, cc Imogen Clarke (WSGR associate), and notes that Schedule 3.12 carries bracketed
+  figures that have to tie to the revised operating model. On Tuesday day 28 at 15:37 Marcus asks for the revised
+  operating model (the 24-month plan the term sheet references) before IPV's Thursday partner meeting; Avery replies
+  at 21:52 "in your inbox before midnight" and never sends it. The promise is in no task or todo (notes.yaml
+  `absent`). On Wednesday day 29 at 10:30 Imogen follows up in Ben's thread: IPV's counsel wants the 3.12 figures
+  final and Marcus's team said they were still waiting on the model. Tests: overdue promise not in tasks → the one
+  thing (days 29 and 30, citing t-ipv-model); the associate inherits P0 from the deal; `task` + `forward_delegate`;
+  the `fulfilled` variant makes the whole topic disappear on day 30. Timing: at 06:00 on day 29 the promise is ~6h
+  overdue; on day 30 the partner meeting is today and it is the second slip.
+
+threads:
+  - {id: t-disclosure-schedules, subject: "Tessera - Series A disclosure schedules (draft 1)", category: lawyer}
+  - {id: t-ipv-model,            subject: "Revised operating model before Thursday",          category: investors_board}
+
+beats:
+  - {ref: S1.b1, day: 27, time: "10:20", source: email, thread: t-disclosure-schedules, from: ben, to: [avery], cc: [imogen],
+     event: "sends draft 1 of the disclosure schedules as a named attachment; four numbered points; Schedule 3.12 (Financial Statements; Projections) has bracketed revenue/headcount/cash figures pending the revised operating model; Imogen keeps the open-items list; asks for any changes before it goes to IPV's counsel",
+     must_include: ["disclosure schedules", "3.12"], hardness: [long_signature, attachment_named, numbered_list]}
+  - {ref: S1.b2, day: 28, time: "15:37", source: email, thread: t-ipv-model, from: marcus, to: [avery],
+     event: "asks for the revised operating model (24-month plan with the hiring ramp, the one the term sheet references) before Thursday's partner meeting; the data room still holds the January version",
+     must_include: ["revised operating model", "Thursday"], hardness: []}
+  - {ref: S1.b3, day: 28, time: "21:52", source: email, thread: t-ipv-model, from: avery, to: [marcus],
+     event: "promises the model in Marcus's inbox before midnight (closing the last tab with Nora); no other content",
+     must_include: ["in your inbox before midnight"], hardness: [quoted_history, lowercase]}
+  - {ref: S1.b4, day: 29, time: "10:30", source: email, thread: t-disclosure-schedules, from: imogen, to: [avery], cc: [ben],
+     event: "open-items list: IPV's counsel asked whether the 3.12 figures are final; Marcus's team told them they were still waiting on the revised model; asks for the figures or a date",
+     must_include: ["3.12"], hardness: [quoted_history, numbered_list]}
+
+labels:
+  - thread: t-disclosure-schedules
+    category: lawyer
+    storyline: S1
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [deal:series-a:operating-model]
+      ball_awaiting: avery
+      closed_by_courtesy: false
+      sender_relationship: {category: capital, subtype: deal_counsel, stage: term_sheet}
+      asks:
+        - {to_avery: true, kind: review, deadline_day: null, status: open}       # Imogen's day-29 follow-up (Ben's day-27 "any changes" is the same ask)
+      commitments: []
+      stage_signals: [{entity: ipv, stage: term_sheet, day: 27}]
+      suspicious: false
+    messages:
+      - {beat_ref: S1.b1, day: 27, time: "10:20", from: ben,    to: [avery], cc: [imogen], must_include: ["disclosure schedules", "3.12"]}
+      - {beat_ref: S1.b4, day: 29, time: "10:30", from: imogen, to: [avery], cc: [ben],    must_include: ["3.12"]}
+  - thread: t-ipv-model
+    category: investors_board
+    storyline: S1
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [deal:series-a:operating-model]
+      ball_awaiting: avery
+      closed_by_courtesy: false
+      sender_relationship: {category: capital, subtype: lead_investor, stage: term_sheet}
+      asks:
+        - {to_avery: true, kind: information, deadline_day: 30, status: open}    # "before Thursday's partner meeting"
+      commitments:
+        - {owner: avery, about: deal:series-a:operating-model, due_day: 28, due_time: "23:59", status_in_thread: open}
+      stage_signals: [{entity: ipv, stage: term_sheet, day: 28}]
+      suspicious: false
+    messages:
+      - {beat_ref: S1.b2, day: 28, time: "15:37", from: marcus, to: [avery],  must_include: ["revised operating model", "Thursday"]}
+      - {beat_ref: S1.b3, day: 28, time: "21:52", from: avery,  to: [marcus], must_include: ["in your inbox before midnight"], is_from_avery: true}
+  - task_absent: deal:series-a:operating-model        # no task or todo shares this about key (notes.yaml `absent` enforces)
+
+contacts:
+  - {id: marcus, category: capital, subtype: lead_investor, tier: P0, in_profile: true, rules: [never_miss_reply],
+     stages: [{from_day: 1, stage: in_conversation}, {from_day: 13, stage: diligence}, {from_day: 27, stage: term_sheet}]}
+  - {id: ben,    category: capital, subtype: deal_counsel, tier: P0, in_profile: true, note: "P0 during the raise"}
+  - {id: imogen, category: capital, subtype: deal_counsel, tier: P0, in_profile: false,
+     note: "not in the profile; same firm and thread as Ben → inherits P0 during the raise (P0 case 12)"}
+
+about_keys:
+  should_merge:
+    - [deal:series-a:operating-model, deal:series-a:model]
+    - [deal:series-a:operating-model, deal:series-a:24-month-plan]
+    - [deal:series-a:operating-model, deal:series-a:disclosure-schedules]     # Ben's thread is the same open item (3.12 waits on the model)
+  should_not_merge:
+    - [deal:series-a:operating-model, deal:series-a:retention-question]      # S3 thread, same deal, different ask
+    - [deal:series-a:operating-model, meeting:ipv-technical-diligence]       # S2
+    - [deal:series-a:operating-model, deal:series-a:diligence-prep]          # S2 (Julia's ask)
+
+expectations:
+  - run_day: 26
+    absent: [deal:series-a:operating-model]
+    notes: "no beats yet"
+  - run_day: 27
+    absent: [deal:series-a:operating-model]
+    notes: "Ben's draft 1 arrives 10:20, after the 06:00 run"
+  - run_day: 28
+    unasserted: "only Ben's draft (day 27) is visible; a P1 'review the disclosure schedules' item is acceptable but not required, and it must not be P0 (the promise does not exist yet)"
+    assertions_inline:
+      - {kind: priority_not, args: {about: deal:series-a:operating-model, priority: P0}}
+  - run_day: 29
+    candidates:
+      - {type: commitment_overdue,      about: deal:series-a:operating-model, facts_hint: {hours_overdue_min: 6, due_day: 28, due_time: "23:59"}}
+      - {type: commitment_not_in_tasks, about: deal:series-a:operating-model}
+      - {type: reply_owed,              about: deal:series-a:operating-model, facts_hint: {note: "Marcus's open ask"}}
+    items:
+      - {about: deal:series-a:operating-model, priority: P0, section: urgent, actions: [task, forward_delegate],
+         cites_any: [t-ipv-model], one_thing: true,
+         notes: "task: send Marcus the revised operating model before IPV's partner meeting Thursday; forward_delegate: to Nora — confirm the hiring-ramp tab is final, then forward to Marcus (cc Ben so 3.12 can be filled). A draft to Marcus is NOT dispatchable (Avery has to attach the file)."}
+    one_thing: {about: deal:series-a:operating-model, cites_any: [t-ipv-model]}
+    notes: "Overdue by ~6h at 06:00 Wed. Judgment call for review: the one thing on Wed is this, not Priya's GPU commit email (S13) or the diligence-date contradiction (S2), because the delay compounds against the lead investor with the term sheet paused and counsel waiting on the same numbers."
+  - run_day: 30
+    candidates:
+      - {type: commitment_overdue,      about: deal:series-a:operating-model, facts_hint: {days_overdue: 1}}
+      - {type: commitment_not_in_tasks, about: deal:series-a:operating-model}
+      - {type: reply_owed,              about: deal:series-a:operating-model, facts_hint: {note: "Imogen's 3.12 follow-up and Marcus's ask both open"}}
+    items:
+      - {about: deal:series-a:operating-model, priority: P0, section: urgent, actions: [task, forward_delegate],
+         cites_any: [t-ipv-model, t-disclosure-schedules], one_thing: true,
+         notes: "second slip; partner meeting is today; Imogen's follow-up merges into the same item (same about key)"}
+    one_thing: {about: deal:series-a:operating-model, cites_any: [t-ipv-model]}
+
+assertions:
+  - {id: S1-d29-overdue-p0,        kind: item_present,      run_day: 29, args: {about: deal:series-a:operating-model, priority: P0, section: urgent, actions_any: [task]},
+     description: "eval.md §3 S1: day 29 commitment_overdue P0 with a task action"}
+  - {id: S1-d29-forward,           kind: action_present,    run_day: 29, args: {about: deal:series-a:operating-model, action: forward_delegate}}
+  - {id: S1-d29-cand-overdue,      kind: candidate_present, run_day: 29, args: {type: commitment_overdue, about: deal:series-a:operating-model}}
+  - {id: S1-d29-cand-not-in-tasks, kind: candidate_present, run_day: 29, args: {type: commitment_not_in_tasks, about: deal:series-a:operating-model}}
+  - {id: S1-d29-one-thing,         kind: one_thing,         run_day: 29, args: {about: deal:series-a:operating-model, cites_any: [t-ipv-model]},
+     description: "README: one thing on day 29 cites t-ipv-model"}
+  - {id: S1-d30-one-thing,         kind: one_thing,         run_day: 30, args: {about: deal:series-a:operating-model, cites_any: [t-ipv-model]},
+     description: "eval.md §3 S1: day 30 one thing cites the Marcus thread"}
+  - {id: S1-d30-task,              kind: action_present,    run_day: 30, args: {about: deal:series-a:operating-model, action: task}}
+  - {id: S1-d28-not-p0,            kind: priority_not,      run_day: 28, args: {about: deal:series-a:operating-model, priority: P0}}
+  - {id: S1-imogen-tier-p0,        kind: contact_tier_is,   run_day: 30, args: {email: iclarke@wsgr.com, tier: P0},
+     description: "P0 case 12: the WSGR associate inherits P0"}
+  - {id: S1-imogen-category,       kind: contact_category_is, run_day: 30, args: {email: iclarke@wsgr.com, category: capital, subtype: deal_counsel}}
+  - {id: S1-d26-absent,            kind: item_absent,       run_day: 26, args: {about: deal:series-a:operating-model}}
+
+sim_avery: []
+
+simulate:
+  - {id: S1-sim-escalates, kind: escalation_framing, run_day: 30, args: {about: deal:series-a:operating-model, min_times_surfaced: 2, mode: simulate},
+     description: "surfaced on day 29 and 30 → day 30 framing says it is the second time / second slip"}
+
+variants:
+  - id: fulfilled
+    description: "Avery sends the model Wednesday morning and closes Imogen's thread; on day 30 nothing about the operating model may surface (P0 case 7)."
+    extra_beats:
+      - {ref: S1.v1, day: 29, time: "07:15", source: email, thread: t-ipv-model, from: avery, to: [marcus], cc: [ben],
+         event: "sends the revised operating model (attached, v4), one line, owns the slip without the word sorry",
+         must_include: ["attached"]}
+      - {ref: S1.v2, day: 29, time: "11:20", source: email, thread: t-disclosure-schedules, from: avery, to: [imogen], cc: [ben],
+         event: "the 3.12 figures are in the model sent to Marcus this morning; no further changes to the other schedules; Avery has the last word",
+         must_include: ["no further changes"]}
+    labels_override:
+      - {thread: t-ipv-model, expected: {ball_awaiting: other, commitments: [{owner: avery, about: deal:series-a:operating-model, due_day: 28, due_time: "23:59", status_in_thread: fulfilled}]}}
+      - {thread: t-disclosure-schedules, expected: {ball_awaiting: nobody, asks: [{to_avery: true, kind: review, status: answered}]}}
+    expectations:
+      - {run_day: 30, absent: [deal:series-a:operating-model], notes: "both threads closed; nothing to do"}
+    assertions:
+      - {id: S1-fulfilled-absent,     kind: item_absent,      run_day: 30, variant: fulfilled, args: {about: deal:series-a:operating-model}}
+      - {id: S1-fulfilled-no-overdue, kind: candidate_absent, run_day: 30, variant: fulfilled, args: {type: commitment_overdue, about: deal:series-a:operating-model}}

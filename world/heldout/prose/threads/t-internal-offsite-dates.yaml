@@ -1,0 +1,54 @@
+thread_id: t-internal-offsite-dates
+subject: "Spring offsite: May 14-15, Guerneville (dates locked!!)"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: last_word_avery
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [meeting:spring-offsite]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: exec}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 19
+    time: "20:15"
+    from: tomas
+    to: [team_list]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi all! Sunday email, sorry, I promise it's a nice one.
+
+      The offsite poll closed with seven votes (out of twelve, I see you) and the winner is Thursday-Friday May 14-15. I've booked the Russian River lodge in Guerneville we used two years ago, twelve rooms, deposit paid from the events line. Nora has the paperwork.
+
+      Rough shape: Thursday afternoon working session (H2 themes, Avery and Priya), Thursday dinner, Friday morning something outdoors that is not a hike because I remember the hike, back in Oakland by 4.
+
+      Nothing to do now, please just don't book anything else on those two days. Agenda and logistics in April, after the Northstar go-live, when we all have brains again.
+
+      Tomás
+
+      P.S. Dietary stuff and plus-ones for dinner: I'll send a form in April. Don't reply to this with it, I will lose it.
+  - id: m2
+    beat_ref: null
+    day: 19
+    time: "20:40"
+    from: avery
+    to: [tomas]
+    cc: [team_list]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      great, blocked on my end. thanks for herding.

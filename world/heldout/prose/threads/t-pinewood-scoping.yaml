@@ -1,0 +1,65 @@
+thread_id: t-pinewood-scoping
+subject: "Pinewood pilot - three questions before the proposal"
+storyline: BG-pinewood
+category: customers
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_by_tomas
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [deal:pinewood:pilot]
+    ball_awaiting: other
+    closed_by_courtesy: false
+    sender_relationship: {category: customer, subtype: prospect, stage: prospect}
+    asks: [{to_avery: false, kind: information, deadline_day: null, status: answered}]
+    stage_signals: [{entity: pinewood, stage: prospect, day: 16}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 16
+    time: "10:20"
+    from: lucia
+    to: [tomas]
+    cc: [avery, leo]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Tomás,
+
+      Thank you for the call last Thursday with Leo. I have discussed it with our plant managers and we would like to move to a scoped pilot rather than a broader discussion. Before Leo sends the proposal, three things I need to be clear on:
+
+      1. Implementation time. You said "four to six weeks to first forecast" for one plant. Does that assume our historian is already exporting, or does it include the connector work? Our Petaluma plant runs Ignition; the other two are on an older Wonderware setup.
+      2. References. I would like to speak with one customer who runs a perishable line, not metals. Northstar was mentioned; is that possible, and who would arrange it?
+      3. Our legal team will send our standard mutual NDA this week, before any plant data leaves our network. Please tell me who should receive it.
+
+      If the answers are what I hope, we would aim to start in early April on one plant, six weeks, with a clear go/no-go at the end. I have copied Avery, as you suggested.
+
+      Regards,
+  - id: m2
+    beat_ref: null
+    day: 16
+    time: "15:30"
+    from: tomas
+    to: [lucia]
+    cc: [avery, leo]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Lucia, this is great news, thank you!! Answers in order, and Leo will follow with the formal scoping document early next week:
+
+      1. Four to six weeks assumes the historian is exporting; connector work for Ignition is usually one week on top, and we have done it four times, so Petaluma is the easy one. The Wonderware sites we would sequence after the pilot - honestly, that is where the real work is, and it is exactly why I'd start with Petaluma so you see value before we touch the harder plants. Hana Okada, our solutions engineer, who will run the pilot with Leo, can walk your IT person through the connector in 30 minutes whenever they are ready!
+
+      2. References: yes! Northstar Foods runs perishable lines in Modesto and Fresno, and their procurement lead, Elise Moreau, has been generous with reference calls. I'll ask Elise this week and connect you directly; it usually takes a few days to line up.
+
+      3. NDA: please send it to me and copy Avery. Our counsel turns these around in a day or two.
+
+      Early April, one plant, six weeks, go/no-go at the end: that is exactly the shape we like. Leo will put a tentative kickoff hold on the calendar for the week of April 3, which we can move once the SOW is signed. Really looking forward to this!

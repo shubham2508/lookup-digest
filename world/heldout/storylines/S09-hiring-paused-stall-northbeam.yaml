@@ -1,0 +1,175 @@
+id: S9
+name: hiring-paused-stall-northbeam
+reviewed: false
+tier_truth: P1
+summary: >
+  Three hiring signals that look alike and are not. (a) The second backend req is paused at the Wednesday day-22
+  hiring sync ("paused until the A closes"; Jordan to tell Northbeam). Northbeam Talent, the retained firm Jordan
+  engaged on day 2, keeps sending backend candidates on days 23, 27 (Yusuf Demir, the standout) and 29 because
+  nobody told Harriet → not a stall, not a recruiter; dispatch is a one-line `forward_delegate` to Jordan ("req's
+  paused, can you tell Harriet and hold the shortlist?"). (b) Product designer candidate Clara Voss finished her
+  onsite on Wednesday day 22 (hiring-sync.md: "debrief TBD"); nobody schedules the debrief; 4 days unmoved at the
+  day-26 run (no flag), 5 at day 27 (flag), 8 by day 30; she sends a polite nudge Tuesday day 28 08:50 →
+  `hiring_stall`. (c) The profile says "two engineers and a designer"; the data says one backend req is at offer
+  (Kenji, S8), the second is paused and only the designer is genuinely open → profile drift. Tests: paused → no stall
+  flag (for the req or for Yusuf); Northbeam ≠ cold recruiter (retained, warm cc history, no recruiter_pattern line,
+  no draft to Harriet or Yusuf); the real stall flagged on the boundary day; `profile_update` for the open reqs.
+
+threads:
+  - {id: t-northbeam-kickoff,   subject: "Northbeam x Tessera - backend search kickoff",  category: hiring}
+  - {id: t-northbeam-shortlist, subject: "Senior Backend Engineer - first shortlist",     category: hiring}
+  - {id: t-clara-loop,          subject: "Clara Voss - designer onsite Wed 3/18",         category: hiring}
+  - {id: t-clara-nudge,         subject: "Checking in - designer role",                   category: hiring}
+
+beats:
+  - {ref: S9.b1, day: 2,  time: "10:05", source: email, thread: t-northbeam-kickoff,   from: jordan,  to: [harriet], cc: [avery, nora], event: "kicks off the retained backend search for the second backend req; scope, comp band, 'Avery ... will do the final conversation'", must_include: ["retained"]}
+  - {ref: S9.b2, day: 2,  time: "14:40", source: email, thread: t-northbeam-kickoff,   from: harriet, to: [jordan],  cc: [avery, nora], event: "engagement letter countersigned; first shortlist in week 3; will ask for feedback on each shortlist within a week", must_include: ["engagement"]}
+  - {ref: S9.b3, day: 13, time: "09:15", source: email, thread: t-clara-loop,          from: jordan,  to: [avery],   cc: [tomas], event: "Clara passed the portfolio screen; onsite Wednesday the 18th; panel Priya, Hana, Jordan, Tomás; Avery does the 30-minute closer at 15:30", hardness: [long]}
+  - {ref: S9.b4, day: 21, time: "08:45", source: email, thread: t-clara-loop,          from: jordan,  to: [avery],   cc: [tomas], event: "confirms Wednesday's schedule; Avery slot 15:30; scorecards in Ashby", hardness: [quoted_history]}
+  - {ref: S9.n1, day: 22, time: "11:30", source: note, note: hiring-sync.md,
+     event: "hiring sync: second backend req PAUSED until the A closes (Avery's call; Jordan to tell Northbeam); Clara Voss onsite today, debrief TBD (Jordan); Kenji offer approved; Maren Holt portfolio review next Thu",
+     must_include: ["paused until the A closes", "debrief TBD"]}
+  - {ref: S9.b5, day: 22, time: "18:05", source: email, thread: t-clara-loop,          from: jordan,  to: [avery],   cc: [tomas], event: "onsite done; four of five scorecards in Ashby; 'I'll get the debrief on the calendar once Tomás's scorecard is in' — never does", must_include: ["debrief"]}
+  - {ref: S9.b6, day: 23, time: "14:40", source: email, thread: t-northbeam-shortlist, from: harriet, to: [avery],   cc: [jordan], event: "first shortlist: three candidates with one-line bios and links; asks who should run the first screen", must_include: ["three candidates"]}
+  - {ref: S9.b7, day: 27, time: "10:20", source: email, thread: t-northbeam-shortlist, from: harriet, to: [avery],   cc: [jordan], event: "two more candidates, Yusuf Demir the standout; 'per our agreement' asks for a read on the first three; notes Jordan hasn't replied on screening slots", must_include: ["per our agreement"], hardness: [typo, long_signature]}
+  - {ref: S9.b8, day: 28, time: "08:50", source: email, thread: t-clara-nudge,         from: clara,   to: [jordan],  cc: [avery], event: "polite nudge six days after the onsite: 'is there any update on next steps?'; still very interested; sketches link; no deadline", must_include: ["any update"]}
+  - {ref: S9.b9, day: 29, time: "15:10", source: email, thread: t-northbeam-shortlist, from: harriet, to: [avery],   cc: [jordan], event: "five names, no signal back; asks Avery or Jordan for 20 minutes to calibrate; Yusuf is talking to two other companies", must_include: ["calibrate"]}
+
+labels:
+  - thread: t-northbeam-kickoff
+    category: hiring
+    storyline: S9
+    must_not_surface: true
+    must_not_reason: closed_history
+    expected: {type: human_thread, domain: work, intent_primary: commitment_update, about: [hiring-req:backend-2], ball_awaiting: nobody, closed_by_courtesy: false,
+               sender_relationship: {category: hiring, subtype: retained_search, stage: open}, stage_signals: [{entity: backend-2-req, stage: open, day: 2}]}
+  - thread: t-northbeam-shortlist
+    category: hiring
+    storyline: S9
+    classification_case: retained_search_not_recruiter
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [hiring-req:backend-2, candidate:yusuf-demir]
+      ball_awaiting: avery
+      closed_by_courtesy: false
+      sender_relationship: {category: hiring, subtype: retained_search, stage: open}
+      asks: [{to_avery: true, kind: review, deadline_day: null, status: open}, {to_avery: true, kind: meeting, deadline_day: null, status: open}]
+      stage_signals: [{entity: yusuf-demir, stage: sourced, day: 27}]
+      suspicious: false
+    messages:
+      - {beat_ref: S9.b6, day: 23, time: "14:40", from: harriet, to: [avery], cc: [jordan], must_include: ["three candidates"]}
+      - {beat_ref: S9.b7, day: 27, time: "10:20", from: harriet, to: [avery], cc: [jordan], must_include: ["per our agreement"]}
+      - {beat_ref: S9.b9, day: 29, time: "15:10", from: harriet, to: [avery], cc: [jordan], must_include: ["calibrate"]}
+  - thread: t-clara-loop
+    category: hiring
+    storyline: S9
+    must_not_surface: true
+    must_not_reason: fyi_progress_thread_stall_is_computed
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: commitment_update
+      about: [candidate:clara-voss]
+      ball_awaiting: other
+      closed_by_courtesy: false
+      sender_relationship: {category: team, subtype: exec}
+      stage_signals: [{entity: clara-voss, stage: screen, day: 13}, {entity: clara-voss, stage: onsite, day: 22}]
+      commitments: [{owner: other, about: candidate:clara-voss, due_day: null, status_in_thread: open}]
+  - thread: t-clara-nudge        # not a must-not: evidence for the computed stall, cited by the candidate:clara-voss item; never a second item
+    category: hiring
+    storyline: S9
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [candidate:clara-voss]
+      ball_awaiting: other
+      closed_by_courtesy: false
+      sender_relationship: {category: hiring, subtype: candidate, stage: onsite}
+      asks: [{to_avery: false, kind: information, deadline_day: null, status: open}]
+      suspicious: false
+    messages:
+      - {beat_ref: S9.b8, day: 28, time: "08:50", from: clara, to: [jordan], cc: [avery], must_include: ["any update"]}
+  - note: hiring-sync.md
+    storyline: S9
+    expected:
+      type: note
+      note_kind: meeting_notes
+      about: [hiring-req:backend-2, candidate:clara-voss, offer:kenji-mori, candidate:maren-holt]
+      stage_signals: [{entity: backend-2-req, stage: paused, day: 22}, {entity: clara-voss, stage: onsite, day: 22}, {entity: kenji-mori, stage: offer_extended, day: 22}]
+      claims: [{subject: open_reqs, value: "one backend at offer (Kenji); second backend paused until the A closes; designer open"}]
+      action_items: [{owner: other, about: hiring-req:backend-2, due_day: null, status_in_thread: open}, {owner: other, about: candidate:clara-voss, due_day: null, status_in_thread: open}]
+
+contacts:
+  - {id: harriet, category: hiring, subtype: retained_search, tier: P2, stages: [{from_day: 2, stage: open}],
+     note: "NOT cold_inbound: engaged by Jordan on day 2, cc history with Avery and Nora, signature says retained engineering search"}
+  - {id: clara,   category: hiring, subtype: candidate, tier: P2, stages: [{from_day: 13, stage: screen}, {from_day: 22, stage: onsite}]}
+  - {id: yusuf,   category: hiring, subtype: candidate, tier: null, stages: [{from_day: 27, stage: sourced}], note: "backend candidate via Northbeam; req paused → never a stall"}
+
+about_keys:
+  should_merge: [[hiring-req:backend-2, hiring-req:senior-backend-engineer], [candidate:clara-voss, candidate:clara]]
+  should_not_merge: [[hiring-req:backend-2, candidate:clara-voss], [hiring-req:backend-2, other:recruiter-hirevector], [hiring-req:backend-2, offer:kenji-mori]]
+
+expectations:
+  - run_day: 26
+    candidates: [{type: profile_drift, about: other:profile-open-reqs, facts_hint: {profile_value: "two engineers and a designer", data_value: "one backend at offer (Kenji), second backend paused (hiring-sync.md day 22), designer open"}}]
+    items:
+      - {about: hiring-req:backend-2, priority_band: [P2, P3], section: decisions, actions: [forward_delegate], cites_any: [t-northbeam-shortlist],
+         notes: "Northbeam's day-23 shortlist; forward to Jordan: req is paused, tell Harriet and hold the shortlist; no draft to Harriet"}
+      - {about: other:profile-open-reqs, priority: P3, section: pulse, actions: [profile_update], cites_any: ["note:hiring-sync.md"]}
+    absent: [candidate:clara-voss]
+    notes: "Clara: 4 days since Wednesday's onsite → no stall yet; Northbeam's candidates never stall (req paused)"
+    noise: [t-northbeam-kickoff, t-clara-loop]
+  - run_day: 27
+    candidates: [{type: hiring_stall, about: candidate:clara-voss, facts_hint: {days_since_stage: 5, stage: onsite}}]
+    items:
+      - {about: hiring-req:backend-2, priority_band: [P2, P3], section: decisions, actions: [forward_delegate], cites_any: [t-northbeam-shortlist]}
+      - {about: candidate:clara-voss, priority: P2, section: pulse, actions_any: [forward_delegate, task], cites_any: [t-clara-loop, "note:hiring-sync.md"],
+         notes: "boundary day: 'Clara unmoved 5 days since onsite; Jordan owns the debrief' → one line to Jordan or a task"}
+      - {about: other:profile-open-reqs, priority: P3, section: pulse, actions: [profile_update], cites_any: ["note:hiring-sync.md"]}
+    noise: [t-northbeam-kickoff, t-clara-loop]
+  - run_day: 28
+    candidates: [{type: hiring_stall, about: candidate:clara-voss, facts_hint: {days_since_stage: 6}}]
+    items:
+      - {about: hiring-req:backend-2, priority_band: [P2, P3], section: decisions, actions: [forward_delegate], cites_any: [t-northbeam-shortlist],
+         notes: "second Northbeam email (Yusuf Demir named); still one forward to Jordan, no draft to Harriet or Yusuf"}
+      - {about: candidate:clara-voss, priority: P2, section: pulse, actions_any: [forward_delegate, task], cites_any: [t-clara-loop, "note:hiring-sync.md"]}
+      - {about: other:profile-open-reqs, priority: P3, section: pulse, actions: [profile_update], cites_any: ["note:hiring-sync.md"]}
+    noise: [t-northbeam-kickoff, t-clara-loop]
+  - run_day: 29
+    candidates: [{type: hiring_stall, about: candidate:clara-voss, facts_hint: {days_since_stage: 7}}]
+    items:
+      - {about: hiring-req:backend-2, priority_band: [P2, P3], section: decisions, actions: [forward_delegate], cites_any: [t-northbeam-shortlist]}
+      - {about: candidate:clara-voss, priority: P2, section: pulse, actions_any: [forward_delegate, task], cites_any: [t-clara-loop, t-clara-nudge, "note:hiring-sync.md"],
+         notes: "Clara's own nudge (day 28 08:50) is now visible: same item, one more citation, not a second item"}
+      - {about: other:profile-open-reqs, priority: P3, section: pulse, actions: [profile_update], cites_any: ["note:hiring-sync.md"]}
+    noise: [t-northbeam-kickoff, t-clara-loop]
+  - run_day: 30
+    candidates: [{type: hiring_stall, about: candidate:clara-voss, facts_hint: {days_since_stage: 8}}]
+    items:
+      - {about: hiring-req:backend-2, priority_band: [P2, P3], section: decisions, actions: [forward_delegate], cites_any: [t-northbeam-shortlist],
+         notes: "third Northbeam email; 'calibrate' call ask; still one forward to Jordan"}
+      - {about: candidate:clara-voss, priority: P2, section: pulse, actions_any: [forward_delegate, task], cites_any: [t-clara-loop, t-clara-nudge]}
+      - {about: other:profile-open-reqs, priority: P3, section: pulse, actions: [profile_update], cites_any: ["note:hiring-sync.md"]}
+    noise: [t-northbeam-kickoff, t-clara-loop]
+
+assertions:
+  - {id: S9-no-backend2-stall,        kind: candidate_absent,    run_day: 30, args: {type: hiring_stall, about: hiring-req:backend-2}, description: "eval.md §3 S9: no stall flag for the paused backend req"}
+  - {id: S9-no-yusuf-stall,           kind: candidate_absent,    run_day: 30, args: {type: hiring_stall, about: candidate:yusuf-demir}, description: "Northbeam candidate on the paused req never stalls"}
+  - {id: S9-clara-stall-present,      kind: candidate_present,   run_day: 30, args: {type: hiring_stall, about: candidate:clara-voss}, description: "eval.md §3 S9: designer stall present (8 days)"}
+  - {id: S9-clara-stall-absent-d26,   kind: candidate_absent,    run_day: 26, args: {type: hiring_stall, about: candidate:clara-voss}, description: "4 days < 5"}
+  - {id: S9-clara-stall-present-d27,  kind: candidate_present,   run_day: 27, args: {type: hiring_stall, about: candidate:clara-voss}, description: "boundary: exactly 5 days since the day-22 onsite"}
+  - {id: S9-clara-item-d29,           kind: item_present,        run_day: 29, args: {about: candidate:clara-voss, section: pulse}}
+  - {id: S9-northbeam-not-recruiter,  kind: contact_category_is, run_day: 30, args: {email: harriet@northbeamtalent.com, category: hiring, subtype: retained_search}, description: "eval.md §3 S9: Northbeam not treated as recruiter"}
+  - {id: S9-northbeam-no-pattern,     kind: candidate_absent,    run_day: 30, args: {type: recruiter_pattern, about: other:recruiter-northbeam}}
+  - {id: S9-northbeam-forward,        kind: action_present,      run_day: 30, args: {about: hiring-req:backend-2, action: forward_delegate}}
+  - {id: S9-northbeam-no-draft-to-harriet, kind: no_draft_to,    run_day: 30, args: {contact: harriet@northbeamtalent.com}, description: "the dispatch is a note to Jordan, not a reply to Northbeam"}
+  - {id: S9-no-draft-to-yusuf,        kind: no_draft_to,         run_day: 30, args: {contact: yusuf.demir.dev@gmail.com}, description: "nor a note to the candidate on a paused req"}
+  - {id: S9-open-reqs-drift,          kind: action_present,      run_day: 30, args: {about: other:profile-open-reqs, action: profile_update}}
+
+sim_avery:
+  - {scope_about: hiring-req:backend-2, intended_option: 1, rationale: "hold Northbeam's shortlist until the A closes; Jordan tells Harriet"}
+simulate: []
+variants: []

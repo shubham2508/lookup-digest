@@ -1,0 +1,80 @@
+thread_id: t-owen-dataroom
+subject: "Data room access - two analysts"
+storyline: null
+category: investors_board
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_closed
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [deal:series-a:data-room]
+    ball_awaiting: nobody
+    closed_by_courtesy: true
+    sender_relationship: {category: capital, subtype: investor_associate, stage: diligence}
+    asks: [{to_avery: true, kind: other, deadline_day: null, status: answered}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 15
+    time: "11:00"
+    from: owen
+    to: [avery]
+    cc: [nora]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi Avery,
+
+      Thank you again for Monday; the partnership was very engaged, and the follow-up conversation this morning was short, which is a good sign.
+
+      To keep diligence moving, could we arrange data room access for two of our analysts?
+
+      - Sunita Kapoor, sunita.kapoor@inflectionpoint.vc
+      - Evan Whitford, evan.whitford@inflectionpoint.vc
+
+      Read-only is fine. Folders they will start in: Financials / Monthly close, Customers / Contracts, and Metrics / Retention. I have copied Nora, who I understand manages the room, in case that is the faster route.
+
+      Best regards,
+  - id: m2
+    beat_ref: null
+    day: 15
+    time: "11:50"
+    from: nora
+    to: [owen]
+    cc: [avery]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Hi Owen,
+
+      Done. Both accounts were created at 11:45 with viewer access to the IPV folder; invitations went to the two addresses below.
+
+      | Name           | Access | Expires    |
+      | Sunita Kapoor  | Viewer | 2026-05-31 |
+      | Evan Whitford  | Viewer | 2026-05-31 |
+
+      Metrics / Retention is being refreshed today with the FY25 cohort tab and will be in place by tomorrow morning. If either analyst has trouble with the login they can reach me directly.
+  - id: m3
+    beat_ref: null
+    day: 15
+    time: "12:10"
+    from: owen
+    to: [nora]
+    cc: [avery]
+    reply_to: m2
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Perfect, thank you Nora. Both are in and have started on Contracts.
+
+      Best regards,

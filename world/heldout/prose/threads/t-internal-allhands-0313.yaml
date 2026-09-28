@@ -1,0 +1,71 @@
+thread_id: t-internal-allhands-0313
+subject: "all hands 3pm - agenda"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: last_word_avery
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [meeting:all-hands]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: self}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 17
+    time: "09:15"
+    from: avery
+    to: [team_list]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      hi all, agenda for 3pm (big room + zoom):
+
+      1. numbers, and where the raise is (me, 10)
+      2. eng: sprint 15, hack day winners (jordan, 10)
+      3. gtm: northstar countdown, pinewood, roundtable (tomás, 10)
+      4. ops: security keys, one slide (nora)
+      5. q&a
+
+      see you at 3.
+
+      Avery
+  - id: m2
+    beat_ref: null
+    day: 17
+    time: "09:40"
+    from: jordan
+    to: [avery]
+    cc: [team_list]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      Could I have 5 more minutes? Hana and Arjun have cutover runbook v1 and I'd like the whole team to see the go/no-go checklist once before it goes to Northstar. Hana would walk it, 5 minutes, no slides.
+
+      If it's tight I'll drop the hack day recap, everyone was there anyway.
+  - id: m3
+    beat_ref: null
+    day: 17
+    time: "09:52"
+    from: avery
+    to: [jordan]
+    cc: [team_list]
+    reply_to: m2
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      yes, take 10. keep the hack day recap, cut mine instead, the numbers can be one slide.

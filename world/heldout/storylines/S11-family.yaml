@@ -1,0 +1,190 @@
+id: S11
+name: family
+reviewed: false
+tier_truth: P0
+summary: >
+  Three personal-domain items from three kinds of sender, held-out disguise of dev S11. (1) Sam emails Monday day 27
+  at 21:22: the district TK application needs both signatures by Friday, plus an unrelated question about Jun's
+  birthday; Avery replies Tuesday 07:12 (done) so the item is present on day 28 only and gone after (resolved
+  disappears). (2) Sunflower Cooperative Preschool (Marisol Vega) emails Wednesday day 29 at 15:40: early dismissal
+  at 12:30 on Thursday March 26 for staff CPR recertification, no late room → collides with the 12:30 Tidewater intro
+  (non-family sender, personal domain, high). (3) Sam adds "Wren - ENT follow-up" to shared_family.ics at 22:17 on
+  day 29 for Thursday 11:15–12:00 (Lakeshore Pediatric ENT), overlapping the 11:00–11:45 Halberd QBR, and emails at
+  22:25 (lowercase, multi-topic: Sam is in Sacramento all day Thursday so Avery has to take Wren; the 12:30 pickup;
+  dry cleaning; Jun's photos). Lakeshore's automated booking confirmation (22:14) is personal automated FYI: a
+  citation is fine, a second item is not. Tests: anything from Sam is P0 with no draft (P0 case 10); the ENT overlap
+  surfaces with `message_person` and the created time (P0 case 11); the early dismissal collides with a meeting; a
+  sibling's photo email is family but FYI (must not).
+
+threads:
+  - {id: t-sam-tk-form,             subject: "tk application + jun's birthday",                         category: personal}
+  - {id: t-sunflower-early-dismissal, subject: "Reminder: early dismissal tomorrow, Thursday 3/26 (12:30)", category: personal}
+  - {id: t-sam-thursday,            subject: "thursday",                                               category: personal}
+  - {id: t-jun-photos,              subject: "tide pool pics from saturday",                           category: personal}
+automated:
+  - {id: auto-lakeshore-confirm, day: 29, time: "22:14", from: lakeshore_reminders, to: [avery, sam], category: personal,
+     subject: "Appointment confirmed: Thu, Mar 26 at 11:15 AM - Lakeshore Pediatric ENT",
+     note: "matches the shared-calendar event; must-not as its own item (automated_personal_fyi); a citation inside the ENT item is fine"}
+events:
+  - {uid: wren-ent-20260326, calendar: shared_family, title: "Wren - ENT follow-up", day: 30, start: "11:15", end: "12:00",
+     organizer: sam, attendees: [{id: sam, partstat: ACCEPTED}, {id: avery, partstat: NEEDS-ACTION}], created_day: 29, created_time: "22:17",
+     last_modified_day: 29, last_modified_time: "22:17", location: "Lakeshore Pediatric ENT"}
+  - {uid: halberd-qbr-20260326, calendar: work, title: "Halberd QBR - Tobias intro", day: 30, start: "11:00", end: "11:45", organizer: tomas,
+     attendees: [{id: avery, partstat: ACCEPTED}, {id: tobias, partstat: ACCEPTED}, {id: hana, partstat: ACCEPTED}], created_day: 16,
+     note: "pinned in world/heldout/README.md day-30 calendar; uid proposed here, calendar.yaml must match"}
+  - {uid: tidewater-intro-20260326, calendar: work, title: "Tidewater intro - Marco Bellini", day: 30, start: "12:30", end: "13:00", organizer: marco,
+     attendees: [{id: avery, partstat: ACCEPTED}, {id: marco, partstat: ACCEPTED}], created_day: 24,
+     note: "pinned in world/heldout/README.md day-30 calendar; uid proposed here, calendar.yaml must match"}
+
+beats:
+  - {ref: S11.b1, day: 27, time: "21:22", source: email, thread: t-sam-tk-form, from: sam, to: [avery],
+     event: "the district TK application is in the folder on the counter, needs both of us to sign the last page, due back by friday; also: Jun's birthday on the 4th, host or go out?; lowercase, two topics",
+     must_include: ["both of us to sign", "by friday"], hardness: [mixed_topics, lowercase]}
+  - {ref: S11.b2, day: 28, time: "07:12", source: email, thread: t-sam-tk-form, from: avery, to: [sam],
+     event: "signed the last page before leaving, back in the folder; Jun's birthday: at ours, will text Jun", must_include: ["signed"]}
+  - {ref: S11.b3, day: 26, time: "10:15", source: email, thread: t-jun-photos, from: jun, to: [avery, sam],
+     event: "photos from Saturday at the tide pools, long family update, links; 'no need to reply'", must_include: ["no need to reply"], hardness: [long]}
+  - {ref: S11.b4, day: 29, time: "15:40", source: email, thread: t-sunflower-early-dismissal, from: marisol, to: [parents_list], cc: [],
+     event: "reminder: early dismissal tomorrow Thursday March 26, all classrooms dismiss at 12:30 for staff CPR/first-aid recertification; pickup 12:15–12:30; no late room; Friday regular; spring break dates",
+     must_include: ["12:30", "Thursday, March 26"], hardness: [bulk_style_but_human]}
+  - {ref: S11.a1, day: 29, time: "22:14", source: automated, automated: auto-lakeshore-confirm, from: lakeshore_reminders, to: [avery, sam],
+     event: "Lakeshore booking confirmation: Wren, Thu Mar 26 11:15 AM, follow-up visit; sent to the contacts on file", must_include: ["11:15 AM"]}
+  - {ref: S11.c1, day: 29, time: "22:17", source: calendar, event: wren-ent-20260326, from: sam,
+     event: "Sam creates 'Wren - ENT follow-up' for Thu 11:15–12:00 at Lakeshore Pediatric ENT; Avery invited, no response"}
+  - {ref: S11.b5, day: 29, time: "22:25", source: email, thread: t-sam-thursday, from: sam, to: [avery],
+     event: "took the 11:15 cancellation at Lakeshore for Wren's ENT follow-up, it's on the calendar; Sam is in Sacramento all day Thursday for a site visit so it has to be Avery; Sunflower lets out at 12:30 too, who has Wren; dry-cleaning ticket on the fridge; Jun's pics",
+     must_include: ["11:15", "sacramento all day thursday", "it has to be you"], hardness: [mixed_topics, lowercase]}
+
+labels:
+  - thread: t-sam-tk-form
+    category: personal
+    storyline: S11
+    expected:
+      type: human_thread
+      domain: personal
+      intent_primary: ask
+      about: [family:tk-application]
+      ball_awaiting: nobody          # after Avery's reply
+      closed_by_courtesy: false
+      sender_relationship: {category: family, subtype: partner}
+      asks: [{to_avery: true, kind: signature, deadline_day: 31, status: answered}, {to_avery: true, kind: decision, deadline_day: null, status: answered}]
+      suspicious: false
+    messages:
+      - {beat_ref: S11.b1, day: 27, time: "21:22", from: sam,   to: [avery], must_include: ["both of us to sign", "by friday"]}
+      - {beat_ref: S11.b2, day: 28, time: "07:12", from: avery, to: [sam],   must_include: ["signed"], is_from_avery: true}
+  - thread: t-jun-photos
+    category: personal
+    storyline: S11
+    must_not_surface: true
+    must_not_reason: family_fyi_no_action
+    classification_case: family_must_not
+    expected: {type: human_thread, domain: personal, intent_primary: social, about: [family:photos], ball_awaiting: nobody, closed_by_courtesy: false,
+               sender_relationship: {category: family, subtype: relative}}
+    messages:
+      - {beat_ref: S11.b3, day: 26, time: "10:15", from: jun, to: [avery, sam], must_include: ["no need to reply"]}
+  - thread: t-sunflower-early-dismissal
+    category: personal
+    storyline: S11
+    classification_case: daycare_closure_collision
+    expected:
+      type: human_thread
+      domain: personal
+      intent_primary: fyi
+      about: [family:early-dismissal]
+      ball_awaiting: avery           # Avery has to arrange pickup; no reply owed to the preschool
+      closed_by_courtesy: false
+      sender_relationship: {category: vendor, subtype: daycare}
+      claims: [{subject: early_dismissal, value: "Thursday, March 26 at 12:30"}]
+      suspicious: false
+    messages:
+      - {beat_ref: S11.b4, day: 29, time: "15:40", from: marisol, to: [parents_list], must_include: ["12:30", "Thursday, March 26"]}
+  - thread: t-sam-thursday
+    category: personal
+    storyline: S11
+    expected:
+      type: human_thread
+      domain: personal
+      intent_primary: ask
+      about: [family:ent-appointment, family:early-dismissal]
+      ball_awaiting: avery
+      closed_by_courtesy: false
+      sender_relationship: {category: family, subtype: partner}
+      asks: [{to_avery: true, kind: other, deadline_day: 30, status: open}]
+      schedule_mentions: [{action: confirmed, participants: [avery], when_day: 30, when_time: "11:15"}]
+      claims: [{subject: sam_thursday, value: "Sacramento site visit all day"}]
+      suspicious: false
+    messages:
+      - {beat_ref: S11.b5, day: 29, time: "22:25", from: sam, to: [avery], must_include: ["11:15", "sacramento all day thursday", "it has to be you"]}
+  - automated: auto-lakeshore-confirm
+    category: personal
+    storyline: S11
+    must_not_surface: true
+    must_not_reason: automated_personal_fyi
+    note: "matches the shared-calendar event; a citation inside the ENT item is fine, a second item is not (dev: auto-peds-reminder)"
+    expected: {type: automated, domain: personal, about: [family:ent-appointment],
+               automated: {system: "Lakeshore Pediatric ENT", action_bearing: false, action_kind: none, about: family:ent-appointment}}
+  - event: wren-ent-20260326
+    storyline: S11
+    note: "code-parsed calendar event; cited as event:wren-ent-20260326; created 22:17 day 29"
+    expected: {type: event}
+
+contacts:
+  - {id: sam,                 category: family,    subtype: partner,          tier: P0,   in_profile: true, rules: [never_draft]}
+  - {id: jun,                 category: family,    subtype: relative,         tier: null}
+  - {id: marisol,             category: vendor,    subtype: daycare,          tier: null, note: "personal-service vendor; items are personal domain"}
+  - {id: lakeshore_reminders, category: automated, subtype: personal_service, tier: null, note: "automated; personal domain"}
+
+about_keys:
+  should_merge: [[family:ent-appointment, family:wren-ent-follow-up], [family:early-dismissal, family:preschool-early-dismissal]]
+  should_not_merge: [[family:tk-application, family:early-dismissal], [family:ent-appointment, meeting:halberd-qbr], [family:early-dismissal, meeting:tidewater-intro]]
+
+expectations:
+  - run_day: 26
+    absent: [family:tk-application, family:early-dismissal, family:ent-appointment]
+    notes: "Jun's photos arrive 10:15, after the run; nothing from Sam yet"
+  - run_day: 27
+    absent: [family:tk-application, family:early-dismissal, family:ent-appointment]
+    noise: [t-jun-photos]
+  - run_day: 28
+    candidates: [{type: reply_owed, about: family:tk-application, facts_hint: {deadline_day: 31, sender_rule: never_draft}}]
+    items: [{about: family:tk-application, priority: P0, section: calendar_personal, actions_any: [message_person, task], cites_any: [t-sam-tk-form],
+             notes: "surface, no draft: 'Sam needs both signatures on the TK application by Friday' → message_person / task"}]
+    absent: [family:early-dismissal, family:ent-appointment]
+    noise: [t-jun-photos]
+  - run_day: 29
+    absent: [family:tk-application, family:early-dismissal, family:ent-appointment]
+    notes: "Avery answered Sam at 07:12 on day 28 → resolved, disappears; Sunflower's reminder lands 15:40, after the run"
+    noise: [t-jun-photos, t-sam-tk-form]
+  - run_day: 30
+    candidates:
+      - {type: "calendar_conflict:family", about: family:ent-appointment, facts_hint: {overlap_minutes: 30, overlaps: halberd-qbr-20260326, created: "day 29 22:17"}}
+      - {type: "calendar_conflict:family", about: family:early-dismissal, facts_hint: {overlaps: tidewater-intro-20260326, source: t-sunflower-early-dismissal}}
+      - {type: reply_owed, about: family:ent-appointment, facts_hint: {source: t-sam-thursday, sender_rule: never_draft}}
+    items:
+      - {about: family:ent-appointment, priority: P0, section: calendar_personal, actions: [message_person], cites_any: ["event:wren-ent-20260326", t-sam-thursday],
+         notes: "'Sam added Wren - ENT follow-up (11:15–12:00) at 22:17 last night; overlaps your 11:00 Halberd QBR with Tobias. Sam is in Sacramento all day, so it has to be you.' No draft to Sam; message Sam / tell Tomás."}
+      - {about: family:early-dismissal, priority: P0, section: calendar_personal, actions_any: [message_person, decide], cites_any: [t-sunflower-early-dismissal],
+         notes: "Sunflower dismisses at 12:30 today, no late room; collides with the 12:30 Tidewater intro (Marco). Who has Wren after the ENT? Compose may fold this into the ENT item (both cite their sources)."}
+    absent: [family:tk-application]
+    noise: [t-jun-photos, t-sam-tk-form]
+
+assertions:
+  - {id: S11-d28-sam-p0,           kind: item_present,      run_day: 28, args: {about: family:tk-application, priority: P0}, description: "P0 case 10: Sam emails → surface"}
+  - {id: S11-d28-no-draft-sam,     kind: no_draft_to,       run_day: 28, args: {contact: sam.park@fastmail.com}, description: "P0 case 10: no draft"}
+  - {id: S11-d29-form-resolved,    kind: item_absent,       run_day: 29, args: {about: family:tk-application}, description: "answered by Avery → gone"}
+  - {id: S11-d30-ent,              kind: item_present,      run_day: 30, args: {about: family:ent-appointment, priority: P0, section: calendar_personal, actions_any: [message_person]}, description: "eval.md §3 S11 / P0 case 11"}
+  - {id: S11-d30-ent-cand,         kind: candidate_present, run_day: 30, args: {type: "calendar_conflict:family", about: family:ent-appointment}}
+  - {id: S11-d30-no-draft-sam,     kind: no_draft_to,       run_day: 30, args: {contact: sam.park@fastmail.com}}
+  - {id: S11-d30-message-person,   kind: action_present,    run_day: 30, args: {about: family:ent-appointment, action: message_person}}
+  - {id: S11-d30-dismissal-present, kind: item_present,     run_day: 30, args: {about: family:early-dismissal, priority: P0}}
+  - {id: S11-d30-dismissal-cand,   kind: candidate_present, run_day: 30, args: {type: "calendar_conflict:family", about: family:early-dismissal}}
+  - {id: S11-d30-created-time,     kind: item_mentions_all, run_day: 30, args: {about: family:ent-appointment, phrases: ["22:17"]}, description: "the created time is part of the honesty framing ('added last night')"}
+  - {id: S11-d30-dismissal-time,   kind: item_mentions_all, run_day: 30, args: {about: family:early-dismissal, phrases: ["12:30"]}, description: "the pickup time is what Avery has to plan around"}
+  - {id: S11-jun-noise,            kind: item_absent,       run_day: 30, args: {source_id: t-jun-photos}}
+  - {id: S11-formal-still-no-sam,  kind: no_draft_to,       run_day: 30, customize: formal, args: {contact: sam.park@fastmail.com}, description: "eval.md §6 formal.md: still no draft to Sam"}
+  - {id: S11-board-prep-oneliner,  kind: item_present,      run_day: 30, customize: board_prep, args: {about: family:ent-appointment}, description: "eval.md §6 board_prep: Sam's conflict still present as a one-liner"}
+
+sim_avery: []
+simulate:
+  - {id: S11-sim-resolved, kind: resolved_disappears, run_day: 29, args: {about: family:tk-application, after_run_day: 28, mode: simulate}}
+variants: []

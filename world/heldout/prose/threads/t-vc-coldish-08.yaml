@@ -1,0 +1,39 @@
+thread_id: t-vc-coldish-08
+subject: "Kite Hill Capital - Tessera"
+storyline: null
+category: investors_board
+labels:
+  kind: thread
+  must_not: true
+  reason: cold_vc_associate_no_engagement
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [other:vc-inbound-kite-hill]
+    ball_awaiting: avery
+    closed_by_courtesy: false
+    sender_relationship: {category: capital, subtype: cold_vc_associate}
+    asks: [{to_avery: true, kind: meeting, deadline_day: null, status: open}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 23
+    time: "10:05"
+    from: {name: "Rachel Tan", email: "rachel.tan@kitehillcap.com"}
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: "Rachel Tan\nAssociate, Kite Hill Capital"
+    body: |
+      Hi Avery,
+
+      Rachel Tan at Kite Hill Capital ($400M growth fund, Series A and B). I have been tracking plant-floor software for about a year and Tessera is on the short list of companies I want to understand properly before the category gets crowded.
+
+      Two questions I would love to hear your view on, in a 30-minute call if you can spare it: how the reference-customer motion scales past the first handful, and whether the mid-market buyer is asking for on-prem. Happy to work around your schedule and to share notes from the other conversations in return.
+
+      Best,

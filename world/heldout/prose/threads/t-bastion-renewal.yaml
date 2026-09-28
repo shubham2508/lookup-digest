@@ -1,0 +1,65 @@
+thread_id: t-bastion-renewal
+subject: "Your Bastion Compliance annual plan renews on March 27 ($16,800)"
+storyline: BG-bastion
+category: vendors_misc
+labels:
+  kind: thread
+  must_not: false
+  reason: null
+  classification_case: vendor_auto_renewal_today
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [renewal:bastion]
+    ball_awaiting: avery
+    closed_by_courtesy: false
+    sender_relationship: {category: vendor, subtype: active_contract, stage: renewal_due}
+    asks: [{to_avery: true, kind: decision, deadline_day: 30, status: open}]
+    stage_signals: [{entity: bastion, stage: renewal_due, day: 29}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 23
+    time: "09:00"
+    from: bastion_billing
+    to: [avery]
+    cc: [nora]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hello Avery,
+
+      This is a reminder that the Bastion Compliance annual plan for Tessera, Inc. (account BC-30922) renews automatically on March 27, 2026.
+
+      Plan: Compliance Automation - Growth (annual, up to 25 employees, SOC 2 + ISO 27001 frameworks)
+      Renewal amount: $16,800 (unchanged from your current term)
+      Payment method: card ending 8817
+      Renewal date: March 27, 2026
+      New term: March 27, 2026 - March 26, 2027
+
+      No action is needed to continue your service. To cancel or change your plan before renewal, reply to this email or cancel in settings (Admin > Billing > Plan) by end of day March 26, 2026. Cancellations after the renewal date take effect at the end of the new term.
+
+      Questions about your invoice can be sent to this address.
+  - id: m2
+    beat_ref: null
+    day: 29
+    time: "09:00"
+    from: bastion_billing
+    to: [avery]
+    cc: [nora]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hello Avery,
+
+      Final notice: the Bastion Compliance annual plan for Tessera, Inc. (account BC-30922) renews in two days, on March 27, 2026, for $16,800.
+
+      If you intend to continue, no action is needed and your card ending 8817 will be charged on the renewal date. If you would like to cancel or change your plan, reply to this email or cancel in settings (Admin > Billing > Plan) before end of day March 26, 2026.
+
+      Thank you for being a Bastion customer.

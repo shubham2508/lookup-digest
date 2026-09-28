@@ -1,0 +1,981 @@
+# world/heldout/prose/bulk/recruiters.yaml — cold recruiters, held-out world (Track B, M8).
+# 25 items: HireVector x3 (days 23, 26, 28 — the only firm with 3 inside a 7-day window; background.yaml
+# planted_patterns.talentbridge, disguise HireVector) + 22 lone recruiters from 8 other firms
+# (planted_patterns.lone_recruiters; no firm has 3 in any 7-day window). Every item is a one-message thread.
+# Days/times/senders/subjects are copied from background.yaml verbatim. Lone-recruiter senders are one-offs
+# {name, email} at the firm's domain with literal signatures; HireVector uses the world.yaml signatures.
+# Day → date: day 1 = Wed 2026-02-25 … day 12 = Sun 03-08 (spring-forward) … day 30 = Thu 03-26.
+category: recruiters
+items:
+  # ------------------------------------------------------------------ day 2 · Thu Feb 26
+  - id: t-lone-recruiter-01
+    day: 2
+    time: "09:12"
+    from: {name: "Dana Whitfield", email: "dana.whitfield@kestrelsearch.com"}
+    to: [avery]
+    subject: "Head of Engineering search - quick intro"
+    bulk: false
+    signature: |-
+      Dana Whitfield
+      Principal | Kestrel Search Partners
+      Engineering & Product Leadership Search
+      (415) 555-0119 | dana.whitfield@kestrelsearch.com
+      kestrelsearch.com
+    body: |
+      Hi Avery,
+
+      Quick intro. I lead the engineering leadership practice at Kestrel Search Partners and I'm currently running a Head of Engineering search for a Series B industrial analytics company in the Peninsula (about 60 people, $18M ARR, hardware-adjacent data platform).
+
+      Your name came up twice in our sourcing calls as someone who has built a plant-floor data product from scratch. I realize you are running Tessera and this may not be for you personally, but two things:
+
+      1. If you know a strong engineering leader who is ready for a first Head of Eng seat, I would love a name.
+      2. If you ever want a read on how the market is pricing these roles right now, I'm happy to share what we're seeing.
+
+      Would 15 minutes next week be too much to ask?
+
+      Best,
+      Dana
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-kestrel-search-partners]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 3 · Fri Feb 27
+  - id: t-lone-recruiter-02
+    day: 3
+    time: "14:05"
+    from: {name: "Trent Kowalczyk", email: "trent@bluewatertalent.co"}
+    to: [avery]
+    subject: "Fractional VP Eng candidates available now"
+    bulk: false
+    signature: |-
+      Trent Kowalczyk | Bluewater Talent
+      Fractional & interim engineering leadership
+      trent@bluewatertalent.co | (503) 555-0172
+      bluewatertalent.co
+    body: |
+      Hi Avery,
+
+      Hope your week is wrapping up well! Bluewater Talent places fractional and interim VP Engineering / CTO-level leaders with venture-backed companies, typically 2-3 days a week for 3-6 months while the permanent search runs.
+
+      I have three leaders available now:
+
+      - Ex-VP Eng at a Series C logistics SaaS, 14 yrs, strong on platform reorgs (Bay Area)
+      - Former CTO of an industrial IoT startup (acquired), 11 yrs, hands-on with edge/ingest (Portland, remote)
+      - Ex-Director of Engineering at a public infra company, 16 yrs, scaling 15 to 60 (Seattle, remote)
+
+      If Tessera is growing the engineering team this year and could use senior cover while you hire, I'd love 15 minutes to walk you through profiles. If not, no worries at all.
+
+      Cheers,
+      Trent
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-bluewater-talent]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 6 · Mon Mar 2
+  - id: t-lone-recruiter-03
+    day: 6
+    time: "10:30"
+    from: {name: "Simone Achterberg", email: "s.achterberg@orchardexec.com"}
+    to: [avery]
+    subject: "Confidential: CTO search for a Series B industrial software company"
+    bulk: false
+    signature: |-
+      Simone Achterberg
+      Partner, Orchard Executive Search
+      Amsterdam | San Francisco | Austin
+      +1 (415) 555-0163 | s.achterberg@orchardexec.com
+      orchardexec.com
+
+      This message is confidential and intended only for the addressee. If you have received it in error, please notify the sender and delete it.
+    body: |
+      Dear Avery,
+
+      Orchard Executive Search has been retained by the board of a Series B industrial software company (Bay Area, roughly $22M ARR, 110 employees) to identify its next Chief Technology Officer. The company sells to mid-market manufacturers and is preparing for a Series C in the next twelve months.
+
+      Given your background as a technical founder serving the same buyers, I wanted to reach out directly before we finalize our long list. The board is specifically interested in leaders who have taken an ingest-heavy data product from first customers to scale.
+
+      Would you have 20 minutes for a confidential conversation in the next two weeks? If the timing is wrong for you, I would welcome any names that come to mind.
+
+      Kind regards,
+      Simone
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-orchard-executive-search]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 8 · Wed Mar 4
+  - id: t-lone-recruiter-04
+    day: 8
+    time: "15:40"
+    from: {name: "Rafael Ortega", email: "rafael@ninefoldrecruiting.com"}
+    to: [avery]
+    subject: "Backend engineers with manufacturing domain experience"
+    bulk: false
+    signature: |-
+      Rafael Ortega | Account Manager
+      Ninefold Recruiting - Engineering talent for industrial tech
+      (510) 555-0147 | rafael@ninefoldrecruiting.com
+      ninefoldrecruiting.com
+    body: |
+      Hi Avery,
+
+      I noticed Tessera has a backend engineer role open and wanted to introduce Ninefold Recruiting. We focus on Python and Go engineers who have actually worked with plant-floor systems - MES, SCADA, historians - which is a narrow pool and hard to find on the usual job boards.
+
+      Three people I could introduce this week:
+
+      - Senior backend engineer, 9 yrs, Python/Postgres, built the ingest layer at an OEE analytics startup (Oakland)
+      - Backend engineer, 6 yrs, Go, MES integrations at a Tier 1 auto supplier (Detroit, open to relocate)
+      - Staff engineer, 12 yrs, distributed systems, ex-historian vendor (remote, Denver)
+
+      Our fee is 20% direct hire with a 90-day replacement guarantee. Happy to send anonymized profiles if any of these are interesting.
+
+      Do you have 15 minutes to talk about what you're looking for?
+
+      Thanks,
+      Rafael
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-ninefold-recruiting]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 9 · Thu Mar 5
+  - id: t-lone-recruiter-05
+    day: 9
+    time: "08:55"
+    from: {name: "Bethany Cruz", email: "bethany.cruz@tallgrasstalent.com"}
+    to: [avery]
+    subject: "Tessera's engineering hiring - can we help?"
+    bulk: false
+    signature: |-
+      Bethany Cruz
+      Senior Recruiter | Tallgrass Talent Group
+      Kansas City | Denver | remote everywhere
+      bethany.cruz@tallgrasstalent.com | (816) 555-0128
+      tallgrasstalent.com
+    body: |
+      Hi Avery,
+
+      I hope this finds you well! I came across Tessera's careers page and saw you're hiring backend engineers and a product designer. Tallgrass Talent Group works with early-stage B2B software companies that need to hire a handful of great people quickly without building an in-house recruiting function.
+
+      A couple of quick things about how we work:
+      - Contingency only, 18%, no exclusivity
+      - We source outside the Bay Area too (a lot of our placements are remote in the Mountain and Central time zones), which tends to help on comp
+      - Average time to first qualified candidate: 9 days
+
+      If it would be helpful, I'd love 15 minutes to learn about the roles and what's been hard so far. And if you're all set, just say so and I won't follow up!
+
+      Warmly,
+      Bethany
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-tallgrass-talent-group]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 10 · Fri Mar 6
+  - id: t-lone-recruiter-06
+    day: 10
+    time: "11:20"
+    from: {name: "Nolan Fitzgerald", email: "nolan@copperlinestaffing.com"}
+    to: [avery]
+    subject: "Contract data engineers - 2 week start"
+    bulk: false
+    signature: |-
+      Nolan Fitzgerald
+      Copperline Staffing | Contract & contract-to-hire
+      nolan@copperlinestaffing.com | (925) 555-0181
+    body: |
+      Avery -
+
+      Copperline Staffing places contract data engineers with Bay Area startups. I have four available right now who can start within two weeks:
+
+      * Data engineer, 7 yrs, Python/Spark/dbt, time-series pipelines at a utility - $120/hr
+      * Data engineer, 5 yrs, Python/Airflow, SAP extracts (!) - $105/hr
+      * Analytics engineer, 4 yrs, dbt/Snowflake - $95/hr
+      * Senior data engineer, 10 yrs, Kafka/Flink, industrial telemetry - $145/hr
+
+      Contract-to-hire is fine on all four. If your team has a backlog around integrations or reporting that a contractor could burn down while you hire full-time, this might be a quick win.
+
+      15 minutes?
+
+      Nolan
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-copperline-staffing]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 13 · Mon Mar 9
+  - id: t-lone-recruiter-07
+    day: 13
+    time: "09:35"
+    from: {name: "Ingrid Solberg", email: "ingrid.solberg@sablefinch.com"}
+    to: [avery]
+    subject: "Board-level introduction: VP Sales candidate"
+    bulk: false
+    signature: |-
+      Ingrid Solberg
+      Partner | Sable & Finch Search
+      Executive search for B2B software
+      +1 (212) 555-0190 | ingrid.solberg@sablefinch.com
+      sablefinch.com
+    body: |
+      Dear Avery,
+
+      I'm writing on the suggestion of one of our board-level contacts, who thought Tessera might be at the stage where a first VP of Sales becomes the right hire.
+
+      Sable & Finch is working with a candidate who has led go-to-market at two industrial software companies, taking one from $5M to $40M ARR with a reference-customer-led motion very similar to what I understand Tessera is doing with its manufacturing accounts. The candidate is selectively exploring founder-led companies at the Series A / B boundary and asked us to make a small number of quiet introductions.
+
+      I appreciate this is unsolicited. If a confidential 20-minute conversation would be useful, I'm glad to arrange it; if the timing is wrong, I completely understand.
+
+      With kind regards,
+      Ingrid
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-sable-finch-search]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 14 · Tue Mar 10
+  - id: t-lone-recruiter-08
+    day: 14
+    time: "13:10"
+    from: {name: "Devon Marsh", email: "devon.marsh@westmarkrecruiting.com"}
+    to: [avery]
+    subject: "Senior backend / platform engineers - Bay Area"
+    bulk: false
+    signature: |-
+      Devon Marsh
+      Technical Recruiter | Westmark Technical Recruiting
+      devon.marsh@westmarkrecruiting.com | (650) 555-0156
+      westmarkrecruiting.com | LinkedIn
+    body: |
+      Hi Avery,
+
+      I'm a technical recruiter at Westmark and I work exclusively on senior backend and platform roles for growth-stage companies in the Bay Area.
+
+      I saw Tessera's backend posting and have two engineers who I think match well:
+
+      1. Senior backend engineer, 8 yrs, Python + Postgres, most recently at a sensor-data company; has run an on-call rotation and wants a smaller team
+      2. Platform engineer, 7 yrs, Kubernetes/Terraform, GPU scheduling experience at an ML infra startup
+
+      Both are interviewing this month. I can send full profiles if you reply with a yes, or we can do a 15 minute call if that is easier.
+
+      Thanks,
+      Devon
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-westmark-technical-recruiting]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 15 · Wed Mar 11
+  - id: t-lone-recruiter-09
+    day: 15
+    time: "10:05"
+    from: {name: "Dana Whitfield", email: "dana.whitfield@kestrelsearch.com"}
+    to: [avery]
+    subject: "Re: Head of Engineering search - following up"
+    bulk: false
+    signature: |-
+      Dana Whitfield
+      Principal | Kestrel Search Partners
+      Engineering & Product Leadership Search
+      (415) 555-0119 | dana.whitfield@kestrelsearch.com
+      kestrelsearch.com
+    body: |
+      Hi Avery,
+
+      Following up on my note from a couple of weeks ago about the Head of Engineering search for our Series B industrial analytics client. The slate is coming together and the client has asked me to make one more pass for referrals from founders in adjacent spaces.
+
+      If anyone on your team or in your network is ready for the step up, I'd be grateful for a name. And if you'd like the market comp read I mentioned, it's a 10-minute call, no strings.
+
+      Thanks for your time either way.
+
+      Best,
+      Dana
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-kestrel-search-partners]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 16 · Thu Mar 12
+  - id: t-lone-recruiter-10
+    day: 16
+    time: "16:20"
+    from: {name: "Lila Bhatt", email: "lila@bluewatertalent.co"}
+    to: [avery]
+    subject: "Product designer shortlist - 3 profiles"
+    bulk: false
+    signature: |-
+      Lila Bhatt | Bluewater Talent
+      Product & design placements
+      lila@bluewatertalent.co | (503) 555-0174
+    body: |
+      Hi Avery,
+
+      My colleague Trent mentioned Tessera and I saw you also have a product designer role open, so I put together a quick shortlist:
+
+      - Senior product designer, 7 yrs, B2B dashboards and data-heavy UI, ex-logistics SaaS (SF)
+      - Product designer, 5 yrs, first designer at two seed-stage startups, strong on research (Oakland)
+      - Staff designer, 10 yrs, design systems + ops tooling, open to a smaller company (remote, Portland)
+
+      All three have portfolios I can share on request. Our fee is 18% contingency.
+
+      Would you like me to send them over, or is Jordan or someone else the right person for design hiring? Happy to be redirected.
+
+      Thanks!
+      Lila
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-bluewater-talent]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 17 · Fri Mar 13
+  - id: t-lone-recruiter-11
+    day: 17
+    time: "09:50"
+    from: {name: "Grant Osei", email: "grant@ninefoldrecruiting.com"}
+    to: [avery]
+    subject: "Quick question about your open roles"
+    bulk: false
+    signature: |-
+      Grant Osei | Ninefold Recruiting
+      grant@ninefoldrecruiting.com | (510) 555-0149
+    body: |
+      Hi Avery,
+
+      Quick question - is the backend engineer role on your careers page still open, and is it one hire or several? I work alongside Rafael at Ninefold and I'm trying to figure out whether to keep pointing manufacturing-domain engineers your way.
+
+      No pitch, just trying not to waste anyone's time. A one-word reply is perfect.
+
+      Thanks,
+      Grant
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-ninefold-recruiting]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 20 · Mon Mar 16
+  - id: t-lone-recruiter-12
+    day: 20
+    time: "08:40"
+    from: {name: "Simone Achterberg", email: "s.achterberg@orchardexec.com"}
+    to: [avery]
+    subject: "Re: Confidential CTO search - closing the loop"
+    bulk: false
+    signature: |-
+      Simone Achterberg
+      Partner, Orchard Executive Search
+      Amsterdam | San Francisco | Austin
+      +1 (415) 555-0163 | s.achterberg@orchardexec.com
+      orchardexec.com
+
+      This message is confidential and intended only for the addressee. If you have received it in error, please notify the sender and delete it.
+    body: |
+      Dear Avery,
+
+      Closing the loop on the CTO search I wrote about two weeks ago. The board is finalizing its short list this week, so I will take silence as a polite no and close your file on this one.
+
+      Should you know a technical leader who would suit the role, or should your own circumstances change, I would be grateful for a note.
+
+      With best wishes for Tessera,
+      Simone
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-orchard-executive-search]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 21 · Tue Mar 17
+  - id: t-lone-recruiter-13
+    day: 21
+    time: "11:45"
+    from: {name: "Hollie Turner", email: "hollie.turner@tallgrasstalent.com"}
+    to: [avery]
+    subject: "Designer candidates (open to remote)"
+    bulk: false
+    signature: |-
+      Hollie Turner
+      Recruiter, Design & Product | Tallgrass Talent Group
+      hollie.turner@tallgrasstalent.com | (816) 555-0133
+      tallgrasstalent.com
+    body: |
+      Hi Avery,
+
+      Bethany on my team reached out a couple weeks ago about Tessera's hiring; I cover design roles at Tallgrass and wanted to follow up on the product designer opening specifcally.
+
+      Two designers who could be a fit, both open to remote:
+
+      - Product designer, 6 yrs, industrial/ops software, most recently designing scheduling screens for a food manufacturer (Minneapolis)
+      - Senior product designer, 8 yrs, data-dense B2B, has been the only designer at a 15-person company before (Austin)
+
+      If you'd like portfolios, reply and I'll send them same day. If design is being handled by someone else on your team, let me know who and I'll take it there instead.
+
+      Thanks so much,
+      Hollie
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-tallgrass-talent-group]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 22 · Wed Mar 18
+  - id: t-lone-recruiter-14
+    day: 22
+    time: "14:30"
+    from: {name: "Nolan Fitzgerald", email: "nolan@copperlinestaffing.com"}
+    to: [avery]
+    subject: "Re: Contract data engineers - still available"
+    bulk: false
+    signature: |-
+      Nolan Fitzgerald
+      Copperline Staffing | Contract & contract-to-hire
+      nolan@copperlinestaffing.com | (925) 555-0181
+    body: |
+      Avery -
+
+      Bumping this. Two of the four I mentioned are still available (the SAP-extracts person and the Kafka/Flink senior). Both can start the week of the 30th.
+
+      If there's no need right now, a quick "not now" is all I need and I'll check back in the summer.
+
+      Nolan
+
+      P.S. We also do short engagements (4-6 weeks) if you just need a data migration or a reporting backlog cleared before a big customer go-live.
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-copperline-staffing]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  - id: t-lone-recruiter-15
+    day: 22
+    time: "16:05"
+    from: {name: "Yasmin Farouk", email: "yasmin.farouk@westmarkrecruiting.com"}
+    to: [avery]
+    subject: "Introducing Westmark - technical recruiting for growth-stage teams"
+    bulk: false
+    signature: |-
+      Yasmin Farouk
+      Managing Director | Westmark Technical Recruiting
+      Palo Alto | Austin | Remote
+      yasmin.farouk@westmarkrecruiting.com | (650) 555-0150
+      westmarkrecruiting.com
+
+      Westmark Technical Recruiting places software, platform and ML engineers with venture-backed companies from Series A through IPO. Contingency and retained engagements available.
+    body: |
+      Dear Avery,
+
+      I'm the Managing Director at Westmark Technical Recruiting. My colleague Devon Marsh reached out last week about two backend candidates; I wanted to introduce the firm properly and explain how we might help Tessera Systems as the team grows.
+
+      Westmark focuses on growth-stage engineering hiring. In the last twelve months we have closed 41 senior backend and platform searches for companies between 10 and 200 people, with a median time-to-offer of 31 days. Our clients tend to come to us when the founder is still running hiring personally and needs the top of the funnel handled.
+
+      If you are open to it, I would welcome a 20-minute introductory call to understand your roadmap for the engineering team this year. If you are already working with a retained firm, I completely understand and will not follow up further.
+
+      Warm regards,
+      Yasmin
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-westmark-technical-recruiting]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 23 · Thu Mar 19
+  - id: t-hirevector-1
+    day: 23
+    time: "10:15"
+    from: brandon
+    to: [avery]
+    subject: "Senior backend engineers - top 1% talent for Tessera"
+    bulk: false
+    signature: default
+    body: |
+      Hi Avery,
+
+      I'm Brandon with HireVector. We help fast-growing companies like {{Company}} hire the top 1% engineers - pre-vetted, interview-ready, and typically able to start within 30 days.
+
+      I noticed Tessera is hiring senior backend engineers. A few people in our network right now:
+
+      - Senior Backend Engineer, 9 yrs, Python/Go, ex-FAANG, distributed systems
+      - Staff Engineer, 12 yrs, data pipelines at scale, open to Series A
+      - Senior Backend Engineer, 7 yrs, Postgres/Kafka, industrial IoT background
+
+      Every HireVector candidate passes a 4-hour technical assessment and a background check before you ever see a profile, so your team spends time only on people who can do the job.
+
+      Do you have 15 minutes this week or next for a quick call? I can also just send profiles if that's easier.
+
+      Best,
+      Brandon
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter_until_pattern
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-hirevector]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  - id: t-lone-recruiter-16
+    day: 23
+    time: "15:15"
+    from: {name: "Pete Delgado", email: "pete.delgado@sablefinch.com"}
+    to: [avery]
+    subject: "Executive search: COO for a supply-chain SaaS (confidential)"
+    bulk: false
+    signature: |-
+      Pete Delgado
+      Principal | Sable & Finch Search
+      Executive search for B2B software
+      +1 (415) 555-0193 | pete.delgado@sablefinch.com
+      sablefinch.com
+    body: |
+      Avery,
+
+      Sable & Finch has been retained to find a Chief Operating Officer for a supply-chain SaaS company (Series C, roughly $55M ARR, headquartered in the Bay Area with a large Central Valley customer base). The role owns customer success, implementation and revenue operations and reports to the CEO.
+
+      Your name surfaced because of Tessera's work with food and industrial manufacturers, which overlaps closely with this client's customer base. I recognize you are building your own company; I'm reaching out both in case the role is of interest and, more likely, in case you know an operator who would be.
+
+      A confidential 20-minute call is all I would need. I can share the position description under NDA.
+
+      Regards,
+      Pete
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-sable-finch-search]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 24 · Fri Mar 20
+  - id: t-lone-recruiter-17
+    day: 24
+    time: "10:10"
+    from: {name: "Rafael Ortega", email: "rafael@ninefoldrecruiting.com"}
+    to: [avery]
+    subject: "Re: Backend engineers with manufacturing domain experience"
+    bulk: false
+    signature: |-
+      Rafael Ortega | Account Manager
+      Ninefold Recruiting - Engineering talent for industrial tech
+      (510) 555-0147 | rafael@ninefoldrecruiting.com
+      ninefoldrecruiting.com
+    body: |
+      Hi Avery,
+
+      Following up on my note from a couple of weeks ago. The Oakland senior engineer I mentioned (Python/Postgres, ingest layer at an OEE analytics company) has two offers pending and asked me to check once more with the companies she was most interested in. Tessera was on her list.
+
+      If there's any chance the backend role is still open and you'd want to see her profile, I can send it today. If not, I'll leave it there.
+
+      Thanks,
+      Rafael
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-ninefold-recruiting]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 26 · Sun Mar 22
+  - id: t-hirevector-2
+    day: 26
+    time: "09:10"
+    from: alyssa
+    to: [avery]
+    subject: "Circling back on Brandon's note - backend hiring at Tessera"
+    bulk: false
+    signature: default
+    body: |
+      Hi Avery,
+
+      Alyssa here from HireVector, circling back on Brandon's note from last week about senior backend engineers for Tessera. I know inboxes get busy, so I wanted to make sure it didn't slip through.
+
+      Since Brandon wrote, two more engineers with industrial data experience joined our network, both Bay Area, both able to start in April. Companies at your stage typically save 6-8 weeks of sourcing by working with us, and there's no fee until someone starts.
+
+      Would a quick 15-minute intro work? Grab any slot that suits you: https://calendly.com/alyssa-hirevector/15min
+
+      Looking forward to it,
+      Alyssa
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter_until_pattern
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-hirevector]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 27 · Mon Mar 23
+  - id: t-lone-recruiter-18
+    day: 27
+    time: "09:25"
+    from: {name: "Trent Kowalczyk", email: "trent@bluewatertalent.co"}
+    to: [avery]
+    subject: "Re: Fractional VP Eng - any interest?"
+    bulk: false
+    signature: |-
+      Trent Kowalczyk | Bluewater Talent
+      Fractional & interim engineering leadership
+      trent@bluewatertalent.co | (503) 555-0172
+      bluewatertalent.co
+    body: |
+      Hi Avery,
+
+      Checking back on the fractional VP Eng note from a few weeks ago. The Portland-based former CTO (industrial IoT, hands-on with ingest) is finishing an engagement at the end of March and asked me who's worth talking to. I thought of Tessera given the plant-floor angle.
+
+      If there's zero need, totally fine - just tell me and I'll stop. If there's a maybe, 15 minutes is all it takes to find out.
+
+      Cheers,
+      Trent
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-bluewater-talent]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  - id: t-lone-recruiter-19
+    day: 27
+    time: "13:50"
+    from: {name: "Bethany Cruz", email: "bethany.cruz@tallgrasstalent.com"}
+    to: [avery]
+    subject: "Re: Tessera's engineering hiring"
+    bulk: false
+    signature: |-
+      Bethany Cruz
+      Senior Recruiter | Tallgrass Talent Group
+      Kansas City | Denver | remote everywhere
+      bethany.cruz@tallgrasstalent.com | (816) 555-0128
+      tallgrasstalent.com
+    body: |
+      Hi Avery,
+
+      Just following up on my note from a couple of weeks back (and Hollie's on the design side). I know March is a busy month for everyone, so no pressure at all!
+
+      If it's useful, I can send a short one-pager on how we've worked with three other industrial software startups this year, including time-to-hire and comp ranges we're seeing for senior backend roles outside the Bay Area. Reply with "send it" and it's yours, no call required.
+
+      Warmly,
+      Bethany
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-tallgrass-talent-group]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 28 · Tue Mar 24
+  - id: t-lone-recruiter-20
+    day: 28
+    time: "10:45"
+    from: {name: "Chloe Whitmore", email: "c.whitmore@orchardexec.com"}
+    to: [avery]
+    subject: "VP Engineering - Series C robotics company (confidential)"
+    bulk: false
+    signature: |-
+      Chloe Whitmore
+      Senior Associate, Orchard Executive Search
+      Amsterdam | San Francisco | Austin
+      +1 (512) 555-0168 | c.whitmore@orchardexec.com
+      orchardexec.com
+
+      This message is confidential and intended only for the addressee. If you have received it in error, please notify the sender and delete it.
+    body: |
+      Dear Avery,
+
+      I'm a colleague of Simone Achterberg at Orchard Executive Search. Separately from the search Simone wrote to you about, I'm leading a VP Engineering search for a Series C robotics company in Austin (around 180 people, well funded, shipping hardware and a fleet-management platform to warehouses and factories).
+
+      The board wants an engineering leader who has run software for physical environments and is comfortable with the reliability demands that come with it. Your work at Tessera came up as a reference point, so I wanted to write directly, both for your own interest and for any names you might suggest.
+
+      Relocation assistance is available, and the role can be partly remote. Would 20 minutes next week be possible?
+
+      Kind regards,
+      Chloe
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-orchard-executive-search]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  - id: t-hirevector-3
+    day: 28
+    time: "14:35"
+    from: brandon
+    to: [avery]
+    subject: "Re: Senior backend engineers - last try"
+    bulk: false
+    signature: default
+    body: |
+      Hi Avery,
+
+      Last try from me on this one, I promise. Alyssa and I have both reached out about senior backend engineers for Tessera and I haven't heard back, which usually means one of three things:
+
+      1. You've already filled the role (congrats!)
+      2. Now isn't the right time
+      3. This got buried
+
+      If it's 1 or 2, just reply with the number and I'll close the loop. If it's 3, I still have two Bay Area backend engineers from the top 1% pool who could interview next week - happy to send profiles, no call needed.
+
+      Either way, thanks for reading, and good luck with the hiring.
+
+      Brandon
+    labels:
+      kind: thread
+      must_not: true
+      reason: individual_recruiter_pattern_only
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-hirevector]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  # ------------------------------------------------------------------ day 29 · Wed Mar 25
+  - id: t-lone-recruiter-21
+    day: 29
+    time: "08:30"
+    from: {name: "Aaron Lindqvist", email: "aaron.lindqvist@kestrelsearch.com"}
+    to: [avery]
+    subject: "Staff engineer candidates - Kestrel"
+    bulk: false
+    signature: |-
+      Aaron Lindqvist
+      Associate | Kestrel Search Partners
+      (415) 555-0121 | aaron.lindqvist@kestrelsearch.com
+      kestrelsearch.com
+    body: |
+      Hi Avery,
+
+      I work with Dana Whitfield at Kestrel. Alongside our leadership searches we keep a small bench of staff-level engineers who prefer to move through a search firm rather than apply cold, and I have two right now who have asked about earlier-stage industrial software:
+
+      - Staff engineer, 13 yrs, streaming and time-series systems, ex-utility-tech (Oakland)
+      - Staff engineer, 11 yrs, backend + infra, has been the first senior hire at two startups (remote, Sacramento)
+
+      Both are looking for a place where they can own a large piece of the system. If Tessera's backend role could flex to a staff level, I'd be glad to introduce them. If not, no problem, and I won't follow up.
+
+      Best,
+      Aaron
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-kestrel-search-partners]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}
+
+  - id: t-lone-recruiter-22
+    day: 29
+    time: "15:35"
+    from: {name: "Devon Marsh", email: "devon.marsh@westmarkrecruiting.com"}
+    to: [avery]
+    subject: "Re: Senior backend / platform engineers - checking in"
+    bulk: false
+    signature: |-
+      Devon Marsh
+      Technical Recruiter | Westmark Technical Recruiting
+      devon.marsh@westmarkrecruiting.com | (650) 555-0156
+      westmarkrecruiting.com | LinkedIn
+    body: |
+      Hi Avery,
+
+      Checking in on the two engineers I mentioned a couple of weeks ago. The platform engineer (Kubernetes/Terraform, GPU scheduling) accepted elsewhere, but the senior backend engineer is still available and specifically mentioned wanting to work on plant-floor data after reading about Tessera.
+
+      Happy to send the profile if you reply with a yes. If the role is filled or paused, let me know and I'll update my notes.
+
+      Thanks,
+      Devon
+    labels:
+      kind: thread
+      must_not: true
+      reason: lone_recruiter
+      classification_case: null
+      expected:
+        type: human_thread
+        domain: work
+        intent_primary: promotional
+        about: [other:recruiter-westmark-technical-recruiting]
+        ball_awaiting: nobody
+        closed_by_courtesy: false
+        sender_relationship: {category: cold_inbound, subtype: cold_recruiter}

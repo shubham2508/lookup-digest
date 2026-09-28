@@ -1,0 +1,38 @@
+thread_id: t-ben-ip-assignment-fyi
+subject: "CIIAAs - Wagner and Ortiz - executed and filed"
+storyline: null
+category: lawyer
+labels:
+  kind: thread
+  must_not: true
+  reason: fyi_no_action
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [contract:ciiaa-february-starts]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: capital, subtype: deal_counsel}
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 21
+    time: "10:15"
+    from: ben
+    to: [avery]
+    cc: [nora]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      For your records, no action needed:
+
+      1. The Confidential Information and Invention Assignment Agreements for Felix Wagner and Carmen Ortiz were countersigned on March 16 and are fully executed. Exhibit A (prior inventions) reads "none" for both.
+      2. Executed copies are filed in the data room under Legal / HR / CIIAA (CIIAA_Wagner_Felix_2026-03-16.pdf, CIIAA_Ortiz_Carmen_2026-03-16.pdf), which completes the set IPV's counsel asked about.
+      3. Nora has the originals for the personnel files.

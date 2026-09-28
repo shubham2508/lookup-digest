@@ -1,0 +1,98 @@
+thread_id: t-tidewater-intro
+subject: "Intro: Avery Chen (Tessera) <> Marco Bellini (Tidewater Capital)"
+storyline: BG-tidewater
+category: investors_board
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_closed_meeting_booked
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [deal:series-a:tidewater]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: capital, subtype: prospective_vc, stage: first_contact}
+    asks:
+      - {to_avery: true, kind: information, deadline_day: null, status: answered}
+      - {to_avery: true, kind: meeting, deadline_day: null, status: answered}
+    schedule_mentions: [{action: confirmed, participants: [avery, marco], when_day: 30, when_time: "12:30"}]
+    stage_signals: [{entity: tidewater, stage: first_contact, day: 17}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 17
+    time: "10:10"
+    from: diane
+    to: [avery, marco]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery, Marco - as promised, connecting you.
+
+      Marco is a principal at Tidewater Capital and has spent the last year on industrial software; he asks good questions and does not waste founders' time. Avery runs Tessera, which you have heard me describe, Marco: plant-floor forecasting for mid-market manufacturers, three reference customers, and a Series A in progress with a lead already in diligence.
+
+      I'll step back and let you two take it from here.
+  - id: m2
+    beat_ref: null
+    day: 17
+    time: "14:30"
+    from: marco
+    to: [avery]
+    cc: [diane]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Dear Avery,
+
+      Thank you, Diane, for the introduction; moving you to cc.
+
+      It is a pleasure to meet you, even by email. I have followed Tessera since the Halberd case study, and Diane's account of how you have built the reference-customer motion matches what I have heard from two operators in our network. Tidewater is a $310M early-stage fund; we typically come in alongside a lead rather than compete for it, and industrial software has been a focus of ours for the past year.
+
+      I appreciate that you are mid-process and I do not want to slow it down. Would you be willing to share the deck and a short metrics snapshot (ARR, net retention, gross margin) and, if it is useful, find 30 minutes for an introductory conversation over the next two weeks? I am flexible and happy to work around your calendar.
+
+      Kind regards,
+  - id: m3
+    beat_ref: null
+    day: 20
+    time: "08:40"
+    from: avery
+    to: [marco]
+    cc: [diane]
+    reply_to: m2
+    quotes_previous: false
+    forward_of: null
+    signature: none
+    body: |
+      marco, good to meet you. deck and the metrics appendix are here: tessera.io/share/deck-mar26 (same set we gave IPV, minus the model).
+
+      this week and next are mostly diligence, so the first clean slot I have is Thu 3/26 at 12:30 for half an hour, or the week after if that's too far out. zoom is easiest.
+
+      Avery
+  - id: m4
+    beat_ref: null
+    day: 24
+    time: "15:00"
+    from: marco
+    to: [avery]
+    cc: [diane]
+    reply_to: m3
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Dear Avery,
+
+      Apologies for the slow reply; I was traveling with limited email. Thursday, March 26 at 12:30 works well. I have sent a calendar invitation with a Zoom link for 12:30 to 13:00 PT.
+
+      Thank you for the materials; I have read the deck and will come with a few specific questions rather than general ones.
+
+      Kind regards,

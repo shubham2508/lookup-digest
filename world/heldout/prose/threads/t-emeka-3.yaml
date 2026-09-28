@@ -1,0 +1,52 @@
+thread_id: t-emeka-3
+subject: "ipv"
+storyline: BG-emeka
+category: vendors_misc
+labels:
+  kind: thread
+  must_not: true
+  reason: last_word_avery
+  classification_case: mentor_by_behavior
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: ask
+    about: [other:emeka-ipv-debrief]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: network, subtype: mentor}
+    asks: [{to_avery: true, kind: information, deadline_day: null, status: answered}]
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 17
+    time: "17:30"
+    from: emeka
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      so. monday. how did it go with IPV?
+
+      and did you raise the pool yourself, or did you let them bring it up?
+  - id: m2
+    beat_ref: null
+    day: 17
+    time: "18:10"
+    from: avery
+    to: [emeka]
+    cc: []
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      better than I'd braced for. they moved us into diligence the same afternoon; the data room is open, owen's analysts are already in it, and marcus is talking about the term sheet as a when, not an if.
+
+      pool: I brought it up first. you were right that it changes the conversation. marcus didn't blink, which either means it's fine or means I asked for too little.
+
+      Avery

@@ -1,0 +1,65 @@
+thread_id: t-northstar-invoice
+subject: "Invoice TS-1187 - bill-to entity"
+storyline: S5
+category: customers
+labels: null
+messages:
+  - id: m1
+    beat_ref: S5.b11
+    day: 17
+    time: "10:15"
+    from: victor
+    to: [nora]
+    cc: [elise, avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Dear Ms. Blake,
+
+      Invoice TS-1187 (dated February 27, 2026, amount $18,750.00, PO 4500218831) has been received by Accounts Payable. The invoice is addressed to Northstar Foods, Inc. The purchase order was raised by Northstar Foods Manufacturing LLC (Fresno), and our system will not match an invoice against a PO from a different legal entity.
+
+      Please reissue the invoice to Northstar Foods Manufacturing LLC, 4410 S. Cedar Avenue, Fresno, CA 93725, keeping the PO reference. Remittance will follow within our standard 30-day terms from the date of the corrected invoice.
+
+      Regards,
+  - id: m2
+    beat_ref: S5.b12
+    day: 17
+    time: "13:30"
+    from: nora
+    to: [victor]
+    cc: [elise, avery]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Hi Victor,
+
+      Reissued, attached. Summary so it is easy to match:
+
+      | Field        | Original                 | Corrected                                  |
+      |--------------|--------------------------|--------------------------------------------|
+      | Invoice no.  | TS-1187                  | TS-1187-R1                                 |
+      | Bill to      | Northstar Foods, Inc.    | Northstar Foods Manufacturing LLC (Fresno) |
+      | PO reference | 4500218831               | 4500218831                                 |
+      | Amount       | $18,750.00               | $18,750.00                                 |
+      | Due          | Mar 29, 2026             | Apr 16, 2026                               |
+
+      Apologies for the miss on our side; I have corrected the entity on your customer record so future invoices go out right the first time.
+  - id: m3
+    beat_ref: S5.b13
+    day: 17
+    time: "15:20"
+    from: elise
+    to: [nora]
+    cc: [victor, avery]
+    reply_to: m2
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Thanks Nora, all set on our side. Victor has it in the queue.
+
+      Elise

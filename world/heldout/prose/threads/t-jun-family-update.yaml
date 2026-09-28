@@ -1,0 +1,45 @@
+thread_id: t-jun-family-update
+subject: "family stuff (long, no rush)"
+storyline: null
+category: personal
+labels:
+  kind: thread
+  must_not: true
+  reason: family_fyi_no_action
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: personal
+    intent_primary: fyi
+    about: [family:jun-family-update]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: family, subtype: relative}
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 12
+    time: "16:30"
+    from: jun
+    to: [avery, sam]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi both,
+
+      Long one, no rush on any of it, read on the couch.
+
+      Mom and Dad's 40th is July 18. Dad has decided he wants "nothing big," which Mom has translated into a dinner for about thirty people at the house in Davis, and I have been volunteered to organize. Current thinking: Saturday July 18, late afternoon, catered (Mom will not let anyone cook), and a slideshow, because of course. If you have photos from before 1995 that are not already in the shared album, this is the link again: https://albums.driftbox.app/s/w4q2-chen40. I will build the slideshow in June, so no deadline yet.
+
+      Mom is also talking about coming out to see you in April, maybe the second weekend. She asked me to ask whether that works before she books anything, and I said I'd ask, so: I am asking. No rush.
+
+      Other things:
+      - The dentist I mentioned for Wren (the one with the fish tank) is Dr. Bellamy on Piedmont Ave: https://piedmontpediatricdental.com. No idea about waitlists.
+      - I finally fixed the gutter. It took three weekends. I am a homeowner now, apparently.
+      - The lemon thing recipe: Mom asked for it, if either of you is willing to part with it.
+
+      Dinner soon? I'll bring the book for Wren I keep forgetting.

@@ -1,0 +1,69 @@
+thread_id: t-internal-pinewood-discovery-recap
+subject: "Pinewood Dairy discovery - recap (Discovery -> Scoping)"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: handled_by_team
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [deal:pinewood-dairy]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 9
+    time: "15:20"
+    from: leo
+    to: [tomas]
+    cc: [avery, hana]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Tomás,
+
+      Recap from the Pinewood call (1:00-1:55). Moving them Discovery -> Scoping in the sheet.
+
+      Who: Lucia Ferraro (VP Ops), Dale Ruiz (Turlock plant manager), two schedulers from Turlock. Four plants total (Turlock, Modesto, Merced, Los Banos).
+
+      Pain: schedulers rebuild the shift board by hand from the ERP export every morning; late lots on the packaging lines get found at end of shift, not during. Dale's line: "we find out we were late when the truck's already gone."
+
+      What they want: a six-week pilot at Turlock, scoped by end of March; exception alerts + shift board; two customer references before they sign anything. Lucia asked twice about implementation time; Hana said 3-4 weeks to first data on a plant with a nightly ERP export, which they already have (quick win).
+
+      Next:
+      - Hana + me: scoping doc draft by Mar 13, walk-through with Lucia's team the week after.
+      - NDA: they'll want ours before we see plant data.
+      - References: parked until you say so.
+
+      No pricing talk, as agreed. Lucia tried once. I changed the subject to cheese.
+  - id: m2
+    beat_ref: null
+    day: 9
+    time: "16:50"
+    from: tomas
+    to: [leo]
+    cc: [avery, hana]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Leo, this is fantastic!! A VP Ops who brings her plant manager and two schedulers to a discovery call is not browsing, she's shopping. And "we find out we were late when the truck's already gone" is going straight on a slide, with permission.
+
+      Three things, all mine or yours, nothing for Avery:
+
+      - Scoping doc: yes to the 13th. Keep it to four pages. Turlock only; if they ask about the other three plants the answer is "after the pilot".
+      - NDA: send Lucia our standard mutual NDA today. When their redline comes back I'll run it past Imogen at WSGR, don't negotiate it yourself, even the easy-looking bits.
+      - References: hold. I'll ask Elise and Dmitri after their own QBRs, not during the busiest month either of them has had in a year.
+
+      Well done. Also the cheese thing worked, she mentioned it to me on the way out.
+
+      Tomás

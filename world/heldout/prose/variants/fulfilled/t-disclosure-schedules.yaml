@@ -1,0 +1,17 @@
+thread_id: t-disclosure-schedules
+messages:
+  - id: v2
+    beat_ref: S1.v2
+    day: 29
+    time: "11:20"
+    from: avery
+    to: [imogen]
+    cc: [ben]
+    reply_to: m2
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      imogen, the 3.12 figures are in the model I sent Marcus this morning (v4, Ben was copied) — go ahead and drop them in. no further changes from me on the other schedules; 3.9 is complete as listed.
+
+      Avery

@@ -1,0 +1,53 @@
+thread_id: t-tomas-pipeline-weekly-3
+subject: "Pipeline Monday!! (week of Mar 16)"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: routine_pipeline_fyi
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [report:pipeline-weekly]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: exec}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 20
+    time: "08:30"
+    from: tomas
+    to: [avery]
+    cc: [leo, hana]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Happy Monday!!
+
+      Two weeks to the Northstar go-live and the pipeline is the best it's looked since I joined. Rundown below, nothing needed from anyone.
+
+      PINEWOOD - scoping is moving. Leo and Hana walked Lucia's team through the pilot plan on Friday: six weeks, Turlock plant first, exception alerts + the shift board. Lucia wants a kickoff the first week of April (tentatively Friday the 3rd, Leo's putting a hold on calendars). NDA went to Imogen at WSGR last week for a redline. I would call this a 60% pilot and I am being conservative on purpose because Avery once told me I round up.
+
+      IRONCLAD - Leo had a real conversation with Gordon Pike (Plant Manager) last Wednesday. Blunt man, short emails, three typos per sentence, my kind of buyer. He wants us to come see the foundry in April before he'll talk about anything. Leo's arranging a site visit. No numbers on this yet and I'm not putting any in the sheet until we've stood on the floor.
+
+      NORTHSTAR - pen-test summary went to Elise for their vendor security file last week (Arjun, with Priya's blessing), invoice bill-to thing sorted by Nora. Elise wants scheduler training for the Fresno planners before cutover and Hana's on it. All green. I keep waiting for the other shoe and there is no other shoe.
+
+      HALBERD - Tobias (Greta's successor on procurement, you've met him by email) is methodical, asks for documents by their proper names, I like him. He's building out the vendor file (SOC 2, continuity summary, COI) and Jordan and Nora are feeding him. QBR with him is on the calendar for Thursday the 26th at 11:00 and I've asked Hana to build the deck. Renewal timing unchanged: Martin said mid-April, so mid-April.
+
+      VERITAS - QBR tentatively Wed Apr 8, waiting on Hugo's calendar. The invoice reissue is with their AP. Dmitri's been quick as ever.
+
+      COASTLINE - check-in went well, notes from Hana went round. Green.
+
+      Numbers: 12 open opportunities, $1.45M weighted, 2 pilots scoping + Pinewood pending. The Plant Ops Digest editor emailed me about writing up a Fresno story once the connector is live, I said let's talk after April 1 and will ask Elise then, not before.
+
+      Events: customer roundtable Thursday May 7, save-the-dates go out after go-live. Spring offsite dates went out last night, thank you to the seven of you who answered the poll and to the five of you who are dead to me.
+
+      Have a great week!!
+
+      Tomás

@@ -1,0 +1,43 @@
+thread_id: t-internal-runbook-links
+subject: "Every pager alert now links to its runbook (61/61)"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: internal_fyi
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [other:alert-runbook-links]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 16
+    time: "13:30"
+    from: arjun
+    to: [eng_list]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi all,
+
+      Small quality-of-life change, live since this morning: every one of our 61 pager alerts now carries a link to its runbook page in the alert body, so whoever is on call opens the right page from their phone instead of searching Notion at 03:00.
+
+      - 57 alerts already had a runbook; I linked them.
+      - 4 did not (two Sentry error-rate alerts, the export queue depth alert, and the ingest lag alert for the Halberd feed). I wrote short pages for each; they say what the alert means, what to check first, and when to wake someone else up. Please improve them the first time you use one.
+      - The index is here: https://runbooks.tessera.io/alerts/
+
+      The Sentry alerts themselves are still too noisy; that is the next thing, and it is on the agenda for Tuesday's infra review.
+
+      No action for anyone; just know the links exist.
+
+      Thanks,

@@ -1,0 +1,185 @@
+thread_id: t-northstar-connector-plan
+subject: "SAP connector go-live - Apr 1 plan and owners"
+storyline: S5
+category: customers
+labels: null
+messages:
+  - id: m1
+    beat_ref: S5.b1
+    day: 2
+    time: "09:35"
+    from: elise
+    to: [avery]
+    cc: [tomas, hana]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      Good to see you and Tomás last week. Following up on the Fresno conversation so we have it in writing.
+
+      We would like to target April 1 for the SAP connector go-live at Fresno. That gives our SAP team the March maintenance window for the interface tables and keeps us clear of quarter-end. Two questions before I take it to our ops council:
+
+      - Who owns the go-live plan on your side? I want one name for our project office.
+      - Are you able to join our weekly status call, or should that be Tomás and whoever runs the plan?
+
+      Please say if April 1 is too tight. I would rather move it now than in three weeks.
+
+      Elise
+  - id: m2
+    beat_ref: S5.b2
+    day: 2
+    time: "13:20"
+    from: avery
+    to: [elise]
+    cc: [tomas, hana]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      elise, April 1 works for us. Hana Okada owns the plan end to end (cc'd) and will send you the first draft this week. I'll join the weekly call myself; Tomás covers when I can't.
+
+      Avery
+  - id: m3
+    beat_ref: S5.b3
+    day: 6
+    time: "10:05"
+    from: elise
+    to: [hana]
+    cc: [avery]
+    reply_to: m2
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hana,
+
+      Thanks for the draft plan, it reads well. Attached is the Fresno contact list. Rosa Jimenez runs production scheduling there and will be your day-to-day; she knows the SAP release view better than anyone.
+
+      - When would you like to run the field-mapping workshop? Our SAP team is holding this Thursday or Friday.
+      - Is there a template we should fill in beforehand?
+
+      Elise
+  - id: m4
+    beat_ref: S5.b4
+    day: 6
+    time: "15:40"
+    from: hana
+    to: [elise]
+    cc: [avery]
+    reply_to: m3
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Hi Elise,
+
+      Let's do **Thursday, March 5, 9:00–11:30 PT** for the field-mapping workshop. Rosa and one person from your SAP team is plenty.
+
+      Attached: the mapping template. Before Thursday it would help to have:
+      - [ ] plant and work-center codes for Fresno
+      - [ ] the unit-of-measure list for the release view
+      - [ ] one sample production-order export (any week)
+
+      Plan v1 is attached again with the owners column filled in. Go-live stays **Wednesday, April 1**.
+
+      Hana
+  - id: m5
+    beat_ref: S5.b5
+    day: 9
+    time: "17:10"
+    from: elise
+    to: [hana]
+    cc: [avery]
+    reply_to: m4
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Hana,
+
+      Workshop went well from our side, thank you. Our SAP team has no open questions on the mapping. Rosa will send you the final plant codes on Monday, and we have booked the March 28–29 weekend for the interface table changes.
+
+      Nothing needed from you until then.
+
+      Elise
+  - id: m6
+    beat_ref: S5.b16
+    day: 23
+    time: "09:05"
+    from: elise
+    to: [avery]
+    cc: [hana, tomas]
+    reply_to: m5
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Avery,
+
+      Quick status and one small thing.
+
+      UAT on the connector started Monday. Three of five scenarios passed cleanly; the two remaining are waiting on our SAP team, not on you. Rosa is enjoying working with Hana, which is not a sentence I get to write often.
+
+      The small thing: Victor tells me the corrected invoice (TS-1187-R1) has cleared. Can you confirm nothing else is outstanding on your side before I close the file for the quarter?
+
+      Elise
+  - id: m7
+    beat_ref: S5.b17
+    day: 23
+    time: "12:30"
+    from: avery
+    to: [elise]
+    cc: [hana, tomas]
+    reply_to: m6
+    quotes_previous: true
+    forward_of: null
+    signature: none
+    body: |
+      nothing outstanding on our side, elise. nora confirms TS-1187-R1 is settled and there are no open items. glad UAT is going well; hana has the two remaining scenarios on her list for when your SAP team is ready.
+
+      Avery
+  - id: m8
+    beat_ref: S5.b20
+    day: 27
+    time: "10:40"
+    from: elise
+    to: [hana]
+    cc: [avery]
+    reply_to: m7
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hana,
+
+      Two things for next week:
+
+      - Could you send the cutover checklist? Our project office wants it in the change record.
+      - What is the freeze window on your side? I need to tell the planners when to stop making changes in the old view.
+
+      Elise
+  - id: m9
+    beat_ref: S5.b21
+    day: 27
+    time: "15:10"
+    from: hana
+    to: [elise]
+    cc: [avery]
+    reply_to: m8
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Hi Elise,
+
+      Cutover checklist attached (12 items, an owner on each line).
+
+      Freeze window: **Monday, March 30, 17:00 PT** through **Wednesday, April 1, 06:00 PT**. Planners can keep reading the old view during the freeze; only writes are blocked. Rosa will get the same list at Tuesday's training.
+
+      Go-live call is **Wednesday, April 1, 06:00 PT**; invite to follow.
+
+      Hana

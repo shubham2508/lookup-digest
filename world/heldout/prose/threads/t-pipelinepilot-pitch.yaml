@@ -1,0 +1,76 @@
+thread_id: t-pipelinepilot-pitch
+subject: "Tessera + PipelinePilot: 3x your outbound pipeline"
+storyline: BG-pipelinepilot
+category: vendors_misc
+labels:
+  kind: thread
+  must_not: true
+  reason: cold_pitch
+  classification_case: cold_vendor_pitch
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: promotional
+    about: [other:pipelinepilot-pitch]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: cold_inbound, subtype: sales_pitch}
+    suspicious: false
+messages:
+  - id: m1
+    beat_ref: null
+    day: 10
+    time: "08:05"
+    from: cody
+    to: [avery]
+    cc: []
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hey Avery,
+
+      Loved your line in Plant Ops Digest about plant managers trusting the exception report before they trust the dashboard - that one has been going around our team all week. It is exactly the buyer psychology we built PipelinePilot around.
+
+      Quick context: PipelinePilot is an outbound engine for industrial software teams. We spot plants that just posted for a scheduler or a controls engineer (a reliable signal of pain), write the first three touches in your voice, and hand your AE a warm reply. Teams like yours typically see 3x qualified pipeline in the first quarter without adding headcount.
+
+      I know Tomás runs GTM; would it make sense for the three of us to grab 20 minutes next week? Pick a slot here: pipelinepilot.ai/demo
+
+      Cheers,
+  - id: m2
+    beat_ref: null
+    day: 17
+    time: "08:10"
+    from: cody
+    to: [avery]
+    cc: []
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Hey Avery,
+
+      Bumping this in case it slipped. I put together a two-minute walkthrough using Tessera's own ICP (mid-market food and metals plants in the Central Valley) so you can see what the first touch would look like in your voice: pipelinepilot.ai/demo/tessera
+
+      Worth 20 minutes with you or Tomás? Either works on my end.
+
+      Cheers,
+  - id: m3
+    beat_ref: null
+    day: 24
+    time: "08:05"
+    from: cody
+    to: [avery]
+    cc: []
+    reply_to: m2
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Avery - did this get buried? Totally understand if the timing is off; if so I'll close the loop on my end and check back in Q3.
+
+      If outbound pipeline is on the list for this quarter, here's my calendar: pipelinepilot.ai/demo
+
+      Cheers,

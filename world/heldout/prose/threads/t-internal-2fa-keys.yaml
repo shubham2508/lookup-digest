@@ -1,0 +1,59 @@
+thread_id: t-internal-2fa-keys
+subject: "Hardware security keys - pick yours up this week (FYI)"
+storyline: null
+category: internal_routine
+labels:
+  kind: thread
+  must_not: true
+  reason: internal_fyi
+  classification_case: null
+  expected:
+    type: human_thread
+    domain: work
+    intent_primary: fyi
+    about: [other:security-keys-rollout]
+    ball_awaiting: nobody
+    closed_by_courtesy: false
+    sender_relationship: {category: team, subtype: ic}
+messages:
+  - id: m1
+    beat_ref: null
+    day: 9
+    time: "09:15"
+    from: nora
+    to: [team_list]
+    cc: [avery]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi all,
+
+      The hardware security keys arrived (two per person, 24 total, $1,104 on the ops card). They're in named envelopes on my desk; take yours whenever you're in this week.
+
+      Setup takes about four minutes:
+      1. Google Workspace > Security > 2-Step Verification > Add security key. Enroll both keys (one stays at home).
+      2. GitHub > Settings > Password and authentication > Security keys. Same two keys.
+      3. Put the spare somewhere that is not the same bag as your laptop.
+
+      Phone prompts keep working alongside the keys until mid-April; after that the keys become the only second factor, which is the control our compliance file asks for. I'll send one more reminder in April; nobody is being switched over without notice.
+
+      Arjun has offered to help anyone who gets stuck, and Kofi has already volunteered to be the person who loses a key first.
+
+      Thanks,
+  - id: m2
+    beat_ref: null
+    day: 9
+    time: "09:40"
+    from: kofi
+    to: [nora]
+    cc: [team_list, avery]
+    reply_to: m1
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Picked mine up, both enrolled, took four minutes as advertised. For anyone wondering: the key also works for the personal phone's Google account if you tap it on the back, which I found out by accident and now can't stop doing.
+
+      I have not lost one yet. I want that on the record.

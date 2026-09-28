@@ -1,0 +1,76 @@
+thread_id: t-halberd-vendor-docs
+subject: "Vendor file - SOC 2, continuity summary, COI"
+storyline: S7
+category: customers
+labels: null
+messages:
+  - id: m1
+    beat_ref: S7.b14
+    day: 17
+    time: "11:00"
+    from: tobias
+    to: [avery]
+    cc: [jordan]
+    reply_to: null
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Dear Avery,
+
+      For Halberd's vendor file I need three documents from Tessera. Greta indicated that Jordan Liu is the right contact for the first two, so I have copied Jordan here.
+
+      1. The current SOC 2 Type II report, or a bridge letter if the report is older than twelve months.
+      2. A business continuity and disaster recovery summary (a one- or two-page overview is sufficient).
+      3. A certificate of insurance naming Halberd Manufacturing as certificate holder.
+
+      Ideally by Friday, March 20.
+  - id: m2
+    beat_ref: S7.b15
+    day: 17
+    time: "14:25"
+    from: jordan
+    to: [tobias]
+    cc: [avery]
+    reply_to: m1
+    quotes_previous: true
+    forward_of: null
+    signature: default
+    body: |
+      Hi Tobias,
+
+      Items 1 and 2 are ready now:
+      - SOC 2 Type II report (period Dec 2024–Nov 2025) and the bridge letter through Feb 2026: shared via our trust portal, invitation sent to your address.
+      - BC/DR summary (2 pages): attached.
+
+      Item 3 (certificate of insurance) comes from Nora Blake on our ops team; she will send it Monday.
+
+      Jordan
+  - id: m3
+    beat_ref: S7.b16
+    day: 20
+    time: "15:30"
+    from: nora
+    to: [tobias]
+    cc: [avery, jordan]
+    reply_to: m2
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Hi Tobias,
+
+      Certificate of insurance attached (Keel Risk Partners; general liability and cyber; Halberd Manufacturing named as certificate holder). If your compliance team needs a different form of the certificate, send me the template and I will have the broker reissue it.
+  - id: m4
+    beat_ref: S7.b17
+    day: 21
+    time: "08:50"
+    from: tobias
+    to: [nora]
+    cc: [avery, jordan]
+    reply_to: m3
+    quotes_previous: false
+    forward_of: null
+    signature: default
+    body: |
+      Received, thank you. The vendor file is complete on my side.
