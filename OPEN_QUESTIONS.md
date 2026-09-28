@@ -23,6 +23,14 @@ OpenRouter spend on this config ≈ $4–5 (pipeline ≈ $3, judge ≈ $1–1.6,
 
 ## Decided
 
+- **2026-09-28 · #16 the linker: LLM decides "same thing?", no word similarity in compute** (Shubham: "word-match things suck").
+  *Before:* rapidfuzz thresholds decided topic-key merges (ratio ≥ 85), calendar event ↔ email meeting (≥ 55), promise already in tasks (≥ 80), promise fulfilled in another thread (≥ 70), task done per email (≥ 80), declined-meeting fallout (≥ 60–70), and news ↔ open item (exact words). They over- and under-merged on real data (five items for one board update; three job candidates merged into one).
+  *Now:* `digest/compute/linker.py` + `prompts/linker.md` + `prompts/topic_grouper.md` (role `linker`, Luna, low effort). Code narrows the options with hard facts only (same people, ±7 days, later in time, same topic kind); one batched, cached LLM call per question type decides sameness and writes a reason; every decision goes to `runs/…/links.jsonl` and shows in the UI's LLM calls tab. Without an LLM, or if the call fails, only identical keys match: a missed link is visible, an invented one is not. ~8 calls, ~$0.2 per run cold, cached after.
+  *Still string-based:* contact name/org/title matching in `digest/compute/contacts.py` (week two).
+  *Alternative evaluated:* TypeSafe's Jev 1.13 (a classifier model, via OpenRouter's `/api/alpha/decisions`): 0.44 s and $0.00002 for a test question, answered correctly with probabilities, but gives no written reason. Plan: add it as a second linker backend after the final runs and compare on dev; not swapped in before the submission numbers.
+  Commits: 0435905 (linker), 5038594 (prompt-example leak removed).
+- **2026-09-28 · #17 prompt-example leak removed.** Worked examples in six prompts had copied dev storylines (S1 cap table 'will send it tonight', S2 diligence move, S3/S10 $3.4M ARR draft, S5 'Oct 6 still on' reply, S8 Mei, S13 DeepSeek price cut). All replaced with a made-up cast that appears in no mailbox; triage's 'Sam and Wren' rule now reads the family category from the profile. All scores before commit 5038594 were measured with the leak and are not reported as results. The `debug-trap` skill enforces a grep check for world names in prompts.
+
 - **2026-09-28 · held-out planted-pattern section names** stay as the generator's dev names (`talentbridge`, `stripe_payout`), so the held-out manifest tags HireVector and Gusto as `BG-talentbridge` / `BG-stripe`. Cosmetic; renaming would touch the generator and both worlds. Noted for DESIGN.md.
 - **2026-09-28 · integration fixes to Track A's compute and prompts** (orchestrator, after the first dev run): see STATUS 17:20. Prompt versions: triage 2 → 3, compose 1 → 2; `eval/history.md` gets the before/after line once the dev report exists.
 
