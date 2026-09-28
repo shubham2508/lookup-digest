@@ -1,0 +1,119 @@
+id: S8
+name: mei-offer
+reviewed: false
+tier_truth: P1
+summary: >
+  Mei Tanaka, backend engineer candidate: onsite day 12, debrief day 20 (Jordan recommends L4 offer), offer
+  approved at hiring sync day 23, DocuSign "awaiting your signature" lands Tuesday day 28 at 08:40 (≈45.5 h
+  pending at the day-30 run). Tuesday 18:22 Tomás emails that Jordan and he signed Monday and that Mei's competing
+  offer expires Friday. Tests: `approve` with a deadline from an automated action-bearing email plus a human
+  thread; DocuSign (action) vs GitHub (FYI) classification; the candidate's own courtesy note must not surface.
+
+threads:
+  - {id: t-mei-loop,      subject: "Mei Tanaka - backend loop",                 category: hiring}
+  - {id: t-mei-offer,     subject: "Mei - offer letter in DocuSign, deadline",   category: hiring}
+  - {id: t-mei-thanks,    subject: "Thank you - Tessera onsite",                  category: hiring}
+automated:
+  - {id: auto-docusign-mei, system: DocuSign, day: 28, time: "08:40", category: notifications, subject: "Please DocuSign: Offer Letter - Mei Tanaka.pdf"}
+
+beats:
+  - {ref: S8.b1, day: 12, time: "17:30", source: email, thread: t-mei-loop,   from: jordan, to: [avery], cc: [tomas], event: "onsite done today; panel feedback positive; debrief next week"}
+  - {ref: S8.b2, day: 13, time: "09:10", source: email, thread: t-mei-thanks, from: mei,    to: [jordan], cc: [avery], event: "thank-you note after the onsite; no ask", must_include: ["Thank you"]}
+  - {ref: S8.b3, day: 20, time: "12:15", source: email, thread: t-mei-loop,   from: jordan, to: [avery], cc: [tomas], event: "debrief done: strong hire; recommends L4 offer at the top of band; asks Avery to approve at Thursday's hiring sync", must_include: ["L4"]}
+  - {ref: S8.b4, day: 20, time: "13:40", source: email, thread: t-mei-loop,   from: avery,  to: [jordan], cc: [tomas], event: "approved in principle; finalise at hiring sync", must_include: ["hiring sync"]}
+  - {ref: S8.b5, day: 27, time: "10:30", source: email, thread: t-mei-loop,   from: tomas,  to: [avery], cc: [jordan], event: "offer sent to Mei this morning; DocuSign will route to Avery last", hardness: [long, mixed_topics]}
+  - {ref: S8.b6, day: 28, time: "08:40", source: automated, automated: auto-docusign-mei, from: docusign, to: [avery],
+     event: "DocuSign: Offer Letter - Mei Tanaka awaiting your signature; Jordan Liu and Tomás Reyes have signed", must_include: ["awaiting your signature", "Mei Tanaka"]}
+  - {ref: S8.b7, day: 28, time: "18:22", source: email, thread: t-mei-offer,  from: tomas,  to: [avery], cc: [jordan],
+     event: "Jordan and Tomás both signed Monday; the letter is sitting in Avery's DocuSign; Mei said this afternoon her other offer expires Friday", must_include: ["expires Friday", "DocuSign"], hardness: [long, mixed_topics]}
+
+labels:
+  - thread: t-mei-loop
+    category: hiring
+    storyline: S8
+    must_not_surface: true
+    must_not_reason: fyi_progress_thread
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: commitment_update
+      about: [candidate:mei-tanaka, offer:mei-tanaka]
+      ball_awaiting: nobody
+      closed_by_courtesy: false
+      sender_relationship: {category: team, subtype: exec}
+      stage_signals: [{entity: mei-tanaka, stage: onsite, day: 12}, {entity: mei-tanaka, stage: debrief, day: 20}, {entity: mei-tanaka, stage: offer_extended, day: 27}]
+      asks: [{to_avery: true, kind: approval, status: answered}]
+  - thread: t-mei-thanks
+    category: hiring
+    storyline: S8
+    must_not_surface: true
+    must_not_reason: courtesy_no_ask
+    classification_case: candidate_courtesy_note
+    expected: {type: human_thread, domain: work, intent_primary: social, about: [candidate:mei-tanaka], ball_awaiting: nobody, closed_by_courtesy: true,
+               sender_relationship: {category: hiring, subtype: candidate, stage: onsite}}
+  - automated: auto-docusign-mei
+    category: notifications
+    storyline: S8
+    classification_case: docusign_action_vs_github_fyi
+    expected:
+      type: automated
+      automated: {system: DocuSign, action_bearing: true, action_kind: signature, about: offer:mei-tanaka}
+  - thread: t-mei-offer
+    category: hiring
+    storyline: S8
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [offer:mei-tanaka]
+      ball_awaiting: avery
+      closed_by_courtesy: false
+      sender_relationship: {category: team, subtype: exec}
+      asks: [{to_avery: true, kind: signature, deadline_day: 31, status: open}]
+      stage_signals: [{entity: mei-tanaka, stage: offer_extended, day: 27}]
+      claims: [{subject: competing_offer_deadline, value: "Friday"}]
+      suspicious: false
+    messages:
+      - {beat_ref: S8.b7, day: 28, time: "18:22", from: tomas, to: [avery], cc: [jordan], must_include: ["expires Friday", "DocuSign"]}
+
+contacts:
+  - {id: mei, category: hiring, subtype: candidate, tier: P1, stages: [{from_day: 12, stage: onsite}, {from_day: 20, stage: debrief}, {from_day: 27, stage: offer_extended}],
+     note: "offer-stage candidate → high prior"}
+
+about_keys:
+  should_merge: [[offer:mei-tanaka, offer:mei], [offer:mei-tanaka, candidate:mei-tanaka]]
+  should_not_merge: [[offer:mei-tanaka, candidate:theo-lindgren]]
+
+expectations:
+  - run_day: 26
+    absent: [offer:mei-tanaka]
+    noise: [t-mei-thanks, t-mei-loop]
+  - run_day: 27
+    absent: [offer:mei-tanaka]
+    noise: [t-mei-thanks, t-mei-loop]
+  - run_day: 28
+    absent: [offer:mei-tanaka]
+    notes: "DocuSign arrives 08:40, after the run; Tomás's day-27 'offer sent' is FYI"
+    noise: [t-mei-thanks, t-mei-loop]
+  - run_day: 29
+    candidates: [{type: approval_pending, about: offer:mei-tanaka, facts_hint: {hours_pending: 21, deadline_day: 31}}]
+    items: [{about: offer:mei-tanaka, priority: P1, section: decisions, actions: [approve], cites_any: [auto-docusign-mei, t-mei-offer],
+             notes: "'Sign Mei's offer letter'; competing offer expires Friday; ~1 minute in DocuSign"}]
+    noise: [t-mei-thanks, t-mei-loop]
+  - run_day: 30
+    candidates: [{type: approval_pending, about: offer:mei-tanaka, facts_hint: {hours_pending: 45, deadline_day: 31}}]
+    items: [{about: offer:mei-tanaka, priority: P1, section: decisions, actions: [approve], cites_any: [auto-docusign-mei, t-mei-offer],
+             notes: "pending ~45h; deadline tomorrow; second time surfaced"}]
+    noise: [t-mei-thanks, t-mei-loop]
+
+assertions:
+  - {id: S8-d29-approve,       kind: item_present,      run_day: 29, args: {about: offer:mei-tanaka, priority: P1, section: decisions, actions_any: [approve]}}
+  - {id: S8-d30-approve,       kind: action_present,    run_day: 30, args: {about: offer:mei-tanaka, action: approve}}
+  - {id: S8-d30-cand,          kind: candidate_present, run_day: 30, args: {type: approval_pending, about: offer:mei-tanaka}}
+  - {id: S8-thanks-absent,     kind: item_absent,       run_day: 30, args: {source_id: t-mei-thanks}}
+  - {id: S8-d30-deadline-named, kind: item_mentions_all, run_day: 30, args: {about: offer:mei-tanaka, phrases: ["Friday"]}}
+
+sim_avery: []
+simulate:
+  - {id: S8-sim-escalates, kind: escalation_framing, run_day: 30, args: {about: offer:mei-tanaka, min_times_surfaced: 2, mode: simulate}}
+variants: []

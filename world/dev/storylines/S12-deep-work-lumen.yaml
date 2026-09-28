@@ -1,0 +1,109 @@
+id: S12
+name: deep-work-lumen
+reviewed: false
+tier_truth: P2
+summary: >
+  Avery blocks Tue/Thu 09:00–11:00 as "Deep work" (recurring, organizer Avery). Avery also organizes the weekly
+  Thursday 09:00–09:30 1:1 with Jordan, which sits inside the block by Avery's own choice. On Tuesday day 28 at
+  17:31 Dana Whitfield (Lumen Analytics, the analytics vendor under evaluation) sends an invite for a demo on
+  Thursday day 30 10:30–11:15 (organizer Lumen, Avery NEEDS-ACTION) and an email asking Avery to choose between a
+  standard demo and an API-focused walkthrough. q2-planning.md says the evaluation hinges on ingestion + backfill
+  behaviour. Tests: organizer-aware deep-work flag (Lumen yes, Jordan no); `calendar_response` as a proposal plus
+  a `decide` on the agenda with a recommendation; the Metrika auto-renewal (background mini-arc) is the context.
+
+threads:
+  - {id: t-lumen-demo, subject: "Lumen demo Thursday 10:30 - agenda?", category: vendors_misc}
+events:
+  - {uid: deep-work-tue-thu, calendar: work, title: "Deep work", rrule: "FREQ=WEEKLY;BYDAY=TU,TH", start: "09:00", end: "11:00", organizer: avery, from_day: -21}
+  - {uid: jordan-1on1-thu, calendar: work, title: "1:1 Jordan / Avery", rrule: "FREQ=WEEKLY;BYDAY=TH", start: "09:00", end: "09:30", organizer: avery,
+     attendees: [{id: jordan, partstat: ACCEPTED}], from_day: -49}
+  - {uid: lumen-demo-20260924, calendar: work, title: "Lumen Analytics <> Tessera - demo", day: 30, start: "10:30", end: "11:15", organizer: dana,
+     attendees: [{id: avery, partstat: NEEDS-ACTION}, {id: priya, partstat: ACCEPTED}, {id: dana, partstat: ACCEPTED}], created_day: 28, created_time: "17:31"}
+
+beats:
+  - {ref: S12.b1, day: 20, time: "11:00", source: email, thread: t-lumen-demo, from: dana, to: [priya], cc: [avery], event: "after Priya's intro call: proposes a demo; asks for times", must_include: ["demo"]}
+  - {ref: S12.b2, day: 20, time: "16:20", source: email, thread: t-lumen-demo, from: priya, to: [dana], cc: [avery], event: "next week or the week after; Avery should be there", hardness: [terse]}
+  - {ref: S12.c1, day: 28, time: "17:31", source: calendar, event: lumen-demo-20260924, from: dana, event: "invite created for Thu day 30 10:30–11:15 over Avery's deep-work block; Priya accepts"}
+  - {ref: S12.b3, day: 28, time: "17:31", source: email, thread: t-lumen-demo, from: dana, to: [avery], cc: [priya],
+     event: "booked Thursday 10:30 (invite sent); asks Avery to choose: standard product demo or API-focused walkthrough of ingestion and backfill; 'quick one'",
+     must_include: ["10:30", "standard demo", "API-focused"], hardness: [salesy]}
+  - {ref: S12.n1, day: 27, time: "17:00", source: note, note: q2-planning.md,
+     event: "Q2 planning doc (Avery owns): analytics vendor line says 'Lumen eval — decision hinges on ingestion + backfill behaviour; Metrika renews 9/25'; plus the two open comments (S-bg Q2)",
+     must_include: ["ingestion + backfill"]}
+
+labels:
+  - thread: t-lumen-demo
+    category: vendors_misc
+    storyline: S12
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [meeting:lumen-demo]
+      ball_awaiting: avery
+      closed_by_courtesy: false
+      sender_relationship: {category: vendor, subtype: evaluating, stage: evaluating}
+      asks: [{to_avery: true, kind: decision, deadline_day: 30, status: open}]
+      schedule_mentions: [{action: confirmed, participants: [dana, avery, priya], when_day: 30, when_time: "10:30"}]
+      stage_signals: [{entity: lumen, stage: evaluating, day: 20}]
+      suspicious: false
+    messages:
+      - {beat_ref: S12.b3, day: 28, time: "17:31", from: dana, to: [avery], cc: [priya], must_include: ["10:30", "standard demo", "API-focused"]}
+  - event: lumen-demo-20260924
+    storyline: S12
+    expected: {type: task, note: "code-parsed; organizer_is_avery=false; overlaps deep-work block"}
+  - event: jordan-1on1-thu
+    storyline: S12
+    must_not_surface: true
+    must_not_reason: avery_organized_over_own_block
+    expected: {type: task, note: "code-parsed; organizer_is_avery=true → never a deep-work violation"}
+  - note: q2-planning.md
+    storyline: S12
+    expected:
+      type: note
+      note_kind: draft
+      draft_of: "Q2 planning doc"
+      about: [report:q2-planning, meeting:lumen-demo, renewal:metrika]
+      open_comments: [{by: jordan, status: open}, {by: priya, status: open}]
+      claims: [{subject: lumen_eval_criteria, value: "ingestion + backfill behaviour"}]
+
+contacts:
+  - {id: dana, category: vendor, subtype: evaluating, tier: null, stages: [{from_day: 20, stage: evaluating}]}
+
+about_keys:
+  should_merge: [[meeting:lumen-demo, meeting:lumen-analytics-demo]]
+  should_not_merge: [[meeting:lumen-demo, meeting:jordan-1on1], [meeting:lumen-demo, renewal:metrika]]
+
+expectations:
+  - run_day: 26
+    absent: [meeting:lumen-demo, meeting:jordan-1on1]
+    notes: "no Tue/Thu non-Avery event over the block this week; the Sep 15 pipeline review over the block was DECLINED (S15) → not a violation"
+  - run_day: 27
+    absent: [meeting:lumen-demo, meeting:jordan-1on1]
+  - run_day: 28
+    absent: [meeting:lumen-demo, meeting:jordan-1on1]
+    notes: "invite arrives 17:31"
+  - run_day: 29
+    candidates: [{type: "calendar_conflict:deep_work", about: meeting:lumen-demo, facts_hint: {overlap_minutes: 30, organizer_is_avery: false, event_day: 30}}]
+    items: [{about: meeting:lumen-demo, priority: P2, section: calendar_personal, actions: [calendar_response, decide], cites_any: ["event:lumen-demo-20260924", t-lumen-demo],
+             notes: "next business day; propose 11:15 (or decline) since it sits on the deep-work block; decide agenda: recommend API-focused (q2-planning.md)"}]
+    absent: [meeting:jordan-1on1]
+  - run_day: 30
+    candidates: [{type: "calendar_conflict:deep_work", about: meeting:lumen-demo, facts_hint: {overlap_minutes: 30, organizer_is_avery: false, event_day: 30}}]
+    items: [{about: meeting:lumen-demo, priority: P2, section: calendar_personal, actions: [calendar_response, decide], cites_any: ["event:lumen-demo-20260924", t-lumen-demo],
+             notes: "today 10:30; the rep is waiting on the agenda choice"}]
+    absent: [meeting:jordan-1on1]
+
+assertions:
+  - {id: S12-lumen-flagged,       kind: candidate_present, run_day: 30, args: {type: "calendar_conflict:deep_work", about: meeting:lumen-demo}, description: "eval.md §3 S12: Lumen flagged"}
+  - {id: S12-lumen-flagged-d29,   kind: candidate_present, run_day: 29, args: {type: "calendar_conflict:deep_work", about: meeting:lumen-demo}}
+  - {id: S12-jordan-not-flagged,  kind: candidate_absent,  run_day: 30, args: {type: "calendar_conflict:deep_work", about: meeting:jordan-1on1}, description: "eval.md §3 S12: Jordan 1:1 not flagged (Avery organized it)"}
+  - {id: S12-jordan-absent-item,  kind: item_absent,       run_day: 30, args: {about: meeting:jordan-1on1}}
+  - {id: S12-calendar-response,   kind: action_present,    run_day: 30, args: {about: meeting:lumen-demo, action: calendar_response}}
+  - {id: S12-decide-agenda,       kind: action_present,    run_day: 30, args: {about: meeting:lumen-demo, action: decide}}
+  - {id: S12-proposal-phrasing,   kind: item_qualified_with, run_day: 30, args: {about: meeting:lumen-demo, phrase: "Propose"}, description: "architecture §8.10: calendar_response is phrased as a proposal"}
+
+sim_avery:
+  - {scope_about: meeting:lumen-demo, intended_option: 2, rationale: "API-focused walkthrough; the evaluation hinges on ingestion + backfill (q2-planning.md)"}
+simulate: []
+variants: []

@@ -1,0 +1,205 @@
+id: S5
+name: halberd-rollout
+reviewed: false
+tier_truth: P1
+summary: >
+  Halberd Manufacturing is the healthiest reference customer: a steady weekly cadence all month (rollout planning,
+  an SSO thread closed by Jordan, training logistics). On Wednesday day 29 at 14:08 Renee Tan asks whether the
+  Oct 6 rollout is still on; her steering committee meets Friday morning and she needs an answer by end of
+  Thursday. sprint-week.md (day 28 standup) says the rollout is on track with two non-blocking regressions. A
+  Factory Floor Weekly item (day 29 06:30) reports Halberd and Northstar presented case studies at the MX Summit
+  without naming Tessera. Tests: same-day `reply` grounded in the note; the news item attaches to the reply; the
+  closed SSO thread must not surface; the cadence must NOT be flagged as a drop.
+
+threads:
+  - {id: t-halberd-rollout-plan, subject: "Oct 6 rollout - plan and owners",          category: customers}
+  - {id: t-halberd-sso,          subject: "SSO / Okta setup for the pilot group",     category: customers}
+  - {id: t-halberd-training,     subject: "Operator training sessions - dates",        category: customers}
+  - {id: t-halberd-rollout,      subject: "Oct 6 - still on?",                        category: customers}
+newsletters:
+  - {id: nl-factoryfloor-37, publication: "Factory Floor Weekly", day: 29, time: "06:30", category: newsletters,
+     items: [{headline_hint: "MX Manufacturing AI Summit case studies (Halberd, Northstar)", attaches_to: [rollout:halberd:oct-6]},
+             {headline_hint: "Robotics retrofit funding roundup", attaches_to: []},
+             {headline_hint: "Tariff guidance for tier-2 suppliers", attaches_to: []}]}
+
+beats:
+  # baseline cadence (Renee inbound days 2, 5, 8, 12, 14, 16, 19, 22, 24, 27, 29 → steady ~2.5-day gaps, no drop)
+  - {ref: S5.b1,  day: 2,  time: "09:40", source: email, thread: t-halberd-rollout-plan, from: renee, to: [avery], cc: [tomas, yuki],
+     event: "proposes Oct 6 as the go-live for the Fresno plant; asks who owns what", must_include: ["Oct 6"]}
+  - {ref: S5.b2,  day: 2,  time: "13:15", source: email, thread: t-halberd-rollout-plan, from: avery, to: [renee], cc: [tomas, yuki],
+     event: "confirms Oct 6; Yuki owns the plan; Avery joins the weekly call", must_include: ["Oct 6"]}
+  - {ref: S5.b3,  day: 5,  time: "10:05", source: email, thread: t-halberd-rollout-plan, from: renee, to: [yuki], cc: [avery],
+     event: "sends the plant contact list; asks about the data-mapping workshop date"}
+  - {ref: S5.b4,  day: 5,  time: "15:30", source: email, thread: t-halberd-rollout-plan, from: yuki, to: [renee], cc: [avery],
+     event: "workshop Sep 4; mapping template attached"}
+  - {ref: S5.b5,  day: 8,  time: "08:50", source: email, thread: t-halberd-rollout-plan, from: renee, to: [yuki], cc: [avery],
+     event: "workshop went well; two mapping questions; thanks Yuki"}
+  - {ref: S5.b6,  day: 12, time: "11:20", source: email, thread: t-halberd-sso, from: joel, to: [mateo], cc: [renee, avery],
+     event: "SSO: Okta SAML assertion failing for the pilot group; error text", hardness: [technical_jargon]}
+  - {ref: S5.b7,  day: 12, time: "16:45", source: email, thread: t-halberd-sso, from: jordan, to: [joel], cc: [renee, avery],
+     event: "root cause: attribute mapping; fix shipped; asks Joel to retest"}
+  - {ref: S5.b8,  day: 14, time: "09:10", source: email, thread: t-halberd-sso, from: renee, to: [jordan], cc: [joel, avery],
+     event: "retest passed; thanks — courtesy close", must_include: ["Thanks"]}
+  - {ref: S5.b9,  day: 14, time: "09:30", source: email, thread: t-halberd-sso, from: priya, to: [jordan], cc: [renee, joel, avery],
+     event: "+1, nice catch — FYI-only cc reply on a closed thread (must-not: Priya FYI cc)", must_include: ["+1"]}
+  - {ref: S5.b10, day: 16, time: "14:00", source: email, thread: t-halberd-training, from: renee, to: [yuki], cc: [avery],
+     event: "asks for operator training dates in the week of Sep 28"}
+  - {ref: S5.b11, day: 16, time: "17:20", source: email, thread: t-halberd-training, from: yuki, to: [renee], cc: [avery],
+     event: "offers Sep 29 and Oct 1"}
+  - {ref: S5.b12, day: 19, time: "10:15", source: email, thread: t-halberd-training, from: renee, to: [yuki], cc: [avery],
+     event: "takes Sep 29; asks for a one-page operator guide"}
+  - {ref: S5.b13, day: 22, time: "09:05", source: email, thread: t-halberd-rollout-plan, from: renee, to: [avery], cc: [yuki, tomas],
+     event: "weekly check-in: pilot group live; asks whether the SOC 2 report was sent (it was, day 14 per Jordan) — mixed topics", hardness: [mixed_topics]}
+  - {ref: S5.b14, day: 22, time: "12:40", source: email, thread: t-halberd-rollout-plan, from: avery, to: [renee], cc: [yuki, tomas],
+     event: "yes, Jordan sent SOC 2 on the 8th; pilot looks good", must_include: ["SOC 2"]}
+  - {ref: S5.b15, day: 24, time: "11:30", source: email, thread: t-halberd-training, from: renee, to: [yuki], cc: [avery],
+     event: "confirms 14 operators for Sep 29; thanks"}
+  - {ref: S5.b16, day: 27, time: "10:50", source: email, thread: t-halberd-rollout-plan, from: renee, to: [yuki], cc: [avery],
+     event: "asks about the cutover checklist; Yuki replies day 27 15:00 (beat S5.b17)"}
+  - {ref: S5.b17, day: 27, time: "15:00", source: email, thread: t-halberd-rollout-plan, from: yuki, to: [renee], cc: [avery],
+     event: "checklist attached; Avery has nothing to do"}
+  # the trap
+  - {ref: S5.b18, day: 29, time: "14:08", source: email, thread: t-halberd-rollout, from: renee, to: [avery], cc: [],
+     event: "asks whether Oct 6 is still on; her steering committee meets Friday morning; needs an answer by end of Thursday; mentions hearing about 'a couple of regressions' from Joel",
+     must_include: ["still on", "by end of Thursday"], hardness: [indirect_phrasing]}
+  - {ref: S5.b19, day: 29, time: "06:30", source: newsletter, newsletter: nl-factoryfloor-37, from: factoryfloor,
+     event: "Factory Floor Weekly #37: MX Summit case studies from Halberd and Northstar (neither names its vendor); two other items",
+     must_include: ["MX Manufacturing AI Summit", "Halberd", "Northstar"]}
+  - {ref: S5.n1, day: 28, time: "09:30", source: note, note: sprint-week.md,
+     event: "standup notes: Halberd rollout on track for Oct 6; two non-blocking regressions (QA, Lena); owners", must_include: ["on track for Oct 6", "non-blocking"]}
+
+labels:
+  - thread: t-halberd-rollout-plan
+    category: customers
+    storyline: S5
+    must_not_surface: true
+    must_not_reason: last_word_by_team_no_open_ask
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: commitment_update
+      about: [rollout:halberd:oct-6]
+      ball_awaiting: nobody
+      closed_by_courtesy: false
+      sender_relationship: {category: customer, subtype: reference, stage: active}
+      asks: [{to_avery: true, kind: information, status: answered}]
+      claims: [{subject: rollout_date, value: "Oct 6"}]
+      suspicious: false
+  - thread: t-halberd-sso
+    category: customers
+    storyline: S5
+    must_not_surface: true
+    must_not_reason: closed_by_courtesy
+    classification_case: resolved_reference_customer_thread
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [incident:halberd:sso]
+      ball_awaiting: nobody
+      closed_by_courtesy: true
+      sender_relationship: {category: customer, subtype: reference_ic, stage: active}
+      asks: [{to_avery: false, kind: other, status: answered}]
+      suspicious: false
+  - thread: t-halberd-training
+    category: customers
+    storyline: S5
+    must_not_surface: true
+    must_not_reason: handled_by_team
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [rollout:halberd:oct-6]
+      ball_awaiting: nobody
+      closed_by_courtesy: true
+      sender_relationship: {category: customer, subtype: reference, stage: active}
+      asks: [{to_avery: false, kind: meeting, status: answered}]
+      suspicious: false
+  - thread: t-halberd-rollout
+    category: customers
+    storyline: S5
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [rollout:halberd:oct-6]
+      ball_awaiting: avery
+      closed_by_courtesy: false
+      sender_relationship: {category: customer, subtype: reference, stage: active}
+      asks: [{to_avery: true, kind: information, deadline_day: 30, status: open}]
+      suspicious: false
+    messages:
+      - {beat_ref: S5.b18, day: 29, time: "14:08", from: renee, to: [avery], must_include: ["still on", "by end of Thursday"]}
+  - newsletter: nl-factoryfloor-37
+    category: newsletters
+    storyline: S5
+    expected:
+      type: newsletter
+      news_items:
+        - {headline_hint: "MX Summit case studies", topics: [customers, manufacturing-ai], entities: [Halberd Manufacturing, Northstar Foods], attaches_to: [rollout:halberd:oct-6]}
+        - {headline_hint: "robotics retrofit funding", topics: [manufacturing-ai], entities: [], attaches_to: []}
+        - {headline_hint: "tariff guidance tier-2", topics: [supply-chain], entities: [], attaches_to: []}
+  - note: sprint-week.md
+    storyline: S5
+    expected:
+      type: note
+      note_kind: status
+      about: [rollout:halberd:oct-6]
+      claims: [{subject: halberd_rollout_status, value: "on track for Oct 6"}]
+
+contacts:
+  - {id: renee, category: customer, subtype: reference, tier: P1, rules: [same_day_reply], stages: [{from_day: 1, stage: active}],
+     note: "role-at-org rule: 'procurement lead at Halberd' → P1 (signature says Procurement Lead)"}
+  - {id: joel,  category: customer, subtype: reference_ic, tier: null}
+
+about_keys:
+  should_merge: [[rollout:halberd:oct-6, rollout:halberd], [rollout:halberd:oct-6, rollout:halberd:fresno]]
+  should_not_merge: [[rollout:halberd:oct-6, incident:halberd:sso], [rollout:halberd:oct-6, contract:halberd:second-site]]
+
+expectations:
+  - run_day: 26
+    absent: [rollout:halberd:oct-6]
+    notes: "steady cadence, everything answered by the team"
+    noise: [t-halberd-sso, t-halberd-training, t-halberd-rollout-plan]
+  - run_day: 27
+    absent: [rollout:halberd:oct-6]
+    noise: [t-halberd-sso, t-halberd-training, t-halberd-rollout-plan]
+  - run_day: 28
+    absent: [rollout:halberd:oct-6]
+    noise: [t-halberd-sso, t-halberd-training, t-halberd-rollout-plan]
+  - run_day: 29
+    absent: [rollout:halberd:oct-6]
+    notes: "Renee's ask is at 14:08, after the run"
+    noise: [t-halberd-sso, t-halberd-training, t-halberd-rollout-plan]
+  - run_day: 30
+    candidates:
+      - {type: reply_owed,      about: rollout:halberd:oct-6, facts_hint: {deadline_day: 30, same_day_rule: true}}
+      - {type: quiet_thread,    about: rollout:halberd:oct-6, facts_hint: {note: "reference-customer ask not answered by end of the business day it arrived"}}
+      - {type: news_attachment, about: rollout:halberd:oct-6, facts_hint: {source: nl-factoryfloor-37}}
+    items:
+      - {about: rollout:halberd:oct-6, priority: P1, section: urgent, actions: [reply], cites_any: [t-halberd-rollout],
+         notes: "draft: yes, Oct 6 is on; the two regressions are non-blocking (sprint-week.md); optionally ask about the MX Summit case study. Must cite the note as the grounding."}
+      - {about: rollout:halberd:oct-6, priority_band: [P2, P3], section: news, actions_any: [read, reply], cites_any: [nl-factoryfloor-37],
+         notes: "news attachment: two reference customers presented at MX Summit without naming Tessera; worth a casual ask to Renee"}
+    noise: [t-halberd-sso, t-halberd-training, t-halberd-rollout-plan]
+
+assertions:
+  - {id: S5-d30-reply,          kind: item_present,      run_day: 30, args: {about: rollout:halberd:oct-6, priority: P1, section: urgent, actions_any: [reply]}}
+  - {id: S5-d30-draft-grounded, kind: draft_contains,    run_day: 30, args: {about: rollout:halberd:oct-6, phrases: ["Oct 6"]},
+     description: "the reply confirms the date, grounded in sprint-week.md"}
+  - {id: S5-d30-news-attached,  kind: candidate_present, run_day: 30, args: {type: news_attachment, about: rollout:halberd:oct-6},
+     description: "eval.md §3 Newsletter: the S5 item attaches"}
+  - {id: S5-sso-absent,         kind: item_absent,       run_day: 30, args: {source_id: t-halberd-sso}, description: "resolved reference-customer thread must not surface"}
+  - {id: S5-no-cadence-drop,    kind: candidate_absent,  run_day: 30, args: {type: cadence_drop, about: other:halberd-cadence}}
+  - {id: S5-renee-tier,         kind: contact_tier_is,   run_day: 30, args: {email: renee.tan@halberd.com, tier: P1}}
+  - {id: S5-renee-category,     kind: contact_category_is, run_day: 30, args: {email: renee.tan@halberd.com, category: customer, subtype: reference}}
+
+sim_avery:
+  - {scope_about: rollout:halberd:oct-6, intended_option: 1, rationale: "confirm Oct 6; the sprint note says on track and the regressions are non-blocking"}
+simulate: []
+variants: []
+honesty:
+  no_notes:
+    - {id: S5-no-notes-hedged, kind: draft_not_contains, run_day: 30, variant: no_notes, args: {about: rollout:halberd:oct-6, phrases: ["on track"]},
+       description: "eval.md §5: without notes the Renee draft cannot assert 'on track' unhedged; a `decide` instead of a draft also passes (checker treats no draft as pass)"}

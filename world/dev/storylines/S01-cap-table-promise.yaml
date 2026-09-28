@@ -1,0 +1,158 @@
+id: S1
+name: cap-table-promise
+reviewed: false
+tier_truth: P0
+summary: >
+  Ben (deal counsel) sends cap table v3 on Monday day 27. Marcus asks for the updated cap table on Tuesday day 28
+  because the term sheet waits on it; Avery replies at 21:30 "will send it tonight" and never sends it. The promise
+  is in no todo list. On Wednesday day 29 the WSGR associate, Naomi, follows up on v3 comments in Ben's thread.
+  Tests: overdue promise not in tasks → one thing; the associate inherits P0 from the deal; `task` +
+  `forward_delegate`; the `fulfilled` variant makes the whole topic disappear on day 30.
+
+threads:
+  - {id: t-captable,  subject: "Tessera cap table v3 (option pool refresh)", category: lawyer}
+  - {id: t-marcus-ts, subject: "Series A - updated cap table?",              category: investors_board}
+
+beats:
+  - {ref: S1.b1, day: 27, time: "09:11", source: email, thread: t-captable, from: ben, to: [avery], cc: [naomi],
+     event: "sends cap table v3 as an attachment (option pool refresh Marcus asked for); notes Naomi will send the redline; asks for any changes before it goes to IPV's counsel",
+     must_include: ["cap table v3"], hardness: [long_signature, attachment_named]}
+  - {ref: S1.b2, day: 28, time: "16:42", source: email, thread: t-marcus-ts, from: marcus, to: [avery],
+     event: "asks for the updated cap table with the option pool refresh; IPV partnership meeting is Thursday; term sheet discussion waits on it",
+     must_include: ["updated cap table"], hardness: []}
+  - {ref: S1.b3, day: 28, time: "21:30", source: email, thread: t-marcus-ts, from: avery, to: [marcus],
+     event: "promises to send it tonight (implicit: after checking Ben's v3); no other content",
+     must_include: ["will send it tonight"], hardness: [quoted_history]}
+  - {ref: S1.b4, day: 29, time: "10:05", source: email, thread: t-captable, from: naomi, to: [avery], cc: [ben],
+     event: "follows up on Ben's v3: any comments before the final goes to IPV's counsel; mentions Marcus's team asked whether the option pool numbers are final",
+     must_include: ["v3"], hardness: [quoted_history, formal_signature]}
+
+labels:
+  - thread: t-captable
+    category: lawyer
+    storyline: S1
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [deal:series-a:cap-table]
+      ball_awaiting: avery
+      closed_by_courtesy: false
+      sender_relationship: {category: capital, subtype: deal_counsel, stage: term_sheet}
+      asks:
+        - {to_avery: true, kind: review, deadline_day: null, status: open}       # Naomi's day-29 follow-up (Ben's day-27 "any changes" is the same ask)
+      commitments: []
+      stage_signals: [{entity: ipv, stage: term_sheet, day: 27}]
+      suspicious: false
+    messages:
+      - {beat_ref: S1.b1, day: 27, time: "09:11", from: ben,   to: [avery], cc: [naomi], must_include: ["cap table v3"]}
+      - {beat_ref: S1.b4, day: 29, time: "10:05", from: naomi, to: [avery], cc: [ben],   must_include: ["v3"]}
+  - thread: t-marcus-ts
+    category: investors_board
+    storyline: S1
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [deal:series-a:cap-table]
+      ball_awaiting: avery
+      closed_by_courtesy: false
+      sender_relationship: {category: capital, subtype: lead_investor, stage: term_sheet}
+      asks:
+        - {to_avery: true, kind: information, deadline_day: 30, status: open}    # "partnership meeting is Thursday"
+      commitments:
+        - {owner: avery, about: deal:series-a:cap-table, due_day: 28, due_time: "23:59", status_in_thread: open}
+      stage_signals: [{entity: ipv, stage: term_sheet, day: 28}]
+      suspicious: false
+    messages:
+      - {beat_ref: S1.b2, day: 28, time: "16:42", from: marcus, to: [avery], must_include: ["updated cap table"]}
+      - {beat_ref: S1.b3, day: 28, time: "21:30", from: avery,  to: [marcus], must_include: ["will send it tonight"], is_from_avery: true}
+  - task_absent: deal:series-a:cap-table        # no task or todo shares this about key (notes.yaml enforces)
+
+contacts:
+  - {id: marcus, category: capital, subtype: lead_investor, tier: P0, in_profile: true,
+     stages: [{from_day: 1, stage: in_conversation}, {from_day: 15, stage: diligence}, {from_day: 28, stage: term_sheet}]}
+  - {id: ben,    category: capital, subtype: deal_counsel, tier: P0, in_profile: true, note: "P0 during the raise"}
+  - {id: naomi,  category: capital, subtype: deal_counsel, tier: P0, in_profile: false,
+     note: "not in the profile; same firm and thread as Ben → inherits P0 during the raise (P0 case 12)"}
+
+about_keys:
+  should_merge:
+    - [deal:series-a:cap-table, deal:series-a:captable]
+    - [deal:series-a:cap-table, deal:series-a:cap-table-v3]
+  should_not_merge:
+    - [deal:series-a:cap-table, deal:series-a:customer-references]     # S3 thread, same deal, different ask
+    - [deal:series-a:cap-table, meeting:ipv-diligence-call]            # S2
+
+expectations:
+  - run_day: 26
+    absent: [deal:series-a:cap-table]
+    notes: "no beats yet"
+  - run_day: 27
+    absent: [deal:series-a:cap-table]
+    notes: "Ben's v3 arrives 09:11, after the 06:00 run"
+  - run_day: 28
+    unasserted: "only Ben's v3 delivery (day 27) is visible; a P1 'review v3' item is acceptable but not required, and it must not be P0 (the promise does not exist yet)"
+    assertions_inline:
+      - {kind: priority_not, args: {about: deal:series-a:cap-table, priority: P0}}
+  - run_day: 29
+    candidates:
+      - {type: commitment_overdue,      about: deal:series-a:cap-table, facts_hint: {hours_overdue_min: 6, due_day: 28, due_time: "23:59"}}
+      - {type: commitment_not_in_tasks, about: deal:series-a:cap-table}
+      - {type: reply_owed,              about: deal:series-a:cap-table, facts_hint: {note: "Marcus's open ask"}}
+    items:
+      - {about: deal:series-a:cap-table, priority: P0, section: urgent, actions: [task, forward_delegate],
+         cites_any: [t-marcus-ts], one_thing: true,
+         notes: "task: send the cap table to Marcus before the IPV partnership meeting Thursday; forward_delegate: to Ben — confirm v3 is final, then forward to Marcus. Draft to Marcus is NOT dispatchable (Avery has to attach the file)."}
+    one_thing: {about: deal:series-a:cap-table, cites_any: [t-marcus-ts]}
+    notes: "Overdue by ~6h at 06:00 Wed. Judgment call recorded for review: the one thing on Wed is this, not Priya's inference email (S13) or the diligence-call contradiction (S2), because the delay compounds against the lead investor with the term sheet paused."
+  - run_day: 30
+    candidates:
+      - {type: commitment_overdue,      about: deal:series-a:cap-table, facts_hint: {days_overdue: 1}}
+      - {type: commitment_not_in_tasks, about: deal:series-a:cap-table}
+      - {type: reply_owed,              about: deal:series-a:cap-table, facts_hint: {note: "Naomi's v3 follow-up and Marcus's ask both open"}}
+    items:
+      - {about: deal:series-a:cap-table, priority: P0, section: urgent, actions: [task, forward_delegate],
+         cites_any: [t-marcus-ts, t-captable], one_thing: true,
+         notes: "second slip; partnership meeting is today; Naomi's follow-up merges into the same item (same about key)"}
+    one_thing: {about: deal:series-a:cap-table, cites_any: [t-marcus-ts]}
+
+assertions:
+  - {id: S1-d29-overdue-p0,       kind: item_present,    run_day: 29, args: {about: deal:series-a:cap-table, priority: P0, section: urgent, actions_any: [task]},
+     description: "eval.md §3 S1: day 29 commitment_overdue P0 with a task action"}
+  - {id: S1-d29-forward,          kind: action_present,  run_day: 29, args: {about: deal:series-a:cap-table, action: forward_delegate}}
+  - {id: S1-d29-cand-overdue,     kind: candidate_present, run_day: 29, args: {type: commitment_overdue, about: deal:series-a:cap-table}}
+  - {id: S1-d29-cand-not-in-tasks, kind: candidate_present, run_day: 29, args: {type: commitment_not_in_tasks, about: deal:series-a:cap-table}}
+  - {id: S1-d30-one-thing,        kind: one_thing,       run_day: 30, args: {about: deal:series-a:cap-table, cites_any: [t-marcus-ts]},
+     description: "eval.md §3 S1: day 30 one thing cites the Marcus thread"}
+  - {id: S1-d30-task,             kind: action_present,  run_day: 30, args: {about: deal:series-a:cap-table, action: task}}
+  - {id: S1-d28-not-p0,           kind: priority_not,    run_day: 28, args: {about: deal:series-a:cap-table, priority: P0}}
+  - {id: S1-naomi-tier-p0,        kind: contact_tier_is, run_day: 30, args: {email: nfeld@wsgr.com, tier: P0},
+     description: "P0 case 12: the WSGR associate inherits P0"}
+  - {id: S1-naomi-category,       kind: contact_category_is, run_day: 30, args: {email: nfeld@wsgr.com, category: capital, subtype: deal_counsel}}
+  - {id: S1-d26-absent,           kind: item_absent,     run_day: 26, args: {about: deal:series-a:cap-table}}
+
+sim_avery: []
+
+simulate:
+  - {id: S1-sim-escalates, kind: escalation_framing, run_day: 30, args: {about: deal:series-a:cap-table, min_times_surfaced: 2, mode: simulate},
+     description: "surfaced on day 29 and 30 → day 30 framing says it is the second time / second slip"}
+
+variants:
+  - id: fulfilled
+    description: "Avery sends the cap table Wednesday morning and closes Naomi's thread; on day 30 nothing about the cap table may surface (P0 case 7)."
+    extra_beats:
+      - {ref: S1.v1, day: 29, time: "07:40", source: email, thread: t-marcus-ts, from: avery, to: [marcus], cc: [ben],
+         event: "sends the cap table (attached), one line, apologises for the slip without the word sorry",
+         must_include: ["attached"]}
+      - {ref: S1.v2, day: 29, time: "11:20", source: email, thread: t-captable, from: avery, to: [naomi], cc: [ben],
+         event: "no comments on v3; that is the version sent to Marcus this morning; Avery has the last word",
+         must_include: ["no comments"]}
+    labels_override:
+      - {thread: t-marcus-ts, expected: {ball_awaiting: other, commitments: [{owner: avery, about: deal:series-a:cap-table, due_day: 28, due_time: "23:59", status_in_thread: fulfilled}]}}
+      - {thread: t-captable,  expected: {ball_awaiting: nobody, asks: [{to_avery: true, kind: review, status: answered}]}}
+    expectations:
+      - {run_day: 30, absent: [deal:series-a:cap-table], notes: "both threads closed; nothing to do"}
+    assertions:
+      - {id: S1-fulfilled-absent,       kind: item_absent,      run_day: 30, variant: fulfilled, args: {about: deal:series-a:cap-table}}
+      - {id: S1-fulfilled-no-overdue,   kind: candidate_absent, run_day: 30, variant: fulfilled, args: {type: commitment_overdue, about: deal:series-a:cap-table}}

@@ -1,0 +1,160 @@
+id: S6
+name: northstar-cadence
+reviewed: false
+tier_truth: P1
+summary: >
+  Northstar Foods' procurement manager Grace Lindqvist emails often in days 1–20 (12 inbound messages, median gap
+  ~1.2 days, mostly cc'ing Avery on threads with Tomás and Yuki) and then almost stops: one inbound on Friday day 24
+  at 09:30 ("invoice sorted, thanks"), nothing after. Current gap at 06:00: day 27 → 2.85 days (absent), day 28 →
+  3.85 (present), day 29 → 4.85, day 30 → 5.85. Ratio recent/baseline ≥ 3. Separately, on Wednesday day 29 at
+  22:11 Tomás forwards a 14-message Northstar thread (AP dispute, a plant feature ask, and, buried at message 12,
+  the Finance Director saying Tessera's renewal will go through a formal vendor review) with only "thoughts?".
+  Tests: cadence_drop computed in code → `watch` (pattern, not action); the forward → `question` or `read` with
+  `read_start` at Henrik's message; the two must stay separate items; a day-28 question card whose ruling is
+  overridden by the forward's content in simulate mode (M9).
+
+threads:
+  - {id: t-northstar-onboarding-q, subject: "Modesto line 2 - onboarding questions",     category: customers}
+  - {id: t-northstar-report,       subject: "Weekly exception report - format",           category: customers}
+  - {id: t-northstar-invoice,      subject: "Invoice #TS-0834 - PO mismatch",             category: customers}
+  - {id: t-northstar-qbr,          subject: "QBR prep - Sept",                             category: customers}
+  - {id: t-northstar-fwd,          subject: "Fwd: Northstar - open items (AP / line 2 / contract)", category: customers}
+
+beats:
+  # baseline: Grace inbound days 2, 3, 6, 7, 9, 10, 13, 14, 16, 17, 19, 20 (times vary 08:30–17:00)
+  - {ref: S6.b1,  day: 2,  time: "08:35", source: email, thread: t-northstar-onboarding-q, from: grace, to: [yuki], cc: [avery, tomas], event: "three onboarding questions for line 2"}
+  - {ref: S6.b2,  day: 2,  time: "11:10", source: email, thread: t-northstar-onboarding-q, from: yuki, to: [grace], cc: [avery, tomas], event: "answers all three"}
+  - {ref: S6.b3,  day: 3,  time: "09:50", source: email, thread: t-northstar-onboarding-q, from: grace, to: [yuki], cc: [avery, tomas], event: "follow-up on question 2; thanks"}
+  - {ref: S6.b4,  day: 6,  time: "14:20", source: email, thread: t-northstar-report,       from: grace, to: [avery], cc: [tomas], event: "asks Avery directly whether the exception report can be weekly instead of daily"}
+  - {ref: S6.b5,  day: 6,  time: "16:05", source: email, thread: t-northstar-report,       from: avery, to: [grace], cc: [tomas], event: "yes; Yuki will switch it Monday", must_include: ["weekly"]}
+  - {ref: S6.b6,  day: 7,  time: "08:40", source: email, thread: t-northstar-report,       from: grace, to: [avery], cc: [tomas], event: "thanks, and a format tweak"}
+  - {ref: S6.b7,  day: 9,  time: "10:30", source: email, thread: t-northstar-invoice,      from: grace, to: [tomas], cc: [avery, paul], event: "invoice TS-0834 doesn't match the PO; asks for a corrected one"}
+  - {ref: S6.b8,  day: 9,  time: "15:15", source: email, thread: t-northstar-invoice,      from: tomas, to: [grace], cc: [avery, paul], event: "Kim will reissue"}
+  - {ref: S6.b9,  day: 10, time: "09:05", source: email, thread: t-northstar-invoice,      from: grace, to: [tomas], cc: [avery, paul], event: "received; AP will process"}
+  - {ref: S6.b10, day: 13, time: "13:45", source: email, thread: t-northstar-qbr,          from: grace, to: [tomas], cc: [avery], event: "proposes QBR dates in late Sept; agenda items"}
+  - {ref: S6.b11, day: 13, time: "17:30", source: email, thread: t-northstar-qbr,          from: tomas, to: [grace], cc: [avery], event: "long reply with three options", hardness: [long]}
+  - {ref: S6.b12, day: 14, time: "08:55", source: email, thread: t-northstar-qbr,          from: grace, to: [tomas], cc: [avery], event: "picks Sep 30 tentatively"}
+  - {ref: S6.b13, day: 16, time: "11:25", source: email, thread: t-northstar-onboarding-q, from: grace, to: [yuki], cc: [avery, tomas], event: "line 2 sensor naming question"}
+  - {ref: S6.b14, day: 16, time: "14:00", source: email, thread: t-northstar-onboarding-q, from: yuki, to: [grace], cc: [avery, tomas], event: "answer"}
+  - {ref: S6.b15, day: 17, time: "09:20", source: email, thread: t-northstar-onboarding-q, from: grace, to: [yuki], cc: [avery, tomas], event: "works, thanks"}
+  - {ref: S6.b16, day: 19, time: "16:40", source: email, thread: t-northstar-invoice,      from: grace, to: [tomas], cc: [avery, paul], event: "AP flagged a second mismatch on the credit memo"}
+  - {ref: S6.b17, day: 20, time: "15:00", source: email, thread: t-northstar-invoice,      from: grace, to: [tomas], cc: [avery, paul], event: "adds Paul's notes; asks for a call"}
+  - {ref: S6.b18, day: 20, time: "17:45", source: email, thread: t-northstar-invoice,      from: tomas, to: [grace], cc: [avery, paul], event: "call Friday; credit memo reissued"}
+  # the drop: one inbound on day 24, then silence
+  - {ref: S6.b19, day: 24, time: "09:30", source: email, thread: t-northstar-invoice,      from: grace, to: [tomas], cc: [avery, paul], event: "invoice sorted, thanks — one line, courtesy close", must_include: ["sorted"]}
+  # the forward (14 messages inside; participants Tomás, Paul, Marta, Henrik; Grace cc'd only)
+  - {ref: S6.b20, day: 29, time: "22:11", source: email, thread: t-northstar-fwd, from: tomas, to: [avery], cc: [],
+     event: "forwards a 14-message thread (days 18–29) with the single word 'thoughts?'; inside: Paul (AP) on the credit memo (msgs 1–6), Marta asking for a line-2 downtime feature (msgs 7–11), Henrik Dahl (Finance Director) at msg 12 saying Tessera's renewal will go through a formal vendor review this quarter as part of consolidation, Tomás's soft reply (13), Marta again (14)",
+     must_include: ["thoughts?", "formal vendor review"], hardness: [forward_block, long, mixed_topics]}
+
+labels:
+  - thread: t-northstar-onboarding-q
+    category: customers
+    storyline: S6
+    must_not_surface: true
+    must_not_reason: handled_by_team_closed
+    expected: {type: human_thread, domain: work, intent_primary: ask, about: [rollout:northstar:line-2], ball_awaiting: nobody, closed_by_courtesy: true,
+               sender_relationship: {category: customer, subtype: reference, stage: active}, asks: [{to_avery: false, kind: information, status: answered}]}
+  - thread: t-northstar-report
+    category: customers
+    storyline: S6
+    must_not_surface: true
+    must_not_reason: answered_by_avery_then_courtesy
+    expected: {type: human_thread, domain: work, intent_primary: ask, about: [report:northstar:exception-report], ball_awaiting: nobody, closed_by_courtesy: true,
+               sender_relationship: {category: customer, subtype: reference, stage: active}, asks: [{to_avery: true, kind: decision, status: answered}]}
+  - thread: t-northstar-invoice
+    category: customers
+    storyline: S6
+    must_not_surface: true
+    must_not_reason: closed_by_courtesy
+    expected: {type: human_thread, domain: work, intent_primary: ask, about: [invoice:northstar:ts-0834], ball_awaiting: nobody, closed_by_courtesy: true,
+               sender_relationship: {category: customer, subtype: reference, stage: active}, asks: [{to_avery: false, kind: other, status: answered}]}
+  - thread: t-northstar-qbr
+    category: customers
+    storyline: S6
+    must_not_surface: true
+    must_not_reason: handled_by_team
+    expected: {type: human_thread, domain: work, intent_primary: ask, about: [meeting:northstar-qbr], ball_awaiting: other, closed_by_courtesy: false,
+               sender_relationship: {category: customer, subtype: reference, stage: active},
+               schedule_mentions: [{action: proposed, participants: [grace, tomas, avery], when_day: 36, when_time: null}]}
+  - thread: t-northstar-fwd
+    category: customers
+    storyline: S6
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [renewal:northstar, invoice:northstar:ts-0834, rollout:northstar:line-2]
+      ball_awaiting: avery
+      closed_by_courtesy: false
+      sender_relationship: {category: team, subtype: exec, stage: null}
+      asks: [{to_avery: true, kind: review, deadline_day: null, status: open}]
+      stage_signals: [{entity: northstar, stage: renewal_window, day: 29}]
+      claims: [{subject: northstar_renewal, value: "formal vendor review"}]
+      suspicious: false
+    messages:
+      - {beat_ref: S6.b20, day: 29, time: "22:11", from: tomas, to: [avery], must_include: ["thoughts?", "formal vendor review"]}
+
+contacts:
+  - {id: grace,  category: customer, subtype: reference, tier: P1, rules: [same_day_reply], stages: [{from_day: 1, stage: active}],
+     note: "cadence: baseline median ~1.2 days (days 1–20), then one inbound on day 24; current gap ≥ 3.85 days from day 28"}
+  - {id: henrik, category: customer, subtype: reference_exec, tier: P1, stages: [{from_day: 29, stage: renewal_window}]}
+  - {id: paul,   category: customer, subtype: reference_ic, tier: null}
+  - {id: marta,  category: customer, subtype: reference_ic, tier: null}
+
+about_keys:
+  should_merge: [[renewal:northstar, renewal:northstar-foods], [other:northstar-cadence, other:northstar-reply-cadence]]
+  should_not_merge: [[other:northstar-cadence, renewal:northstar], [renewal:northstar, renewal:veritas]]
+
+expectations:
+  - run_day: 26
+    absent: [other:northstar-cadence, renewal:northstar]
+    notes: "current gap 1.85 days"
+    noise: [t-northstar-onboarding-q, t-northstar-report, t-northstar-invoice, t-northstar-qbr]
+  - run_day: 27
+    absent: [other:northstar-cadence, renewal:northstar]
+    notes: "current gap 2.85 days < 3 → no candidate yet"
+    noise: [t-northstar-onboarding-q, t-northstar-report, t-northstar-invoice, t-northstar-qbr]
+  - run_day: 28
+    candidates: [{type: cadence_drop, about: other:northstar-cadence, facts_hint: {baseline_median_days: 1.2, recent_median_days: 3.8, current_gap_days: 3.85}}]
+    items: [{about: other:northstar-cadence, priority: P2, section: pulse, actions: [watch], cites_any: [t-northstar-invoice],
+             ambiguity: preference, notes: "'pattern, not action'; a question card (Tomás checks in / Avery reaches out / keep watching) is welcome but optional on a normal run"}]
+    absent: [renewal:northstar]
+    noise: [t-northstar-onboarding-q, t-northstar-report, t-northstar-invoice, t-northstar-qbr]
+  - run_day: 29
+    candidates: [{type: cadence_drop, about: other:northstar-cadence, facts_hint: {current_gap_days: 4.85}}]
+    items: [{about: other:northstar-cadence, priority: P2, section: pulse, actions: [watch], cites_any: [t-northstar-invoice]}]
+    absent: [renewal:northstar]
+    noise: [t-northstar-onboarding-q, t-northstar-report, t-northstar-invoice, t-northstar-qbr]
+  - run_day: 30
+    candidates:
+      - {type: cadence_drop, about: other:northstar-cadence, facts_hint: {current_gap_days: 5.85}}
+      - {type: reply_owed,   about: renewal:northstar, facts_hint: {note: "Tomás's forward, 'thoughts?'"}}
+    items:
+      - {about: other:northstar-cadence, priority: P2, section: pulse, actions: [watch], cites_any: [t-northstar-invoice]}
+      - {about: renewal:northstar, priority: P1, section: decisions, actions_any: [question, read], cites_any: [t-northstar-fwd],
+         ambiguity: preference,
+         notes: "read_start = Henrik's message (msg 12, 'formal vendor review'); if a question card: (1) Avery calls Henrik (2) Tomás owns it (3) watch. Must not be summarised as 'billing thread'."}
+    noise: [t-northstar-onboarding-q, t-northstar-report, t-northstar-invoice, t-northstar-qbr]
+    notes: "the forward's inner messages are from Paul/Marta/Henrik to Tomás; they must not count as Grace's inbound (cadence stays dropped)"
+
+assertions:
+  - {id: S6-d27-no-cadence,    kind: candidate_absent,  run_day: 27, args: {type: cadence_drop, about: other:northstar-cadence}, description: "gap 2.85 < 3"}
+  - {id: S6-d28-cadence,       kind: candidate_present, run_day: 28, args: {type: cadence_drop, about: other:northstar-cadence}}
+  - {id: S6-d28-watch,         kind: item_present,      run_day: 28, args: {about: other:northstar-cadence, section: pulse, actions_any: [watch]}}
+  - {id: S6-d30-cadence-watch, kind: action_present,    run_day: 30, args: {about: other:northstar-cadence, action: watch}}
+  - {id: S6-d30-fwd-present,   kind: item_present,      run_day: 30, args: {about: renewal:northstar, priority: P1, actions_any: [question, read]}}
+  - {id: S6-d30-fwd-no-fake-draft, kind: action_absent, run_day: 30, args: {about: renewal:northstar, action: reply},
+     description: "a 14-message forward with no context is not dispatchable; no fake reply draft"}
+  - {id: S6-d30-two-items,     kind: count_items_of_type, run_day: 30, args: {type: cadence_drop, equals: 1}}
+  - {id: S6-grace-category,    kind: contact_category_is, run_day: 30, args: {email: grace.lindqvist@northstarfoods.com, category: customer, subtype: reference}}
+  - {id: S6-invoice-absent,    kind: item_absent,       run_day: 30, args: {source_id: t-northstar-invoice}}
+
+sim_avery:
+  - {scope_about: other:northstar-cadence, intended_option: 1, rationale: "Tomás checks in with Grace; stop showing the cadence unless something changes"}
+  - {scope_about: renewal:northstar,       intended_option: 1, rationale: "Avery calls Henrik personally; a formal vendor review on a reference account is a renewal risk"}
+simulate:
+  - {id: S6-sim-ruling-applied, kind: ruling_applied, run_day: 29, args: {question_scope: other:northstar-cadence, expected_change: "day 29 cadence item suppressed or one-liner; header counts an applied rule", mode: simulate}}
+  - {id: S6-sim-content-overrides, kind: content_overrides_ruling, run_day: 30, args: {about: renewal:northstar, mode: simulate},
+     description: "the day-28 ruling (delegate, suppress) does not hide Henrik's 'formal vendor review'"}
+variants: []

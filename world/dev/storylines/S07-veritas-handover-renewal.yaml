@@ -1,0 +1,181 @@
+id: S7
+name: veritas-handover-renewal
+reviewed: false
+tier_truth: P1
+summary: >
+  Veritas Components' procurement lead Simon Achterberg emails steadily in days 1–14 (renewal timing first pushed
+  by CFO Walter Kessling on day 8: "bundle it with the annual vendor review, mid-September"). On Wednesday day 15
+  Nadia Rahimi writes "I'm taking over from Simon as procurement lead"; she then emails at Simon's cadence
+  (days 15, 16, 18, 21, 23, 28, 29). gtm-weekly.md (Monday day 27) records that Walter pushed the renewal a
+  second time, to "next quarter", and Tomás logged it without escalating. Tests: role resolution (Nadia gets the
+  reference-customer P1 via the role-at-org rule, not a name); handover flagged as profile drift → `profile_update`;
+  cadence must merge predecessor + successor (no false drop on Simon, none on Nadia alone); the second renewal
+  slip surfaces as a pulse/decision item.
+
+threads:
+  - {id: t-veritas-usage,     subject: "August usage report + Q4 forecast",           category: customers}
+  - {id: t-veritas-renewal,   subject: "Renewal timing - Oct 1 anniversary",           category: customers}
+  - {id: t-veritas-handover,  subject: "Introduction - taking over procurement",        category: customers}
+  - {id: t-veritas-soc2,      subject: "SOC 2 report for our vendor file",              category: customers}
+  - {id: t-veritas-line2,     subject: "Second line - ingest setup",                    category: customers}
+
+beats:
+  - {ref: S7.b1,  day: 2,  time: "10:15", source: email, thread: t-veritas-usage,    from: simon,  to: [tomas], cc: [avery], event: "asks for the August usage report before their vendor review"}
+  - {ref: S7.b2,  day: 2,  time: "16:30", source: email, thread: t-veritas-usage,    from: tomas,  to: [simon], cc: [avery], event: "report attached, long"}
+  - {ref: S7.b3,  day: 4,  time: "09:45", source: email, thread: t-veritas-usage,    from: simon,  to: [tomas], cc: [avery], event: "two questions on the numbers"}
+  - {ref: S7.b4,  day: 4,  time: "14:00", source: email, thread: t-veritas-usage,    from: tomas,  to: [simon], cc: [avery], event: "answers"}
+  - {ref: S7.b5,  day: 7,  time: "11:05", source: email, thread: t-veritas-renewal,  from: simon,  to: [avery], cc: [tomas], event: "renewal paperwork for the Oct 1 anniversary; asks for the proposed terms"}
+  - {ref: S7.b6,  day: 7,  time: "15:50", source: email, thread: t-veritas-renewal,  from: avery,  to: [simon], cc: [tomas], event: "Tomás will send terms this week; glad to do a call", must_include: ["terms"]}
+  - {ref: S7.b7,  day: 8,  time: "13:20", source: email, thread: t-veritas-renewal,  from: walter, to: [avery], cc: [simon, tomas],
+     event: "CFO: wants to bundle the renewal with their annual vendor review; proposes picking it up mid-September (first push)", must_include: ["mid-September"]}
+  - {ref: S7.b8,  day: 8,  time: "17:10", source: email, thread: t-veritas-renewal,  from: avery,  to: [walter], cc: [simon, tomas], event: "fine; Tomás will reach out the week of the 14th"}
+  - {ref: S7.b9,  day: 9,  time: "08:30", source: email, thread: t-veritas-usage,    from: simon,  to: [tomas], cc: [avery], event: "thanks; forecast question"}
+  - {ref: S7.b10, day: 11, time: "10:40", source: email, thread: t-veritas-usage,    from: simon,  to: [tomas], cc: [avery], event: "closes the usage thread; courtesy"}
+  - {ref: S7.b11, day: 14, time: "09:00", source: email, thread: t-veritas-renewal,  from: simon,  to: [avery], cc: [tomas], event: "heads-up: leaving for a role elsewhere at the end of the week; 'my successor will be in touch'", must_include: ["successor"]}
+  # handover
+  - {ref: S7.b12, day: 15, time: "09:20", source: email, thread: t-veritas-handover, from: nadia,  to: [avery], cc: [tomas, simon],
+     event: "introduces herself: taking over from Simon as procurement lead at Veritas as of today; wants a 20-minute intro call; asks where the renewal stands",
+     must_include: ["taking over from Simon", "procurement lead"], hardness: [new_signature]}
+  - {ref: S7.b13, day: 15, time: "12:05", source: email, thread: t-veritas-handover, from: avery,  to: [nadia], cc: [tomas, simon], event: "welcome; Tomás will set up the call; renewal: Walter asked to pick it up mid-month"}
+  - {ref: S7.b14, day: 16, time: "10:10", source: email, thread: t-veritas-handover, from: nadia,  to: [tomas], cc: [avery], event: "call times"}
+  - {ref: S7.b15, day: 16, time: "13:30", source: email, thread: t-veritas-handover, from: tomas,  to: [nadia], cc: [avery], event: "booked Thursday"}
+  - {ref: S7.b16, day: 18, time: "11:00", source: email, thread: t-veritas-soc2,     from: nadia,  to: [avery], cc: [jordan], event: "asks for the SOC 2 report for the vendor file"}
+  - {ref: S7.b17, day: 18, time: "14:25", source: email, thread: t-veritas-soc2,     from: jordan, to: [nadia], cc: [avery], event: "sends it via the trust portal", must_include: ["SOC 2"]}
+  - {ref: S7.b18, day: 21, time: "09:15", source: email, thread: t-veritas-soc2,     from: nadia,  to: [jordan], cc: [avery], event: "received, thanks — courtesy close"}
+  - {ref: S7.b19, day: 23, time: "10:30", source: email, thread: t-veritas-line2,    from: nadia,  to: [yuki], cc: [avery, ivan], event: "second production line: wants ingest set up before their go-live on the 23rd; Ivan will send the feed schema", must_include: ["second line"]}
+  - {ref: S7.b20, day: 23, time: "15:40", source: email, thread: t-veritas-line2,    from: yuki,   to: [nadia], cc: [avery, ivan], event: "plan and dates; Sofia is on it"}
+  - {ref: S7.b21, day: 28, time: "11:45", source: email, thread: t-veritas-line2,    from: nadia,  to: [yuki], cc: [avery, ivan], event: "Ivan sent the schema; can it be ready by Wednesday?"}
+  - {ref: S7.b22, day: 28, time: "16:20", source: email, thread: t-veritas-line2,    from: jordan, to: [nadia], cc: [avery, yuki, ivan], event: "yes, Wednesday; Sofia will confirm"}
+  - {ref: S7.b23, day: 29, time: "09:00", source: email, thread: t-veritas-line2,    from: nadia,  to: [jordan], cc: [avery, yuki, ivan], event: "go-live tonight at 18:00 their side; FYI; thanks for the turnaround", must_include: ["tonight"]}
+  - {ref: S7.n1,  day: 27, time: "16:30", source: note, note: gtm-weekly.md,
+     event: "GTM weekly (Mon day 27): 'Veritas: Walter pushed the renewal again — now next quarter (2nd push). Tomás to follow up.' plus the S15 pricing decision", must_include: ["next quarter", "2nd push"]}
+
+labels:
+  - thread: t-veritas-usage
+    category: customers
+    storyline: S7
+    must_not_surface: true
+    must_not_reason: closed_by_courtesy
+    expected: {type: human_thread, domain: work, intent_primary: ask, about: [report:veritas:usage], ball_awaiting: nobody, closed_by_courtesy: true,
+               sender_relationship: {category: customer, subtype: reference, stage: active}}
+  - thread: t-veritas-renewal
+    category: customers
+    storyline: S7
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: commitment_update
+      about: [renewal:veritas]
+      ball_awaiting: other          # Tomás owes terms/outreach; Avery had the last word to Walter
+      closed_by_courtesy: false
+      sender_relationship: {category: customer, subtype: reference, stage: renewal_window}
+      commitments: [{owner: other, about: renewal:veritas, due_day: 20, status_in_thread: open}]     # Tomás: reach out week of the 14th
+      stage_signals: [{entity: veritas, stage: renewal_window, day: 7}]
+      claims: [{subject: veritas_renewal_timing, value: "mid-September"}]
+      role_changes: [{person: simon, replaces: null, org: veritas, day: 14}]     # "leaving; successor will be in touch"
+      suspicious: false
+  - thread: t-veritas-handover
+    category: customers
+    storyline: S7
+    must_not_surface: true
+    must_not_reason: handled_by_team_closed
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: fyi
+      about: [other:veritas-procurement-lead]
+      ball_awaiting: nobody
+      closed_by_courtesy: false
+      sender_relationship: {category: customer, subtype: reference, stage: active}
+      role_changes: [{person: nadia, replaces: simon, org: veritas, day: 15}]
+      asks: [{to_avery: true, kind: meeting, status: answered}]
+      suspicious: false
+    messages:
+      - {beat_ref: S7.b12, day: 15, time: "09:20", from: nadia, to: [avery], cc: [tomas, simon], must_include: ["taking over from Simon", "procurement lead"]}
+  - thread: t-veritas-soc2
+    category: customers
+    storyline: S7
+    must_not_surface: true
+    must_not_reason: closed_by_courtesy
+    expected: {type: human_thread, domain: work, intent_primary: ask, about: [report:soc2-veritas], ball_awaiting: nobody, closed_by_courtesy: true,
+               sender_relationship: {category: customer, subtype: reference, stage: active}, asks: [{to_avery: true, kind: information, status: answered}]}
+  - thread: t-veritas-line2
+    category: customers
+    storyline: S7
+    must_not_surface: true
+    must_not_reason: fyi_handled_by_team
+    expected: {type: human_thread, domain: work, intent_primary: fyi, about: [rollout:veritas:line-2], ball_awaiting: nobody, closed_by_courtesy: false,
+               sender_relationship: {category: customer, subtype: reference, stage: active}, asks: [{to_avery: false, kind: other, status: answered}],
+               claims: [{subject: veritas_line2_go_live, value: "tonight (day 29 18:00)"}]}
+  - note: gtm-weekly.md
+    storyline: S7
+    expected:
+      type: note
+      note_kind: meeting_notes
+      about: [renewal:veritas, pricing:plant-bundle]
+      stage_signals: [{entity: veritas, stage: at_risk, day: 27}]
+      claims: [{subject: veritas_renewal_timing, value: "next quarter"}]
+      action_items: [{owner: other, about: renewal:veritas, due_day: null, status_in_thread: open}]
+
+contacts:
+  - {id: simon,  category: customer, subtype: reference, tier: P1, rules: [same_day_reply], stages: [{from_day: 1, stage: active}], note: "until day 14"}
+  - {id: nadia,  category: customer, subtype: reference, tier: P1, rules: [same_day_reply], replaces: simon,
+     stages: [{from_day: 15, stage: active}, {from_day: 27, stage: at_risk}],
+     note: "not in the profile; role-at-org rule + signature 'Procurement Lead | Veritas Components' → P1; handover flagged"}
+  - {id: walter, category: customer, subtype: reference_exec, tier: P1, stages: [{from_day: 8, stage: renewal_window}]}
+  - {id: ivan,   category: customer, subtype: reference_ic, tier: null}
+
+about_keys:
+  should_merge: [[renewal:veritas, renewal:veritas-components], [other:veritas-procurement-lead, other:veritas-handover]]
+  should_not_merge: [[renewal:veritas, incident:veritas:ingest], [renewal:veritas, rollout:veritas:line-2]]
+
+expectations:
+  - run_day: 26
+    candidates: [{type: profile_drift, about: other:veritas-procurement-lead, facts_hint: {field: "procurement lead at Veritas", data_value: "Nadia Rahimi (since day 15)"}}]
+    items: [{about: other:veritas-procurement-lead, priority: P3, section: pulse, actions: [profile_update], cites_any: [t-veritas-handover],
+             notes: "footer line 'Suggested profile updates'; renders every run day until the profile is edited"}]
+    absent: [renewal:veritas]
+    notes: "the first push (day 8) was handled; nothing open on the renewal until the note lands"
+    noise: [t-veritas-usage, t-veritas-soc2]
+  - run_day: 27
+    candidates: [{type: profile_drift, about: other:veritas-procurement-lead}]
+    items: [{about: other:veritas-procurement-lead, priority: P3, section: pulse, actions: [profile_update], cites_any: [t-veritas-handover]}]
+    absent: [renewal:veritas]
+    noise: [t-veritas-usage, t-veritas-soc2]
+  - run_day: 28
+    candidates:
+      - {type: profile_drift, about: other:veritas-procurement-lead}
+      - {type: contradiction, about: renewal:veritas, facts_hint: {note: "note says next quarter; email said mid-September; second slip"}}
+    items:
+      - {about: other:veritas-procurement-lead, priority: P3, section: pulse, actions: [profile_update], cites_any: [t-veritas-handover]}
+      - {about: renewal:veritas, priority: P1, section: pulse, actions_any: [question, decide, watch, task], cites_any: ["note:gtm-weekly.md", t-veritas-renewal],
+         ambiguity: preference, notes: "second slip on a reference renewal; Tomás logged it without escalating. Question (1) Avery calls Walter (2) Tomás owns it (3) wait for Q4. A `decide`/`task` with the same content also passes."}
+    noise: [t-veritas-usage, t-veritas-soc2, t-veritas-handover]
+  - run_day: 29
+    candidates: [{type: profile_drift, about: other:veritas-procurement-lead}, {type: contradiction, about: renewal:veritas}]
+    items:
+      - {about: other:veritas-procurement-lead, priority: P3, section: pulse, actions: [profile_update], cites_any: [t-veritas-handover]}
+      - {about: renewal:veritas, priority: P1, section: pulse, actions_any: [question, decide, watch, task], cites_any: ["note:gtm-weekly.md"]}
+    noise: [t-veritas-usage, t-veritas-soc2, t-veritas-handover, t-veritas-line2]
+  - run_day: 30
+    candidates: [{type: profile_drift, about: other:veritas-procurement-lead}, {type: contradiction, about: renewal:veritas}]
+    items:
+      - {about: other:veritas-procurement-lead, priority: P3, section: pulse, actions: [profile_update], cites_any: [t-veritas-handover]}
+      - {about: renewal:veritas, priority: P1, section: pulse, actions_any: [question, decide, watch, task], cites_any: ["note:gtm-weekly.md"],
+         notes: "on day 30 the S14 ingest incident on the same account is a separate P0 item; compose may cross-link them but both about keys must be present"}
+    noise: [t-veritas-usage, t-veritas-soc2, t-veritas-handover, t-veritas-line2]
+
+assertions:
+  - {id: S7-handover-flagged,     kind: candidate_present,   run_day: 26, args: {type: profile_drift, about: other:veritas-procurement-lead}, description: "eval.md §3 S7: handover flagged"}
+  - {id: S7-profile-update-footer, kind: action_present,     run_day: 30, args: {about: other:veritas-procurement-lead, action: profile_update}, description: "eval.md §3 S7: profile_update in the footer"}
+  - {id: S7-nadia-tier-p1,        kind: contact_tier_is,     run_day: 30, args: {email: nadia.rahimi@veritascomponents.com, tier: P1}, description: "eval.md §3 S7: new lead treated as reference-customer tier"}
+  - {id: S7-nadia-category,       kind: contact_category_is, run_day: 30, args: {email: nadia.rahimi@veritascomponents.com, category: customer, subtype: reference}}
+  - {id: S7-no-simon-cadence-drop, kind: candidate_absent,   run_day: 30, args: {type: cadence_drop, about: other:veritas-cadence}, description: "cadence merges predecessor + successor; no false drop"}
+  - {id: S7-d30-renewal-present,  kind: item_present,        run_day: 30, args: {about: renewal:veritas, priority: P1}}
+  - {id: S7-handover-thread-noise, kind: item_absent,        run_day: 30, args: {source_id: t-veritas-handover}, description: "the intro thread itself is closed; only the drift line cites it"}
+
+sim_avery:
+  - {scope_about: renewal:veritas, intended_option: 1, rationale: "Avery calls Walter this week; two slips on a reference renewal is an at-risk signal"}
+simulate:
+  - {id: S7-sim-ruling-applied, kind: ruling_applied, run_day: 30, args: {question_scope: renewal:veritas, expected_change: "day 30 shows a task/reply for Avery's call instead of re-asking the question", mode: simulate}}
+variants: []

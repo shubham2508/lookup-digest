@@ -1,0 +1,91 @@
+id: S4
+name: aperture-quiet
+reviewed: false
+tier_truth: P0
+summary: >
+  David Kim (Partner, Aperture Capital; not in the profile) came in through a founder-dinner conversation. Days 6–9:
+  intro, deck, two sharp questions on gross margin, and Avery's "let's talk soon, I'll send some times" on Thursday
+  day 9 (Sep 3). Nothing since. Avery owns the next step. Capital thread with Avery's own open commitment ≥ 3
+  business days old → quiet_thread on every run day (11 business days on day 26, 14 on day 30). Tests: quiet
+  investor during an active raise; the tool must classify Aperture as capital from the signature/domain, and the
+  draft is dispatchable (propose times).
+
+threads:
+  - {id: t-aperture, subject: "Tessera - following up from the Dogpatch dinner", category: investors_board}
+
+beats:
+  - {ref: S4.b1, day: 6, time: "10:20", source: email, thread: t-aperture, from: david, to: [avery],
+     event: "enjoyed the conversation at the founders dinner; Aperture is building a supply-chain thesis; asks for the deck",
+     must_include: ["deck"], hardness: []}
+  - {ref: S4.b2, day: 7, time: "08:05", source: email, thread: t-aperture, from: avery, to: [david],
+     event: "sends the deck (link), two sentences",
+     must_include: ["deck"], hardness: []}
+  - {ref: S4.b3, day: 9, time: "11:15", source: email, thread: t-aperture, from: david, to: [avery],
+     event: "two questions: gross margin trajectory with the inference line, and how much of ARR is the three reference accounts; happy to dig in when Avery is ready",
+     must_include: ["gross margin"], hardness: [indirect_phrasing]}
+  - {ref: S4.b4, day: 9, time: "15:40", source: email, thread: t-aperture, from: avery, to: [david],
+     event: "great questions; let's talk soon; will send some times",
+     must_include: ["let's talk soon", "send some times"], hardness: []}
+
+labels:
+  - thread: t-aperture
+    category: investors_board
+    storyline: S4
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [deal:series-a:aperture]
+      ball_awaiting: avery
+      closed_by_courtesy: false
+      sender_relationship: {category: capital, subtype: prospective_vc, stage: in_conversation}
+      asks: [{to_avery: true, kind: information, deadline_day: null, status: open}]
+      commitments:
+        - {owner: avery, about: deal:series-a:aperture, due_day: null, status_in_thread: open}   # "send some times" — soft, undated
+      stage_signals: [{entity: aperture, stage: first_contact, day: 6}, {entity: aperture, stage: in_conversation, day: 9}]
+      suspicious: false
+    messages:
+      - {beat_ref: S4.b1, day: 6, time: "10:20", from: david, to: [avery], must_include: ["deck"]}
+      - {beat_ref: S4.b2, day: 7, time: "08:05", from: avery, to: [david], must_include: ["deck"], is_from_avery: true}
+      - {beat_ref: S4.b3, day: 9, time: "11:15", from: david, to: [avery], must_include: ["gross margin"]}
+      - {beat_ref: S4.b4, day: 9, time: "15:40", from: avery, to: [david], must_include: ["let's talk soon", "send some times"], is_from_avery: true}
+
+contacts:
+  - {id: david, category: capital, subtype: prospective_vc, tier: P0, in_profile: false,
+     stages: [{from_day: 6, stage: first_contact}, {from_day: 9, stage: in_conversation}],
+     note: "'another VC' in the profile's quiet-investor rule; tier P0 during the raise is a judgment — P1 acceptable (band)"}
+
+about_keys:
+  should_merge: [[deal:series-a:aperture, deal:aperture]]
+  should_not_merge: [[deal:series-a:aperture, deal:series-a:cap-table]]
+
+expectations:
+  - run_day: 26
+    candidates: [{type: quiet_thread, about: deal:series-a:aperture, facts_hint: {business_days_quiet: 11}}]
+    items: [{about: deal:series-a:aperture, priority_band: [P0, P1], section: urgent, actions: [reply], cites_any: [t-aperture],
+             notes: "draft: propose two slots next week; answer the two questions briefly or promise them on the call"}]
+  - run_day: 27
+    candidates: [{type: quiet_thread, about: deal:series-a:aperture, facts_hint: {business_days_quiet: 11}}]
+    items: [{about: deal:series-a:aperture, priority_band: [P0, P1], section: urgent, actions: [reply], cites_any: [t-aperture]}]
+  - run_day: 28
+    candidates: [{type: quiet_thread, about: deal:series-a:aperture, facts_hint: {business_days_quiet: 12}}]
+    items: [{about: deal:series-a:aperture, priority_band: [P0, P1], section: urgent, actions: [reply], cites_any: [t-aperture]}]
+  - run_day: 29
+    candidates: [{type: quiet_thread, about: deal:series-a:aperture, facts_hint: {business_days_quiet: 13}}]
+    items: [{about: deal:series-a:aperture, priority_band: [P0, P1], section: urgent, actions: [reply], cites_any: [t-aperture]}]
+  - run_day: 30
+    candidates: [{type: quiet_thread, about: deal:series-a:aperture, facts_hint: {business_days_quiet: 14}}]
+    items: [{about: deal:series-a:aperture, priority_band: [P0, P1], section: urgent, actions: [reply], cites_any: [t-aperture]}]
+
+assertions:
+  - {id: S4-d26-present,   kind: item_present,        run_day: 26, args: {about: deal:series-a:aperture}}
+  - {id: S4-d30-present,   kind: item_present,        run_day: 30, args: {about: deal:series-a:aperture, actions_any: [reply]}}
+  - {id: S4-d30-cand,      kind: candidate_present,   run_day: 30, args: {type: quiet_thread, about: deal:series-a:aperture}}
+  - {id: S4-david-capital, kind: contact_category_is, run_day: 30, args: {email: david@aperturecap.com, category: capital}}
+  - {id: S4-d30-not-p3,    kind: priority_not,        run_day: 30, args: {about: deal:series-a:aperture, priority: P3}}
+
+sim_avery: []
+simulate:
+  - {id: S4-sim-escalates, kind: escalation_framing, run_day: 28, args: {about: deal:series-a:aperture, min_times_surfaced: 2, mode: simulate},
+     description: "surfaced on days 26 and 27 → day 28 framing escalates ('third time')"}
+variants: []

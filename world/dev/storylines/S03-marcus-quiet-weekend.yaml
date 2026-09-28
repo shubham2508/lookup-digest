@@ -1,0 +1,85 @@
+id: S3
+name: marcus-quiet-weekend
+reviewed: false
+tier_truth: P0
+summary: >
+  A separate Marcus thread. Friday day 24 at 17:52 Marcus asks two things before diligence goes further: which two
+  customers IPV can call as references, and whether the $3.2M ARR in his model (from the August deck) is still
+  current. The ball is with Avery and Avery never replies. Business days fully elapsed at 06:00: Sun 26 → 0, Mon 27
+  → 0, Tue 28 → 1, Wed 29 → 2, Thu 30 → 3. So the quiet-investor item is absent on days 26–29 and present on day 30
+  only (P0 cases 1–3). Calendar-day counting would surface it on Monday (3 calendar days): the trap. The reply draft
+  must use $3.4M ARR from finance-sync.md (day 22), not the profile's $3.2M, and flag the drift (P0 case 8).
+  Depends on the business-day definition in OPEN_QUESTIONS #8.
+
+threads:
+  - {id: t-marcus-refs, subject: "Two things before we go further", category: investors_board}
+
+beats:
+  - {ref: S3.b1, day: 24, time: "17:52", source: email, thread: t-marcus-refs, from: marcus, to: [avery],
+     event: "asks (1) for two customer references Elena's team can call in the next two weeks, (2) to confirm current ARR — his model has $3.2M from the August deck; no deadline stated",
+     must_include: ["two customer references", "current ARR", "$3.2M"], hardness: [indirect_phrasing]}
+
+labels:
+  - thread: t-marcus-refs
+    category: investors_board
+    storyline: S3
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [deal:series-a:customer-references, deal:series-a:arr]
+      ball_awaiting: avery
+      closed_by_courtesy: false
+      sender_relationship: {category: capital, subtype: lead_investor, stage: diligence}
+      asks:
+        - {to_avery: true, kind: information, deadline_day: null, status: open}
+        - {to_avery: true, kind: information, deadline_day: null, status: open}
+      claims: [{subject: ARR, value: "$3.2M"}]      # Marcus's number; the data's current ARR is $3.4M (finance-sync.md)
+      suspicious: false
+    messages:
+      - {beat_ref: S3.b1, day: 24, time: "17:52", from: marcus, to: [avery], must_include: ["two customer references", "current ARR", "$3.2M"]}
+
+contacts:
+  - {id: marcus, category: capital, subtype: lead_investor, tier: P0, in_profile: true}
+
+about_keys:
+  should_merge: [[deal:series-a:customer-references, deal:series-a:references]]
+  should_not_merge: [[deal:series-a:customer-references, deal:series-a:cap-table]]
+
+expectations:
+  - run_day: 26
+    absent: [deal:series-a:customer-references]
+    notes: "0 business days elapsed (weekend); reply_owed exists as a candidate but must not be surfaced as quiet; a plain reply_owed P0 item on a Sunday is NOT wanted either — the profile's rule is three business days"
+  - run_day: 27
+    absent: [deal:series-a:customer-references]
+    notes: "3 calendar days, 0 business days → absent (the trap for calendar-day counting)"
+  - run_day: 28
+    absent: [deal:series-a:customer-references]
+    notes: "1 business day (Mon)"
+  - run_day: 29
+    absent: [deal:series-a:customer-references]
+    notes: "2 business days (Mon, Tue) → absent (P0 case 2)"
+  - run_day: 30
+    candidates:
+      - {type: quiet_thread, about: deal:series-a:customer-references, facts_hint: {business_days_quiet: 3, calendar_days_quiet: 5}}
+    items:
+      - {about: deal:series-a:customer-references, priority: P0, section: urgent, actions_any: [reply, decide],
+         cites_any: [t-marcus-refs],
+         notes: "reply draft: propose Halberd (Renee) and Veritas (Nadia) or Northstar; give ARR as $3.4M per finance sync with an assumption line noting the profile says $3.2M. A `decide` on which references to offer is acceptable instead of a full draft."}
+    notes: "3 business days (Mon, Tue, Wed) → present (P0 case 1). One thing stays S1."
+
+assertions:
+  - {id: S3-d27-absent,   kind: item_absent,       run_day: 27, args: {about: deal:series-a:customer-references}, description: "P0 case 3: Fri→Mon is 0 business days"}
+  - {id: S3-d28-absent,   kind: item_absent,       run_day: 28, args: {about: deal:series-a:customer-references}}
+  - {id: S3-d29-absent,   kind: item_absent,       run_day: 29, args: {about: deal:series-a:customer-references}, description: "P0 case 2: quiet 2 business days → don't surface"}
+  - {id: S3-d29-no-quiet-cand, kind: candidate_absent, run_day: 29, args: {type: quiet_thread, about: deal:series-a:customer-references}}
+  - {id: S3-d30-present,  kind: item_present,      run_day: 30, args: {about: deal:series-a:customer-references, priority: P0}, description: "P0 case 1: quiet 3 business days → surface"}
+  - {id: S3-d30-cand,     kind: candidate_present, run_day: 30, args: {type: quiet_thread, about: deal:series-a:customer-references}}
+  - {id: S3-d30-arr-data, kind: draft_contains,    run_day: 30, args: {about: deal:series-a:customer-references, phrases: ["3.4"]},
+     description: "P0 case 8: a draft to Marcus needing ARR uses the data's $3.4M (finance-sync.md), not the profile's $3.2M"}
+  - {id: S3-d30-arr-drift-flagged, kind: item_qualified_with, run_day: 30, args: {about: deal:series-a:customer-references, phrase: "3.2"},
+     description: "the item or its assumptions mention the profile's $3.2M so the drift is visible"}
+
+sim_avery: []
+simulate: []
+variants: []

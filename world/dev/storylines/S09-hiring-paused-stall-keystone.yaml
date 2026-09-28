@@ -1,0 +1,150 @@
+id: S9
+name: hiring-paused-stall-keystone
+reviewed: false
+tier_truth: P1
+summary: >
+  Three hiring signals that look alike and are not. (a) The product designer req is paused at the Thursday day 23
+  hiring sync ("until the raise closes"); Keystone Search, the retained firm engaged on day 4, keeps sending
+  designer profiles on days 24, 28 and 29 because nobody told them → not a stall, not a recruiter; dispatch is a
+  one-line `forward_delegate` to Tomás ("req's paused, can you hold them?"). (b) Backend candidate Theo Lindgren
+  finished his onsite on day 23; nobody scheduled the debrief; 5 days unmoved at the day-28 run, 7 by day 30 →
+  `hiring_stall`. (c) The profile says "two engineers and a designer"; the data says the designer req is paused →
+  profile drift. Tests: paused → no stall flag; Keystone ≠ cold recruiter (retained, warm history, no
+  recruiter-pattern line); real stall flagged; `profile_update` for the open reqs.
+
+threads:
+  - {id: t-keystone-kickoff,   subject: "Keystone x Tessera - designer search kickoff", category: hiring}
+  - {id: t-keystone-batch,     subject: "Product Designer - new profiles for review",   category: hiring}
+  - {id: t-theo-loop,          subject: "Theo Lindgren - onsite Thursday",              category: hiring}
+
+beats:
+  - {ref: S9.b1, day: 4,  time: "10:00", source: email, thread: t-keystone-kickoff, from: tomas, to: [bram], cc: [avery], event: "kicks off the retained designer search; scope, comp band, 'Avery will join the final round'", must_include: ["retained"]}
+  - {ref: S9.b2, day: 4,  time: "14:30", source: email, thread: t-keystone-kickoff, from: bram,  to: [tomas], cc: [avery], event: "engagement letter countersigned; first profiles in two weeks", must_include: ["engagement"]}
+  - {ref: S9.b3, day: 14, time: "09:05", source: email, thread: t-theo-loop,        from: jordan, to: [avery], cc: [tomas], event: "Theo passed the screen; onsite Thursday the 17th; panel Jordan, Priya, Sofia; Avery does the 30-minute closer"}
+  - {ref: S9.b4, day: 21, time: "08:50", source: email, thread: t-theo-loop,        from: jordan, to: [avery], cc: [tomas], event: "confirms Thursday schedule; Avery slot 16:00"}
+  - {ref: S9.b5, day: 23, time: "18:10", source: email, thread: t-theo-loop,        from: jordan, to: [avery], cc: [tomas], event: "onsite done; scores in Greenhouse; 'will get the debrief on the calendar' — never does", must_include: ["debrief"]}
+  - {ref: S9.n1, day: 23, time: "11:00", source: note, note: hiring-sync.md,
+     event: "hiring sync: designer req PAUSED until the raise closes (Avery's call; Tomás to tell Keystone); Theo onsite today, debrief TBD (Jordan); Mei offer approved at L4; Ines Ferreira screen next week",
+     must_include: ["paused until the raise closes", "debrief TBD"]}
+  - {ref: S9.b6, day: 24, time: "15:20", source: email, thread: t-keystone-batch,   from: bram,  to: [avery], cc: [tomas], event: "three designer profiles with one-liners and links; asks who should screen them", must_include: ["three profiles"]}
+  - {ref: S9.b7, day: 28, time: "10:10", source: email, thread: t-keystone-batch,   from: bram,  to: [avery], cc: [tomas], event: "two more profiles; 'per our engagement' asks for feedback on the first three", must_include: ["per our engagement"]}
+  - {ref: S9.b8, day: 29, time: "15:00", source: email, thread: t-keystone-batch,   from: bram,  to: [avery], cc: [tomas], event: "one standout profile (Luca Moretti); asks for a 15-minute call to calibrate", must_include: ["calibrate"]}
+
+labels:
+  - thread: t-keystone-kickoff
+    category: hiring
+    storyline: S9
+    must_not_surface: true
+    must_not_reason: closed_history
+    expected: {type: human_thread, domain: work, intent_primary: commitment_update, about: [hiring-req:designer], ball_awaiting: nobody, closed_by_courtesy: false,
+               sender_relationship: {category: hiring, subtype: retained_search, stage: open}, stage_signals: [{entity: designer-req, stage: open, day: 4}]}
+  - thread: t-keystone-batch
+    category: hiring
+    storyline: S9
+    classification_case: retained_search_not_recruiter
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [hiring-req:designer]
+      ball_awaiting: avery
+      closed_by_courtesy: false
+      sender_relationship: {category: hiring, subtype: retained_search, stage: open}
+      asks: [{to_avery: true, kind: review, deadline_day: null, status: open}, {to_avery: true, kind: meeting, deadline_day: null, status: open}]
+      suspicious: false
+    messages:
+      - {beat_ref: S9.b6, day: 24, time: "15:20", from: bram, to: [avery], cc: [tomas], must_include: ["three profiles"]}
+      - {beat_ref: S9.b7, day: 28, time: "10:10", from: bram, to: [avery], cc: [tomas], must_include: ["per our engagement"]}
+      - {beat_ref: S9.b8, day: 29, time: "15:00", from: bram, to: [avery], cc: [tomas], must_include: ["calibrate"]}
+  - thread: t-theo-loop
+    category: hiring
+    storyline: S9
+    must_not_surface: true
+    must_not_reason: fyi_progress_thread_stall_is_computed
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: commitment_update
+      about: [candidate:theo-lindgren]
+      ball_awaiting: other
+      closed_by_courtesy: false
+      sender_relationship: {category: team, subtype: exec}
+      stage_signals: [{entity: theo-lindgren, stage: screen, day: 14}, {entity: theo-lindgren, stage: onsite, day: 23}]
+      commitments: [{owner: other, about: candidate:theo-lindgren, due_day: null, status_in_thread: open}]
+  - note: hiring-sync.md
+    storyline: S9
+    expected:
+      type: note
+      note_kind: meeting_notes
+      about: [hiring-req:designer, candidate:theo-lindgren, offer:mei-tanaka, candidate:ines-ferreira]
+      stage_signals: [{entity: designer-req, stage: paused, day: 23}, {entity: theo-lindgren, stage: onsite, day: 23}, {entity: mei-tanaka, stage: offer_extended, day: 23}]
+      claims: [{subject: open_reqs, value: "two backend engineers; designer paused"}]
+      action_items: [{owner: other, about: hiring-req:designer, due_day: null, status_in_thread: open}, {owner: other, about: candidate:theo-lindgren, due_day: null, status_in_thread: open}]
+
+contacts:
+  - {id: bram, category: hiring, subtype: retained_search, tier: P2, stages: [{from_day: 4, stage: open}],
+     note: "NOT cold_inbound: engaged by Tomás on day 4, cc history, signature says retained search"}
+  - {id: theo, category: hiring, subtype: candidate, tier: P2, stages: [{from_day: 14, stage: screen}, {from_day: 23, stage: onsite}]}
+  - {id: luca, category: hiring, subtype: candidate, tier: null, stages: [{from_day: 24, stage: sourced}], note: "designer candidate; req paused → never a stall"}
+
+about_keys:
+  should_merge: [[hiring-req:designer, hiring-req:product-designer], [candidate:theo-lindgren, candidate:theo]]
+  should_not_merge: [[hiring-req:designer, candidate:theo-lindgren], [hiring-req:designer, other:recruiter-talentbridge]]
+
+expectations:
+  - run_day: 26
+    candidates: [{type: profile_drift, about: other:profile-open-reqs, facts_hint: {profile_value: "two engineers and a designer", data_value: "designer paused (hiring-sync.md day 23)"}}]
+    items:
+      - {about: hiring-req:designer, priority_band: [P2, P3], section: decisions, actions: [forward_delegate], cites_any: [t-keystone-batch],
+         notes: "Keystone's day-24 batch; forward to Tomás: req is paused, hold the profiles; no draft to Bram"}
+      - {about: other:profile-open-reqs, priority: P3, section: pulse, actions: [profile_update], cites_any: ["note:hiring-sync.md"]}
+    absent: [candidate:theo-lindgren]
+    notes: "Theo: 3 days since onsite → no stall yet; designer candidates never stall (req paused)"
+    noise: [t-keystone-kickoff, t-theo-loop]
+  - run_day: 27
+    items:
+      - {about: hiring-req:designer, priority_band: [P2, P3], section: decisions, actions: [forward_delegate], cites_any: [t-keystone-batch]}
+      - {about: other:profile-open-reqs, priority: P3, section: pulse, actions: [profile_update], cites_any: ["note:hiring-sync.md"]}
+    absent: [candidate:theo-lindgren]
+    notes: "Theo: 4 days"
+    noise: [t-keystone-kickoff, t-theo-loop]
+  - run_day: 28
+    candidates: [{type: hiring_stall, about: candidate:theo-lindgren, facts_hint: {days_since_stage: 5, stage: onsite}}]
+    items:
+      - {about: hiring-req:designer, priority_band: [P2, P3], section: decisions, actions: [forward_delegate], cites_any: [t-keystone-batch]}
+      - {about: candidate:theo-lindgren, priority: P2, section: pulse, actions_any: [forward_delegate, task], cites_any: [t-theo-loop, "note:hiring-sync.md"],
+         notes: "'Theo unmoved 5 days since onsite; Jordan owns the debrief' → one line to Jordan or a task"}
+      - {about: other:profile-open-reqs, priority: P3, section: pulse, actions: [profile_update], cites_any: ["note:hiring-sync.md"]}
+    noise: [t-keystone-kickoff, t-theo-loop]
+  - run_day: 29
+    candidates: [{type: hiring_stall, about: candidate:theo-lindgren, facts_hint: {days_since_stage: 6}}]
+    items:
+      - {about: hiring-req:designer, priority_band: [P2, P3], section: decisions, actions: [forward_delegate], cites_any: [t-keystone-batch]}
+      - {about: candidate:theo-lindgren, priority: P2, section: pulse, actions_any: [forward_delegate, task], cites_any: [t-theo-loop]}
+      - {about: other:profile-open-reqs, priority: P3, section: pulse, actions: [profile_update], cites_any: ["note:hiring-sync.md"]}
+    noise: [t-keystone-kickoff, t-theo-loop]
+  - run_day: 30
+    candidates: [{type: hiring_stall, about: candidate:theo-lindgren, facts_hint: {days_since_stage: 7}}]
+    items:
+      - {about: hiring-req:designer, priority_band: [P2, P3], section: decisions, actions: [forward_delegate], cites_any: [t-keystone-batch],
+         notes: "third Keystone email; 'calibrate' call ask; still one forward to Tomás"}
+      - {about: candidate:theo-lindgren, priority: P2, section: pulse, actions_any: [forward_delegate, task], cites_any: [t-theo-loop]}
+      - {about: other:profile-open-reqs, priority: P3, section: pulse, actions: [profile_update], cites_any: ["note:hiring-sync.md"]}
+    noise: [t-keystone-kickoff, t-theo-loop]
+
+assertions:
+  - {id: S9-no-designer-stall,    kind: candidate_absent,  run_day: 30, args: {type: hiring_stall, about: hiring-req:designer}, description: "eval.md §3 S9: no stall flag for the paused designer req"}
+  - {id: S9-no-luca-stall,        kind: candidate_absent,  run_day: 30, args: {type: hiring_stall, about: candidate:luca-moretti}}
+  - {id: S9-theo-stall-present,   kind: candidate_present, run_day: 30, args: {type: hiring_stall, about: candidate:theo-lindgren}, description: "eval.md §3 S9: backend stall present"}
+  - {id: S9-theo-stall-absent-d27, kind: candidate_absent, run_day: 27, args: {type: hiring_stall, about: candidate:theo-lindgren}, description: "4 days < 5"}
+  - {id: S9-theo-item-d29,        kind: item_present,      run_day: 29, args: {about: candidate:theo-lindgren, section: pulse}}
+  - {id: S9-keystone-not-recruiter, kind: contact_category_is, run_day: 30, args: {email: bram@keystonesearch.com, category: hiring, subtype: retained_search}, description: "eval.md §3 S9: Keystone not treated as recruiter"}
+  - {id: S9-keystone-no-pattern,  kind: candidate_absent,  run_day: 30, args: {type: recruiter_pattern, about: other:recruiter-keystone}}
+  - {id: S9-keystone-forward,     kind: action_present,    run_day: 30, args: {about: hiring-req:designer, action: forward_delegate}}
+  - {id: S9-keystone-no-draft-to-bram, kind: no_draft_to,  run_day: 30, args: {contact: bram@keystonesearch.com}, description: "the dispatch is a note to Tomás, not a reply to Keystone"}
+  - {id: S9-open-reqs-drift,      kind: action_present,    run_day: 30, args: {about: other:profile-open-reqs, action: profile_update}}
+
+sim_avery:
+  - {scope_about: hiring-req:designer, intended_option: 1, rationale: "hold the Keystone profiles until the raise closes; Tomás tells Bram"}
+simulate: []
+variants: []

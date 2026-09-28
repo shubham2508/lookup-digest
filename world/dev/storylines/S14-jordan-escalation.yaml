@@ -1,0 +1,84 @@
+id: S14
+name: jordan-escalation
+reviewed: false
+tier_truth: P0
+summary: >
+  Jordan (Head of Eng, P1, "escalates rarely") emails at 21:00 on Wednesday day 29: Veritas's second line went
+  live at 18:00 and their feed schema differs from what Ivan sent; the ingest pipeline is rejecting 100% of
+  batches; Sofia and Jordan are on it; no ETA yet; Nadia will likely email Avery in the morning. Context:
+  jordan-1on1.md (day 23) flagged schema risk on the Veritas line-2 go-live; S7's t-veritas-line2 thread has
+  Nadia's "go-live tonight" at 09:00 the same day. Tests: content overrides the sender tier — an incident at a
+  reference customer during a renewal slip is P0 (P0 case 13); the action is a short reply to Jordan and/or a
+  task to call Nadia, not a customer-facing draft that asserts a fix.
+
+threads:
+  - {id: t-veritas-ingest, subject: "Veritas ingest failing - line 2 schema", category: internal_routine}
+
+beats:
+  - {ref: S14.n1, day: 23, time: "10:00", source: note, note: jordan-1on1.md,
+     event: "1:1 notes (Thu Sep 17): Veritas line 2 go-live next week, schema risk (Ivan's sample vs production), Sofia on call; Theo debrief; on-call rotation gripe",
+     must_include: ["schema risk"]}
+  - {ref: S14.b1, day: 29, time: "21:00", source: email, thread: t-veritas-ingest, from: jordan, to: [avery], cc: [priya, sofia],
+     event: "Veritas ingest failing since ~18:10: line-2 feed schema differs from Ivan's sample; pipeline rejecting 100% of batches; Sofia + Jordan on it; no ETA; 'you should hear it from me before Nadia emails you'",
+     must_include: ["Veritas ingest", "failing", "100% of batches"], hardness: [structured_bullets]}
+
+labels:
+  - thread: t-veritas-ingest
+    category: internal_routine
+    storyline: S14
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: escalation
+      about: [incident:veritas:ingest]
+      ball_awaiting: avery
+      closed_by_courtesy: false
+      sender_relationship: {category: team, subtype: exec}
+      asks: [{to_avery: true, kind: other, deadline_day: 30, status: open}]
+      stage_signals: [{entity: veritas, stage: at_risk, day: 29}]
+      claims: [{subject: veritas_ingest_status, value: "rejecting 100% of batches"}]
+      suspicious: false
+    messages:
+      - {beat_ref: S14.b1, day: 29, time: "21:00", from: jordan, to: [avery], cc: [priya, sofia], must_include: ["Veritas ingest", "failing", "100% of batches"]}
+  - note: jordan-1on1.md
+    storyline: S14
+    expected:
+      type: note
+      note_kind: meeting_notes
+      about: [rollout:veritas:line-2, candidate:theo-lindgren]
+      claims: [{subject: veritas_line2_risk, value: "schema risk"}]
+
+contacts:
+  - {id: jordan, category: team, subtype: exec, tier: P1, in_profile: true, rules: [escalates_rarely]}
+
+about_keys:
+  should_merge: [[incident:veritas:ingest, incident:veritas:line-2-ingest]]
+  should_not_merge: [[incident:veritas:ingest, renewal:veritas], [incident:veritas:ingest, incident:halberd:sso]]
+
+expectations:
+  - run_day: 26
+    absent: [incident:veritas:ingest]
+  - run_day: 27
+    absent: [incident:veritas:ingest]
+  - run_day: 28
+    absent: [incident:veritas:ingest]
+  - run_day: 29
+    absent: [incident:veritas:ingest]
+    notes: "the email is at 21:00 on day 29"
+  - run_day: 30
+    candidates: [{type: reply_owed, about: incident:veritas:ingest, facts_hint: {intent: escalation, sender_tier: P1, content_tier: P0}}]
+    items: [{about: incident:veritas:ingest, priority: P0, section: urgent, actions_any: [reply, task, message_person], cites_any: [t-veritas-ingest],
+             notes: "reply to Jordan: acknowledge, ask for an ETA by 9, Avery will handle Nadia; task: call Nadia before she emails. No customer draft claiming a fix."}]
+
+assertions:
+  - {id: S14-d30-p0,          kind: priority_is,      run_day: 30, args: {about: incident:veritas:ingest, priority: P0}, description: "eval.md §3 S14 / P0 case 13: Jordan escalation is P0"}
+  - {id: S14-d30-present,     kind: item_present,     run_day: 30, args: {about: incident:veritas:ingest, section: urgent}}
+  - {id: S14-d29-absent,      kind: item_absent,      run_day: 29, args: {about: incident:veritas:ingest}}
+  - {id: S14-no-customer-fix-draft, kind: draft_not_contains, run_day: 30, args: {recipient: nadia.rahimi@veritascomponents.com, phrases: ["fixed", "resolved"]},
+     description: "no draft to Veritas asserting a fix that hasn't happened"}
+  - {id: S14-stale-inbox-absent, kind: item_absent,   run_day: 30, variant: stale_inbox, args: {about: incident:veritas:ingest},
+     description: "eval.md §5 stale_inbox: the 21:00 email is after the 30h cutoff; the digest must not know about it and must say the inbox is stale"}
+
+sim_avery: []
+simulate: []
+variants: []

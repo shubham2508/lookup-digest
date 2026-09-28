@@ -1,0 +1,104 @@
+id: S15
+name: declined-pipeline-review
+reviewed: false
+tier_truth: P1
+summary: >
+  Tomás organized a pipeline review for Tuesday day 21 (Sep 15) 10:00–11:00, over Avery's deep-work block; Avery
+  DECLINED. At that meeting the team agreed a "Plant Bundle" price of $48k/yr for new mid-market deals (list is
+  $60k) so Tomás can quote Meridian Foods by Friday day 31. gtm-weekly.md (Monday day 27) records "Avery sign-off
+  pending". Tomás emails Monday day 28 at 13:05 asking for sign-off by Friday. Tests: declined-meeting fallout
+  (the decision made where Avery wasn't needs Avery); `decide` with a recommendation; the DECLINED event over the
+  block is not a deep-work violation; Tomás's routine weekly pipeline emails (background) must not surface.
+
+threads:
+  - {id: t-plant-bundle-signoff, subject: "Plant Bundle pricing - need your sign-off by Fri", category: internal_routine}
+  - {id: t-meridian-eval,        subject: "Meridian Foods - evaluation next steps",            category: customers}
+events:
+  - {uid: pipeline-review-20260915, calendar: work, title: "Pipeline review (Q4 push)", day: 21, start: "10:00", end: "11:00", organizer: tomas,
+     attendees: [{id: avery, partstat: DECLINED}, {id: tomas, partstat: ACCEPTED}, {id: ana, partstat: ACCEPTED}, {id: yuki, partstat: ACCEPTED}, {id: kim, partstat: ACCEPTED}], created_day: 17}
+
+beats:
+  - {ref: S15.c1, day: 17, time: "15:00", source: calendar, event: pipeline-review-20260915, from: tomas, event: "invite for Tue day 21 10:00 (over the block); Avery declines on day 18 with 'deep work, send me the notes'"}
+  - {ref: S15.b1, day: 10, time: "11:30", source: email, thread: t-meridian-eval, from: carla, to: [tomas], cc: [avery], event: "Meridian: wants pricing for two plants after the pilot; decision by end of September"}
+  - {ref: S15.b2, day: 10, time: "16:00", source: email, thread: t-meridian-eval, from: tomas, to: [carla], cc: [avery], event: "will come back with a proposal", hardness: [long]}
+  - {ref: S15.n1, day: 27, time: "16:30", source: note, note: gtm-weekly.md,
+     event: "GTM weekly: 'Pricing: 9/15 pipeline review agreed the Plant Bundle at $48k/yr for new mid-market (list $60k). Avery sign-off pending. Tomás wants to quote Meridian by Fri 9/25.'",
+     must_include: ["Plant Bundle", "$48k", "sign-off pending"]}
+  - {ref: S15.b3, day: 28, time: "13:05", source: email, thread: t-plant-bundle-signoff, from: tomas, to: [avery], cc: [kim, ana],
+     event: "recap of the pipeline review Avery couldn't make; the $48k Plant Bundle for new mid-market deals; asks for sign-off by Friday so Meridian gets the quote; 'separate from your deck notes, which I folded in, thanks' (S16 link); three other topics",
+     must_include: ["sign-off", "by Friday", "$48k"], hardness: [long, mixed_topics, buried_ask]}
+
+labels:
+  - thread: t-plant-bundle-signoff
+    category: internal_routine
+    storyline: S15
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [pricing:plant-bundle]
+      ball_awaiting: avery
+      closed_by_courtesy: false
+      sender_relationship: {category: team, subtype: exec}
+      asks: [{to_avery: true, kind: approval, deadline_day: 31, status: open}]
+      claims: [{subject: plant_bundle_price, value: "$48k"}]
+      suspicious: false
+    messages:
+      - {beat_ref: S15.b3, day: 28, time: "13:05", from: tomas, to: [avery], cc: [kim, ana], must_include: ["sign-off", "by Friday", "$48k"]}
+  - thread: t-meridian-eval
+    category: customers
+    storyline: S15
+    must_not_surface: true
+    must_not_reason: handled_by_tomas
+    expected: {type: human_thread, domain: work, intent_primary: ask, about: [pricing:plant-bundle], ball_awaiting: other, closed_by_courtesy: false,
+               sender_relationship: {category: customer, subtype: prospect, stage: prospect}, asks: [{to_avery: false, kind: information, deadline_day: 35, status: open}],
+               stage_signals: [{entity: meridian, stage: prospect, day: 10}]}
+  - event: pipeline-review-20260915
+    storyline: S15
+    expected: {type: task, note: "code-parsed; avery_partstat DECLINED; day 21; declined_meeting candidate joins by about key / participants"}
+  - note: gtm-weekly.md
+    storyline: S15
+    expected:
+      type: note
+      note_kind: meeting_notes
+      about: [pricing:plant-bundle, renewal:veritas]
+      decisions: [{what: "Plant Bundle $48k/yr for new mid-market", decided_by: "pipeline review 9/15", about: pricing:plant-bundle}]
+      action_items: [{owner: avery, about: pricing:plant-bundle, due_day: 31, status_in_thread: open}]
+
+contacts:
+  - {id: tomas, category: team, subtype: exec, tier: P1, in_profile: true, rules: [emails_too_much]}
+  - {id: carla, category: customer, subtype: prospect, tier: null, stages: [{from_day: 10, stage: prospect}]}
+
+about_keys:
+  should_merge: [[pricing:plant-bundle, pricing:plant-bundle-48k]]
+  should_not_merge: [[pricing:plant-bundle, pricing:deck-v2-feedback]]
+
+expectations:
+  - run_day: 26
+    absent: [pricing:plant-bundle]
+    notes: "the meeting happened on day 21 but nothing yet references its decision to Avery"
+  - run_day: 27
+    absent: [pricing:plant-bundle]
+  - run_day: 28
+    unasserted: "gtm-weekly.md (day 27 afternoon) is visible and says sign-off pending; a declined_meeting item is acceptable but not required until Tomás's email"
+  - run_day: 29
+    candidates:
+      - {type: declined_meeting, about: pricing:plant-bundle, facts_hint: {event: pipeline-review-20260915, declined_day: 18, decision_source: "note:gtm-weekly.md"}}
+      - {type: reply_owed,       about: pricing:plant-bundle, facts_hint: {deadline_day: 31}}
+    items: [{about: pricing:plant-bundle, priority: P1, section: decisions, actions_any: [decide, reply, approve], cites_any: [t-plant-bundle-signoff, "note:gtm-weekly.md"],
+             notes: "'A pricing decision was made at the review you declined; Tomás needs sign-off by Fri.' decide: approve $48k / counter / hold, with a recommendation"}]
+  - run_day: 30
+    candidates: [{type: declined_meeting, about: pricing:plant-bundle}, {type: reply_owed, about: pricing:plant-bundle}]
+    items: [{about: pricing:plant-bundle, priority: P1, section: decisions, actions_any: [decide, reply, approve], cites_any: [t-plant-bundle-signoff, "note:gtm-weekly.md"]}]
+
+assertions:
+  - {id: S15-d29-present,        kind: item_present,      run_day: 29, args: {about: pricing:plant-bundle, priority: P1, section: decisions}}
+  - {id: S15-d29-declined-cand,  kind: candidate_present, run_day: 29, args: {type: declined_meeting, about: pricing:plant-bundle}}
+  - {id: S15-d30-decide,         kind: item_present,      run_day: 30, args: {about: pricing:plant-bundle, actions_any: [decide, reply, approve]}}
+  - {id: S15-declined-not-deep-work, kind: candidate_absent, run_day: 28, args: {type: "calendar_conflict:deep_work", about: meeting:pipeline-review}, description: "a DECLINED event over the block is not a violation"}
+  - {id: S15-meridian-noise,     kind: item_absent,       run_day: 30, args: {source_id: t-meridian-eval}}
+
+sim_avery:
+  - {scope_about: pricing:plant-bundle, intended_option: 1, rationale: "approve $48k for new mid-market deals through Q4; Meridian quote goes out"}
+simulate: []
+variants: []

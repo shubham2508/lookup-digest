@@ -1,0 +1,140 @@
+id: S11
+name: family
+reviewed: false
+tier_truth: P0
+summary: >
+  Three personal-domain items from three kinds of sender. (1) Sam emails Monday day 27 at 21:15: Wren's daycare
+  re-enrollment form needs both signatures by Friday, plus a mixed Thanksgiving question; Avery replies Tuesday
+  07:10 (done) so the item is present on day 28 only and gone after (resolved disappears). (2) Little Acorns
+  Daycare emails Wednesday day 29 at 17:45: closed Thursday Sep 24 for an HVAC failure → collides with a full work
+  day (non-family sender, personal domain, high). (3) Sam adds "Wren - pediatrician 3:00pm" to shared_family.ics at
+  21:04 on day 29 for Thursday 15:00–16:00, overlapping the 14:30–15:30 Q2 planning sync. Tests: anything from Sam
+  is P0 with no draft (P0 case 10); the pediatrician overlap surfaces with `message_person` (P0 case 11); the
+  daycare closure collides with meetings; a sibling's photo email is family but FYI (must not).
+
+threads:
+  - {id: t-sam-daycare-form, subject: "daycare form + thanksgiving",       category: personal}
+  - {id: t-daycare-closure,  subject: "IMPORTANT: Little Acorns closed Thursday 9/24", category: personal}
+  - {id: t-kai-photos,       subject: "pics from sunday",                   category: personal}
+events:
+  - {uid: wren-pediatrician-20260924, calendar: shared_family, title: "Wren - pediatrician 3:00pm", day: 30, start: "15:00", end: "16:00",
+     organizer: sam, attendees: [{id: sam, partstat: ACCEPTED}, {id: avery, partstat: NEEDS-ACTION}], created_day: 29, created_time: "21:04",
+     location: "Oakland Pediatrics, Grand Ave"}
+  - {uid: q2-planning-sync-20260924, calendar: work, title: "Q2 planning sync", day: 30, start: "14:30", end: "15:30", organizer: avery,
+     attendees: [{id: avery, partstat: ORGANIZER}, {id: priya, partstat: ACCEPTED}, {id: jordan, partstat: ACCEPTED}, {id: tomas, partstat: ACCEPTED}], created_day: 22}
+
+beats:
+  - {ref: S11.b1, day: 27, time: "21:15", source: email, thread: t-sam-daycare-form, from: sam, to: [avery],
+     event: "re-enrollment form for Little Acorns needs both signatures by Friday (it's on the counter); also: thanksgiving at Kai's or home?; lowercase, two topics",
+     must_include: ["both signatures", "by friday"], hardness: [mixed_topics, lowercase]}
+  - {ref: S11.b2, day: 28, time: "07:10", source: email, thread: t-sam-daycare-form, from: avery, to: [sam],
+     event: "signed both pages this morning, it's back on the counter; thanksgiving: home, will tell Kai", must_include: ["signed"]}
+  - {ref: S11.b3, day: 26, time: "09:40", source: email, thread: t-kai-photos, from: kai, to: [avery, sam],
+     event: "photos from Sunday at the lake; 'no need to reply'", must_include: ["no need to reply"]}
+  - {ref: S11.b4, day: 29, time: "17:45", source: email, thread: t-daycare-closure, from: beatriz, to: [parents_list], cc: [],
+     event: "Little Acorns closed Thursday Sep 24: HVAC failure, repair crew tomorrow; reopening Friday; apologies; no pickup/dropoff",
+     must_include: ["closed Thursday", "September 24"], hardness: [bulk_style_but_human]}
+  - {ref: S11.c1, day: 29, time: "21:04", source: calendar, event: wren-pediatrician-20260924, from: sam,
+     event: "Sam creates 'Wren - pediatrician 3:00pm' for Thu 15:00–16:00; Avery invited, no response"}
+
+labels:
+  - thread: t-sam-daycare-form
+    category: personal
+    storyline: S11
+    expected:
+      type: human_thread
+      domain: personal
+      intent_primary: ask
+      about: [family:daycare-form]
+      ball_awaiting: nobody          # after Avery's reply
+      closed_by_courtesy: false
+      sender_relationship: {category: family, subtype: partner}
+      asks: [{to_avery: true, kind: signature, deadline_day: 31, status: answered}, {to_avery: true, kind: decision, deadline_day: null, status: answered}]
+      suspicious: false
+    messages:
+      - {beat_ref: S11.b1, day: 27, time: "21:15", from: sam,   to: [avery], must_include: ["both signatures", "by friday"]}
+      - {beat_ref: S11.b2, day: 28, time: "07:10", from: avery, to: [sam],   must_include: ["signed"], is_from_avery: true}
+  - thread: t-kai-photos
+    category: personal
+    storyline: S11
+    must_not_surface: true
+    must_not_reason: family_fyi_no_action
+    classification_case: family_must_not
+    expected: {type: human_thread, domain: personal, intent_primary: social, about: [family:photos], ball_awaiting: nobody, closed_by_courtesy: false,
+               sender_relationship: {category: family, subtype: relative}}
+  - thread: t-daycare-closure
+    category: personal
+    storyline: S11
+    classification_case: daycare_closure_collision
+    expected:
+      type: human_thread
+      domain: personal
+      intent_primary: fyi
+      about: [family:daycare-closure]
+      ball_awaiting: avery           # Avery has to arrange care; no reply owed to the daycare
+      closed_by_courtesy: false
+      sender_relationship: {category: vendor, subtype: daycare}
+      claims: [{subject: daycare_closure, value: "Thursday Sep 24"}]
+      suspicious: false
+    messages:
+      - {beat_ref: S11.b4, day: 29, time: "17:45", from: beatriz, to: [parents_list], must_include: ["closed Thursday", "September 24"]}
+  - event: wren-pediatrician-20260924
+    storyline: S11
+    expected: {type: task, note: "code-parsed calendar event; cited as event:wren-pediatrician-20260924"}
+
+contacts:
+  - {id: sam,     category: family, subtype: partner, tier: P0, in_profile: true, rules: [never_draft]}
+  - {id: kai,     category: family, subtype: relative, tier: null}
+  - {id: beatriz, category: vendor, subtype: daycare, tier: null, note: "personal-service vendor; items are personal domain"}
+
+about_keys:
+  should_merge: [[family:pediatrician, family:wren-pediatrician], [family:daycare-closure, family:daycare-closed]]
+  should_not_merge: [[family:daycare-form, family:daycare-closure], [family:pediatrician, meeting:q2-planning-sync]]
+
+expectations:
+  - run_day: 26
+    absent: [family:daycare-form, family:daycare-closure, family:pediatrician]
+    notes: "Kai's photos arrive 09:40, after the run; nothing from Sam yet"
+  - run_day: 27
+    absent: [family:daycare-form, family:daycare-closure, family:pediatrician]
+    noise: [t-kai-photos]
+  - run_day: 28
+    candidates: [{type: reply_owed, about: family:daycare-form, facts_hint: {deadline_day: 31}}]
+    items: [{about: family:daycare-form, priority: P0, section: calendar_personal, actions_any: [message_person, task], cites_any: [t-sam-daycare-form],
+             notes: "surface, no draft: 'Sam needs both signatures on the daycare form by Friday' → message_person / task"}]
+    absent: [family:daycare-closure, family:pediatrician]
+    noise: [t-kai-photos]
+  - run_day: 29
+    absent: [family:daycare-form, family:daycare-closure, family:pediatrician]
+    notes: "Avery answered Sam at 07:10 on day 28 → resolved, disappears"
+    noise: [t-kai-photos, t-sam-daycare-form]
+  - run_day: 30
+    candidates:
+      - {type: "calendar_conflict:family", about: family:pediatrician, facts_hint: {overlap_minutes: 30, overlaps: q2-planning-sync-20260924, created: "day 29 21:04"}}
+      - {type: "calendar_conflict:family", about: family:daycare-closure, facts_hint: {overlaps: "all of Thursday's meetings", source: t-daycare-closure}}
+    items:
+      - {about: family:pediatrician, priority: P0, section: calendar_personal, actions: [message_person], cites_any: ["event:wren-pediatrician-20260924"],
+         notes: "'Sam added Wren - pediatrician 3:00pm at 21:04 last night; overlaps your 2:30 Q2 planning sync. Don't know if Sam expects you to take Wren.' No draft."}
+      - {about: family:daycare-closure, priority: P0, section: calendar_personal, actions_any: [message_person, decide], cites_any: [t-daycare-closure],
+         notes: "daycare closed today; Avery has a 09:00 1:1, 10:30 demo, 14:30 sync, 16:00 interview → who has Wren? message Sam. Compose may fold this into the pediatrician item (both cite their sources)."}
+    absent: [family:daycare-form]
+    noise: [t-kai-photos, t-sam-daycare-form]
+
+assertions:
+  - {id: S11-d28-sam-p0,          kind: item_present,      run_day: 28, args: {about: family:daycare-form, priority: P0}, description: "P0 case 10: Sam emails → surface"}
+  - {id: S11-d28-no-draft-sam,    kind: no_draft_to,       run_day: 28, args: {contact: sam@parkchen.family}, description: "P0 case 10: no draft"}
+  - {id: S11-d29-form-resolved,   kind: item_absent,       run_day: 29, args: {about: family:daycare-form}, description: "answered by Avery → gone"}
+  - {id: S11-d30-pediatrician,    kind: item_present,      run_day: 30, args: {about: family:pediatrician, priority: P0, section: calendar_personal, actions_any: [message_person]}, description: "eval.md §3 S11 / P0 case 11"}
+  - {id: S11-d30-pediatrician-cand, kind: candidate_present, run_day: 30, args: {type: "calendar_conflict:family", about: family:pediatrician}}
+  - {id: S11-d30-no-draft-sam,    kind: no_draft_to,       run_day: 30, args: {contact: sam@parkchen.family}}
+  - {id: S11-d30-message-person,  kind: action_present,    run_day: 30, args: {about: family:pediatrician, action: message_person}}
+  - {id: S11-d30-daycare-present, kind: item_present,      run_day: 30, args: {about: family:daycare-closure, priority: P0}}
+  - {id: S11-d30-created-time,    kind: item_mentions_all, run_day: 30, args: {about: family:pediatrician, phrases: ["21:04"]}, description: "the created time is part of the honesty framing ('added last night')"}
+  - {id: S11-kai-noise,           kind: item_absent,       run_day: 30, args: {source_id: t-kai-photos}}
+  - {id: S11-formal-still-no-sam, kind: no_draft_to,       run_day: 30, customize: formal, args: {contact: sam@parkchen.family}, description: "eval.md §6 formal.md: still no draft to Sam"}
+  - {id: S11-board-prep-oneliner, kind: item_present,      run_day: 30, customize: board_prep, args: {about: family:pediatrician}, description: "eval.md §6 board_prep: Sam's conflict still present as a one-liner"}
+
+sim_avery: []
+simulate:
+  - {id: S11-sim-resolved, kind: resolved_disappears, run_day: 29, args: {about: family:daycare-form, after_run_day: 28, mode: simulate}}
+variants: []

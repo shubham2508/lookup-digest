@@ -64,6 +64,52 @@ Every `expectations:` block in `world/dev/storylines/*.yaml` needs `reviewed: tr
 | 7e | **Assertion arg shapes** the enum comments leave open (defined in the `eval/scorer/assertions.py` docstring): every item-level kind takes the selectors `about` (+`cites_any`) · `source_id` · `type` (str or list, prefix match) · `category` · `source_kind`; phrases may be lists of alternatives; `item_present.position_max`, `draft_contains.require_draft`, `no_draft_to.rule\|category`, `priorities_only.or_categories`, `ruling_applied.expect`, `content_overrides_ruling.priority_max`, `injection_not_acted.require_flag`. | B authors manifest assertions with these · redirect | B uses them; the customize suite (`eval/customize_suite.yaml`) already does. |
 | 7f | **`tests/test_cli.py` (orchestrator-owned)**: `eval` and `simulate` removed from the stub list, since they are implemented now (their tests are in `tests/test_c_report.py`). | — | Note for the orchestrator. |
 
+### 8. Business-day counting rule for `quiet_thread` (Track B, M1) — needed before A's M4 and B's M2
+
+**What:** `investor_quiet_business_days: 3` is not defined precisely (architecture §6.4 says "business days since last inbound"). S3's boundary depends on it: Marcus's message is Fri day 24 17:52.
+**Where:** `digest/compute` (Track A), `world/dev/storylines/S03-marcus-quiet-weekend.yaml`, `tests/test_b_world.py::test_s3_business_day_boundary`.
+**Options:** (a) weekday dates strictly after the message date and strictly before the run date (fully elapsed business days) → Sun 0, Mon 0, Tue 1, Wed 2, **Thu 3** → present on day 30 only. (b) also count the run date (dates in (msg, run]) → Wed 3 → present on days 29 and 30. (c) count the message date if sent during business hours → shifts by one more day.
+**Suggestion:** (a). At 06:00 the run day has not started, and the profile says "after three business days". The S3 storyline and the manifest are written for (a); if A picks (b), S3's `absent` on day 29 must move to day 28 (a one-line change in the storyline).
+
+### 9. Canonical about keys for computed candidates (Track B, M1) — needed before B's M2 manifest emit
+
+**What:** items with no source thread (cadence drops, recruiter patterns, calendar conflicts, profile drift, stale sources) need an about key so the manifest and the pipeline agree. The `kind` vocabulary is fixed, but the slug is not.
+**Where:** `world/dev/README.md` (proposed convention), `digest/compute` (Track A), `eval/scorer` (Track C).
+**Options:** (a) the convention in `world/dev/README.md`: `other:<org>-cadence`, `other:recruiter-<org>`, `meeting:<event-slug>` / `family:<event-slug>` for calendar conflicts (slug from the event title), `other:profile-<field>`, `other:stale-<source>`; (b) leave the slug to compute and have the scorer match candidates by `type` + entity instead of by about key.
+**Suggestion:** (a) for the manifest plus (b) as the scorer's fallback: match an expected candidate by type and by shared entity/citation when the about key does not fuzzy-match.
+
+### 10. Expected-item matching should fall back to citations (Track B, M1) — for Track C's scorer
+
+**What:** `ExpectedItem.about` is the item identity, but the extractor names about keys freely (S6's forward may be keyed `invoice:northstar:…` or `renewal:northstar`; the S11 daycare closure and pediatrician may be composed into one item). A strict about-key match would score correct digests as misses.
+**Where:** `eval/scorer` (C), `world/dev/storylines/*` (`cites_any` is filled everywhere for this reason).
+**Options:** (a) match on fuzzy about key only; (b) match if the about key fuzzy-matches **or** any rendered citation is in `cites_any`; (c) match only on citations.
+**Suggestion:** (b). Also treat "present" as full item, one-liner, or "Also pending" line (README convention).
+
+### 11. Cadence formula edge cases (Track B, M1) — for A's M4 unit tests
+
+**What:** S6 has one Grace inbound in days 21–30 (day 24), so the "recent median gap" has zero or one pair depending on whether the gap spanning day 20→24 counts as recent. S7's Nadia has 8 inbound after the handover.
+**Where:** `digest/compute` (cadence_drop), `world/dev/storylines/S06-northstar-cadence.yaml`, `S07`.
+**Suggestion:** assign each gap to the window of its later message; if the recent window has no complete gap, use the current gap (as_of − last inbound) as the recent value. With that, S6 gives baseline ≈1.2 d, recent ≈3.8 d (or the current gap), ratio ≥ 3, and the boundary falls between day 27 (2.85 d) and day 28 (3.85 d). Merge predecessor + successor at the same org/role for S7 (spec) — without the merge, Simon shows a false drop and Nadia alone sits at ratio ≈2.0, a coin flip.
+
+### 12. Storyline S2: Avery had the last word, contradiction must still surface (Track B, M1) — confirm the intent
+
+**What:** In S2 Avery confirms "Monday 10 works" by email, so the thread is closed by Avery, but the calendar still holds Friday. The digest must surface the calendar-vs-email contradiction (profile: "tell me, don't pick one") even though the "threads where I had the last word" rule would hide the thread. The contradiction comes from the calendar join, not from the thread's ball.
+**Where:** `S02-diligence-call-moved.yaml`, `digest/compute` contradiction (a), triage `include` rules.
+**Options:** (a) keep as drafted (harder, more realistic: invites do go stale after an email reschedule); (b) make Avery not reply, so the thread is also an open ask (easier).
+**Suggestion:** (a). If Shubham prefers (b), delete beat S2.b3 and set `ball_awaiting: avery`.
+
+### 13. Judgment calls in the answer key that Shubham should confirm (Track B, M1)
+
+Recorded in the storylines as `notes:`; listed here so they are not missed during review:
+- S1: the **one thing on day 29** is the cap table (6 h overdue), over Priya's inference email (S13) and the diligence-call contradiction (S2).
+- S2: priority **P0** for the calendar contradiction on days 29–30 and for Elena's prep request on day 30 (Capital during the raise).
+- S4: David Kim's tier is a band **[P0, P1]** (the profile's "another VC" rule, not named).
+- S6: the day-30 forward is **P1 in Decisions** with `question`/`read`, never a `reply` draft; the cadence item stays a separate **P2 watch**.
+- S7: the second renewal slip is **P1 in Pulse** with `question`/`decide`/`watch`/`task` all acceptable.
+- S11: the daycare closure is its own **P0** item (may be composed with the pediatrician item as long as both sources are cited).
+- S13: Priya's item is **P0 in Decisions** (a decision, not a reply); the price-cut news attaches on day 30 only.
+- Background: the injection email is a P2/P3 one-liner in Pulse (flagged), the press request P2, the tax notice P2, Jae Whitlock P3 "unsure", the wedding invite absent.
+
 ## Decided
 
 - **2026-09-28 · deadline:** the repo is submitted the morning of 2026-09-29; the walkthrough is the following week. Cut line recorded in CLAUDE.md ("Deadline") and `docs/handoffs/STATUS.md`. Building continues after submission until the walkthrough.

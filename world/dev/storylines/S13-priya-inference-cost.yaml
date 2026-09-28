@@ -1,0 +1,98 @@
+id: S13
+name: priya-inference-cost
+reviewed: false
+tier_truth: P0
+summary: >
+  Priya (co-founder, CTO) never emails Avery; on Tuesday day 28 at 15:10 she does, on purpose: the August
+  inference bill came in at $41k against $22k modelled, driven by the Halberd backfill and Northstar line 2, and
+  she wants the decision in writing: cap backfill concurrency (slows Halberd) or eat it through the raise. Avery
+  does not reply. On Wednesday day 29 at 07:05 the Model Watch newsletter reports a ~30% price cut on the model
+  family Tessera uses, effective Oct 1. Tests: the profile's "if she emails instead of slacks, it's intentional"
+  rule → P0 (P0 case 9); `decide` with options and a recommendation, not a fake dispatchable reply; the news item
+  attaches to the open item on day 30; Priya's FYI "+1" cc in the Halberd SSO thread (S5) must not surface.
+
+threads:
+  - {id: t-priya-inference, subject: "inference spend - need a call from you", category: internal_routine}
+newsletters:
+  - {id: nl-modelwatch-58, publication: "Model Watch", day: 29, time: "07:05", category: newsletters,
+     items: [{headline_hint: "OpenRouter volume pricing on DeepSeek-V4 Pro, ~30% lower, effective Oct 1", attaches_to: [other:inference-cost-overrun]},
+             {headline_hint: "New open-weights 70B release benchmark table", attaches_to: []},
+             {headline_hint: "Agent eval harness roundup", attaches_to: []}]}
+
+beats:
+  - {ref: S13.b1, day: 28, time: "15:10", source: email, thread: t-priya-inference, from: priya, to: [avery], cc: [],
+     event: "august inference bill $41k vs $22k modelled; halberd backfill + northstar line 2 doubled token volume; two options: cap backfill concurrency at 2 (halberd slips ~1 week) or eat it through the raise; 'putting this in email so it's in writing'; wants a decision this week",
+     must_include: ["$41k", "$22k", "in writing", "cap backfill concurrency"], hardness: [lowercase, terse]}
+  - {ref: S13.b2, day: 29, time: "07:05", source: newsletter, newsletter: nl-modelwatch-58, from: modelwatch,
+     event: "Model Watch #58: OpenRouter announces volume pricing on DeepSeek-V4 Pro ~30% lower effective Oct 1; two unrelated items",
+     must_include: ["DeepSeek-V4 Pro", "30%", "October 1"]}
+
+labels:
+  - thread: t-priya-inference
+    category: internal_routine
+    storyline: S13
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [other:inference-cost-overrun]
+      ball_awaiting: avery
+      closed_by_courtesy: false
+      sender_relationship: {category: team, subtype: cofounder}
+      asks: [{to_avery: true, kind: decision, deadline_day: 31, status: open}]
+      claims: [{subject: inference_spend_august, value: "$41k"}, {subject: inference_spend_modelled, value: "$22k"}]
+      suspicious: false
+    messages:
+      - {beat_ref: S13.b1, day: 28, time: "15:10", from: priya, to: [avery], must_include: ["$41k", "$22k", "in writing", "cap backfill concurrency"]}
+  - newsletter: nl-modelwatch-58
+    category: newsletters
+    storyline: S13
+    expected:
+      type: newsletter
+      news_items:
+        - {headline_hint: "DeepSeek-V4 Pro volume pricing", topics: [inference-cost, ai-models], entities: [OpenRouter, DeepSeek], attaches_to: [other:inference-cost-overrun]}
+        - {headline_hint: "open-weights 70B benchmark", topics: [ai-models], entities: [], attaches_to: []}
+        - {headline_hint: "agent eval harness roundup", topics: [ai-models], entities: [], attaches_to: []}
+
+contacts:
+  - {id: priya, category: team, subtype: cofounder, tier: P0, in_profile: true, rules: [email_means_intentional]}
+
+about_keys:
+  should_merge: [[other:inference-cost-overrun, other:inference-spend], [other:inference-cost-overrun, other:inference-cost]]
+  should_not_merge: [[other:inference-cost-overrun, rollout:halberd:oct-6]]
+
+expectations:
+  - run_day: 26
+    absent: [other:inference-cost-overrun]
+  - run_day: 27
+    absent: [other:inference-cost-overrun]
+  - run_day: 28
+    absent: [other:inference-cost-overrun]
+    notes: "email is at 15:10, after the run; finance-sync.md (day 22) mentions inference spend but only as 'Priya to write it up'"
+  - run_day: 29
+    candidates: [{type: reply_owed, about: other:inference-cost-overrun, facts_hint: {deadline_day: 31, sender_rule: email_means_intentional}}]
+    items: [{about: other:inference-cost-overrun, priority: P0, section: decisions, actions_any: [decide, reply], cites_any: [t-priya-inference],
+             notes: "'Priya emailed (she never does): $41k vs $22k; decide cap backfill (Halberd slips) vs eat it.' decide with options + recommendation; a short reply draft is acceptable only if it commits to an option"}]
+  - run_day: 30
+    candidates:
+      - {type: reply_owed,      about: other:inference-cost-overrun}
+      - {type: news_attachment, about: other:inference-cost-overrun, facts_hint: {source: nl-modelwatch-58}}
+    items:
+      - {about: other:inference-cost-overrun, priority: P0, section: decisions, actions_any: [decide, reply], cites_any: [t-priya-inference], notes: "second day; escalate framing"}
+      - {about: other:inference-cost-overrun, priority_band: [P1, P2], section: news, actions_any: [read, decide], cites_any: [nl-modelwatch-58],
+         notes: "news attachment: 30% price cut on the model family Oct 1 changes the 'eat it' math; compose may fold it into the decision item as long as the newsletter is cited"}
+
+assertions:
+  - {id: S13-d29-p0,            kind: item_present,      run_day: 29, args: {about: other:inference-cost-overrun, priority: P0}, description: "P0 case 9: Priya emails → ranked high"}
+  - {id: S13-d29-not-fake-approve, kind: action_absent,  run_day: 29, args: {about: other:inference-cost-overrun, action: approve}}
+  - {id: S13-d30-p0,            kind: item_present,      run_day: 30, args: {about: other:inference-cost-overrun, priority: P0}}
+  - {id: S13-d30-news-attached, kind: candidate_present, run_day: 30, args: {type: news_attachment, about: other:inference-cost-overrun}, description: "eval.md §3 Newsletter: the S13 item attaches"}
+  - {id: S13-d30-news-cited,    kind: item_present,      run_day: 30, args: {about: other:inference-cost-overrun, cites_any: [nl-modelwatch-58]}}
+  - {id: S13-d29-news-not-yet,  kind: candidate_absent,  run_day: 29, args: {type: news_attachment, about: other:inference-cost-overrun}, description: "newsletter arrives 07:05 on day 29"}
+  - {id: S13-priya-fyi-noise,   kind: item_absent,       run_day: 30, args: {source_id: t-halberd-sso}, description: "Priya's '+1' cc on the closed Halberd SSO thread must not surface"}
+
+sim_avery:
+  - {scope_about: other:inference-cost-overrun, intended_option: 2, rationale: "eat it through the raise; do not slow Halberd's Oct 6 rollout; revisit after the Oct 1 price cut"}
+simulate:
+  - {id: S13-sim-escalates, kind: escalation_framing, run_day: 30, args: {about: other:inference-cost-overrun, min_times_surfaced: 2, mode: simulate}}
+variants: []

@@ -1,0 +1,130 @@
+id: S2
+name: diligence-call-moved
+reviewed: false
+tier_truth: P0
+summary: >
+  work.ics holds "Tessera x IPV - diligence call" on Friday day 31 (Sep 25) 10:00, organizer Marcus, Avery accepted,
+  created day 22. On Tuesday day 28 Marcus emails that Friday no longer works, proposes Monday Sep 28 10:00, and
+  loops in Elena Vasquez, a second IPV partner who runs technical diligence. Avery confirms Monday by email the same
+  evening. Nobody updates the invite. On Wednesday day 29 at 06:05, five minutes after the run, Elena emails a
+  prep request for Monday. Tests: calendar-vs-email contradiction shown with BOTH dates even though Avery had the
+  last word in the thread; Elena inherits P0; the 06:05 email is absent on day 29 and present on day 30 (P0 case 14).
+
+threads:
+  - {id: t-ipv-call-move,       subject: "Re: Tessera x IPV - diligence call Friday", category: investors_board}
+  - {id: t-ipv-diligence-prep,  subject: "Ahead of Monday - a few things",             category: investors_board}
+events:
+  - {uid: ipv-diligence-call-20260925, calendar: work, title: "Tessera x IPV - diligence call", day: 31, start: "10:00", end: "11:00",
+     organizer: marcus, attendees: [{id: avery, partstat: ACCEPTED}, {id: marcus, partstat: ACCEPTED}, {id: ravi, partstat: ACCEPTED}],
+     created_day: 22, created_time: "14:10", last_modified_day: 22, note: "stale: never moved to Monday (calendar.yaml)"}
+
+beats:
+  - {ref: S2.b1, day: 22, time: "14:10", source: calendar, event: ipv-diligence-call-20260925, from: marcus,
+     event: "invite created for Fri day 31 10:00; Avery accepts the same afternoon"}
+  - {ref: S2.b2, day: 28, time: "11:15", source: email, thread: t-ipv-call-move, from: marcus, to: [avery], cc: [elena, ravi],
+     event: "Friday's slot collided with an LP meeting; proposes Monday Sep 28 at 10:00 instead; introduces Elena (partner, runs technical diligence) who will join",
+     must_include: ["Monday", "10am"], hardness: [mixed_topics]}
+  - {ref: S2.b3, day: 28, time: "17:50", source: email, thread: t-ipv-call-move, from: avery, to: [marcus], cc: [elena, ravi],
+     event: "confirms Monday 10; welcomes Elena; asks Ravi to resend the invite (nobody does)",
+     must_include: ["Monday 10 works"], hardness: [quoted_history]}
+  - {ref: S2.b4, day: 29, time: "06:05", source: email, thread: t-ipv-diligence-prep, from: elena, to: [avery], cc: [marcus],
+     event: "ahead of Monday asks for (1) architecture overview, (2) last 90 days of ingest uptime per customer, (3) the inference cost line in the model; wants them by Friday",
+     must_include: ["by Friday", "uptime"], hardness: [numbered_list]}
+
+labels:
+  - thread: t-ipv-call-move
+    category: investors_board
+    storyline: S2
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [meeting:ipv-diligence-call]
+      ball_awaiting: other            # Ravi/Marcus owe the updated invite; Avery had the last word
+      closed_by_courtesy: false
+      sender_relationship: {category: capital, subtype: lead_investor, stage: diligence}
+      asks: [{to_avery: true, kind: meeting, deadline_day: null, status: answered}]
+      schedule_mentions:
+        - {action: moved, participants: [marcus, elena, ravi, avery], when_day: 34, when_time: "10:00", previous_when_day: 31}
+      stage_signals: [{entity: ipv, stage: diligence, day: 28}]
+      suspicious: false
+    messages:
+      - {beat_ref: S2.b2, day: 28, time: "11:15", from: marcus, to: [avery], cc: [elena, ravi], must_include: ["Monday", "10am"]}
+      - {beat_ref: S2.b3, day: 28, time: "17:50", from: avery,  to: [marcus], cc: [elena, ravi], must_include: ["Monday 10 works"], is_from_avery: true}
+  - thread: t-ipv-diligence-prep
+    category: investors_board
+    storyline: S2
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [deal:series-a:diligence-prep]
+      ball_awaiting: avery
+      closed_by_courtesy: false
+      sender_relationship: {category: capital, subtype: lead_investor_partner, stage: diligence}
+      asks: [{to_avery: true, kind: information, deadline_day: 31, status: open}]
+      suspicious: false
+    messages:
+      - {beat_ref: S2.b4, day: 29, time: "06:05", from: elena, to: [avery], cc: [marcus], must_include: ["by Friday", "uptime"]}
+  - event: ipv-diligence-call-20260925
+    category: null
+    storyline: S2
+    expected: {type: task, note: "calendar events are code-parsed; listed so the contradiction candidate can cite event:ipv-diligence-call-20260925"}
+
+contacts:
+  - {id: elena, category: capital, subtype: lead_investor_partner, tier: P0, in_profile: false, stages: [{from_day: 28, stage: diligence}],
+     note: "same firm as Marcus, introduced in a deal thread → P0 during the raise (P0 case 5)"}
+  - {id: ravi,  category: capital, subtype: investor_associate, tier: P1, in_profile: false}
+
+about_keys:
+  should_merge: [[meeting:ipv-diligence-call, meeting:ipv-diligence]]
+  should_not_merge: [[meeting:ipv-diligence-call, deal:series-a:diligence-prep]]
+
+expectations:
+  - run_day: 26
+    absent: [meeting:ipv-diligence-call, deal:series-a:diligence-prep]
+    notes: "the Friday event exists (accepted) but nothing contradicts it; accepted meetings are never listed"
+  - run_day: 27
+    absent: [meeting:ipv-diligence-call, deal:series-a:diligence-prep]
+  - run_day: 28
+    absent: [meeting:ipv-diligence-call, deal:series-a:diligence-prep]
+    notes: "Marcus's email is at 11:15, after the run"
+  - run_day: 29
+    candidates:
+      - {type: contradiction, about: meeting:ipv-diligence-call, facts_hint: {calendar_when: "Fri 09-25 10:00", email_when: "Mon 09-28 10:00", kind: schedule}}
+    items:
+      - {about: meeting:ipv-diligence-call, priority: P0, section: calendar_personal, actions: [calendar_response],
+         cites_any: [t-ipv-call-move, "event:ipv-diligence-call-20260925"],
+         notes: "must name both Friday and Monday; calendar_response is a proposal: decline/move Friday, hold Monday 10:00; a nudge to Ravi is acceptable as a second action (reply)"}
+    absent: [deal:series-a:diligence-prep]
+    notes: "Elena's 06:05 email is after as_of → absent today (P0 case 14). The thread ends with Avery's message, so a naive last-word filter would hide the contradiction; it must still surface because the calendar disagrees with the email."
+  - run_day: 30
+    candidates:
+      - {type: contradiction, about: meeting:ipv-diligence-call, facts_hint: {calendar_when: "Fri 09-25 10:00", email_when: "Mon 09-28 10:00"}}
+      - {type: reply_owed,    about: deal:series-a:diligence-prep, facts_hint: {deadline_day: 31}}
+    items:
+      - {about: meeting:ipv-diligence-call, priority: P0, section: calendar_personal, actions: [calendar_response],
+         cites_any: [t-ipv-call-move, "event:ipv-diligence-call-20260925"], notes: "calendar still says tomorrow 10:00; email says Monday"}
+      - {about: deal:series-a:diligence-prep, priority: P0, section: urgent, actions_any: [forward_delegate, task, reply],
+         cites_any: [t-ipv-diligence-prep],
+         notes: "uptime numbers come from Jordan → forward_delegate to Jordan; architecture overview exists (Priya); reply to Elena acknowledging Friday is fine but not required"}
+
+assertions:
+  - {id: S2-d29-both-dates,      kind: item_mentions_all, run_day: 29, args: {about: meeting:ipv-diligence-call, phrases: ["Friday", "Monday"]},
+     description: "eval.md §3 S2: contradiction item mentions both dates; doesn't pick one (P0 case 4)"}
+  - {id: S2-d30-both-dates,      kind: item_mentions_all, run_day: 30, args: {about: meeting:ipv-diligence-call, phrases: ["Friday", "Monday"]}}
+  - {id: S2-d29-p0,              kind: item_present,      run_day: 29, args: {about: meeting:ipv-diligence-call, priority: P0}}
+  - {id: S2-d29-cand,            kind: candidate_present, run_day: 29, args: {type: contradiction, about: meeting:ipv-diligence-call}}
+  - {id: S2-d29-calendar-proposal, kind: action_present,  run_day: 29, args: {about: meeting:ipv-diligence-call, action: calendar_response}}
+  - {id: S2-elena-tier-p0,       kind: contact_tier_is,   run_day: 30, args: {email: elena@inflectionpoint.vc, tier: P0},
+     description: "P0 case 5: another IPV partner inherits P0"}
+  - {id: S2-elena-category,      kind: contact_category_is, run_day: 30, args: {email: elena@inflectionpoint.vc, category: capital}}
+  - {id: S2-d29-0605-absent,     kind: item_absent,       run_day: 29, args: {source_id: t-ipv-diligence-prep},
+     description: "eval.md §3 '06:05 mail': the P0 email timestamped after as_of is absent that day"}
+  - {id: S2-d30-0605-present,    kind: item_present,      run_day: 30, args: {about: deal:series-a:diligence-prep, priority: P0},
+     description: "…and present the next run"}
+  - {id: S2-d28-absent,          kind: item_absent,       run_day: 28, args: {about: meeting:ipv-diligence-call}}
+
+sim_avery: []
+simulate: []
+variants: []

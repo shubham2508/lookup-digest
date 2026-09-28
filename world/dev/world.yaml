@@ -1,0 +1,591 @@
+# world/dev/world.yaml — the dev world's people, orgs and edges (specs/data_generation.md §3).
+# Never read by the digest. `truth` blocks feed the manifest only.
+# All orgs, people, addresses and domains are fictional; Avery and Sam are never gendered.
+#
+# Time: days are relative (1..30). anchor = date of day 30.
+#   day 1 = Wed 2026-08-26 · day 20 = Mon 09-14 · run days 26–30 = Sun 09-20 … Thu 09-24 · all PDT (-07:00)
+
+world: dev
+anchor: 2026-09-24          # Thursday = day 30; `digest generate --anchor` overrides
+timezone: America/Los_Angeles
+run_days: [26, 27, 28, 29, 30]
+as_of_time: "06:00"
+seed: 7
+
+company: {name: Tessera, domain: tessera.io, headcount: 12, arr_profile: "$3.2M", arr_actual: "$3.4M"}
+avery: {id: avery, name: Avery Chen, email: avery@tessera.io}
+
+# ----------------------------------------------------------------------------- orgs
+orgs:
+  - {id: tessera,     name: Tessera,                       domain: tessera.io,                 kind: team}
+  - {id: ipv,         name: Inflection Point Ventures,     domain: inflectionpoint.vc,         kind: capital, subtype: lead_investor}
+  - {id: aperture,    name: Aperture Capital,              domain: aperturecap.com,            kind: capital, subtype: prospective_vc}
+  - {id: cobalt,      name: Cobalt Ridge Ventures,         domain: cobaltridge.vc,             kind: capital, subtype: existing_investor}
+  - {id: northwind,   name: Northwind Capital,             domain: northwindcap.com,           kind: capital, subtype: prospective_vc}
+  - {id: wsgr,        name: Wilson Sonsini,                domain: wsgr.com,                   kind: capital, subtype: deal_counsel}
+  - {id: halberd,     name: Halberd Manufacturing,         domain: halberd.com,                kind: customer, subtype: reference}
+  - {id: northstar,   name: Northstar Foods,               domain: northstarfoods.com,         kind: customer, subtype: reference}
+  - {id: veritas,     name: Veritas Components,            domain: veritascomponents.com,      kind: customer, subtype: reference}
+  - {id: brightline,  name: Brightline Packaging,          domain: brightlinepkg.com,          kind: customer, subtype: active}
+  - {id: meridian,    name: Meridian Foods,                domain: meridianfoods.com,          kind: customer, subtype: prospect}
+  - {id: ridgeway,    name: Ridgeway Metals,               domain: ridgewaymetals.com,         kind: customer, subtype: prospect}
+  - {id: lumen,       name: Lumen Analytics,               domain: lumenanalytics.com,         kind: vendor,   subtype: evaluating}
+  - {id: metrika,     name: Metrika,                       domain: metrika.io,                 kind: vendor,   subtype: active_contract}
+  - {id: keystone,    name: Keystone Search,               domain: keystonesearch.com,         kind: hiring,   subtype: retained_search}
+  - {id: talentbridge, name: TalentBridge Recruiting,      domain: talentbridge-recruiting.com, kind: cold_inbound, subtype: cold_recruiter}
+  - {id: dataforge,   name: DataForge,                     domain: dataforge.io,               kind: cold_inbound, subtype: sales_pitch}
+  - {id: acorns,      name: Little Acorns Daycare,         domain: littleacornsoakland.com,    kind: vendor,   subtype: personal_service}
+  - {id: peds,        name: Oakland Pediatrics,            domain: oaklandpediatrics.com,      kind: vendor,   subtype: personal_service}
+  - {id: signal,      name: Manufacturing Signal,          domain: manufacturingsignal.com,    kind: external_visibility, subtype: press}
+  - {id: statewide,   name: Statewide Registered Agents,   domain: statewideagents.com,        kind: legal_gov, subtype: registered_agent}
+  - {id: harbor,      name: Harbor Insurance Brokers,      domain: harborinsurance.com,        kind: vendor,   subtype: services}
+  - {id: pinnacle,    name: Pinnacle CPA,                  domain: pinnaclecpa.com,            kind: vendor,   subtype: services}
+  - {id: corvid,      name: Corvid Robotics,               domain: corvidrobotics.com,         kind: network,  subtype: founder_peer}
+
+# ----------------------------------------------------------------------------- people
+# truth: {category, subtype, tier, in_profile, rules, stage_timeline}. tier null = noise sender / no default weight.
+people:
+  # --- Tessera (12 people) ---
+  - id: avery
+    name: Avery Chen
+    emails: [avery@tessera.io]
+    org: tessera
+    title: Co-founder & CEO
+    truth: {category: team, subtype: self, tier: null, in_profile: true}
+    style: "short; lowercase greetings or none; two or three sentences; warm to trusted people, curt to strangers; signs 'Avery' or nothing"
+    signature: "Avery"
+  - id: priya
+    name: Priya Iyer
+    emails: [priya@tessera.io]
+    org: tessera
+    title: Co-founder & CTO
+    truth: {category: team, subtype: cofounder, tier: P0, in_profile: true, rules: [email_means_intentional]}
+    style: "terse, lowercase, numbers first, no pleasantries; almost never emails Avery (Slack person)"
+    signature: "p"
+  - id: jordan
+    name: Jordan Liu
+    emails: [jordan@tessera.io]
+    org: tessera
+    title: Head of Engineering
+    truth: {category: team, subtype: exec, tier: P1, in_profile: true, rules: [escalates_rarely]}
+    style: "calm, structured, bullet points, states impact before detail; rarely escalates"
+    signature: "Jordan"
+  - id: tomas
+    name: Tomás Reyes
+    emails: [tomas@tessera.io]
+    org: tessera
+    title: Head of GTM
+    truth: {category: team, subtype: exec, tier: P1, in_profile: true, rules: [emails_too_much]}
+    style: "long, enthusiastic, many topics per email, exclamation marks, buries the one thing that matters mid-paragraph"
+    signature: "Tomás Reyes | Head of GTM, Tessera | +1 (510) 555-0142"
+  - id: kim
+    name: Kim Delgado
+    emails: [kim@tessera.io]
+    org: tessera
+    title: Ops & Finance Lead
+    truth: {category: team, subtype: ic, tier: null, in_profile: false}
+    style: "precise, dates and dollar amounts, polite"
+    signature: "Kim Delgado\nOps & Finance, Tessera"
+  - id: sofia
+    name: Sofia Andrade
+    emails: [sofia@tessera.io]
+    org: tessera
+    title: Senior Software Engineer
+    truth: {category: team, subtype: ic, tier: null, in_profile: false}
+    style: "technical, direct, occasional emoji"
+    signature: "Sofia"
+  - id: dev
+    name: Dev Patel
+    emails: [dev@tessera.io]
+    org: tessera
+    title: Software Engineer
+    truth: {category: team, subtype: ic, tier: null, in_profile: false}
+    style: "brief, PR links, casual"
+    signature: "Dev"
+  - id: lena
+    name: Lena Hoffmann
+    emails: [lena@tessera.io]
+    org: tessera
+    title: QA Engineer
+    truth: {category: team, subtype: ic, tier: null, in_profile: false}
+    style: "structured bug reports, repro steps, severity labels"
+    signature: "Lena Hoffmann | QA"
+  - id: omar
+    name: Omar Haddad
+    emails: [omar@tessera.io]
+    org: tessera
+    title: Software Engineer
+    truth: {category: team, subtype: ic, tier: null, in_profile: false}
+    style: "short, dry humor"
+    signature: "Omar"
+  - id: yuki
+    name: Yuki Sato
+    emails: [yuki@tessera.io]
+    org: tessera
+    title: Solutions Engineer
+    truth: {category: team, subtype: ic, tier: null, in_profile: false}
+    style: "customer-facing polish, numbered steps"
+    signature: "Yuki Sato\nSolutions Engineering, Tessera"
+  - id: ana
+    name: Ana Kowalski
+    emails: [ana@tessera.io]
+    org: tessera
+    title: Account Executive
+    truth: {category: team, subtype: ic, tier: null, in_profile: false}
+    style: "upbeat, sales cadence, CRM links"
+    signature: "Ana Kowalski | AE, Tessera"
+  - id: mateo
+    name: Mateo Silva
+    emails: [mateo@tessera.io, support@tessera.io]
+    org: tessera
+    title: Support Engineer
+    truth: {category: team, subtype: ic, tier: null, in_profile: false}
+    style: "ticket-style, includes ticket numbers"
+    signature: "Mateo | Tessera Support"
+
+  # --- Capital ---
+  - id: marcus
+    name: Marcus Webb
+    emails: [marcus@inflectionpoint.vc]
+    org: ipv
+    title: Partner
+    truth: {category: capital, subtype: lead_investor, tier: P0, in_profile: true, rules: [never_miss_reply],
+            stage_timeline: [{day: 1, stage: in_conversation}, {day: 15, stage: diligence}, {day: 28, stage: term_sheet}]}
+    style: "clipped, businesslike, one ask per email, no greeting beyond the name"
+    signature: "Marcus Webb\nPartner, Inflection Point Ventures"
+  - id: elena
+    name: Elena Vasquez
+    emails: [elena@inflectionpoint.vc]
+    org: ipv
+    title: Partner
+    truth: {category: capital, subtype: lead_investor_partner, tier: P0, in_profile: false, inherits_from: marcus,
+            stage_timeline: [{day: 28, stage: diligence}]}
+    style: "precise, technical, lists what she needs with numbers"
+    signature: "Elena Vasquez | Partner | Inflection Point Ventures"
+  - id: ravi
+    name: Ravi Menon
+    emails: [ravi@inflectionpoint.vc]
+    org: ipv
+    title: Associate
+    truth: {category: capital, subtype: investor_associate, tier: P1, in_profile: false, inherits_from: marcus}
+    style: "polite scheduler, data-room logistics"
+    signature: "Ravi Menon\nAssociate, Inflection Point Ventures"
+  - id: david
+    name: David Kim
+    emails: [david@aperturecap.com]
+    org: aperture
+    title: Partner
+    truth: {category: capital, subtype: prospective_vc, tier: P0, in_profile: false,
+            stage_timeline: [{day: 6, stage: first_contact}, {day: 9, stage: in_conversation}]}
+    style: "friendly, curious, asks two sharp questions per email"
+    signature: "David Kim\nPartner, Aperture Capital"
+  - id: diane
+    name: Diane Okafor
+    emails: [diane@cobaltridge.vc]
+    org: cobalt
+    title: Partner (Tessera board member, seed lead)
+    truth: {category: capital, subtype: board_member, tier: P1, in_profile: true, rules: [owed_updates],
+            stage_timeline: [{day: 1, stage: existing}]}
+    style: "patient, warm, short paragraphs, never nags"
+    signature: "Diane"
+  - id: cobalt_office
+    name: Cobalt Ridge Ventures
+    emails: [office@cobaltridge.vc]
+    org: cobalt
+    title: Operations
+    truth: {category: capital, subtype: existing_investor_ops, tier: null, in_profile: false}
+    style: "form letters: LP updates, portfolio events"
+    signature: "Cobalt Ridge Ventures | Platform Team"
+  - id: tessa
+    name: Tessa Ruiz
+    emails: [tessa@northwindcap.com]
+    org: northwind
+    title: Principal
+    truth: {category: capital, subtype: prospective_vc, tier: P1, in_profile: false, introduced_by: diane,
+            stage_timeline: [{day: 16, stage: first_contact}]}
+    style: "eager, long intro paragraphs"
+    signature: "Tessa Ruiz\nPrincipal, Northwind Capital"
+  - id: ben
+    name: Ben Schaffer
+    emails: [bschaffer@wsgr.com]
+    org: wsgr
+    title: Partner
+    truth: {category: capital, subtype: deal_counsel, tier: P0, in_profile: true, tier_condition: "P0 during the raise, P2 otherwise",
+            stage_timeline: [{day: 1, stage: diligence}, {day: 28, stage: term_sheet}]}
+    style: "lawyerly but plain, numbered points, attachments named precisely"
+    signature: "Ben Schaffer\nWilson Sonsini Goodrich & Rosati\nbschaffer@wsgr.com | +1 (650) 555-0188"
+  - id: naomi
+    name: Naomi Feld
+    emails: [nfeld@wsgr.com]
+    org: wsgr
+    title: Associate
+    truth: {category: capital, subtype: deal_counsel, tier: P0, in_profile: false, inherits_from: ben,
+            stage_timeline: [{day: 27, stage: term_sheet}]}
+    style: "formal, deferential, follows up on partner's items"
+    signature: "Naomi Feld | Associate | Wilson Sonsini Goodrich & Rosati"
+
+  # --- Customers: Halberd (reference) ---
+  - id: renee
+    name: Renee Tan
+    emails: [renee.tan@halberd.com]
+    org: halberd
+    title: Procurement Lead
+    truth: {category: customer, subtype: reference, tier: P1, in_profile: false, profile_role_match: "procurement lead at Halberd",
+            rules: [same_day_reply], stage_timeline: [{day: 1, stage: active}]}
+    style: "concise, friendly, signs 'Renee'; asks direct yes/no questions"
+    signature: "Renee Tan | Procurement Lead | Halberd Manufacturing"
+  - id: curtis
+    name: Curtis Ayala
+    emails: [curtis.ayala@halberd.com]
+    org: halberd
+    title: VP Operations
+    truth: {category: customer, subtype: reference_exec, tier: P1, in_profile: false, classification_case: new_customer_exec,
+            stage_timeline: [{day: 28, stage: active}]}
+    style: "executive brevity, big-picture, wants a call"
+    signature: "Curtis Ayala\nVP Operations, Halberd Manufacturing"
+  - id: joel
+    name: Joel Brennan
+    emails: [joel.brennan@halberd.com]
+    org: halberd
+    title: IT Systems Lead
+    truth: {category: customer, subtype: reference_ic, tier: null, in_profile: false, stage_timeline: [{day: 1, stage: active}]}
+    style: "technical, SSO/IdP jargon, screenshots described"
+    signature: "Joel Brennan | IT Systems | Halberd Manufacturing"
+
+  # --- Customers: Northstar (reference) ---
+  - id: grace
+    name: Grace Lindqvist
+    emails: [grace.lindqvist@northstarfoods.com]
+    org: northstar
+    title: Procurement Manager
+    truth: {category: customer, subtype: reference, tier: P1, in_profile: false, profile_role_match: "procurement lead at Northstar",
+            rules: [same_day_reply], stage_timeline: [{day: 1, stage: active}], cadence: {baseline_days_1_20_median_gap: 1.2, recent_days_21_30: "one inbound (day 24)"}}
+    style: "brisk, friendly early in the month; shorter and later in the day from day 21 on"
+    signature: "Grace Lindqvist\nProcurement Manager | Northstar Foods"
+  - id: paul
+    name: Paul Osei
+    emails: [paul.osei@northstarfoods.com]
+    org: northstar
+    title: Accounts Payable Specialist
+    truth: {category: customer, subtype: reference_ic, tier: null, in_profile: false}
+    style: "invoice numbers, PO references, formal"
+    signature: "Paul Osei | Accounts Payable | Northstar Foods"
+  - id: marta
+    name: Marta Kowalczyk
+    emails: [marta.kowalczyk@northstarfoods.com]
+    org: northstar
+    title: Plant Operations Manager
+    truth: {category: customer, subtype: reference_ic, tier: null, in_profile: false}
+    style: "practical, shop-floor, asks for features"
+    signature: "Marta Kowalczyk\nPlant Operations Manager, Northstar Foods (Modesto)"
+  - id: henrik
+    name: Henrik Dahl
+    emails: [henrik.dahl@northstarfoods.com]
+    org: northstar
+    title: Finance Director
+    truth: {category: customer, subtype: reference_exec, tier: P1, in_profile: false, stage_timeline: [{day: 29, stage: renewal_window}]}
+    style: "formal, one paragraph, 'as part of our vendor review'"
+    signature: "Henrik Dahl\nFinance Director, Northstar Foods"
+
+  # --- Customers: Veritas (reference) — handover Simon → Nadia on day 15 ---
+  - id: simon
+    name: Simon Achterberg
+    emails: [simon.achterberg@veritascomponents.com]
+    org: veritas
+    title: Procurement Lead (until day 14)
+    truth: {category: customer, subtype: reference, tier: P1, in_profile: false, profile_role_match: "procurement lead at Veritas",
+            rules: [same_day_reply], stage_timeline: [{day: 1, stage: active}], replaced_by: nadia, replaced_on_day: 15}
+    style: "measured, formal, long sentences"
+    signature: "Simon Achterberg\nProcurement Lead | Veritas Components"
+  - id: nadia
+    name: Nadia Rahimi
+    emails: [nadia.rahimi@veritascomponents.com]
+    org: veritas
+    title: Procurement Lead (from day 15)
+    truth: {category: customer, subtype: reference, tier: P1, in_profile: false, profile_role_match: "procurement lead at Veritas",
+            rules: [same_day_reply], replaces: simon, stage_timeline: [{day: 15, stage: active}, {day: 27, stage: renewal_window}]}
+    style: "energetic, short, asks for the next step explicitly"
+    signature: "Nadia Rahimi | Procurement Lead | Veritas Components"
+  - id: walter
+    name: Walter Kessling
+    emails: [walter.kessling@veritascomponents.com]
+    org: veritas
+    title: CFO
+    truth: {category: customer, subtype: reference_exec, tier: P1, in_profile: false, stage_timeline: [{day: 8, stage: renewal_window}]}
+    style: "terse, defers decisions to 'next quarter'"
+    signature: "Walter Kessling\nChief Financial Officer, Veritas Components"
+  - id: ivan
+    name: Ivan Petrov
+    emails: [ivan.petrov@veritascomponents.com]
+    org: veritas
+    title: Plant IT Engineer
+    truth: {category: customer, subtype: reference_ic, tier: null, in_profile: false}
+    style: "schema fields, CSV headers, timestamps"
+    signature: "Ivan Petrov | Plant IT | Veritas Components"
+
+  # --- Customers: non-reference ---
+  - id: brightline_procurement
+    name: Brightline Procurement
+    emails: [procurement@brightlinepkg.com]
+    org: brightline
+    title: Procurement (shared mailbox)     # the one role alias; a non-reference customer (data_generation §3)
+    truth: {category: customer, subtype: active, tier: null, in_profile: false, stage_timeline: [{day: 1, stage: active}]}
+    style: "shared-mailbox formal, 'Dear Tessera team'"
+    signature: "Procurement Team | Brightline Packaging"
+  - id: carla
+    name: Carla Mendes
+    emails: [carla.mendes@meridianfoods.com]
+    org: meridian
+    title: Director of Supply Chain
+    truth: {category: customer, subtype: prospect, tier: null, in_profile: false, stage_timeline: [{day: 10, stage: prospect}]}
+    style: "evaluative, compares vendors, asks for pricing"
+    signature: "Carla Mendes\nDirector, Supply Chain | Meridian Foods"
+  - id: ridgeway_ops
+    name: Dale Whitcombe
+    emails: [dwhitcombe@ridgewaymetals.com]
+    org: ridgeway
+    title: Operations Director
+    truth: {category: customer, subtype: prospect, tier: null, in_profile: false, stage_timeline: [{day: 13, stage: prospect}]}
+    style: "old-school, short"
+    signature: "Dale Whitcombe, Ridgeway Metals"
+
+  # --- Vendors ---
+  - id: dana
+    name: Dana Whitfield
+    emails: [dana.whitfield@lumenanalytics.com]
+    org: lumen
+    title: Account Executive
+    truth: {category: vendor, subtype: evaluating, tier: null, in_profile: false, stage_timeline: [{day: 20, stage: evaluating}]}
+    style: "salesy but competent, calendar links, 'quick one'"
+    signature: "Dana Whitfield | Account Executive | Lumen Analytics | book time: lumenanalytics.com/dana"
+  - id: metrika_billing
+    name: Metrika Billing
+    emails: [billing@metrika.io]
+    org: metrika
+    title: Billing
+    truth: {category: vendor, subtype: active_contract, tier: null, in_profile: false, stage_timeline: [{day: 1, stage: active_contract}, {day: 29, stage: renewal_due}]}
+    style: "automated renewal notices"
+    signature: "Metrika Billing Team"
+  - id: beatriz
+    name: Beatriz Nunes
+    emails: [director@littleacornsoakland.com]
+    org: acorns
+    title: Director
+    truth: {category: vendor, subtype: daycare, tier: null, in_profile: false, domain_of_items: personal}
+    style: "parent-newsletter tone, bold dates, apologetic"
+    signature: "Beatriz Nunes\nDirector, Little Acorns Daycare"
+  - id: peds_reminders
+    name: Oakland Pediatrics
+    emails: [reminders@oaklandpediatrics.com]
+    org: peds
+    title: Appointment reminders
+    truth: {category: automated, subtype: personal_service, tier: null, in_profile: false, domain_of_items: personal}
+    style: "automated reminder"
+    signature: "Oakland Pediatrics"
+  - id: mila
+    name: Mila Ostrowski
+    emails: [mila@harborinsurance.com]
+    org: harbor
+    title: Broker
+    truth: {category: vendor, subtype: services, tier: null, in_profile: false}
+    style: "quotes, renewal dates, PDFs"
+    signature: "Mila Ostrowski | Harbor Insurance Brokers"
+  - id: rina
+    name: Rina Shah
+    emails: [rina@pinnaclecpa.com]
+    org: pinnacle
+    title: CPA
+    truth: {category: vendor, subtype: services, tier: null, in_profile: false}
+    style: "accountant: deadlines, forms, 'please confirm'"
+    signature: "Rina Shah, CPA | Pinnacle CPA"
+  - id: bram
+    name: Bram Kessler
+    emails: [bram@keystonesearch.com]
+    org: keystone
+    title: Partner (retained search)
+    truth: {category: hiring, subtype: retained_search, tier: P2, in_profile: false, classification_case: retained_search_not_recruiter,
+            stage_timeline: [{day: 4, stage: open}]}
+    style: "professional recruiter, candidate one-liners with links, 'per our engagement'"
+    signature: "Bram Kessler\nPartner, Keystone Search | retained search for design & product leadership"
+
+  # --- Cold inbound ---
+  - id: chad
+    name: Chad Morrison
+    emails: [chad.morrison@talentbridge-recruiting.com]
+    org: talentbridge
+    title: Senior Recruiter
+    truth: {category: cold_inbound, subtype: cold_recruiter, tier: null, in_profile: false, rules: [never_draft, pattern_only]}
+    style: "template pitch, 'exciting opportunity', wrong personalization"
+    signature: "Chad Morrison | Senior Recruiter | TalentBridge Recruiting"
+  - id: kelsey
+    name: Kelsey Vaughn
+    emails: [kelsey.vaughn@talentbridge-recruiting.com]
+    org: talentbridge
+    title: Talent Partner
+    truth: {category: cold_inbound, subtype: cold_recruiter, tier: null, in_profile: false, rules: [never_draft, pattern_only]}
+    style: "template pitch, 'following up on my colleague's note'"
+    signature: "Kelsey Vaughn | Talent Partner | TalentBridge Recruiting"
+  - id: tyler
+    name: Tyler Brooks
+    emails: [tyler.brooks@dataforge.io]
+    org: dataforge
+    title: SDR
+    truth: {category: cold_inbound, subtype: sales_pitch, tier: null, in_profile: false, classification_case: cold_vendor_pitch}
+    style: "three-touch cold sequence, 'bumping this to the top of your inbox'"
+    signature: "Tyler Brooks | DataForge | Book a demo"
+
+  # --- Network ---
+  - id: hollis
+    name: Hollis Grant
+    emails: [hollis.grant@gmail.com]
+    org: null
+    title: Former founder (Avery's mentor; not in the profile)
+    truth: {category: network, subtype: mentor, tier: P2, in_profile: false, classification_case: mentor_by_behavior,
+            behavior: {avery_reply_within_hours: 3, threads_days_1_20: 3}}
+    style: "wry, short, one idea per email, no signature"
+    signature: "H"
+  - id: nia
+    name: Nia Bassett
+    emails: [nia@corvidrobotics.com]
+    org: corvid
+    title: CEO, Corvid Robotics
+    truth: {category: network, subtype: founder_peer, tier: null, in_profile: false}
+    style: "casual founder-to-founder"
+    signature: "Nia"
+  - id: jae
+    name: Jae Whitlock
+    emails: [jae.whitlock@gmail.com]
+    org: null
+    title: Unknown (claims to run a small fund)
+    truth: {category: unresolved, subtype: null, tier: null, in_profile: false, classification_case: unresolved_surface,
+            note: "too little evidence to call capital vs cold; must be shown as unsure if surfaced"}
+    style: "vague, name-drops, no signature block"
+    signature: "Jae"
+
+  # --- External visibility / legal ---
+  - id: sasha
+    name: Sasha Kimura
+    emails: [sasha.kimura@manufacturingsignal.com]
+    org: signal
+    title: Senior Reporter
+    truth: {category: external_visibility, subtype: press, tier: P2, in_profile: false, classification_case: press_request}
+    style: "journalist: deadline stated, three questions, off-the-record offer"
+    signature: "Sasha Kimura | Senior Reporter, Manufacturing Signal"
+  - id: statewide_notices
+    name: Statewide Registered Agents
+    emails: [notices@statewideagents.com]
+    org: statewide
+    title: Compliance notices
+    truth: {category: legal_gov, subtype: registered_agent, tier: P2, in_profile: false, classification_case: tax_compliance_notice}
+    style: "forwarded state notice, deadline and penalty amounts"
+    signature: "Statewide Registered Agents — Compliance Desk"
+
+  # --- Family / personal ---
+  - id: sam
+    name: Sam Park
+    emails: [sam@parkchen.family]
+    org: null
+    title: Avery's partner
+    truth: {category: family, subtype: partner, tier: P0, in_profile: true, rules: [never_draft]}
+    style: "casual, lowercase, logistics-heavy, multiple topics per message, no signature"
+    signature: ""
+  - id: kai
+    name: Kai Chen
+    emails: [kai.chen.oak@gmail.com]
+    org: null
+    title: Avery's sibling
+    truth: {category: family, subtype: relative, tier: null, in_profile: false}
+    style: "photos, 'no need to reply'"
+    signature: "K"
+
+  # --- Hiring: candidates ---
+  - id: mei
+    name: Mei Tanaka
+    emails: [mei.tanaka.dev@gmail.com]
+    org: null
+    title: Backend engineer candidate (offer stage)
+    truth: {category: hiring, subtype: candidate, tier: P1, in_profile: false, req: backend,
+            stage_timeline: [{day: 12, stage: onsite}, {day: 20, stage: debrief}, {day: 27, stage: offer_extended}]}
+    style: "polite, precise, mentions timelines"
+    signature: "Mei"
+  - id: theo
+    name: Theo Lindgren
+    emails: [theo.lindgren@gmail.com]
+    org: null
+    title: Backend engineer candidate (onsite done, unmoved)
+    truth: {category: hiring, subtype: candidate, tier: P2, in_profile: false, req: backend,
+            stage_timeline: [{day: 14, stage: screen}, {day: 23, stage: onsite}]}
+    style: "friendly, brief"
+    signature: "Theo"
+  - id: ines
+    name: Ines Ferreira
+    emails: [ines.ferreira.eng@gmail.com]
+    org: null
+    title: Backend engineer candidate (screen; interview day 30)
+    truth: {category: hiring, subtype: candidate, tier: P2, in_profile: false, req: backend, classification_case: unknown_attendee_of_todays_meeting,
+            stage_timeline: [{day: 26, stage: sourced}, {day: 30, stage: screen}]}
+    style: "formal first contact, asks logistics"
+    signature: "Ines Ferreira"
+  - id: luca
+    name: Luca Moretti
+    emails: [luca.moretti.design@gmail.com]
+    org: null
+    title: Product designer candidate (via Keystone; req paused)
+    truth: {category: hiring, subtype: candidate, tier: null, in_profile: false, req: designer, stage_timeline: [{day: 24, stage: sourced}]}
+    style: "portfolio links"
+    signature: "Luca"
+
+  # --- Automated senders (routed by header, never extracted beyond type unless action-bearing) ---
+  - {id: docusign,   name: DocuSign,            emails: [dse@docusign.net],                   org: null, title: e-signature,
+     truth: {category: automated, subtype: action_bearing, tier: null, in_profile: false}, style: "system", signature: ""}
+  - {id: stripe,     name: Stripe,              emails: [notifications@stripe.com],           org: null, title: payments,
+     truth: {category: automated, subtype: action_bearing, tier: null, in_profile: false}, style: "system", signature: ""}
+  - {id: ramp,       name: Ramp,                emails: [no-reply@ramp.com],                  org: null, title: expenses,
+     truth: {category: automated, subtype: action_bearing, tier: null, in_profile: false}, style: "system", signature: ""}
+  - {id: github,     name: GitHub,              emails: [notifications@github.com],           org: null, title: code notifications,
+     truth: {category: automated, subtype: fyi, tier: null, in_profile: false}, style: "system", signature: ""}
+  - {id: gcal,       name: Google Calendar,     emails: [calendar-notification@google.com],   org: null, title: calendar notifications,
+     truth: {category: automated, subtype: fyi, tier: null, in_profile: false}, style: "system", signature: ""}
+  - {id: greenhouse, name: Greenhouse,          emails: [no-reply@greenhouse.io],             org: null, title: ATS notifications,
+     truth: {category: automated, subtype: fyi, tier: null, in_profile: false}, style: "system", signature: ""}
+  - {id: gusto,      name: Gusto,               emails: [no-reply@gusto.com],                 org: null, title: payroll notifications,
+     truth: {category: automated, subtype: fyi, tier: null, in_profile: false}, style: "system", signature: ""}
+  - {id: aws,        name: AWS Billing,         emails: [no-reply@aws.amazon.com],            org: null, title: cloud billing,
+     truth: {category: automated, subtype: fyi, tier: null, in_profile: false}, style: "system", signature: ""}
+  - {id: cloudledger, name: CloudLedger Billing, emails: [ops@cloudledger-billing.com],       org: null, title: "unknown vendor (carries the injection email)",
+     truth: {category: cold_inbound, subtype: suspicious, tier: null, in_profile: false, classification_case: prompt_injection}, style: "fake invoice", signature: ""}
+
+# ----------------------------------------------------------------------------- edges
+edges:
+  - {from: sam,   rel: partner_of,    to: avery}
+  - {from: wren,  rel: child_of,      to: avery, note: "Wren, age 4; no email; appears in calendar titles only"}
+  - {from: wren,  rel: child_of,      to: sam}
+  - {from: kai,   rel: sibling_of,    to: avery}
+  - {from: priya, rel: cofounder_of,  to: avery}
+  - {from: jordan, rel: reports_to,   to: avery}
+  - {from: tomas, rel: reports_to,    to: avery}
+  - {from: kim,   rel: reports_to,    to: avery}
+  - {from: sofia, rel: reports_to,    to: jordan}
+  - {from: dev,   rel: reports_to,    to: jordan}
+  - {from: lena,  rel: reports_to,    to: jordan}
+  - {from: omar,  rel: reports_to,    to: jordan}
+  - {from: mateo, rel: reports_to,    to: jordan}
+  - {from: yuki,  rel: reports_to,    to: tomas}
+  - {from: ana,   rel: reports_to,    to: tomas}
+  - {from: ipv,   rel: leads_round,   to: tessera, note: "Series A; stage per marcus.truth"}
+  - {from: elena, rel: colleague_of,  to: marcus}
+  - {from: ravi,  rel: colleague_of,  to: marcus}
+  - {from: cobalt, rel: invests_in,   to: tessera, note: "seed lead; Diane on the board"}
+  - {from: diane, rel: introduced,    to: tessa, note: "warm intro to Northwind on day 16"}
+  - {from: wsgr,  rel: counsel_to,    to: tessera}
+  - {from: naomi, rel: works_for,     to: ben}
+  - {from: halberd, rel: customer_of, to: tessera, note: "reference; rollout Oct 6"}
+  - {from: northstar, rel: customer_of, to: tessera, note: "reference; cadence drop days 21–30"}
+  - {from: veritas, rel: customer_of, to: tessera, note: "reference; renewal pushed twice; second line go-live day 29"}
+  - {from: brightline, rel: customer_of, to: tessera, note: "active, non-reference"}
+  - {from: nadia, rel: replaces,      to: simon, note: "handover day 15 (S7)"}
+  - {from: keystone, rel: retained_by, to: tessera, note: "designer req, engaged day 4; req paused day 23"}
+  - {from: lumen, rel: evaluated_by,  to: tessera, note: "analytics vendor evaluation; would replace Metrika"}
+  - {from: hollis, rel: mentor_of,    to: avery, note: "not in profile; Avery replies within hours"}
+  - {from: nia,   rel: peer_of,       to: avery}
+  - {from: acorns, rel: daycare_of,   to: wren}

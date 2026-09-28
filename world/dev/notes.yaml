@@ -1,0 +1,150 @@
+# world/dev/notes.yaml — the 10 notes and tasks.md (specs/data_generation.md §7). Each note's first line is
+# "Date: YYYY-MM-DD | Attendees: …" (dates resolve from `day` via the anchor). File mtimes are set to the note's
+# day at `time`. The M2 prose files under prose/notes/ carry the full text; this file fixes what each must plant.
+
+notes:
+  - file: board-meeting-minutes.md
+    kind: meeting_notes
+    day: 2
+    time: "16:30"
+    attendees: [avery, priya, diane, ravi]
+    title: "Board meeting - Aug 27"
+    plants:
+      - "Diane: monthly investor updates during the raise. Agreed. Last update went out Aug 14."
+      - "ARR $3.2M as of end of July (consistent with the profile at the time)"
+      - "Series A: IPV first meeting scheduled; Aperture inbound"
+      - "Hiring: two backend reqs + designer open"
+    must_include: ["monthly investor updates during the raise", "Aug 14"]
+    labels: {storyline: S10, about: [board-update:monthly], agreements: [{rule: "monthly investor updates during the raise", cadence: monthly}], claims: [{subject: last_board_update_sent, value: "Aug 14"}, {subject: ARR, value: "$3.2M"}]}
+  - file: board-update-draft.md
+    kind: draft
+    day: 19
+    time: "21:40"
+    attendees: []
+    title: "September investor update - DRAFT"
+    plants:
+      - "half-written; metrics block says 'ARR: $3.2M' (stale); 'Pipeline: TODO'; 'Hiring: TODO'; 'Ask: intros to Series A leads'"
+    must_include: ["$3.2M", "TODO"]
+    labels: {storyline: S10, about: [board-update:monthly], note_kind: draft, draft_of: "board update", claims: [{subject: ARR, value: "$3.2M"}]}
+  - file: finance-sync.md
+    kind: meeting_notes
+    day: 22
+    time: "15:45"
+    attendees: [avery, kim, priya]
+    title: "Finance sync - Sep 16"
+    plants:
+      - "ARR $3.4M as of Sep 15 (Northstar line 2 expansion + Brightline)"
+      - "Inference spend running over model - Priya to write it up (→ S13)"
+      - "Cash: 19 months at current burn; Stripe payouts on autopilot (→ background Stripe failure later)"
+      - "Q3 estimated taxes paid (Pinnacle)"
+    must_include: ["ARR $3.4M"]
+    labels: {storyline: S10, about: [board-update:monthly, other:inference-cost-overrun], claims: [{subject: ARR, value: "$3.4M"}], action_items: [{owner: other, about: other:inference-cost-overrun, status_in_thread: open}]}
+  - file: q2-planning.md
+    kind: draft
+    day: 27
+    time: "17:00"
+    attendees: []
+    title: "Q2 (FY27, Nov-Jan) planning doc - owner Avery"
+    plants:
+      - "two open comments: Jordan (day 28, on-call rotation headcount) and Priya (day 29, backfill concurrency cap) - rendered as inline comment blocks with dates"
+      - "analytics vendor line: 'Lumen eval — decision hinges on ingestion + backfill behaviour; Metrika renews 9/25'"
+      - "review at the Thu Sep 24 14:30 planning sync"
+    must_include: ["ingestion + backfill", "open comment"]
+    labels: {storyline: BG-q2, about: [report:q2-planning, meeting:lumen-demo, renewal:metrika], note_kind: draft, draft_of: "Q2 planning doc", open_comments: [{by: jordan, status: open}, {by: priya, status: open}]}
+    mtime_note: "file mtime = day 29 08:45 (Priya's comment), so on day 30 the note is fresh"
+  - file: sprint-week.md
+    kind: status
+    day: 28
+    time: "09:30"
+    attendees: [jordan, sofia, dev, omar, lena, yuki]
+    title: "Standup notes - week of Sep 21"
+    plants:
+      - "Halberd rollout on track for Oct 6 (cutover checklist sent)"
+      - "Two non-blocking regressions opened by QA (Lena): export CSV encoding; dashboard date filter - neither blocks Oct 6"
+      - "Veritas line 2 ingest: Sofia, target Wed"
+    must_include: ["on track for Oct 6", "non-blocking"]
+    labels: {storyline: S5, about: [rollout:halberd:oct-6, rollout:veritas:line-2], note_kind: status, claims: [{subject: halberd_rollout_status, value: "on track for Oct 6"}]}
+  - file: gtm-weekly.md
+    kind: meeting_notes
+    day: 27
+    time: "16:30"
+    attendees: [avery, tomas, kim, ana]
+    title: "GTM weekly - Sep 21"
+    plants:
+      - "Veritas: Walter pushed the renewal again — now 'next quarter' (2nd push). Tomás to follow up."
+      - "Pricing: 9/15 pipeline review agreed the Plant Bundle at $48k/yr for new mid-market (list $60k). Avery sign-off pending. Tomás wants to quote Meridian by Fri 9/25."
+      - "Northstar: Grace quiet; Tomás to check in (no date)"
+      - "Ridgeway: pilot scoping"
+    must_include: ["next quarter", "2nd push", "Plant Bundle", "$48k", "sign-off pending"]
+    labels: {storyline: [S7, S15], about: [renewal:veritas, pricing:plant-bundle], decisions: [{what: "Plant Bundle $48k/yr for new mid-market", decided_by: "pipeline review 9/15", about: pricing:plant-bundle}],
+             action_items: [{owner: avery, about: pricing:plant-bundle, due_day: 31, status_in_thread: open}, {owner: other, about: renewal:veritas, status_in_thread: open}],
+             stage_signals: [{entity: veritas, stage: at_risk, day: 27}]}
+  - file: hiring-sync.md
+    kind: meeting_notes
+    day: 23
+    time: "11:30"
+    attendees: [avery, jordan, tomas]
+    title: "Hiring sync - Sep 17"
+    plants:
+      - "Designer req: PAUSED until the raise closes (Avery). Tomás to tell Keystone."
+      - "Theo Lindgren: onsite today; debrief TBD (Jordan)"
+      - "Mei Tanaka: offer approved at L4; Tomás to send Monday"
+      - "Ines Ferreira: screen next week (Jordan)"
+      - "Open: 2 backend"
+    must_include: ["paused until the raise closes", "debrief TBD"]
+    labels: {storyline: S9, about: [hiring-req:designer, candidate:theo-lindgren, offer:mei-tanaka, candidate:ines-ferreira], stage_signals: [{entity: designer-req, stage: paused, day: 23}, {entity: theo-lindgren, stage: onsite, day: 23}, {entity: mei-tanaka, stage: offer_extended, day: 23}], claims: [{subject: open_reqs, value: "two backend engineers; designer paused"}]}
+  - file: jordan-1on1.md
+    kind: meeting_notes
+    day: 23
+    time: "10:00"
+    attendees: [avery, jordan]
+    title: "1:1 Jordan - Sep 17"
+    plants:
+      - "Veritas line 2 go-live next week; schema risk (Ivan's sample vs production feed); Sofia on call"
+      - "Theo debrief to schedule"
+      - "On-call rotation: Jordan wants a 5th person; parked to Q2 planning"
+    must_include: ["schema risk"]
+    labels: {storyline: S14, about: [rollout:veritas:line-2, candidate:theo-lindgren], claims: [{subject: veritas_line2_risk, value: "schema risk"}]}
+  - file: avery-todos.md
+    kind: todo
+    day: 20
+    time: "07:50"
+    attendees: []
+    title: "todos (personal scratch)"
+    plants:
+      - "- send Diane the Sept update (by 9/18)      ← duplicated in tasks.md with due 9/15 (different date)"
+      - "- SOC 2 to Halberd                            ← already done per email (Jordan sent it day 14; S5.b14 confirms)"
+      - "- reply to Hollis re board comp               ← done day 18 (t-hollis-3)"
+      - "- Lumen: get Priya's criteria"
+      - "- book Tahoe"
+    must_include: ["Sept update", "SOC 2 to Halberd"]
+    labels: {storyline: [S10, BG-soc2], note_kind: todo, about: [board-update:monthly, report:soc2-halberd, meeting:lumen-demo], action_items: [{owner: avery, about: board-update:monthly, due_day: 24, status_in_thread: open}, {owner: avery, about: report:soc2-halberd, due_day: null, status_in_thread: open}]}
+    expectations_note: "the duplicate must not become two board-update items; the SOC 2 line plus tasks.md task:4 vs S5.b14 → one tasks-vs-email contradiction"
+  - file: customer-health-review.md
+    kind: meeting_notes
+    day: 21
+    time: "15:15"
+    attendees: [avery, tomas, jordan, yuki]
+    title: "Customer health review - Sep 15"
+    plants:
+      - "Northstar: Grace slower to respond since ~Sep 10; no tickets; Tomás to check in"
+      - "Halberd: green; Oct 6; SSO fixed"
+      - "Veritas: new lead Nadia since 9/9; renewal timing unclear (Walter)"
+      - "Brightline: green"
+    must_include: ["slower to respond", "green"]
+    labels: {storyline: [S6, S5, S7], about: [other:northstar-cadence, rollout:halberd:oct-6, renewal:veritas], stage_signals: [{entity: northstar, stage: active, day: 21}, {entity: halberd, stage: active, day: 21}]}
+
+last_modified_header: "every rendered note and tasks.md starts with '<!-- last-modified: <ISO datetime PT> -->' (OPEN_QUESTIONS #6c) so staleness survives git clone; the file mtime is set to the same instant"
+
+tasks:
+  file: tasks.md
+  mtime_day: 18                 # 12 days before day 30 (data_generation §7); stale on every run day (>7 days)
+  mtime_time: "18:20"
+  format: "- [ ] <title> (due: YYYY-MM-DD)"
+  items:
+    - {id: "task:1", title: "Send Diane the September board update", due_day: 21, status: open, labels: {about: board-update:monthly, storyline: S10}, note: "overdue; duplicated in avery-todos.md with 9/18"}
+    - {id: "task:2", title: "Finalize Q2 planning doc for the Thu review", due_day: 30, status: open, labels: {about: report:q2-planning, storyline: BG-q2}, note: "the one due today"}
+    - {id: "task:3", title: "Close out August expenses in Ramp", due_day: 24, status: open, labels: {about: approval:expenses-september, storyline: BG-expenses}, note: "expense approvals; merges with the three Ramp emails"}
+    - {id: "task:4", title: "Send Halberd the SOC 2 Type II report", due_day: 17, status: open, labels: {about: report:soc2-halberd, storyline: BG-soc2}, note: "already done per email (S5.b14: Jordan sent it day 14) → stale task / contradiction"}
+    - {id: "task:5", title: "Review D&O renewal quote from Harbor", due_day: 56, status: open, labels: {about: other:dno-renewal, storyline: BG-harbor}, note: "far out; must not surface"}
+  absent: [deal:series-a:cap-table, pricing:deck-v2-feedback]     # S1 promise and S16 promise are in no task or todo

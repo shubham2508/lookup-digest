@@ -1,0 +1,86 @@
+id: S16
+name: fulfilled-pricing-feedback
+reviewed: false
+tier_truth: none
+summary: >
+  Wednesday day 22 Tomás sends the pricing deck v2 and asks for feedback by Friday; Avery replies in that thread
+  "will get you feedback by Friday". On Friday day 24 at 14:20 Avery sends the feedback in a NEW thread ("pricing
+  deck notes") with a different subject. The promise is fulfilled across threads and must not surface on any run
+  day; there is no todo for it anywhere. Tests: cross-thread fulfillment via `fulfills_hint` + about key +
+  recipient + time order (extraction_schema §6.3). Distinct from S15's Plant Bundle sign-off.
+
+threads:
+  - {id: t-pricing-deck-v2,    subject: "Pricing deck v2 - feedback by Friday?", category: internal_routine}
+  - {id: t-pricing-deck-notes, subject: "notes on the pricing deck",              category: internal_routine}
+
+beats:
+  - {ref: S16.b1, day: 22, time: "10:40", source: email, thread: t-pricing-deck-v2, from: tomas, to: [avery], cc: [ana],
+     event: "pricing deck v2 attached (tier naming, packaging); asks for feedback by Friday so Ana can use it Monday", must_include: ["feedback by Friday"], hardness: [long]}
+  - {ref: S16.b2, day: 22, time: "18:05", source: email, thread: t-pricing-deck-v2, from: avery, to: [tomas], cc: [ana],
+     event: "will get you feedback by Friday", must_include: ["will get you feedback by Friday"]}
+  - {ref: S16.b3, day: 24, time: "14:20", source: email, thread: t-pricing-deck-notes, from: avery, to: [tomas], cc: [ana],
+     event: "new thread: 'here are my notes on the pricing deck' — six bullet points on v2; 'as promised'", must_include: ["notes on the pricing deck", "as promised"]}
+  - {ref: S16.b4, day: 24, time: "16:50", source: email, thread: t-pricing-deck-notes, from: tomas, to: [avery], cc: [ana],
+     event: "thanks, folding them in — courtesy", must_include: ["thanks"]}
+
+labels:
+  - thread: t-pricing-deck-v2
+    category: internal_routine
+    storyline: S16
+    must_not_surface: true
+    must_not_reason: commitment_fulfilled_cross_thread
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: ask
+      about: [pricing:deck-v2-feedback]
+      ball_awaiting: avery            # within this thread alone; compute must close it via t-pricing-deck-notes
+      closed_by_courtesy: false
+      sender_relationship: {category: team, subtype: exec}
+      asks: [{to_avery: true, kind: review, deadline_day: 24, status: open}]
+      commitments: [{owner: avery, about: pricing:deck-v2-feedback, due_day: 24, due_time: "23:59", status_in_thread: open, fulfilled_by_source: t-pricing-deck-notes}]
+    messages:
+      - {beat_ref: S16.b1, day: 22, time: "10:40", from: tomas, to: [avery], cc: [ana], must_include: ["feedback by Friday"]}
+      - {beat_ref: S16.b2, day: 22, time: "18:05", from: avery, to: [tomas], cc: [ana], must_include: ["will get you feedback by Friday"], is_from_avery: true}
+  - thread: t-pricing-deck-notes
+    category: internal_routine
+    storyline: S16
+    must_not_surface: true
+    must_not_reason: last_word_courtesy_fulfilment
+    expected:
+      type: human_thread
+      domain: work
+      intent_primary: commitment_update
+      about: [pricing:deck-v2-feedback]
+      ball_awaiting: nobody
+      closed_by_courtesy: true
+      sender_relationship: {category: team, subtype: exec}
+      commitments: [{owner: avery, about: pricing:deck-v2-feedback, due_day: 24, status_in_thread: fulfilled}]   # fulfills_hint set here
+    messages:
+      - {beat_ref: S16.b3, day: 24, time: "14:20", from: avery, to: [tomas], cc: [ana], must_include: ["notes on the pricing deck", "as promised"], is_from_avery: true}
+      - {beat_ref: S16.b4, day: 24, time: "16:50", from: tomas, to: [avery], cc: [ana], must_include: ["thanks"]}
+  - task_absent: pricing:deck-v2-feedback
+
+contacts: []
+
+about_keys:
+  should_merge: [[pricing:deck-v2-feedback, pricing:deck-v2], [pricing:deck-v2-feedback, pricing:pricing-deck]]
+  should_not_merge: [[pricing:deck-v2-feedback, pricing:plant-bundle]]
+
+expectations:
+  - {run_day: 26, absent: [pricing:deck-v2-feedback], noise: [t-pricing-deck-v2, t-pricing-deck-notes]}
+  - {run_day: 27, absent: [pricing:deck-v2-feedback], noise: [t-pricing-deck-v2, t-pricing-deck-notes]}
+  - {run_day: 28, absent: [pricing:deck-v2-feedback], noise: [t-pricing-deck-v2, t-pricing-deck-notes]}
+  - {run_day: 29, absent: [pricing:deck-v2-feedback], noise: [t-pricing-deck-v2, t-pricing-deck-notes]}
+  - {run_day: 30, absent: [pricing:deck-v2-feedback], noise: [t-pricing-deck-v2, t-pricing-deck-notes]}
+
+assertions:
+  - {id: S16-absent-d26,        kind: item_absent,      run_day: 26, args: {about: pricing:deck-v2-feedback}, description: "eval.md §3 S16: fulfilled pricing feedback absent"}
+  - {id: S16-absent-d30,        kind: item_absent,      run_day: 30, args: {about: pricing:deck-v2-feedback}}
+  - {id: S16-no-overdue-cand,   kind: candidate_absent, run_day: 30, args: {type: commitment_overdue, about: pricing:deck-v2-feedback}}
+  - {id: S16-no-not-in-tasks,   kind: candidate_absent, run_day: 30, args: {type: commitment_not_in_tasks, about: pricing:deck-v2-feedback}}
+  - {id: S16-thread-noise,      kind: item_absent,      run_day: 30, args: {source_id: t-pricing-deck-v2}}
+
+sim_avery: []
+simulate: []
+variants: []
