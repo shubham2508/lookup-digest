@@ -1,6 +1,6 @@
 ---
 name: triage
-version: 4
+version: 5
 model_role: triage
 output_model: TriageBatch
 ---
@@ -39,7 +39,7 @@ RULES
 - include = false for RSVP reminders and scheduling chatter about internal recurring meetings, and for small past personal promises with no consequence today (bring lunch, text someone back). Family items stay.
 - A co-founder email whose contact rules include email_means_intentional is P0 when it asks for a decision or a reply, even if the stated deadline is later this week: the channel choice is the signal.
 - An escalation (intent escalation) from a Team exec about a customer incident is P0 while the team still holds the ball: Avery needs to know before the customer writes; propose a short reply or a task to call the customer, never a customer draft that asserts a fix.
-- Family P0 covers Sam, and Wren's care, health and schedule. A courtesy message to a relative or a social nicety is P2 at most and usually include = false.
+- Family P0 covers the contacts whose category is family and the care, health and schedule of the people they look after. A courtesy message to a relative or a social nicety is P2 at most and usually include = false.
 - news_attachment: include only when the item changes an action Avery already has (it attaches to an open item, today's meeting, or a decision in flight). Generic market, fundraising or industry news is include = false even when it mentions the Series A.
 - Ambiguity: preference (only this becomes a question card, with 2–3 options and a default), factual (show both sides in why; no question), third_party (someone else's intent → message_person). ambiguity is null or an object with type, question, options (2–3 strings) and default (a 1-based integer index into options; always present).
 - If a freshness cap applies (facts.freshness_note / facts.qualifier), say so in why and in the action assumptions; confidence at most medium.
@@ -51,15 +51,16 @@ RULES
 - Gender-neutral: never assign pronouns to Avery, Sam, or anyone; use names or "they".
 
 EXAMPLES (fragments)
-1. P0: commitment_overdue, about deal:series-a:cap-table, contact marcus-webb (capital, lead_investor, P0 during the raise), days_overdue 1 → include true, urgent, P0, due_today true, high; why "Promised Marcus the cap table Tuesday night; still unsent; term sheet waits"; actions: task {target "Send cap table to Marcus", brief "due 11:00 today"}, forward_delegate {target "ben@…", brief "ask Ben to confirm v3 is the latest and send it"}.
-2. P1: reply_owed from a reference customer asking whether a rollout date holds, context note says on track → include, urgent, P1, due_today true; action reply {brief "confirm Oct 6 is on; cutover checklist is with their team", assumptions ["sprint note of Tue says on track"]}.
+(The examples use made-up people and companies that do not appear in any mailbox you will see.)
+1. P0: commitment_overdue, about deal:seed-extension:data-room-index, contact dara-quinn (capital, lead_investor, P0 during the raise), days_overdue 1 → include true, urgent, P0, due_today true, high; why "Promised Dara the data-room index Monday; still unsent; the pricing review waits"; actions: task {target "Send the data-room index to Dara", brief "due 11:00 today"}, forward_delegate {target "ilse@…", brief "ask Ilse to confirm the redline is final and send it"}.
+2. P1: reply_owed from a reference customer asking whether a go-live date holds, context note says on track → include, urgent, P1, due_today true; action reply {brief "confirm Nov 3 is on; the cutover plan is with their team", assumptions ["Tuesday's standup note says on track"]}.
 3. P2: cadence_drop for a customer, ratio 4 → include, pulse, P2; action watch {brief "reply gap 1.2 → 4.8 days", watch_trigger "gap passes 7 days or a renewal date appears"}.
 4. P3: approval_pending for three expense reports → include, decisions, P3; action approve {target "Expensify", brief "approve 3 reports submitted Monday (~1 min)"}.
-5. Delegate: recruiter sends designer candidates while the req is paused → include, pulse, P2; action forward_delegate {target "tomas@…", brief "req is paused; ask them to hold candidates"}.
-6. Question card (preference): a 14-message forward with only "thoughts?" → include, decisions, P1; ambiguity {type "preference", question "Northstar forward: renewal risk, billing, or FYI?", options ["treat as renewal risk", "billing: delegate to Tomás", "FYI only"], default 2}; actions: question {brief the same}, read {read_start "<message id>"}.
+5. Delegate: a search firm keeps sending analyst candidates while that req is on hold → include, pulse, P2; action forward_delegate {target "nia@…", brief "req is on hold; ask them to pause intros"}.
+6. Question card (preference): a 9-message forward with only "?" → include, decisions, P1; ambiguity {type "preference", question "Halden forward: churn risk, billing, or FYI?", options ["treat as churn risk", "billing: delegate to Nia", "FYI only"], default 2}; actions: question {brief the same}, read {read_start "<message id>"}.
 7. Freshness-capped: quiet_thread with qualifier "may be a sync gap" → confidence medium; why "…quiet 3 business days, may be a sync gap (inbox stale)"; assumptions ["inbox not synced since Tue"].
 8. include=false: an FYI from a P1 sender ("sharing the deck, no action") → include false, section pulse, priority P3, why "FYI only; nothing owed".
-9. Family (P0, no draft): calendar_conflict:family created last night by Sam → include, calendar_personal, P0; ambiguity {type "third_party", …}; action message_person {target "sam@…", brief "ask whether Avery is expected to take Wren at 3pm", assumptions []}.
+9. Family (P0, no draft): calendar_conflict:family created last night by a family contact whose rules include never_draft → include, calendar_personal, P0; ambiguity {type "third_party", …}; action message_person {target that contact, brief "ask whether Avery is expected at the 4pm appointment", assumptions []}.
 
 === CANDIDATES ===
 {{candidates}}
