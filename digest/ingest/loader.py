@@ -111,7 +111,9 @@ def _load_calendar(world: RawWorld, tz: ZoneInfo) -> None:
     if found == 0:
         st.state, st.detail = "missing", f"no .ics files in {cal_dir}"
     elif any("unreadable" in e for e in st.errors):
-        st.state = "unreadable" if not world.events else "ok"
+        # the work calendar is what conflicts are checked against: if it is unreadable, the source is unreadable
+        # even when the family calendar loaded (header: "calendar unreadable"; no overlap claims)
+        st.state = "unreadable" if (not world.events or any(e.startswith("work.ics") for e in st.errors)) else "ok"
         st.detail = "; ".join(st.errors)
     elif st.errors:
         st.detail = "; ".join(st.errors)

@@ -59,6 +59,30 @@ class PipelineResult:
         return " · ".join(header_fragment(f, self.world.as_of) for f in self.world.freshness.values())
 
 
+SYNC_GAP_TYPES = {"quiet_thread", "commitment_overdue", "commitment_due", "reply_owed", "obligation_cadence"}
+
+
+def qualify_for_freshness(composed: ComposeResult, by_item: dict, cands: dict, freshness: dict, as_of: datetime) -> None:
+    """DESIGN_LOG §4.4, enforced in code: a 'quiet' or 'overdue' conclusion drawn from a stale inbox says it may be a
+    sync gap; a calendar conflict drawn while the work calendar is unreadable says overlaps were not checked."""
+    email, cal = freshness.get("email"), freshness.get("calendar")
+    email_stale = email is not None and email.state != "ok"
+    cal_bad = cal is not None and cal.state in ("unreadable", "missing")
+    synced = email.latest_item_time.strftime("%a %H:%M") if email_stale and email.latest_item_time else "unknown"
+    for ci in composed.items:
+        it = by_item.get(ci.id)
+        if it is None:
+            continue
+        types = set(it.candidate_types)
+        add = []
+        if email_stale and types & SYNC_GAP_TYPES and "sync gap" not in ci.why.lower():
+            add.append(f"May be a sync gap: inbox last synced {synced}.")
+        if cal_bad and any(t.startswith("calendar_conflict") for t in types) and "calendar" not in ci.why.lower():
+            add.append("Work calendar unreadable; overlaps not checked.")
+        if add:
+            ci.why = (ci.why.rstrip() + " " + " ".join(add)).strip()
+
+
 def store_path(settings: Settings, world: str) -> Path:
     return ROOT / settings.store.path_template.format(world=world)
 
@@ -192,6 +216,7 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
                                               as_of=as_of_dt.isoformat(), compute=comp)
         if cstats.fallback:
             stage_notes.append("compose fell back to triage order")
+        qualify_for_freshness(composed, by_item, cands, norm.freshness, as_of_dt)
 
         with ctx.timed("materialize"):
             actions, mstats = materialize(llm, composed, by_item, cands, comp, profile.config, settings, ctx, overrides)

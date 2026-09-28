@@ -64,6 +64,7 @@ class ModelsConfig(BaseModel):
 
 class Budget(BaseModel):
     length_words: int = 350
+    max_items: int = 12
     k_cap: int = 25
     question_budget: int = 2
     evidence_quote_max_words: int = 20

@@ -126,7 +126,7 @@ def _llm_choice(card: QuestionCard, item: RenderedItem | None, manifest: Manifes
 DigestCmd = Callable[[list[str]], tuple[int, str]]
 
 
-STEP_TIMEOUT_S = 900  # a hung pipeline run fails the step instead of stalling the matrix (integration, 2026-09-28)
+STEP_TIMEOUT_S = 1800  # a hung pipeline run fails the step instead of stalling the matrix (integration, 2026-09-28)
 
 
 def run_digest_cli(args: list[str]) -> tuple[int, str]:

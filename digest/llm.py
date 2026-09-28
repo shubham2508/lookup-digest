@@ -232,7 +232,7 @@ class LLM:
                     api_key=key,
                     max_retries=self._max_retries_transport,
                     # a hung request must fail fast and be retried, never stall a run (integration, 2026-09-28)
-                    timeout=httpx.Timeout(180.0, connect=20.0),
+                    timeout=httpx.Timeout(90.0, connect=15.0),
                     default_headers={"X-Title": self.models.provider.app_name},
                 )
             return self._client

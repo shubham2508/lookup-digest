@@ -93,6 +93,13 @@ class Materializer:
         self.effective = [f for f in compute.facts_for_prompt() if f["data_value"] is not None]
 
     # ------------------------------------------------------------------ LLM
+    def _relevant_facts(self, evidence: list[Evidence]) -> list[dict]:
+        """A draft needs the facts behind its own citations and any profile-vs-data drift (e.g. ARR), not all
+        ~370 facts in the mailbox (integration: that was 95k characters per draft)."""
+        sources = {e.source_id for e in evidence}
+        keep = [f for f in self.effective if f.get("drift") or any(ev.get("source_id") in sources for ev in f.get("evidence", []))]
+        return [{k: f[k] for k in ("subject", "effective", "profile_value", "data_value", "drift") if k in f} for f in keep][:20]
+
     def _call(self, action: ProposedAction, recipient: dict | None, evidence: list[Evidence], out_model, tag: str, extra: str = ""):
         tone = list(self.profile.tone)
         if self.customize and self.customize.tone.formality != "default":
@@ -102,7 +109,7 @@ class Materializer:
             recipient=json.dumps(recipient, ensure_ascii=False) if recipient else "null",
             assumptions=json.dumps(action.assumptions, ensure_ascii=False),
             evidence=json.dumps([e.model_dump() for e in evidence], ensure_ascii=False),
-            effective_facts=json.dumps(self.effective, ensure_ascii=False, default=str),
+            effective_facts=json.dumps(self._relevant_facts(evidence), ensure_ascii=False, default=str),
             tone=json.dumps(tone, ensure_ascii=False),
             customize_instructions=json.dumps(self.customize.materializer_instructions) if self.customize and self.customize.materializer_instructions else "null",
         )

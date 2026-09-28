@@ -7,6 +7,7 @@ digest_time: "06:00"
 
 budget:
   length_words: 350          # DESIGN_LOG O13; excludes header and action blocks
+  max_items: 12              # items on the page (one thing + sections); P0s are never cut
   k_cap: 25                  # reduce: max items before "also pending"
   question_budget: 2         # compose: max question cards
   evidence_quote_max_words: 20
@@ -47,7 +48,7 @@ llm:
   cache_dir: .cache/llm
   max_workers: 8
   seed: 7
-  max_retries_transport: 3
+  max_retries_transport: 2
 
 store:
   path_template: "runs/{world}/store.sqlite"

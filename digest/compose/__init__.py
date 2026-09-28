@@ -102,7 +102,8 @@ def fallback_compose(reduced: ReduceResult, cands: dict[str, Candidate], k_items
                          header_notes=["compose unavailable: items shown in triage order"], cut_ids=cut)
 
 
-def validate_compose(result: ComposeResult, reduced: ReduceResult, question_budget: int, stats: ComposeStats) -> ComposeResult:
+def validate_compose(result: ComposeResult, reduced: ReduceResult, question_budget: int, stats: ComposeStats,
+                     max_items: int | None = None) -> ComposeResult:
     known = {it.id: it for it in reduced.items}
     items: list[ComposeItem] = []
     seen_ids: set[str] = set()
@@ -151,6 +152,21 @@ def validate_compose(result: ComposeResult, reduced: ReduceResult, question_budg
         block.item_ids.append(iid)
         placed.add(iid)
         stats.fixes.append(f"{iid} is P0 → restored from also pending to {known[iid].section}")
+    # one page: beyond max_items, the lowest-ranked non-P0 items move to also-pending (reduce order = rank)
+    if max_items:
+        rank = {it.id: n for n, it in enumerate(reduced.items)}
+        on_page = ([one] if one else []) + [i for b in sections for i in b.item_ids]
+        extra = len(on_page) - max_items
+        for iid in sorted((i for i in on_page if i != one and known[i].priority != "P0"), key=lambda i: -rank.get(i, 0)):
+            if extra <= 0:
+                break
+            for b in sections:
+                if iid in b.item_ids:
+                    b.item_ids.remove(iid)
+            placed.discard(iid)
+            cut.append(iid)
+            extra -= 1
+            stats.fixes.append(f"{iid} moved to also pending (page limit {max_items})")
     # items placed but without a compose item entry → synthesize from the reduced item
     for iid in placed:
         if iid not in ids_in_items:
@@ -239,7 +255,7 @@ def compose_digest(llm: LLM, reduced: ReduceResult, cands: dict[str, Candidate],
         if ctx is not None:
             ctx.degrade("compose", "digest", type(e).__name__, detail=str(e)[:300])
         result = fallback_compose(reduced, cands)
-    out = validate_compose(result, reduced, settings.budget.question_budget, stats)
+    out = validate_compose(result, reduced, settings.budget.question_budget, stats, settings.budget.max_items)
     if hidden or outside:
         placed = {out.one_thing_id} | {i for b in out.sections for i in b.item_ids}
         for iid in hidden + outside:

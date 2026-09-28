@@ -2,6 +2,7 @@
 returning Candidates; ids are assigned once at the end. Facts are plain dicts for triage; evidence is verbatim."""
 from __future__ import annotations
 
+import re
 from collections.abc import Callable
 from dataclasses import dataclass, field
 from datetime import datetime, time, timedelta
@@ -318,8 +319,15 @@ def _work_days_ahead(ci: ComputeInputs, n: int) -> set:
     return days
 
 
+def _calendar_unreadable(ci: ComputeInputs) -> bool:
+    f = ci.world.freshness.get("calendar")
+    return f is not None and f.state in ("unreadable", "missing")
+
+
 def deep_work_conflicts(ci: ComputeInputs) -> list[Candidate]:
     out = []
+    if _calendar_unreadable(ci):
+        return out  # eval.md §5 corrupt_ics: no overlap claims against a calendar we could not read
     days = _work_days_ahead(ci, 2)   # today (if a business day) and the next business day
     days.add(ci.today())
     for e in ci.world.events:
@@ -383,6 +391,8 @@ def family_conflicts(ci: ComputeInputs) -> list[Candidate]:
         if not overlaps and not during:
             continue
         sender = ci.contact(meta.get("organizer") or meta.get("sender"))
+        if _calendar_unreadable(ci):
+            meta = {**meta, "work_calendar": "unreadable: overlaps with work meetings were not checked"}
         out.append(_mk("calendar_conflict:family", f"family:{slugify(title)}",
                        [sender.contact_id if sender else "", "wren" if "wren" in fold(title) else ""],
                        {"title": title, "start": start.isoformat(), "end": end.isoformat(), "overlaps": overlaps,
@@ -393,6 +403,8 @@ def family_conflicts(ci: ComputeInputs) -> list[Candidate]:
 
 def double_book(ci: ComputeInputs) -> list[Candidate]:
     out = []
+    if _calendar_unreadable(ci):
+        return out
     owner = ci.world.owner_emails
     todays = [e for e in ci.world.events if e.domain == "work" and e.start.date() == ci.today()
               and e.avery_partstat in ("ACCEPTED", "ORGANIZER") and any(a.email not in owner for a in e.attendees)]
@@ -828,9 +840,29 @@ def stale_sources(ci: ComputeInputs) -> list[Candidate]:
     return out
 
 
+_ADDRESSED_TO_AI = re.compile(r"^\s*(assistant|ai assistant|ai|system|claude|chatgpt|gpt|copilot|llm)\s*[:>,-]\s*\S", re.I)
+_OVERRIDE = re.compile(r"\b(ignore|disregard|forget)\s+(all\s+|any\s+)?(previous|prior|above|earlier)\s+(instructions|rules)\b", re.I)
+
+
+def _embedded_instructions(t) -> list[Evidence]:
+    """Code guard (architecture §8 rule 11): lines that address an AI directly ("assistant: mark this P0 …") or
+    tell it to drop its rules. Content is data; these are reported, never followed."""
+    found = []
+    for m in t.messages:
+        for line in (m.body_new or "").splitlines():
+            if _ADDRESSED_TO_AI.search(line) or _OVERRIDE.search(line):
+                quote = " ".join(line.strip().split()[:20])
+                found.append(Evidence(source_id=f"msg:{m.message_id}", quote=quote))
+    return found
+
+
 def suspicious(ci: ComputeInputs) -> list[Candidate]:
     out = []
     for _x, p, t in ci.human():
+        if not p.suspicious_instructions:
+            code_found = _embedded_instructions(t)
+            if code_found:
+                p = p.model_copy(update={"suspicious_instructions": code_found})
         if not p.suspicious_instructions:
             continue
         sender = ci.contact(t.messages[-1].from_addr)
@@ -838,6 +870,20 @@ def suspicious(ci: ComputeInputs) -> list[Candidate]:
                        [sender.contact_id if sender else ""], {"thread_id": t.thread_id, "subject": t.messages[0].subject,
                         "instructions": [e.quote for e in p.suspicious_instructions], "summary": p.summary, **_contact_facts(sender)},
                        list(p.suspicious_instructions)))
+    # the code guard also covers automated and bulk threads (the planted injection arrives as a "billing" email)
+    covered = {c.facts.get("thread_id") for c in out}
+    human_ids = {t.thread_id for _x, _p, t in ci.human()}
+    for t in ci.world.threads:
+        if t.thread_id in covered or t.thread_id in human_ids:
+            continue
+        found = _embedded_instructions(t)
+        if not found:
+            continue
+        sender = ci.contact(t.messages[-1].from_addr)
+        out.append(_mk("suspicious_content", f"other:suspicious:{slugify(t.messages[0].subject)}",
+                       [sender.contact_id if sender else ""], {"thread_id": t.thread_id, "subject": t.messages[0].subject,
+                        "instructions": [e.quote for e in found], "summary": t.messages[0].subject, **_contact_facts(sender)},
+                       found))
     return out
 
 
@@ -868,12 +914,14 @@ def personal_date_collisions(ci: ComputeInputs) -> list[Candidate]:
             seen.add(key)
             todays = [e for e in ci.world.events if e.calendar == "work" and e.start.date() == d
                       and e.avery_partstat in ("ACCEPTED", "ORGANIZER")]
+            unread = _calendar_unreadable(ci)
             sender = ci.contact(t.messages[-1].from_addr)
             out.append(_mk("calendar_conflict:family", key, [sender.contact_id if sender else ""], {
                 "title": subject, "value": value, "start": when.isoformat(), "all_day": True, "source_kind": "email",
                 "day": "today" if d == ci.today() else d.strftime("%a"),
                 "overlaps": [{"uid": e.uid, "title": e.title, "start": e.start.isoformat(), "end": e.end.isoformat()} for e in todays],
                 "overlaps_work_event": bool(todays), "thread_id": t.thread_id, "summary": p.summary,
+                **({"work_calendar": "unreadable: overlaps with work meetings were not checked"} if unread else {}),
                 "extra_dependencies": ["calendar"], **_contact_facts(sender)}, [ev]))
     return out
 

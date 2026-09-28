@@ -45,6 +45,11 @@ def _tier_prior(item_entities: list[str], compute: ComputeResult) -> tuple[int, 
     return (min(tiers) if tiers else 4, min(cats) if cats else 7)
 
 
+def _cap_confidence(conf: str, cap: str) -> str:
+    """DESIGN_LOG §4.4: a conclusion resting on a stale or missing source is at most medium confidence."""
+    return "medium" if cap != "none" and conf == "high" else conf
+
+
 def reduce_items(results: list[TriageResult], cands: list[Candidate], compute: ComputeResult, k_cap: int,
                  about_merges: list[AboutMerge] | None = None) -> ReduceResult:
     by_id = {c.candidate_id: c for c in cands}
@@ -87,7 +92,8 @@ def reduce_items(results: list[TriageResult], cands: list[Candidate], compute: C
         item = ReduceItem(
             id="", about=about, candidate_ids=[r.candidate_id for r in rs], candidate_types=[by_id[r.candidate_id].type for r in rs],
             priority=top.priority, section=top.section, due_today=any(r.due_today for r in rs),
-            confidence=min((r.confidence for r in rs), key=lambda x: CONFIDENCE_ORDER[x]), why=top.why, citations=cits[:6],
+            confidence=_cap_confidence(min((r.confidence for r in rs), key=lambda x: CONFIDENCE_ORDER[x]),
+                                       max((c.freshness_cap for c in cs), key=lambda x: FRESH_ORDER[x])), why=top.why, citations=cits[:6],
             proposed_actions=acts, ambiguity=amb, entities=ents, times_surfaced=max(c.times_surfaced for c in cs),
             freshness_cap=max((c.freshness_cap for c in cs), key=lambda x: FRESH_ORDER[x]),
         )
