@@ -55,16 +55,51 @@ def reduce_items(results: list[TriageResult], cands: list[Candidate], compute: C
     by_id = {c.candidate_id: c for c in cands}
     kept = [r for r in results if r.include and r.candidate_id in by_id]
     dropped = [r.candidate_id for r in results if not r.include]
-    groups: dict[tuple[str, str], list[TriageResult]] = {}
+    # One item per underlying thing (architecture §7 merges by about key). Two candidates are the same thing when
+    # they share a qualified about key (deal:series-a:cap-table, across threads) or come from the same source thread
+    # (reply owed + gone quiet + promise overdue on one email thread are one item, not three). A coarse key
+    # (deal:series-a) names a whole area, so it alone never joins different threads.
+    parent = {r.candidate_id: r.candidate_id for r in kept}
+
+    def find(x: str) -> str:
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+
+    def join(a: str, b: str) -> None:
+        ra, rb = find(a), find(b)
+        if ra != rb:
+            parent[rb] = ra
+
+    first_by: dict[tuple[str, str], str] = {}
     for r in kept:
         c = by_id[r.candidate_id]
-        # architecture §7 merges by about key. A coarse key (deal:series-a, other:foo) names a whole area, not one
-        # thing, so candidates under it stay separate per source thread; a qualified key (deal:series-a:cap-table)
-        # merges across threads as the spec intends.
-        coarse = c.about.count(":") < 2
-        groups.setdefault((c.about, str(c.facts.get("thread_id") or "") if coarse else ""), []).append(r)
+        keys = []
+        if c.about.count(":") >= 2:
+            keys.append(("about", c.about))
+        if c.facts.get("thread_id"):
+            keys.append(("thread", str(c.facts["thread_id"])))
+        if not keys:
+            keys.append(("about", c.about))
+        for k in keys:
+            if k in first_by:
+                join(first_by[k], r.candidate_id)
+            else:
+                first_by[k] = r.candidate_id
+    groups_by_root: dict[str, list[TriageResult]] = {}
+    for r in kept:
+        groups_by_root.setdefault(find(r.candidate_id), []).append(r)
+
+    def _item_about(rs: list[TriageResult]) -> str:
+        cs = [by_id[r.candidate_id] for r in rs]
+        top = min(rs, key=lambda r: (PRIORITY_ORDER[r.priority], not r.due_today))
+        # the most specific key among the merged candidates, preferring the top-priority one's
+        return max((c.about for c in cs), key=lambda a: (a == by_id[top.candidate_id].about, a.count(":"), len(a)))
+
+    groups = {(_item_about(rs), root): rs for root, rs in groups_by_root.items()}
     items: list[tuple[ReduceItem, tuple]] = []
-    for (about, _thread), rs in groups.items():
+    for (about, _root), rs in groups.items():
         rs.sort(key=lambda r: (PRIORITY_ORDER[r.priority], not r.due_today, CONFIDENCE_ORDER[r.confidence]))
         top = rs[0]
         cs = [by_id[r.candidate_id] for r in rs]

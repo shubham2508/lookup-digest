@@ -83,6 +83,21 @@ def qualify_for_freshness(composed: ComposeResult, by_item: dict, cands: dict, f
             ci.why = (ci.why.rstrip() + " " + " ".join(add)).strip()
 
 
+def _decider(llm: LLM, settings: Settings, ctx: RunContext):
+    """Jev for the linker's pick-one questions when config/models.yaml has a `decider` role; None otherwise."""
+    role = llm.models.roles.get("decider")
+    if role is None or not role.model or not role.model.startswith("typesafe/"):
+        return None
+    from .compute.jev import JevDecider
+    from .llm import load_api_key
+
+    key = load_api_key(llm.models.provider.api_key_env)
+    if not key:
+        return None
+    return JevDecider(api_key=key, model=role.model, cache_dir=ROOT / settings.llm.cache_dir, cost_log=ctx.cost_log,
+                      trace_log=ctx.trace_log)
+
+
 def store_path(settings: Settings, world: str) -> Path:
     return ROOT / settings.store.path_template.format(world=world)
 
@@ -176,7 +191,7 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
                 stage_notes.append(f"{kind} {f.state}")
 
         with ctx.timed("compute"):
-            comp = compute_world(norm, extractions, profile.config, settings, as_of_dt, llm=llm, ctx=ctx)
+            comp = compute_world(norm, extractions, profile.config, settings, as_of_dt, llm=llm, ctx=ctx, decider=_decider(llm, settings, ctx))
             plain = variant is None and customize is None
             surfaced = times_surfaced(st, world, as_of_dt, tag=tag) if plain else {}
             for c in comp.candidates:

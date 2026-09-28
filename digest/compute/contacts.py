@@ -11,8 +11,6 @@ from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 
-from rapidfuzz import fuzz
-
 from ..normalize import NormalizedWorld
 from ..schemas import (
     Behavior,
@@ -91,24 +89,6 @@ class ContactDirectory:
         return out
 
 
-def _org_matches(org_text: str, orgs: list[str]) -> str | None:
-    t = fold(org_text)
-    if not t:
-        return None
-    for o in orgs:
-        fo = fold(o)
-        first = fo.split()[0] if fo else ""
-        if fo in t or t in fo or (first and first in t.replace("-", " ").split()) or fuzz.partial_ratio(fo, t) >= 90:
-            return o
-    return None
-
-
-def _title_matches(title: str | None, role: str) -> bool:
-    if not title:
-        return False
-    return fuzz.token_set_ratio(fold(title), fold(role)) >= 80
-
-
 def collect_observations(world: NormalizedWorld, extractions: list[Extraction]) -> dict[str, _Obs]:
     obs: dict[str, _Obs] = {}
     owner = world.owner_emails
@@ -175,7 +155,32 @@ def _profile_contacts(profile: ProfileConfig) -> tuple[list[Contact], list[RoleR
     return contacts, rules
 
 
-def build_contacts(world: NormalizedWorld, extractions: list[Extraction], profile: ProfileConfig) -> ContactDirectory:
+def _role_at_org_answers(pending, rules, linker) -> dict[int, int]:
+    """{pending index → rule index}: which profile role-at-org rule (e.g. 'procurement lead at Halberd, Northstar or
+    Veritas') a sender holds, judged by the linker from their signature title and org. Without a linker: exact
+    (case-insensitive) org name or domain, and the role phrase contained in the title."""
+    if not rules:
+        return {}
+    if linker is None:
+        out = {}
+        for i, (c, o) in enumerate(pending):
+            orgs_seen = {fold(c.org or ""), fold(org_from_domain(o.email) or "")}
+            for j, r in enumerate(rules):
+                if orgs_seen & {fold(x) for x in r.orgs} and c.title and fold(r.role) in fold(c.title):
+                    out[i] = j
+                    break
+        return out
+    from .linker import LinkOption, LinkQuestion
+
+    options = [LinkOption(id=f"r{j}", text=f"{r.role} at one of: {', '.join(r.orgs)}") for j, r in enumerate(rules)]
+    qs = [LinkQuestion(id=f"s{i}", item=f"{c.names[0] if c.names else o.email} <{o.email}>; title: {c.title or 'none'}; "
+                                       f"org: {c.org or org_from_domain(o.email) or 'unknown'}", options=options)
+          for i, (c, o) in enumerate(pending) if c.title or c.org]
+    ans = linker.match("role_at_org", qs)
+    return {int(q[1:]): int(m[0][1:]) for q, m in ans.items() if m}
+
+
+def build_contacts(world: NormalizedWorld, extractions: list[Extraction], profile: ProfileConfig, linker=None) -> ContactDirectory:
     contacts, rules = _profile_contacts(profile)
     by_email: dict[str, Contact] = {e: c for c in contacts for e in c.emails}
     by_slug: dict[str, Contact] = {c.contact_id: c for c in contacts}
@@ -221,18 +226,17 @@ def build_contacts(world: NormalizedWorld, extractions: list[Extraction], profil
             for e in c.emails:
                 learned_domains[domain_of(e)] = c.relationship.category
     unresolved: list[tuple[Contact, _Obs]] = []
-    for c, o in pending:
+    role_answers = _role_at_org_answers(pending, rules, linker)
+    for i, (c, o) in enumerate(pending):
         email = o.email
-        org_text = c.org or org_from_domain(email)
         matched = False
-        for r in rules:
-            if (_org_matches(org_text, r.orgs) or _org_matches(org_from_domain(email), r.orgs)) and _title_matches(c.title, r.role):
-                c.relationship = Relationship(category=r.contact.category, subtype=r.contact.subtype, source="profile",
-                                              evidence=c.relationship.evidence)
-                c.tier = r.contact.tier
-                c.profile_rules = list(r.contact.rules)
-                matched = True
-                break
+        if i in role_answers:
+            r = rules[role_answers[i]]
+            c.relationship = Relationship(category=r.contact.category, subtype=r.contact.subtype, source="profile",
+                                          evidence=c.relationship.evidence)
+            c.tier = r.contact.tier
+            c.profile_rules = list(r.contact.rules)
+            matched = True
         if matched:
             if c.relationship.category in LEARNABLE:
                 learned_domains[domain_of(email)] = c.relationship.category
@@ -274,7 +278,7 @@ def _entity_contacts(d: ContactDirectory, name: str, hint: str | None) -> list[C
     if c:
         return [c]
     # org-level entity: every contact of that org
-    hits = [x for x in d.contacts if x.org and _org_matches(x.org, [name])]
+    hits = [x for x in d.contacts if x.org and fold(x.org) == fold(name)]
     return hits
 
 

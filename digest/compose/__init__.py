@@ -133,6 +133,13 @@ def validate_compose(result: ComposeResult, reduced: ReduceResult, question_budg
     one = result.one_thing_id if result.one_thing_id in known else None
     if result.one_thing_id and one is None:
         stats.fixes.append("one_thing_id unknown; cleared")
+    p0 = [it.id for it in reduced.items if it.priority == "P0"]
+    if one and p0 and known[one].priority != "P0":
+        stats.fixes.append(f"one thing {one} is not P0 while P0 items exist → {p0[0]}")
+        for b in sections:
+            if p0[0] in b.item_ids:
+                b.item_ids.remove(p0[0])
+        one = p0[0]
     if one:
         placed.add(one)
         for b in sections:

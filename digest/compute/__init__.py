@@ -87,11 +87,11 @@ def _inherit_org_tiers(directory) -> None:
 
 
 def compute_world(world: NormalizedWorld, extractions: list[Extraction], profile: ProfileConfig, settings: Settings,
-                  as_of: datetime, llm=None, ctx=None) -> ComputeResult:
+                  as_of: datetime, llm=None, ctx=None, decider=None) -> ComputeResult:
     from .linker import Linker
 
-    linker = Linker(llm, ctx)
-    directory = build_contacts(world, extractions, profile)
+    linker = Linker(llm, ctx, decider=decider)
+    directory = build_contacts(world, extractions, profile, linker)
     _inherit_org_tiers(directory)
     behavior_stats(directory, world, as_of, settings.thresholds_default.behavior_window_days)
     slug_map = directory.slug_map()

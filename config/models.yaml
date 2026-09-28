@@ -21,6 +21,9 @@ roles:
   materializer: {model: openai/gpt-6-luna, family: openai, reasoning_effort: low}
   compiler:     {model: openai/gpt-6-luna, family: openai, reasoning_effort: low}
   linker:       {model: openai/gpt-6-luna, family: openai, reasoning_effort: low}   # 'same thing?' decisions in compute (replaces word similarity)
+  # Jev (TypeSafe's classifier model, OpenRouter /api/alpha/decisions) answers the linker's pick-one questions first;
+  # the linker role above is the fallback. Remove this line to run the linker on the LLM only.
+  decider:      {model: typesafe/jev-1.13, family: typesafe}
   generator:    {model: claude-code-session, family: anthropic, reasoning_effort: null}
   judge:        {model: null, family: null, reasoning_effort: medium}   # PENDING: picked after the Fable round below
   # One-time calibration reference (Shubham, 2026-09-28): the first judging round runs on Fable so the cheap judge

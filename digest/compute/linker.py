@@ -51,6 +51,9 @@ class TopicGroups(Model):
 
 
 TASKS = {
+    "topics": ("Each item is a topic key with what a document said about it. Options are other keys of the same kind. "
+               "Pick the one that names exactly the same concrete thing (same deal step, same person's hiring loop, same "
+               "incident, same rollout), or none. A general topic and a specific part of it are different things."),
     "promise_in_tasks": ("Each item is a promise Avery made. Options are Avery's open tasks and todo lines. Match an option only "
                          "if it tracks the same deliverable to the same person (sending the cap table ≠ reviewing the cap table)."),
     "fulfilled_elsewhere": ("Each item is an open promise Avery made. Options are later messages, in other threads, where Avery "
@@ -61,6 +64,9 @@ TASKS = {
                                "same people on nearby dates. Match the one event that is the same meeting, or none."),
     "declined_meeting_fallout": ("Each item is a meeting Avery declined. Options are decisions, agreements and requests dated after it. "
                                  "Match the ones that came out of that meeting or need Avery's sign-off because of it."),
+    "role_at_org": ("Each item is a sender (name, email, signature title, organization). Options are roles at named "
+                    "organizations from the owner's profile. Match only if the sender holds that role at one of those "
+                    "organizations (an acting or new holder of the role counts; a colleague in a different role does not)."),
     "news_to_open_item": ("Each item is a newsletter story. Options are things Avery is dealing with right now. Match only if the "
                           "story changes what Avery should do or say about that item (a price change on a cost Avery is deciding, "
                           "a customer's public statement before a reply to that customer). General industry or fundraising news "
@@ -73,11 +79,35 @@ class Linker:
     llm: LLM | None
     ctx: object | None = None
     log: list[dict] = field(default_factory=list)
+    decider: object | None = None   # compute/jev.JevDecider: Jev answers first; the LLM is the fallback
+
+    def _jev(self, task: str, questions: list[LinkQuestion]) -> dict[str, list[str]] | None:
+        if self.decider is None:
+            return None
+        from .jev import JevError
+
+        try:
+            picks = self.decider.pick(task, TASKS[task], questions)
+        except JevError as e:
+            if self.ctx is not None:
+                self.ctx.degrade("compute", f"link:{task}", "jev_failed_fallback_llm", detail=str(e)[:200])
+            return None
+        out: dict[str, list[str]] = {}
+        for q in questions:
+            choice, prob = picks.get(q.id, (None, 0.0))
+            out[q.id] = [choice] if choice else []
+            self.log.append({"task": task, "question": q.id, "matches": out[q.id], "reason": f"jev p={prob:.2f}", "by": "jev"})
+        return out
 
     def match(self, task: str, questions: list[LinkQuestion]) -> dict[str, list[str]]:
         """{question id → option ids judged the same thing}. Only options offered can come back."""
         questions = [q for q in questions if q.options]
-        if not questions or self.llm is None:
+        if not questions:
+            return {}
+        jev = self._jev(task, questions)
+        if jev is not None:
+            return jev
+        if self.llm is None:
             return {}
         prompt = load_prompt("linker")
         text = prompt.render(task=TASKS[task], questions=json.dumps([q.model_dump() for q in questions], ensure_ascii=False))
@@ -101,7 +131,28 @@ class Linker:
         """Groups of topic keys naming the same thing. by_kind: kind → [{key, text}]. Only same-kind keys group
         (plus offer/candidate for one person's loop), and every member must be a key that was offered."""
         payload = {k: v for k, v in by_kind.items() if len(v) >= 2}
-        if not payload or self.llm is None:
+        if not payload:
+            return []
+        if self.decider is not None:
+            # Jev: one pick-one question per key ("which other key of this kind is the same thing, or none?")
+            qs, ids = [], {}
+            for _kind, rows in payload.items():
+                for i, row in enumerate(rows):
+                    opts = []
+                    for j, other in enumerate(rows):
+                        if j != i:
+                            oid = f"k{len(ids)}"
+                            ids[oid] = other["key"]
+                            opts.append(LinkOption(id=oid, text=f"{other['key']}: {other['text']}"))
+                    qs.append(LinkQuestion(id=f"q{len(qs)}|{row['key']}", item=f"{row['key']}: {row['text']}", options=opts))
+            jev = self._jev("topics", qs)
+            if jev is not None:
+                groups = []
+                for q in qs:
+                    for m in jev.get(q.id, []):
+                        groups.append([q.id.split("|", 1)[1], ids[m]])
+                return groups
+        if self.llm is None:
             return []
         prompt = load_prompt("topic_grouper")
         text = prompt.render(topics=json.dumps(payload, ensure_ascii=False))

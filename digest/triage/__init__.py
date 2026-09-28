@@ -7,8 +7,6 @@ import json
 from dataclasses import dataclass, field
 from datetime import datetime
 
-from rapidfuzz import fuzz
-
 from ..compute import ComputeResult
 from ..config import Settings
 from ..llm import LLM, LLMResult
@@ -32,12 +30,17 @@ class TriageStats:
 
 
 def ruling_matches(r: dict, c: Candidate) -> bool:
+    """A learned rule applies only where it was learned: every scope field present must match exactly (topic AND
+    person AND kind). The old any-one-field match let a Thanksgiving answer touch every 'reply owed' item."""
     scope = r.get("scope") or {}
-    if scope.get("about") and (scope["about"] == c.about or fuzz.ratio(scope["about"], c.about) >= 85):
-        return True
-    if scope.get("contact") and scope["contact"] in c.entities:
-        return True
-    return bool(scope.get("thread_kind") and scope["thread_kind"] == c.type)
+    checks = []
+    if scope.get("about"):  # the same topic or one of its sub-topics (key hierarchy, not similarity)
+        checks.append(c.about == scope["about"] or c.about.startswith(scope["about"] + ":"))
+    if scope.get("contact"):
+        checks.append(scope["contact"] in c.entities)
+    if scope.get("thread_kind"):
+        checks.append(scope["thread_kind"] == c.type)
+    return bool(checks) and all(checks)
 
 
 def _contact_card(c: Contact) -> dict:
@@ -76,6 +79,20 @@ def _find_contact(compute: ComputeResult, target: str | None) -> Contact | None:
     return compute.directory.lookup(target if "@" in target else None, target if "@" not in target else None)
 
 
+def _p0_earned(c: Candidate, compute: ComputeResult) -> bool:
+    """The rubric's P0 is 'action today AND (family, capital during the raise, co-founder, or an escalation)'. Who is
+    family / capital-during-the-raise / co-founder comes from the profile as contact tiers (P0 there: Sam, Priya,
+    Marcus, Ben, and colleagues who inherit their firm's tier), so code checks the tier, not a name. Content can still
+    earn P0: an escalation or incident, or a family calendar conflict."""
+    if c.type == "calendar_conflict:family" or c.facts.get("escalation") or c.about.startswith("incident:"):
+        return True
+    for e in c.entities:
+        ct = compute.directory.by_slug.get(e) if e else None
+        if ct is not None and ct.tier == "P0":
+            return True
+    return False
+
+
 def enforce(r: TriageResult, c: Candidate, compute: ComputeResult, stats: TriageStats, ctx: RunContext | None) -> TriageResult:
     fixes: list[str] = []
     upd: dict = {}
@@ -85,6 +102,9 @@ def enforce(r: TriageResult, c: Candidate, compute: ComputeResult, stats: Triage
     if c.type == "suspicious_content" and r.priority == "P0":
         upd["priority"] = "P2"
         fixes.append("suspicious_content demoted from P0")
+    elif r.priority == "P0" and not _p0_earned(c, compute):
+        upd["priority"] = "P1"
+        fixes.append("P0 → P1: no P0 contact in the profile and no escalation content")
     # citations: only verbatim candidate evidence
     allowed = {(e.source_id, e.quote) for e in c.evidence}
     quotes = {e.quote for e in c.evidence}
