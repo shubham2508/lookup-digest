@@ -5,96 +5,129 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Digest debug UI</title>
 <style>
-  :root { --bg:#f6f7f9; --panel:#fff; --ink:#1b2430; --muted:#5c6675; --line:#d9dee5; --code:#0b7a6e; --llm:#b7620a; --bad:#b42318; --soft:#eef1f5; }
+  :root { --bg:#f5f6f8; --panel:#fff; --ink:#1b2430; --muted:#667085; --line:#e1e5ea; --accent:#1d4ed8; --code:#0b7a6e; --llm:#b7620a; --bad:#b42318; --ok:#067647; --soft:#f0f3f7; }
   * { box-sizing: border-box; }
-  body { margin:0; font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; color:var(--ink); background:var(--bg); }
-  header { display:flex; align-items:center; gap:16px; padding:10px 16px; background:var(--panel); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:2; }
-  header h1 { font-size:16px; margin:0; }
-  header .st { color:var(--muted); font-size:12px; margin-left:auto; }
-  .layout { display:grid; grid-template-columns: 300px 1fr; min-height: calc(100vh - 48px); }
-  aside { border-right:1px solid var(--line); background:var(--panel); padding:12px; overflow:auto; }
-  main { padding:14px 18px; overflow:auto; }
-  h2 { font-size:13px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin:14px 0 6px; }
-  label { display:block; font-size:12px; color:var(--muted); margin-top:8px; }
-  input, select, button, textarea { font: inherit; }
-  input, select { width:100%; padding:6px 8px; border:1px solid var(--line); border-radius:4px; background:#fff; }
-  button { padding:6px 12px; border:1px solid var(--line); border-radius:4px; background:#fff; cursor:pointer; }
-  button.primary { background:var(--ink); color:#fff; border-color:var(--ink); }
-  button:disabled { opacity:.5; cursor:not-allowed; }
-  .runs a { display:block; padding:6px 8px; border-radius:4px; text-decoration:none; color:var(--ink); border:1px solid transparent; }
-  .runs a:hover { background:var(--soft); }
-  .runs a.active { border-color:var(--ink); background:var(--soft); }
-  .runs .meta { color:var(--muted); font-size:11px; }
-  .tabs { display:flex; gap:4px; border-bottom:1px solid var(--line); margin-bottom:12px; flex-wrap:wrap; }
-  .tabs button { border:none; border-bottom:2px solid transparent; border-radius:0; background:none; padding:8px 10px; }
-  .tabs button.active { border-bottom-color:var(--ink); font-weight:600; }
-  table { border-collapse:collapse; width:100%; font-size:13px; }
+  body { margin:0; font: 14px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; color:var(--ink); background:var(--bg); }
+  .layout { display:grid; grid-template-columns: 290px 1fr; height:100vh; }
+  aside { background:var(--panel); border-right:1px solid var(--line); padding:16px; overflow:auto; display:flex; flex-direction:column; gap:18px; }
+  main { padding:18px 22px; overflow:auto; }
+  .brand { font-weight:600; font-size:15px; }
+  .brand small { display:block; font-weight:400; color:var(--muted); font-size:12px; }
+  .step { display:flex; flex-direction:column; gap:8px; }
+  .step h3 { margin:0; font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); }
+  label { font-size:12px; color:var(--muted); display:flex; flex-direction:column; gap:3px; }
+  select, input, button { font:inherit; }
+  select, input { padding:7px 8px; border:1px solid var(--line); border-radius:6px; background:#fff; width:100%; }
+  button { padding:8px 12px; border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; }
+  button:hover:not(:disabled) { border-color:var(--ink); }
+  button.primary { background:var(--accent); color:#fff; border-color:var(--accent); }
+  button:disabled { opacity:.45; cursor:not-allowed; }
+  .row { display:flex; gap:6px; } .row > * { flex:1; }
+  details { border:1px solid var(--line); border-radius:6px; padding:6px 10px; }
+  details summary { cursor:pointer; font-size:12px; color:var(--muted); }
+  details[open] { padding-bottom:10px; } details .step { margin-top:8px; }
+  .hint { font-size:12px; color:var(--muted); margin:0; }
+  .status { font-size:12px; padding:8px 10px; border-radius:6px; background:var(--soft); }
+  .status.running { background:#eef4ff; color:var(--accent); } .status.fail { background:#fef3f2; color:var(--bad); } .status.done { background:#ecfdf3; color:var(--ok); }
+  .status pre { max-height:140px; margin:6px 0 0; font-size:11px; }
+  .list { display:flex; flex-direction:column; gap:2px; }
+  .list a { display:block; padding:6px 8px; border-radius:6px; text-decoration:none; color:var(--ink); }
+  .list a:hover { background:var(--soft); } .list a.active { background:#eef4ff; }
+  .list .meta { color:var(--muted); font-size:11px; }
+  .title { display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:6px; }
+  .title h1 { font-size:18px; margin:0; } .title .muted { font-size:12px; }
+  .stats { display:flex; gap:18px; flex-wrap:wrap; font-size:12px; color:var(--muted); margin-bottom:12px; }
+  .stats b { color:var(--ink); font-size:14px; display:block; }
+  .tabs { display:flex; gap:2px; border-bottom:1px solid var(--line); margin-bottom:14px; }
+  .tabs button { border:none; border-bottom:2px solid transparent; border-radius:0; background:none; padding:8px 12px; color:var(--muted); }
+  .tabs button.active { border-bottom-color:var(--accent); color:var(--ink); font-weight:600; }
+  .tabnote { font-size:12px; color:var(--muted); margin:-6px 0 12px; }
+  table { border-collapse:collapse; width:100%; font-size:13px; background:var(--panel); }
   th, td { text-align:left; vertical-align:top; padding:6px 8px; border-bottom:1px solid var(--line); }
-  th { font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); position:sticky; top:0; background:var(--panel); }
+  th { font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); background:var(--panel); position:sticky; top:0; }
   tr.row:hover { background:var(--soft); cursor:pointer; }
   tr.detail td { background:#fafbfc; }
-  pre { background:#fff; border:1px solid var(--line); border-radius:4px; padding:8px 10px; overflow:auto; font: 12px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace; white-space:pre-wrap; word-break:break-word; max-height:480px; margin:6px 0; }
-  .pill { display:inline-block; padding:1px 7px; border-radius:10px; font-size:11px; border:1px solid var(--line); }
-  .pill.llm { color:var(--llm); border-color:var(--llm); } .pill.code { color:var(--code); border-color:var(--code); } .pill.bad { color:var(--bad); border-color:var(--bad); }
-  .digest { max-width:760px; background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:14px 20px; }
-  .digest h1 { font-size:20px; } .digest h2 { text-transform:none; letter-spacing:0; color:var(--ink); font-size:15px; margin-top:18px; }
-  .digest li { margin:6px 0; } .digest hr { border:none; border-top:1px solid var(--line); }
-  .toolbar { display:flex; gap:8px; align-items:center; margin:6px 0 10px; flex-wrap:wrap; }
-  .toolbar input { width:240px; }
-  .muted { color:var(--muted); } .small { font-size:12px; }
-  .grid2 { display:grid; grid-template-columns: 1fr 1fr; gap:12px; } @media (max-width: 900px) { .grid2 { grid-template-columns: 1fr; } .layout { grid-template-columns: 1fr; } aside { border-right:none; border-bottom:1px solid var(--line); } }
-  .kv { display:grid; grid-template-columns: 160px 1fr; gap:2px 10px; font-size:13px; }
-  .empty { color:var(--muted); padding:20px 0; }
+  pre { background:#fff; border:1px solid var(--line); border-radius:6px; padding:8px 10px; overflow:auto; font:12px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace; white-space:pre-wrap; word-break:break-word; max-height:460px; }
+  .pill { display:inline-block; padding:0 7px; border-radius:10px; font-size:11px; border:1px solid var(--line); white-space:nowrap; }
+  .pill.llm { color:var(--llm); border-color:var(--llm); } .pill.code { color:var(--code); border-color:var(--code); } .pill.bad { color:var(--bad); border-color:var(--bad); } .pill.ok { color:var(--ok); border-color:var(--ok); }
+  .doc { max-width:780px; background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:16px 24px; }
+  .doc h1 { font-size:20px; } .doc h2 { font-size:15px; margin-top:20px; } .doc li { margin:6px 0; } .doc hr { border:none; border-top:1px solid var(--line); }
+  .toolbar { display:flex; gap:8px; align-items:center; margin-bottom:10px; flex-wrap:wrap; font-size:12px; color:var(--muted); }
+  .toolbar input { width:260px; }
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .empty { color:var(--muted); padding:40px 0; text-align:center; }
+  @media (max-width: 900px) { .layout { grid-template-columns:1fr; height:auto; } aside { border-right:none; border-bottom:1px solid var(--line); } .grid2 { grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
-<header>
-  <h1>Digest debug UI</h1>
-  <span class="small muted">runs/ · trace of every stage and LLM call</span>
-  <span class="st" id="status">idle</span>
-</header>
 <div class="layout">
   <aside>
-    <h2>Run a digest</h2>
-    <form id="launch" onsubmit="return false">
-      <label>World</label>
+    <div class="brand">Daily Digest<small>run, inspect, score</small></div>
+
+    <div class="step">
+      <h3>1 · Pick a world</h3>
       <select id="world"></select>
-      <label>As of (PT)</label>
-      <input id="as_of" list="asof-list" placeholder="2026-09-24T06:00">
-      <datalist id="asof-list"></datalist>
-      <label>Variant</label>
-      <select id="variant"><option value="">none</option><option>stale_inbox</option><option>no_notes</option><option>corrupt_ics</option></select>
-      <label>Customize file (optional)</label>
-      <input id="customize" placeholder="profile/customize/weekend.md">
-      <label>Tag (optional)</label>
-      <input id="tag" placeholder="e.g. try1">
-      <div style="display:flex; gap:8px; margin-top:10px">
-        <button class="primary" id="runBtn">Run digest</button>
-        <button id="baseBtn">Run baseline</button>
+    </div>
+
+    <div class="step" id="launch">
+      <h3>2 · Try one morning</h3>
+      <label>Morning (06:00 PT)<select id="as_of"></select></label>
+      <details>
+        <summary>Options: variant, customize, tag</summary>
+        <div class="step">
+          <label>Variant (honesty test)
+            <select id="variant">
+              <option value="">none: normal digest</option>
+              <option value="stale_inbox">stale_inbox: last 30h of mail missing</option>
+              <option value="no_notes">no_notes: notes folder missing</option>
+              <option value="corrupt_ics">corrupt_ics: work calendar unreadable</option>
+            </select></label>
+          <label>Customize prompt<select id="customize"><option value="">none: default format</option></select></label>
+          <label>Tag (keeps an experiment separate)<input id="tag" placeholder="e.g. try1"></label>
+        </div>
+      </details>
+      <div class="row">
+        <button class="primary" data-action="run">Run digest</button>
+        <button data-action="baseline" title="the naive one-call digest for the same morning">Baseline</button>
       </div>
-      <h2>Evaluate this world</h2>
-      <div style="display:flex; gap:6px; flex-wrap:wrap">
-        <button id="evalBtn" title="score existing runs against the answer key → report">Score runs</button>
-        <button id="matrixBtn" title="all 5 days, variants, customize, baseline, simulate, then the report (~20 min)">Full matrix</button>
-        <button id="simBtn" title="5-day simulation with sim_avery answering question cards">Simulate 5 days</button>
-        <button id="genBtn" title="re-render data/&lt;world&gt; from world/">Regenerate data</button>
+    </div>
+
+    <div class="step">
+      <h3>3 · Score the world</h3>
+      <div class="row">
+        <button data-action="eval" title="grade the runs that exist; ~1 min">Score runs</button>
+        <button data-action="matrix" title="every morning, variant, customize, baseline, simulation, then the score; ~20 min">Full matrix</button>
       </div>
-      <div class="small muted" id="launchState" style="margin-top:6px"></div>
-      <pre id="launchLog" style="max-height:160px; display:none"></pre>
-    </form>
-    <h2>Runs <button class="small" onclick="loadRuns()" style="padding:2px 8px">refresh</button></h2>
-    <div class="runs" id="runs"></div>
-    <h2>Eval reports</h2>
-    <div class="runs" id="reports"></div>
+      <p class="hint">Score runs grades what you've run. Full matrix runs everything, then grades it.</p>
+      <details>
+        <summary>More</summary>
+        <div class="step">
+          <button data-action="simulate" title="5 mornings in order; simulated Avery answers question cards">Simulate 5 days</button>
+          <button data-action="generate" title="re-render data from world/ files; only after editing them">Regenerate data</button>
+        </div>
+      </details>
+    </div>
+
+    <div id="status" class="status">Idle.</div>
+
+    <div class="step">
+      <h3>Runs in this world</h3>
+      <div class="list" id="runs"></div>
+    </div>
+    <div class="step">
+      <h3>Reports</h3>
+      <div class="list" id="reports"></div>
+    </div>
   </aside>
+
   <main>
-    <div id="title" class="muted">Pick a run on the left, or run one.</div>
-    <div class="tabs" id="tabs" style="display:none">
+    <div id="head"><div class="empty">Pick a world, choose a morning, press <b>Run digest</b>.<br>Or open an existing run on the left.</div></div>
+    <div class="tabs" id="tabs" hidden>
       <button data-tab="digest" class="active">Digest</button>
-      <button data-tab="trace">Trace</button>
       <button data-tab="pipeline">Pipeline</button>
-      <button data-tab="actions">Actions &amp; verify</button>
-      <button data-tab="degrade">Degradations &amp; cost</button>
+      <button data-tab="trace">LLM calls</button>
+      <button data-tab="actions">Actions</button>
+      <button data-tab="issues">Issues &amp; cost</button>
     </div>
     <div id="view"></div>
   </main>
@@ -103,50 +136,70 @@
 const $ = (s) => document.querySelector(s);
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const fmt = (v) => typeof v === "object" ? JSON.stringify(v, null, 2) : String(v ?? "");
-let current = null, tab = "digest", cache = {};
+const money = (v) => "$" + (v ?? 0).toFixed(3);
+let worlds = [], allRuns = [], current = null, tab = "digest", cache = {};
 
-async function api(path, opts) { const r = await fetch(path, opts); const t = await r.text(); let j; try { j = JSON.parse(t); } catch { j = {raw: t}; } if (!r.ok) throw Object.assign(new Error(j.error || r.statusText), {status: r.status, body: j}); return j; }
-function setStatus(s) { $("#status").textContent = s; }
+async function api(path, opts) { const r = await fetch(path, opts); const t = await r.text(); let j; try { j = JSON.parse(t); } catch { j = { raw: t }; } if (!r.ok) throw Object.assign(new Error(j.error || r.statusText), { status: r.status }); return j; }
+function store(k, v) { try { v === undefined ? null : localStorage.setItem("digest." + k, v); return localStorage.getItem("digest." + k); } catch { return null; } }
 
-// ---------- markdown (just enough for digest.md) ----------
 function md(text) {
-  const lines = text.split("\n"); let out = [], inList = false;
-  const inline = (s) => esc(s).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>").replace(/\*(.+?)\*/g, "<i>$1</i>").replace(/`(.+?)`/g, "<code>$1</code>");
-  for (const raw of lines) {
+  const inline = (s) => esc(s).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>").replace(/\*(.+?)\*/g, "<i>$1</i>");
+  let out = [], inList = false;
+  for (const raw of text.split("\n")) {
     const l = raw.replace(/\s+$/, "");
-    if (/^\s*- /.test(l) || /^\s+[☐↳Q"]/.test(l) || /^\s{2,}\S/.test(l) && inList) {
-      if (/^\s*- /.test(l)) { if (!inList) { out.push("<ul>"); inList = true; } out.push("<li>" + inline(l.replace(/^\s*- /, "")) + "</li>"); }
-      else out.push("<div style='margin-left:22px'>" + inline(l.trim()) + "</div>");
-      continue;
-    }
+    if (/^\s*- /.test(l)) { if (!inList) { out.push("<ul>"); inList = true; } out.push("<li>" + inline(l.replace(/^\s*- /, "")) + "</li>"); continue; }
+    if (inList && /^\s{2,}\S/.test(l)) { out.push("<div style='margin-left:24px;color:#475467'>" + inline(l.trim()) + "</div>"); continue; }
     if (inList) { out.push("</ul>"); inList = false; }
     if (l.startsWith("# ")) out.push("<h1>" + inline(l.slice(2)) + "</h1>");
     else if (l.startsWith("## ")) out.push("<h2>" + inline(l.slice(3)) + "</h2>");
+    else if (l.startsWith("### ")) out.push("<h3>" + inline(l.slice(4)) + "</h3>");
     else if (l === "---") out.push("<hr>");
-    else if (l.trim() === "") out.push("");
-    else out.push("<p>" + inline(l) + "</p>");
+    else if (/^\|/.test(l)) out.push("<pre style='margin:0;border:none;padding:0'>" + esc(l) + "</pre>");
+    else if (l.trim()) out.push("<p>" + inline(l) + "</p>");
   }
   if (inList) out.push("</ul>");
   return out.join("\n");
 }
 
-// ---------- sidebar ----------
-async function loadWorlds() {
-  const worlds = await api("/api/worlds");
-  const sel = $("#world"); sel.innerHTML = "";
-  for (const w of worlds) { const o = document.createElement("option"); o.value = w.world; o.textContent = `${w.world} (${w.emails} emails, ${w.first_day || "?"} → ${w.last_day || "?"})`; o.dataset.asof = JSON.stringify(w.suggested_as_of || []); sel.appendChild(o); }
-  const opt = document.createElement("option"); opt.value = "tests/fixtures/mini"; opt.textContent = "tests/fixtures/mini (7 emails)"; opt.dataset.asof = JSON.stringify(["2026-09-24T06:00"]); sel.appendChild(opt);
-  sel.onchange = () => { const list = JSON.parse(sel.selectedOptions[0]?.dataset.asof || "[]"); $("#asof-list").innerHTML = list.map(a => `<option value="${a}">`).join(""); if (list.length && !$("#as_of").value) $("#as_of").value = list[list.length - 1]; };
-  sel.onchange();
+// ---------- world, mornings, customize ----------
+async function init() {
+  worlds = await api("/api/worlds");
+  const ws = $("#world");
+  ws.innerHTML = worlds.map(w => `<option value="${esc(w.world)}">${esc(w.label)} (${w.emails} emails)</option>`).join("");
+  const saved = store("world"); if (saved && worlds.some(w => w.world === saved)) ws.value = saved;
+  ws.onchange = () => { store("world", ws.value); fillMornings(); renderRunList(); };
+  const cz = await api("/api/customize");
+  $("#customize").innerHTML += cz.map(c => `<option value="${esc(c)}">${esc(c.split("/").pop().replace(".md", ""))}</option>`).join("");
+  fillMornings();
+  document.querySelectorAll("aside button[data-action]").forEach(b => b.onclick = () => launch(b.dataset.action));
+  document.querySelectorAll("#tabs button").forEach(b => b.onclick = () => { tab = b.dataset.tab; document.querySelectorAll("#tabs button").forEach(x => x.classList.toggle("active", x === b)); render(); });
+  await loadRuns(); await loadReports(); pollLaunch();
 }
-async function loadRuns() {
-  const runs = await api("/api/runs");
-  const el = $("#runs"); el.innerHTML = runs.length ? "" : "<div class='muted small'>no runs yet</div>";
-  let world = null;
-  for (const r of runs.slice().reverse()) {
-    if (r.world !== world) { world = r.world; const h = document.createElement("div"); h.className = "small muted"; h.style.margin = "8px 0 2px"; h.textContent = world; el.appendChild(h); }
-    const a = document.createElement("a"); a.href = "#" + r.dir; a.dataset.dir = r.dir;
-    a.innerHTML = `<div>${esc(r.name)}</div><div class="meta">${r.items ?? "?"} items · ${r.placed ?? "?"} placed · $${(r.cost_usd ?? 0).toFixed(3)} · ${r.violations} viol · ${r.degradations ?? 0} degr${r.has_trace ? " · trace" : ""}</div>`;
+function fillMornings() {
+  const w = worlds.find(x => x.world === $("#world").value);
+  const ms = w ? w.mornings : [];
+  $("#as_of").innerHTML = ms.map(m => `<option value="${m.as_of}">${esc(m.label)}</option>`).join("");
+  if (ms.length) $("#as_of").value = ms[ms.length - 1].as_of;
+}
+
+// ---------- runs + reports ----------
+async function loadRuns() { allRuns = await api("/api/runs"); renderRunList(); }
+function runLabel(r) {
+  const d = r.as_of ? new Date(r.as_of) : null;
+  const day = d ? d.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric", timeZone: "America/Los_Angeles" }) : r.name;
+  const kind = r.baseline ? "baseline" : r.suffix ? r.suffix : "digest";
+  return { day, kind };
+}
+function renderRunList() {
+  const world = $("#world").value;
+  const runs = allRuns.filter(r => r.world === world).slice().reverse();
+  const el = $("#runs");
+  if (!runs.length) { el.innerHTML = "<div class='hint'>No runs yet.</div>"; return; }
+  el.innerHTML = "";
+  for (const r of runs) {
+    const { day, kind } = runLabel(r);
+    const a = document.createElement("a"); a.href = "#"; a.dataset.dir = r.dir;
+    a.innerHTML = `<div>${esc(day)} <span class="pill ${kind === "digest" ? "ok" : ""}">${esc(kind)}</span></div><div class="meta">${r.placed ?? "?"} shown · ${money(r.cost_usd)}${r.violations ? ` · ${r.violations} rule fixes` : ""}</div>`;
     a.onclick = (e) => { e.preventDefault(); openRun(r); };
     if (current && current.dir === r.dir) a.classList.add("active");
     el.appendChild(a);
@@ -154,100 +207,118 @@ async function loadRuns() {
 }
 async function loadReports() {
   const reps = await api("/api/reports");
-  const el = $("#reports"); el.innerHTML = reps.length ? "" : "<div class='muted small'>none yet</div>";
-  for (const r of reps) { const a = document.createElement("a"); a.href = "#"; a.innerHTML = `<div>${esc(r.name)}</div><div class="meta">${r.modified}</div>`; a.onclick = async (e) => { e.preventDefault(); const rep = await api("/api/reports?name=" + encodeURIComponent(r.name)); current = null; $("#tabs").style.display = "none"; $("#title").textContent = "Report · " + r.name; $("#view").innerHTML = `<div class="digest">${md(rep.text)}</div>`; }; el.appendChild(a); }
+  const el = $("#reports");
+  el.innerHTML = reps.length ? "" : "<div class='hint'>None yet. Press Score runs.</div>";
+  for (const r of reps.slice(0, 8)) {
+    const a = document.createElement("a"); a.href = "#";
+    a.innerHTML = `<div>${esc(r.name.replace(".md", ""))}</div><div class="meta">${esc(r.modified.replace("T", " "))}</div>`;
+    a.onclick = async (e) => { e.preventDefault(); const rep = await api("/api/reports?name=" + encodeURIComponent(r.name)); current = null; renderRunList(); $("#tabs").hidden = true; $("#head").innerHTML = `<div class="title"><h1>Report</h1><span class="muted">${esc(r.name)}</span></div>`; $("#view").innerHTML = `<div class="doc">${md(rep.text)}</div>`; };
+    el.appendChild(a);
+  }
 }
 
 // ---------- launching ----------
 async function launch(action) {
+  if (action === "generate" && !confirmInPage("Regenerate overwrites data/ for this world. Press again within 5s to confirm.")) return;
   const body = { action, world: $("#world").value, as_of: $("#as_of").value, variant: $("#variant").value, customize: $("#customize").value, tag: $("#tag").value };
-  try { const res = await api("/api/launch", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }); $("#launchState").textContent = "started: digest " + res.args.join(" "); pollLaunch(); }
-  catch (e) { $("#launchState").textContent = "refused: " + e.message; }
+  try { await api("/api/launch", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }); pollLaunch(); }
+  catch (e) { setStatus("fail", "Refused: " + e.message); }
 }
+let armed = 0;
+function confirmInPage(msg) { if (Date.now() - armed < 5000) { armed = 0; return true; } armed = Date.now(); setStatus("", msg); return false; }
+function setStatus(cls, text, log) { const s = $("#status"); s.className = "status " + cls; s.innerHTML = esc(text) + (log ? `<pre>${esc(log)}</pre>` : ""); }
 let pollTimer = null;
 async function pollLaunch() {
   clearTimeout(pollTimer);
   const st = await api("/api/launch");
-  document.querySelectorAll("#launch button").forEach(b => b.disabled = st.running);
-  $("#launchLog").style.display = st.log ? "block" : "none"; $("#launchLog").textContent = st.log;
-  if (st.running) { setStatus("running: digest " + st.args.join(" ")); pollTimer = setTimeout(pollLaunch, 2000); }
-  else { setStatus(st.args.length ? `finished (exit ${st.returncode})` : "idle"); if (st.args.length) { $("#launchState").textContent = `finished with exit ${st.returncode}`; await loadRuns(); await loadReports(); } }
+  document.querySelectorAll("aside button[data-action]").forEach(b => b.disabled = st.running);
+  const cmd = st.args.length ? "digest " + st.args.join(" ") : "";
+  const tail = (st.log || "").trim().split("\n").slice(-6).join("\n");
+  if (st.running) { setStatus("running", "Running: " + cmd, tail); pollTimer = setTimeout(pollLaunch, 2000); }
+  else if (st.args.length) { setStatus(st.returncode === 0 ? "done" : "fail", (st.returncode === 0 ? "Finished: " : `Failed (exit ${st.returncode}): `) + cmd, tail); await loadRuns(); await loadReports(); }
+  else setStatus("", "Idle.");
 }
-$("#runBtn").onclick = () => launch("run");
-$("#baseBtn").onclick = () => launch("baseline");
-$("#evalBtn").onclick = () => launch("eval");
-$("#matrixBtn").onclick = () => launch("matrix");
-$("#simBtn").onclick = () => launch("simulate");
-$("#genBtn").onclick = () => launch("generate");
 
 // ---------- run view ----------
-async function art(name) { const key = current.dir + "|" + name; if (!(key in cache)) { try { cache[key] = await api(`/api/run?dir=${encodeURIComponent(current.dir)}&artifact=${name}`); } catch (e) { cache[key] = e.status === 404 ? null : { error: e.message }; } } return cache[key]; }
-async function openRun(r) { current = r; cache = {}; $("#tabs").style.display = "flex"; $("#title").innerHTML = `<b>${esc(r.world)} / ${esc(r.name)}</b> <span class="muted small">· ${esc(r.header || "")}</span>`; document.querySelectorAll("#runs a").forEach(a => a.classList.toggle("active", a.dataset.dir === r.dir)); render(); }
-document.querySelectorAll("#tabs button").forEach(b => b.onclick = () => { tab = b.dataset.tab; document.querySelectorAll("#tabs button").forEach(x => x.classList.toggle("active", x === b)); render(); });
-
+async function art(name) { const k = current.dir + "|" + name; if (!(k in cache)) { try { cache[k] = await api(`/api/run?dir=${encodeURIComponent(current.dir)}&artifact=${name}`); } catch (e) { cache[k] = null; } } return cache[k]; }
+function openRun(r) {
+  current = r; cache = {}; renderRunList();
+  const { day, kind } = runLabel(r);
+  $("#head").innerHTML = `<div class="title"><h1>${esc(day)}</h1><span class="pill">${esc(kind)}</span><span class="muted">${esc(r.world)} · ${esc(r.dir)}</span></div>
+    <div class="stats"><div><b>${r.items ?? "?"}</b>items after reduce</div><div><b>${r.placed ?? "?"}</b>shown in digest</div><div><b>${r.llm_calls ?? "?"}</b>LLM calls (${r.llm_cached ?? 0} cached)</div><div><b>${money(r.cost_usd)}</b>cost</div><div><b>${r.violations ?? 0}</b>hard-rule fixes</div><div><b>${r.degradations ?? 0}</b>degraded</div></div>`;
+  $("#tabs").hidden = false; render();
+}
+const NOTES = {
+  digest: "What Avery would read at 06:00.",
+  pipeline: "Every candidate compute found, what triage decided, and whether it made the page. Click a row for facts, evidence and the triage output.",
+  trace: "Every LLM call in order. Click a row to see the exact prompt sent and the output returned.",
+  actions: "Drafts, tasks and proposals rendered under items, and the hard rules verify enforced.",
+  issues: "Items skipped or degraded, with reasons, and the cost breakdown.",
+};
 async function render() {
-  const v = $("#view"); v.innerHTML = "<div class='muted'>loading…</div>";
-  if (tab === "digest") { const d = await art("digest"); v.innerHTML = d ? `<div class="digest">${md(d.text)}</div>` : "<div class='empty'>no digest.md in this run</div>"; }
-  else if (tab === "trace") v.innerHTML = await traceView();
-  else if (tab === "pipeline") v.innerHTML = await pipelineView();
-  else if (tab === "actions") v.innerHTML = await actionsView();
-  else if (tab === "degrade") v.innerHTML = await degradeView();
-  bindExpanders();
+  const v = $("#view"); v.innerHTML = `<p class="tabnote">${NOTES[tab]}</p><div class="empty">Loading…</div>`;
+  let html = "";
+  if (tab === "digest") { const d = await art("digest"); html = d ? `<div class="doc">${md(d.text)}</div>` : "<div class='empty'>No digest in this run.</div>"; }
+  else if (tab === "pipeline") html = await pipelineView();
+  else if (tab === "trace") html = await traceView();
+  else if (tab === "actions") html = await actionsView();
+  else html = await issuesView();
+  v.innerHTML = `<p class="tabnote">${NOTES[tab]}</p>` + html;
+  document.querySelectorAll("tr.row").forEach(tr => tr.onclick = () => { const d = tr.nextElementSibling; if (d?.classList.contains("detail")) d.hidden = !d.hidden; });
+  const f = $("#filter"); if (f) f.oninput = () => { const q = f.value.toLowerCase(); document.querySelectorAll("tbody tr.row").forEach(tr => { tr.hidden = q && !tr.textContent.toLowerCase().includes(q); if (tr.nextElementSibling?.classList.contains("detail")) tr.nextElementSibling.hidden = true; }); };
 }
-function bindExpanders() { document.querySelectorAll("tr.row").forEach(tr => tr.onclick = () => { const d = tr.nextElementSibling; if (d && d.classList.contains("detail")) d.style.display = d.style.display === "none" ? "" : "none"; }); const f = $("#traceFilter"); if (f) f.oninput = () => { const q = f.value.toLowerCase(); document.querySelectorAll("#traceTable tbody tr.row").forEach(tr => { const show = !q || tr.textContent.toLowerCase().includes(q) || (tr.nextElementSibling?.textContent || "").toLowerCase().includes(q); tr.style.display = show ? "" : "none"; if (tr.nextElementSibling) tr.nextElementSibling.style.display = "none"; }); }; }
-
-async function traceView() {
-  let rows = await art("trace");
-  if (!rows) { const cost = await art("cost_log"); if (!cost) return "<div class='empty'>no trace.jsonl and no cost.jsonl in this run (trace logging exists for runs made after it was added)</div>"; rows = cost.map(c => ({ ...c, _costOnly: true })); }
-  const byRole = {}; for (const r of rows) { const k = r.role || "?"; byRole[k] = byRole[k] || { n: 0, cached: 0, cost: 0 }; byRole[k].n++; if (r.cached) byRole[k].cached++; byRole[k].cost += r.cost_usd || 0; }
-  let html = `<div class="toolbar"><input id="traceFilter" placeholder="filter (role, tag, text)…"><span class="small muted">${rows.length} calls · ` + Object.entries(byRole).map(([k, s]) => `${k} ${s.n} (${s.cached} cached, $${s.cost.toFixed(4)})`).join(" · ") + `</span></div>`;
-  html += `<table id="traceTable"><thead><tr><th>#</th><th>role</th><th>tag</th><th>prompt</th><th>model</th><th>cached</th><th>tokens</th><th>cost</th><th>ms</th><th>retries</th><th>ok</th></tr></thead><tbody>`;
-  rows.forEach((r, i) => {
-    html += `<tr class="row"><td>${i + 1}</td><td><span class="pill llm">${esc(r.role)}</span></td><td>${esc(r.tag || "")}</td><td>${esc(r.prompt_version || "")}</td><td class="small">${esc(r.model || "")}</td><td>${r.cached ? "yes" : ""}</td><td>${r.prompt_tokens ?? ""}+${r.completion_tokens ?? ""}</td><td>${(r.cost_usd ?? 0).toFixed(5)}</td><td>${r.latency_ms ?? ""}</td><td>${r.retries ?? 0}</td><td>${r.invalid ? "<span class='pill bad'>invalid</span>" : "✓"}</td></tr>`;
-    if (r._costOnly) html += `<tr class="detail" style="display:none"><td colspan="11"><span class="muted small">cost-only entry: messages were not traced for this run</span></td></tr>`;
-    else html += `<tr class="detail" style="display:none"><td colspan="11"><div class="grid2"><div><b>Input messages</b>${(r.messages || []).map(m => `<div class="small muted">${esc(m.role)}</div><pre>${esc(m.content)}</pre>`).join("")}</div><div><b>Raw output</b><pre>${esc(r.raw)}</pre><b>Parsed output (${esc(r.output_model || "")})</b><pre>${esc(fmt(r.output))}</pre>${(r.errors || []).length ? `<b>Validation errors</b><pre>${esc(r.errors.join("\n---\n"))}</pre>` : ""}</div></div></td></tr>`;
-  });
-  return html + "</tbody></table>";
-}
+const detail = (cols, inner) => `<tr class="detail" hidden><td colspan="${cols}">${inner}</td></tr>`;
 
 async function pipelineView() {
   const cands = await art("candidates") || [], tri = await art("triage") || [], red = await art("reduce"), comp = await art("compose");
-  const triBy = {}; for (const t of tri) triBy[t.candidate_id] = t;
-  const itemOf = {}; if (red) for (const it of red.items || []) for (const c of it.candidate_ids || []) itemOf[c] = it;
-  const placed = new Set(); if (comp) { for (const s of comp.sections || []) for (const id of s.item_ids || []) placed.add(id); if (comp.one_thing_id) placed.add(comp.one_thing_id); }
+  if (!cands.length) return "<div class='empty'>No candidates in this run (baseline runs skip the pipeline).</div>";
+  const T = {}; tri.forEach(t => T[t.candidate_id] = t);
+  const I = {}; (red?.items || []).forEach(it => (it.candidate_ids || []).forEach(c => I[c] = it));
+  const placed = new Set(); (comp?.sections || []).forEach(s => s.item_ids.forEach(i => placed.add(i)));
   const cut = new Set(comp?.cut_ids || []);
-  let html = `<div class="toolbar"><span class="small muted">${cands.length} candidates → ${tri.filter(t => t.include).length} included by triage → ${red ? (red.items || []).length : "?"} items after reduce (${red ? (red.overflow || []).length : "?"} overflow, ${red ? (red.about_merges || []).length : "?"} merges) → ${placed.size} placed by compose, ${cut.size} cut · one thing: <b>${esc(comp?.one_thing_id || "none")}</b></span></div>`;
-  html += `<table><thead><tr><th>cand</th><th>type</th><th>about</th><th>triage</th><th>prio</th><th>section</th><th>item</th><th>fate</th><th>why</th></tr></thead><tbody>`;
-  for (const c of cands) {
-    const t = triBy[c.candidate_id] || {}, it = itemOf[c.candidate_id];
-    const fate = !t.include ? "excluded" : !it ? "no item" : placed.has(it.id) ? (comp?.one_thing_id === it.id ? "ONE THING" : "placed") : cut.has(it.id) ? "also pending" : "overflow";
-    html += `<tr class="row"><td>${esc(c.candidate_id)}</td><td><span class="pill code">${esc(c.type)}</span></td><td>${esc(c.about)}</td><td>${t.include === undefined ? "—" : t.include ? "include" : "exclude"}</td><td>${esc(t.priority || "")}</td><td>${esc(t.section || "")}</td><td>${it ? esc(it.id) : ""}</td><td>${fate}</td><td class="small">${esc(t.why || "")}</td></tr>`;
-    html += `<tr class="detail" style="display:none"><td colspan="9"><div class="grid2"><div><b>Candidate facts</b><pre>${esc(fmt(c.facts))}</pre><b>Evidence</b><pre>${esc(fmt(c.evidence))}</pre></div><div><b>Triage result</b><pre>${esc(fmt(t))}</pre>${it ? `<b>Reduced item</b><pre>${esc(fmt(it))}</pre>` : ""}</div></div></td></tr>`;
-  }
-  html += "</tbody></table>";
-  if (comp) html += `<h2 style="margin-top:18px">Compose output</h2><pre>${esc(fmt(comp))}</pre>`;
-  if (red && (red.about_merges || []).length) html += `<h2>About-key merges</h2><pre>${esc(fmt(red.about_merges))}</pre>`;
-  return html;
+  const fate = (c) => { const t = T[c.candidate_id], it = I[c.candidate_id];
+    if (!t) return ["no triage", "bad"]; if (!t.include) return ["dropped by triage", ""];
+    if (!it) return ["lost in reduce", "bad"]; if (comp?.one_thing_id === it.id) return ["THE ONE THING", "ok"];
+    if (placed.has(it.id)) return ["shown", "ok"]; if (cut.has(it.id)) return ["also pending", ""]; return ["over the cap", ""]; };
+  let h = `<div class="toolbar"><input id="filter" placeholder="Filter by type, topic, text…"> ${cands.length} candidates → ${tri.filter(t => t.include).length} kept → ${(red?.items || []).length} items → ${placed.size + (comp?.one_thing_id ? 1 : 0)} shown</div>`;
+  h += `<table><thead><tr><th>Type</th><th>Topic</th><th>Priority</th><th>Outcome</th><th>Why (triage)</th></tr></thead><tbody>`;
+  for (const c of cands) { const t = T[c.candidate_id] || {}; const [f, cls] = fate(c);
+    h += `<tr class="row"><td><span class="pill code">${esc(c.type)}</span></td><td>${esc(c.about)}</td><td>${esc(t.priority || "")}</td><td><span class="pill ${cls}">${esc(f)}</span></td><td style="font-size:12px">${esc(t.why || "")}</td></tr>`;
+    h += detail(5, `<div class="grid2"><div><b>Computed facts</b><pre>${esc(fmt(c.facts))}</pre><b>Evidence</b><pre>${esc(fmt(c.evidence))}</pre></div><div><b>Triage output</b><pre>${esc(fmt(t))}</pre>${I[c.candidate_id] ? `<b>Reduced item</b><pre>${esc(fmt(I[c.candidate_id]))}</pre>` : ""}</div></div>`); }
+  return h + "</tbody></table>";
+}
+
+async function traceView() {
+  let rows = await art("trace");
+  if (!rows) { const c = await art("cost_log"); if (!c) return "<div class='empty'>No LLM calls recorded.</div>"; return `<div class="toolbar">This run predates full tracing; only costs were logged (${c.length} calls). Re-run the morning to get prompts and outputs.</div>`; }
+  const by = {}; rows.forEach(r => { const k = r.role || "?"; by[k] = by[k] || { n: 0, c: 0, $: 0 }; by[k].n++; if (r.cached) by[k].c++; by[k].$ += r.cost_usd || 0; });
+  let h = `<div class="toolbar"><input id="filter" placeholder="Filter by role, tag, prompt text…"> ` + Object.entries(by).map(([k, s]) => `${k}: ${s.n} (${s.c} cached, ${money(s.$)})`).join(" · ") + `</div>`;
+  h += `<table><thead><tr><th>#</th><th>Stage</th><th>For</th><th>Prompt</th><th>Cached</th><th>Tokens</th><th>Cost</th><th>Result</th></tr></thead><tbody>`;
+  rows.forEach((r, i) => {
+    h += `<tr class="row"><td>${i + 1}</td><td><span class="pill llm">${esc(r.role)}</span></td><td style="font-size:12px">${esc(r.tag || "")}</td><td style="font-size:12px">${esc(r.prompt_version || "")}</td><td>${r.cached ? "yes" : ""}</td><td>${r.prompt_tokens || 0}+${r.completion_tokens || 0}</td><td>${(r.cost_usd || 0).toFixed(4)}</td><td>${r.invalid ? "<span class='pill bad'>invalid</span>" : r.retries ? `<span class="pill">retried</span>` : "<span class='pill ok'>ok</span>"}</td></tr>`;
+    h += detail(8, `<div class="grid2"><div><b>Sent</b>${(r.messages || []).map(m => `<div style="font-size:11px;color:var(--muted)">${esc(m.role)}</div><pre>${esc(m.content)}</pre>`).join("")}</div><div><b>Returned (${esc(r.output_model || "")})</b><pre>${esc(fmt(r.output ?? r.raw))}</pre>${(r.errors || []).length ? `<b>Validation errors</b><pre>${esc(r.errors.join("\n---\n"))}</pre>` : ""}</div></div>`);
+  });
+  return h + "</tbody></table>";
 }
 
 async function actionsView() {
   const acts = await art("actions") || [], ver = await art("verify");
-  let html = `<h2>Actions (${acts.length})</h2><table><thead><tr><th>item</th><th>type</th><th>target</th><th>llm</th><th>text</th></tr></thead><tbody>`;
-  for (const a of acts) { html += `<tr class="row"><td>${esc(a.item_id)}</td><td><span class="pill ${a.llm ? "llm" : "code"}">${esc(a.type)}</span></td><td>${esc(a.target || a.recipient_name || "")}</td><td>${a.llm ? "yes" : ""}</td><td class="small">${esc((a.text || a.draft || "").slice(0, 160))}</td></tr><tr class="detail" style="display:none"><td colspan="5"><pre>${esc(fmt(a))}</pre></td></tr>`; }
-  html += "</tbody></table>";
-  if (ver) { html += `<h2 style="margin-top:18px">Verify</h2><div class="kv">` + Object.entries(ver.stats || {}).map(([k, v]) => `<div class="muted">${esc(k)}</div><div>${esc(v)}</div>`).join("") + `</div>`; const vs = ver.violations || []; html += `<h2>Hard-rule violations (${vs.length})</h2>` + (vs.length ? `<table><thead><tr><th>rule</th><th>item</th><th>fix</th><th>detail</th></tr></thead><tbody>` + vs.map(v => `<tr><td>${v.rule}</td><td>${esc(v.item_id || "")}</td><td>${esc(v.fix)}</td><td>${esc(v.detail)}</td></tr>`).join("") + "</tbody></table>" : "<div class='muted small'>none</div>"); }
-  return html;
+  let h = acts.length ? `<table><thead><tr><th>Item</th><th>Action</th><th>Written by</th><th>Text</th></tr></thead><tbody>` : "<div class='empty'>No actions.</div>";
+  for (const a of acts) { h += `<tr class="row"><td>${esc(a.item_id)}</td><td><span class="pill">${esc(a.type)}</span></td><td>${a.llm ? "<span class='pill llm'>LLM</span>" : "<span class='pill code'>template</span>"}</td><td style="font-size:12px">${esc((a.draft || a.text || "").slice(0, 180))}</td></tr>` + detail(4, `<pre>${esc(fmt(a))}</pre>`); }
+  if (acts.length) h += "</tbody></table>";
+  const vs = ver?.violations || [];
+  h += `<h3 style="margin-top:20px">Hard rules enforced (${vs.length})</h3>` + (vs.length ? `<table><thead><tr><th>Rule</th><th>Item</th><th>Fix</th><th>Detail</th></tr></thead><tbody>` + vs.map(v => `<tr><td>${v.rule}</td><td>${esc(v.item_id || "")}</td><td>${esc(v.fix)}</td><td style="font-size:12px">${esc(v.detail)}</td></tr>`).join("") + "</tbody></table>" : "<p class='hint'>None needed.</p>");
+  return h;
 }
 
-async function degradeView() {
-  const deg = await art("degradations") || [], cost = await art("cost"), run = await art("run");
-  let html = `<h2>Degradations (${deg.length})</h2>` + (deg.length ? `<table><thead><tr><th>stage</th><th>item</th><th>reason</th><th>detail</th></tr></thead><tbody>` + deg.map(d => `<tr><td>${esc(d.stage)}</td><td>${esc(d.item)}</td><td>${esc(d.reason)}</td><td class="small">${esc(d.detail || "")}</td></tr>`).join("") + "</tbody></table>" : "<div class='muted small'>none</div>");
-  if (cost) html += `<h2 style="margin-top:18px">Cost</h2><pre>${esc(fmt(cost))}</pre>`;
-  if (run) html += `<h2>run.json</h2><pre>${esc(fmt(run))}</pre>`;
-  return html;
+async function issuesView() {
+  const deg = await art("degradations") || [], cost = await art("cost");
+  let h = `<h3>Degraded or skipped (${deg.length})</h3>` + (deg.length ? `<table><thead><tr><th>Stage</th><th>Item</th><th>Reason</th><th>Detail</th></tr></thead><tbody>` + deg.map(d => `<tr><td>${esc(d.stage)}</td><td style="font-size:12px">${esc(d.item)}</td><td>${esc(d.reason)}</td><td style="font-size:12px">${esc(d.detail || "")}</td></tr>`).join("") + "</tbody></table>" : "<p class='hint'>Nothing degraded.</p>");
+  if (cost?.by_role) h += `<h3 style="margin-top:20px">Cost by stage</h3><table><thead><tr><th>Stage</th><th>Calls</th><th>Cached</th><th>Tokens</th><th>Cost</th></tr></thead><tbody>` + Object.entries(cost.by_role).map(([k, s]) => `<tr><td>${esc(k)}</td><td>${s.calls}</td><td>${s.cached}</td><td>${s.prompt_tokens}+${s.completion_tokens}</td><td>${money(s.cost_usd)}</td></tr>`).join("") + `</tbody></table>`;
+  return h;
 }
 
-(async () => { await loadWorlds(); await loadRuns(); await loadReports(); pollLaunch(); const h = location.hash.slice(1); if (h) { const runs = await api("/api/runs"); const r = runs.find(x => x.dir === h); if (r) openRun(r); } })();
+init();
 </script>
 </body>
 </html>

@@ -82,3 +82,13 @@ def test_trace_log_records_full_calls(tmp_path):
     rows = [json.loads(line) for line in (tmp_path / "trace.jsonl").read_text().splitlines()]
     assert len(rows) == 2 and rows[0]["output"] == {"a": 1} and rows[0]["ts"] and rows[1]["cached"] is True
     TraceLog(None).record(role="x")  # a disabled trace log is a no-op
+
+
+def test_worlds_list_run_mornings():
+    from ui.server import list_customize, list_worlds
+    ws = {w["world"]: w for w in list_worlds()}
+    mini = ws["tests/fixtures/mini"]
+    assert mini["mornings"] and mini["mornings"][-1]["as_of"] == "2026-09-24T06:00" and "Thu" in mini["mornings"][-1]["label"]
+    if "dev" in ws:
+        assert [m["as_of"] for m in ws["dev"]["mornings"]][0] == "2026-09-20T06:00" and len(ws["dev"]["mornings"]) == 5
+    assert "profile/customize/weekend.md" in list_customize()

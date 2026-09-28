@@ -125,25 +125,44 @@ def read_artifact(rel_dir: str, artifact: str, runs_dir: Path | None = None) -> 
     return 200, {"text": text}
 
 
+WORLD_MANIFESTS = {"dev": ROOT / "eval" / "manifests" / "dev.yaml", "heldout": ROOT / "eval" / "manifests" / "heldout.yaml",
+                   "tests/fixtures/mini": ROOT / "tests" / "fixtures" / "mini" / "manifest.yaml"}
+WORLD_LABELS = {"dev": "dev: tune and try things here", "heldout": "heldout: final score only, never tune",
+                "tests/fixtures/mini": "mini: 7-email fixture, quick check"}
+
+
 def list_worlds(data_dir: Path | None = None) -> list[dict]:
-    base = data_dir or DATA_DIR
+    """Worlds with the mornings their answer key covers (manifest meta: anchor = day 30, run_days)."""
+    from datetime import date, timedelta
+
+    import yaml
+
     out = []
-    if not base.exists():
-        return out
-    for d in sorted(p for p in base.iterdir() if p.is_dir()):
-        inbox = d / "inbox"
-        dates: list[str] = []
-        if inbox.exists():
-            for f in inbox.glob("*.eml"):
-                # file names start with the date the generator used; fall back to the Date header
-                head = f.name[:10]
-                if len(head) == 10 and head[4] == "-" and head[7] == "-":
-                    dates.append(head)
-        dates = sorted(set(dates))
-        out.append({"world": d.name, "emails": len(list(inbox.glob("*.eml"))) if inbox.exists() else 0,
-                    "first_day": dates[0] if dates else None, "last_day": dates[-1] if dates else None,
-                    "suggested_as_of": [f"{x}T06:00" for x in dates[-5:]] if dates else []})
+    for world, mpath in WORLD_MANIFESTS.items():
+        ddir = (ROOT / world) if "/" in world else (data_dir or DATA_DIR) / world
+        if not ddir.is_dir() or not mpath.exists():
+            continue
+        try:
+            with open(mpath, encoding="utf-8") as f:
+                meta = (yaml.safe_load(f) or {}).get("meta", {})
+            anchor = meta["anchor"] if isinstance(meta["anchor"], date) else date.fromisoformat(str(meta["anchor"]))
+            days = meta.get("run_days") or [26, 27, 28, 29, 30]
+        except Exception:  # noqa: BLE001 - a broken manifest just hides the dates
+            anchor, days = None, []
+        mornings = []
+        for d in days:
+            if anchor is None:
+                break
+            day = anchor - timedelta(days=30 - int(d))
+            mornings.append({"as_of": f"{day.isoformat()}T06:00", "label": f"{day.strftime('%a %d %b %Y')} · day {d}"})
+        emails = len(list((ddir / "inbox").glob("*.eml"))) if (ddir / "inbox").exists() else 0
+        out.append({"world": world, "label": WORLD_LABELS.get(world, world), "emails": emails, "mornings": mornings})
     return out
+
+
+def list_customize() -> list[str]:
+    d = ROOT / "profile" / "customize"
+    return sorted(f"profile/customize/{p.name}" for p in d.glob("*.md")) if d.exists() else []
 
 
 def list_reports() -> list[dict]:
@@ -216,6 +235,8 @@ class Handler(BaseHTTPRequestHandler):
             self._json(code, obj)
         elif u.path == "/api/worlds":
             self._json(200, list_worlds())
+        elif u.path == "/api/customize":
+            self._json(200, list_customize())
         elif u.path == "/api/reports":
             if "name" in q:
                 code, obj = read_report(q["name"])
