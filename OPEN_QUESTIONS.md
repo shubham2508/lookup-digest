@@ -20,31 +20,9 @@ Judge plan (Shubham, 2026-09-28): the first judging round runs on Fable via the 
 
 OpenRouter spend on this config ≈ $4–5 (pipeline ≈ $3, judge ≈ $1–1.6, sim_avery ≈ 0). Generation costs nothing on OpenRouter.
 
-### 4. Storyline review — M1 gate (Data session) — **drafted, waiting on Shubham**
-
-All 16 files in `world/dev/storylines/` are drafted with 5 run-day expectations and assertions each (`reviewed: false`). The orchestrator's structural pre-review found every storyline complete against the checklist in `docs/handoffs/B-data.md`. Shubham approves (or lists changes) and the orchestrator flips `reviewed: true`; then `Track B, M2` renders the full world.
-
-### 5. Judgment calls in the answer key that Shubham should confirm (Track B, M1) — part of the M1 review gate
-
-Recorded in the storylines as `notes:`; listed here so they are not missed during review:
-- S1: the **one thing on day 29** is the cap table (6 h overdue), over Priya's inference email (S13) and the diligence-call contradiction (S2).
-- S2: priority **P0** for the calendar contradiction on days 29–30 and for Elena's prep request on day 30 (Capital during the raise).
-- S4: David Kim's tier is a band **[P0, P1]** (the profile's "another VC" rule, not named).
-- S6: the day-30 forward is **P1 in Decisions** with `question`/`read`, never a `reply` draft; the cadence item stays a separate **P2 watch**.
-- S7: the second renewal slip is **P1 in Pulse** with `question`/`decide`/`watch`/`task` all acceptable.
-- S11: the daycare closure is its own **P0** item (may be composed with the pediatrician item as long as both sources are cited).
-- S13: Priya's item is **P0 in Decisions** (a decision, not a reply); the price-cut news attaches on day 30 only.
-- Background: the injection email is a P2/P3 one-liner in Pulse (flagged), the press request P2, the tax notice P2, Jae Whitlock P3 "unsure", the wedding invite absent.
-
-### 13. Track C · M9: where `rulings.yaml` lives, and how `digest simulate` starts clean (C-grader, 2026-09-28): built as suggested
-
-| # | What · where | Options | Implemented (suggestion) |
-|---|---|---|---|
-| 13a | **`rulings.yaml` path.** architecture §10 names the file; no spec says where. The simulation checks that an answered card produced a ruling for that scope. | (1) `runs/<world>/rulings.yaml`, next to `store.sqlite`; (2) repo root; (3) `profile/rulings.yaml` | (1). The scorer reads (1), then falls back to (2). Entries as §10: `{id, scope: {contact\|about\|thread_kind}, ruling, option_chosen, from_question, created, expires}`. |
-| 13b | **Simulation state.** `digest simulate` runs days 26–30 in order, so rulings and digest history must start empty, or earlier runs leak into the escalation and ruling checks. | (1) `simulate --fresh` renames `runs/<world>/rulings.yaml` and `store.sqlite` to `*.bak-<timestamp>` first (reversible, never deletes); (2) product flag `--state-dir`; (3) accept leakage | (1), opt-in; without it the report notes any pre-existing rulings. |
-| 13c | **"applied N learned rules"** in the header (§10) is how the scorer sees a ruling applied when triage output alone is ambiguous. | keep the phrase · redirect | Keep; the scorer matches `applied \d+ learned rule`. |
-
 ## Decided
+
+- **2026-09-28 · M1 storyline review: approved.** All 16 `world/dev/storylines/*.yaml` are `reviewed: true`; the eight judgment calls (former #5) are confirmed as drafted; S3 keeps the three-business-day rule.
 
 - **2026-09-28 · full scope, no cut line.** Everything through M10 is built today; submission tomorrow morning; walkthrough the following week. Nothing is deferred.
 - **2026-09-28 · held-out anchor = 2026-03-26** (Thursday = day 30; day 1 = Wed 2026-02-25; the window crosses the Mar 8 spring-forward on day 12, in the history, not in the run days). Held-out world is **full size** (~500 emails), same trap types, different disguises and names, written in a separate Data session.
