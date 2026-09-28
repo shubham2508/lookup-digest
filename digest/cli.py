@@ -33,9 +33,12 @@ def run(
     s = result.summary
     typer.echo(f"run {s['run_id']}: {s['header']}")
     typer.echo(f"  owner={s['owner_email']} threads={s['threads']} messages={s['messages']} events={s['events']} notes={s['notes']} tasks={s['tasks']}")
-    ex, tr, rd, cp, mt = s["extract"], s["triage"], s["reduce"], s["compose"], s["materialize"]
-    typer.echo(f"  extractions={s['extractions']} (llm {ex['llm_calls']}, cached {ex['cached']}, evidence {ex['evidence_valid']}/{ex['evidence_checked']})"
-               f" candidates={s['compute']['candidates']} triage_packs={tr['packs']} items={rd['items']} placed={cp['placed']} cut={cp['cut']}"
+    rdr, tr, rd, cp, mt = s["read"], s["triage"], s["reduce"], s["compose"], s["materialize"]
+    na = rdr["needs_avery"]
+    typer.echo(f"  read: {rdr['threads_read']} threads (llm {rdr['llm_calls']}, cached {rdr['cached']}, failed {rdr['failed']}) → "
+               f"{rdr['findings']} findings (yes {na.get('yes', 0)} / unsure {na.get('unsure', 0)} / no {na.get('no', 0)}), "
+               f"{rdr['citations_dropped']} citations dropped")
+    typer.echo(f"  candidates={s['compute']['candidates']} floor_fixes={tr['fixes']} items={rd['items']} placed={cp['placed']} cut={cp['cut']}"
                f" actions={mt['actions']} one_thing={cp['one_thing']}")
     v = s["verify"]["stats"]
     typer.echo(f"  verify: {len(s['verify']['violations'])} violation(s) handled · {v['words']}/{v['budget']} words · "
