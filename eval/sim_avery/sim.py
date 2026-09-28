@@ -23,7 +23,7 @@ from digest.paths import ROOT
 from digest.prompts import load_prompt
 from eval.manifest_schema import Manifest, SimAveryAnswer
 from eval.scorer.artifacts import RenderedItem, RunView
-from eval.scorer.common import contact_label, sender_emails
+from eval.scorer.common import contact_label, sender_emails, signal_is_type
 from eval.scorer.digest_md import QuestionCard
 from eval.scorer.match import SourceIndex, about_match, norm_text, type_matches
 from eval.scorer.runner import as_of_for, find_runs
@@ -68,8 +68,12 @@ def card_items(view: RunView) -> dict[int, RenderedItem | None]:
     return out
 
 
-def _scope_matches(ans: SimAveryAnswer, item: RenderedItem, manifest: Manifest) -> bool:
-    if ans.scope_about and about_match(item.about, ans.scope_about):
+def _scope_matches(ans: SimAveryAnswer, item: RenderedItem, manifest: Manifest, view: RunView | None = None) -> bool:
+    """About key of the item or of a finding behind it (v2 findings carry several tags), contact, or thread kind
+    (the v1 type name, a net's kind, or a reader's free-text kind)."""
+    signals = view.item_signals(item) if view is not None else []
+    if ans.scope_about and (about_match(item.about, ans.scope_about)
+                            or any(about_match(a, ans.scope_about) for s in signals for a in s.abouts)):
         return True
     if ans.scope_contact:
         c = contact_label(manifest, ans.scope_contact)
@@ -78,7 +82,8 @@ def _scope_matches(ans: SimAveryAnswer, item: RenderedItem, manifest: Manifest) 
         people |= {norm_text(a.get("target") or "") for a in item.actions}
         if keys & people:
             return True
-    return bool(ans.scope_thread_kind and any(type_matches(t, ans.scope_thread_kind) for t in item.candidate_types))
+    return bool(ans.scope_thread_kind and (any(type_matches(t, ans.scope_thread_kind) for t in item.candidate_types)
+                                           or any(signal_is_type(s, ans.scope_thread_kind) for s in signals)))
 
 
 def _scope_label(ans: SimAveryAnswer) -> str:
@@ -91,7 +96,7 @@ def answer_cards(view: RunView, manifest: Manifest, llm: LLM | None = None, use_
     for card in view.digest.questions:
         item = items.get(card.number)
         n_opts = max(len(card.options), 1)
-        hit = next((a for a in manifest.sim_avery if item and _scope_matches(a, item, manifest)), None)
+        hit = next((a for a in manifest.sim_avery if item and _scope_matches(a, item, manifest, view)), None)
         if hit and 1 <= hit.intended_option <= n_opts:
             answers.append(Answer(f"Q{card.number}", hit.intended_option, "code", _scope_label(hit),
                                   item.about if item else None, hit.rationale))

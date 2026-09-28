@@ -42,7 +42,19 @@ def test_source_index_maps_every_evidence_form():
     assert idx.resolve("<20260922-2130.avery@tessera.io>") == "t-marcus-captable"
     assert idx.resolve("thread:<20260923-2110.sam@parkfamily.example>") == "t-sam-daycare"
     assert idx.resolve("t-halberd-rollout") == "t-halberd-rollout"
-    assert idx.resolve("event:lumen-demo@x") is None
+    assert idx.resolve("event:lumen-demo@x") is None   # the mini manifest has no event items
+
+
+def test_event_ids_resolve_with_or_without_a_domain():
+    from eval.manifest_schema import ItemLabel
+
+    m = mini_manifest()
+    m.items.append(ItemLabel(source_id="event:lumen-demo-20260924", kind="event"))
+    idx = SourceIndex(m)
+    assert idx.resolve("event:lumen-demo-20260924") == "event:lumen-demo-20260924"
+    assert idx.resolve("event:lumen-demo-20260924@lumenanalytics.example") == "event:lumen-demo-20260924"
+    assert idx.resolve("event:lumen-demo-20260924#2026-09-24") == "event:lumen-demo-20260924"
+    assert idx.resolve("event:other") is None
     assert idx.resolve("msg:<unknown@x>") is None
     assert majority_source(idx, ["msg:<20260922-1408.renee@halberd.com>", "msg:<20260922-1642.marcus@inflectionpoint.vc>",
                                  "msg:<20260922-2130.avery@tessera.io>"]) == "t-marcus-captable"

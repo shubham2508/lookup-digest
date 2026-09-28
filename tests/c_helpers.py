@@ -31,13 +31,28 @@ def mini_manifest() -> Manifest:
 
 
 # ----------------------------------------------------------------------------- synthetic runs for checker tests
+def finding_row(fid: str, origin: str, needs: str, kind: str, about: list[str], cites: list[dict], actions: list[dict],
+                candidate_id: str | None, *, priority: str = "P1", section: str = "urgent", thread: str | None = None,
+                rescued: bool = False, contradictions: list[str] | None = None, suspicious: list[dict] | None = None,
+                ambiguity: dict | None = None) -> dict:
+    """One findings.jsonl line (digest/findings.py finding_row)."""
+    return {"finding_id": fid, "origin": origin, "needs_avery": needs, "title": f"Handle {kind}", "kind": kind,
+            "why": "w", "priority": priority, "urgency": "today", "deadline": None, "stakes": "medium",
+            "confidence": "high", "section": section, "entities": [], "about": about, "citations": cites,
+            "proposed_actions": actions, "ambiguity": ambiguity, "contradictions": contradictions or [],
+            "freshness_caveat": None, "suspicious_instructions": suspicious or [], "candidate_id": candidate_id,
+            "thread_id": thread, "rescued_by_safety_net": rescued}
+
+
 def make_run(root: Path, manifest: Manifest, day: int, items: list[dict], *, header: str = "As of Thu 06:00 PT · inbox ok",
              suffix: str | None = None, extra_candidates: list[dict] | None = None, header_notes: list[str] | None = None,
-             contacts: list[dict] | None = None, extractions: list[dict] | None = None) -> Path:
-    """Write a minimal but contract-shaped run dir. Each item dict:
+             contacts: list[dict] | None = None, findings: list[dict] | None = None) -> Path:
+    """Write a minimal but contract-shaped v2 run dir. Each item dict:
     {id, about, ctype, priority, section, placement: one_thing|section|also_pending, cites: [evidence refs],
      actions: [{type, target, draft?, text?, recipient_name?, recipient_category?}], what, why, confidence,
-     times_surfaced, include (default True)}"""
+     times_surfaced, include (default True), origin (default thread_reader), thread, rescued, about_tags}
+    Every item gets a findings.jsonl row (kind = ctype; needs_avery yes if included, else no); `findings` adds
+    finding rows with no item (e.g. a reader's needs_avery "no")."""
     import json
 
     from digest.runs import run_dir_name
@@ -45,7 +60,7 @@ def make_run(root: Path, manifest: Manifest, day: int, items: list[dict], *, hea
 
     d = root / run_dir_name(as_of_for(manifest, day), suffix)
     d.mkdir(parents=True, exist_ok=True)
-    cands, tri, red, comp, acts = [], [], [], [], []
+    cands, tri, red, comp, acts, finds = [], [], [], [], [], []
     sections: dict[str, list[str]] = {}
     one = None
     overflow = []
@@ -59,6 +74,10 @@ def make_run(root: Path, manifest: Manifest, day: int, items: list[dict], *, hea
                       "times_surfaced": it.get("times_surfaced", 0)})
         pa = [{"type": a["type"], "target": a.get("target"), "brief": "b", "assumptions": [], "watch_trigger": None,
                "read_start": None} for a in it.get("actions", [])]
+        finds.append(finding_row(f"f-{it['id']}", it.get("origin", "thread_reader"), "yes" if it.get("include", True) else "no",
+                                 it.get("ctype", "reply_owed"), it.get("about_tags", [it["about"]]), evid, pa, cid,
+                                 priority=it.get("priority", "P1"), section=it.get("section", "urgent"),
+                                 thread=it.get("thread"), rescued=it.get("rescued", False)))
         tri.append({"candidate_id": cid, "include": it.get("include", True), "section": it.get("section", "urgent"),
                     "priority": it.get("priority", "P1"), "due_today": True, "confidence": it.get("confidence", "high"),
                     "why": "w", "citations": evid, "ambiguity": None, "proposed_actions": pa})
@@ -101,7 +120,7 @@ def make_run(root: Path, manifest: Manifest, day: int, items: list[dict], *, hea
     jl("candidates.jsonl", cands)
     jl("triage.jsonl", tri)
     jl("actions.jsonl", acts)
-    jl("extractions.jsonl", extractions or [])
+    jl("findings.jsonl", finds + list(findings or []))
     jl("degradations.jsonl", [])
     (d / "contacts.json").write_text(json.dumps(contacts or []), encoding="utf-8")
     (d / "reduce.json").write_text(json.dumps({"items": red, "overflow": overflow}), encoding="utf-8")

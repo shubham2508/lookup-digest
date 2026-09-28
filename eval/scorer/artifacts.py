@@ -7,6 +7,11 @@ a run that crashed half-way is still scored (a missing artifact becomes a miss a
 Item ids in compose.json are reduce ids; if reduce.json is absent, they are looked up as candidate ids. A run with
 a digest.md but no compose.json (the naive baseline, eval.md §8) is scored from the markdown alone
 (`markdown_view.py`).
+
+v2 (PIVOT_SPEC §4): `findings.jsonl` holds every Finding (readers, sweeps, safety nets, including `needs_avery: no`)
+plus the code-set `candidate_id`, `thread_id`, `rescued_by_safety_net`. Each finding becomes a `Signal`, the unit
+the diagnostics, the candidate-kind assertions and attribution match on; a candidate with no finding behind it (a
+run without findings.jsonl) becomes a Signal too, so older fixtures still score.
 """
 from __future__ import annotations
 
@@ -16,13 +21,17 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
+from digest.findings import about_key
 from digest.runs import ARTIFACTS
 
 from .digest_md import ParsedDigest, parse_digest
-from .match import SourceIndex, evidence_refs, max_priority
+from .match import SourceIndex, evidence_refs, majority_source, max_priority
 
-OPTIONAL_ARTIFACTS = {"trace", "links", "findings"}  # trace: debug only; findings: v2 (Track C makes it required with the reader diagnostics)
+OPTIONAL_ARTIFACTS = {"trace", "links", "extractions"}  # trace: debug only; extractions: v1 only (gone in v2)
 DRAFT_TYPES = ("reply", "forward_delegate", "decide", "message_person")
+# the stage a finding's origin belongs to (attribution chain read → sweep → net → merge → compose → materialize → verify)
+ORIGIN_STAGE = {"thread_reader": "read", "calendar_sweep": "sweep", "notes_tasks_sweep": "sweep", "news_sweep": "sweep",
+                "safety_net": "net"}
 
 
 @dataclass
@@ -63,6 +72,36 @@ class RenderedItem:
         return [a.get("type") for a in self.actions if a.get("type")]
 
 
+@dataclass
+class Signal:
+    """One thing the pipeline noticed: a Finding (v2), or a candidate that has no finding behind it."""
+    artifact: str              # findings | candidates
+    row: Row
+    type: str                  # Finding.kind (safety nets keep the v1 rule name) or Candidate.type
+    origin: str | None         # thread_reader | calendar_sweep | notes_tasks_sweep | news_sweep | safety_net
+    title: str
+    abouts: list[str]          # about keys (tags normalized as digest/findings.py does, plus the candidate's key)
+    sources: set[str]          # manifest source ids its citations (and, for a reader, its thread) resolve to
+    refs: list[str]            # the raw citation refs (msg:, event:, note:, task:)
+    entities: list[str]
+    needs_avery: str           # yes | unsure | no
+    live: bool                 # reaches the digest: yes, or unsure with a question card (findings.to_triage)
+    priority: str | None
+    actions: list[str]
+    candidate_id: str | None
+    thread: str | None         # the manifest thread a reader read
+    suspicious: bool
+    contradiction: bool
+    rescued: bool
+
+    @property
+    def stage(self) -> str:
+        return ORIGIN_STAGE.get(self.origin or "", "read")
+
+    def label(self) -> str:
+        return f"{self.origin or self.artifact}:{self.type} '{self.title[:60]}' ({self.needs_avery}, {self.priority})"
+
+
 class RunView:
     """Everything the scorer knows about one run directory."""
 
@@ -72,7 +111,7 @@ class RunView:
         self.index = index
         self.repo_root = repo_root
         self.missing: list[str] = [a for a, f in ARTIFACTS.items() if a not in OPTIONAL_ARTIFACTS and not (self.dir / f).exists()]
-        self.extractions = self._jsonl("extractions")
+        self.findings = self._jsonl("findings")
         self.candidates = self._jsonl("candidates")
         self.triage = self._jsonl("triage")
         self.actions_rows = self._jsonl("actions")
@@ -97,6 +136,11 @@ class RunView:
         for r in self.triage:
             self._triage_by_cand.setdefault(r.data.get("candidate_id"), []).append(r)
         self._reduce_by_id = {it.get("id"): it for it in self.reduce.get("items", []) if isinstance(it, dict)}
+        self.signals: list[Signal] = self._build_signals()
+        self._signals_by_cand: dict[str, list[Signal]] = {}
+        for s in self.signals:
+            if s.candidate_id:
+                self._signals_by_cand.setdefault(s.candidate_id, []).append(s)
         # baseline runs (and runs with no pipeline artifacts at all) are scored from digest.md; a pipeline run that
         # lost compose.json is not: its missing items stay misses attributed to compose
         is_baseline = bool(self.run.get("baseline")) or self.dir.name.endswith("baseline") or "+baseline" in self.dir.name
@@ -147,8 +191,61 @@ class RunView:
                 return c
         return None
 
-    def extraction_sources(self, row: Row) -> set[str]:
-        return self.index.resolve_all(evidence_refs(row.data) + [row.data.get("source_id", "")])
+    def signals_for(self, cid: str) -> list[Signal]:
+        return self._signals_by_cand.get(cid, [])
+
+    def signal_link(self, s: Signal) -> str:
+        return self.link(s.artifact, s.row.line)
+
+    def item_signals(self, item: RenderedItem) -> list[Signal]:
+        return [s for c in item.candidate_ids for s in self.signals_for(c)]
+
+    # ------------------------------------------------------------------ findings → signals
+    def _build_signals(self) -> list[Signal]:
+        out: list[Signal] = []
+        covered: set[str] = set()
+        for r in self.findings:
+            d = r.data
+            cid = d.get("candidate_id")
+            cand = self.candidate(cid) if cid else None
+            refs = evidence_refs(d.get("citations") or [])
+            thread = self.index.resolve(d.get("thread_id")) if d.get("thread_id") else None
+            if thread is None and d.get("origin") == "thread_reader":
+                thread = majority_source(self.index, refs, kind="thread")
+            abouts = [about_key(t, d.get("title", "")) for t in d.get("about") or [] if t]
+            if cand and cand.data.get("about"):
+                abouts.append(cand.data["about"])
+            needs = d.get("needs_avery") or "yes"
+            out.append(Signal(
+                artifact="findings", row=r, type=d.get("kind") or "", origin=d.get("origin"), title=d.get("title") or "",
+                abouts=abouts, sources=self.index.resolve_all(refs) | ({thread} if thread else set()), refs=refs,
+                entities=[str(e) for e in d.get("entities") or []], needs_avery=needs,
+                live=needs == "yes" or (needs == "unsure" and bool(d.get("ambiguity"))), priority=d.get("priority"),
+                actions=[a.get("type") for a in d.get("proposed_actions") or [] if a.get("type")], candidate_id=cid,
+                thread=thread, suspicious=bool(d.get("suspicious_instructions")), contradiction=bool(d.get("contradictions")),
+                rescued=bool(d.get("rescued_by_safety_net"))))
+            if cid:
+                covered.add(cid)
+        for r in self.candidates:  # candidates with no finding behind them (runs without findings.jsonl)
+            d = r.data
+            cid = d.get("candidate_id")
+            if cid in covered:
+                continue
+            facts = d.get("facts") or {}
+            tri = [t.data for t in self.triage_for(cid)]
+            refs = [e.get("source_id", "") for e in d.get("evidence") or []] + list(d.get("context_refs") or [])
+            needs = facts.get("needs_avery") or "yes"
+            out.append(Signal(
+                artifact="candidates", row=r, type=d.get("type") or "", origin=facts.get("origin"),
+                title=facts.get("title") or d.get("about") or "", abouts=[k for k in [d.get("about"), *facts.get("about_tags", [])] if k],
+                sources=self.index.resolve_all(refs), refs=refs, entities=[str(e) for e in d.get("entities") or []], needs_avery=needs,
+                live=needs != "no", priority=max_priority(t.get("priority") for t in tri if t.get("include")),
+                actions=[a.get("type") for t in tri for a in t.get("proposed_actions", []) if a.get("type")], candidate_id=cid,
+                thread=facts.get("thread_id") and self.index.resolve(facts["thread_id"]),
+                suspicious=d.get("type") == "suspicious_content" or bool(facts.get("instructions")),
+                contradiction=d.get("type") == "contradiction" or bool(facts.get("contradictions")),
+                rescued=bool(facts.get("rescued_by_safety_net"))))
+        return out
 
     # ------------------------------------------------------------------ the rendered digest
     def _item_record(self, item_id: str) -> dict:

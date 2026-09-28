@@ -26,6 +26,7 @@ from eval.manifest_schema import Manifest
 
 from .artifacts import RenderedItem, RunView
 from .assertions import ESCALATION_RE, AssertionResult
+from .attribution import lead_signal
 from .match import about_match, norm_text
 
 APPLIED_RE = re.compile(r"applied (\d+) learned rules?", re.I)
@@ -109,7 +110,7 @@ def score_simulation(manifest: Manifest, views: dict[int, RunView], transcript: 
         out.append(_res(f"sim-ruling-recorded:d{day}:{a.get('question')}", "sim_ruling_recorded", ok,
                         f"day {day} {a.get('question')}→{a.get('option')} ({a.get('about')}): "
                         + (f"ruling {hit[0].get('id')}" if hit else f"no ruling for this scope ({len(rulings)} in file)"),
-                        "triage", rlink, day))
+                        "read", rlink, day))  # `digest answer` writes it; readers and sweeps are its consumers
 
     # 2. the next run applies it: same scope not carded again, header counts the learned rule
     days = sorted(views)
@@ -124,10 +125,11 @@ def score_simulation(manifest: Manifest, views: dict[int, RunView], transcript: 
         ok = not again and applied >= 1
         why = [] if ok else ([f"carded again: {[i.id for i in again]}"] if again else []) + (
             [] if applied else ["header does not report applied learned rules"])
-        stage = "triage" if again else "compose"
+        asker = lead_signal([s for i in again for s in nview.item_signals(i)])
+        stage = (asker.stage if asker else "read") if again else "compose"
         out.append(_res(f"sim-ruling-applied:d{nd}:{a.get('about')}", "sim_ruling_applied", ok,
                         f"day {nd}: " + ("scope not carded again; header: applied " + str(applied) if ok else "; ".join(why)),
-                        stage, [nview.link("triage" if again else "digest")], nd))
+                        stage, [nview.signal_link(asker) if asker else nview.link("triage" if again else "digest")], nd))
 
     # 3. escalation framing for items that keep coming back
     streak: dict[str, int] = {}
@@ -140,10 +142,10 @@ def score_simulation(manifest: Manifest, views: dict[int, RunView], transcript: 
             if streak[key] >= 3:
                 it = next(i for i in view.rendered if i.about == key)
                 ok = bool(ESCALATION_RE.search(f"{it.what} {it.why}"))
-                stage = "compute" if it.times_surfaced < 2 else "compose"
+                stage = "merge" if it.times_surfaced < 2 else "compose"  # history joins where findings become candidates
                 out.append(_res(f"sim-escalation:d{d}:{key}", "sim_escalation", ok,
                                 f"day {d}: {key} surfaced {streak[key]} days running (times_surfaced {it.times_surfaced}): "
                                 + (f"framed: {it.why[:80]}" if ok else f"flat framing: {it.what[:60]} / {it.why[:60]}"),
-                                stage, [view.link("reduce" if stage == "compute" else "compose")], d))
+                                stage, [view.link("reduce" if stage == "merge" else "compose")], d))
         prev = now
     return out

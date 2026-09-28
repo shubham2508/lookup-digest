@@ -74,12 +74,13 @@ def test_simulation_catches_a_product_that_ignores_rulings(tmp_path, manifest):
              use_llm=False)
     ws = score_world("mini", tmp_path, manifest=manifest)
     rec = [r for r in ws.simulation if r.kind == "sim_ruling_recorded"]
-    assert rec and all(r.passed is False and r.attributed_stage == "triage" for r in rec)
+    assert rec and all(r.passed is False and r.attributed_stage == "read" for r in rec)
     applied = [r for r in ws.simulation if r.kind == "sim_ruling_applied"]
-    assert applied[0].passed is False and "carded again" in applied[0].evidence and applied[0].attributed_stage == "triage"
+    # the reader that asked again although a ruling covers the scope
+    assert applied[0].passed is False and "carded again" in applied[0].evidence and applied[0].attributed_stage == "read"
     [esc] = [r for r in ws.simulation if r.kind == "sim_escalation" and "cap-table" in r.id]
     halberd = [r for r in ws.simulation if r.kind == "sim_escalation" and "halberd" in r.id]
-    assert halberd and halberd[0].attributed_stage == "compute"  # times_surfaced never incremented
+    assert halberd and halberd[0].attributed_stage == "merge"  # times_surfaced never incremented
     assert esc.passed is False and esc.attributed_stage == "compose" and "flat framing" in esc.evidence
 
 

@@ -2,16 +2,21 @@
 
     uv run python tests/fixtures/mini_runs/make_fake_run.py
 
-One run, day 30 (as of 2026-09-24T06:00 PT), shaped by digest/schemas.py and the artifact proposal in
-OPEN_QUESTIONS.md #6. Planted defects, one per stage, so every attribution path is exercised:
+One run, day 30 (as of 2026-09-24T06:00 PT), shaped by digest/schemas.py: v2 artifacts (PIVOT_SPEC §4), i.e.
+findings.jsonl (every Finding + candidate_id, thread_id, rescued_by_safety_net) and the Finding → Candidate /
+TriageResult mapping of digest/findings.py. Planted defects, one per stage, so every attribution path is exercised:
 
-- extraction   Sam's thread: intent_primary "fyi" (label: ask); one evidence quote dropped (degradations.jsonl).
-- compute      no news_attachment candidate for the Halberd rollout; Dana resolved as cold_inbound (label: vendor);
-               an extra reply_owed candidate for the daycare thread (precision loss).
-- triage       daycare candidate excluded (label: P0) → P0 recall 2/3, gate fails; Lumen at P3 (label: P2);
-               Lumen gets only calendar_response (label also expects decide).
-- materializer the Renee draft contains the banned phrase "just wanted to".
+- spine        Dana resolved as cold_inbound (label: vendor).
+- read         Sam's daycare thread: the reader said needs_avery "no" (label: P0) → P0 recall 2/3, gate fails;
+               one citation dropped by the substring check (degradations.jsonl).
+- sweep        Lumen's deep-work booking at P3 (label: P2), only calendar_response (label also expects decide);
+               the news sweep attached nothing to the Halberd rollout (a news_attachment is expected).
+- net          two rescues: the DocuSign approval and the pediatrician collision (no reader or sweep covered them).
+- materialize  the Renee draft contains the banned phrase "just wanted to".
 Everything else is right: one thing = cap table citing Marcus's thread, no draft to Sam, marketing absent.
+
+The base run also keeps its v1 `extractions.jsonl` (committed, not written here): Track A/B tests read it until the
+extractor is gone. The scorer ignores it.
 """
 from __future__ import annotations
 
@@ -36,66 +41,6 @@ def ev(src: str, quote: str) -> dict:
     return {"source_id": src, "quote": quote}
 
 
-def meta() -> dict:
-    return {"schema_version": "1.0", "prompt_version": "extractor@v1", "model": "fake", "input_hash": "x",
-            "extracted_at": "2026-09-24T06:00:00-07:00"}
-
-
-def rt(raw: str, iso: str | None, gran: str = "day") -> dict:
-    return {"raw": raw, "resolved": iso, "granularity": gran, "confidence": "high"}
-
-
-def thread(summary, about, domain, intent, ball, last_by, last_at, ev_ball, **kw) -> dict:
-    base = {"summary": summary, "about": about, "domain": domain, "intent_primary": intent, "intent_secondary": [],
-            "ball": {"awaiting": ball, "awaiting_who": None, "last_message_by": last_by, "last_message_at": last_at,
-                     "closed_by_courtesy": False, "evidence": ev_ball},
-            "sender_observations": [], "asks": [], "commitments": [], "deferrals": [], "schedule_mentions": [],
-            "stage_signals": [], "role_changes": [], "claims": [], "suspicious_instructions": []}
-    base.update(kw)
-    return base
-
-
-EXTRACTIONS = [
-    {"meta": meta(), "source_id": "thread:20260922-1408.renee@halberd.com", "type": "human_thread",
-     "payload": thread("Renee asks if the Oct 6 rollout is still on.", ["rollout:halberd:oct-6"], "work", "ask", "avery",
-                       "renee.tan@halberd.com", "2026-09-22T14:08:11-07:00", ev(RENEE_1, "still on"),
-                       sender_observations=[{"email": "renee.tan@halberd.com", "name": "Renee Tan", "title": "Procurement Lead",
-                                             "org": "Halberd Manufacturing", "relationship_hint": "customer",
-                                             "subtype_hint": "reference", "introduced_by": None, "evidence": [ev(RENEE_1, "Procurement Lead")]}],
-                       asks=[{"from_email": "renee.tan@halberd.com", "to_avery": True, "kind": "information",
-                              "what": "confirm Oct 6 rollout date", "deadline": rt("by end of day", "2026-09-22T23:59:00-07:00"),
-                              "status": "open", "answered_by_message": None, "evidence": ev(RENEE_1, "still on")}])},
-    {"meta": meta(), "source_id": "thread:20260922-1642.marcus@inflectionpoint.vc", "type": "human_thread",
-     "payload": thread("Marcus needs the updated cap table; Avery promised it tonight.", ["deal:series-a:cap-table"], "work",
-                       "ask", "avery", "avery@tessera.io", "2026-09-22T21:30:47-07:00", ev(AVERY_1, "will send it tonight"),
-                       commitments=[{"owner": "avery", "owner_email": "avery@tessera.io", "to_whom": ["marcus@inflectionpoint.vc"],
-                                     "what": "send updated cap table", "due": rt("tonight", "2026-09-22T23:59:00-07:00"),
-                                     "status_in_thread": "open", "fulfilled_by": None, "fulfills_hint": None,
-                                     "about": "deal:series-a:captable", "evidence": ev(AVERY_1, "will send it tonight")}])},
-    {"meta": meta(), "source_id": "thread:20260923-0700.brief@scbrief.example", "type": "newsletter",
-     "payload": {"publication": "The Supply Chain Brief", "issue_date": "2026-09-23", "items": [
-         {"headline": "DeepSeek-V4 Pro volume pricing", "summary": "Volume pricing on OpenRouter.", "topics": ["inference-cost"],
-          "entities": [{"kind": "org", "name": "OpenRouter", "contact_hint": None}], "effective_date": None,
-          "evidence": ev(NL_1, "volume pricing")},
-         {"headline": "MX Summit case studies", "summary": "Halberd and Northstar presented.", "topics": ["customers"],
-          "entities": [{"kind": "org", "name": "Halberd Manufacturing", "contact_hint": None}], "effective_date": None,
-          "evidence": ev(NL_1, "case studies")}]}},
-    {"meta": meta(), "source_id": "thread:20260922-0915.dse@docusign.net", "type": "automated",
-     "payload": {"system": "DocuSign", "action_bearing": True, "action_kind": "signature", "what": "sign Mei Tanaka offer",
-                 "deadline": None, "about": "offer:mei-tanaka", "link_present": True, "evidence": ev(DOCU_1, "Offer Letter")}},
-    {"meta": meta(), "source_id": "thread:20260921-1000.hello@mail.rippleboard.example", "type": "marketing", "payload": None},
-    {"meta": meta(), "source_id": "thread:20260923-2110.sam@parkfamily.example", "type": "human_thread",
-     "payload": thread("Daycare closed Friday; Sam asks who takes the afternoon.", ["family:daycare"], "personal", "fyi",
-                       "avery", "sam@parkfamily.example", "2026-09-23T21:10:33-07:00", ev(SAM_1, "Can you take the afternoon"),
-                       asks=[{"from_email": "sam@parkfamily.example", "to_avery": True, "kind": "decision",
-                              "what": "take Friday afternoon or ask parents", "deadline": None, "status": "open",
-                              "answered_by_message": None, "evidence": ev(SAM_1, "Can you take the afternoon")}])},
-    {"meta": meta(), "source_id": "note:notes/sprint-week.md", "type": "note",
-     "payload": {"note_kind": "status", "meeting_date": "2026-09-22", "attendees": ["Jordan Liu"], "summary": "Sprint on track.",
-                 "about": ["rollout:halberd:oct-6"], "decisions": [], "action_items": [], "agreements": [], "open_comments": [],
-                 "claims": [], "stage_signals": [], "draft_of": None}},
-]
-
 CONTACTS = [
     {"contact_id": "renee-tan", "names": ["Renee Tan"], "emails": ["renee.tan@halberd.com"], "org": "Halberd Manufacturing",
      "relationship": {"category": "customer", "subtype": "reference", "stage": "active", "source": "profile"}, "tier": "P1",
@@ -116,18 +61,20 @@ def cand(cid, ctype, about, evidence, facts=None, **kw) -> dict:
             "freshness_cap": "none", "times_surfaced": kw.get("times", 0)}
 
 
+# candidates are the findings that need Avery (digest/findings.py to_candidate): readers' and sweeps' kinds are free
+# text, safety nets keep the v1 rule name; a needs_avery "no" finding (the daycare reader) makes no candidate
 CANDIDATES = [
-    cand("c1", "commitment_overdue", "deal:series-a:captable", [ev(AVERY_1, "will send it tonight")], {"days_overdue": 1},
-         entities=["marcus-webb"]),
-    cand("c2", "commitment_not_in_tasks", "deal:series-a:cap-table", [ev(AVERY_1, "will send it tonight")], entities=["marcus-webb"]),
-    cand("c3", "reply_owed", "rollout:halberd:oct-6", [ev(RENEE_1, "still on")], {"hours_since_inbound": 40}, entities=["renee-tan"]),
+    cand("c1", "overdue promise to lead investor", "deal:series-a:captable", [ev(AVERY_1, "will send it tonight")],
+         {"days_overdue": 1}, entities=["marcus-webb"]),
+    cand("c2", "promise missing from tasks", "deal:series-a:cap-table", [ev(AVERY_1, "will send it tonight")], entities=["marcus-webb"]),
+    cand("c3", "reference customer waiting on a date", "rollout:halberd:oct-6", [ev(RENEE_1, "still on")],
+         {"hours_since_inbound": 40}, entities=["renee-tan"]),
     cand("c4", "approval_pending", "offer:mei-tanaka", [ev(DOCU_1, "Offer Letter")]),
-    cand("c5", "calendar_conflict:deep_work", "meeting:lumen-demo", [ev(EV_LUMEN, "Lumen Analytics demo")],
+    cand("c5", "deep-work block booked by a vendor", "meeting:lumen-demo", [ev(EV_LUMEN, "Lumen Analytics demo")],
          {"overlap_minutes": 30}, entities=["dana-whitfield"], deps=["calendar"]),
     cand("c6", "calendar_conflict:family", "family:pediatrician", [ev(EV_PED, "Wren - pediatrician 3:00pm")],
          {"overlap_minutes": 60}, entities=["sam-park"], deps=["calendar"]),
-    cand("c7", "task_due", "report:q2-planning", [ev("task:2", "Review Q2 planning comments")], deps=["tasks"]),
-    cand("c8", "reply_owed", "family:daycare", [ev(SAM_1, "Can you take the afternoon")], entities=["sam-park"]),
+    cand("c7", "task due today", "report:q2-planning", [ev("task:2", "Review Q2 planning comments")], deps=["tasks"]),
 ]
 
 
@@ -157,7 +104,55 @@ TRIAGE = [
     tri("c6", True, "calendar_personal", "P0", "Sam added the pediatrician at 3pm; overlaps your afternoon", [ev(EV_PED, "Wren - pediatrician 3:00pm")],
         [act("message_person", "sam@parkfamily.example", "ask Sam whether you are expected to take Wren")]),
     tri("c7", True, "pulse", "P2", "Q2 planning comments due today", [ev("task:2", "Review Q2 planning comments")], [A_TASK | {"target": "Review Q2 planning comments"}]),
-    tri("c8", False, "calendar_personal", "P2", "Sam's note reads as FYI", [ev(SAM_1, "Can you take the afternoon")], []),
+]
+
+THREAD_MARCUS = "thread:20260922-1642.marcus@inflectionpoint.vc"
+THREAD_RENEE = "thread:20260922-1408.renee@halberd.com"
+THREAD_SAM = "thread:20260923-2110.sam@parkfamily.example"
+
+
+def finding(fid, origin, needs, title, kind, why, priority, section, about, cites, actions, cid, thread=None, *,
+            rescued=False, urgency="today", ambiguity=None, entities=None, contradictions=None, suspicious=None) -> dict:
+    """One findings.jsonl row (digest/findings.py finding_row): the Finding plus candidate_id, thread_id, rescued."""
+    return {"finding_id": fid, "origin": origin, "needs_avery": needs, "title": title, "kind": kind, "why": why,
+            "priority": priority, "urgency": urgency, "deadline": None, "stakes": "high" if priority == "P0" else "medium",
+            "confidence": "high", "section": section, "entities": entities or [], "about": about, "citations": cites,
+            "proposed_actions": actions, "ambiguity": ambiguity, "contradictions": contradictions or [],
+            "freshness_caveat": None, "suspicious_instructions": suspicious or [],
+            "candidate_id": cid, "thread_id": thread, "rescued_by_safety_net": rescued}
+
+
+FINDINGS = [
+    finding("f1", "thread_reader", "yes", "Send the updated cap table to Marcus", "overdue promise to lead investor",
+            "You promised it Tuesday night; the term sheet waits on it.", "P0", "urgent", ["deal:series-a:captable"],
+            [ev(AVERY_1, "will send it tonight")], [A_TASK, A_FWD], "c1", THREAD_MARCUS, entities=["marcus-webb"]),
+    finding("f2", "notes_tasks_sweep", "yes", "Add the cap table promise to your tasks", "promise missing from tasks",
+            "The promise to Marcus is not on the task list.", "P1", "urgent", ["deal:series-a:cap-table"],
+            [ev(AVERY_1, "will send it tonight")], [A_TASK], "c2", entities=["marcus-webb"]),
+    finding("f3", "thread_reader", "yes", "Reply to Renee about the Oct 6 rollout", "reference customer waiting on a date",
+            "Renee asked Tuesday whether Oct 6 is still on; same-day reply rule.", "P1", "urgent", ["rollout:halberd:oct-6"],
+            [ev(RENEE_1, "still on")], [A_REPLY, A_Q], "c3", THREAD_RENEE, ambiguity=TRIAGE[2]["ambiguity"],
+            entities=["renee-tan"]),
+    finding("f4", "safety_net", "yes", "Sign Mei Tanaka's offer letter", "approval_pending",
+            "DocuSign offer letter waiting since Tuesday 09:15; no reader covers automated mail.", "P1", "decisions",
+            ["offer:mei-tanaka"], [ev(DOCU_1, "Offer Letter")], [act("approve", "DocuSign", "sign Mei's offer letter")], "c4",
+            rescued=True),
+    finding("f5", "calendar_sweep", "yes", "Move the Lumen demo off your deep-work block", "deep-work block booked by a vendor",
+            "Lumen's rep booked 10:30 inside Thursday 09:00-11:00.", "P3", "calendar_personal", ["meeting:lumen-demo"],
+            [ev(EV_LUMEN, "Lumen Analytics demo")],
+            [act("calendar_response", "lumen-demo-20260924@lumenanalytics.example", "propose moving to 11:15")], "c5",
+            entities=["dana-whitfield"]),
+    finding("f6", "safety_net", "yes", "Check with Sam about Wren's 3pm pediatrician", "calendar_conflict:family",
+            "Shared-family event at 15:00 overlaps your afternoon (60 min).", "P0", "calendar_personal", ["family:pediatrician"],
+            [ev(EV_PED, "Wren - pediatrician 3:00pm")],
+            [act("message_person", "sam@parkfamily.example", "ask Sam whether you are expected to take Wren")], "c6",
+            rescued=True, entities=["sam-park"]),
+    finding("f7", "notes_tasks_sweep", "yes", "Review the Q2 planning comments", "task due today", "tasks.md marks it due today.",
+            "P2", "pulse", ["report:q2-planning"], [ev("task:2", "Review Q2 planning comments")],
+            [A_TASK | {"target": "Review Q2 planning comments"}], "c7"),
+    finding("f8", "thread_reader", "no", "Note Friday's daycare closure", "family logistics FYI", "Sam's note reads as FYI.",
+            "P2", "calendar_personal", ["family:daycare"], [ev(SAM_1, "Can you take the afternoon")], [], None, THREAD_SAM,
+            urgency="this_week", entities=["sam-park"]),
 ]
 
 REDUCE = {
@@ -297,8 +292,8 @@ COST = {"calls": 14, "cached": 0, "prompt_tokens": 52000, "completion_tokens": 9
 RUN = {"run_id": "tests/fixtures/mini/2026-09-24T06-00", "world": "tests/fixtures/mini", "as_of": "2026-09-24T06:00:00-07:00",
        "variant": None, "customize": None, "timings_s": {}, "wall_s": 1.0, "cost_usd": 0.0123, "llm_calls": 14,
        "llm_cached": 0, "degradations": 1}
-DEGRADATIONS = [{"stage": "extract", "item": "<20260922-1408.renee@halberd.com>",
-                 "reason": "evidence_invalid", "why": "quote not a substring of the source", "path": "asks[1]"}]
+DEGRADATIONS = [{"stage": "read", "item": THREAD_RENEE, "reason": "citation_invalid",
+                 "why": "quote not a substring of the source", "path": "findings[0].citations[1]"}]
 
 
 def validate() -> None:
@@ -307,15 +302,15 @@ def validate() -> None:
         Candidate,
         ComposeResult,
         Contact,
-        Extraction,
+        Finding,
         MaterializedAction,
         ReduceResult,
         TriageResult,
         VerifyResult,
     )
 
-    for r in EXTRACTIONS:
-        Extraction.model_validate(r)
+    for r in FINDINGS:
+        Finding.model_validate({k: v for k, v in r.items() if k not in ("candidate_id", "thread_id", "rescued_by_safety_net")})
     for r in CONTACTS:
         Contact.model_validate(r)
     for r in CANDIDATES:
@@ -338,7 +333,7 @@ def write_run(out: Path, b: dict) -> None:
     def js(name: str, obj) -> None:
         (out / name).write_text(json.dumps(obj, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
-    for name, key in (("extractions.jsonl", "extractions"), ("candidates.jsonl", "candidates"), ("triage.jsonl", "triage"),
+    for name, key in (("findings.jsonl", "findings"), ("candidates.jsonl", "candidates"), ("triage.jsonl", "triage"),
                       ("actions.jsonl", "actions"), ("cost.jsonl", "cost_log"), ("degradations.jsonl", "degradations")):
         if key in b:
             jl(name, b[key])
@@ -351,7 +346,7 @@ def write_run(out: Path, b: dict) -> None:
 
 def base_bundle() -> dict:
     return copy.deepcopy({
-        "extractions": EXTRACTIONS, "contacts": CONTACTS, "candidates": CANDIDATES, "triage": TRIAGE, "reduce": REDUCE,
+        "findings": FINDINGS, "contacts": CONTACTS, "candidates": CANDIDATES, "triage": TRIAGE, "reduce": REDUCE,
         "compose": COMPOSE, "actions": ACTIONS, "verify": VERIFY, "digest": DIGEST, "cost": COST, "cost_log": [],
         "run": RUN, "degradations": DEGRADATIONS})
 
@@ -415,6 +410,10 @@ def _add_item(b: dict, iid: str, about: str, cand_type: str, section: str, prior
               cites: list[dict], actions: list[dict] | None = None) -> None:
     cid = f"c-{iid}"
     b["candidates"].append(cand(cid, cand_type, about, cites))
+    origin = "news_sweep" if cand_type == "news_attachment" else "notes_tasks_sweep"
+    b["findings"].append(finding(f"f-{iid}", origin, "yes", what, cand_type, why, priority, section, [about], cites,
+                                 [act(a["type"], a.get("target"), "b") for a in actions or []], cid,
+                                 contradictions=[why] if cand_type == "contradiction" else None))
     b["triage"].append(tri(cid, True, section, priority, why, cites, [act(a["type"], a.get("target"), "b") for a in actions or []]))
     b["reduce"]["items"].append({"id": iid, "about": about, "candidate_ids": [cid], "candidate_types": [cand_type],
                                  "priority": priority, "section": section, "confidence": "high", "citations": cites,
@@ -461,8 +460,9 @@ def conditions() -> dict[str, dict]:
 
     # honesty: corrupt_ics — header says so; no calendar-conflict candidates or items
     b = base_bundle()
-    b["candidates"] = [c for c in b["candidates"] if not c["type"].startswith("calendar_conflict")]
+    b["candidates"] = [c for c in b["candidates"] if c["candidate_id"] not in ("c5", "c6")]
     b["triage"] = [t for t in b["triage"] if t["candidate_id"] not in ("c5", "c6")]
+    b["findings"] = [f for f in b["findings"] if f["candidate_id"] not in ("c5", "c6")]
     _drop(b, "i4", "i5")
     b["digest"] = render(b, "As of Thu 06:00 PT · inbox synced Wed 21:10 · calendar unreadable, calendar checks skipped · notes ok · tasks ok")
     out["corrupt_ics"] = b

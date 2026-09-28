@@ -1,17 +1,17 @@
-"""Track A · M5: triage post-checks, reduce, compose validation, materializer code checks, verify's hard rules, render."""
-import json
+"""Track A · v2: the code floors on reader findings, reduce, compose validation, materializer code checks, verify's hard
+rules, render. The stack is the fixture world + the fake thread reader (tests/a_fakes.py) + fake LLM for later stages."""
 from pathlib import Path
 
-import pytest
 import yaml
 from a_fakes import TZ, fake_llm
 
 from digest.compose import apply_focus, compose_digest, fallback_compose, validate_compose
-from digest.compute import compute_world
+from digest.compute import assemble, build_spine
 from digest.config import load_settings
 from digest.ingest import load_world
 from digest.materialize import draft_violations, materialize, suggested_tasks_md
 from digest.normalize import normalize_world
+from digest.read import read_threads
 from digest.reduce import reduce_items
 from digest.render import CitationIndex, render_digest
 from digest.runs import RunContext, parse_as_of
@@ -19,16 +19,13 @@ from digest.schemas import (
     ComposeItem,
     ComposeResult,
     Evidence,
-    Extraction,
     MaterializedAction,
     ProfileConfig,
     ProposedAction,
     SectionBlock,
 )
-from digest.triage import triage_candidates
+from digest.triage import enforce_all
 from digest.verify import verify
-
-V1_RULES = "asserts v1 extraction-rule candidates (task_due, commitment_overdue, reply_owed from an extracted ask) that v2-b-spine deleted; Track A's v2 rewrite replaces this test"
 
 SETTINGS = load_settings()
 AS_OF = parse_as_of("2026-09-24T06:00")
@@ -40,44 +37,48 @@ def _profile() -> ProfileConfig:
     return ProfileConfig.model_validate(data)
 
 
-def _stack(mini_dir, tmp_path, **fake):
-    """Fixture world + real M3 extractions (from the committed run) + fake LLM for every later stage."""
+def _stack(mini_dir, tmp_path, rulings=None, **fake):
+    """Fixture world → spine → fake thread readers → assemble → code floors; fake LLM for every later stage."""
     world = normalize_world(load_world(mini_dir, AS_OF, TZ), SETTINGS, "Avery Chen")
-    xs = [Extraction.model_validate(json.loads(ln)) for ln in Path("tests/fixtures/mini_runs/2026-09-24T06-00/extractions.jsonl").read_text().splitlines()]
     profile = _profile()
     llm = fake_llm(tmp_path, **fake)
-    comp = compute_world(world, xs, profile, SETTINGS, AS_OF, llm=llm)
     ctx = RunContext("t", AS_OF, runs_dir=tmp_path / "runs")
-    return world, profile, comp, llm, ctx
+    spine = build_spine(world, profile, SETTINGS, AS_OF, llm=llm, ctx=ctx)
+    read = read_threads(llm, world, spine.directory, profile, SETTINGS, AS_OF, ctx, rulings or [])
+    comp = assemble(world, spine, read, profile, SETTINGS, AS_OF, llm=llm, ctx=ctx)
+    results, stats = enforce_all(comp.triage, comp.candidates, comp, rulings or [], ctx, rulings_applied=read.stats.rulings_applied)
+    return world, profile, comp, llm, ctx, results, stats
 
 
-@pytest.mark.skip(reason=V1_RULES)
-def test_triage_packs_and_code_checks(mini_dir, tmp_path):
-    world, profile, comp, llm, ctx = _stack(mini_dir, tmp_path)
-    results, stats = triage_candidates(llm, comp.candidates, comp, profile, SETTINGS, ctx, rulings=[{"id": "R1", "scope": {"thread_kind": "task_due"}, "ruling": "x"}], as_of=AS_OF)
-    assert len(results) == len(comp.candidates) and stats.packs == 2 and stats.invalid_packs == 0 and stats.rulings_applied == 1
+def test_code_floors_on_reader_findings(mini_dir, tmp_path):
+    rulings = [{"id": "R1", "scope": {"contact": "sam-park"}, "ruling": "x"}, {"id": "R2", "scope": {"contact": "nobody-here"}, "ruling": "y"}]
+    world, profile, comp, llm, ctx, results, stats = _stack(mini_dir, tmp_path, rulings=rulings)
+    assert len(results) == len(comp.candidates) == 3 and stats.rulings_applied == 1, "R1 reaches Sam's reader; R2 matches nobody"
     by = {r.candidate_id: r for r in results}
-    for c in comp.candidates:
-        r = by[c.candidate_id]
-        assert all(e in c.evidence for e in r.citations), "citations may only be verbatim candidate evidence"
-        if c.type == "calendar_conflict:family" or (c.type == "reply_owed" and "sam-park" in c.entities):
-            assert all(a.type != "reply" for a in r.proposed_actions), "never a draft for Sam"
-    fam = next(r for c in comp.candidates for r in [by[c.candidate_id]] if c.type == "calendar_conflict:family")
-    assert fam.priority == "P0" and fam.section == "calendar_personal"
-    assert any("citations replaced" in f for fx in stats.fixes for f in fx["fixes"]) is False
+    cand = {c.candidate_id: c for c in comp.candidates}
+    for cid, r in by.items():
+        assert r.citations and all(e in cand[cid].evidence for e in r.citations), "citations only from the finding's verified evidence"
+        assert all(e.quote != "a sentence nobody wrote" for e in r.citations), "an invented quote never survives"
+    sam = next(r for r in results if "sam-park" in cand[r.candidate_id].entities)
+    assert sam.priority == "P0" and all(a.type != "reply" for a in sam.proposed_actions), "never a draft for Sam"
+    assert any(a.type == "message_person" for a in sam.proposed_actions)
+    renee = next(r for r in results if "renee-tan" in cand[r.candidate_id].entities)
+    assert renee.priority == "P1", "a reader's P0 without a P0 contact, family matter or incident is demoted"
+    marcus = next(r for r in results if "marcus-webb" in cand[r.candidate_id].entities)
+    assert marcus.priority == "P0" and cand[marcus.candidate_id].about == "deal:series-a:cap-table"
     assert any("never_draft" in f for fx in stats.fixes for f in fx["fixes"])
+    no = [row for row in comp.findings if row["needs_avery"] == "no"]
+    assert len(comp.findings) == 4 and len(no) == 1 and no[0]["candidate_id"] is None and no[0]["thread_id"]
 
 
-@pytest.mark.skip(reason=V1_RULES)
 def test_reduce_merges_sorts_and_caps(mini_dir, tmp_path):
-    world, profile, comp, llm, ctx = _stack(mini_dir, tmp_path)
-    results, _ = triage_candidates(llm, comp.candidates, comp, profile, SETTINGS, ctx, as_of=AS_OF)
-    red = reduce_items(results, comp.candidates, comp, k_cap=3, about_merges=comp.about_merges)
+    world, profile, comp, llm, ctx, results, _ = _stack(mini_dir, tmp_path)
+    red = reduce_items(results, comp.candidates, comp, k_cap=1, about_merges=comp.about_merges)
     ids = [it.id for it in red.items]
     assert ids == sorted(ids, key=lambda i: int(i[1:])) and red.items[0].priority == "P0"
     cap = next(it for it in red.items if it.about.startswith("deal:series-a"))
-    assert set(cap.candidate_types) >= {"commitment_overdue", "reply_owed"} and cap.priority == "P0" and len(cap.candidate_ids) >= 2
-    assert all(it.priority == "P0" for it in red.items if it.id not in red.overflow) or len(red.overflow) == len(red.items) - 3
+    assert cap.priority == "P0" and cap.candidate_types == ["overdue promise to lead investor"]
+    assert all(it.priority == "P0" for it in red.items if it.id not in red.overflow)
     p0_ids = {it.id for it in red.items if it.priority == "P0"}
     assert not (p0_ids & set(red.overflow)), "every P0 survives the cap"
     assert "c" in "".join(red.dropped) or red.dropped == [r.candidate_id for r in results if not r.include]
@@ -111,14 +112,12 @@ def test_compose_validation_dedupes_and_budgets_questions():
     assert fb.one_thing_id == "i1" and fb.header_notes and "i4" in [i for b in fb.sections for i in b.item_ids]
 
 
-@pytest.mark.skip(reason=V1_RULES)
 def test_draft_violations_and_materializer_retry(mini_dir, tmp_path):
     banned = SETTINGS.drafts.banned_phrases
     assert draft_violations("renee, yes. it's on. thanks.\nAvery", banned, 3) == []
     bad = draft_violations("hi, just wanted to confirm. one. two. three. four!!", banned, 3)
     assert any("banned" in b for b in bad) and any("sentences" in b for b in bad)
-    world, profile, comp, llm, ctx = _stack(mini_dir, tmp_path, banned_first=True)
-    results, _ = triage_candidates(llm, comp.candidates, comp, profile, SETTINGS, ctx, as_of=AS_OF)
+    world, profile, comp, llm, ctx, results, _ = _stack(mini_dir, tmp_path, banned_first=True)
     red = reduce_items(results, comp.candidates, comp, 25, comp.about_merges)
     cands = {c.candidate_id: c for c in comp.candidates}
     composed, cst = compose_digest(llm, red, cands, profile, SETTINGS, ctx, freshness_line="inbox ok", rulings_applied=0, compute=comp)
@@ -129,18 +128,14 @@ def test_draft_violations_and_materializer_retry(mini_dir, tmp_path):
     assert mst.draft_retries >= 1 and mst.drafts_dropped == 0
     q = [a for a in actions if a.type == "question"]
     assert all(a.text.startswith("Q") and "Default if unanswered" in a.text and "digest answer Q" in a.text for a in q)
-    cal = [a for a in actions if a.type == "calendar_response"]
-    assert all(a.text.startswith("↳ Propose:") for a in cal)
     msg = [a for a in actions if a.type == "message_person"]
     assert msg and all("No draft (Sam)" in a.text for a in msg if a.recipient_name == "Sam Park")
     tasks_md = suggested_tasks_md(actions, "2026-09-24")
     assert tasks_md.startswith("- [ ] ") and "(due: 2026-09-24)" in tasks_md
 
 
-@pytest.mark.skip(reason=V1_RULES)
 def test_verify_rules_and_render(mini_dir, tmp_path):
-    world, profile, comp, llm, ctx = _stack(mini_dir, tmp_path)
-    results, _ = triage_candidates(llm, comp.candidates, comp, profile, SETTINGS, ctx, as_of=AS_OF)
+    world, profile, comp, llm, ctx, results, _ = _stack(mini_dir, tmp_path)
     red = reduce_items(results, comp.candidates, comp, 25, comp.about_merges)
     cands = {c.candidate_id: c for c in comp.candidates}
     composed, _ = compose_digest(llm, red, cands, profile, SETTINGS, ctx, freshness_line="inbox ok", rulings_applied=0, compute=comp)
@@ -149,14 +144,12 @@ def test_verify_rules_and_render(mini_dir, tmp_path):
     # plant violations: a draft to Sam (rule 1), a bad citation (rule 5), a P0 suspicious item (rule 11), a non-proposal (rule 10)
     sam_item = next(it for it in red.items if "sam-park" in it.entities)
     actions.append(MaterializedAction(item_id=sam_item.id, type="reply", target="sam@parkfamily.example", recipient_name="Sam Park", brief="hi", text="↳ Draft to Sam:", draft="sam, ok"))
-    lumen = next(it for it in red.items if "lumen" in it.about)
-    for a in actions:
-        if a.item_id == lumen.id and a.type == "calendar_response":
-            a.text = "move it to 11:15"
+    renee = next(it for it in red.items if "renee-tan" in it.entities)
+    actions.append(MaterializedAction(item_id=renee.id, type="calendar_response", target=None, brief="move", text="move it to 11:15"))
     known = CitationIndex(world).known
     msg_thread = {f"msg:{m.message_id}": t.thread_id for t in world.threads for m in t.messages}
     router = {t.thread_id: t.router_type for t in world.threads}
-    tiny_budget = 20
+    tiny_budget = 8
     ver = verify(composed, by_item, actions, cands, comp, results, known, router, tiny_budget, "As of Thu 06:00 PT · inbox ok", None, overflow=red.overflow, msg_thread=msg_thread)
     rules = {v.rule for v in ver.result.violations}
     assert {1, 9, 10} <= rules, rules
@@ -176,12 +169,10 @@ def test_verify_rules_and_render(mini_dir, tmp_path):
     assert "other meeting" in md and "nothing to act on" in md
 
 
-@pytest.mark.skip(reason=V1_RULES)
 def test_focus_only_keeps_family_and_p0_as_outside_filter(mini_dir, tmp_path):
     from digest.compile.customize import default_overrides
     from digest.schemas import Focus
-    world, profile, comp, llm, ctx = _stack(mini_dir, tmp_path)
-    results, _ = triage_candidates(llm, comp.candidates, comp, profile, SETTINGS, ctx, as_of=AS_OF)
+    world, profile, comp, llm, ctx, results, _ = _stack(mini_dir, tmp_path)
     red = reduce_items(results, comp.candidates, comp, 25, comp.about_merges)
     o = default_overrides().model_copy(update={"focus": Focus(entities=[], categories=["family"], mode="only"), "length_words": 100})
     hidden, outside = apply_focus(red, {c.candidate_id: c for c in comp.candidates}, comp, o)
@@ -199,8 +190,8 @@ def test_stale_inbox_qualifies_reduced_items_too():
     from digest.pipeline import qualify_reduced
 
     stale = SimpleNamespace(state="stale", latest_item_time=datetime(2026, 9, 22, 18, 0, tzinfo=TZ))
-    quiet = SimpleNamespace(candidate_types=["quiet_thread"], why="Quiet for three business days.")
-    news = SimpleNamespace(candidate_types=["news_attachment"], why="Price cut on Oct 1.")
+    quiet = SimpleNamespace(candidate_types=["quiet_thread"], why="Quiet for three business days.", citations=[])
+    news = SimpleNamespace(candidate_types=["news_attachment"], why="Price cut on Oct 1.", citations=[])
     qualify_reduced(SimpleNamespace(items=[quiet, news]), {"email": stale})
     assert "may be a sync gap" in quiet.why.lower() and "Tue 18:00" in quiet.why
     assert news.why == "Price cut on Oct 1."
