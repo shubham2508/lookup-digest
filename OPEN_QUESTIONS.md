@@ -42,7 +42,8 @@ longer occurs. (b) Block the citation match only when the item also cites one of
   Note for DESIGN.md: this breaks the third-family rule from #1 (same family as the generator); Shubham's call,
   budget-driven. API money goes to producing digests only: dev 5 mornings + baseline, held-out 5 mornings +
   baseline; honesty variants, customize suite and the 5-day simulation run only if budget remains (v1's condition
-  results stay reported from the v1 tag).
+  results stay reported from the v1 tag). **Keep the DeepSeek judge code and config in hand** (`eval/judge/judge.py`,
+  `roles.judge` in `config/models.yaml`, `digest eval --world <w> --judge`); it is not deleted, only not run now.
 
 - **2026-09-29 ~05:30 · #19 v2 pivot approved; the P2 reader checkpoint is delegated to the orchestrator** (Shubham,
   before sleeping). Criteria, fixed now so the review is not a judgment call made after seeing the output: for each
