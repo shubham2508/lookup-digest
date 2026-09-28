@@ -6,6 +6,9 @@ Companion to `DESIGN_LOG.md` (resolves O19). This is the contract between the **
 
 ## 0. Principles
 
+> **Partly superseded (2026-09-29, v2):** §1 shared types (Evidence), §2 normalized inputs and the Contact shapes stay. §3 (extractor output) and §5 (candidate/triage contracts) are replaced by the `Finding` schema in `specs/PIVOT_SPEC.md` §4 (`digest/schemas.py`, mapped by `digest/findings.py`).
+
+
 1. **Facts, not judgment.** The extractor never outputs priority, urgency, "matters today," or actions. It outputs what the document says, plus a few classifications (type, intent, domain) that are properties of the document itself.
 2. **Every extracted fact carries evidence.** Evidence is a source ID plus a verbatim quote of at most 20 words. Code verifies the quote is a substring of the source; if not, the fact is dropped and logged. This is the main anti-hallucination guard, and it's also what produces citations in the digest.
 3. **Dates resolve against the message timestamp, not the run date.** "Tonight" in a Tuesday 16:42 message means Tuesday 23:59 PT. Keep both the raw phrase and the resolution.

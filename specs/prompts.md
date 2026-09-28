@@ -23,6 +23,9 @@ Rules for every prompt:
 
 ## Product prompts (6)
 
+> **Superseded in part (2026-09-29, v2):** P3 `extractor` and P4 `triage` are replaced by `thread_reader`, `calendar_sweep`, `notes_tasks_sweep`, `news_sweep`, `contact_classifier`, `signature_parser` (`specs/PIVOT_SPEC.md` §5). P5 compose and P6 materializer keep their outputs and gain raw inputs. The P4 priority rubric and the action taxonomy are reused verbatim.
+
+
 ### P1. `profile_compiler`
 - **Job:** turn `profile.md` into `profile.yaml` (architecture §5.1).
 - **Input:** profile.md.

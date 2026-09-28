@@ -11,6 +11,9 @@ The generator authors the truth, so most scoring is exact matching against `eval
 
 ## 2. Metrics by stage
 
+> **Superseded (2026-09-29, v2):** replaced by `specs/PIVOT_SPEC.md` §6: digest-level metrics are the target; stage metrics (reader recall on planted threads, sweep recall, safety-net rescues, merge errors, compose cuts, contact classification) are diagnostics.
+
+
 ### 2.1 Extraction (per thread / note / newsletter)
 - `type` accuracy; `domain` accuracy; `intent_primary` accuracy.
 - `ball.awaiting` accuracy (including `closed_by_courtesy`).

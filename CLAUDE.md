@@ -6,6 +6,7 @@ The design is **frozen**. Your job is to implement it, not redesign it.
 
 ## Read these first, in order
 
+0. `specs/PIVOT_SPEC.md` + `MIGRATION_PLAN.md` (**v2, decided 2026-09-29**): overrides the parts of 1–5 it names; where silent, they apply.
 1. `specs/architecture.md`: pipeline, stages, code-vs-LLM boundaries, output format, persistence, CLI
 2. `specs/extraction_schema.md`: the contract between generator, extractor, compute, triage, and eval
 3. `specs/data_generation.md`: synthetic world, storylines, background mail, renderers, answer key
@@ -17,7 +18,7 @@ The design is **frozen**. Your job is to implement it, not redesign it.
 
 1. **Don't make architecture decisions.** If a spec is ambiguous or seems wrong, stop, write the question to `OPEN_QUESTIONS.md` (what, where, options, your suggestion), and ask. Don't silently pick.
 2. **The digest package must never read `world/` or `eval/`.** Those are the generator's script and the answer key. Enforce with a test that fails if any module under `digest/` imports from or opens paths in `generator/`, `world/`, or `eval/`.
-3. **Code where the spec says code.** Business-day math, overlaps, counts, thresholds, dedupe, sorting, and hard rules are Python, never an LLM.
+3. **Code for math, thresholds, hard rules, and safety nets; LLMs read raw content for judgment.** Business-day math, overlaps, counts, dedupe, sorting and hard rules are Python. Structure (indexes, entities, findings) is an index and a recall floor, never a gate on what can surface. (v2 wording, 2026-09-29; `specs/PIVOT_SPEC.md`.)
 4. **Hard rules are enforced in code, even if a prompt also states them** (list in `specs/architecture.md` §8).
 5. **Every LLM output is validated** against its Pydantic model. On failure: one retry with the validation error appended, then degrade (skip the item, log it, and note it in the digest's honesty header). Never crash the run.
 6. **Every extracted fact carries evidence** (source ID + verbatim quote ≤20 words). Drop any fact whose quote isn't a substring of its source, and log it.
@@ -101,6 +102,8 @@ Default `--as-of` for real use is now; for worlds, the manifest lists run days.
 | M10 | README.md, DESIGN.md, sessions export, example runs committed | Docs ≤1 page each |
 
 If time runs short, shrink the held-out world and M9 first. Never cut eval.
+
+**v2 milestones P0–P7** (readers, sweeps, safety nets, eval rewire) are in `MIGRATION_PLAN.md` §3; v1 is tagged `v1-extraction-centric`.
 
 **Deadline (set 2026-09-28):** the full scope, M0 through M10, is built today, 2026-09-28; the repo is submitted the morning of 2026-09-29; the walkthrough is the following week. Nothing is deferred; the milestone order above stands. Held-out anchor: 2026-03-26.
 

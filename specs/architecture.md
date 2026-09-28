@@ -4,6 +4,9 @@ Rationale for every decision is in `docs/DESIGN_LOG.md`. This file says **what t
 
 ## 1. Pipeline
 
+> **Superseded (2026-09-29, v2):** this section is replaced by `specs/PIVOT_SPEC.md` §2 (readers → sweeps → safety nets → merge → compose). Kept as written for the `v1-extraction-centric` tag.
+
+
 ```
 ingest → normalize (SQLite)
        → router (code)
@@ -101,6 +104,9 @@ Rejected instructions and `not_understood` are reported in the digest header in 
 
 ## 6. Compute
 
+> **Superseded (2026-09-29, v2):** this section is replaced by `specs/PIVOT_SPEC.md` §3 (thin index, contact spine, retrieval) and §5.3–5.4 (safety nets, merge). Kept as written for the `v1-extraction-centric` tag.
+
+
 ### 6.1 Contacts & relationship resolution
 
 Merge `SenderObservation`s across all extractions + profile:
@@ -155,6 +161,9 @@ For each candidate: retrieve related extractions by shared entities within ±14 
 **Freshness effects (code, before triage):** if capped, confidence may not exceed `medium`; `quiet_thread` / `commitment_overdue` facts get the qualifier "may be a sync gap"; the dependency is listed so any draft flags it as an assumption.
 
 ## 7. Triage, reduce, compose, materializer
+
+> **Superseded (2026-09-29, v2):** this section is replaced by `specs/PIVOT_SPEC.md` §5 (triage folds into readers/sweeps; compose gets raw excerpts; the materializer gets the raw message). Kept as written for the `v1-extraction-centric` tag.
+
 
 **Triage:** per candidate; output `TriageResult` (schema §5.3). Receives the candidate, context summaries, involved contacts (category, subtype, stage, behavior, rules), effective-facts drift, matching rulings, freshness caps, the anchored priority rubric, and `judgment_rules`.
 

@@ -679,6 +679,10 @@ Settled since v1: O1–O3 (data gen, distribution, traps), O6 (commitments × ta
 | 27 | Flat default tiers (P2 humans / P3 automated) | **Rejected:** "P2 for all unknowns isn't intelligent"; asked for real buckets | Evidence-based inference, then a 12-category relationship taxonomy with lifecycle stages + intent + context modifiers (**Shubham's push**) |
 | 28 | "Personal" as a relationship category | **Corrected:** personal shouldn't depend on who sends it | Narrow Family category + work/personal domain tag per item (**Shubham's correction**) |
 | 29 | — | Asked how non-draft actions are communicated | Item grammar (what · why now · action · sources); per-action rendering; `digest answer` CLI for question cards |
+| 30 | Downstream stages see only extraction + short quotes | **Challenged (2026-09-29):** passing only extracted data downstream is wrong; extraction is lossy, and a triage that never sees the email cannot recover a miss | Raw content to triage and the materializer |
+| 31 | (v1 built: extraction-centric) | **Reviewed the build and rejected the design:** lossy pipeline centered on extraction accuracy and metadata | **v2: read, don't extract** (`specs/PIVOT_SPEC.md`). Readers and sweeps on raw content emit open-world Findings; entities are the spine; code safety nets are a recall floor; digest-level eval is the target (**Shubham's correction**). Kept from his review of the spec: no string similarity (the linker decides sameness), the P0-earned and suspicious-never-P0 code floors |
+
+Rejected alternative added 2026-09-29: **extraction-centric pipeline (v1)**: lossy and closed-world; rewarded metadata accuracy over digest usefulness. Kept as tag `v1-extraction-centric` for the v1/v2/baseline comparison.
 
 **For the walkthrough:** the biggest structural corrections (judgment vs. determinism, no hard clustering, drafter after compose, news relevance, ambiguity loop, action types, P0 depth) came from pushback on Claude's first proposals.
 
