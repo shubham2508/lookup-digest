@@ -231,6 +231,7 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
             comp.candidates = [c for c in comp.candidates if c.candidate_id not in answered]
         ctx.write_json("contacts", comp.contacts)
         ctx.write_jsonl("links", comp.links)
+        ctx.write_jsonl("findings", [])   # v2 contract: Track A's reader stage fills this; v1 writes an empty file
         ctx.write_jsonl("candidates", comp.candidates)
         st.upsert_many("contacts", [{"contact_id": c.contact_id, "category": c.relationship.category, "tier": c.tier, **c.model_dump(mode="json")} for c in comp.contacts])
         st.upsert_many("candidates", [{"run_id": ctx.run_id, "candidate_id": c.candidate_id, "type": c.type, "about": c.about, **c.model_dump(mode="json")} for c in comp.candidates])

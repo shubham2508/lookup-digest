@@ -469,7 +469,7 @@ Stakes = Literal["low", "medium", "high"]
 
 class FindingDeadline(Model):
     raw: str = Field(description="the phrase as written")
-    resolved: datetime | None = Field(description="ISO 8601 with offset, resolved against the message timestamp; null if unknown")
+    resolved: AwareDatetime | None = Field(description="ISO 8601 with offset, resolved against the message timestamp; null if unknown")
 
 
 class Finding(Model):
