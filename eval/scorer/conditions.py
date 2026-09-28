@@ -28,7 +28,7 @@ EVAL_DIR = Path(__file__).resolve().parents[1]
 VARIANT_SUITE = EVAL_DIR / "variant_suite.yaml"
 CUSTOMIZE_SUITE = EVAL_DIR / "customize_suite.yaml"
 CUSTOMIZE_DIR = PROFILE_DIR / "customize"
-BUILTIN_VARIANTS = {"tasks_stale"}  # conditions of the world itself, scored on the default runs
+BUILTIN_VARIANTS = {"tasks_stale", "tasks_stale_builtin"}  # conditions of the world itself, scored on the default runs
 CONTRACTION_RE = re.compile(r"\b\w+(n't|'re|'ll|'ve|'m|'d)\b", re.I)
 FORMAL_SIGNOFF_RE = re.compile(r"\b(best regards|kind regards|regards|sincerely|best|thank you)\b", re.I)
 

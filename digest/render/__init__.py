@@ -52,6 +52,9 @@ class CitationIndex:
         return None
 
 
+ALSO_PENDING_MAX = 8  # one page: the overflow list shows its top lines and a count
+
+
 def _cites(item: ReduceItem, idx: CitationIndex, limit: int = 3) -> str:
     out: list[str] = []
     for e in item.citations:
@@ -149,10 +152,12 @@ def render_digest(*, as_of: datetime, header: str, compose: ComposeResult, reduc
     pending = [i for i in also_pending if i in reduced]
     if pending:
         out += [f"## Also pending ({len(pending)})", ""]
-        for iid in pending:
+        for iid in pending[:ALSO_PENDING_MAX]:
             it = reduced[iid]
             ci = items.get(iid)
             out.append(_one_liner(ci.what if ci else titles.get(iid, it.about), _cites(it, idx, 1)))
+        if len(pending) > ALSO_PENDING_MAX:
+            out.append(f"- …and {len(pending) - ALSO_PENDING_MAX} more lower-priority items (full list in reduce.json).")
         out += ["", "---", ""]
     outside = [i for i in outside_filter if i in reduced]
     if outside:

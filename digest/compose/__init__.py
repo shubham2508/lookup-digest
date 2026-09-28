@@ -139,11 +139,18 @@ def validate_compose(result: ComposeResult, reduced: ReduceResult, question_budg
                 b.item_ids.remove(one)
                 stats.fixes.append("one thing removed from its section (no repeats)")
     cut = [i for i in result.cut_ids if i in known and i not in placed]
-    # every reduced item must be placed, cut, or overflow; unplaced non-P0 → cut, P0 → cut too (renders as a one-liner: rule 7)
+    # every reduced item must be placed, cut, or overflow; unplaced items → cut
     for it in reduced.items:
         if it.id not in placed and it.id not in cut:
             cut.append(it.id)
             stats.fixes.append(f"{it.id} unplaced → also pending")
+    # a P0 never sits in the overflow list: it goes back to its own section (integration: Jordan's incident was buried)
+    for iid in [i for i in cut if known[i].priority == "P0"]:
+        cut.remove(iid)
+        block = next(b for b in sections if b.name == known[iid].section)
+        block.item_ids.append(iid)
+        placed.add(iid)
+        stats.fixes.append(f"{iid} is P0 → restored from also pending to {known[iid].section}")
     # items placed but without a compose item entry → synthesize from the reduced item
     for iid in placed:
         if iid not in ids_in_items:

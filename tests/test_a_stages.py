@@ -97,9 +97,9 @@ def test_compose_validation_dedupes_and_budgets_questions():
     from digest.compose import ComposeStats
     st = ComposeStats()
     out = validate_compose(raw, red, question_budget=2, stats=st)
-    assert out.one_thing_id == "i1" and [b.item_ids for b in out.sections] == [["i2"], [], [], ["i3"], []]
-    assert [ci.id for ci in out.items] == ["i1", "i2", "i3"] and len(out.items[0].final_actions) == 1
-    assert out.cut_ids == ["i4"], "unplaced items go to also-pending (a P0 still renders as a one-liner)"
+    assert out.one_thing_id == "i1" and [b.item_ids for b in out.sections] == [["i2", "i4"], [], [], ["i3"], []]
+    assert [ci.id for ci in out.items] == ["i1", "i2", "i4", "i3"] and len(out.items[0].final_actions) == 1
+    assert out.cut_ids == [], "an unplaced P0 is restored to its own section, never left in also-pending"
     types = [a.type for ci in out.items for a in ci.final_actions]
     assert types.count("question") == 2 and types.count("read") == 1, "question budget"
     fb = fallback_compose(red, {})

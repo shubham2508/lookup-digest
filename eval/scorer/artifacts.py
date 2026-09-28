@@ -21,6 +21,7 @@ from digest.runs import ARTIFACTS
 from .digest_md import ParsedDigest, parse_digest
 from .match import SourceIndex, evidence_refs, max_priority
 
+OPTIONAL_ARTIFACTS = {"trace"}  # the debug trace is not a pipeline output; its absence is not a miss
 DRAFT_TYPES = ("reply", "forward_delegate", "decide", "message_person")
 
 
@@ -70,7 +71,7 @@ class RunView:
         self.day = day
         self.index = index
         self.repo_root = repo_root
-        self.missing: list[str] = [a for a, f in ARTIFACTS.items() if not (self.dir / f).exists()]
+        self.missing: list[str] = [a for a, f in ARTIFACTS.items() if a not in OPTIONAL_ARTIFACTS and not (self.dir / f).exists()]
         self.extractions = self._jsonl("extractions")
         self.candidates = self._jsonl("candidates")
         self.triage = self._jsonl("triage")
