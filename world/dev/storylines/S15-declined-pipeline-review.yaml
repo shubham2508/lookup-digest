@@ -1,6 +1,6 @@
 id: S15
 name: declined-pipeline-review
-reviewed: false
+reviewed: true
 tier_truth: P1
 summary: >
   Tomás organized a pipeline review for Tuesday day 21 (Sep 15) 10:00–11:00, over Avery's deep-work block; Avery
