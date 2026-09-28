@@ -61,9 +61,32 @@ def _extraction_keys(extractions: list[Extraction], slug_map: dict[str, str], ms
     return merger
 
 
+def _inherit_org_tiers(directory) -> None:
+    """DESIGN_LOG §9.6 / P0 cases 5 and 12: a colleague of a profile contact at the same org (another IPV partner, the
+    WSGR associate) inherits that contact's tier during the raise. Rules such as never_draft do not propagate."""
+    from ..util import slugify
+
+    org_tier: dict[str, str] = {}
+    for c in directory.contacts:
+        if c.relationship.source == "profile" and c.tier and c.org:
+            org_tier[slugify(c.org)] = max(org_tier.get(slugify(c.org), "P9"), c.tier, key=lambda x: -int(x[1]))
+        if c.relationship.source == "profile" and c.tier:
+            for e in c.emails:
+                org_tier[e.split("@")[-1].lower()] = c.tier
+    for c in directory.contacts:
+        if c.tier or c.relationship.source == "profile":
+            continue
+        keys = ([slugify(c.org)] if c.org else []) + [e.split("@")[-1].lower() for e in c.emails]
+        for k in keys:
+            if k in org_tier:
+                c.tier = org_tier[k]
+                break
+
+
 def compute_world(world: NormalizedWorld, extractions: list[Extraction], profile: ProfileConfig, settings: Settings,
                   as_of: datetime) -> ComputeResult:
     directory = build_contacts(world, extractions, profile)
+    _inherit_org_tiers(directory)
     behavior_stats(directory, world, as_of, settings.thresholds_default.behavior_window_days)
     slug_map = directory.slug_map()
     note_dates = {f"note:{n.path}": n.header_date for n in world.notes}

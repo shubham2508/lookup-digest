@@ -162,8 +162,9 @@ def _mk(type_: CandidateType, about: str, entities: list[str], facts: dict, evid
 def reply_owed(ci: ComputeInputs) -> list[Candidate]:
     out = []
     for _x, p, t in ci.human():
-        if p.ball.awaiting != "avery" or p.ball.closed_by_courtesy:
-            continue
+        escalation = p.intent_primary == "escalation"
+        if not escalation and (p.ball.awaiting != "avery" or p.ball.closed_by_courtesy):
+            continue  # an escalation is Avery's to know about even while the team holds the ball (S14)
         open_asks = [a for a in p.asks if a.to_avery and a.status == "open"]
         if p.intent_primary not in ("ask", "escalation") and not open_asks:
             continue
@@ -840,8 +841,45 @@ def suspicious(ci: ComputeInputs) -> list[Candidate]:
     return out
 
 
+def personal_date_collisions(ci: ComputeInputs) -> list[Candidate]:
+    """architecture §6.4 calendar_conflict:family, second form: a personal-domain *email* about a time (a daycare
+    closure, a school early dismissal) that lands on a workday within today + 2 days. The overlap is the day's
+    accepted work events; with none, the collision is the workday itself."""
+    out = []
+    horizon = ci.thresholds.family_lookahead_days
+    for _x, p, t in ci.human():
+        if p.domain != "personal":
+            continue
+        mentions = []
+        for cl in p.claims:
+            if cl.as_of and cl.as_of.resolved:
+                mentions.append((cl.subject, cl.value, cl.as_of.resolved, cl.evidence))
+        for sm in p.schedule_mentions:
+            if sm.when and sm.when.resolved and sm.action != "cancelled":
+                mentions.append((sm.meeting_desc, sm.action, sm.when.resolved, sm.evidence))
+        seen: set[str] = set()
+        for subject, value, when, ev in mentions:
+            d = when.date()
+            if not (0 <= (d - ci.today()).days <= horizon) or d.weekday() >= 5:
+                continue
+            key = f"family:{slugify(subject)}"
+            if key in seen:
+                continue
+            seen.add(key)
+            todays = [e for e in ci.world.events if e.calendar == "work" and e.start.date() == d
+                      and e.avery_partstat in ("ACCEPTED", "ORGANIZER")]
+            sender = ci.contact(t.messages[-1].from_addr)
+            out.append(_mk("calendar_conflict:family", key, [sender.contact_id if sender else ""], {
+                "title": subject, "value": value, "start": when.isoformat(), "all_day": True, "source_kind": "email",
+                "day": "today" if d == ci.today() else d.strftime("%a"),
+                "overlaps": [{"uid": e.uid, "title": e.title, "start": e.start.isoformat(), "end": e.end.isoformat()} for e in todays],
+                "overlaps_work_event": bool(todays), "thread_id": t.thread_id, "summary": p.summary,
+                "extra_dependencies": ["calendar"], **_contact_facts(sender)}, [ev]))
+    return out
+
+
 GENERATORS: list[Callable[[ComputeInputs], list[Candidate]]] = [
-    reply_owed, quiet_thread, commitments, deep_work_conflicts, family_conflicts, double_book, declined_meetings,
+    reply_owed, quiet_thread, commitments, deep_work_conflicts, family_conflicts, personal_date_collisions, double_book, declined_meetings,
     contradictions, hiring_stalls, recruiter_patterns, cadence_drops, approvals, obligations, tasks_due, stale_sources,
     suspicious, profile_drift,
 ]

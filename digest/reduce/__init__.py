@@ -50,11 +50,16 @@ def reduce_items(results: list[TriageResult], cands: list[Candidate], compute: C
     by_id = {c.candidate_id: c for c in cands}
     kept = [r for r in results if r.include and r.candidate_id in by_id]
     dropped = [r.candidate_id for r in results if not r.include]
-    groups: dict[str, list[TriageResult]] = {}
+    groups: dict[tuple[str, str], list[TriageResult]] = {}
     for r in kept:
-        groups.setdefault(by_id[r.candidate_id].about, []).append(r)
+        c = by_id[r.candidate_id]
+        # architecture §7 merges by about key. A coarse key (deal:series-a, other:foo) names a whole area, not one
+        # thing, so candidates under it stay separate per source thread; a qualified key (deal:series-a:cap-table)
+        # merges across threads as the spec intends.
+        coarse = c.about.count(":") < 2
+        groups.setdefault((c.about, str(c.facts.get("thread_id") or "") if coarse else ""), []).append(r)
     items: list[tuple[ReduceItem, tuple]] = []
-    for about, rs in groups.items():
+    for (about, _thread), rs in groups.items():
         rs.sort(key=lambda r: (PRIORITY_ORDER[r.priority], not r.due_today, CONFIDENCE_ORDER[r.confidence]))
         top = rs[0]
         cs = [by_id[r.candidate_id] for r in rs]

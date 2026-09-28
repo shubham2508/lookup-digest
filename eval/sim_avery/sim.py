@@ -126,8 +126,16 @@ def _llm_choice(card: QuestionCard, item: RenderedItem | None, manifest: Manifes
 DigestCmd = Callable[[list[str]], tuple[int, str]]
 
 
+STEP_TIMEOUT_S = 900  # a hung pipeline run fails the step instead of stalling the matrix (integration, 2026-09-28)
+
+
 def run_digest_cli(args: list[str]) -> tuple[int, str]:
-    r = subprocess.run([sys.executable, "-m", "cli.main", *args], cwd=ROOT, capture_output=True, text=True)
+    try:
+        r = subprocess.run([sys.executable, "-m", "cli.main", *args], cwd=ROOT, capture_output=True, text=True,
+                           timeout=STEP_TIMEOUT_S)
+    except subprocess.TimeoutExpired as e:
+        out = ((e.stdout or b"") if isinstance(e.stdout, bytes) else (e.stdout or "")).__str__()
+        return 124, f"timed out after {STEP_TIMEOUT_S}s: {' '.join(args)}\n{out[-300:]}"
     return r.returncode, (r.stdout + r.stderr).strip()
 
 

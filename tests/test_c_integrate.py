@@ -92,7 +92,7 @@ def test_dry_run_runs_nothing(tmp_path, manifest):
 
 
 def test_cli_matrix_without_manifest_is_blocked():
-    r = CliRunner().invoke(app, ["eval", "--matrix", "--world", "heldout"])
+    r = CliRunner().invoke(app, ["eval", "--matrix", "--world", "_no_such_world"])  # a world without a manifest: must refuse, never run
     assert r.exit_code == 2 and "no manifest" in r.output
 
 

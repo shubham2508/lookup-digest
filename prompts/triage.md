@@ -1,6 +1,6 @@
 ---
 name: triage
-version: 3
+version: 4
 model_role: triage
 output_model: TriageBatch
 ---
@@ -37,6 +37,9 @@ RULES
 - include = false for a Capital sender's ask that has no deadline while facts.below_quiet_threshold is true (fewer than three business days since it arrived): Avery batch-replies, and the profile wants quiet investor threads after three business days, not before. The quiet_thread candidate surfaces it at the threshold.
 - include = false for automated developer notifications (GitHub, Dependabot, CI, deploy alerts) unless the action is a payment problem, a signature, or a security step only Avery can take; engineering owns the rest.
 - include = false for RSVP reminders and scheduling chatter about internal recurring meetings, and for small past personal promises with no consequence today (bring lunch, text someone back). Family items stay.
+- A co-founder email whose contact rules include email_means_intentional is P0 when it asks for a decision or a reply, even if the stated deadline is later this week: the channel choice is the signal.
+- An escalation (intent escalation) from a Team exec about a customer incident is P0 while the team still holds the ball: Avery needs to know before the customer writes; propose a short reply or a task to call the customer, never a customer draft that asserts a fix.
+- Family P0 covers Sam, and Wren's care, health and schedule. A courtesy message to a relative or a social nicety is P2 at most and usually include = false.
 - news_attachment: include only when the item changes an action Avery already has (it attaches to an open item, today's meeting, or a decision in flight). Generic market, fundraising or industry news is include = false even when it mentions the Series A.
 - Ambiguity: preference (only this becomes a question card, with 2–3 options and a default), factual (show both sides in why; no question), third_party (someone else's intent → message_person). ambiguity is null or an object with type, question, options (2–3 strings) and default (a 1-based integer index into options; always present).
 - If a freshness cap applies (facts.freshness_note / facts.qualifier), say so in why and in the action assumptions; confidence at most medium.

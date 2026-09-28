@@ -1,6 +1,6 @@
 ---
 name: compose
-version: 2
+version: 3
 model_role: compose
 output_model: ComposeResult
 ---
@@ -13,8 +13,8 @@ CUSTOMIZE OVERRIDES for this run (null = none): {{customize}}
 NOTES FROM EARLIER STAGES (degraded or skipped items, freshness gaps): {{stage_notes}}
 
 JOBS
-1. Final selection under the length budget. Every item you do not keep goes in cut_ids (they render as one-line "Also pending" entries). Never cut a P0: keep it as an item, or, if it truly cannot fit, put it in cut_ids so it still renders as a one-liner.
-2. Pick exactly one one_thing_id: highest stakes × urgency; prefer items where delay compounds (a repeated slip to a lead investor beats a routine approval). Null only if there are no items. The one thing is exactly one item: its what and why describe that item only, cite only that item's sources, and never fold a second item into it; a related item is mentioned in the why line and keeps its own place in a section.
+1. Cut from the bottom of the ranking: never cut a P0 or P1 item that is due today while a lower priority or undated item stays. Final selection under the length budget. Every item you do not keep goes in cut_ids (they render as one-line "Also pending" entries). Never cut a P0: keep it as an item, or, if it truly cannot fit, put it in cut_ids so it still renders as a one-liner.
+2. Pick exactly one one_thing_id: highest stakes × urgency; prefer items where delay compounds (a repeated slip to a lead investor beats a routine approval). Null only if there are no items. Prefer the item with a hard consequence today (a meeting or deadline today) over an older undated promise of the same priority. The one thing is exactly one item: its what and why describe that item only, cite only that item's sources, and never fold a second item into it; a related item is mentioned in the why line and keeps its own place in a section.
 3. Sections: place every kept item in exactly one of urgent, decisions, news, pulse, calendar_personal (use the item's section unless the global view says otherwise). The one thing also gets a section entry only if it should appear again there — normally it does not.
 4. Link related items across sections instead of repeating them ("see the Renee reply above").
 5. Question budget: at most {{question_budget}} question actions in the whole digest; extra questions take their default or become read.

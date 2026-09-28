@@ -200,10 +200,14 @@ class LLM:
                 key = self._api_key or load_api_key(self.models.provider.api_key_env)
                 if not key:
                     raise LLMError(f"{self.models.provider.api_key_env} is not set (env or .env)")
+                import httpx
+
                 self._client = OpenAI(
                     base_url=self.models.provider.base_url,
                     api_key=key,
                     max_retries=self._max_retries_transport,
+                    # a hung request must fail fast and be retried, never stall a run (integration, 2026-09-28)
+                    timeout=httpx.Timeout(180.0, connect=20.0),
                     default_headers={"X-Title": self.models.provider.app_name},
                 )
             return self._client
