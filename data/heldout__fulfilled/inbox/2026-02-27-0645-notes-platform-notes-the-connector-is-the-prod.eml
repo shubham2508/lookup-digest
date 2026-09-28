@@ -1,0 +1,29 @@
+Message-ID: <20260227-0645.notes@platformnotes.io>
+Date: Fri, 27 Feb 2026 06:45:14 -0800
+From: Platform Notes <notes@platformnotes.io>
+To: Avery Chen <avery@tessera.io>
+Subject: Platform Notes: The connector is the product
+List-Unsubscribe: <mailto:unsubscribe@platformnotes.io?subject=unsubscribe>, <https://platformnotes.io/u/cce53d33>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+PLATFORM NOTES
+Friday, February 27, 2026
+
+The connector is the product
+
+Ask a software company what it sells and it will describe its interface. Ask its customers what they bought and, in operationally heavy industries, they will describe the integration: the thing that finally got the order data out of the ERP and into a place where someone could act on it.
+
+This is embarrassing for the software company, which spent its design budget on the interface. It should not be. In a world where the model layer is a commodity and the interface layer is increasingly generated, the durable engineering asset is the thing that knows how to read a twenty-year-old system's export format, handle its edge cases, and keep working when the customer's IT department upgrades it without telling anyone.
+
+Connectors have three properties that make them good business. They are expensive to build the first time and cheap the tenth; the hundredth customer on the same ERP costs nothing to connect. They are painful to replace, because the customer's IT department remembers how long the first one took. And they compound: each new system you can read makes the next customer's implementation shorter and the product's data richer.
+
+The strategic implication is that a vertical software company should treat its connector library the way a platform company treats its API: as the product, with a roadmap, a team, and a public list of what it supports. The companies that do this end up as the integration hub for their industry, which is a position that outlasts any particular feature.
+
+The tactical implication is smaller and more useful. When a prospect asks "does it integrate with X," the answer that wins is a list, not a yes.
+
+Read on the web: https://platformnotes.io/2026/connector-is-the-product
+
+Platform Notes goes out Monday, Wednesday and Friday. Unsubscribe: https://platformnotes.io/u

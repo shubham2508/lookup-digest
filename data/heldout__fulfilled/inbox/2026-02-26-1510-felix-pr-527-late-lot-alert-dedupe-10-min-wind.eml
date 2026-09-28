@@ -1,0 +1,17 @@
+Message-ID: <20260226-1510.felix@tessera.io>
+Date: Thu, 26 Feb 2026 15:10:04 -0800
+From: Felix Wagner <felix@tessera.io>
+To: Arjun Rao <arjun@tessera.io>
+Cc: Jordan Liu <jordan@tessera.io>, Avery Chen <avery@tessera.io>
+Subject: PR #527 - late-lot alert dedupe (10 min window per station)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+https://github.com/tessera-io/platform/pull/527
+
+dedupes late-lot alerts per (plant, line, station) within a 10 min sliding window. first alert goes out, repeats get folded into it with a count. window is a config knob, default 600s. tests cover the boundary + the midnight rollover thing that bit us in jan.
+
+small pr, ~180 lines. lmk
+
+Felix

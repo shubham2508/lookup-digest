@@ -1,0 +1,52 @@
+Message-ID: <20260309-1115.iclarke@wsgr.com>
+Date: Mon, 09 Mar 2026 11:15:27 -0700
+From: Imogen Clarke <iclarke@wsgr.com>
+To: Ruth Adeyemi <ruth@tessera.io>
+Cc: Avery Chen <avery@tessera.io>, Ben Schaffer <bschaffer@wsgr.com>
+Subject: Re: Coastline Corrugated DPA - comments
+In-Reply-To: <20260309-0930.ruth@tessera.io>
+References: <20260308-1640.iclarke@wsgr.com> <20260309-0930.ruth@tessera.io>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Thank you, Ruth. Annex 2 is updated with the three sub-processors.
+
+On the ERP vendor: that is a customer instruction, not a sub-processor of Tessera's, so it does not belong in the DPA. Documenting it in the ticket with the date and the name of the person who gave the instruction is sufficient; I would also suggest a one-line confirmation email to Coastline so it is in writing on their side.
+
+The revised draft is attached (Coastline_Tessera_DPA_v2_2026-03-09.docx). Nothing further is needed from Avery on this.
+
+Kind regards,
+
+Imogen Clarke
+Associate | Wilson Sonsini Goodrich & Rosati
+
+On Mon, Mar 9, 2026 at 9:30 AM, Ruth Adeyemi <ruth@tessera.io> wrote:
+> Hi Imogen,
+>
+> Case TS-5490 (Coastline DPA). Sub-processor list for Annex 2, confirmed against our current vendor inventory:
+>
+> - Google Cloud Platform (hosting, us-west1)
+> - Sentry (error monitoring; no customer production data, but it can see tenant IDs)
+> - Postmark (transactional email; recipient names and addresses only)
+>
+> One question: Coastline's purchasing team asked on our last call whether they can add their ERP vendor as an "authorized recipient" of the nightly export. Does that belong in the DPA, or is it just an instruction from the customer that we document in the ticket?
+>
+> Ruth | Tessera Support
+>
+> On Sun, Mar 8, 2026 at 4:40 PM, Imogen Clarke <iclarke@wsgr.com> wrote:
+> > Dear Ruth,
+> >
+> > Thank you for sending Coastline's data processing addendum. Comments below; the marked-up copy is attached (Coastline_Tessera_DPA_WSGR_comments_2026-03-08.docx).
+> >
+> > 1. Section 3 (sub-processors): Coastline's draft requires written consent for each new sub-processor. We have changed this to notice plus a 30-day objection right, which matches what Tessera has with Halberd and Northstar. Please confirm the current sub-processor list (Google Cloud, Sentry, and the email provider, I believe) so Annex 2 is accurate.
+> > 2. Section 6 (breach notification): 24 hours as drafted is shorter than Tessera can reliably commit to; we have proposed 72 hours from confirmation, consistent with your other agreements.
+> > 3. Section 9 (audit): limited to once per year on 30 days' notice, at Coastline's cost.
+> > 4. Everything else is acceptable as sent.
+> >
+> > Apologies for the Sunday email; I wanted you to have this before your call with Coastline on Monday.
+> >
+> > Kind regards,
+> >
+> > Imogen Clarke
+> > Associate | Wilson Sonsini Goodrich & Rosati

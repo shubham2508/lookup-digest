@@ -1,0 +1,37 @@
+Message-ID: <20260313-0900.hello@inferenceweekly.ai>
+Date: Fri, 13 Mar 2026 09:00:22 -0700
+From: Inference Weekly <hello@inferenceweekly.ai>
+To: Avery Chen <avery@tessera.io>
+Subject: Inference Weekly: the outage post-mortem, agent token math, small models on CPUs
+List-Unsubscribe: <mailto:unsubscribe@inferenceweekly.ai?subject=unsubscribe>, <https://inferenceweekly.ai/u/7634255a>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+INFERENCE WEEKLY
+Friday, March 13, 2026
+
+Hello. The week in running models, for people who pay the bill.
+
+THE OUTAGE: what the post-mortem said
+Tuesday's four-hour incident was a configuration push to the request-routing layer that sent a majority of traffic to one region's capacity. The provider is offering service credits to affected customers; the credits are calculated against committed spend, so the pay-as-you-go customers get nothing. Twenty-two readers sent us their experience. The ones with a tested fallback lost minutes; the ones without lost the afternoon. The median cost of running on the fallback provider for four hours was 1.4x normal.
+
+AGENT TOKEN MATH
+Following up on a point several of you made: agentic workloads produce far more output tokens per request than chat, and output tokens cost 4-5x input. We collected traces from eleven agent deployments. Median input-to-output ratio: 2.8 to 1. Median cost per task: $0.31, of which 68% was output tokens. If you are quoting customers a per-task price, this is the number to model.
+
+SMALL MODELS ON CPUS
+Compute Ledger ran the numbers this week and we independently confirm them: 1-4B models on ordinary cloud CPUs handle classification and routing at a few cents per million tokens. We moved our own newsletter's spam filter to one and it is fine.
+
+FIVE LINKS
+1. The provider's post-mortem, which is better than most.
+2. A fallback-routing configuration guide for the two most common gateways.
+3. The ASIC vendor's benchmark disclosure, with the caveats in the footnotes.
+4. A paper on why quantized small models fail on long inputs, and where the cliff is.
+5. A very good thread on rate-limit strategy for bursty agent traffic.
+
+ONE NUMBER: 68%. Share of agent task cost that is output tokens, in our sample.
+
+That's the week. Reply with what you are running.
+
+Inference Weekly is free and reader-supported. Unsubscribe: https://inferenceweekly.ai/u/x

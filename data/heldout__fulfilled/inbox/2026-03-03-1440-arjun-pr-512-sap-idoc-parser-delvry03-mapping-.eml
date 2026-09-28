@@ -1,0 +1,28 @@
+Message-ID: <20260303-1440.arjun@tessera.io>
+Date: Tue, 03 Mar 2026 14:40:37 -0800
+From: Arjun Rao <arjun@tessera.io>
+To: Felix Wagner <felix@tessera.io>, Kofi Mensah <kofi@tessera.io>
+Cc: Jordan Liu <jordan@tessera.io>, Avery Chen <avery@tessera.io>
+Subject: PR #512 - SAP IDoc parser (DELVRY03), mapping-table driven
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi both,
+
+https://github.com/tessera-io/platform/pull/512
+
+This is the first half of the Northstar SAP connector: a parser for DELVRY03 IDocs that is driven entirely by the field-mapping table Hana is producing with the Fresno planners. The parser itself knows nothing about Northstar; every field name, unit and default lives in connectors/sap/mappings/northstar-fresno.yaml, so a second plant is a second file.
+
+Please read in this order:
+1. connectors/sap/mapping_loader.py - validates the table against the IDoc segment schema at load time, so a typo in the mapping fails at startup instead of at 02:00 on cutover night.
+2. connectors/sap/idoc.py - the segment iterator. It streams; a 40 MB IDoc batch does not get loaded into memory.
+3. tests/connectors/sap/ - 31 fixtures from Northstar's sandbox, including the two malformed ones their team sent us on purpose.
+
+WHSCON is a follow-up PR; the loader is shared. Runbook page for operators is drafted: https://runbooks.tessera.io/connectors/sap-idoc
+
+It is ~900 lines with tests, so take your time; I would like it merged by Thursday so Carmen can point the regression suite at it.
+
+Thanks,
+
+Arjun

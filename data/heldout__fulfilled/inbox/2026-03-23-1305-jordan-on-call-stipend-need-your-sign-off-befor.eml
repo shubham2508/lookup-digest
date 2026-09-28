@@ -1,0 +1,27 @@
+Message-ID: <20260323-1305.jordan@tessera.io>
+Date: Mon, 23 Mar 2026 13:05:35 -0700
+From: Jordan Liu <jordan@tessera.io>
+To: Avery Chen <avery@tessera.io>
+Cc: Nora Blake <nora@tessera.io>, Priya Iyer <priya@tessera.io>
+Subject: On-call stipend - need your sign-off before payroll cutoff
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Avery,
+
+Three things from the on-call & infra review you had to skip on the 17th. The first needs your sign-off by Friday 3/27; the other two are for information.
+
+1. On-call stipend (needs your sign-off)
+- Proposal: $400/week to whoever holds primary, starting Apr 1. One primary at a time, so about $1,700/month all-in across the four-person rotation. Secondary stays unpaid for now.
+- Why: Felix's week of 6 pages (2 overnight) wasn't an outlier. Arjun's numbers since Feb 1 average 4.2 pages a week for primary. We're asking a lot of four people during the Northstar push, and this is a fraction of a fifth engineer.
+- Priya and Nora are for it. Nora needs a yes by Friday to make the payroll cutoff for the April 1 run; if it slips, the first payment moves to mid-April.
+- Full notes are in infra-review.md. If you want to counter (say $300, or secondary at half), tell me and I'll take it back to the team.
+
+2. Alert routing
+- Sentry noise was about half of Felix's pages. Arjun re-tiered the alerts on Friday; overnight pages should drop by roughly a third. No action.
+
+3. Q2 infra budget
+- Draft to you and Nora by the end of next week. No action yet.
+
+Jordan

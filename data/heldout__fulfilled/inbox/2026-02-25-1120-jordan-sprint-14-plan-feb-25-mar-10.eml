@@ -1,0 +1,27 @@
+Message-ID: <20260225-1120.jordan@tessera.io>
+Date: Wed, 25 Feb 2026 11:20:52 -0800
+From: Jordan Liu <jordan@tessera.io>
+To: Tessera Engineering <eng@tessera.io>
+Cc: Avery Chen <avery@tessera.io>, Hana Okada <hana@tessera.io>
+Subject: Sprint 14 plan (Feb 25 - Mar 10)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Sprint 14 as planned this morning. Goal: the Northstar SAP connector parses real Fresno IDocs end to end by the sprint review.
+
+Committed:
+- SAP IDoc parser: DELVRY03 and WHSCON message types, mapping table driven (Arjun). This is the sprint.
+- Late-lot alert dedupe per station, 10-minute window (Felix). Veritas asked, Halberd will want it too.
+- Export scheduler: retry with backoff for the nightly CSV jobs (Kofi). Coastline's nightly job is the motivating case.
+- Connector regression suite v1: fixture IDocs, 40 cases to start (Carmen).
+- Field-mapping workshop with Northstar's Fresno planners, output is the mapping table Arjun's parser reads (Hana).
+
+Stretch:
+- Audit log export (Felix), only if dedupe lands early.
+
+Not this sprint: plant-timezone display work, the search index rebuild (needs a maintenance window; Arjun will propose one).
+
+Sprint review Tue Mar 10, 15:00. Standup notes go to Notion as usual; I will only email if something changes.
+
+Jordan

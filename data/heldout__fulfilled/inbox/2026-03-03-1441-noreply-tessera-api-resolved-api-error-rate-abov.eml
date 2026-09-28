@@ -1,0 +1,26 @@
+Message-ID: <20260303-1441.noreply@md.getsentry.com>
+Date: Tue, 03 Mar 2026 14:41:40 -0800
+From: Sentry <noreply@md.getsentry.com>
+To: Avery Chen <avery@tessera.io>
+Subject: [tessera-api] Resolved: API error rate above 2% for 5 minutes (production)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Sentry
+
+Metric alert: API error rate (production)
+Status: Resolved
+Resolved: Mar 3, 2026, 2:41 PM PST (open for 39 minutes)
+
+The error rate has been below 2% for 15 minutes. Current value: 0.3%.
+
+Related issue
+  KeyError: 'plant_code' in api/handlers/lines.py (get_line_status)
+  Marked resolved by Felix Wagner at 2:27 PM PST in the next release (api 2026.03.03-1).
+
+Environment: production · Project: tessera-api
+View alert: https://tessera.sentry.io/alerts/rules/details/2214/
+
+--
+You are receiving this because you are on this alert rule's notification list. Manage alert rules: https://tessera.sentry.io/alerts/rules/

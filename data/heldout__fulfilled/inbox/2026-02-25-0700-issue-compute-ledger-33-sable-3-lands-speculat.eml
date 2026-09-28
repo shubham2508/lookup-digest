@@ -1,0 +1,30 @@
+Message-ID: <20260225-0700.issue@computeledger.co>
+Date: Wed, 25 Feb 2026 07:00:12 -0800
+From: Compute Ledger <issue@computeledger.co>
+To: Avery Chen <avery@tessera.io>
+Subject: Compute Ledger #33: Sable-3 lands / speculative decoding goes mainstream / the HBM4 queue
+List-Unsubscribe: <mailto:unsubscribe@computeledger.co?subject=unsubscribe>, <https://computeledger.co/u/26ba9361>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+COMPUTE LEDGER - Issue 33 - Wednesday, February 25, 2026
+
+Three things this week.
+
+1. Sable-3 is out, and the interesting number is the small one
+
+Aurelian Labs shipped Sable-3 in three sizes on Tuesday. The large model tops the usual leaderboards by a hair, which is what large models do now. The one to look at is Sable-3 Mini: it matches last spring's frontier on the extraction and classification suites at $0.12 per million input tokens. For most production workloads, that is the model, and the price of doing routine work with a language model just fell by half again. Our full table is on the site.
+
+2. Speculative decoding is now the default, not the trick
+
+Two of the three largest inference providers turned speculative decoding on by default for all hosted open-weight models this month. Throughput gains of 1.8x to 2.6x on chat-shaped traffic, less on long-output generation. If you self-host, the reference implementations in the two major serving frameworks are finally stable; we ran them for a week without a crash, which we could not say in December.
+
+3. HBM4 lead times are the real capacity constraint
+
+Every conversation we had this month about cluster timelines ended at memory, not accelerators. The three HBM makers are sold out through Q1 2027, and one integrator told us the accelerator vendor is now allocating cards based on which customers can prove they have racks and power ready. If your provider is quoting Q3 capacity, ask whether the memory is booked.
+
+That is the issue. Reply with tips; we read everything.
+
+Compute Ledger is written by two people in Oakland and supported by readers. Forward it to someone who runs a GPU budget.

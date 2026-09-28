@@ -1,0 +1,22 @@
+Message-ID: <20260323-1540.notifications@linear.app>
+Date: Mon, 23 Mar 2026 15:40:55 -0700
+From: Linear <notifications@linear.app>
+To: Avery Chen <avery@tessera.io>
+Subject: Carmen Ortiz created NS-412
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Carmen Ortiz created a new issue
+
+NS-412 · CSV export drops the plant-code column when the filter is empty
+Project: Northstar SAP connector · Cycle 7
+Assignee: Kofi Mensah
+Priority: Medium
+
+Found in the go-live regression pass on the Northstar QA tenant. Repro: export with no plant filter; the plant_code column is missing from the header row. Not in the go-live path; targeting the Apr 7 patch. Regression suite: 411/412.
+
+View issue: https://linear.app/tessera/issue/NS-412
+
+--
+You are receiving this because you are subscribed to the project Northstar SAP connector. Manage notifications: https://linear.app/tessera/settings/notifications

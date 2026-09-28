@@ -1,0 +1,29 @@
+Message-ID: <20260311-0730.weekly@plantopsdigest.com>
+Date: Wed, 11 Mar 2026 07:30:31 -0700
+From: Plant Ops Digest <weekly@plantopsdigest.com>
+To: Avery Chen <avery@tessera.io>
+Subject: Plant Ops Digest #110: Bexley Foods' allergen changeovers, the ERP-upgrade season, a cobot that pays
+List-Unsubscribe: <mailto:unsubscribe@plantopsdigest.com?subject=unsubscribe>, <https://plantopsdigest.com/u/400e014a>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+PLANT OPS DIGEST
+Issue 110 | Wednesday, March 11, 2026
+
+Four items this week.
+
+PLANT OF THE WEEK: Bexley Foods, Grand Rapids, MI
+A snack manufacturer running eleven allergen profiles on three lines got its sequencing under control by treating allergen changeovers as the primary scheduling constraint rather than a cleanup afterthought. Wash-downs per week fell from 31 to 18; the plant added a shift's worth of capacity without adding a shift. The tool they used was a mid-market scheduler; the work was in getting the allergen matrix out of a binder and into a table.
+
+IT IS ERP-UPGRADE SEASON, AND THE FLOOR IS NERVOUS
+Roughly a third of the plants in our reader base are mid-upgrade on their ERP this year, most of them moving to a cloud edition on a deadline set by the vendor's end-of-support date. The floor-level worry is the same everywhere: every integration that touches production will need re-testing, and the plant does not have a test line. Our advice, from the plants that did this last year: freeze every other floor-system change for the upgrade window, and get the integrator to commit in writing to which interfaces change.
+
+A COBOT THAT ACTUALLY PAID BACK
+Case packing at a 90-person coffee roaster. One collaborative arm, $68,000 installed, replaced a rotation of temp workers the roaster could not keep. Payback in eleven months, not because the robot is fast (it is not) but because it runs the second shift nobody would work. The vendor's ROI calculator said fourteen months; the roaster's said eleven. Both were right for once.
+
+READER QUESTION
+"Our vision system flags 4% of product and 3.5% of those are false rejects. Vendor says retrain. Thoughts?" Retrain, yes, but first check the lighting. Half the false-reject problems we have seen were a fluorescent tube that changed color temperature as it aged.
+
+Plant Ops Digest is published every Wednesday. Forward freely. Manage your subscription: https://plantopsdigest.com/manage

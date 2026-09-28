@@ -1,0 +1,30 @@
+Message-ID: <20260316-0700.issue@computeledger.co>
+Date: Mon, 16 Mar 2026 07:00:47 -0700
+From: Compute Ledger <issue@computeledger.co>
+To: Avery Chen <avery@tessera.io>
+Subject: Compute Ledger #38: prompt caching economics / memory bandwidth is the moat / an optics vendor's quarter
+List-Unsubscribe: <mailto:unsubscribe@computeledger.co?subject=unsubscribe>, <https://computeledger.co/u/ed0bb9b6>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+COMPUTE LEDGER - Issue 38 - Monday, March 16, 2026
+
+Three things this week.
+
+1. Prompt caching pays, but not the way the pricing pages suggest
+
+All three frontier labs now discount cached input tokens by 75-90%. We instrumented four production applications for two weeks. The ones with long, stable system prompts and short user turns (support bots, extraction pipelines) saved 55-70% on input cost. The ones with long, varying documents in context saved under 10%, because the cache never hits. The pricing pages show the discount; they do not show the hit rate. Measure yours before you build a budget on it.
+
+2. Memory bandwidth, not FLOPs, is what you are paying for
+
+A useful reframing from a talk at last week's systems conference: for inference at realistic batch sizes, the accelerator is memory-bound almost all the time, and the cost per token is set by how fast weights and KV-cache move, not by how many multiplies the chip can do. This is why the inference ASICs and the HBM4 parts matter more to your bill than the headline TFLOPS on the next GPU generation.
+
+3. The largest optical-transceiver maker guides to a 60% revenue increase
+
+Its earnings call was the clearest signal yet about where the bottleneck in cluster builds has moved. Lead times on 800G parts are 22 weeks; 1.6T parts are "allocated." The company is building a second plant in Thailand that opens in 2027. Until then, new cluster timelines are set by optics, not chips.
+
+That is the issue. Reply with tips; we read everything.
+
+Compute Ledger is written by two people in Oakland and supported by readers. Forward it to someone who runs a GPU budget.

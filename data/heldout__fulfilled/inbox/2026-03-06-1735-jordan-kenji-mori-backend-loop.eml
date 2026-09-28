@@ -1,0 +1,22 @@
+Message-ID: <20260306-1735.jordan@tessera.io>
+Date: Fri, 06 Mar 2026 17:35:31 -0800
+From: Jordan Liu <jordan@tessera.io>
+To: Avery Chen <avery@tessera.io>
+Cc: Nora Blake <nora@tessera.io>
+Subject: Kenji Mori - backend loop
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Avery,
+
+Kenji's onsite wrapped at 5. Short version: the panel wants to move forward.
+
+- Arjun (systems design): strong. Clean decomposition of the ingest problem, asked about backpressure before we brought it up.
+- Felix (coding): solid, a little slow to start, finished with tests.
+- Priya (architecture): positive; wants one more reference on how he handles ambiguity.
+- Your closer: your call, but he mentioned the conversation with you twice on the way out.
+
+Arjun is out all next week, so I'd rather hold the debrief until the week of the 16th than run it without him. Scorecards are in Ashby.
+
+Jordan

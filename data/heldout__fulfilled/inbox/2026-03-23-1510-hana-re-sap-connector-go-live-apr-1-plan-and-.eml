@@ -1,0 +1,37 @@
+Message-ID: <20260323-1510.hana@tessera.io>
+Date: Mon, 23 Mar 2026 15:10:39 -0700
+From: Hana Okada <hana@tessera.io>
+To: Elise Moreau <elise.moreau@northstarfoods.com>
+Cc: Avery Chen <avery@tessera.io>
+Subject: Re: SAP connector go-live - Apr 1 plan and owners
+In-Reply-To: <20260323-1040.elise.moreau@northstarfoods.com>
+References: <20260226-0935.elise.moreau@northstarfoods.com> <20260226-1320.avery@tessera.io> <20260302-1005.elise.moreau@northstarfoods.com> <20260302-1540.hana@tessera.io>
+ <20260305-1710.elise.moreau@northstarfoods.com> <20260319-0905.elise.moreau@northstarfoods.com> <20260319-1230.avery@tessera.io> <20260323-1040.elise.moreau@northstarfoods.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi Elise,
+
+Cutover checklist attached (12 items, an owner on each line).
+
+Freeze window: **Monday, March 30, 17:00 PT** through **Wednesday, April 1, 06:00 PT**. Planners can keep reading the old view during the freeze; only writes are blocked. Rosa will get the same list at Tuesday's training.
+
+Go-live call is **Wednesday, April 1, 06:00 PT**; invite to follow.
+
+Hana
+
+Hana Okada
+Solutions Engineering, Tessera
+
+On Mon, Mar 23, 2026 at 10:40 AM, Elise Moreau <elise.moreau@northstarfoods.com> wrote:
+> Hana,
+>
+> Two things for next week:
+>
+> - Could you send the cutover checklist? Our project office wants it in the change record.
+> - What is the freeze window on your side? I need to tell the planners when to stop making changes in the old view.
+>
+> Elise
+>
+> Elise Moreau | Procurement Lead | Northstar Foods

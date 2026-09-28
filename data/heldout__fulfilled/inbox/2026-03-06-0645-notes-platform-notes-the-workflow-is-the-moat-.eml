@@ -1,0 +1,27 @@
+Message-ID: <20260306-0645.notes@platformnotes.io>
+Date: Fri, 06 Mar 2026 06:45:30 -0800
+From: Platform Notes <notes@platformnotes.io>
+To: Avery Chen <avery@tessera.io>
+Subject: Platform Notes: The workflow is the moat, not the model
+List-Unsubscribe: <mailto:unsubscribe@platformnotes.io?subject=unsubscribe>, <https://platformnotes.io/u/ec75854b>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+PLATFORM NOTES
+Friday, March 6, 2026
+
+The workflow is the moat, not the model
+
+Every AI application pitch of 2024 had a slide about the model. Every AI application pitch of 2026 has a slide about how the model does not matter. Both slides were made by people responding to their investors' last question, and both miss where the defensibility actually sits.
+
+It is not in the model, which is rented. It is not in the data, at least not in the sense the pitch decks mean; most application companies' proprietary data is a modest advantage that shrinks as the base models improve. It is in the workflow: the sequence of steps by which the software's output becomes an action in the customer's business, and the trust that sequence has accumulated.
+
+Consider two companies with the same model doing the same extraction from the same documents. One shows the results in a dashboard. The other writes them into the customer's ERP, flags the three it is unsure about for a human, learns from the human's corrections, and has done so for eighteen months without an incident. The second company is not easier to replace because its model is better. It is harder to replace because replacing it means re-earning eighteen months of trust with a plant manager who does not want to.
+
+The implication for builders is to invest where the workflow touches the customer's real operations, which is unglamorous: permissions, audit logs, undo, escalation paths, the "why did it do that" button. The implication for investors is to stop asking about the model and start asking how many of the customer's daily decisions the product is in the loop for, and how many it has been in the loop for without anyone getting fired.
+
+Read on the web: https://platformnotes.io/2026/workflow-moat
+
+Platform Notes goes out Monday, Wednesday and Friday. Unsubscribe: https://platformnotes.io/u

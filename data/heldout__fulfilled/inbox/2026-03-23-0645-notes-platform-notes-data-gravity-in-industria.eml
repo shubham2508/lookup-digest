@@ -1,0 +1,27 @@
+Message-ID: <20260323-0645.notes@platformnotes.io>
+Date: Mon, 23 Mar 2026 06:45:39 -0700
+From: Platform Notes <notes@platformnotes.io>
+To: Avery Chen <avery@tessera.io>
+Subject: Platform Notes: Data gravity in industrial software
+List-Unsubscribe: <mailto:unsubscribe@platformnotes.io?subject=unsubscribe>, <https://platformnotes.io/u/14eb3cac>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+PLATFORM NOTES
+Monday, March 23, 2026
+
+Data gravity in industrial software
+
+"Data gravity" was coined to describe why applications cluster around large datasets: moving the data is expensive, so the compute comes to it. In industrial software the gravity is not about volume. Plant data is not big. It is about location and format, and the pull is toward whoever first makes the data usable.
+
+Here is the dynamic. A plant has a historian, an ERP, a maintenance system and a quality system. None of them talk. The first vendor to pull all four into one place and make the result readable becomes, without anyone deciding it, the plant's data layer. Every subsequent tool the plant buys asks to read from that vendor rather than from the four systems, because it is easier. The vendor's product might be a scheduler or a dashboard; its position is a platform.
+
+This is why the current land grab in plant-floor software looks the way it does. Companies with narrow products are building broad connectors, not because the connectors sell but because the connectors accrete gravity. The narrow product is the reason to install; the data layer is what makes uninstalling unthinkable.
+
+For the incumbents, the ERP and MES vendors, this is the actual threat, and it is why they are throttling APIs and shipping lite modules. They understand that the layer above them is being built and that whoever builds it will be the one the plant calls first. For startups, the discipline is to build the gravity deliberately: expose what you collect, make it easy for the plant's other tools to read, and become the place the data lives even when you are not the tool that uses it.
+
+Read on the web: https://platformnotes.io/2026/data-gravity
+
+Platform Notes goes out Monday, Wednesday and Friday. Unsubscribe: https://platformnotes.io/u

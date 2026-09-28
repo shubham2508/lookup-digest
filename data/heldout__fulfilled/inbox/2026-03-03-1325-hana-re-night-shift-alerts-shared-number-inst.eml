@@ -1,0 +1,30 @@
+Message-ID: <20260303-1325.hana@tessera.io>
+Date: Tue, 03 Mar 2026 13:25:30 -0800
+From: Hana Okada <hana@tessera.io>
+To: Dmitri Volkov <dmitri.volkov@veritascomponents.com>
+Cc: Avery Chen <avery@tessera.io>, =?utf-8?q?Tom=C3=A1s?= Reyes <tomas@tessera.io>
+Subject: Re: Night-shift alerts - shared number instead of my cell?
+In-Reply-To: <20260303-0940.dmitri.volkov@veritascomponents.com>
+References: <20260302-0850.dmitri.volkov@veritascomponents.com> <20260302-1210.avery@tessera.io> <20260303-0940.dmitri.volkov@veritascomponents.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi Dmitri,
+
+Done as of **13:00 PT today**:
+- texts now go to the supervisor phone; you stay on email only
+- the text body includes line and work center ("Line 4 / WC-12: lot 26014-C late 40 min")
+
+Hana
+
+Hana Okada
+Solutions Engineering, Tessera
+
+On Tue, Mar 3, 2026 at 9:40 AM, Dmitri Volkov <dmitri.volkov@veritascomponents.com> wrote:
+> thanks, number sent to Hana. one more while we're in there: can the text include the line number? the supervisors cover two lines and "late lot" on its own has them guessing.
+>
+> Dmitri
+>
+> Dmitri Volkov
+> Procurement Lead, Veritas Components

@@ -1,0 +1,22 @@
+Message-ID: <20260305-1030.notifications@linear.app>
+Date: Thu, 05 Mar 2026 10:30:51 -0800
+From: Linear <notifications@linear.app>
+To: Avery Chen <avery@tessera.io>
+Subject: Arjun Rao assigned HB-118 to Priya Iyer
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Arjun Rao assigned this issue to Priya Iyer
+
+HB-118 · Halberd Line 3 pilot: review the station event schema before the MES upgrade
+Project: Halberd Line 3 · Cycle 6
+Assignee: Priya Iyer
+Priority: High
+
+Sanjay's team is upgrading the Line 3 MES later this month. Need a second pair of eyes on the station event schema and the timestamp handling before then.
+
+View issue: https://linear.app/tessera/issue/HB-118
+
+--
+You are receiving this because you are subscribed to the project Halberd Line 3. Manage notifications: https://linear.app/tessera/settings/notifications

@@ -1,0 +1,22 @@
+Message-ID: <20260312-1810.felix@tessera.io>
+Date: Thu, 12 Mar 2026 18:10:38 -0700
+From: Felix Wagner <felix@tessera.io>
+To: Tessera Engineering <eng@tessera.io>
+Cc: Avery Chen <avery@tessera.io>, =?utf-8?q?Tom=C3=A1s?= Reyes <tomas@tessera.io>, Hana Okada <hana@tessera.io>
+Subject: hack day demos - recording + winners
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+recording: https://drive.google.com/tessera/hackday-2026-03-12 (52 min, demos start at 3:10)
+
+results per our judge:
+1. kofi - pager-bot: summarizes the overnight pages into 3 lines in slack at 07:00. judge's comment: "I would read this"
+2. arjun - "truck arrived" event on the shift board, from the gate camera feed. two customers asked for this in the same week, so
+3. carmen - fixture visualizer, shows what each IDoc fixture does to the board. hana already wants it for workshops
+
+honorable mention: me, for the export panel dark mode, which the judge described as "fine"
+
+thanks avery for judging. thanks nora for the pizza. back to sprint 15 tomorrow.
+
+Felix

@@ -1,0 +1,41 @@
+Message-ID: <20260323-1140.ruth@tessera.io>
+Date: Mon, 23 Mar 2026 11:40:05 -0700
+From: Ruth Adeyemi <ruth@tessera.io>
+To: Coastline Purchasing <purchasing@coastlinecorrugated.com>
+Cc: Avery Chen <avery@tessera.io>
+Subject: Re: Scheduled ERP export - CSV column order
+In-Reply-To: <20260323-0920.purchasing@coastlinecorrugated.com>
+References: <20260323-0920.purchasing@coastlinecorrugated.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hello Coastline Purchasing,
+
+Case TS-5581 opened for this. What you reported: "the scheduled ERP export ... has arrived with a different column order" since Saturday, and Epicor rejects the file on field 7.
+
+Cause: the March 21 release added a header row and two new columns (plant_code, line_id) to scheduled exports. They were inserted at positions 3 and 4 rather than appended at the end, which shifts everything after them for imports that map by position. Nothing on your side caused it.
+
+Fix, about two minutes:
+1. Settings > Exports > Scheduled > coastline_orders_daily > Edit
+2. Under "Column layout", choose "Legacy (pinned)" and untick "Include header row"
+3. Save, then "Run now" to regenerate today's file
+
+The pinned layout keeps the exact column order you had before March 21 and will not change on future releases. I ran a test export against your account and confirmed the output matches the March 20 layout column for column. If you want the new columns later, "Custom" lets you place them at the end.
+
+Please let me know once tonight's import goes through and I will close the case.
+
+Ruth | Tessera Support
+
+On Mon, Mar 23, 2026 at 9:20 AM, Coastline Purchasing <purchasing@coastlinecorrugated.com> wrote:
+> Hello Tessera Support,
+>
+> Since Saturday night the scheduled ERP export (nightly CSV, "coastline_orders_daily") has arrived with a different column order. Our ERP import (Epicor) maps by position and rejected the Sunday and Monday files with "field 7: non-numeric value".
+>
+> Nothing changed on our side. Could you tell us how to restore the previous column order? Our planners load this file at 06:00 and have been keying the changes by hand for two days.
+>
+> We have copied Avery Chen as the account contact on file.
+>
+> Thank you,
+>
+> Purchasing Department | Coastline Corrugated

@@ -1,0 +1,41 @@
+Message-ID: <20260226-1630.hana@tessera.io>
+Date: Thu, 26 Feb 2026 16:30:05 -0800
+From: Hana Okada <hana@tessera.io>
+To: Anika Berg <anika.berg@veritascomponents.com>
+Cc: Avery Chen <avery@tessera.io>, Dmitri Volkov <dmitri.volkov@veritascomponents.com>
+Subject: Re: Lot traceability - spec references for the AS9100 audit
+In-Reply-To: <20260226-1105.anika.berg@veritascomponents.com>
+References: <20260226-1020.dmitri.volkov@veritascomponents.com> <20260226-1105.anika.berg@veritascomponents.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi Anika,
+
+Yes. A custom field on the lot record does this, and it flows into the CSV export automatically.
+
+- [ ] I add a text field "Spec reference" to your lot record today
+- [ ] You set the default value to VC-QS-114 rev D §7.5 (Settings → Lot records → Fields); per-lot overrides are allowed
+- [ ] The export picks it up as the last column from the next run
+
+No lead time beyond today. I will send a screenshot once the field is live, by **Tuesday, March 3, 10:00 PT**, so you have two weeks before the auditors arrive on **March 16**.
+
+Hana
+
+Hana Okada
+Solutions Engineering, Tessera
+
+On Thu, Feb 26, 2026 at 11:05 AM, Anika Berg <anika.berg@veritascomponents.com> wrote:
+> Hello Hana,
+>
+> To be precise about the request:
+>
+> - Our lot records (e.g. lot 26008-A, lot 26011-C) must show the governing specification and revision, currently VC-QS-114 rev D, section 7.5.
+> - Today the export from your system carries lot number, quantity, work center and timestamps, but not the spec reference.
+> - The auditor is on site March 16–17 and will sample five lots.
+>
+> Is there a way to carry a spec-reference field on the lot record and include it in the CSV export? If it requires a configuration change, please tell me the lead time.
+>
+> Regards,
+>
+> Anika Berg | Quality Systems | Veritas Components

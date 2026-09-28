@@ -1,0 +1,16 @@
+Message-ID: <20260324-1735.jordan@tessera.io>
+Date: Tue, 24 Mar 2026 17:35:26 -0700
+From: Jordan Liu <jordan@tessera.io>
+To: Avery Chen <avery@tessera.io>
+Subject: left a comment on the H1 doc
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Left a comment on the H1 doc, section 2 (engineering headcount).
+
+Short version: "hold at the current team" plus a paid on-call rotation still leaves five people carrying the pager, and if Kenji's start slips past May the rotation math does not work. I would rather we say explicitly what happens if the round closes after June than leave it implied.
+
+Not urgent tonight. I'd like ten minutes on it at Thursday's planning sync rather than resolving it in comments.
+
+Jordan

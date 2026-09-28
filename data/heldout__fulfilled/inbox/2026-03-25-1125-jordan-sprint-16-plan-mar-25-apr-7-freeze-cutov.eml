@@ -1,0 +1,26 @@
+Message-ID: <20260325-1125.jordan@tessera.io>
+Date: Wed, 25 Mar 2026 11:25:45 -0700
+From: Jordan Liu <jordan@tessera.io>
+To: Tessera Engineering <eng@tessera.io>
+Cc: Avery Chen <avery@tessera.io>, Hana Okada <hana@tessera.io>
+Subject: Sprint 16 plan (Mar 25 - Apr 7): freeze + cutover
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Sprint 16 as planned this morning. Goal: the Northstar SAP connector goes live at Fresno on Wed Apr 1 and stays live. Everything else is small.
+
+Freeze: Mon Mar 30 09:00 to Thu Apr 2 17:00. No deploys to production except fixes for the cutover, approved by me, with Carmen's smoke suite green on the build. Feature branches keep moving; they just don't ship.
+
+Committed:
+- Cutover (Arjun on the connector, Hana on site at Fresno, Carmen on the smoke suite, me on the go/no-go call Mon 16:00). Runbook v2 is the plan; follow it.
+- Post-go-live patch, Thu Apr 2 evening or Fri Apr 3: NS-412 plant-code column (Felix), NS-415 date-picker highlight (Kofi). Both non-blocking; both already have fixes.
+- Pager-bot, small (Kofi). After the freeze.
+
+Tonight: Halberd's Line 3 MES upgrade runs from 18:00 (Sanjay's team). Arjun is on call and has the Line 3 ingest-lag alert in front of him; Felix is backup. It is their change, not ours; if the feed looks wrong afterwards, the first call is to Sanjay, not a hotfix.
+
+Not this sprint: everything else, on purpose.
+
+Sprint review Tue Apr 7, 15:00. Standup notes in Notion as usual.
+
+Jordan

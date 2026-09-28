@@ -1,0 +1,21 @@
+Message-ID: <20260319-1725.notifications@linear.app>
+Date: Thu, 19 Mar 2026 17:25:35 -0700
+From: Linear <notifications@linear.app>
+To: Avery Chen <avery@tessera.io>
+Subject: Kofi Mensah mentioned you in a comment on NS-401
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Kofi Mensah mentioned you in a comment
+
+NS-401 · SAP IDoc retry logic: idempotent retry on ack timeout
+Project: Northstar SAP connector · Cycle 7
+Assignee: Kofi Mensah
+
+"@avery so you're not surprised if it comes up on the Northstar weekly: Elise asked whether the retry change lands before go-live. Yes, it does, I'm aiming to merge Monday and load test against their QA tenant Wednesday. Nothing you need to do, just wanted you to have it. Hope that's ok to tag you here!"
+
+Reply in Linear: https://linear.app/tessera/issue/NS-401#comment-e8f04
+
+--
+You are receiving this because you were mentioned. Manage notifications: https://linear.app/tessera/settings/notifications

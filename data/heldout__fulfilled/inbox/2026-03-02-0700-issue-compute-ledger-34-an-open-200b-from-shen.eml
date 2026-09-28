@@ -1,0 +1,30 @@
+Message-ID: <20260302-0700.issue@computeledger.co>
+Date: Mon, 02 Mar 2026 07:00:51 -0800
+From: Compute Ledger <issue@computeledger.co>
+To: Avery Chen <avery@tessera.io>
+Subject: Compute Ledger #34: an open 200B from Shenzhen / serving-framework shootout / the interconnection queue
+List-Unsubscribe: <mailto:unsubscribe@computeledger.co?subject=unsubscribe>, <https://computeledger.co/u/bdeed626>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+COMPUTE LEDGER - Issue 34 - Monday, March 2, 2026
+
+Three things this week.
+
+1. Tianhe Research releases a 200B-parameter mixture-of-experts model under Apache 2.0
+
+Sixteen experts, two active per token, so it serves like a 30B model and reasons like something much bigger. It is the strongest open model on our multilingual and code suites and within a point of the closed frontier on long-context retrieval. The US hosting providers had it up within 36 hours. Whether enterprises will run a model from a Shenzhen lab in production is a procurement question, not a technical one; two of the three enterprises we asked said their security teams have already said no.
+
+2. We benchmarked the four major serving frameworks so you do not have to
+
+Same hardware, same model, same traffic replay from a real customer-support workload. The spread in cost per million output tokens was 2.3x between the best and worst configurations, and most of the gap was default settings: batch size, KV-cache quantization, and whether prefix caching was on. The full results and configs are on the site. The takeaway is boring and expensive: a week of tuning pays for itself in a month.
+
+3. The interconnection queue is the new GPU queue
+
+Utilities in Virginia, Texas and Arizona now quote five to seven years for new large-load interconnections. Data-center developers are responding with on-site gas turbines, which are themselves on a three-year lead time. The practical effect for anyone renting compute is that the capacity coming online in 2026 was permitted in 2022, and there is not much of it.
+
+That is the issue. Reply with tips; we read everything.
+
+Compute Ledger is written by two people in Oakland and supported by readers. Forward it to someone who runs a GPU budget.

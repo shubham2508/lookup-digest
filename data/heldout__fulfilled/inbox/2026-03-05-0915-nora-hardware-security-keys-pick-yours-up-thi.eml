@@ -1,0 +1,27 @@
+Message-ID: <20260305-0915.nora@tessera.io>
+Date: Thu, 05 Mar 2026 09:15:29 -0800
+From: Nora Blake <nora@tessera.io>
+To: Tessera Team <team@tessera.io>
+Cc: Avery Chen <avery@tessera.io>
+Subject: Hardware security keys - pick yours up this week (FYI)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi all,
+
+The hardware security keys arrived (two per person, 24 total, $1,104 on the ops card). They're in named envelopes on my desk; take yours whenever you're in this week.
+
+Setup takes about four minutes:
+1. Google Workspace > Security > 2-Step Verification > Add security key. Enroll both keys (one stays at home).
+2. GitHub > Settings > Password and authentication > Security keys. Same two keys.
+3. Put the spare somewhere that is not the same bag as your laptop.
+
+Phone prompts keep working alongside the keys until mid-April; after that the keys become the only second factor, which is the control our compliance file asks for. I'll send one more reminder in April; nobody is being switched over without notice.
+
+Arjun has offered to help anyone who gets stuck, and Kofi has already volunteered to be the person who loses a key first.
+
+Thanks,
+
+Nora Blake
+Operations & Finance | Tessera

@@ -1,0 +1,27 @@
+Message-ID: <20260303-1402.noreply@md.getsentry.com>
+Date: Tue, 03 Mar 2026 14:02:50 -0800
+From: Sentry <noreply@md.getsentry.com>
+To: Avery Chen <avery@tessera.io>
+Subject: [tessera-api] Critical: API error rate above 2% for 5 minutes (production)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Sentry
+
+Metric alert: API error rate (production)
+Status: Critical
+Triggered: Mar 3, 2026, 2:02 PM PST
+
+The error rate is 3.4% over the last 5 minutes (critical threshold: 2%).
+
+Top issue in the window
+  KeyError: 'plant_code' in api/handlers/lines.py (get_line_status)
+  142 events · 3 users · first seen 1:56 PM PST
+  https://tessera.sentry.io/issues/5120833104/
+
+Environment: production · Project: tessera-api
+View alert: https://tessera.sentry.io/alerts/rules/details/2214/
+
+--
+You are receiving this because you are on this alert rule's notification list. Manage alert rules: https://tessera.sentry.io/alerts/rules/

@@ -1,0 +1,15 @@
+Message-ID: <20260319-0945.felix@tessera.io>
+Date: Thu, 19 Mar 2026 09:45:42 -0700
+From: Felix Wagner <felix@tessera.io>
+To: Kofi Mensah <kofi@tessera.io>
+Cc: Jordan Liu <jordan@tessera.io>, Avery Chen <avery@tessera.io>
+Subject: Re: PR #551 - audit log export, 90 day window
+In-Reply-To: <20260319-0920.kofi@tessera.io>
+References: <20260318-1410.felix@tessera.io> <20260319-0920.kofi@tessera.io>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+both good. made it a 400 (you were right, empty file was lazy) and added the proxy ip footnote to the notes doc. merged. thx
+
+Felix

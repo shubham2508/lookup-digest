@@ -1,0 +1,33 @@
+Message-ID: <20260325-2112.jordan@tessera.io>
+Date: Wed, 25 Mar 2026 21:12:12 -0700
+From: Jordan Liu <jordan@tessera.io>
+To: Avery Chen <avery@tessera.io>
+Cc: Priya Iyer <priya@tessera.io>, Arjun Rao <arjun@tessera.io>
+Subject: Halberd Line 3 - timestamps 8h off since MES push
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Avery,
+
+Writing tonight rather than in the morning because Halberd's day shift will see this before we do.
+
+Impact
+- Since Halberd pushed the MES firmware on Line 3 this evening (about 18:40), every station event from Line 3 is arriving with timestamps 8 hours off. The firmware now stamps in UTC; our parser still reads Line 3 as local.
+- On their board, Line 3 looks eight hours behind schedule. The night-shift supervisors are getting false late alerts on every station, and Sanjay says two of them have started ignoring alerts across all three lines. That is the part that worries me.
+- Their 6am shift planning runs off our board. If nothing changes, the morning shift plans against wrong numbers.
+- Lines 1 and 2 are untouched. Nothing is lost; it is an offset, so we can re-stamp the evening's events once we agree the fix.
+
+Where we are
+- Arjun is on call and confirmed it from the raw payloads with Sanjay Kulkarni (their MES integration engineer) at 20:30.
+- Two ways out:
+  1. Halberd rolls back the firmware. Sanjay can do it but needs a sign-off from their side first, and after the procurement handover that is Tobias Weller.
+  2. We patch our parser to treat Line 3 as UTC. Ten-line change, Arjun has it ready. But if their firmware team quietly corrects the timezone tomorrow, our patch shifts everything eight hours the other way. I don't want to ship it without Halberd's OK in writing.
+
+What I need from you
+- A call on who contacts Tobias, and when. My suggestion: you, first thing, before the 11:00 QBR intro tomorrow. Better he hears it from you than sees it on the board, and this would be your first real contact with him. I can be on the line.
+- If you'd rather I handle it, say so and I'll email him at 7.
+
+I'm up until midnight and back on at 6. Arjun stays on call overnight either way.
+
+Jordan

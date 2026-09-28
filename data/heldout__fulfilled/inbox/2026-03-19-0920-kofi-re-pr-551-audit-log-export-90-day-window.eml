@@ -1,0 +1,27 @@
+Message-ID: <20260319-0920.kofi@tessera.io>
+Date: Thu, 19 Mar 2026 09:20:44 -0700
+From: Kofi Mensah <kofi@tessera.io>
+To: Felix Wagner <felix@tessera.io>
+Cc: Jordan Liu <jordan@tessera.io>, Avery Chen <avery@tessera.io>
+Subject: Re: PR #551 - audit log export, 90 day window
+In-Reply-To: <20260318-1410.felix@tessera.io>
+References: <20260318-1410.felix@tessera.io>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Reviewed, approved! Two things, neither blocking, and I hope it's ok that I'm suggesting rather than insisting since this is more your area than mine:
+
+1. The ip column: for SSO logins we get the proxy IP, not the user's. Probably fine for a beta but maybe worth a footnote in the release note so nobody files a "the IPs are all the same" ticket.
+2. The 90-day window returns an empty file if someone asks for 91 days instead of an error. I'd expect a 400, but I can see the argument for the empty file, so your call.
+
+Nice streaming change, the memory graph on staging is basically flat now.
+
+Kofi
+
+On Wed, Mar 18, 2026 at 2:10 PM, Felix Wagner <felix@tessera.io> wrote:
+> https://github.com/tessera-io/platform/pull/551
+>
+> audit log export v2: streams instead of buffering (the beta one fell over at ~200k rows on the coastline tenant), adds actor + ip columns, 90 day window enforced server side. ~340 lines. kofi you're the only one who hasnt reviewed one of mine this month so, tag. lmk
+>
+> Felix

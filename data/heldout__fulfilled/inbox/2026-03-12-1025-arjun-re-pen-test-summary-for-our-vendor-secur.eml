@@ -1,0 +1,40 @@
+Message-ID: <20260312-1025.arjun@tessera.io>
+Date: Thu, 12 Mar 2026 10:25:41 -0700
+From: Arjun Rao <arjun@tessera.io>
+To: Elise Moreau <elise.moreau@northstarfoods.com>
+Cc: Avery Chen <avery@tessera.io>, Hana Okada <hana@tessera.io>
+Subject: Re: Pen-test summary for our vendor security file
+In-Reply-To: <20260309-1240.avery@tessera.io>
+References: <20260309-0910.elise.moreau@northstarfoods.com> <20260309-1240.avery@tessera.io>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi Elise,
+
+Attached is the pen-test summary for the assessment completed in February (Tessera_PenTest_Summary_2026-02.pdf). It covers scope, methodology, the findings by severity, and remediation status. All high and critical findings were closed before the retest on February 20; the two remaining low findings are tracked with target dates in the document.
+
+If your security team needs the full report, they can request it through our trust portal (trust.tessera.io) under a mutual NDA; the summary is fine to circulate internally.
+
+Let me know if anything is missing for the vendor file.
+
+Arjun
+
+Arjun
+
+On Mon, Mar 9, 2026 at 12:40 PM, Avery Chen <avery@tessera.io> wrote:
+> elise, sure. arjun ran point on the test and will send you the summary by Thursday.
+>
+> Avery
+>
+> On Mon, Mar 9, 2026 at 9:10 AM, Elise Moreau <elise.moreau@northstarfoods.com> wrote:
+> > Avery,
+> >
+> > Our IT security team is refreshing vendor files ahead of the connector go-live and Tessera is on their list.
+> >
+> > - Could you send the pen-test summary from your most recent penetration test? The executive summary is enough; they do not need the full report.
+> > - They would like it by Thursday the 12th so it is in the file before the April change-control review.
+> >
+> > Elise
+> >
+> > Elise Moreau | Procurement Lead | Northstar Foods

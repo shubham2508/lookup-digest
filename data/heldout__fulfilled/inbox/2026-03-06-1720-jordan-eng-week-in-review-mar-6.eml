@@ -1,0 +1,30 @@
+Message-ID: <20260306-1720.jordan@tessera.io>
+Date: Fri, 06 Mar 2026 17:20:31 -0800
+From: Jordan Liu <jordan@tessera.io>
+To: Tessera Engineering <eng@tessera.io>
+Cc: Avery Chen <avery@tessera.io>
+Subject: Eng week in review - Mar 6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Shipped:
+- Release 2026.03.1 on Monday: spec references, export history, grouped late-lot alerts. Zero incidents; two support cases were people asking whether the grouping was a bug. It is not.
+- SAP IDoc parser for DELVRY03, #512 (Arjun). Merged Wednesday. Mapping table v1 from Hana's Fresno workshop loads clean.
+- SSO on GitHub enforced Monday. One person locked out for eleven minutes; it was me.
+
+In progress:
+- WHSCON parser (Arjun), PR next week.
+- Export scheduler retries (Kofi), #538 up for review Tuesday.
+- Connector regression suite: 25 of 40 cases, now running against the real parser (Carmen).
+- Audit log export (Felix), stretch, started.
+
+Watching:
+- Ingest p95 back down to ~600ms after Arjun rebuilt the index on the new field. Closed.
+- Sentry noise: the overnight pager is too chatty. Arjun is re-tiering alerts; I'm going to pull an on-call and infra review together for mid-March to look at it properly.
+
+Reminder: hack day is Thursday the 12th, demos at 17:00, Avery is judging. No prep, that's the point.
+
+Good weekend.
+
+Jordan

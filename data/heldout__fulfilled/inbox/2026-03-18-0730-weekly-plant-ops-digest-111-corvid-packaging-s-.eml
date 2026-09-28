@@ -1,0 +1,29 @@
+Message-ID: <20260318-0730.weekly@plantopsdigest.com>
+Date: Wed, 18 Mar 2026 07:30:46 -0700
+From: Plant Ops Digest <weekly@plantopsdigest.com>
+To: Avery Chen <avery@tessera.io>
+Subject: Plant Ops Digest #111: Corvid Packaging's second-shift problem, the tariff pass-through, scheduling by exception
+List-Unsubscribe: <mailto:unsubscribe@plantopsdigest.com?subject=unsubscribe>, <https://plantopsdigest.com/u/2124b59a>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+PLANT OPS DIGEST
+Issue 111 | Wednesday, March 18, 2026
+
+Four items this week.
+
+PLANT OF THE WEEK: Corvid Packaging, Reno, NV
+A corrugated converter with a first shift that hits plan and a second shift that runs 20% behind on the same equipment. The usual explanation is people; the actual explanation, once they instrumented it, was that the second shift inherited every job the first shift did not want. The scheduler now sequences across both shifts as a single day. Second-shift output is up 14% and nobody was hired, fired or retrained.
+
+THE TARIFF PASS-THROUGH IS SHOWING UP IN CAPEX
+A survey of 300 plant managers out this week: 61% have deferred at least one equipment purchase this year because of tariff-driven price increases on imported machinery and on the steel in domestic machinery. The deferrals fall hardest on packaging lines and material handling. Vendors are responding with financing and with "refurbished" programs that would have been unthinkable two years ago.
+
+SCHEDULING BY EXCEPTION
+A pattern from the plants getting the most out of new scheduling tools: they do not have the software produce the schedule. They have the scheduler produce it, as before, and the software flag the ten places where it is likely to break: a maintenance window nobody moved, a material that has not been received, a changeover that has never been done in the sequence proposed. The scheduler fixes those ten and ignores the rest. Adoption is high because the scheduler is still the scheduler.
+
+READER QUESTION
+"Our ERP vendor says their new planning module makes our third-party scheduler redundant. Is it?" Ask them to schedule one week of your actual plant, live, with your actual constraints, in front of your actual scheduler. The answer will be obvious within an hour.
+
+Plant Ops Digest is published every Wednesday. Forward freely. Manage your subscription: https://plantopsdigest.com/manage

@@ -1,0 +1,30 @@
+Message-ID: <20260303-1510.hana@tessera.io>
+Date: Tue, 03 Mar 2026 15:10:50 -0800
+From: Hana Okada <hana@tessera.io>
+To: Jordan Liu <jordan@tessera.io>, =?utf-8?q?Tom=C3=A1s?= Reyes <tomas@tessera.io>
+Cc: Avery Chen <avery@tessera.io>, Arjun Rao <arjun@tessera.io>
+Subject: Northstar weekly #1 - notes (Mar 3)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Notes from the first Northstar SAP connector weekly (Tuesdays 14:00, Elise + Avery + me). Jordan, Arjun: for you, since you're not on the call.
+
+Status: on plan for go-live **Wed Apr 1** at Fresno.
+
+Agreed today:
+- [x] Field-mapping workshop: **Thu Mar 5, 10:00-12:00**, Rosa Jimenez (plant scheduler) + two planners, me + Arjun for the first hour. Output is mapping table v1.
+- [x] Northstar's SAP team sends sandbox IDoc fixtures (arrived last Thursday, 31 files).
+- [x] Cutover approach: parallel run **Mon Mar 30 - Tue Mar 31**, connector live **Wed Apr 1 06:00**, Hana on site at Fresno for cutover.
+- [ ] Plant codes for both Fresno lines: Rosa, after the workshop.
+- [ ] Scheduler training for the Fresno planners: Elise to confirm which week works for the plant; my proposal is the week of Mar 23.
+- [ ] Pen-test summary for their vendor security file: Elise mentioned it, no date yet; I'll bring it up with Jordan when she asks formally.
+
+Risks: none open. Elise's words: "the only question I get asked is whether the date is real, and I keep saying yes."
+
+Next weekly: **Tue Mar 10, 14:00**.
+
+No action for anyone on this email.
+
+Hana Okada
+Solutions Engineering, Tessera

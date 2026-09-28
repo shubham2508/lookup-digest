@@ -1,0 +1,28 @@
+Message-ID: <20260225-0712.team@mail.notion.so>
+Date: Wed, 25 Feb 2026 07:12:55 -0800
+From: Notion <team@mail.notion.so>
+To: Avery Chen <avery@tessera.io>
+Subject: What's new in Notion: February release notes
+List-Unsubscribe: <mailto:unsubscribe@mail.notion.so?subject=unsubscribe>, <https://mail.notion.so/u/94626b0f>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi Avery,
+
+Here's what shipped in Notion this month for your workspace:
+
+- Custom agents can now run on a schedule. Set one to summarize a database every Monday at 8am and post the result to a page or a Slack channel.
+- Database charts: bar, line and donut views straight from any database, no export.
+- Meeting notes now attach to the calendar event they came from, and transcripts are searchable.
+- Permissions audit: admins get a one-page view of who can see what, with one-click fixes.
+
+Read the full release notes: https://mail.notion.so/c/feb-release-7q1n
+
+Tip of the month: type /chart in any page to visualize a linked database inline.
+
+Thanks for building with us,
+The Notion Team
+
+You're receiving this because you're an admin of a Notion workspace. Unsubscribe: https://mail.notion.so/u/k22pd

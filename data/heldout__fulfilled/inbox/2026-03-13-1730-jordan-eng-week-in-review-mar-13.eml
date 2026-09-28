@@ -1,0 +1,29 @@
+Message-ID: <20260313-1730.jordan@tessera.io>
+Date: Fri, 13 Mar 2026 17:30:56 -0700
+From: Jordan Liu <jordan@tessera.io>
+To: Tessera Engineering <eng@tessera.io>
+Cc: Avery Chen <avery@tessera.io>
+Subject: Eng week in review - Mar 13
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Shipped:
+- Search index rebuild, Thursday 21:00-21:27, no customer reports (Arjun). Old index retired at noon today.
+- Export scheduler retries, #538 (Kofi). Merged Wednesday with a test behind it; goes out Monday.
+- Fold count in SMS alerts, CS-2254 (Felix). Halberd's night shift will see "(x4)" from Monday.
+- Pen-test summary for Northstar's vendor security file, sent to Elise yesterday (Arjun, with Priya's review). Closes that ask.
+- Cutover runbook v1 (Arjun + Hana), walked at all hands this afternoon; to Northstar next week.
+- Hack day. Kofi's pager-bot is going into sprint 16 as a small item.
+
+In progress:
+- WHSCON parser (Arjun), PR Monday.
+- Regression suite 36/40 (Carmen); Northstar nightly smoke suite starts Monday.
+- Audit log export (Felix).
+
+Watching:
+- Nothing red. Overnight pages this week: 3, all Sentry error-rate noise, all self-resolved. Alert tiers are Tuesday's topic.
+
+Good weekend.
+
+Jordan

@@ -1,0 +1,31 @@
+Message-ID: <20260316-1120.nora@tessera.io>
+Date: Mon, 16 Mar 2026 11:20:20 -0700
+From: Nora Blake <nora@tessera.io>
+To: Avery Chen <avery@tessera.io>
+Cc: Priya Iyer <priya@tessera.io>
+Subject: 409A draft from Ledgerline - comments by Friday?
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi Avery,
+
+Ledgerline sent the 409A draft this morning (attached: Tessera_409A_Draft_2026-03-16.pdf). Headline: preliminary fair market value of common at $1.42/share, up from $0.96 in the September report. Inputs they used:
+
+| Input                  | Value            |
+|------------------------|------------------|
+| Valuation date         | Feb 28, 2026     |
+| Method                 | OPM backsolve    |
+| Last preferred price   | $3.10 (seed)     |
+| Volatility             | 55%              |
+| DLOM                   | 25%              |
+| Time to liquidity      | 3.0 years        |
+
+Two things I'd flag before you read it:
+1. They've applied the seed price and don't mention the Series A. Dennis says that's standard until something is signed, but the narrative on page 6 shouldn't describe the raise either way, and right now it does.
+2. The 3.0-year time to liquidity feels short against what we've been telling the board.
+
+Could I have your comments by Friday (3/20)? Dennis wants to finalize by Wednesday the 25th so the March option grants can go to the board with a current price. Priya, same ask if you have views, but Avery's are the ones Dennis is waiting on.
+
+Nora Blake
+Operations & Finance | Tessera

@@ -1,0 +1,30 @@
+Message-ID: <20260325-0700.issue@computeledger.co>
+Date: Wed, 25 Mar 2026 07:00:44 -0700
+From: Compute Ledger <issue@computeledger.co>
+To: Avery Chen <avery@tessera.io>
+Subject: Compute Ledger #41: Kestrel raises on-demand GPU prices 18% on April 1 / Marigold-2 weights / the interconnect squeeze
+List-Unsubscribe: <mailto:unsubscribe@computeledger.co?subject=unsubscribe>, <https://computeledger.co/u/1535f14d>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+COMPUTE LEDGER - Issue 41 - Wednesday, March 25, 2026
+
+Three things this week.
+
+1. Kestrel Compute raises on-demand GPU pricing 18% on April 1
+
+Kestrel Compute told customers on Tuesday that on-demand pricing for its H100- and B200-class instances rises 18% on April 1, its first increase since launch. Reserved and committed-use rates are unchanged for the life of existing terms; new commitments signed on or after April 1 price off the new base. Kestrel cited power costs and "sustained demand from inference workloads." The two other neoclouds we track have not followed, yet, and one of them is quietly telling prospects it won't. If you are on Kestrel on-demand with a commit decision in front of you, the arithmetic just moved.
+
+2. Marigold-2 weights are out
+
+Marigold Labs released the weights for Marigold-2 (14B and 70B) under a permissive license. Our benchmark table is below the fold; the short version is that the 70B lands between last year's frontier releases on reasoning and ahead of them on long-context recall, at roughly a third of the serving cost. Fine-tuning recipes are already circulating.
+
+3. The interconnect squeeze
+
+Lead times on 800G optical transceivers have stretched from 8 weeks to 22 since January, according to three integrators we spoke with. The knock-on is that new cluster builds are slipping a quarter even where the GPUs are in hand. If your provider promised you capacity in Q3, ask which quarter they meant.
+
+That is the issue. Reply with tips; we read everything.
+
+Compute Ledger is written by two people in Oakland and supported by readers. Forward it to someone who runs a GPU budget.

@@ -1,0 +1,107 @@
+Message-ID: <20260325-2205.tomas@tessera.io>
+Date: Wed, 25 Mar 2026 22:05:03 -0700
+From: =?utf-8?q?Tom=C3=A1s?= Reyes <tomas@tessera.io>
+To: Avery Chen <avery@tessera.io>
+Subject: Fwd: Q1 true-up invoice - questions from Finance
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+thoughts?
+
+Tomás Reyes | Head of GTM, Tessera | +1 (510) 555-0142
+
+---------- Forwarded message ---------
+From: Anika Berg <anika.berg@veritascomponents.com>
+Date: Wed, Mar 25, 2026 at 3:35 PM
+Subject: Re: Q1 true-up invoice - questions from Finance
+To: Hana Okada <hana@tessera.io>
+Cc: Leo Marchetti <leo@tessera.io>, Tomás Reyes <tomas@tessera.io>
+
+Hana,
+
+Two more February lots for the list: 26025-C and 26027-A. Also, when the hold flag exists, could it appear as a column in the CSV export so our auditors can see it?
+
+Anika
+
+On Tue, Mar 24, 2026 at 8:30 AM, Leo Marchetti <leo@tessera.io> wrote:
+> Hi Hugo,
+>
+> Understood, and happy to support the review however is easiest for your team. Send the questionnaire whenever it's ready and we'll turn it around quickly. In the meantime everything on the account keeps running as normal: the Line 4 seats are live and TS-1172-R1 is settled.
+>
+> Leo Marchetti | Account Executive | Tessera
+> On Mon, Mar 23, 2026 at 4:45 PM, Hugo Lambert <hugo.lambert@veritascomponents.com> wrote:
+> > Dear Leo,
+> >
+> > One further item, unrelated to the invoice. As part of our annual vendor review, Veritas will be consolidating its software suppliers for the coming fiscal year. Tessera's renewal will therefore go through the formal vendor review this quarter rather than being extended on the current terms. Procurement will send the supplier questionnaire in April, and I would ask that any renewal proposal be held until the review has concluded.
+> >
+> > Regards,
+> > Hugo Lambert
+> > Finance Director, Veritas Components
+> > On Mon, Mar 23, 2026 at 9:50 AM, Hana Okada <hana@tessera.io> wrote:
+> > > Hi Anika,
+> > >
+> > > Logged as a feature request (FR-318, "automatic lot hold from disposition"). Product review is in April; I will confirm the timing by **Friday, April 3**. The nightly CSV is enough for a first version.
+> > >
+> > > Hana
+> > > On Fri, Mar 20, 2026 at 10:05 AM, Anika Berg <anika.berg@veritascomponents.com> wrote:
+> > > > Hana,
+> > > >
+> > > > Roughly 6–10 holds per month. February lots with an open NCR at the time of release: 26011-A, 26014-C, 26019-B, 26022-A. Our QMS can export a CSV nightly; the API would need IT involvement.
+> > > >
+> > > > Anika
+> > > > On Thu, Mar 19, 2026 at 5:20 PM, Hana Okada <hana@tessera.io> wrote:
+> > > > > Hi Anika,
+> > > > >
+> > > > > Today:
+> > > > > - a lot can be put on hold manually (Lot → Hold), which blocks release; supervisors see a red banner
+> > > > > - there is no automatic hold driven by an external disposition code
+> > > > >
+> > > > > New (what you are asking for):
+> > > > > - an inbound "disposition" field per lot, set via CSV import or API
+> > > > > - a rule: disposition in {NCR-open, quarantine} → hold
+> > > > >
+> > > > > To size it I need: how many holds per month, and whether your QMS can export dispositions on a schedule. I will bring a sketch to the QBR on **Wednesday, April 8**.
+> > > > >
+> > > > > Hana Okada
+> > > > > Solutions Engineering, Tessera
+> > > > > On Thu, Mar 19, 2026 at 1:10 PM, Anika Berg <anika.berg@veritascomponents.com> wrote:
+> > > > > > Hello Hana,
+> > > > > >
+> > > > > > While this thread is open with the right people on it: Quality would like an automatic lot hold. When a lot fails incoming inspection (recorded in our QMS with the disposition code), we would like the scheduler to block that lot from being released to Line 4 until the disposition is cleared. Reference: VC-QS-114 rev D, section 6.2 (nonconforming material control).
+> > > > > >
+> > > > > > Is this something the product does today, and if not, what would it take?
+> > > > > >
+> > > > > > Regards,
+> > > > > > Anika Berg | Quality Systems | Veritas Components
+> > > > > > On Wed, Mar 18, 2026 at 4:30 PM, Hugo Lambert <hugo.lambert@veritascomponents.com> wrote:
+> > > > > > > Received, thank you. Approved for payment on our side.
+> > > > > > >
+> > > > > > > Hugo Lambert
+> > > > > > > On Wed, Mar 18, 2026 at 11:15 AM, Leo Marchetti <leo@tessera.io> wrote:
+> > > > > > > > Hi Hugo,
+> > > > > > > >
+> > > > > > > > Attached: credit memo CM-0211 ($1,850, January service credit) and corrected invoice TS-1172-R1 for $9,430 net, referencing CM-0211. Seat count and proration fixed per your notes. Nora reviewed both.
+> > > > > > > >
+> > > > > > > > Leo
+> > > > > > > > On Tue, Mar 17, 2026 at 9:40 AM, Hugo Lambert <hugo.lambert@veritascomponents.com> wrote:
+> > > > > > > > > Leo,
+> > > > > > > > >
+> > > > > > > > > The netting approach is acceptable provided the credit is documented in a separate credit memo for our records, and the corrected invoice references the memo number. Please also confirm the corrected true-up amount in writing before issuing.
+> > > > > > > > >
+> > > > > > > > > Regards,
+> > > > > > > > > Hugo Lambert
+> > > > > > > > > On Mon, Mar 16, 2026 at 2:05 PM, Leo Marchetti <leo@tessera.io> wrote:
+> > > > > > > > > > Hi Hugo,
+> > > > > > > > > >
+> > > > > > > > > > Thanks for the detailed look. Quick answers: (1) you're right, the six Line 4 seats should not be in the true-up count since they're billed under the PO, we'll correct that; (2) February proration was computed from Feb 3 rather than Feb 9, our miss, will fix; (3) the January service credit ($1,850) hasn't been issued yet, I'm checking with Nora on the cleanest way. Quick win: we could net it against the corrected true-up so you only process one document.
+> > > > > > > > > >
+> > > > > > > > > > Leo Marchetti | Account Executive | Tessera
+> > > > > > > > > > On Mon, Mar 16, 2026 at 10:20 AM, Hugo Lambert <hugo.lambert@veritascomponents.com> wrote:
+> > > > > > > > > > > Dear Leo,
+> > > > > > > > > > >
+> > > > > > > > > > > As part of our quarterly close I have three questions on the Q1 true-up invoice (TS-1172): first, the seat count used for the true-up appears to include the six Line 4 seats that were ordered separately under PO 88-4471; second, the proration for February does not match our records; third, we have not seen the service credit that was agreed after the January outage. I would be grateful for a reconciliation before we can approve payment.
+> > > > > > > > > > >
+> > > > > > > > > > > Regards,
+> > > > > > > > > > > Hugo Lambert
+> > > > > > > > > > > Finance Director, Veritas Components

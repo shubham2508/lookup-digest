@@ -1,0 +1,31 @@
+Message-ID: <20260302-1700.jordan@tessera.io>
+Date: Mon, 02 Mar 2026 17:00:03 -0800
+From: Jordan Liu <jordan@tessera.io>
+To: Hana Okada <hana@tessera.io>, Ruth Adeyemi <ruth@tessera.io>
+Cc: Avery Chen <avery@tessera.io>, =?utf-8?q?Tom=C3=A1s?= Reyes <tomas@tessera.io>
+Subject: Release 2026.03.1 (Monday) - customer-facing notes, wording review
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hana, Ruth,
+
+Release 2026.03.1 went out at 16:00 today; no incidents, no rollbacks. Draft customer-facing notes below. Could one of you do a wording pass by tomorrow 10:00, then Ruth posts to the help center and the in-app changelog? Nobody outside the two of you needs to do anything.
+
+Draft:
+
+New
+- Spec references on lot records. Add a specification ID and revision to any lot; it appears on the lot page and in the CSV export. (Requested by a quality team preparing for an AS9100 audit.)
+- Export history. Every scheduled export now shows its last 30 runs, with status and row counts, under Reports > Scheduled exports.
+
+Improved
+- Late-lot alerts are grouped. If the same station trips several times within ten minutes you now get one alert with a count, e.g. "Station 3B late (x4)", instead of four texts.
+- Clearer error message when an ingest feed's column count changes.
+
+Fixed
+- Plant names with accented characters no longer break the PDF shift report.
+- The shift board no longer scrolls to the top after a filter change.
+
+Avery, Tomás: FYI only.
+
+Jordan

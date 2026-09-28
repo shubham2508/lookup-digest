@@ -1,0 +1,15 @@
+Message-ID: <20260227-0815.felix@tessera.io>
+Date: Fri, 27 Feb 2026 08:15:18 -0800
+From: Felix Wagner <felix@tessera.io>
+To: Arjun Rao <arjun@tessera.io>
+Cc: Tessera Engineering <eng@tessera.io>, Avery Chen <avery@tessera.io>, Nora Blake <nora@tessera.io>
+Subject: Re: GitHub org: SSO enforced from Monday Mar 2 - re-auth your CLI
+In-Reply-To: <20260226-1030.arjun@tessera.io>
+References: <20260226-1030.arjun@tessera.io>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+done, all 3 steps. deploy keys confirmed fine on my side too (pushed #527 through CI this morning). 👍
+
+Felix

@@ -1,0 +1,21 @@
+Message-ID: <20260303-0830.hana@tessera.io>
+Date: Tue, 03 Mar 2026 08:30:46 -0800
+From: Hana Okada <hana@tessera.io>
+To: Jordan Liu <jordan@tessera.io>
+Cc: Ruth Adeyemi <ruth@tessera.io>, Avery Chen <avery@tessera.io>, =?utf-8?q?Tom=C3=A1s?= Reyes <tomas@tessera.io>
+Subject: Re: Release 2026.03.1 (Monday) - customer-facing notes, wording review
+In-Reply-To: <20260302-1700.jordan@tessera.io>
+References: <20260302-1700.jordan@tessera.io>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Done, two tweaks applied directly in the doc:
+
+- "Spec references" → "Specification references" in the heading (customers search for the long word).
+- Dropped "e.g." from the alerts line and wrote out the example as its own sentence.
+
+Ready to post. Ruth, all yours. I'll send the Veritas and Coastline contacts the link once it's live, since both asked for one of these.
+
+Hana Okada
+Solutions Engineering, Tessera

@@ -1,0 +1,27 @@
+Message-ID: <20260311-0905.hello@linear.app>
+Date: Wed, 11 Mar 2026 09:05:35 -0700
+From: Linear <hello@linear.app>
+To: Avery Chen <avery@tessera.io>
+Subject: Linear Changelog: Agents in Linear, project milestones, and a new API
+List-Unsubscribe: <mailto:unsubscribe@linear.app?subject=unsubscribe>, <https://linear.app/u/d6b3fdbd>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+This week in Linear
+
+Agents in Linear
+Delegate an issue to a coding agent from any of the supported providers directly in Linear. The agent's progress, branches and pull requests show up on the issue.
+
+Project milestones
+Break a project into milestones with their own target dates and progress bars. Milestones roll up into the project's health.
+
+New API
+A rebuilt GraphQL API with webhooks for every object type, higher rate limits, and typed SDKs for TypeScript and Python.
+
+Also shipped: issue templates per team, a redesigned inbox with grouping, and support for custom emoji reactions.
+
+Full changelog: https://linear.app/changelog/2026-03-11
+
+Manage email preferences or unsubscribe: https://linear.app/e/pref/9m1kd

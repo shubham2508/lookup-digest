@@ -1,0 +1,21 @@
+Message-ID: <20260309-1730.carmen@tessera.io>
+Date: Mon, 09 Mar 2026 17:30:04 -0700
+From: Carmen Ortiz <carmen@tessera.io>
+To: Jordan Liu <jordan@tessera.io>
+Cc: Avery Chen <avery@tessera.io>, Tessera Engineering <eng@tessera.io>
+Subject: QA weekly - build 2026.03.09-1: 318 pass / 3 fail / 0 blocking
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Summary for the week. Build 2026.03.09-1 (Monday's release candidate): 321 tests run, 318 pass, 3 fail, 0 blocking. All three failures are in the new PDF page-break code and Kofi already has the fix (TES-440). Nothing needed from anyone; this is the weekly write-up.
+
+Connector regression suite (Northstar SAP): 32 of 40 cases written, 32/32 passing against #512 (DELVRY03). The 8 remaining cases are WHSCON and wait on Arjun's PR. Fixture annotations from Hana's workshop imported, thank you Hana.
+
+Smoke suite on production after Monday's release: 88/88.
+
+Flaky: TES-437, the export-history test that depends on wall-clock time, failed once on Sunday at 02:05 and passed on rerun; I'll pin the clock in the test rather than chase it. Not the DST change, the fixture just has a 24h assumption.
+
+Next week: WHSCON cases as they land, and I start the Northstar smoke suite that will run nightly through the freeze.
+
+Carmen Ortiz — QA

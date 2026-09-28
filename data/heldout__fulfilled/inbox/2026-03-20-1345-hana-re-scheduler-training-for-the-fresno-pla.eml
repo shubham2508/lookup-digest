@@ -1,0 +1,58 @@
+Message-ID: <20260320-1345.hana@tessera.io>
+Date: Fri, 20 Mar 2026 13:45:55 -0700
+From: Hana Okada <hana@tessera.io>
+To: Rosa Jimenez <rosa.jimenez@northstarfoods.com>
+Cc: Avery Chen <avery@tessera.io>, Elise Moreau <elise.moreau@northstarfoods.com>
+Subject: Re: Scheduler training for the Fresno planners
+In-Reply-To: <20260320-1130.rosa.jimenez@northstarfoods.com>
+References: <20260316-1405.elise.moreau@northstarfoods.com> <20260316-1650.hana@tessera.io> <20260320-1130.rosa.jimenez@northstarfoods.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi Rosa,
+
+Confirmed for **Tuesday, March 24, 09:00 PT**; calendar invite and the quick guide are attached.
+
+The clock icon: the top date is the SAP planned start (read-only, from the connector); the bottom date is the scheduled start in Tessera, which is the one planners should work from. We will cover this first thing on Tuesday since it trips people up.
+
+Hana
+
+Hana Okada
+Solutions Engineering, Tessera
+
+On Fri, Mar 20, 2026 at 11:30 AM, Rosa Jimenez <rosa.jimenez@northstarfoods.com> wrote:
+> Hi Hana,
+>
+> Tuesday the 24th works for us, I'll have all nine planners on. Quick question before then: on the release view, when I hover the little clock icon next to an order it shows two dates (screenshot attached, the one circled in red). Which one is the SAP planned start and which one is yours? A couple of the planners have been reading the wrong one.
+>
+> Thanks,
+>
+> Rosa Jimenez
+> Production Scheduling | Northstar Foods — Fresno
+>
+> On Mon, Mar 16, 2026 at 4:50 PM, Hana Okada <hana@tessera.io> wrote:
+> > Hi Elise, hi Rosa,
+> >
+> > Two options, both recorded:
+> > - **Tuesday, March 24, 09:00–10:30 PT**
+> > - **Thursday, March 26, 13:00–14:30 PT**
+> >
+> > Agenda: release view, exception queue, what changes on April 1, and 20 minutes of questions. I will send a one-page quick guide the day before.
+> >
+> > Hana
+> >
+> > Hana Okada
+> > Solutions Engineering, Tessera
+> >
+> > On Mon, Mar 16, 2026 at 2:05 PM, Elise Moreau <elise.moreau@northstarfoods.com> wrote:
+> > > Hana,
+> > >
+> > > With UAT under way, can we get the Fresno planners trained before the freeze? Rosa (cc'd) will coordinate on our side.
+> > >
+> > > - We have nine planners across two shifts. One session is fine if it can be recorded.
+> > > - Week of March 23 preferred.
+> > >
+> > > Elise
+> > >
+> > > Elise Moreau | Procurement Lead | Northstar Foods

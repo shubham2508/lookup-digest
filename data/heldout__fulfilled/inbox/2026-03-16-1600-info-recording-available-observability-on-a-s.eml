@@ -1,0 +1,27 @@
+Message-ID: <20260316-1600.info@datadoghq.com>
+Date: Mon, 16 Mar 2026 16:00:48 -0700
+From: Datadog <info@datadoghq.com>
+To: Avery Chen <avery@tessera.io>
+Subject: Recording available: Observability on a startup budget
+List-Unsubscribe: <mailto:unsubscribe@datadoghq.com?subject=unsubscribe>, <https://datadoghq.com/u/1d255a83>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi Avery,
+
+Thanks for your interest in last week's session. The recording and slides are now available.
+
+Watch: https://www.datadoghq.com/events/startup-observability-0311/recording
+
+Highlights from the Q&A:
+- The five signals to start with: error rate, latency p95, saturation, deploy markers and one business metric
+- Log volume: sample debug logs at 10% in production from day one
+- On-call: page on symptoms, not causes
+
+If you'd like to talk through your setup, our startup team offers a free 30-minute architecture review: https://www.datadoghq.com/startups/review
+
+The Datadog Team
+
+Datadog, Inc., 620 8th Ave, New York, NY 10018. Unsubscribe: https://www.datadoghq.com/u/2vv8k

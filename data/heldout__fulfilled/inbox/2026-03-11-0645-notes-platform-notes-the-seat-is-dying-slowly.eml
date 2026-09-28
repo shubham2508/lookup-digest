@@ -1,0 +1,29 @@
+Message-ID: <20260311-0645.notes@platformnotes.io>
+Date: Wed, 11 Mar 2026 06:45:21 -0700
+From: Platform Notes <notes@platformnotes.io>
+To: Avery Chen <avery@tessera.io>
+Subject: Platform Notes: The seat is dying slowly
+List-Unsubscribe: <mailto:unsubscribe@platformnotes.io?subject=unsubscribe>, <https://platformnotes.io/u/ccd06e15>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+PLATFORM NOTES
+Wednesday, March 11, 2026
+
+The seat is dying slowly
+
+Per-seat pricing was the great invention of the SaaS era: a unit the buyer understood, that scaled with the customer's growth, and that made the vendor's revenue look like a utility bill. It is now in structural decline, and the decline is slower and stranger than the obituaries suggest.
+
+The cause is well known. When software does the work rather than helping a person do it, the number of people is the wrong denominator. A tool that drafts the report needs no seats for the people who used to draft it. Vendors that price per seat are pricing against their own product's success.
+
+What is less well understood is why the seat persists anyway. Buyers like it. Procurement teams have fifteen years of muscle memory for negotiating seat counts and none for negotiating "outcomes." Budgets are built per head. And usage pricing, the obvious replacement, transfers risk to the buyer in a way that makes the CFO's forecast worse.
+
+The result is a decade of hybrids. A platform fee plus a usage component. Seats for the humans who supervise, usage for the work the software does. Outcome pricing for the narrow cases where the outcome is countable and attributable, which are fewer than the pitch decks claim.
+
+For founders, the practical advice is to pick the hybrid your buyer can put in a budget line, and to instrument usage from day one even if you do not price on it yet, because the day you want to switch is the day you will wish you had two years of data.
+
+Read on the web: https://platformnotes.io/2026/seat
+
+Platform Notes goes out Monday, Wednesday and Friday. Unsubscribe: https://platformnotes.io/u

@@ -1,0 +1,22 @@
+Message-ID: <20260225-1005.jordan@tessera.io>
+Date: Wed, 25 Feb 2026 10:05:21 -0800
+From: Jordan Liu <jordan@tessera.io>
+To: Avery Chen <avery@tessera.io>
+Subject: 1:1 follow-ups - Feb 25
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Avery,
+
+Follow-ups from this morning, so neither of us has to remember them:
+
+- Support triage: Ruth takes first-line triage on all inbound from Monday; engineers only get pulled in on S1/S2. Frees roughly a day a week across Felix and Kofi. I'll tell the team at standup.
+- Laptops: Kofi's and Carmen's machines are past four years and both have battery warnings. Nora will price two replacements; I'd like to order this week. You said fine in principle, confirming here so Nora can go.
+- Hack day: Thursday Mar 12, whole eng team, demos at 5. You're welcome to judge. No prep.
+- Sprint 14 planning is at 10 today; the connector IDoc parser is the headline. Notes to eng list after.
+- Coastline's nightly export: the retry change is in this sprint (Kofi). Ruth knows; no customer impact meanwhile, the job has been re-run by hand twice in February.
+
+Nothing else open from my side.
+
+Jordan

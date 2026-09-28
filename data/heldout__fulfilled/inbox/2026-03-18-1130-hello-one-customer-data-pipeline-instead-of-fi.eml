@@ -1,0 +1,24 @@
+Message-ID: <20260318-1130.hello@segment.com>
+Date: Wed, 18 Mar 2026 11:30:28 -0700
+From: Segment <hello@segment.com>
+To: Avery Chen <avery@tessera.io>
+Subject: One customer data pipeline instead of five integrations
+List-Unsubscribe: <mailto:unsubscribe@segment.com?subject=unsubscribe>, <https://segment.com/u/7c96fc22>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi Avery,
+
+Every tool your team adds wants the same customer events, and every integration is one more place the data can drift. Segment collects events once and sends them everywhere: your warehouse, your analytics, your CRM, your support tool.
+
+For startups: the Segment Startup Program gives eligible companies (under $5M raised) $50,000 in credits for the first year, plus partner deals on analytics and warehouse tools.
+
+Apply: https://segment.com/startups?ref=0318
+
+Also new: Segment's warehouse-first mode, which reads from your data warehouse rather than requiring SDKs, is generally available.
+
+The Segment Team
+
+Twilio Segment, 101 Spear St, San Francisco, CA 94105. Unsubscribe: https://segment.com/u/c2vp

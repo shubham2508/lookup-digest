@@ -1,0 +1,21 @@
+Message-ID: <20260324-0905.notifications@linear.app>
+Date: Tue, 24 Mar 2026 09:05:55 -0700
+From: Linear <notifications@linear.app>
+To: Avery Chen <avery@tessera.io>
+Subject: Kofi Mensah changed the status of NS-401 to Done
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Kofi Mensah changed the status from In Review to Done
+
+NS-401 · SAP IDoc retry logic: idempotent retry on ack timeout
+Project: Northstar SAP connector · Cycle 7
+Assignee: Kofi Mensah
+
+Merged in #1187. Load test against the Northstar QA tenant Wednesday.
+
+View issue: https://linear.app/tessera/issue/NS-401
+
+--
+You are receiving this because you are subscribed to this issue. Manage notifications: https://linear.app/tessera/settings/notifications

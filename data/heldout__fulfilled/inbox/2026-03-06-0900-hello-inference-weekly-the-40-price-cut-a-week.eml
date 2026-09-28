@@ -1,0 +1,37 @@
+Message-ID: <20260306-0900.hello@inferenceweekly.ai>
+Date: Fri, 06 Mar 2026 09:00:44 -0800
+From: Inference Weekly <hello@inferenceweekly.ai>
+To: Avery Chen <avery@tessera.io>
+Subject: Inference Weekly: the 40% price cut a week later, batch tiers, routing gateways compared
+List-Unsubscribe: <mailto:unsubscribe@inferenceweekly.ai?subject=unsubscribe>, <https://inferenceweekly.ai/u/6bd49946>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+INFERENCE WEEKLY
+Friday, March 6, 2026
+
+Hello. The week in running models, for people who pay the bill.
+
+THE PRICE CUT, ONE WEEK ON
+Aurelian's 40% cut on Sable-3 has not been matched. What it has done is move traffic: the two gateways that publish routing stats both show Sable-3 large taking share from the other two frontier models on cost-sensitive workloads. If you are on an annual commitment with another lab, this is your leverage at renewal, and the account managers know it.
+
+BATCH TIERS: who is actually using them
+We asked. Of 60 teams that replied, 14 route any traffic to a batch tier, and those 14 route a median 35% of their tokens there. The other 46 said "on the roadmap." The savings are 50% on the routed volume. The blocker in every case was the same: someone has to write the queue.
+
+ROUTING GATEWAYS COMPARED
+We ran the same 10,000-request workload through four routing gateways. Cost spread: 1.7x between best and worst, most of it from how aggressively they downgrade easy requests to small models. Latency spread: 1.3x. The cheapest one was also the least transparent about why it chose a model. Full table on the site.
+
+FIVE LINKS
+1. A practical guide to structured-output modes across providers, with the edge cases.
+2. The open-source project that turns provider usage exports into one cost dashboard.
+3. A short paper on why output tokens cost more, from the hardware up.
+4. A team's story of cutting their model bill 60% with three routing rules.
+5. The interconnect lead-time data, if you want to know why your cluster is late.
+
+ONE NUMBER: $0.12. Per million input tokens on the model that now handles most classification traffic we can see. Two years ago that work cost $3.
+
+That's the week. Reply with what you are running.
+
+Inference Weekly is free and reader-supported. Unsubscribe: https://inferenceweekly.ai/u/x

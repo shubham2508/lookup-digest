@@ -1,0 +1,37 @@
+Message-ID: <20260320-0900.hello@inferenceweekly.ai>
+Date: Fri, 20 Mar 2026 09:00:28 -0700
+From: Inference Weekly <hello@inferenceweekly.ai>
+To: Avery Chen <avery@tessera.io>
+Subject: Inference Weekly: Cobalt-4 early access, cache hit rates, a serving framework's breaking release
+List-Unsubscribe: <mailto:unsubscribe@inferenceweekly.ai?subject=unsubscribe>, <https://inferenceweekly.ai/u/9dc8135c>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+INFERENCE WEEKLY
+Friday, March 20, 2026
+
+Hello. The week in running models, for people who pay the bill.
+
+COBALT-4: early-access notes
+Meridian AI's next model is in early access with about 200 customers ahead of a launch reported for Monday. What we can say from the readers under NDA who replied in generalities: tool use is noticeably better, latency is similar to the current generation, and there is a new pricing tier for non-interactive traffic that sits between standard and batch. We will cover the pricing in detail once it is public.
+
+CACHE HIT RATES, MEASURED
+We asked readers to report prompt-cache hit rates from their provider dashboards. Forty replies. Support and extraction workloads with a fixed system prompt: 60-85% hit rate. Document-heavy workloads with varying context: 5-20%. Agent loops: 30-50%, because the conversation prefix stays stable while the tail grows. The pricing pages show the discount; the hit rate is what you actually get.
+
+A SERVING FRAMEWORK BREAKS ITS API
+The most widely used open-source inference server shipped a major release this week with a changed configuration schema and a new default scheduler. Teams that upgraded without reading the notes report throughput regressions of up to 30% until they re-tuned. The old defaults are available behind a flag. Pin your versions.
+
+FIVE LINKS
+1. The migration guide for the serving framework release, which you should read before upgrading.
+2. A well-argued post on treating model choice as a procurement decision.
+3. A dataset of real prompt-cache hit rates by workload type (ours, from the replies above).
+4. A hardware teardown of the new inference ASIC.
+5. The best explanation of 4-bit quantization for people who do not want the math.
+
+ONE NUMBER: 30%. The throughput regression from upgrading the serving framework without re-tuning. Read the notes.
+
+That's the week. Reply with what you are running.
+
+Inference Weekly is free and reader-supported. Unsubscribe: https://inferenceweekly.ai/u/x

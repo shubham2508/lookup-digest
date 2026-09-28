@@ -1,0 +1,27 @@
+Message-ID: <20260309-1000.noreply@github.com>
+Date: Mon, 09 Mar 2026 10:00:50 -0700
+From: GitHub <noreply@github.com>
+To: Avery Chen <avery@tessera.io>
+Subject: GitHub Changelog: Copilot coding agent for Teams, Actions cost controls, and code review summaries
+List-Unsubscribe: <mailto:unsubscribe@github.com?subject=unsubscribe>, <https://github.com/u/40c40763>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+GitHub Changelog - March 2026
+
+Copilot coding agent for Teams
+Assign an issue to Copilot and it opens a pull request with the change, tests, and a description. Now included in Copilot Business at no additional cost.
+
+Actions cost controls
+Set a monthly spend limit per repository and get notified at 75%. Runner minutes now show per workflow in the billing page.
+
+Code review summaries
+Every pull request gets a generated summary of what changed and why, with links to the relevant lines.
+
+Also: secret scanning for 40 new token types, and a redesigned repository insights page.
+
+Read the changelog: https://github.blog/changelog/2026-03
+
+GitHub, Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107. Manage email preferences: https://github.com/settings/emails

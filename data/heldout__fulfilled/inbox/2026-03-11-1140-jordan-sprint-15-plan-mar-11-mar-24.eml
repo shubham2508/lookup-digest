@@ -1,0 +1,26 @@
+Message-ID: <20260311-1140.jordan@tessera.io>
+Date: Wed, 11 Mar 2026 11:40:18 -0700
+From: Jordan Liu <jordan@tessera.io>
+To: Tessera Engineering <eng@tessera.io>
+Cc: Avery Chen <avery@tessera.io>, Hana Okada <hana@tessera.io>
+Subject: Sprint 15 plan (Mar 11 - Mar 24)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Sprint 15 as planned this morning. Goal: everything Northstar needs for the Apr 1 cutover is merged, tested and written down by the sprint review, so sprint 16 is only the freeze and the cutover itself.
+
+Committed:
+- WHSCON parser + shared loader changes (Arjun). PR this week.
+- Cutover runbook v1: parallel-run steps, go/no-go checklist, rollback (Arjun + Hana). Draft to Elise's team after review.
+- Connector regression suite to 40/40 and a nightly Northstar smoke suite (Carmen).
+- Export scheduler retries, #538, merges tomorrow after the nightly (Kofi). Add a scheduled-export case to the suite.
+- PDF page-break fix, TES-440 (Kofi).
+- Fold count in the SMS text, CS-2254 (Felix). One line, do it first.
+- Audit log export (Felix). Carried over from stretch; now committed.
+
+Not this sprint: plant-timezone display work (still), the "truck arrived" event idea from the Fresno workshop (in the ideas list).
+
+Sprint review Tue Mar 24, 15:00. Freeze for the Northstar go-live starts Mon Mar 30; more on that in the sprint 16 plan.
+
+Jordan

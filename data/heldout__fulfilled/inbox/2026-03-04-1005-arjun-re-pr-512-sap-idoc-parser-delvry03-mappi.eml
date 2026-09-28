@@ -1,0 +1,17 @@
+Message-ID: <20260304-1005.arjun@tessera.io>
+Date: Wed, 04 Mar 2026 10:05:29 -0800
+From: Arjun Rao <arjun@tessera.io>
+To: Felix Wagner <felix@tessera.io>
+Cc: Kofi Mensah <kofi@tessera.io>, Jordan Liu <jordan@tessera.io>, Avery Chen <avery@tessera.io>
+Subject: Re: PR #512 - SAP IDoc parser (DELVRY03), mapping-table driven
+In-Reply-To: <20260304-0910.felix@tessera.io>
+References: <20260303-1440.arjun@tessera.io> <20260304-0910.felix@tessera.io>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Typo fixed (good catch, that string is customer-visible), slots noted as TES-436 for after go-live. Kofi gave a thumbs-up in the PR. Merged at 10:00. WHSCON next.
+
+Thanks,
+
+Arjun

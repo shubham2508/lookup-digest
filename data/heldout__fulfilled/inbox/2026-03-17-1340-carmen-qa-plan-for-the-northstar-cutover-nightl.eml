@@ -1,0 +1,27 @@
+Message-ID: <20260317-1340.carmen@tessera.io>
+Date: Tue, 17 Mar 2026 13:40:15 -0700
+From: Carmen Ortiz <carmen@tessera.io>
+To: Jordan Liu <jordan@tessera.io>, Hana Okada <hana@tessera.io>
+Cc: Avery Chen <avery@tessera.io>, Arjun Rao <arjun@tessera.io>
+Subject: QA plan for the Northstar cutover - nightly smoke suite + go/no-go criteria
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Summary: QA plan for the Northstar SAP connector cutover, for the record. Jordan asked for it in writing at the review this morning; nothing here needs a decision.
+
+Nightly Northstar smoke suite: 88 tests, runs at 23:00 PT on the latest build, starting tonight. Covers: IDoc ingest (both message types), mapping-table load, shift-board render for both Fresno lines, late-lot alert path end to end, scheduled export to the sandbox ERP. Results post to #eng-northstar at 23:20; red pings me and the on-call.
+
+Full regression suite (now 40/40 written, 40/40 passing): every build through the freeze, results in the weekly.
+
+Go/no-go criteria I'll report against at the **Mon Mar 30** go/no-go call:
+- Smoke suite 88/88 on the cutover build for 5 consecutive nights
+- 0 open S1/S2 on the connector; S3s listed with owners and a patch date
+- Parallel-run day 1 (Mon Mar 30): board matches Rosa's manual board within 2 lots per shift
+- Rollback rehearsed once on staging (Arjun, this week)
+
+Test data: 31 sandbox fixtures + the 12 real IDoc batches Northstar's SAP team sent last week, anonymized.
+
+Ticket keys for anything found go NS-4xx so they are easy to find later.
+
+Carmen Ortiz — QA

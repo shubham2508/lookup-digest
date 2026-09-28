@@ -1,0 +1,34 @@
+Message-ID: <20260227-0900.hello@inferenceweekly.ai>
+Date: Fri, 27 Feb 2026 09:00:12 -0800
+From: Inference Weekly <hello@inferenceweekly.ai>
+To: Avery Chen <avery@tessera.io>
+Subject: Inference Weekly: Sable-3 Mini in production, the cost of long context, five links
+List-Unsubscribe: <mailto:unsubscribe@inferenceweekly.ai?subject=unsubscribe>, <https://inferenceweekly.ai/u/77f23c79>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+INFERENCE WEEKLY
+Friday, February 27, 2026
+
+Hello. The week in running models, for people who pay the bill.
+
+IN PRODUCTION: Sable-3 Mini
+Three days after release, it is already the default routing target at two of the larger inference gateways for classification and extraction traffic. Early reports: latency to first token around 180ms at p50, quality on par with last year's mid-tier, and the price is the price. One team told us they moved 40% of their volume to it in an afternoon by changing a routing rule.
+
+COST CORNER: long context is not free, even when it is cached
+A 200K-token context at current input prices is about $0.40 per request on a frontier model before caching and $0.06 after. That is fine at a thousand requests a day and ruinous at a million. Retrieval is not dead; it just moved from "necessary" to "cheaper."
+
+FIVE LINKS
+1. A clear write-up of how continuous batching actually works, with diagrams.
+2. The serving framework release that finally makes multi-LoRA serving stable.
+3. A benchmark of six embedding models on industrial-document retrieval. The small ones win.
+4. A post-mortem from a team whose test set leaked into their fine-tuning data. Honest and useful.
+5. The talk from last week's systems conference on KV-cache compression, now with slides.
+
+ONE NUMBER: 2.6x. Median throughput gain from turning on speculative decoding for chat-shaped traffic, across the twelve deployments readers sent us this week.
+
+That's the week. Reply with what you are running.
+
+Inference Weekly is free and reader-supported. Unsubscribe: https://inferenceweekly.ai/u/x

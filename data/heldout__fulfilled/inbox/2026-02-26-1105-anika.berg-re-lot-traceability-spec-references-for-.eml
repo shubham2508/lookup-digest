@@ -1,0 +1,25 @@
+Message-ID: <20260226-1105.anika.berg@veritascomponents.com>
+Date: Thu, 26 Feb 2026 11:05:19 -0800
+From: Anika Berg <anika.berg@veritascomponents.com>
+To: Hana Okada <hana@tessera.io>
+Cc: Avery Chen <avery@tessera.io>, Dmitri Volkov <dmitri.volkov@veritascomponents.com>
+Subject: Re: Lot traceability - spec references for the AS9100 audit
+In-Reply-To: <20260226-1020.dmitri.volkov@veritascomponents.com>
+References: <20260226-1020.dmitri.volkov@veritascomponents.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hello Hana,
+
+To be precise about the request:
+
+- Our lot records (e.g. lot 26008-A, lot 26011-C) must show the governing specification and revision, currently VC-QS-114 rev D, section 7.5.
+- Today the export from your system carries lot number, quantity, work center and timestamps, but not the spec reference.
+- The auditor is on site March 16–17 and will sample five lots.
+
+Is there a way to carry a spec-reference field on the lot record and include it in the CSV export? If it requires a configuration change, please tell me the lead time.
+
+Regards,
+
+Anika Berg | Quality Systems | Veritas Components

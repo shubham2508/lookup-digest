@@ -1,0 +1,27 @@
+Message-ID: <20260325-0645.notes@platformnotes.io>
+Date: Wed, 25 Mar 2026 06:45:53 -0700
+From: Platform Notes <notes@platformnotes.io>
+To: Avery Chen <avery@tessera.io>
+Subject: Platform Notes: The consultant's dilemma
+List-Unsubscribe: <mailto:unsubscribe@platformnotes.io?subject=unsubscribe>, <https://platformnotes.io/u/8c52b020>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+PLATFORM NOTES
+Wednesday, March 25, 2026
+
+The consultant's dilemma
+
+Software companies in complex industries face a choice their investors hate: do the implementation yourself, or hand it to a partner. The partner route is the one the venture playbook recommends. It keeps gross margin high, it scales without headcount, and it lets the company call itself a software company with a straight face. It is also, in the early years, usually wrong.
+
+The problem is knowledge. In the first two years of a vertical product, nobody knows how to deploy it, including the company that built it. Every implementation teaches something that changes the product. A partner learns those lessons and keeps them; the company learns them second-hand, late, and filtered through a partner whose incentive is to bill hours, not to make the product need fewer of them.
+
+The companies that have navigated this well followed a similar arc. Do every implementation yourself until the pattern is boring. Write the pattern down. Then, and only then, hand it to partners, with the pattern as the certification. The gross margin is ugly for two years and then it is not, and the product that emerges is one that can actually be deployed by someone who did not build it.
+
+The companies that got it wrong went to partners early, saved the margin, and found three years later that the partners were the only people who knew how the product worked in the field. At that point the partner is the platform and the software company is the vendor. That is the dilemma: the margin you save early is the moat you give away.
+
+Read on the web: https://platformnotes.io/2026/consultant-dilemma
+
+Platform Notes goes out Monday, Wednesday and Friday. Unsubscribe: https://platformnotes.io/u

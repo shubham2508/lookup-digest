@@ -1,0 +1,58 @@
+Message-ID: <20260324-1145.sanjay.kulkarni@halberd.com>
+Date: Tue, 24 Mar 2026 11:45:52 -0700
+From: Sanjay Kulkarni <sanjay.kulkarni@halberd.com>
+To: Jordan Liu <jordan@tessera.io>
+Cc: Avery Chen <avery@tessera.io>, Tobias Weller <tobias.weller@halberd.com>
+Subject: Re: Line 3 MES upgrade - change window Wed 3/25
+In-Reply-To: <20260319-1540.jordan@tessera.io>
+References: <20260319-1030.tobias.weller@halberd.com> <20260319-1540.jordan@tessera.io>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Jordan,
+
+Interface spec v4.2 attached (MES_Tessera_Interface_v4.2.pdf) and the station map. Summary of changes:
+
+- station IDs unchanged (L3-ST01 through L3-ST14)
+- event payload gains two fields: operator_id, cycle_count
+- event types unchanged (CYCLE_START, CYCLE_END, HOLD, RESUME)
+
+Sample events (12) from the staging MES are in the zip. Excerpt from the staging log:
+
+  2026-03-24 11:02:11 L3-ST07 CYCLE_END   order=HB-88123 cycle=412 operator=OP-2291
+  2026-03-24 11:02:19 L3-ST08 CYCLE_START order=HB-88123 operator=OP-2291
+
+Window confirmed for Wednesday 18:00–22:00 PT. I will be on the bridge; details are in the calendar invite.
+
+Sanjay Kulkarni | MES Integration | Halberd Manufacturing
+
+On Thu, Mar 19, 2026 at 3:40 PM, Jordan Liu <jordan@tessera.io> wrote:
+> Hi Tobias, hi Sanjay,
+>
+> Impact first: if the MES push changes the station-event format, Line 3 scheduling alerts could fire incorrectly until we adjust. So yes, we'd like to be on the bridge during the window.
+>
+> What we need before Wednesday:
+> - the updated interface spec (field list, timestamp format and timezone)
+> - the station-ID mapping for Line 3, if any IDs change
+> - a handful of test events we can replay against staging on Tuesday
+>
+> During the window: Arjun Rao is on call and will watch the Line 3 feed live; I'm reachable as backup. If anything looks off we can roll the connector back to the previous mapping in minutes, but we'd want Halberd's OK before doing that since it pauses new events.
+>
+> Jordan
+>
+> Jordan
+>
+> On Thu, Mar 19, 2026 at 10:30 AM, Tobias Weller <tobias.weller@halberd.com> wrote:
+> > Dear Jordan,
+> >
+> > Halberd is upgrading the Line 3 MES on Wednesday, March 25, in the evening (18:00–22:00 PT). Sanjay Kulkarni, our MES integration engineer, is copied and owns the change on our side.
+> >
+> > 1. Please tell us what Tessera needs from us before the window (interface specification, station mapping, test events).
+> > 2. Please confirm whether someone from Tessera will be available during the window should the integration require attention.
+> > 3. Sanjay will send the updated interface specification by Tuesday.
+> >
+> > Thank you.
+> >
+> > Tobias Weller
+> > Procurement Lead | Halberd Manufacturing

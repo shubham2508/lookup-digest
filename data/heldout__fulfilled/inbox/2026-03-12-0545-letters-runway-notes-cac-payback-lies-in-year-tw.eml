@@ -1,0 +1,34 @@
+Message-ID: <20260312-0545.letters@runwaynotes.co>
+Date: Thu, 12 Mar 2026 05:45:50 -0700
+From: Runway Notes <letters@runwaynotes.co>
+To: Avery Chen <avery@tessera.io>
+Subject: Runway Notes: CAC payback lies in year two
+List-Unsubscribe: <mailto:unsubscribe@runwaynotes.co?subject=unsubscribe>, <https://runwaynotes.co/u/b13ddbd0>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+RUNWAY NOTES
+Thursday, March 12, 2026
+
+CAC payback lies in year two
+
+Customer acquisition cost payback is the metric every early-stage board loves because it is simple: months of gross profit to recover what you spent to win the customer. Under 18 months is good, under 12 is great, and a company at 9 months looks like it has found something.
+
+The lie is in what the metric assumes: that the gross profit is stable and the customer stays. In year one both are usually true. In year two the customer that was cheap to win because it was small asks for the integration, the SSO, the dedicated support channel, and the price concession at renewal, and the gross profit on that account falls by a third. Meanwhile the "sales and marketing" cost that went into the denominator did not include the founder's time, the solutions engineer who spent six weeks on the pilot, or the discount that was booked as a pricing decision rather than an acquisition cost.
+
+Two corrections I ask companies to make.
+
+First, fully load the acquisition cost. Include the pilot engineering, the discount against list, and a fair share of founder time. The payback usually moves from 11 months to 17. That is still fine; it is just true.
+
+Second, compute payback on year-two gross profit for the customers that have reached year two, and show the two numbers side by side. If year-two payback is worse than year-one, your customers are getting more expensive to serve as they grow, which is a product problem wearing a finance costume.
+
+Benchmarks from our dataset for Series A companies with average contracts under $50K: median stated CAC payback 14 months; median fully loaded, 21 months. Top quartile fully loaded, under 13. The gap between stated and loaded is the number to close, and the boards that ask about it are the good ones.
+
+THIS WEEK'S ROUND-UP
+- A well-known growth fund published its Series A benchmarks; the ARR bar moved up again.
+- A thoughtful piece on why "multi-year" and "prepaid" are different words.
+- The best thing I read this week was a plant manager's blog post on scheduling, which has nothing to do with SaaS and everything to do with constraints.
+
+Runway Notes is a weekly letter for operators. Reply to reach a person. Unsubscribe: https://runwaynotes.co/u

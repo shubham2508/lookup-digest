@@ -1,0 +1,26 @@
+Message-ID: <20260226-1030.arjun@tessera.io>
+Date: Thu, 26 Feb 2026 10:30:28 -0800
+From: Arjun Rao <arjun@tessera.io>
+To: Tessera Engineering <eng@tessera.io>
+Cc: Avery Chen <avery@tessera.io>, Nora Blake <nora@tessera.io>
+Subject: GitHub org: SSO enforced from Monday Mar 2 - re-auth your CLI
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi all,
+
+As agreed at January's security review, SAML SSO becomes required on the tessera-io GitHub organization on Monday, March 2 at 09:00 PT. After that, any personal access token or SSH key that has not been authorized for SSO stops working against org repositories.
+
+What you need to do, before Monday:
+1. Sign in to GitHub in the browser once via Google Workspace (you will be prompted).
+2. Authorize your existing SSH key and any personal access tokens for the org: Settings > SSH and GPG keys > "Configure SSO", then the same under Developer settings > Tokens.
+3. Run `gh auth refresh -s read:org` if you use the CLI.
+
+Deploy keys and the CI runner tokens are org-owned and are already fine; I tested the release pipeline against a staging org this morning. The steps with screenshots are in the runbook: https://runbooks.tessera.io/access/github-sso
+
+Nora, cc'ing you because this closes the "source control access" line in the Bastion evidence checklist; nothing for you to do.
+
+Thanks,
+
+Arjun

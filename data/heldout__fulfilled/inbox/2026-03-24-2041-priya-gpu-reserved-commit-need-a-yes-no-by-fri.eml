@@ -1,0 +1,23 @@
+Message-ID: <20260324-2041.priya@tessera.io>
+Date: Tue, 24 Mar 2026 20:41:10 -0700
+From: Priya Iyer <priya@tessera.io>
+To: Avery Chen <avery@tessera.io>
+Subject: gpu reserved commit - need a yes/no by friday
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+reserved commit on the 8-gpu h100 pool at kestrel expires Mar 31. kestrel is raising on-demand 18% on April 1 (we got the customer notice today, it goes public this week).
+
+numbers:
+- 1yr commit, same 8 gpus: $153k/yr ($12.75k/mo), locked at today's rate
+- on-demand at the new rate: ~$18.5k/mo, ~$222k/yr, cancel anytime
+- 6-gpu commit + burst on-demand: ~$170k/yr if halberd line 3 and northstar stay flat, worse if they grow
+
+we're at 81% utilization on the reserved pool. northstar goes live Apr 1, that's another ~10%.
+
+my rec: yes, 1yr, 8 gpus. $69k cheaper than on-demand and we are not getting smaller. the counter is cash during the raise, nora has the runway view. your call.
+
+need a yes/no by friday. kestrel wants the signed order by Monday 3/30 to hold the current rate. emailing so there's a paper trail.
+
+p
