@@ -86,7 +86,7 @@ def persist(store: Store, ctx: RunContext, world: NormalizedWorld, extractions: 
         {"input_hash": x.meta.input_hash, "source_id": x.source_id, "type": x.type, "prompt_version": x.meta.prompt_version,
          "model": x.meta.model, "created_at": x.meta.extracted_at.isoformat(), **x.model_dump(mode="json")}
         for x in extractions])
-    store.upsert("runs", {"run_id": ctx.run_id, "world": ctx.world, "as_of": ctx.as_of.isoformat(), "variant": ctx.variant,
+    store.upsert("runs", {"run_id": ctx.run_id, "world": ctx.world, "as_of": ctx.as_of.isoformat(), "variant": ctx.variant, "tag": ctx.tag,
                           "customize": str(ctx.customize) if ctx.customize else None, "cost_usd": None,
                           "created_at": datetime.now(ZoneInfo("UTC")).isoformat(timespec="seconds")})
     store.commit()
@@ -94,7 +94,8 @@ def persist(store: Store, ctx: RunContext, world: NormalizedWorld, extractions: 
 
 def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = None, customize: Path | None = None,
                  runs_dir: Path | None = None, llm: LLM | None = None, settings: Settings | None = None,
-                 profile_path: Path | None = None, profile_out: Path | None = None, store: Store | None = None) -> PipelineResult:
+                 profile_path: Path | None = None, profile_out: Path | None = None, store: Store | None = None,
+                 tag: str | None = None) -> PipelineResult:
     """The whole DAG for one as-of. Every LLM stage degrades on invalid output; nothing here raises on model errors."""
     settings = settings or load_settings()
     tz = ZoneInfo(settings.timezone)
@@ -102,7 +103,7 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
     ddir = data_dir(world)
     if not ddir.is_dir():
         raise DataMissing(f"no data directory for world {world!r} at {ddir}")
-    ctx = RunContext(world, as_of_dt, variant, customize, runs_dir=runs_dir)
+    ctx = RunContext(world, as_of_dt, variant, customize, runs_dir=runs_dir, tag=tag)
     llm = llm or LLM(cache_dir=ROOT / settings.llm.cache_dir, cost_log=ctx.cost_log, seed=settings.llm.seed,
                      max_retries_transport=settings.llm.max_retries_transport)
     llm.cost_log = ctx.cost_log
@@ -152,11 +153,11 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
         with ctx.timed("compute"):
             comp = compute_world(norm, extractions, profile.config, settings, as_of_dt)
             plain = variant is None and customize is None
-            surfaced = times_surfaced(st, world, as_of_dt) if plain else {}
+            surfaced = times_surfaced(st, world, as_of_dt, tag=tag) if plain else {}
             for c in comp.candidates:
                 c.times_surfaced = surfaced.get(c.about, 0)
-            resolved = mark_resolved(st, world, as_of_dt, comp.candidates) if plain else 0
-            answered = answered_after_digest(st, world, as_of_dt, comp.candidates, {t.thread_id: t for t in norm.threads}) if plain else set()
+            resolved = mark_resolved(st, world, as_of_dt, comp.candidates, tag=tag) if plain else 0
+            answered = answered_after_digest(st, world, as_of_dt, comp.candidates, {t.thread_id: t for t in norm.threads}, tag=tag) if plain else set()
             for cid in answered:
                 ctx.degrade("compute", cid, "answered_after_digest", detail="Avery replied after the digest showed it; not re-surfaced")
             comp.candidates = [c for c in comp.candidates if c.candidate_id not in answered]
@@ -233,7 +234,7 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
             actions_by_item.setdefault(a.item_id, []).append(a.type)
         record_items(st, ctx.run_id, by_item, ver.compose, ver.also_pending, ver.outside_filter, actions_by_item, surfaced)
         st.upsert("runs", {"run_id": ctx.run_id, "world": world, "as_of": as_of_dt.isoformat(), "variant": variant,
-                           "customize": str(customize) if customize else None, "baseline": False,
+                           "customize": str(customize) if customize else None, "baseline": False, "tag": tag,
                            "cost_usd": ctx.cost_log.totals()["cost_usd"], "created_at": datetime.now(ZoneInfo("UTC")).isoformat(timespec="seconds")})
         st.commit()
     finally:

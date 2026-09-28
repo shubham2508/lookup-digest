@@ -29,6 +29,8 @@ from eval.scorer.match import SourceIndex, about_match, norm_text, type_matches
 from eval.scorer.runner import as_of_for, find_runs
 from eval.scorer.simulation import rulings_path
 
+SIM_TAG = "sim"  # OPEN_QUESTIONS #15: simulation runs live in runs/<world>/<as_of>_sim/; plain runs stay rulings-free
+
 
 class SimAveryChoice(BaseModel):
     model_config = ConfigDict(extra="forbid")
@@ -47,7 +49,7 @@ class Answer:
     rationale: str | None = None
 
     def command(self, world: str) -> list[str]:
-        return ["answer", self.question, str(self.option), "--world", world]
+        return ["answer", self.question, str(self.option), "--world", world, "--tag", SIM_TAG]
 
 
 def card_items(view: RunView) -> dict[int, RenderedItem | None]:
@@ -162,14 +164,14 @@ def simulate(world: str, days: int, manifest: Manifest, runs_root: Path, log=pri
         log("note: rulings.yaml already exists; earlier rulings will shape this simulation (use --fresh)")
     for day in manifest.meta.run_days[-days:]:
         as_of = as_of_for(manifest, day).strftime("%Y-%m-%dT%H:%M")
-        code, output = digest_cmd(["run", "--world", world, "--as-of", as_of])
+        code, output = digest_cmd(["run", "--world", world, "--as-of", as_of, "--tag", SIM_TAG])
         step: dict = {"day": day, "as_of": as_of, "run_exit": code, "answers": []}
         if code != 0:
             step["error"] = output[-300:]
             transcript.append(step)
             log(f"day {day}: digest run failed ({code}); stopping the simulation")
             break
-        run_dir = find_runs(manifest, runs_root).get(day)
+        run_dir = find_runs(manifest, runs_root, SIM_TAG).get(day)
         if run_dir is None:
             step["error"] = "run wrote no artifacts"
             transcript.append(step)

@@ -21,18 +21,19 @@ class NoSuchQuestion(Exception):
     pass
 
 
-def latest_run_dir(world: str, settings: Settings) -> Path | None:
+def latest_run_dir(world: str, settings: Settings, tag: str | None = None) -> Path | None:
     store_p = ROOT / settings.store.path_template.format(world=world)
     base = store_p.parent
     if store_p.exists():
         with Store(store_p) as st:
-            rows = [r for r in st.query("runs", "world=?", (world,), order="as_of DESC") if not r.get("variant") and not r.get("customize") and not r.get("baseline")]
+            rows = [r for r in st.query("runs", "world=?", (world,), order="as_of DESC") if not r.get("variant") and not r.get("customize") and not r.get("baseline") and (r.get("tag") or None) == (tag or None)]
         for r in rows:
             d = base / r["run_id"].split("/", 1)[1]
             if (d / ARTIFACTS["actions"]).exists():
                 return d
     if base.is_dir():
-        cands = sorted((d for d in base.iterdir() if d.is_dir() and "_" not in d.name and (d / ARTIFACTS["actions"]).exists()), reverse=True)
+        cands = sorted((d for d in base.iterdir() if d.is_dir() and (d.name.endswith(f"_{tag}") if tag else "_" not in d.name)
+                        and (d / ARTIFACTS["actions"]).exists()), reverse=True)
         return cands[0] if cands else None
     return None
 
@@ -54,9 +55,10 @@ def find_question(run_dir: Path, question_id: str) -> tuple[dict, dict]:
     raise NoSuchQuestion(f"no question {question_id.upper()} in {run_dir}")
 
 
-def answer(question_id: str, option: int, world: str, settings: Settings | None = None, now: datetime | None = None) -> dict:
+def answer(question_id: str, option: int, world: str, settings: Settings | None = None, now: datetime | None = None,
+           tag: str | None = None) -> dict:
     settings = settings or load_settings()
-    run_dir = latest_run_dir(world, settings)
+    run_dir = latest_run_dir(world, settings, tag)
     if run_dir is None:
         raise NoSuchQuestion(f"no digest run found for world {world!r}; run `digest run --world {world}` first")
     action, item = find_question(run_dir, question_id)

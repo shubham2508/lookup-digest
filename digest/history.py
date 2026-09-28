@@ -47,16 +47,18 @@ def save_ruling(path: Path, ruling: dict) -> None:
     path.write_text(yaml.safe_dump(data, sort_keys=False, allow_unicode=True), encoding="utf-8")
 
 
-def prior_runs(store: Store, world: str, as_of: datetime, suffix_free: bool = True) -> list[dict]:
+def prior_runs(store: Store, world: str, as_of: datetime, suffix_free: bool = True, tag: str | None = None) -> list[dict]:
+    """Earlier runs of the same world; plain runs only, and only those sharing this run's tag (OPEN_QUESTIONS #15:
+    simulation runs are tagged `sim` so they never count as history for plain runs, and vice versa)."""
     rows = store.query("runs", "world=? AND as_of<?", (world, as_of.isoformat()), order="as_of")
     if suffix_free:
         rows = [r for r in rows if not r.get("variant") and not r.get("customize") and not r.get("baseline")]
-    return rows
+    return [r for r in rows if (r.get("tag") or None) == (tag or None)]
 
 
-def times_surfaced(store: Store, world: str, as_of: datetime) -> dict[str, int]:
+def times_surfaced(store: Store, world: str, as_of: datetime, tag: str | None = None) -> dict[str, int]:
     """about key → number of prior digests (same world, earlier as_of, plain runs) that surfaced it and it stayed open."""
-    runs = {r["run_id"]: r for r in prior_runs(store, world, as_of)}
+    runs = {r["run_id"]: r for r in prior_runs(store, world, as_of, tag=tag)}
     if not runs:
         return {}
     counts: dict[str, set[str]] = {}
@@ -66,9 +68,9 @@ def times_surfaced(store: Store, world: str, as_of: datetime) -> dict[str, int]:
     return {k: len(v) for k, v in counts.items()}
 
 
-def mark_resolved(store: Store, world: str, as_of: datetime, current: list[Candidate]) -> int:
+def mark_resolved(store: Store, world: str, as_of: datetime, current: list[Candidate], tag: str | None = None) -> int:
     """Prior surfaced items whose about key has no candidate today are resolved (reply sent, promise kept, task closed)."""
-    runs = {r["run_id"] for r in prior_runs(store, world, as_of)}
+    runs = {r["run_id"] for r in prior_runs(store, world, as_of, tag=tag)}
     if not runs:
         return 0
     open_abouts = {c.about for c in current}
@@ -83,9 +85,9 @@ def mark_resolved(store: Store, world: str, as_of: datetime, current: list[Candi
     return n
 
 
-def answered_after_digest(store: Store, world: str, as_of: datetime, cands: list[Candidate], threads) -> set[str]:
+def answered_after_digest(store: Store, world: str, as_of: datetime, cands: list[Candidate], threads, tag: str | None = None) -> set[str]:
     """Candidate ids the digest already showed and Avery answered afterwards (an Avery message after that run's as_of)."""
-    runs = prior_runs(store, world, as_of)
+    runs = prior_runs(store, world, as_of, tag=tag)
     if not runs:
         return set()
     shown: dict[str, datetime] = {}

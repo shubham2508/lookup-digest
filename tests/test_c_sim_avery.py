@@ -28,7 +28,7 @@ def test_code_match_by_about_key():
     m = mini_manifest()
     [a] = answer_cards(view(m), m, use_llm=False)
     assert (a.question, a.option, a.source, a.scope) == ("Q1", 1, "code", "rollout:halberd:oct-6")
-    assert a.command("dev") == ["answer", "Q1", "1", "--world", "dev"]
+    assert a.command("dev") == ["answer", "Q1", "1", "--world", "dev", "--tag", "sim"]
 
 
 def test_code_match_by_contact_and_thread_kind():

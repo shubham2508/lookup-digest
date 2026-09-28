@@ -19,13 +19,14 @@ def run(
     as_of: str = typer.Option(None, "--as-of", help="YYYY-MM-DDTHH:MM in PT; default now"),
     customize: Path = typer.Option(None, "--customize", help="profile/customize/<x>.md"),
     variant: str = typer.Option(None, "--variant", help="stale_inbox | no_notes | corrupt_ics"),
+    tag: str = typer.Option(None, "--tag", help="run-dir tag, e.g. sim: keeps simulation runs apart from plain runs"),
 ) -> None:
     """Produce the digest for a world as of a timestamp."""
     from .ingest import DataMissing
     from .pipeline import run_pipeline
 
     try:
-        result = run_pipeline(world, as_of, variant=variant, customize=customize)
+        result = run_pipeline(world, as_of, variant=variant, customize=customize, tag=tag)
     except DataMissing as e:
         typer.echo(f"digest run: {e}. Generate the world first (digest generate --world {world}).")
         raise typer.Exit(2) from None
@@ -46,13 +47,14 @@ def answer(
     question_id: str = typer.Argument(..., help="e.g. Q1"),
     option: int = typer.Argument(..., help="1-based option"),
     world: str = typer.Option("dev", "--world"),
+    tag: str = typer.Option(None, "--tag", help="answer the latest run with this tag (simulate uses sim)"),
 ) -> None:
     """Answer a question card from the latest digest; writes runs/<world>/rulings.yaml and the store."""
     from .answer import NoSuchQuestion
     from .answer import answer as do_answer
 
     try:
-        r = do_answer(question_id, option, world)
+        r = do_answer(question_id, option, world, tag=tag)
     except NoSuchQuestion as e:
         typer.echo(f"digest answer: {e}")
         raise typer.Exit(2) from None

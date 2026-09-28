@@ -47,7 +47,8 @@ def fake_digest(root, m, *, good: bool):
                "why": "third time flagged; still not sent" if (good and times >= 2) else "promised Tuesday night"}
         header = "As of 06:00 PT · inbox ok" + (" · applied 1 learned rule" if ruled else "")
         items = [cap, halberd] if not (good and day == 30) else [cap]  # the good product sent the reply on day 29
-        make_run(root, m, day, items, header=header)
+        suffix = args[args.index("--tag") + 1] if "--tag" in args else None  # simulate tags its runs (OPEN_QUESTIONS #15)
+        make_run(root, m, day, items, header=header, suffix=suffix)
         return 0, "ok"
 
     return cmd

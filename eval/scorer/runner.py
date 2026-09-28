@@ -126,6 +126,9 @@ def _extraction_misses(score: RunScore | None) -> dict[str, list]:
     return out
 
 
+SIM_KINDS = {"ruling_applied", "escalation_framing", "resolved_disappears", "content_overrides_ruling"}
+
+
 def load_views(manifest: Manifest, runs_root: Path, suffix: str | None = None) -> dict[int, RunView]:
     index = SourceIndex(manifest)
     return {d: RunView(p, index, ROOT, day=d) for d, p in find_runs(manifest, runs_root, suffix).items()}
@@ -156,7 +159,14 @@ def score_world(world: str, runs_root: Path | None = None, *, suffix: str | None
 
     if suffix in (None, "baseline"):
         base = [a for a in manifest.assertions if not a.variant and not a.customize]
-        ws.assertions += run_assertions(base, CheckContext(manifest, views, ex_misses))
+        # OPEN_QUESTIONS #15: simulation runs live in *_sim dirs; multi-day (rulings, escalation) assertions read those,
+        # everything else reads the plain, rulings-free runs. Older fixtures without *_sim dirs fall back to the plain views.
+        sim_views = (load_views(manifest, runs_root, "sim") or views) if suffix is None else views
+        sim_only = [a for a in base if a.kind in SIM_KINDS or a.args.get("mode") == "simulate"]
+        plain = [a for a in base if a not in sim_only]
+        ws.assertions += run_assertions(plain, CheckContext(manifest, views, ex_misses))
+        if sim_only:
+            ws.assertions += run_assertions(sim_only, CheckContext(manifest, sim_views, ex_misses))
         if suffix is None and conditions:
             ws.conditions = score_conditions(manifest, runs_root, views, customize_suite=customize_suite)
         if suffix is None:
@@ -165,7 +175,7 @@ def score_world(world: str, runs_root: Path | None = None, *, suffix: str | None
             transcript = load_transcript(runs_root)
             if transcript is not None:
                 rp = rulings_path(runs_root, world)
-                ws.simulation = score_simulation(manifest, views, transcript, load_rulings(runs_root, world),
+                ws.simulation = score_simulation(manifest, sim_views, transcript, load_rulings(runs_root, world),
                                                  rp if rp.exists() else None)
     else:
         kind, cid = ("customize", suffix.removeprefix("customize-")) if suffix.startswith("customize-") else ("honesty", suffix)
