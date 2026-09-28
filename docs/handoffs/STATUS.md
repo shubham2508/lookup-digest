@@ -15,6 +15,5 @@ Each session appends a dated line when it finishes a milestone or gets blocked. 
 - (not started) Next: M6.
 
 ## Blockers / waiting on Shubham
-- Judge model pick (OPEN_QUESTIONS.md #1) — needed before Track C runs the judge; scorer work is unblocked.
-- OpenRouter key limit ($3) → raise to ~$10 before the first dev pipeline runs (#5).
+- Judge model pick (OPEN_QUESTIONS.md #1) — after the Fable calibration round (`judge_reference` role). Scorer work is unblocked.
 - Held-out anchor (#2) — decide at M8; suggestion 2026-03-26. Dev anchor is decided: 2026-09-24.

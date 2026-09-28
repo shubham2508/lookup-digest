@@ -16,7 +16,7 @@ Direction from Shubham (2026-09-28): small budget; GPT-6 Luna is the workhorse a
 | `judge` | third family; mid-tier is enough, because it applies one fixed rubric with the evidence attached, and everything with an expected output is scored by code | `google/gemini-3.8-flash` (0.75 / 3.75, ≈ $1 total) · `x-ai/grok-4.7` (1.6 / 4.8, ≈ $1.6) · stronger fallback `google/gemini-3.1-pro-preview` (2 / 12, ≈ $3) |
 | `sim_avery` | cheapest; mostly code (matches a question card to the manifest's intended answer by about-key), LLM only as fallback | `openai/gpt-5-nano` (0.05 / 0.40) or reuse `gpt-6-luna` |
 
-Judge calibration, one-time: on the first dev run's ~20 judged items, the Grader session scores the same items with the same rubric; if the cheap judge agrees within 1 point on ≥ 80% of them, keep it, else step up to the fallback. Recorded in DESIGN.md. Running Fable or Opus through OpenRouter as the judge of record would break the family rule now that the generator is Anthropic.
+Judge plan (Shubham, 2026-09-28): the first judging round runs on Fable via the `judge_reference` role in `config/models.yaml` (≈ $1 for ~20 items); the third-family candidate (Gemini 3.8 Flash or Grok 4.7) scores the same items with the same rubric; agreement within 1 point on ≥ 80% keeps the cheap judge, recorded in DESIGN.md. Fable is never the judge of record (same family as the generator). Shubham picks after that round.
 
 OpenRouter spend on this config ≈ $4–5 (pipeline ≈ $3, judge ≈ $1–1.6, sim_avery ≈ 0). Generation costs nothing on OpenRouter.
 
@@ -42,18 +42,13 @@ Options: full ~500 emails · minimum ~150. Cost is now session time, not API spe
 
 Every `expectations:` block in `world/dev/storylines/*.yaml` needs `reviewed: true` from Shubham before `digest generate` will run. Nothing to decide yet; this is a reminder that it is the largest single block of Shubham's time (~1–2 h of careful reading).
 
-### 5. OpenRouter key limit — needed before M2 (first large spend)
-
-The key in `.env` works, but `GET /auth/key` reports **limit $3.00, remaining $3.00**. With generation moved into the Claude Code session, OpenRouter spend is ≈ $4–5 (question 1), so $3 is short only on headroom.
-Options: raise this key's limit · create a new key without a limit.
-**Suggestion:** raise the limit to ~$10. Claude Code stops and asks before any single step that would exceed the remaining limit.
-
-### 6. Walkthrough date — sets the cut line
+### 5. Walkthrough date — sets the cut line
 
 CLAUDE.md says: if time runs short, shrink the held-out world and M9 first, never eval. Knowing the date (or the day the repo must be shared) decides how much of M8/M9 is realistic.
 
 ## Decided
 
 - **2026-09-28 · dev anchor = 2026-09-24** (Thursday = day 30; day 1 = 2026-08-26; run days Sun 20 – Thu 24 Sept; all PDT, no DST crossing). `world/dev/world.yaml` carries `anchor: 2026-09-24`; `digest generate --anchor` overrides. Held-out anchor is decided separately at M8.
+- **2026-09-28 · OpenRouter key limit:** Shubham raises it; not a build concern. Cost is still logged per run.
 - **2026-09-28 · commit policy (a):** each track session commits its own paths at milestone ends with a `[A-product]` / `[B-data]` / `[C-grader]` prefix; the orchestrator commits foundation, integration and docs; never `git add -A`; stagger commits if sessions run at the same moment.
 - **2026-09-28 · generator = Claude Code session (Fable 5.1), not an API model.** The Data track session writes every email body, note, and background item as prose files with labels under `world/<world>/prose/`; `generator/` code turns them into `.eml` / `.ics` / notes / tasks with real headers, threading, and DST-correct dates, emits the manifest, and runs the validator. Reproducible from world files + committed prose; a changed beat means rewriting its prose file. Zero OpenRouter spend for generation. `models.yaml` records `generator: claude-code-session`.

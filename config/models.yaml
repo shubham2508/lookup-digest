@@ -21,5 +21,9 @@ roles:
   materializer: {model: openai/gpt-6-luna, family: openai, reasoning_effort: low}
   compiler:     {model: openai/gpt-6-luna, family: openai, reasoning_effort: low}
   generator:    {model: claude-code-session, family: anthropic, reasoning_effort: null}
-  judge:        {model: null, family: null, reasoning_effort: medium}   # PENDING: google/gemini-3.8-flash or x-ai/grok-4.7
+  judge:        {model: null, family: null, reasoning_effort: medium}   # PENDING: picked after the Fable round below
+  # One-time calibration reference (Shubham, 2026-09-28): the first judging round runs on Fable so the cheap judge
+  # can be compared against it. Never the judge of record (same family as the generator); the validator only
+  # checks `judge`, so this role may be Anthropic.
+  judge_reference: {model: anthropic/claude-fable-5.1, family: anthropic, reasoning_effort: medium}
   sim_avery:    {model: openai/gpt-5-nano, family: openai, reasoning_effort: low}
