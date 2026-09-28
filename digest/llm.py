@@ -153,6 +153,30 @@ class CostLog:
         return tot
 
 
+class TraceLog:
+    """Append-only JSONL of every LLM call with its full input and output, for the debug UI (`digest ui`).
+    Unlike CostLog it is optional and never raises: a trace failure must not touch a run."""
+
+    def __init__(self, path: Path | None = None):
+        self.path = Path(path) if path else None
+        self._lock = threading.Lock()
+        self.count = 0
+
+    def record(self, **entry: Any) -> None:
+        if self.path is None:
+            return
+        entry.setdefault("ts", datetime.now(UTC).isoformat(timespec="seconds"))
+        try:
+            line = json.dumps(entry, sort_keys=True, ensure_ascii=False, default=str)
+            with self._lock:
+                self.path.parent.mkdir(parents=True, exist_ok=True)
+                with open(self.path, "a", encoding="utf-8") as f:
+                    f.write(line + "\n")
+                self.count += 1
+        except Exception:  # noqa: BLE001 - tracing is best effort
+            pass
+
+
 def _usage_from(resp: Any) -> Usage:
     u = getattr(resp, "usage", None)
     if u is None:
@@ -184,6 +208,7 @@ class LLM:
         self.models = models or load_models()
         self.cache_dir = Path(cache_dir) if cache_dir else CACHE_DIR / "llm"
         self.cost_log = cost_log or CostLog(self.cache_dir / "cost_log.jsonl")
+        self.trace_log: TraceLog | None = None  # set per run by the pipeline (RunContext.trace_log)
         self.seed = seed
         self._client = client
         self._api_key = api_key
@@ -260,6 +285,11 @@ class LLM:
                 self.cost_log.record(role=role, model=data.get("model", cfg.model), prompt_version=prompt_version,
                                      cached=True, prompt_tokens=0, completion_tokens=0, cost_usd=0.0,
                                      cost_known=True, tag=tag, cache_key=key)
+                if self.trace_log:
+                    self.trace_log.record(role=role, tag=tag, prompt_version=prompt_version, model=data.get("model", cfg.model),
+                                          cached=True, messages=messages, raw=data["content"], output=output.model_dump(mode="json"),
+                                          output_model=output_model.__name__, retries=0, latency_ms=0, cost_usd=0.0,
+                                          prompt_tokens=0, completion_tokens=0, cache_key=key, invalid=False)
                 return LLMResult(output=output, role=role, model=data.get("model", cfg.model), cached=True,
                                  usage=Usage(cost_known=True), retries=0, latency_ms=0, cache_key=key,
                                  raw=data["content"])
@@ -294,6 +324,14 @@ class LLM:
                              prompt_tokens=usage_total.prompt_tokens, completion_tokens=usage_total.completion_tokens,
                              cost_usd=usage_total.cost_usd, cost_known=usage_total.cost_known, tag=tag,
                              cache_key=key, retries=retries, latency_ms=latency_ms, invalid=output is None)
+        if self.trace_log:
+            self.trace_log.record(role=role, tag=tag, prompt_version=prompt_version, model=cfg.model, cached=False,
+                                  messages=messages, raw=raws[-1], attempts=raws, errors=errors,
+                                  output=output.model_dump(mode="json") if output is not None else None,
+                                  output_model=output_model.__name__, retries=retries, latency_ms=latency_ms,
+                                  cost_usd=usage_total.cost_usd, prompt_tokens=usage_total.prompt_tokens,
+                                  completion_tokens=usage_total.completion_tokens, cache_key=key, invalid=output is None,
+                                  reasoning_effort=cfg.reasoning_effort)
         if output is None:
             raise LLMOutputInvalid(role, errors, raws)
 

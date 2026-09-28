@@ -66,6 +66,7 @@ def run_baseline(world: str, as_of: str | None = None, *, runs_dir: Path | None 
     ctx = RunContext(world, as_of_dt, runs_dir=runs_dir, baseline=True)
     llm = llm or LLM(cache_dir=ROOT / settings.llm.cache_dir, cost_log=ctx.cost_log, seed=settings.llm.seed)
     llm.cost_log = ctx.cost_log
+    llm.trace_log = ctx.trace_log
     profile_path = profile_path or PROFILE_DIR / "profile.md"
     profile_md = profile_path.read_text(encoding="utf-8")
     person = compile_profile(llm, profile_path, profile_out, write=True).config.person

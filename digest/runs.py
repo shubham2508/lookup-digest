@@ -16,7 +16,7 @@ from zoneinfo import ZoneInfo
 
 from pydantic import BaseModel
 
-from .llm import CostLog
+from .llm import CostLog, TraceLog
 from .paths import RUNS_DIR
 
 ARTIFACTS: dict[str, str] = {
@@ -34,6 +34,7 @@ ARTIFACTS: dict[str, str] = {
     "cost_log": "cost.jsonl",             # every LLM call
     "run": "run.json",                    # as_of, world, variant, customize, timings, degradations
     "degradations": "degradations.jsonl", # skipped items (LLMOutputInvalid, dropped evidence, ...)
+    "trace": "trace.jsonl",               # every LLM call with full input/output (debug UI)
 }
 
 
@@ -71,6 +72,7 @@ class RunContext:
     tag: str | None = None
     run_dir: Path = field(init=False)
     cost_log: CostLog = field(init=False)
+    trace_log: TraceLog = field(init=False)
     degradations: list[dict] = field(default_factory=list)
     timings: dict[str, float] = field(default_factory=dict)
     started_at: float = field(default_factory=time.time)
@@ -94,6 +96,7 @@ class RunContext:
         self.run_dir = base / self.world / run_dir_name(self.as_of, self.suffix)
         self.run_dir.mkdir(parents=True, exist_ok=True)
         self.cost_log = CostLog(self.run_dir / ARTIFACTS["cost_log"])
+        self.trace_log = TraceLog(self.run_dir / ARTIFACTS["trace"])
 
     @property
     def run_id(self) -> str:

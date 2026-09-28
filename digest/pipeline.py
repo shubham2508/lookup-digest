@@ -107,6 +107,7 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
     llm = llm or LLM(cache_dir=ROOT / settings.llm.cache_dir, cost_log=ctx.cost_log, seed=settings.llm.seed,
                      max_retries_transport=settings.llm.max_retries_transport)
     llm.cost_log = ctx.cost_log
+    llm.trace_log = ctx.trace_log
 
     with ctx.timed("compile_profile"):
         profile = compile_profile(llm, profile_path, profile_out, tag="profile")

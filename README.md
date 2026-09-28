@@ -41,6 +41,14 @@ uv run digest eval --matrix --world dev                 # everything above in on
 
 Scores every run against `eval/manifests/dev.yaml` and writes `eval/reports/dev_<date>.md`: P0 recall (the only gate), trap assertions, must-not rate, one-thing accuracy, per-stage metrics, honesty variants, the customize suite, the baseline, the simulation checks, and every miss attributed to the stage that lost it. `eval/history.md` logs prompt changes with before and after numbers.
 
+## Debug UI
+
+```
+uv run digest ui                                        # http://127.0.0.1:8765
+```
+
+A local page over `runs/`: pick a world and a morning and run it, then read the digest, every stage's table (candidates → triage → reduce → compose → actions → verify), the trace of every LLM call with its full prompt and output, degradations, cost, and the eval reports. Each run writes `trace.jsonl` next to its other artifacts, so a run is fully reconstructible after the fact. One pipeline at a time: the page refuses a second launch while one is running.
+
 ## Regenerate the data
 
 ```
