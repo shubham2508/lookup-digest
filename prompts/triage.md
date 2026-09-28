@@ -1,6 +1,6 @@
 ---
 name: triage
-version: 2
+version: 3
 model_role: triage
 output_model: TriageBatch
 ---
@@ -34,6 +34,10 @@ ACTION TAXONOMY (0–2 per candidate): reply · forward_delegate · task · cale
 
 RULES
 - include = false for FYI-only, already handled, last word by Avery with nothing owed, accepted-meeting reminders, newsletters/marketing (except news_attachment), and stale_source (the header already reports freshness).
+- include = false for a Capital sender's ask that has no deadline while facts.below_quiet_threshold is true (fewer than three business days since it arrived): Avery batch-replies, and the profile wants quiet investor threads after three business days, not before. The quiet_thread candidate surfaces it at the threshold.
+- include = false for automated developer notifications (GitHub, Dependabot, CI, deploy alerts) unless the action is a payment problem, a signature, or a security step only Avery can take; engineering owns the rest.
+- include = false for RSVP reminders and scheduling chatter about internal recurring meetings, and for small past personal promises with no consequence today (bring lunch, text someone back). Family items stay.
+- news_attachment: include only when the item changes an action Avery already has (it attaches to an open item, today's meeting, or a decision in flight). Generic market, fundraising or industry news is include = false even when it mentions the Series A.
 - Ambiguity: preference (only this becomes a question card, with 2–3 options and a default), factual (show both sides in why; no question), third_party (someone else's intent → message_person). ambiguity is null or an object with type, question, options (2–3 strings) and default (a 1-based integer index into options; always present).
 - If a freshness cap applies (facts.freshness_note / facts.qualifier), say so in why and in the action assumptions; confidence at most medium.
 - Drift: when effective facts differ from the profile (e.g., ARR), use the data value and say the profile is stale.

@@ -169,9 +169,16 @@ def reply_owed(ci: ComputeInputs) -> list[Candidate]:
             continue
         last_in = ci.last_inbound(t)
         sender = ci.contact(t.messages[-1].from_addr if not t.messages[-1].is_from_avery else (last_msg := next((m for m in reversed(t.messages) if not m.is_from_avery), None)) and last_msg.from_addr)
+        if sender is not None and sender.relationship.category == "cold_inbound":
+            continue  # individual cold-inbound threads (recruiters, pitches) never become candidates; recruiter_pattern covers them
         deadlines = [a.deadline.resolved for a in open_asks if a.deadline and a.deadline.resolved]
+        bd_in = business_days_between(last_in.date(), ci.today()) if last_in else None
+        is_capital = sender is not None and sender.relationship.category == "capital"
         facts = {"thread_id": t.thread_id, "subject": t.messages[0].subject, "summary": p.summary, "intent": p.intent_primary,
                  "domain": p.domain, "hours_since_inbound": hours_since(last_in, ci.as_of) if last_in else None,
+                 "business_days_since_inbound": bd_in,
+                 "below_quiet_threshold": bool(is_capital and not deadlines and bd_in is not None
+                                               and bd_in < ci.thresholds.investor_quiet_business_days),
                  "last_inbound_at": last_in.isoformat() if last_in else None,
                  "last_message_by_avery": t.messages[-1].is_from_avery,
                  "deadline": min(deadlines).isoformat() if deadlines else None,
@@ -438,13 +445,23 @@ def contradictions(ci: ComputeInputs) -> list[Candidate]:
         for sm in p.schedule_mentions:
             if sm.action not in ("moved", "confirmed") or not sm.when or not sm.when.resolved:
                 continue
+            # compare against ONE occurrence per event uid (the one nearest the mention), so a recurring meeting does
+            # not produce a contradiction per expanded occurrence
+            ref = sm.previous_when.resolved if sm.previous_when and sm.previous_when.resolved else sm.when.resolved
+            nearest: dict[str, tuple[float, object]] = {}
             for e in ci.world.events:
                 att = {a.email for a in e.attendees} | {e.organizer}
                 if not (att & parts - ci.world.owner_emails):
                     continue
-                desc_ok = fuzz.token_set_ratio(fold(e.title), fold(sm.meeting_desc)) >= 55
-                if not desc_ok:
+                if fuzz.token_set_ratio(fold(e.title), fold(sm.meeting_desc)) < 55:
                     continue
+                d = abs((e.start - ref).total_seconds())
+                if e.uid not in nearest or d < nearest[e.uid][0]:
+                    nearest[e.uid] = (d, e)
+            for d, e in nearest.values():
+                if d > 7 * 86400:
+                    continue  # a different occurrence or meeting
+                att = {a.email for a in e.attendees} | {e.organizer}
                 delta = abs((e.start - sm.when.resolved).total_seconds())
                 same_day = e.start.date() == sm.when.resolved.date()
                 if (sm.when.granularity == "day" and same_day) or delta <= 1800:
@@ -475,7 +492,9 @@ def contradictions(ci: ComputeInputs) -> list[Candidate]:
     # (c) conflicting data claims; (d) profile vs data drift
     for f in ci.facts:
         key = f"other:profile-drift:{slugify(f.subject)}" if f.drift else f"other:{slugify(f.subject)}:conflict"
-        if f.conflicting_data:
+        touches_profile = f.profile_value is not None
+        touches_draft = any(getattr(c, "note_kind", None) == "draft" for c in (f.conflicting_data or []))
+        if f.conflicting_data and (touches_profile or touches_draft):
             out.append(_mk("contradiction", key, [], {
                 "kind": "claims", "subject": f.subject,
                 "values": [{"value": c.value, "source": c.source_id, "note_kind": c.note_kind} for c in f.conflicting_data],
@@ -711,9 +730,37 @@ def active_entities(ci: ComputeInputs, cands: list[Candidate]) -> tuple[set[str]
     return ents, topics
 
 
+_NEWS_STOP = {"tessera", "avery", "avery-chen", "series-a", "series", "board", "raise", "fundraising", "investors", "team",
+              "startup", "startups", "founders", "saas"}
+
+
+def active_about_slugs(ci: ComputeInputs, cands: list[Candidate]) -> set[str]:
+    """Slugs (the part after the kind) of the about keys that are active today: candidates, threads with activity in the
+    last 7 days, notes from the last 7 days. Newsletter topics attach only to these, never to single words."""
+    slugs: set[str] = set()
+    for c in cands:
+        slugs.add("-".join(c.about.split(":")[1:]))
+    recent = ci.as_of - timedelta(days=7)
+    for _x, p, t in ci.human():
+        if t.messages[-1].sent_at >= recent:
+            for k in p.about:
+                slugs.add("-".join(ci.canon(k).split(":")[1:]))
+    for _x, n in ci.notes():
+        if n.meeting_date and (ci.today() - n.meeting_date).days <= 7:
+            for k in n.about:
+                slugs.add("-".join(ci.canon(k).split(":")[1:]))
+    return {s for s in slugs if s and s not in _NEWS_STOP}
+
+
 def news_attachments(ci: ComputeInputs, cands: list[Candidate]) -> list[Candidate]:
+    """architecture §6.4: NewsItem entities/topics ∩ active entities. Entities match a contact/org slug exactly (or as a
+    ≥7-char prefix such as halberd → halberd-manufacturing); topics match a whole active about-key slug (inference-cost →
+    inference-cost-overrun), never a single word, and never the generic stoplist, so market news about "Series A" does
+    not attach to the deal."""
     out = []
-    ents, topics = active_entities(ci, cands)
+    ents, _topics = active_entities(ci, cands)
+    ents = {e for e in ents if e and e not in _NEWS_STOP}
+    about_slugs = {a for a in active_about_slugs(ci, cands) if len(a) >= 9}
     for x in ci.extractions:
         if x.type != "newsletter" or not isinstance(x.payload, Newsletter):
             continue
@@ -722,13 +769,16 @@ def news_attachments(ci: ComputeInputs, cands: list[Candidate]) -> list[Candidat
             matched: list[str] = []
             for e in item.entities:
                 s = slugify(e.name)
-                first = s.split("-")[0]
-                if s in ents or (len(first) > 3 and any(a == first or a.startswith(first + "-") or a.split("-")[0] == first for a in ents)):
+                if not s or s in _NEWS_STOP:
+                    continue
+                if s in ents or (len(s) >= 7 and any(a.startswith(s + "-") for a in ents)):
                     matched.append(s)
             for tpc in item.topics:
-                words = {w for w in slugify(tpc).split("-") if len(w) > 3}
-                if words & topics:
-                    matched.append(f"topic:{slugify(tpc)}")
+                ts = slugify(tpc)
+                if len(ts) < 9 or ts in _NEWS_STOP:
+                    continue
+                if any(a == ts or a.startswith(ts + "-") or ts.startswith(a + "-") for a in about_slugs):
+                    matched.append(f"topic:{ts}")
             if not matched:
                 continue
             out.append(_mk("news_attachment", f"other:news:{_short_slug(item.headline)}", [m for m in matched if not m.startswith("topic:")], {

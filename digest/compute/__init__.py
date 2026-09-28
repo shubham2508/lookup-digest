@@ -73,6 +73,9 @@ def compute_world(world: NormalizedWorld, extractions: list[Extraction], profile
     about_map, merges = merger.resolve()
     ci = ComputeInputs(world, extractions, profile, settings, as_of, directory, facts, about_map, resolve_thresholds(profile, settings))
     cands = generate(ci)
+    cold = {c.contact_id for c in directory.contacts if c.relationship.category == "cold_inbound"}
+    if cold:  # architecture §6.4 / §8: individual cold-inbound threads never become candidates
+        cands = [c for c in cands if c.type == "recruiter_pattern" or not any(e in cold for e in c.entities)]
     # second pass: candidate-made keys (meeting:…, other:…) may merge with extraction keys
     for c in cands:
         merger.add(c.about, set(c.entities), {msg_thread.get(e.source_id, e.source_id) for e in c.evidence})

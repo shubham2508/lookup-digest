@@ -37,6 +37,16 @@ class _Key:
     messages: set[str] = field(default_factory=set)
 
 
+_SPECIFIC_KINDS = {"offer", "renewal", "incident", "rollout", "hiring-req", "pricing", "contract", "approval", "invoice", "report"}
+
+
+def _tokens_overlap(x: str, y: str) -> bool:
+    """Same document, and the slugs share a meaningful token (board-update:investor-updates ~ board-update:september-investor-update)."""
+    tx = {w for w in x.split("-") if len(w) >= 5}
+    ty = {w for w in y.split("-") if len(w) >= 5}
+    return bool(tx & ty)
+
+
 class AboutMerger:
     def __init__(self, fuzzy_ratio: float = 0.85):
         self.threshold = fuzzy_ratio * 100
@@ -54,11 +64,20 @@ class AboutMerger:
 
     def _should_merge(self, a: _Key, b: _Key) -> str | None:
         if a.kind != b.kind:
+            # offer:mei-tanaka and candidate:mei-tanaka are the same person's loop (manifest should_merge)
+            if {a.kind, b.kind} == {"offer", "candidate"} and fuzz.ratio(a.slug, b.slug) >= self.threshold:
+                return "kind-alias"
             return None
         if fuzz.ratio(a.slug, b.slug) >= self.threshold:
             return "fuzzy-ratio"
+        if a.kind == "board-update":
+            return "singleton-kind"  # one board update is ever in play; every spelling of it is the same item
+        if a.kind in _SPECIFIC_KINDS and _tokens_overlap(a.slug, b.slug):
+            return "same-kind-token"
         if (a.entities & b.entities) and (a.messages & b.messages):
             return "shared-entity-and-evidence"
+        if (a.messages & b.messages) and _tokens_overlap(a.slug, b.slug):
+            return "shared-evidence-and-token"
         return None
 
     def resolve(self) -> tuple[dict[str, str], list[AboutMerge]]:
