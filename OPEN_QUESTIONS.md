@@ -21,13 +21,37 @@ Judge plan (Shubham, 2026-09-28): the first judging round runs on Fable via the 
 OpenRouter spend on this config ≈ $4–5 (pipeline ≈ $3, judge ≈ $1–1.6, sim_avery ≈ 0). Generation costs nothing on OpenRouter.
 
 
+### 18. Scorer: a fuzzy "claimed" key blocks a citation match (orchestrator, 2026-09-29)
+
+**What.** `_by_cites` refuses to match a rendered item to expected item X through its citations when the item's own
+about key fuzzy-matches another expected item Y of that day, even if the item cites none of Y's sources. Dev day 30
+(commit 4915503): the diligence-call contradiction was on the page as a P0 with both dates, citing Marcus's move
+email and the calendar event, but keyed `deal:series-a:diligence`; that fuzzy-matches Elena's
+`deal:series-a:diligence-prep`, so the report said "P0 missing".
+**Where.** `eval/scorer/common.py` `_by_cites` / `claimed_abouts`.
+**Options.** (a) Leave it: the pipeline now keys schedule contradictions by the meeting (1751a1e), so this case no
+longer occurs. (b) Block the citation match only when the item also cites one of Y's `cites_any`.
+**Suggestion.** (b), noted in DESIGN.md as a grader change made after results were seen. Your call; not changed.
+
+
 ## Decided
+
+- **2026-09-29 · Orchestrator fixes from the final dev runs (implementing the spec, no design change).** Traced with
+  the debug-trap procedure; each is a commit with a test. Tier inheritance only at outside firms (every Tessera
+  teammate had inherited the co-founder's P0). Jev picks under p 0.7 go to the LLM linker (an obvious meeting move
+  came back 0.49). Schedule contradictions are keyed by the meeting, so a date ruling does not attach to the whole
+  deal. Triage v6: no invented clock times; due by the next business day counts as today; a P0 contact's ask at
+  the quiet threshold is P0. Extractor v3: a promise to deliver later does not answer an ask; event-implied
+  deadlines; dated claims carry their date. Evidence match ignores markdown `*`. Ruling ids use the digest's date.
+  Escalation framing and freshness qualifiers are enforced in code, including on Also-pending lines. compose.json
+  lists the P0 one-liners outside a customize filter.
 
 - **2026-09-28 · #16 the linker: LLM decides "same thing?", no word similarity in compute** (Shubham: "word-match things suck").
   *Before:* rapidfuzz thresholds decided topic-key merges (ratio ≥ 85), calendar event ↔ email meeting (≥ 55), promise already in tasks (≥ 80), promise fulfilled in another thread (≥ 70), task done per email (≥ 80), declined-meeting fallout (≥ 60–70), and news ↔ open item (exact words). They over- and under-merged on real data (five items for one board update; three job candidates merged into one).
   *Now:* `digest/compute/linker.py` + `prompts/linker.md` + `prompts/topic_grouper.md` (role `linker`, Luna, low effort). Code narrows the options with hard facts only (same people, ±7 days, later in time, same topic kind); one batched, cached LLM call per question type decides sameness and writes a reason; every decision goes to `runs/…/links.jsonl` and shows in the UI's LLM calls tab. Without an LLM, or if the call fails, only identical keys match: a missed link is visible, an invented one is not. ~8 calls, ~$0.2 per run cold, cached after.
   *Still string-based:* contact name/org/title matching in `digest/compute/contacts.py` (week two).
   *Alternative evaluated:* TypeSafe's Jev 1.13 (a classifier model, via OpenRouter's `/api/alpha/decisions`): 0.44 s and $0.00002 for a test question, answered correctly with probabilities, but gives no written reason. Plan: add it as a second linker backend after the final runs and compare on dev; not swapped in before the submission numbers.
+  *Update (196e557, 1751a1e):* Jev now answers first (role `decider`); the LLM decides a question when Jev fails or its top probability is under 0.7 (`llm.jev_min_probability`). The submission numbers are on this setup.
   Commits: 0435905 (linker), 5038594 (prompt-example leak removed).
 - **2026-09-28 · #17 prompt-example leak removed.** Worked examples in six prompts had copied dev storylines (S1 cap table 'will send it tonight', S2 diligence move, S3/S10 $3.4M ARR draft, S5 'Oct 6 still on' reply, S8 Mei, S13 DeepSeek price cut). All replaced with a made-up cast that appears in no mailbox; triage's 'Sam and Wren' rule now reads the family category from the profile. All scores before commit 5038594 were measured with the leak and are not reported as results. The `debug-trap` skill enforces a grep check for world names in prompts.
 
