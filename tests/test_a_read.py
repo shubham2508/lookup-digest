@@ -168,7 +168,7 @@ def test_rulings_reach_readers_of_their_contacts_only():
 
 def test_reader_prompt_shape_and_no_leaks():
     p = load_prompt("thread_reader")
-    assert (p.model_role, p.output_model, p.version) == ("thread_reader", "ReaderOutput", 1)
+    assert (p.model_role, p.output_model) == ("thread_reader", "ReaderOutput") and p.version >= 2
     assert set(p.variables) == {"avery_name", "company", "avery_email", "as_of", "thread_facts", "contacts", "judgment_rules",
                                 "digest_prefs", "profile_facts", "rulings", "freshness", "about_kinds"}
     for line in ("- P0: needs Avery's action today AND (Family, or Capital during the raise, or co-founder, or content that is an escalation/incident on a customer)",
