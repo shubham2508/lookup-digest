@@ -36,6 +36,14 @@ longer occurs. (b) Block the citation match only when the item also cites one of
 
 ## Decided
 
+- **2026-09-29 ~05:45 · #20 judging and eval spend for v2** (Shubham): no OpenRouter spend on evaluation. The
+  judge of record for the v2 numbers is the Claude Code orchestrator session (Fable 5.1) applying `prompts/judge.md`
+  in-session to the final digests; `deepseek/deepseek-v4.1-flash` stays configured for a later API run (cents).
+  Note for DESIGN.md: this breaks the third-family rule from #1 (same family as the generator); Shubham's call,
+  budget-driven. API money goes to producing digests only: dev 5 mornings + baseline, held-out 5 mornings +
+  baseline; honesty variants, customize suite and the 5-day simulation run only if budget remains (v1's condition
+  results stay reported from the v1 tag).
+
 - **2026-09-29 ~05:30 · #19 v2 pivot approved; the P2 reader checkpoint is delegated to the orchestrator** (Shubham,
   before sleeping). Criteria, fixed now so the review is not a judgment call made after seeing the output: for each
   of the five planted threads in `docs/handoffs/v2-A-readers.md`, (1) the planted issue appears as a Finding with
