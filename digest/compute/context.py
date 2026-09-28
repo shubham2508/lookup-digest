@@ -1,7 +1,8 @@
 """Retrieval for readers (specs/PIVOT_SPEC.md §3.3), source dependencies and freshness caps (architecture §6.5).
 
 `retrieve` chooses what a thread reader reads next to its thread: nearby events with the same people or org, notes and
-tasks that mention them or the subject, and the previous two threads with the same people. Word overlap is allowed
+tasks that mention them or the subject, and the two other threads with the same people that share the most subject
+words (before or after this one: a promise made here may be delivered in a new thread). Word overlap is allowed
 here and only here: retrieval widens what is read, it decides nothing. `ContextIndex` is the v1 index over extractions,
 kept while the v1 orchestration still calls it."""
 from __future__ import annotations
@@ -209,8 +210,8 @@ def _event_text(e: NormalizedEvent, as_of: datetime) -> str:
 
 
 def retrieve(thread: NormalizedThread, world: NormalizedWorld, directory, as_of: datetime, cap_tokens: int = 4000) -> list[ContextRef]:
-    """Context for one thread reader, most relevant first (same people > same org > subject keyword; newer first inside
-    a rank), capped at about `cap_tokens` (4 characters a token)."""
+    """Context for one thread reader, most relevant first (same people > same org > subject keyword; inside a rank,
+    more subject words in common, then nearer in time), capped at about `cap_tokens` (4 characters a token)."""
     owner = world.owner_emails
     own_domains = {domain_of(e) for e in owner}
     own_words = {fold(org_from_domain(e) or "") for e in owner} | {fold(e.split("@")[0]) for e in owner}
@@ -261,7 +262,8 @@ def retrieve(thread: NormalizedThread, world: NormalizedWorld, directory, as_of:
             r = 1
         else:
             continue
-        ranked.append(((r, abs((e.start - as_of).total_seconds()) / 86400), ContextRef(source_id=f"event:{e.uid}", text=_event_text(e, as_of))))
+        ranked.append(((r, -len(keywords & _words(e.title)), abs((e.start - as_of).total_seconds()) / 86400),
+                       ContextRef(source_id=f"event:{e.uid}", text=_event_text(e, as_of))))
     # notes: the lines that mention a participant, the org or a subject word, with a line on each side
     for n in world.notes:
         lines = n.text.split("\n")
@@ -276,29 +278,33 @@ def retrieve(thread: NormalizedThread, world: NormalizedWorld, directory, as_of:
         when = n.header_date or (n.mtime.date() if n.mtime else None)
         body = "\n".join(f"L{j + 1}: {lines[j]}" for j in sorted(hits) if lines[j].strip())[:NOTE_CHARS]
         age = (as_of.date() - when).days if when else 10_000
-        ranked.append(((best, age), ContextRef(source_id=f"note:{n.path}", text=f"note:{n.path} · {n.title} · dated {when or 'unknown'}\n{body}")))
+        ranked.append(((best, -len(keywords & _words(body)), age),
+                       ContextRef(source_id=f"note:{n.path}", text=f"note:{n.path} · {n.title} · dated {when or 'unknown'}\n{body}")))
     # tasks
     for t in world.tasks:
         r = rank_text(t.title)
         if r is not None:
             line = f"- [{'x' if t.status == 'done' else ' '}] {t.title}" + (f" (due: {t.due.isoformat()})" if t.due else "")
-            ranked.append(((r, 0), ContextRef(source_id=f"task:{t.task_id}", text=line)))
-    # the previous two threads with the same people: first and last message excerpts
+            ranked.append(((r, -len(keywords & _words(t.title)), 0), ContextRef(source_id=f"task:{t.task_id}", text=line)))
+    # the two other threads with the same people, before or after this one (a promise made here may be delivered in a
+    # new thread): most subject words in common first, then more shared people, then newer; first and last excerpts
     last = thread.messages[-1].sent_at
-    prev: list[tuple[int, float, NormalizedThread]] = []
+    others: list[tuple[int, int, float, NormalizedThread]] = []
     for t in world.threads:
-        if t.thread_id == thread.thread_id or t.router_type not in ("human", "unsure") or t.messages[0].sent_at >= last:
+        if t.thread_id == thread.thread_id or t.router_type not in ("human", "unsure") or t.messages[0].sent_at > as_of:
             continue
         theirs = {a.lower() for m in t.messages for a in (m.from_addr, *m.to, *m.cc) if a and a.lower() not in owner}
         shared = len(theirs & people)
         if shared:
-            prev.append((shared, t.messages[-1].sent_at.timestamp(), t))
-    prev.sort(key=lambda x: (-x[0], -x[1]))
-    for _shared, ts, t in prev[:PREVIOUS_THREADS]:
+            overlap = len(keywords & _words(" ".join(_SUBJECT_PREFIX.sub("", m.subject or "") for m in t.messages)))
+            others.append((overlap, shared, t.messages[-1].sent_at.timestamp(), t))
+    others.sort(key=lambda x: (-x[0], -x[1], -x[2]))
+    for overlap, _shared, ts, t in others[:PREVIOUS_THREADS]:
+        when = "after this thread" if t.messages[0].sent_at > last else "before this thread"
         ms = [t.messages[0]] + ([t.messages[-1]] if len(t.messages) > 1 else [])
         for k, m in enumerate(ms):
-            label = f"earlier thread ({len(t.messages)} messages), {'first' if k == 0 else 'last'} message"
-            ranked.append(((0, (as_of.timestamp() - ts) / 86400 + k / 1000), _excerpt(m, label)))
+            label = f"related thread ({len(t.messages)} messages, started {when}), {'first' if k == 0 else 'last'} message"
+            ranked.append(((0, -overlap, (as_of.timestamp() - ts) / 86400 + k / 1000), _excerpt(m, label)))
     ranked.sort(key=lambda x: x[0])
     out: list[ContextRef] = []
     budget = cap_tokens * 4

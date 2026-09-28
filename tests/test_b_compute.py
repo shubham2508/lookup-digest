@@ -246,6 +246,7 @@ def test_retrieval_ranks_people_then_org_then_keyword_and_caps():
     assert "note:notes/sprint.md" in ids and "L4: - Halberd rollout on track for Oct 6" in next(r.text for r in refs if r.source_id.startswith("note:"))
     assert "task:roll" in ids and "msg:<z1>" not in ids and "msg:<t1>" not in ids
     assert "Kickoff went well" in next(r.text for r in refs if r.source_id == "msg:<o1>"), "verbatim excerpt a quote can be checked against"
+    assert "started before this thread" in next(r.text for r in refs if r.source_id == "msg:<o1>")
     small = retrieve(w.threads[0], w, d, w.as_of, cap_tokens=60)
     assert sum(len(r.text) for r in small) <= 240 and small[0].source_id == "event:wk"
 
@@ -473,3 +474,17 @@ def test_same_message_covers_a_waiting_net_without_the_linker_and_patterns_get_n
     lk2 = StubLinker({"net_covers_finding": {"recruiter_pattern": ["read:tr1"]}})
     _, rescues2 = reconcile([], [pattern], lk2, msg_thread={"msg:<r1>": "tr1"}, summaries={"tr1": "A cold recruiter pitch; nothing for Avery."})
     assert [r["net"] for r in rescues2] == ["recruiter_pattern"] and lk2.asked == [], "one reader's summary never covers a pattern"
+
+
+def test_retrieval_finds_the_later_thread_that_delivered_a_promise():
+    """A promise made in one thread and delivered in a new one: the delivery thread is later and shares the subject
+    words, so it outranks newer threads with the same people that share none (the P2 checkpoint's thread 5)."""
+    ask = msg("p1", "2026-09-16T10:40", "nia@pellucid.example", subject="Rate card v2 - feedback by Friday?", name="Nia Okoro")
+    promise = msg("p2", "2026-09-16T18:05", AVERY, to=["nia@pellucid.example"], subject="Re: Rate card v2 - feedback by Friday?",
+                  body="will send feedback by Friday as a separate note")
+    delivered = msg("d1", "2026-09-18T14:20", AVERY, to=["nia@pellucid.example"], subject="notes on the rate card", body="as promised, my notes")
+    noise = [msg(f"z{i}", f"2026-09-2{i}T08:30", "nia@pellucid.example", subject=f"Pipeline Monday {i}", name="Nia Okoro") for i in range(1, 4)]
+    w = world([thread(ask, promise), thread(delivered), *[thread(m) for m in noise]])
+    refs = retrieve(w.threads[0], w, build_contacts(w, PROFILE, None, None, None), w.as_of)
+    got = [r for r in refs if r.source_id == "msg:<d1>"]
+    assert got and "started after this thread" in got[0].text and "as promised, my notes" in got[0].text
