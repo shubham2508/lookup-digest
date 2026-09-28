@@ -4,7 +4,7 @@ from __future__ import annotations
 from eval.manifest_schema import ContactLabel, Manifest
 
 from .artifacts import RunView
-from .common import Miss, StageMetrics, prf, rate
+from .common import Miss, StageMetrics, fallback_candidate_match, prf, rate
 from .match import about_match, split_about, type_matches
 
 
@@ -85,15 +85,32 @@ def score_compute(view: RunView, manifest: Manifest, day: int) -> StageMetrics:
         expected = manifest.run_day(day).candidates
     except KeyError:
         expected = []
-    for ec in expected:
+    # pass 1: type + fuzzy about key; pass 2 (OPEN_QUESTIONS #9): type + shared labeled citation / storyline / entity
+    hits: dict[int, object] = {}
+    for n, ec in enumerate(expected):
         hit = next((r for r in view.candidates if r.line not in matched_rows and type_matches(r.data.get("type"), ec.type)
                     and about_match(r.data.get("about"), ec.about)), None)
+        if hit is not None:
+            hits[n] = hit
+            matched_rows.add(hit.line)
+    expected_keys = [e.about for e in expected]
+    for n, ec in enumerate(expected):
+        if n in hits:
+            continue
+        hit = next((r for r in view.candidates if r.line not in matched_rows and type_matches(r.data.get("type"), ec.type)
+                    and not any(about_match(r.data.get("about"), k) for k in expected_keys)
+                    and fallback_candidate_match(view, r, ec.about, ec.storyline)), None)
+        if hit is not None:
+            hits[n] = hit
+            matched_rows.add(hit.line)
+            sm.notes.append(f"candidate {ec.type} {ec.about} matched by fallback to {hit.data.get('about')}")
+    for n, ec in enumerate(expected):
+        hit = hits.get(n)
         if hit is None:
             fn += 1
             sm.misses.append(Miss(f"candidate {ec.type} {ec.about}", "present", "missing", view.link("candidates"), "compute"))
         else:
             tp += 1
-            matched_rows.add(hit.line)
             for k, v in ec.facts_hint.items():
                 if hit.data.get("facts", {}).get(k) != v:
                     sm.misses.append(Miss(f"candidate {ec.type} {ec.about}: facts.{k}", v, hit.data.get("facts", {}).get(k),

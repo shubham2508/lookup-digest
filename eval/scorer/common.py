@@ -1,13 +1,16 @@
 """Result types and selectors shared by metrics, assertion checkers and attribution."""
 from __future__ import annotations
 
+import re
 from dataclasses import asdict, dataclass, field
 from typing import Any
 
 from eval.manifest_schema import Manifest
 
 from .artifacts import RenderedItem, Row, RunView
-from .match import about_match, type_matches
+from .match import about_match, split_about, type_matches
+
+GENERIC_TOKENS = {"the", "and", "for", "with", "other", "meeting", "update", "series"}
 
 STAGES = ("extraction", "compute", "triage", "compose", "materializer")
 
@@ -55,10 +58,15 @@ def sender_emails(manifest: Manifest, source_id: str) -> list[str]:
 
 
 def contact_label(manifest: Manifest, key: str):
-    k = key.lower()
+    """By email or full name; a bare first name ("Sam", as markdown drafts give it) when exactly one contact has it."""
+    k = key.lower().strip()
     for c in manifest.contacts:
         if c.email.lower() == k or c.name.lower() == k:
             return c
+    if k and "@" not in k and " " not in k:
+        firsts = [c for c in manifest.contacts if c.name.lower().split()[0] == k]
+        if len(firsts) == 1:
+            return firsts[0]
     return None
 
 
@@ -127,15 +135,48 @@ def select_items(view: RunView, manifest: Manifest, args: dict, cites_any: list[
     return out
 
 
+def _cand_sources(view: RunView, r: Row) -> set[str]:
+    return view.index.resolve_all(r.data.get("context_refs", []) + [e.get("source_id", "") for e in r.data.get("evidence", [])])
+
+
+def about_tokens(key: str) -> list[str]:
+    """Distinctive slug tokens of an about key (`meeting:lumen-demo` → lumen, demo)."""
+    _, rest = split_about(key)
+    return [t for t in re.split(r"[:\-]", rest) if len(t) >= 3 and t not in GENERIC_TOKENS]
+
+
+def labeled_with(manifest: Manifest, about: str) -> set[str]:
+    """Manifest sources whose expected extraction carries this about key."""
+    return {i.source_id for i in manifest.items if i.expected and any(about_match(a, about) for a in i.expected.about)}
+
+
+def fallback_candidate_match(view: RunView, r: Row, about: str, storyline: str | None = None) -> bool:
+    """OPEN_QUESTIONS #9: a computed key that doesn't fuzzy-match still matches (the caller checks the type) when the
+    candidate shares a citation with a source labeled with that key or with the storyline, or an entity token."""
+    srcs = _cand_sources(view, r)
+    manifest = view.index.manifest
+    if srcs & labeled_with(manifest, about):
+        return True
+    if storyline and any(manifest.item(s).storyline == storyline for s in srcs):
+        return True
+    blob = " ".join([*map(str, r.data.get("entities", [])), *(e.get("source_id", "") for e in r.data.get("evidence", []))]).lower()
+    return any(tok in blob for tok in about_tokens(about))
+
+
 def select_candidates(view: RunView, ctype: str | None = None, about: str | None = None,
                       cites_any: list[str] | None = None, claimed: list[str] | None = None) -> list[Row]:
+    """Candidates of `ctype` about `about`: fuzzy key or cited source first; with a type given and no such match,
+    the #9 fallback (shared labeled citation or entity token), never for a key another expectation claims."""
     out = []
     for r in view.candidates:
         if ctype and not type_matches(r.data.get("type"), ctype):
             continue
         if about:
-            srcs = view.index.resolve_all(r.data.get("context_refs", []) + [e.get("source_id", "") for e in r.data.get("evidence", [])])
-            if not (about_match(r.data.get("about"), about) or _by_cites(r.data.get("about"), srcs, cites_any or [], claimed or [])):
+            key = r.data.get("about")
+            direct = about_match(key, about) or _by_cites(key, _cand_sources(view, r), cites_any or [], claimed or [])
+            fallback = (ctype is not None and not any(about_match(key, k) for k in claimed or [])
+                        and fallback_candidate_match(view, r, about))
+            if not (direct or fallback):
                 continue
         out.append(r)
     return out

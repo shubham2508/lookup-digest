@@ -22,7 +22,7 @@ def test_report_has_every_section_and_links():
     text = render_report("tests/fixtures/mini", {("pipeline", "dev"): ws}, m, JudgeRun("judge", "skipped", "no model configured"),
                          on=date(2026, 9, 28))
     for h in ("## 1. Summary", "## 2. Per-stage metrics", "## 3. Trap assertions", "## 4. Customize and variant results",
-              "## 5. Judge", "## 6. Label audit"):
+              "## 5. Judge", "## 6. Multi-day simulation", "## 7. Label audit"):
         assert h in text, h
     assert "| P0 recall (gate = 100%) | 0.667 ❌ |" in text
     assert "judge: skipped (no model configured)" in text

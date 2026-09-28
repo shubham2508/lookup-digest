@@ -1,0 +1,94 @@
+{
+  "items": [
+    {
+      "id": "i1",
+      "about": "deal:series-a:cap-table",
+      "candidate_ids": [
+        "c1",
+        "c2"
+      ],
+      "priority": "P0",
+      "section": "urgent",
+      "due_today": true,
+      "confidence": "high",
+      "citations": [
+        {
+          "source_id": "msg:<20260922-1642.marcus@inflectionpoint.vc>",
+          "quote": "I need the updated cap table"
+        },
+        {
+          "source_id": "msg:<20260922-2130.avery@tessera.io>",
+          "quote": "will send it tonight"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "task",
+          "target": "Send cap table to Marcus",
+          "brief": "send the cap table v3 to Marcus by 11:00",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        },
+        {
+          "type": "forward_delegate",
+          "target": "ben@wsgr.example",
+          "brief": "ask Ben to send Marcus the latest cap table",
+          "assumptions": [
+            "v3 is the latest version"
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "marcus-webb"
+      ]
+    },
+    {
+      "id": "i4",
+      "about": "family:pediatrician",
+      "candidate_ids": [
+        "c6"
+      ],
+      "priority": "P0",
+      "section": "calendar_personal",
+      "due_today": true,
+      "confidence": "high",
+      "citations": [
+        {
+          "source_id": "event:wren-pediatrician-20260924@parkfamily.example",
+          "quote": "Wren - pediatrician 3:00pm"
+        },
+        {
+          "source_id": "msg:<20260923-2110.sam@parkfamily.example>",
+          "quote": "pediatrician"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "message_person",
+          "target": "sam@parkfamily.example",
+          "brief": "ask Sam whether you are expected to take Wren",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "sam-park"
+      ]
+    }
+  ],
+  "overflow": [],
+  "about_merges": [
+    {
+      "canonical": "deal:series-a:cap-table",
+      "merged": [
+        "deal:series-a:captable"
+      ]
+    }
+  ]
+}

@@ -108,6 +108,52 @@ def _assertion_lines(results: list[AssertionResult]) -> list[str]:
     return lines
 
 
+def _conditions_section(conditions: list, loose: list[AssertionResult]) -> list[str]:
+    """One row per condition (eval.md §5 honesty variants, storyline variants, §6 customize suite)."""
+    if not conditions and not loose:
+        return ["No customize or variant conditions defined for this world."]
+    L = ["| condition | kind | runs | P0 recall | assertions | checks | status |", "|---|---|---|---|---|---|---|"]
+    for c in conditions:
+        judged = [a for a in c.assertions if a.passed is not None]
+        ok = sum(1 for a in judged if a.passed)
+        checks = "; ".join(f"{k}: {_fmt(v)}" for k, v in c.checks.items() if k != "passed") or "—"
+        days = ", ".join(map(str, c.days)) or "—"
+        status = {"pass": "pass", "fail": "**FAIL**", "not run": "not run"}[c.status]
+        L.append(f"| {c.id} | {c.kind} | {days} | {_fmt(c.headline.get('p0_recall'))} | "
+                 f"{ok}/{len(judged)}{f' ({len(c.assertions) - len(judged)} not run)' if len(judged) < len(c.assertions) else ''} "
+                 f"| {checks} | {status} |")
+    failed = [(c, a) for c in conditions for a in c.assertions if a.passed is False] + [(None, a) for a in loose if a.passed is False]
+    if failed:
+        L += ["", "Failed:", ""]
+        for c, a in failed:
+            links = " ".join(f"[{link.rsplit('/', 1)[-1]}]({link})" for link in a.artifact_links)
+            where = f"{c.kind} {c.id}" if c else (a.variant or a.customize)
+            L.append(f"- **{a.id}** ({where}, `{a.kind}`) → stage **{a.attributed_stage or '?'}**: {a.evidence} {links}".rstrip())
+    notes = [f"- {c.id}: {n}" for c in conditions for n in c.notes if c.days]
+    if notes:
+        L += ["", "Notes:", "", *notes]
+    return L
+
+
+def _simulation_section(ws: WorldScore) -> list[str]:
+    multi = {"ruling_applied", "escalation_framing", "resolved_disappears", "content_overrides_ruling"}
+    manifest_multi = [a for a in ws.assertions if a.kind in multi]
+    if ws.simulation is None and not manifest_multi:
+        return ["Not run: no `simulation.json` (run `digest simulate --world <world> --days 5`)."]
+    L = []
+    if ws.simulation is not None:
+        judged = [a for a in ws.simulation if a.passed is not None]
+        L.append(f"Generic checks: {sum(1 for a in judged if a.passed)}/{len(judged)} passed.")
+        L += [""] + [f"- {'pass' if a.passed else ('not run' if a.passed is None else '**FAIL**')} · **{a.id}**"
+                     f"{' → stage **' + str(a.attributed_stage) + '**' if a.passed is False else ''}: {a.evidence}"
+                     for a in ws.simulation]
+    if manifest_multi:
+        L += ["", "Manifest multi-day assertions (also counted in §3):", ""]
+        L += [f"- {'pass' if a.passed else ('not run' if a.passed is None else '**FAIL**')} · **{a.id}** (`{a.kind}`): {a.evidence}"
+              for a in manifest_multi]
+    return L
+
+
 def render_report(world: str, scores: dict[tuple[str, str], WorldScore], manifest: Manifest,
                   judge: JudgeRun | None = None, calibration: Calibration | None = None, on: date | None = None) -> str:
     main = scores.get(("pipeline", "dev")) or scores.get(("pipeline", "heldout")) or next(iter(scores.values()))
@@ -132,14 +178,22 @@ def render_report(world: str, scores: dict[tuple[str, str], WorldScore], manifes
         L += ["### Not run", ""] + [f"- **{a.id}** (`{a.kind}`): {a.evidence}" for a in not_run] + [""]
     if passed:
         L += ["<details><summary>Passed</summary>", ""] + [f"- {a.id} (`{a.kind}`): {a.evidence}" for a in passed] + ["", "</details>", ""]
-    L += ["## 4. Customize and variant results", ""]
-    if extra:
-        for a in extra:
-            mark = "pass" if a.passed else ("not run" if a.passed is None else "**FAIL**")
-            L.append(f"- {mark} · **{a.id}** ({a.variant or ''}{a.customize or ''}, `{a.kind}`) "
-                     f"{'→ stage **' + str(a.attributed_stage) + '** ' if a.passed is False else ''}: {a.evidence}")
-    else:
-        L.append("No customize or variant runs scored yet (M7).")
+    for (kind, w), ws in scores.items():
+        if kind != "baseline" or not ws.runs:
+            continue
+        L += [f"### Naive baseline · {w} (eval.md §8: one long-context call, scored on digest-level metrics only)", ""]
+        bf = [a for a in ws.assertions if a.passed is False]
+        na = sum(1 for a in ws.assertions if a.passed is None)
+        L.append(f"{sum(1 for a in ws.assertions if a.passed)} passed · {len(bf)} failed · {na} n/a (need pipeline artifacts).")
+        L += [""] + [f"- **{a.id}** (`{a.kind}`): {a.evidence}" for a in bf]
+        for day, rs in sorted(ws.runs.items()):
+            for stage in ("compose", "materializer"):
+                for m in rs.stages[stage].misses:
+                    L.append(f"- day {day} · {stage}: {m.what}: expected `{_fmt(m.expected)}`, got `{_fmt(m.got)}`")
+            c = rs.stages["compose"].metrics
+            L.append(f"- day {day} · citations valid {_fmt(c.get('md_citations_valid_rate'))}, words {c.get('words')}")
+        L.append("")
+    L += ["## 4. Customize and variant results", ""] + _conditions_section(main.conditions, extra)
     L += ["", "## 5. Judge (E1, reported, not gated)", ""]
     if judge is None or judge.status == "skipped":
         L.append(f"judge: skipped ({judge.note if judge else 'not requested'})")
@@ -154,8 +208,9 @@ def render_report(world: str, scores: dict[tuple[str, str], WorldScore], manifes
                 L.append(f"| {r.item_id} | {k} | {v} | {r.reasons.get(k, '')} |")
     if calibration is not None:
         L += ["", "### Judge calibration (one-time)", "", calibration.to_markdown()]
+    L += ["", "## 6. Multi-day simulation (eval.md §7)", ""] + _simulation_section(main)
     la = manifest.label_audit
-    L += ["", "## 6. Label audit", ""]
+    L += ["", "## 7. Label audit", ""]
     if la.sample_size:
         L.append(f"{la.sample_size} generator labels hand-checked by {la.checked_by or '?'} on {la.checked_on or '?'}; "
                  f"{len(la.corrections)} correction(s)" + (": " + "; ".join(la.corrections) if la.corrections else "."))

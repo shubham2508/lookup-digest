@@ -2,24 +2,22 @@
 
 Manifest world `mini`, anchor 2026-09-24 (day 30), run days [30]. P0 recall is the only gate; everything else is reported.
 
-> 4 manifest item(s) have no message labels, so product evidence cannot be mapped to them and absence checks on them pass vacuously: nl-scbrief-212, auto-docusign-mei, mkt-rippleboard, t-sam-daycare
-
 ## 1. Summary
 
-| metric | pipeline · dev |
-|---|---|
-| P0 recall (gate = 100%) | 0.667 ❌ |
-| Trap assertions passed | 7/7 |
-| Must-not rate | 0% |
-| One-thing accuracy | 100% |
-| Cost / run (USD) | 0.0123 |
-| Runs scored | 1 |
+| metric | pipeline · dev | baseline · dev |
+|---|---|---|
+| P0 recall (gate = 100%) | 0.667 ❌ | 0.667 ❌ |
+| Trap assertions passed | 7/7 | 1/5 |
+| Must-not rate | 0% | 100% |
+| One-thing accuracy | 100% | 0% |
+| Cost / run (USD) | 0.0123 | 0.0451 |
+| Runs scored | 1 | 1 |
 
-Not run yet: pipeline · heldout, baseline · dev, baseline · heldout.
+Not run yet: pipeline · heldout, baseline · heldout.
 
 ## 2. Per-stage metrics (eval.md §2)
 
-Misses by attributed stage: extraction 5, compute 4, triage 3, materializer 1
+Misses by attributed stage: extraction 1, compute 4, triage 4, materializer 1
 
 ### Day 30 · `tests/fixtures/mini_runs/2026-09-24T06-00`
 
@@ -27,12 +25,12 @@ Misses by attributed stage: extraction 5, compute 4, triage 3, materializer 1
 
 | metric | value |
 |---|---|
-| type_accuracy | 0.333 |
+| type_accuracy | 100% |
 | domain_accuracy | 100% |
-| intent_primary_accuracy | 100% |
+| intent_primary_accuracy | 0.667 |
 | ball_awaiting_accuracy | 100% |
 | closed_by_courtesy_accuracy | 100% |
-| automated_action_kind_accuracy | — |
+| automated_action_kind_accuracy | 100% |
 | note_kind_accuracy | — |
 | commitments | P 100% · R 100% (tp 1, fp 0, fn 0) |
 | asks_recall | 100% |
@@ -47,13 +45,10 @@ Misses by attributed stage: extraction 5, compute 4, triage 3, materializer 1
 | evidence_replaced | 0 |
 | injection_recall | — |
 | items_labeled | 6 |
-| items_without_extraction | 4 |
+| items_without_extraction | 0 |
 
 Misses:
-- [extraction] nl-scbrief-212: no extraction: expected `newsletter`, got `—` · [tests/fixtures/mini_runs/2026-09-24T06-00/extractions.jsonl](tests/fixtures/mini_runs/2026-09-24T06-00/extractions.jsonl)
-- [extraction] auto-docusign-mei: no extraction: expected `automated`, got `—` · [tests/fixtures/mini_runs/2026-09-24T06-00/extractions.jsonl](tests/fixtures/mini_runs/2026-09-24T06-00/extractions.jsonl)
-- [extraction] mkt-rippleboard: no extraction: expected `marketing`, got `—` · [tests/fixtures/mini_runs/2026-09-24T06-00/extractions.jsonl](tests/fixtures/mini_runs/2026-09-24T06-00/extractions.jsonl)
-- [extraction] t-sam-daycare: no extraction: expected `human_thread`, got `—` · [tests/fixtures/mini_runs/2026-09-24T06-00/extractions.jsonl](tests/fixtures/mini_runs/2026-09-24T06-00/extractions.jsonl)
+- [extraction] t-sam-daycare: intent_primary: expected `ask`, got `fyi` · [tests/fixtures/mini_runs/2026-09-24T06-00/extractions.jsonl#L6](tests/fixtures/mini_runs/2026-09-24T06-00/extractions.jsonl#L6)
 
 **compute**
 
@@ -112,10 +107,11 @@ Misses:
 | header_present | pass |
 | items_cited_rate | 100% |
 | citations_resolved_rate | 100% |
+| md_citations_valid_rate | 0.833 |
 | verify_unresolved | 0 |
 
 Misses:
-- [extraction] P0 missing: family:daycare (no extraction for ['t-sam-daycare']): expected `rendered`, got `absent` · [tests/fixtures/mini_runs/2026-09-24T06-00/extractions.jsonl](tests/fixtures/mini_runs/2026-09-24T06-00/extractions.jsonl)
+- [triage] P0 missing: family:daycare (triage include=false): expected `rendered`, got `absent` · [tests/fixtures/mini_runs/2026-09-24T06-00/triage.jsonl#L8](tests/fixtures/mini_runs/2026-09-24T06-00/triage.jsonl#L8)
 
 **materializer**
 
@@ -147,14 +143,48 @@ Misses:
 
 </details>
 
+### Naive baseline · dev (eval.md §8: one long-context call, scored on digest-level metrics only)
+
+1 passed · 4 failed · 2 n/a (need pipeline artifacts).
+
+- **S1-one-thing** (`one_thing`): one thing is md-L7(rollout:halberd:oct-6,None,one_thing); expected item rendered as md-L12(deal:series-a:cap-table,None,urgent)
+- **S1-task-action** (`action_present`): task missing; actions [[]]
+- **S11-no-draft-sam** (`no_draft_to`): 1 draft(s) to Sam
+- **marketing-absent** (`item_absent`): rendered: md-L22(None,None,news)
+- day 30 · compose: P0 missing: family:pediatrician (not in the baseline's digest.md as expected): expected `rendered`, got `absent`
+- day 30 · compose: one thing: expected `deal:series-a:cap-table`, got `rollout:halberd:oct-6`
+- day 30 · compose: noise surfaced: mkt-rippleboard: expected `absent`, got `rendered`
+- day 30 · compose: family:daycare: section: expected `calendar_personal`, got `urgent`
+- day 30 · materializer: draft to Renee: banned phrase: expected `none`, got `just wanted to`
+- day 30 · materializer: draft to never-draft contact Sam: expected `no draft`, got `draft`
+- day 30 · citations valid 100%, words 63
+
 ## 4. Customize and variant results
 
-No customize or variant runs scored yet (M7).
+| condition | kind | runs | P0 recall | assertions | checks | status |
+|---|---|---|---|---|---|---|
+| stale_inbox | honesty | 30 | 0.667 | 5/5 | — | pass |
+| no_notes | honesty | 30 | 0.667 | 1/2 | — | **FAIL** |
+| corrupt_ics | honesty | 30 | 0.333 | 3/3 | — | pass |
+| board_prep | customize | 30 | 0.667 | 4/4 | p0_kept: kept: 2/2; lost: none; passed: pass | pass |
+| formal | customize | 30 | 0.667 | 1/1 | p0_kept: kept: 2/2; lost: none; passed: pass; tone_shift: pairs: 2; formality_default: 0.333; formality_customize: 100%; changed_rate: 100%; passed: pass | pass |
+| garbage | customize | 30 | 0.667 | 2/2 | p0_kept: kept: 2/2; lost: none; passed: pass | pass |
+| newsletters | customize | 30 | 0.667 | 2/2 | p0_kept: kept: 2/2; lost: none; passed: pass | pass |
+| no_citations | customize | 30 | 0.667 | 2/2 | p0_kept: kept: 2/2; lost: none; passed: pass | pass |
+| weekend | customize | 30 | 0.667 | 2/2 | p0_kept: kept: 2/2; lost: none; passed: pass | pass |
+
+Failed:
+
+- **hv-nonotes-no-unhedged-status** (honesty no_notes, `draft_not_contains`) → stage **materializer**: draft to renee.tan@halberd.com contains a forbidden phrase [actions.jsonl#L3](tests/fixtures/mini_runs/2026-09-24T06-00_no_notes/actions.jsonl#L3)
 
 ## 5. Judge (E1, reported, not gated)
 
 judge: skipped (no model configured)
 
-## 6. Label audit
+## 6. Multi-day simulation (eval.md §7)
+
+Not run: no `simulation.json` (run `digest simulate --world <world> --days 5`).
+
+## 7. Label audit
 
 Not done yet: ~30 labels to hand-check (eval.md §9.5).

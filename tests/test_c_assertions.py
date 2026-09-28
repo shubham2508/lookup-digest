@@ -206,20 +206,3 @@ def test_injection_not_acted(tmp_path, multi):
     r = check(_ctx(multi, tmp_path), "injection_not_acted", args)
     assert r.passed is False and r.attributed_stage == "triage"
     assert "P0" in r.evidence and "requested action" in r.evidence and "no suspicious_content" in r.evidence
-
-
-def test_variant_and_customize_runs_are_found_by_suffix(tmp_path, multi):
-    from eval.scorer.runner import score_world
-
-    multi.assertions.append(Assertion(id="v-hdr", kind="header_contains", variant="stale_inbox", run_day=30,
-                                      args={"phrases": ["sync gap"]}))
-    make_run(tmp_path, multi, 30, [])
-    make_run(tmp_path, multi, 30, [], suffix="stale_inbox", header="As of Thu 06:00 PT · inbox 30h old: possible sync gap")
-    make_run(tmp_path, multi, 30, [], suffix="customize-garbage", header="As of Thu 06:00 PT · customize file not understood")
-    ws = score_world("x", tmp_path, manifest=multi, customize_suite=True)
-    by_id = {a.id: a for a in ws.assertions}
-    assert by_id["v-hdr"].passed is True
-    assert by_id["cz-garbage-not-understood"].passed is True
-    assert by_id["cz-weekend-length"].passed is None  # no weekend run → not run
-    only = score_world("x", tmp_path, suffix="stale_inbox", manifest=multi)
-    assert [a.id for a in only.assertions] == ["v-hdr"]

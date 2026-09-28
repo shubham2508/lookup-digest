@@ -1,0 +1,73 @@
+[
+  {
+    "contact_id": "renee-tan",
+    "names": [
+      "Renee Tan"
+    ],
+    "emails": [
+      "renee.tan@halberd.com"
+    ],
+    "org": "Halberd Manufacturing",
+    "relationship": {
+      "category": "customer",
+      "subtype": "reference",
+      "stage": "active",
+      "source": "profile"
+    },
+    "tier": "P1",
+    "profile_rules": [
+      "same_day_reply"
+    ]
+  },
+  {
+    "contact_id": "marcus-webb",
+    "names": [
+      "Marcus Webb"
+    ],
+    "emails": [
+      "marcus@inflectionpoint.vc"
+    ],
+    "relationship": {
+      "category": "capital",
+      "subtype": "lead_investor",
+      "stage": "term_sheet",
+      "source": "profile"
+    },
+    "tier": "P0"
+  },
+  {
+    "contact_id": "sam-park",
+    "names": [
+      "Sam Park"
+    ],
+    "emails": [
+      "sam@parkfamily.example"
+    ],
+    "relationship": {
+      "category": "family",
+      "subtype": "partner",
+      "stage": null,
+      "source": "profile"
+    },
+    "tier": "P0",
+    "profile_rules": [
+      "never_draft"
+    ]
+  },
+  {
+    "contact_id": "dana-whitfield",
+    "names": [
+      "Dana Whitfield"
+    ],
+    "emails": [
+      "dana@lumenanalytics.example"
+    ],
+    "relationship": {
+      "category": "cold_inbound",
+      "subtype": null,
+      "stage": null,
+      "source": "inferred"
+    },
+    "tier": null
+  }
+]

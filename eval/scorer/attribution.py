@@ -1,6 +1,7 @@
 """Stage attribution (eval.md §1, DESIGN_LOG §10.2): every miss is pinned to the first stage that lost it.
 
 Chain for an expected item: extraction → compute → triage → compose (incl. reduce and verify) → materializer.
+Markdown-only runs (the naive baseline) are one call, so their misses are attributed to `baseline`.
 
 - missing expected item / wrong property: walk the chain and stop at the first artifact that no longer carries it.
 - unwanted item (should be absent): the stage that introduced it. A candidate of a code-threshold type the manifest
@@ -34,6 +35,8 @@ def attribute_missing(view: RunView, manifest: Manifest, about: str | None, cite
                       *, priority: list[str] | str | None = None, section: str | None = None,
                       action: str | None = None, extraction_misses: dict[str, list] | None = None) -> Attribution:
     """Why an expected item (or one of its properties) did not make it into the digest."""
+    if view.markdown_only:  # the naive baseline is one call: there are no stages to blame
+        return Attribution("baseline", "not in the baseline's digest.md as expected", [view.link("digest")])
     cites = list(cites_any or [])
     claimed = claimed_abouts(manifest, view.day, about)
     ex_rows = extractions_for(view, set(cites), None if cites else about)
@@ -85,6 +88,8 @@ def attribute_missing(view: RunView, manifest: Manifest, about: str | None, cite
 
 def attribute_unwanted(view: RunView, manifest: Manifest, day: int, items) -> Attribution:
     """Why an item that should be absent was rendered."""
+    if view.markdown_only:
+        return Attribution("baseline", "rendered in the baseline's digest.md", [view.link("digest")])
     try:
         expected = manifest.run_day(day).candidates
     except KeyError:

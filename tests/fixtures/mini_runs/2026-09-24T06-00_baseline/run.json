@@ -1,0 +1,15 @@
+{
+  "run_id": "tests/fixtures/mini/2026-09-24T06-00",
+  "world": "tests/fixtures/mini",
+  "as_of": "2026-09-24T06:00:00-07:00",
+  "variant": null,
+  "customize": null,
+  "timings_s": {},
+  "wall_s": 1.0,
+  "cost_usd": 0.0451,
+  "llm_calls": 1,
+  "llm_cached": 0,
+  "degradations": 1,
+  "baseline": true,
+  "suffix": "baseline"
+}

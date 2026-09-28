@@ -15,6 +15,7 @@ Everything else is right: one thing = cap table citing Marcus's thread, no draft
 """
 from __future__ import annotations
 
+import copy
 import json
 from pathlib import Path
 
@@ -302,7 +303,16 @@ DEGRADATIONS = [{"stage": "extract", "item": "<20260922-1408.renee@halberd.com>"
 
 def validate() -> None:
     """The fake artifacts must satisfy the product's own contracts."""
-    from digest.schemas import Candidate, ComposeResult, Contact, Extraction, TriageResult
+    from digest.schemas import (
+        Candidate,
+        ComposeResult,
+        Contact,
+        Extraction,
+        MaterializedAction,
+        ReduceResult,
+        TriageResult,
+        VerifyResult,
+    )
 
     for r in EXTRACTIONS:
         Extraction.model_validate(r)
@@ -313,32 +323,231 @@ def validate() -> None:
     for r in TRIAGE:
         TriageResult.model_validate(r)
     ComposeResult.model_validate(COMPOSE)
+    ReduceResult.model_validate(REDUCE)
+    for r in ACTIONS:
+        MaterializedAction.model_validate(r)
+    VerifyResult.model_validate(VERIFY)
+
+
+def write_run(out: Path, b: dict) -> None:
+    out.mkdir(parents=True, exist_ok=True)
+
+    def jl(name: str, rows: list[dict]) -> None:
+        (out / name).write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), encoding="utf-8")
+
+    def js(name: str, obj) -> None:
+        (out / name).write_text(json.dumps(obj, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+    for name, key in (("extractions.jsonl", "extractions"), ("candidates.jsonl", "candidates"), ("triage.jsonl", "triage"),
+                      ("actions.jsonl", "actions"), ("cost.jsonl", "cost_log"), ("degradations.jsonl", "degradations")):
+        if key in b:
+            jl(name, b[key])
+    for name, key in (("contacts.json", "contacts"), ("reduce.json", "reduce"), ("compose.json", "compose"),
+                      ("verify.json", "verify"), ("cost.json", "cost"), ("run.json", "run")):
+        if key in b:
+            js(name, b[key])
+    (out / "digest.md").write_text(b["digest"], encoding="utf-8")
+
+
+def base_bundle() -> dict:
+    return copy.deepcopy({
+        "extractions": EXTRACTIONS, "contacts": CONTACTS, "candidates": CANDIDATES, "triage": TRIAGE, "reduce": REDUCE,
+        "compose": COMPOSE, "actions": ACTIONS, "verify": VERIFY, "digest": DIGEST, "cost": COST, "cost_log": [],
+        "run": RUN, "degradations": DEGRADATIONS})
+
+
+# ----------------------------------------------------------------------------- condition runs (M7, M8)
+SECTION_TITLES = {"urgent": "Urgent To-Do Today", "decisions": "Decisions & Approvals", "news": "AI Industry News",
+                  "pulse": "Team & Product Pulse", "calendar_personal": "Calendar & Personal"}
+CITE = {MARCUS_1: "[email: Marcus, Tue 16:42]", AVERY_1: "[email: Avery, Tue 21:30]", RENEE_1: "[email: Renee, Tue 14:08]",
+        DOCU_1: "[email: DocuSign, Tue 09:15]", SAM_1: "[email: Sam, Wed 21:10]", NL_1: "[email: The Supply Chain Brief, Wed 07:00]",
+        RIPPLE_1: "[email: Rippleboard, Mon 10:00]", EV_PED: "[cal: shared, added Wed 21:04]", EV_LUMEN: "[cal: work, Lumen Analytics demo]",
+        "task:2": "[task: Review Q2 planning comments]"}
+
+
+def render(b: dict, header: str) -> str:
+    """architecture §9 rendering of a bundle (the base digest.md above is hand-written; derived runs use this)."""
+    red = {it["id"]: it for it in b["reduce"]["items"]}
+    comp = {it["id"]: it for it in b["compose"]["items"]}
+    acts: dict[str, list[dict]] = {}
+    for a in b["actions"]:
+        acts.setdefault(a["item_id"], []).append(a)
+
+    def item(iid: str, bullet: bool) -> list[str]:
+        c, r = comp[iid], red[iid]
+        cites = " ".join(dict.fromkeys(CITE.get(e["source_id"], "") for e in r["citations"])).strip()
+        line = f"{'- ' if bullet else ''}**{c['what']}.** {c['why']} *{cites}*"
+        out = [line]
+        for a in acts.get(iid, []):
+            text = a["text"]
+            if a.get("draft"):
+                text += ' "' + a["draft"].replace("\n", " ") + '"'
+            out.append("  " + text)
+            if a.get("assumptions"):
+                out.append("  Assumptions: " + "; ".join(a["assumptions"]))
+        return out
+
+    md = ["# Daily Digest — Thursday, September 24, 2026", "", header, ""]
+    one = b["compose"].get("one_thing_id")
+    if one:
+        md += ["## If there is one thing you must do right now", "", *item(one, False), "", "---", ""]
+    for blk in b["compose"]["sections"]:
+        ids = [i for i in blk["item_ids"] if i != one]
+        if not ids and blk["name"] != "news":
+            continue
+        md += [f"## {SECTION_TITLES[blk['name']]}", ""]
+        md += [x for i in ids for x in item(i, True)] or ["Nothing today that touches your open items."]
+        md += ["", "---", ""]
+    if b["compose"].get("cut_ids"):
+        md += [f"## Also pending ({len(b['compose']['cut_ids'])})", ""]
+        md += [f"- {comp[i]['what']}" for i in b["compose"]["cut_ids"]] + [""]
+    return "\n".join(md)
+
+
+def _drop(b: dict, *iids: str) -> None:
+    b["compose"]["sections"] = [dict(blk, item_ids=[i for i in blk["item_ids"] if i not in iids]) for blk in b["compose"]["sections"]]
+    b["compose"]["items"] = [c for c in b["compose"]["items"] if c["id"] not in iids]
+    b["reduce"]["items"] = [r for r in b["reduce"]["items"] if r["id"] not in iids]
+    b["actions"] = [a for a in b["actions"] if a["item_id"] not in iids]
+
+
+def _add_item(b: dict, iid: str, about: str, cand_type: str, section: str, priority: str, what: str, why: str,
+              cites: list[dict], actions: list[dict] | None = None) -> None:
+    cid = f"c-{iid}"
+    b["candidates"].append(cand(cid, cand_type, about, cites))
+    b["triage"].append(tri(cid, True, section, priority, why, cites, [act(a["type"], a.get("target"), "b") for a in actions or []]))
+    b["reduce"]["items"].append({"id": iid, "about": about, "candidate_ids": [cid], "candidate_types": [cand_type],
+                                 "priority": priority, "section": section, "confidence": "high", "citations": cites,
+                                 "proposed_actions": [], "why": why})
+    b["compose"]["items"].append({"id": iid, "what": what, "why": why, "final_actions": []})
+    for blk in b["compose"]["sections"]:
+        if blk["name"] == section:
+            blk["item_ids"].append(iid)
+    for a in actions or []:
+        b["actions"].append({"item_id": iid, "brief": "b", "brief_assumptions": [], "assumptions": [], "evidence": cites, **a})
+
+
+def _set_draft(b: dict, item_id: str, draft: str) -> None:
+    for a in b["actions"]:
+        if a["item_id"] == item_id and a.get("draft"):
+            a["draft"] = draft
+
+
+HEADER = "As of Thu 06:00 PT · inbox synced Wed 21:10 · calendar ok · notes ok · tasks ok"
+
+
+def conditions() -> dict[str, dict]:
+    out: dict[str, dict] = {}
+
+    # honesty: stale_inbox — header says so; the overdue promise carries the qualifier, confidence capped
+    b = base_bundle()
+    for r in b["reduce"]["items"]:
+        if r["id"] == "i1":
+            r["confidence"] = "medium"
+            r["why"] = "promised Tuesday night; may be a sync gap"
+    for c in b["compose"]["items"]:
+        if c["id"] == "i1":
+            c["why"] = "You promised Tuesday night; nothing sent since, but this may be a sync gap."
+    h = "As of Thu 06:00 PT · inbox 30h old (last synced Tue 23:59): may be a sync gap · calendar ok · notes ok · tasks ok"
+    b["digest"], b["run"] = render(b, h), {**RUN, "variant": "stale_inbox", "suffix": "stale_inbox"}
+    out["stale_inbox"] = b
+
+    # honesty: no_notes — header says so; PLANTED FAILURE: the Renee draft still asserts "on track" unhedged
+    b = base_bundle()
+    _set_draft(b, "i2", "renee, yes, Oct 6 is on track.\nAvery")
+    _drop(b, "i6")
+    b["digest"] = render(b, "As of Thu 06:00 PT · inbox synced Wed 21:10 · calendar ok · notes unavailable · tasks ok")
+    out["no_notes"] = b
+
+    # honesty: corrupt_ics — header says so; no calendar-conflict candidates or items
+    b = base_bundle()
+    b["candidates"] = [c for c in b["candidates"] if not c["type"].startswith("calendar_conflict")]
+    b["triage"] = [t for t in b["triage"] if t["candidate_id"] not in ("c5", "c6")]
+    _drop(b, "i4", "i5")
+    b["digest"] = render(b, "As of Thu 06:00 PT · inbox synced Wed 21:10 · calendar unreadable, calendar checks skipped · notes ok · tasks ok")
+    out["corrupt_ics"] = b
+
+    # customize: board_prep — capital first (the cap table), ARR drift surfaced, Sam's conflict still present
+    b = base_bundle()
+    _add_item(b, "i7", "report:arr", "contradiction", "decisions", "P1", "Reconcile ARR before the board meeting",
+              "profile says $3.2M; the finance sync says $3.4M.", [ev(MARCUS_1, "final numbers")])
+    b["digest"] = render(b, HEADER + " · customize: board prep (capital first, metrics)")
+    out["customize-board_prep"] = b
+
+    # customize: weekend — P0 and family only, under 100 words
+    b = base_bundle()
+    _drop(b, "i2", "i3", "i5", "i6")
+    b["compose"]["sections"] = [blk for blk in b["compose"]["sections"] if blk["name"] != "news"]
+    b["digest"] = render(b, HEADER + " · customize: weekend mode (P0 and family only)")
+    out["customize-weekend"] = b
+
+    # customize: newsletters — a cited newsletter item is allowed
+    b = base_bundle()
+    _add_item(b, "i8", "rollout:halberd:mx-summit", "news_attachment", "news", "P2", "Halberd presented at MX Summit",
+              "their case study did not name Tessera; worth a word with Renee.", [ev(NL_1, "case studies")])
+    b["digest"] = render(b, HEADER + " · customize: newsletters included")
+    out["customize-newsletters"] = b
+
+    # customize: no_citations — citations stay, the header notes the rejected instruction
+    b = base_bundle()
+    b["compose"]["header_notes"] = ["ignored: skip the source citations (citations are required)"]
+    b["digest"] = render(b, HEADER + " · ignored: skip the source citations (citations are required)")
+    out["customize-no_citations"] = b
+
+    # customize: formal — drafts shift tone; still no draft to Sam
+    b = base_bundle()
+    _set_draft(b, "i2", "Dear Renee,\nI am writing to confirm that the October 6 rollout remains on schedule.\nBest regards,\nAvery")
+    for a in b["actions"]:
+        if a["item_id"] == "i1" and a.get("draft"):
+            a["draft"] = "Dear Ben,\nCould you please send Marcus the cap table v3 this morning?\nBest regards,\nAvery"
+    b["digest"] = render(b, HEADER + " · customize: formal tone for drafts")
+    out["customize-formal"] = b
+
+    # customize: garbage — default digest, header says the file was not understood
+    b = base_bundle()
+    b["compose"]["header_notes"] = ["customize file not understood; default digest"]
+    b["digest"] = render(b, HEADER + " · customize file not understood; default digest")
+    out["customize-garbage"] = b
+
+    # baseline (eval.md §8): markdown only. PLANTED: surfaces the Rippleboard marketing mail, picks the wrong one
+    # thing, drafts a reply to Sam, and misses the pediatrician conflict
+    out["baseline"] = {
+        "digest": BASELINE_DIGEST, "cost": {**COST, "cost_usd": 0.0451, "calls": 1},
+        "run": {**RUN, "baseline": True, "suffix": "baseline", "cost_usd": 0.0451, "llm_calls": 1}}
+    return out
+
+
+BASELINE_DIGEST = """# Daily Digest — Thursday, September 24, 2026
+
+As of Thu 06:00 PT
+
+## If there is one thing you must do right now
+
+**Reply to Renee Tan about the Oct 6 rollout.** She asked Tuesday and is a reference customer. *[email: Renee, Tue 14:08]*
+  ↳ Draft to Renee: "Hi Renee! Just wanted to confirm everything is on track for Oct 6. Let me know if you need anything else from us!"
+
+## Urgent To-Do Today
+
+- **Send Marcus the updated cap table.** You said you'd send it Tuesday night. *[email: Marcus, Tue 16:42]*
+- **Sort out Friday daycare with Sam.** Bright Steps is closed Friday afternoon. *[email: Sam, Wed 21:10]*
+  ↳ Draft to Sam: "I can take the afternoon, no need to ask your parents."
+
+## Decisions & Approvals
+
+- **Sign Mei Tanaka's offer letter in DocuSign.** Pending since Tuesday. *[email: DocuSign, Tue 09:15]*
+
+## AI Industry News
+
+- **Rippleboard launched one-click expense approvals.** Could save the finance team time. *[email: Rippleboard, Mon 10:00]*
+"""
 
 
 def main() -> None:
     validate()
-    OUT.mkdir(parents=True, exist_ok=True)
-
-    def jl(name: str, rows: list[dict]) -> None:
-        (OUT / name).write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), encoding="utf-8")
-
-    def js(name: str, obj) -> None:
-        (OUT / name).write_text(json.dumps(obj, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-
-    jl("extractions.jsonl", EXTRACTIONS)
-    js("contacts.json", CONTACTS)
-    jl("candidates.jsonl", CANDIDATES)
-    jl("triage.jsonl", TRIAGE)
-    js("reduce.json", REDUCE)
-    js("compose.json", COMPOSE)
-    jl("actions.jsonl", ACTIONS)
-    js("verify.json", VERIFY)
-    (OUT / "digest.md").write_text(DIGEST, encoding="utf-8")
+    write_run(OUT, base_bundle())
     (OUT / "suggested_tasks.md").write_text("- [ ] Send cap table to Marcus (due: 2026-09-24)\n", encoding="utf-8")
-    js("cost.json", COST)
-    jl("cost.jsonl", [])
-    js("run.json", RUN)
-    jl("degradations.jsonl", DEGRADATIONS)
+    for suffix, bundle in conditions().items():
+        write_run(OUT.parent / f"{OUT.name}_{suffix}", bundle)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,67 @@
+{
+  "one_thing_id": "i1",
+  "sections": [
+    {
+      "name": "urgent",
+      "item_ids": []
+    },
+    {
+      "name": "decisions",
+      "item_ids": []
+    },
+    {
+      "name": "pulse",
+      "item_ids": []
+    },
+    {
+      "name": "calendar_personal",
+      "item_ids": [
+        "i4"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "i1",
+      "what": "Send the updated cap table to Marcus Webb before 11:00",
+      "why": "You promised Tuesday night; the term sheet waits on it.",
+      "final_actions": [
+        {
+          "type": "task",
+          "target": "Send cap table to Marcus",
+          "brief": "send the cap table v3 to Marcus by 11:00",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        },
+        {
+          "type": "forward_delegate",
+          "target": "ben@wsgr.example",
+          "brief": "ask Ben to send Marcus the latest cap table",
+          "assumptions": [
+            "v3 is the latest version"
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i4",
+      "what": "Check with Sam about Wren's 3pm pediatrician",
+      "why": "Sam added it last night; it overlaps your afternoon.",
+      "final_actions": [
+        {
+          "type": "message_person",
+          "target": "sam@parkfamily.example",
+          "brief": "ask Sam whether you are expected to take Wren",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    }
+  ],
+  "header_notes": [],
+  "cut_ids": []
+}

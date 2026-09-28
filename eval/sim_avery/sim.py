@@ -11,7 +11,9 @@ import json
 import re
 import subprocess
 import sys
+from collections.abc import Callable
 from dataclasses import dataclass
+from datetime import datetime
 from pathlib import Path
 
 from pydantic import BaseModel, ConfigDict
@@ -118,32 +120,58 @@ def _llm_choice(card: QuestionCard, item: RenderedItem | None, manifest: Manifes
 
 
 # ----------------------------------------------------------------------------- multi-day driver
-def _digest(*args: str) -> subprocess.CompletedProcess:
-    return subprocess.run([sys.executable, "-m", "cli.main", *args], cwd=ROOT, capture_output=True, text=True)
+DigestCmd = Callable[[list[str]], tuple[int, str]]
 
 
-def simulate(world: str, days: int, manifest: Manifest, runs_root: Path, log=print) -> list[dict]:
-    """Run the last `days` run days in order; after each, sim_avery answers the cards through `digest answer`."""
+def run_digest_cli(args: list[str]) -> tuple[int, str]:
+    r = subprocess.run([sys.executable, "-m", "cli.main", *args], cwd=ROOT, capture_output=True, text=True)
+    return r.returncode, (r.stdout + r.stderr).strip()
+
+
+def set_aside_state(runs_root: Path) -> list[str]:
+    """OPEN_QUESTIONS #13b `--fresh`: rename rulings.yaml and store.sqlite* to *.bak-<ts>. Reversible; never deletes."""
+    ts = datetime.now().strftime("%Y%m%d-%H%M%S")
+    moved = []
+    for p in [runs_root / "rulings.yaml", *sorted(runs_root.glob("store.sqlite*"))]:
+        if p.exists():
+            dst = p.with_name(f"{p.name}.bak-{ts}")
+            p.rename(dst)
+            moved.append(f"{p.name} → {dst.name}")
+    return moved
+
+
+def simulate(world: str, days: int, manifest: Manifest, runs_root: Path, log=print, *, fresh: bool = False,
+             digest_cmd: DigestCmd = run_digest_cli, use_llm: bool = True) -> list[dict]:
+    """Run the last `days` run days in order; after each, sim_avery answers the cards through `digest answer`.
+    The transcript is saved to runs_root/simulation.json for `digest eval` (eval/scorer/simulation.py)."""
     index = SourceIndex(manifest)
+    runs_root.mkdir(parents=True, exist_ok=True)
     transcript: list[dict] = []
+    if fresh:
+        for m in set_aside_state(runs_root):
+            log(f"fresh: {m}")
+    elif (runs_root / "rulings.yaml").exists():
+        log("note: rulings.yaml already exists; earlier rulings will shape this simulation (use --fresh)")
     for day in manifest.meta.run_days[-days:]:
         as_of = as_of_for(manifest, day).strftime("%Y-%m-%dT%H:%M")
-        r = _digest("run", "--world", world, "--as-of", as_of)
-        step: dict = {"day": day, "as_of": as_of, "run_exit": r.returncode, "answers": []}
-        if r.returncode != 0:
-            step["error"] = (r.stdout + r.stderr).strip()[-300:]
+        code, output = digest_cmd(["run", "--world", world, "--as-of", as_of])
+        step: dict = {"day": day, "as_of": as_of, "run_exit": code, "answers": []}
+        if code != 0:
+            step["error"] = output[-300:]
             transcript.append(step)
-            log(f"day {day}: digest run failed ({r.returncode}); stopping the simulation")
+            log(f"day {day}: digest run failed ({code}); stopping the simulation")
             break
         run_dir = find_runs(manifest, runs_root).get(day)
         if run_dir is None:
             step["error"] = "run wrote no artifacts"
             transcript.append(step)
+            log(f"day {day}: no run directory under {runs_root}; stopping the simulation")
             break
         view = RunView(run_dir, index, ROOT, day=day)
-        for ans in answer_cards(view, manifest):
-            a = _digest(*ans.command(world))
-            step["answers"].append({**ans.__dict__, "exit": a.returncode})
+        for ans in answer_cards(view, manifest, use_llm=use_llm):
+            acode, _ = digest_cmd(ans.command(world))
+            step["answers"].append({**ans.__dict__, "exit": acode})
             log(f"day {day}: {ans.question} → {ans.option} ({ans.source}, scope {ans.scope})")
         transcript.append(step)
+    (runs_root / "simulation.json").write_text(json.dumps(transcript, indent=2), encoding="utf-8")
     return transcript

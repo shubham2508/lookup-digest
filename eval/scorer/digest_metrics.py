@@ -12,9 +12,14 @@ from eval.manifest_schema import Manifest
 from .artifacts import RunView
 from .attribution import attribute_missing, attribute_unwanted
 from .common import Miss, StageMetrics, contact_label, rate, select_items
+from .markdown_view import resolve_citation
 from .match import norm_text
 
 EXPECTED_PROFILE = Path(__file__).resolve().parents[1] / "expected" / "profile.yaml"
+
+
+def _stage(view: RunView, stage: str) -> str:
+    return "baseline" if view.markdown_only else stage
 
 
 def expected_p0(manifest: Manifest, day: int):
@@ -55,7 +60,8 @@ def score_digest(view: RunView, manifest: Manifest, day: int, settings: Settings
             att = (attribute_missing(view, manifest, rd.one_thing.about, rd.one_thing.cites_any) if not rendered
                    else None)
             sm.misses.append(Miss("one thing", rd.one_thing.about, ot.about if ot else None,
-                                  att.links[0] if att and att.links else view.link("compose"), att.stage if att else "compose"))
+                                  att.links[0] if att and att.links else view.link("compose"),
+                                  att.stage if att else _stage(view, "compose")))
 
     # must-not: labeled noise that appeared (cited by any rendered item)
     shown = {s for r in view.rendered for s in r.source_ids}
@@ -73,14 +79,15 @@ def score_digest(view: RunView, manifest: Manifest, day: int, settings: Settings
     for ei in rd.items:
         if not (ei.include and ei.section):
             continue
-        hits = [r for r in select_items(view, manifest, {"about": ei.about}, ei.cites_any) if r.placement != "also_pending"]
+        hits = [r for r in select_items(view, manifest, {"about": ei.about}, ei.cites_any)
+                if r.placement != "also_pending" and r.section is not None]
         if not hits:
             continue
         sec_n += 1
         if any(r.section == ei.section for r in hits):
             sec_ok += 1
         else:
-            sm.misses.append(Miss(f"{ei.about}: section", ei.section, hits[0].section, view.link("compose"), "compose"))
+            sm.misses.append(Miss(f"{ei.about}: section", ei.section, hits[0].section, view.link("compose"), _stage(view, "compose")))
 
     # compose-vs-reduce disagreements, listed for review (not errors)
     flags: list[str] = []
@@ -104,6 +111,10 @@ def score_digest(view: RunView, manifest: Manifest, day: int, settings: Settings
     md_items = [i for i in view.digest.items if i.section not in ("also_pending", "profile_updates")]
     cited = sum(1 for i in md_items if i.citations)
     unresolved = [v for v in view.verify.get("violations", []) if v.get("fix") == "unresolved"]
+    # citation validity from the markdown (eval.md §8; same for pipeline and baseline): email/note/task citations
+    # that resolve to a labeled source. Calendar and external-source citations are not in the manifest.
+    md_cites = [c for i in view.digest.items for c in i.citations if c.kind in ("email", "thread", "note", "task", "tasks")]
+    md_ok = sum(1 for c in md_cites if resolve_citation(c, view.index, manifest))
 
     sm.metrics = {
         "p0_recall": rate(p0_hit, len(p0)),
@@ -120,6 +131,7 @@ def score_digest(view: RunView, manifest: Manifest, day: int, settings: Settings
         "header_present": header_ok,
         "items_cited_rate": rate(cited, len(md_items)),
         "citations_resolved_rate": rate(stats.get("citations_resolved", 0), stats.get("citations_total", 0)),
+        "md_citations_valid_rate": rate(md_ok, len(md_cites)),
         "verify_unresolved": len(unresolved),
     }
     return sm
@@ -181,22 +193,22 @@ def score_materializer(view: RunView, manifest: Manifest, settings: Settings | N
         if n <= settings.drafts.max_sentences:
             ok["sentences"] += 1
         else:
-            sm.misses.append(Miss(f"draft to {who}: {n} sentences", f"≤{settings.drafts.max_sentences}", n, link, "materializer"))
+            sm.misses.append(Miss(f"draft to {who}: {n} sentences", f"≤{settings.drafts.max_sentences}", n, link, _stage(view, "materializer")))
         banned = [b for b in settings.drafts.banned_phrases if norm_text(b) in norm_text(text)]
         if not banned:
             ok["banned"] += 1
         else:
-            sm.misses.append(Miss(f"draft to {who}: banned phrase", "none", banned, link, "materializer"))
+            sm.misses.append(Miss(f"draft to {who}: banned phrase", "none", banned, link, _stage(view, "materializer")))
         if not (is_never_draft(manifest, d.get("target")) or is_never_draft(manifest, d.get("recipient_name"))):
             ok["never_draft"] += 1
         else:
-            sm.misses.append(Miss(f"draft to never-draft contact {who}", "no draft", "draft", link, "materializer"))
+            sm.misses.append(Miss(f"draft to never-draft contact {who}", "no draft", "draft", link, _stage(view, "materializer")))
         if d.get("brief_assumptions"):
             n_assump += 1
             if d.get("assumptions"):
                 ok["assumptions"] += 1
             else:
-                sm.misses.append(Miss(f"draft to {who}: assumptions not shown", d["brief_assumptions"], [], link, "materializer"))
+                sm.misses.append(Miss(f"draft to {who}: assumptions not shown", d["brief_assumptions"], [], link, _stage(view, "materializer")))
         used_stale = [(s, pv) for s, (pv, _) in stale.items() if norm_text(pv) in norm_text(text)]
         if any(norm_text(v) in norm_text(text) for _, vals in stale.values() for v in vals) or used_stale:
             n_numbers += 1
@@ -204,7 +216,7 @@ def score_materializer(view: RunView, manifest: Manifest, settings: Settings | N
                 ok["numbers"] += 1
             else:
                 sm.misses.append(Miss(f"draft to {who}: profile value used over data", {s: stale[s][1] for s, _ in used_stale},
-                                      [pv for _, pv in used_stale], link, "materializer"))
+                                      [pv for _, pv in used_stale], link, _stage(view, "materializer")))
     total = len(drafts)
     sm.metrics = {
         "drafts": total,

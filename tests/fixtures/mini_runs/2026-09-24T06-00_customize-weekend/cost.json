@@ -1,0 +1,9 @@
+{
+  "calls": 14,
+  "cached": 0,
+  "prompt_tokens": 52000,
+  "completion_tokens": 9100,
+  "cost_usd": 0.0123,
+  "cost_unknown_calls": 0,
+  "by_role": {}
+}

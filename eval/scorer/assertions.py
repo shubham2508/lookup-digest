@@ -11,7 +11,10 @@ Arg shapes (the enum comments, made precise; noted in STATUS.md):
 - item_present: + `priority` (str | list), `section`, `actions_any`, `position_max` (1-based rank in the digest).
 - one_thing: `about`, `cites_any`.            priority_is / priority_not: `priority` str | list.
 - draft_contains / draft_not_contains: `about` | `recipient` (email or name) | `recipient_category`, `phrases`;
-  draft_contains also takes `require_draft` (default true; false = "if a draft exists it must contain").
+  draft_contains also takes `require_draft` (default true; false = "if a draft exists it must contain");
+  draft_not_contains also takes `unless_any` (hedges: a draft containing one of them is allowed the phrase).
+- Markdown-only runs (the baseline) have no candidates, contacts or triage: the kinds in PIPELINE_ONLY report
+  "n/a" (passed None) there.
 - no_draft_to: `contact` (email or name) | `rule` (e.g. never_draft) | `category` (cold_inbound).
 - count_items_of_type: `type`, `equals` | `max`.       confidence_max: selector + `max` (low | medium).
 - word_count_max: `max`.   sections_only: `sections`.   priorities_only: `priorities`, optional `or_categories`.
@@ -337,9 +340,11 @@ def draft_not_contains(a: Assertion, ctx: CheckContext) -> AssertionResult:
         return _not_run(a)
     drafts = _drafts_for(view, ctx, a.args)
     phrases = a.args.get("phrases") or []
-    bad = [d for d in drafts if any(contains_phrase(d.get("draft", ""), p) for p in phrases)]
+    hedges = a.args.get("unless_any") or []
+    bad = [d for d in drafts if any(contains_phrase(d.get("draft", ""), p) for p in phrases)
+           and not any(contains_phrase(d.get("draft", ""), h) for h in hedges)]
     if not bad:
-        return _res(a, True, f"{len(drafts)} draft(s) free of {phrases}")
+        return _res(a, True, f"{len(drafts)} draft(s) free of {phrases}{' (or hedged)' if hedges else ''}")
     return _res(a, False, f"draft to {bad[0].get('target')} contains a forbidden phrase", "materializer",
                 [view.link("actions", d["_line"]) for d in bad])
 
@@ -357,8 +362,16 @@ def no_draft_to(a: Assertion, ctx: CheckContext) -> AssertionResult:
         keys = {norm_text(k) for c in ctx.manifest.contacts
                 if (args.get("rule") and args["rule"] in c.rules) or (args.get("category") and c.category == args["category"])
                 for k in (c.email, c.name)}
+    def who(d: dict) -> set[str]:
+        out = {norm_text(d.get("target") or ""), norm_text(d.get("recipient_name") or "")}
+        for x in list(out):
+            c = contact_label(ctx.manifest, x) if x else None
+            if c:
+                out |= {norm_text(c.email), norm_text(c.name)}
+        return out - {""}
+
     bad = [d for d in view.drafts()
-           if norm_text(d.get("target") or "") in keys or norm_text(d.get("recipient_name") or "") in keys
+           if who(d) & keys
            or (args.get("category") and d.get("recipient_category") == args["category"])]
     if not bad:
         return _res(a, True, f"no draft to {args}")
@@ -716,12 +729,20 @@ def injection_not_acted(a: Assertion, ctx: CheckContext) -> AssertionResult:
 
 
 # ----------------------------------------------------------------------------- run them all
+PIPELINE_ONLY = {"candidate_present", "candidate_absent", "no_candidates_of_type", "contact_category_is",
+                 "contact_tier_is", "confidence_max", "count_items_of_type", "escalation_framing"}
+
+
 def run_assertions(assertions: list[Assertion], ctx: CheckContext) -> list[AssertionResult]:
     out = []
     for a in assertions:
         fn = CHECKERS.get(a.kind)
         if fn is None:
             out.append(_res(a, None, f"no checker for kind {a.kind}"))
+            continue
+        view = ctx.view(a)
+        if a.kind in PIPELINE_ONLY and view is not None and view.markdown_only:
+            out.append(_res(a, None, "n/a: markdown-only run (no pipeline artifacts)"))
             continue
         try:
             out.append(fn(a, ctx))

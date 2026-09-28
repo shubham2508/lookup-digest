@@ -1,0 +1,251 @@
+{
+  "items": [
+    {
+      "id": "i1",
+      "about": "deal:series-a:cap-table",
+      "candidate_ids": [
+        "c1",
+        "c2"
+      ],
+      "priority": "P0",
+      "section": "urgent",
+      "due_today": true,
+      "confidence": "high",
+      "citations": [
+        {
+          "source_id": "msg:<20260922-1642.marcus@inflectionpoint.vc>",
+          "quote": "I need the updated cap table"
+        },
+        {
+          "source_id": "msg:<20260922-2130.avery@tessera.io>",
+          "quote": "will send it tonight"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "task",
+          "target": "Send cap table to Marcus",
+          "brief": "send the cap table v3 to Marcus by 11:00",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        },
+        {
+          "type": "forward_delegate",
+          "target": "ben@wsgr.example",
+          "brief": "ask Ben to send Marcus the latest cap table",
+          "assumptions": [
+            "v3 is the latest version"
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "marcus-webb"
+      ]
+    },
+    {
+      "id": "i2",
+      "about": "rollout:halberd:oct-6",
+      "candidate_ids": [
+        "c3"
+      ],
+      "priority": "P1",
+      "section": "urgent",
+      "due_today": true,
+      "confidence": "high",
+      "citations": [
+        {
+          "source_id": "msg:<20260922-1408.renee@halberd.com>",
+          "quote": "still on"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "reply",
+          "target": "renee.tan@halberd.com",
+          "brief": "confirm Oct 6 is on",
+          "assumptions": [
+            "the sprint note says on track"
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        },
+        {
+          "type": "question",
+          "target": null,
+          "brief": "is Oct 6 firm, or check with Jordan first?",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": {
+        "type": "factual",
+        "question": "Is Oct 6 firm?",
+        "options": [
+          "yes, confirm",
+          "check with Jordan first"
+        ],
+        "default": 1
+      },
+      "entities": [
+        "renee-tan"
+      ]
+    },
+    {
+      "id": "i3",
+      "about": "offer:mei-tanaka",
+      "candidate_ids": [
+        "c4"
+      ],
+      "priority": "P1",
+      "section": "decisions",
+      "due_today": true,
+      "confidence": "high",
+      "citations": [
+        {
+          "source_id": "msg:<20260922-0915.dse@docusign.net>",
+          "quote": "Offer Letter"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "approve",
+          "target": "DocuSign",
+          "brief": "sign Mei's offer letter",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null
+    },
+    {
+      "id": "i4",
+      "about": "family:pediatrician",
+      "candidate_ids": [
+        "c6"
+      ],
+      "priority": "P0",
+      "section": "calendar_personal",
+      "due_today": true,
+      "confidence": "high",
+      "citations": [
+        {
+          "source_id": "event:wren-pediatrician-20260924@parkfamily.example",
+          "quote": "Wren - pediatrician 3:00pm"
+        },
+        {
+          "source_id": "msg:<20260923-2110.sam@parkfamily.example>",
+          "quote": "pediatrician"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "message_person",
+          "target": "sam@parkfamily.example",
+          "brief": "ask Sam whether you are expected to take Wren",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "sam-park"
+      ]
+    },
+    {
+      "id": "i5",
+      "about": "meeting:lumen-demo",
+      "candidate_ids": [
+        "c5"
+      ],
+      "priority": "P3",
+      "section": "calendar_personal",
+      "due_today": true,
+      "confidence": "high",
+      "citations": [
+        {
+          "source_id": "event:lumen-demo-20260924@lumenanalytics.example",
+          "quote": "Lumen Analytics demo"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "calendar_response",
+          "target": "lumen-demo-20260924@lumenanalytics.example",
+          "brief": "propose moving to 11:15",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "dana-whitfield"
+      ]
+    },
+    {
+      "id": "i6",
+      "about": "report:q2-planning",
+      "candidate_ids": [
+        "c7"
+      ],
+      "priority": "P2",
+      "section": "pulse",
+      "due_today": true,
+      "confidence": "medium",
+      "citations": [
+        {
+          "source_id": "task:2",
+          "quote": "Review Q2 planning comments"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "task",
+          "target": "Review Q2 planning comments",
+          "brief": "send the cap table v3 to Marcus by 11:00",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null
+    },
+    {
+      "id": "i8",
+      "about": "rollout:halberd:mx-summit",
+      "candidate_ids": [
+        "c-i8"
+      ],
+      "candidate_types": [
+        "news_attachment"
+      ],
+      "priority": "P2",
+      "section": "news",
+      "confidence": "high",
+      "citations": [
+        {
+          "source_id": "msg:<20260923-0700.brief@scbrief.example>",
+          "quote": "case studies"
+        }
+      ],
+      "proposed_actions": [],
+      "why": "their case study did not name Tessera; worth a word with Renee."
+    }
+  ],
+  "overflow": [],
+  "about_merges": [
+    {
+      "canonical": "deal:series-a:cap-table",
+      "merged": [
+        "deal:series-a:captable"
+      ]
+    }
+  ]
+}
