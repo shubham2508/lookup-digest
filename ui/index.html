@@ -7,6 +7,7 @@
 <style>
   :root { --bg:#f5f6f8; --panel:#fff; --ink:#1b2430; --muted:#667085; --line:#e1e5ea; --accent:#1d4ed8; --code:#0b7a6e; --llm:#b7620a; --bad:#b42318; --ok:#067647; --soft:#f0f3f7; }
   * { box-sizing: border-box; }
+  [hidden] { display:none !important; }
   body { margin:0; font: 14px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; color:var(--ink); background:var(--bg); }
   .layout { display:grid; grid-template-columns: 290px 1fr; height:100vh; }
   aside { background:var(--panel); border-right:1px solid var(--line); padding:16px; overflow:auto; display:flex; flex-direction:column; gap:18px; }
@@ -221,21 +222,31 @@ async function loadReports() {
 async function launch(action) {
   if (action === "generate" && !confirmInPage("Regenerate overwrites data/ for this world. Press again within 5s to confirm.")) return;
   const body = { action, world: $("#world").value, as_of: $("#as_of").value, variant: $("#variant").value, customize: $("#customize").value, tag: $("#tag").value };
-  try { await api("/api/launch", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }); pollLaunch(); }
+  try { await api("/api/launch", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }); wasRunning = true; pollLaunch(); }
   catch (e) { setStatus("fail", "Refused: " + e.message); }
 }
 let armed = 0;
 function confirmInPage(msg) { if (Date.now() - armed < 5000) { armed = 0; return true; } armed = Date.now(); setStatus("", msg); return false; }
 function setStatus(cls, text, log) { const s = $("#status"); s.className = "status " + cls; s.innerHTML = esc(text) + (log ? `<pre>${esc(log)}</pre>` : ""); }
-let pollTimer = null;
+let pollTimer = null, wasRunning = false;
 async function pollLaunch() {
   clearTimeout(pollTimer);
   const st = await api("/api/launch");
   document.querySelectorAll("aside button[data-action]").forEach(b => b.disabled = st.running);
   const cmd = st.args.length ? "digest " + st.args.join(" ") : "";
   const tail = (st.log || "").trim().split("\n").slice(-6).join("\n");
-  if (st.running) { setStatus("running", "Running: " + cmd, tail); pollTimer = setTimeout(pollLaunch, 2000); }
-  else if (st.args.length) { setStatus(st.returncode === 0 ? "done" : "fail", (st.returncode === 0 ? "Finished: " : `Failed (exit ${st.returncode}): `) + cmd, tail); await loadRuns(); await loadReports(); }
+  if (st.running) { wasRunning = true; setStatus("running", "Running: " + cmd + " (the result opens here when it finishes)", tail); pollTimer = setTimeout(pollLaunch, 2000); return; }
+  else if (st.args.length) {
+    setStatus(st.returncode === 0 ? "done" : "fail", (st.returncode === 0 ? "Finished: " : `Failed (exit ${st.returncode}): `) + cmd, tail);
+    await loadRuns(); await loadReports();
+    if (wasRunning && st.returncode === 0 && (st.args[0] === "run" || st.args[0] === "baseline")) {
+      const i = st.args.indexOf("--as-of"), w = st.args[st.args.indexOf("--world") + 1];
+      const asOf = i > -1 ? st.args[i + 1] : null;
+      const want = st.args[0] === "baseline" ? (r) => r.baseline : (r) => !r.baseline && !r.suffix;
+      const hit = allRuns.filter(r => r.world === w && want(r) && (!asOf || (r.dir.includes(asOf.replace(":", "-"))))).pop();
+      if (hit) openRun(hit);
+    }
+  }
   else setStatus("", "Idle.");
 }
 
@@ -256,7 +267,8 @@ const NOTES = {
   issues: "Items skipped or degraded, with reasons, and the cost breakdown.",
 };
 async function render() {
-  const v = $("#view"); v.innerHTML = `<p class="tabnote">${NOTES[tab]}</p><div class="empty">Loading…</div>`;
+  const v = $("#view");
+  if (!current) { v.innerHTML = ""; return; } v.innerHTML = `<p class="tabnote">${NOTES[tab]}</p><div class="empty">Loading…</div>`;
   let html = "";
   if (tab === "digest") { const d = await art("digest"); html = d ? `<div class="doc">${md(d.text)}</div>` : "<div class='empty'>No digest in this run.</div>"; }
   else if (tab === "pipeline") html = await pipelineView();
