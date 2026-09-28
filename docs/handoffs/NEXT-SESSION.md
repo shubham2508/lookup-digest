@@ -28,9 +28,11 @@ Shubham wants short, plain answers, tables over paragraphs, and a status line be
    while they run):
    ```
    rm -rf runs/dev runs/heldout runs/_archive && mkdir -p runs/dev runs/heldout   # _archive = superseded local runs
-   nohup sh -c 'uv run digest eval --matrix --world dev --keep-going > runs/dev/matrix.log 2>&1; uv run digest eval --matrix --world heldout --keep-going > runs/heldout/matrix.log 2>&1' >/dev/null 2>&1 &
+   nohup uv run digest eval --matrix --world dev --keep-going > runs/dev/matrix.log 2>&1 &
+   nohup uv run digest eval --matrix --world heldout --keep-going > runs/heldout/matrix.log 2>&1 &
    ```
-   ~1.5 h. Cost ~$1–1.5 per world (extractor v2 is cached for dev days already run; held-out reads cold).
+   The two worlds run in parallel (separate stores; the LLM cache writes are atomic): ~45 min wall time.
+   Within one world the steps stay sequential (one store, history order). Cost ~$1–1.5 per world (extractor v2 is cached for dev days already run; held-out reads cold).
    OpenRouter key: limit $10, ~$4 left at 17:30 UTC — check with the `/auth/key` call before starting.
    If a step times out (provider stall), rerun that morning and the later ones in order, then `digest eval`.
 3. **Fill the results**: `DESIGN.md` "Results" sentence (dev + held-out: P0 recall, traps, must-not, one thing,
