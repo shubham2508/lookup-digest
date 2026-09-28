@@ -1,6 +1,6 @@
 ---
 name: notes_tasks_sweep
-version: 1
+version: 2
 model_role: notes_tasks_sweep
 output_model: SweepOutput
 ---
@@ -15,6 +15,7 @@ LOOK FOR
 6. Paused or changed plans (a paused hiring req, a moved launch) that make an open task or promise moot or urgent.
 7. Profile facts the data shows are out of date (the profile's facts are below): a finding with action profile_update, brief = the proposed profile line, P3, pulse.
 Use tasks.md's last-modified age: an old list may be stale; say so in freshness_caveat when you rely on it.
+Relative dates inside a note ("by Friday", "next week") count from that note's date, not from today: each note lists the days after its date, marked (past) when already gone. A deadline that has passed is overdue or moot; say which, and never present it as still ahead.
 
 INPUTS (facts computed by code are true; do not recompute them)
 - JUDGMENT RULES from Avery's profile (verbatim): {{judgment_rules}}

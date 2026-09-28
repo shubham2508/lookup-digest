@@ -57,14 +57,15 @@ def _stamp(dt: datetime, today: date) -> str:
     return f"{day_label(dt.date(), today)} {dt.strftime('%Y-%m-%d %H:%M')}"
 
 
-def reader_brief(findings: list[Finding], *, only_yes: bool = False) -> str:
-    """What the readers found, compact: the sweeps cross-reference titles, entities, about tags and contradictions."""
+def reader_brief(findings: list[Finding], *, only_yes: bool = False, why: bool = False) -> str:
+    """What the readers found, compact: the sweeps cross-reference titles, entities, about tags and contradictions (the
+    news sweep also gets each why: the numbers and choices a news item could move)."""
     rows = []
     for f in findings:
         if only_yes and f.needs_avery != "yes":
             continue
         row = {"id": f.finding_id, "needs_avery": f.needs_avery, "priority": f.priority, "title": f.title, "kind": f.kind,
-               "entities": f.entities, "about": f.about}
+               **({"why": f.why} if why else {}), "entities": f.entities, "about": f.about}
         if f.contradictions:
             row["contradictions"] = f.contradictions
         rows.append(row)
@@ -168,6 +169,9 @@ def notes_tasks_call(world: NormalizedWorld, findings: list[Finding], profile: P
                 f"last modified: {n.mtime.date().isoformat() if n.mtime else 'unknown'}"]
         if n.attendees:
             head.append("attendees: " + ", ".join(n.attendees))
+        if n.header_date:     # code does the date math: "by Friday" in this note means the first Friday after its date
+            week = [n.header_date + timedelta(days=i) for i in range(1, 8)]
+            head.append("days after this note's date: " + ", ".join(f"{d.strftime('%a %d %b')}{' (past)' if d < today else ''}" for d in week))
         body = "\n".join(f"L{i}: {ln}" for i, ln in enumerate(n.text.split("\n"), 1))
         notes.append("\n".join(head) + "\n" + body)
         sources[sid] = n.text
@@ -230,7 +234,7 @@ def news_calls(world: NormalizedWorld, findings: list[Finding], profile: Profile
             sources.update(src)
         text = prompt.render(
             avery_name=profile.person, as_of=_stamp(as_of, today), standing_topics=json.dumps(profile.standing_topics, ensure_ascii=False),
-            digest_prefs=json.dumps(profile.digest_prefs, ensure_ascii=False), open_items=reader_brief(open_items, only_yes=True),
+            digest_prefs=json.dumps(profile.digest_prefs, ensure_ascii=False), open_items=reader_brief(open_items, only_yes=True, why=True),
             issues=_block("NEWSLETTER ISSUES", "\n\n".join(t for t, _ in batch)),
         )
         calls.append(SweepCall(f"news{'' if len(batches) == 1 else f'-b{i}'}", "news_sweep", "news_sweep", text, sources))
@@ -274,6 +278,7 @@ def run_sweeps(world: NormalizedWorld, directory: ContactDirectory | None, findi
 # ----------------------------------------------------------------------------- driver
 def _main(argv: list[str] | None = None) -> int:
     import argparse
+    from pathlib import Path
     from zoneinfo import ZoneInfo
 
     import yaml
@@ -325,11 +330,19 @@ def _main(argv: list[str] | None = None) -> int:
             readers = [Finding.model_validate({k: v for k, v in json.loads(ln).items() if k in names}) for ln in fh if ln.strip()]
     except FileNotFoundError:
         pass
-    print(f"reader findings loaded: {len(readers)} ({path})")
+    summaries: dict[str, str] = {}          # the readers' thread summaries, from the same run's trace
+    trace = Path(path).with_name("trace.jsonl")
+    if trace.exists():
+        for ln in trace.read_text(encoding="utf-8").splitlines():
+            row = json.loads(ln)
+            if row.get("role") == "thread_reader" and isinstance(row.get("output"), dict):
+                summaries[row.get("tag", "")] = row["output"].get("thread_summary", "")
+    print(f"reader findings loaded: {len(readers)}, thread summaries: {len(summaries)} ({path})")
     sweep = run_sweeps(world, directory, readers, profile, settings, llm, ctx, as_of)
     ci = ComputeInputs(world, profile, settings, as_of, directory, findings=readers + sweep, linker=linker)
     nets = safety_nets(ci)
-    merged, rescues = reconcile(readers + sweep, nets, linker, msg_thread=ci.msg_thread)
+    merged, rescues = reconcile(readers + sweep, nets, linker, msg_thread=ci.msg_thread, summaries=summaries,
+                                log=lambda r, d: print(f"  {r}: {json.dumps(d, ensure_ascii=False)}"))
     print(f"\nSAFETY NETS ({len(nets)})")
     for f in nets:
         print(f"  {f.finding_id:7} {f.kind:30} {f.priority} {f.needs_avery:4} {f.title}\n          {f.why}")
