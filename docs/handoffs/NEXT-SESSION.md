@@ -14,7 +14,10 @@ Shubham wants short, plain answers, tables over paragraphs, and a status line be
 
 ## What to do next, in order
 
-1. **Check the live Jev run** of dev Thursday (`runs/dev/2026-09-24T06-00/`, started ~17:25 UTC). If it finished:
+1. **Rerun the live Jev check** of dev Thursday. The first attempt was cut off by a 15-minute tool timeout during
+   triage (it got through extraction and linking: Jev 21 calls, $0.02). Run it detached so no timeout kills it:
+   `rm -rf runs/dev && mkdir -p runs/dev && nohup uv run digest run --world dev --as-of 2026-09-24T06:00 > runs/dev/thu.log 2>&1 &`
+   then wait for `runs/dev/2026-09-24T06-00/run.json`. When it finishes:
    - `links.jsonl`: decisions marked `"by": "jev"` with `p=` probabilities; spot-check a few for sense.
    - Two question types fell back to the LLM (`linker@v2`, `topic_grouper@v2` calls in `cost.jsonl`). Find why in
      `degradations.jsonl` (`jev_failed_fallback_llm`) or the trace; likely a request-size or option-count limit
