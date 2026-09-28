@@ -70,6 +70,11 @@ def compute_world(world: NormalizedWorld, extractions: list[Extraction], profile
     facts = effective_facts(profile, collect_claims(extractions, note_dates))
     msg_thread = {f"msg:{m.message_id}": t.thread_id for t in world.threads for m in t.messages}
     merger = _extraction_keys(extractions, slug_map, msg_thread)
+    generic = {"avery", "avery-chen", "tessera"} | set(world.owner_emails)
+    for c in directory.contacts:
+        if c.relationship.category == "team" or any(e in world.owner_emails for e in c.emails):
+            generic |= {c.contact_id, *[e.lower() for e in c.emails], *[n.lower() for n in c.names]}
+    merger.generic_entities = generic
     about_map, merges = merger.resolve()
     ci = ComputeInputs(world, extractions, profile, settings, as_of, directory, facts, about_map, resolve_thresholds(profile, settings))
     cands = generate(ci)

@@ -40,17 +40,36 @@ class _Key:
 _SPECIFIC_KINDS = {"offer", "renewal", "incident", "rollout", "hiring-req", "pricing", "contract", "approval", "invoice", "report"}
 
 
+_GENERIC_TOKENS = {"product", "engineer", "engineers", "update", "updates", "report", "review", "meeting", "request", "series",
+                   "other", "email", "thread", "avery", "tessera", "second", "first", "draft", "notes", "weekly", "monthly"}
+
+
 def _tokens_overlap(x: str, y: str) -> bool:
-    """Same document, and the slugs share a meaningful token (board-update:investor-updates ~ board-update:september-investor-update)."""
-    tx = {w for w in x.split("-") if len(w) >= 5}
-    ty = {w for w in y.split("-") if len(w) >= 5}
+    """The slugs share a meaningful token (hiring-req:backend ~ hiring-req:backend-engineer), ignoring generic words."""
+    tx = {w for w in x.replace(":", "-").split("-") if len(w) >= 5 and w not in _GENERIC_TOKENS}
+    ty = {w for w in y.replace(":", "-").split("-") if len(w) >= 5 and w not in _GENERIC_TOKENS}
     return bool(tx & ty)
 
 
+def _is_prefix(x: str, y: str) -> bool:
+    """One slug extends the other with more hyphenated words (≥ 6 chars of common prefix, no colon qualifier)."""
+    if ":" in x or ":" in y:
+        return False
+    short, long_ = (x, y) if len(x) <= len(y) else (y, x)
+    return len(short) >= 6 and long_.startswith(short + "-")
+
+
+def _is_subtopic(x: str, y: str) -> bool:
+    """series-a vs series-a:cap-table: the qualifier names a distinct sub-topic of the same thing."""
+    return x.startswith(y + ":") or y.startswith(x + ":")
+
+
 class AboutMerger:
-    def __init__(self, fuzzy_ratio: float = 0.85):
+    def __init__(self, fuzzy_ratio: float = 0.85, generic_entities: set[str] | None = None):
         self.threshold = fuzzy_ratio * 100
         self.keys: dict[str, _Key] = {}
+        # entities too common to link topics: Avery, the company, the internal team (compute fills this in)
+        self.generic_entities: set[str] = set(generic_entities or ())
 
     def add(self, key: str, entities: set[str] | None = None, messages: set[str] | None = None) -> str:
         k = self.keys.get(key)
@@ -74,9 +93,15 @@ class AboutMerger:
             return "singleton-kind"  # one board update is ever in play; every spelling of it is the same item
         if a.kind in _SPECIFIC_KINDS and _tokens_overlap(a.slug, b.slug):
             return "same-kind-token"
-        if (a.entities & b.entities) and (a.messages & b.messages):
+        if _is_prefix(a.slug, b.slug):
+            return "slug-prefix"  # deal:aperture ~ deal:aperture-capital, report:soc-2 ~ report:soc-2-type-ii
+        if _is_subtopic(a.slug, b.slug) and a.kind not in _SPECIFIC_KINDS:
+            return None  # deal:series-a never swallows deal:series-a:cap-table; rollout:halberd may absorb rollout:halberd:oct-6
+        ents = (a.entities & b.entities) - self.generic_entities
+        msgs = {m for m in (a.messages & b.messages) if not m.startswith(("note:", "task:", "event:"))}  # notes mention everything
+        if ents and msgs:
             return "shared-entity-and-evidence"
-        if (a.messages & b.messages) and _tokens_overlap(a.slug, b.slug):
+        if msgs and _tokens_overlap(a.slug, b.slug):
             return "shared-evidence-and-token"
         return None
 

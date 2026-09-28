@@ -298,7 +298,10 @@ def commitments(ci: ComputeInputs) -> list[Candidate]:
         elif bucket == "today":
             out.append(_mk("commitment_due", about, who, {**base, "due_today": True}, [c.evidence]))
         in_tasks = about in task_abouts or about in todo_abouts or any(fuzz.token_set_ratio(fold(c.what), fold(t)) >= 80 for t in task_titles)
-        if not in_tasks:
+        # the profile's target is "I'll send that by Friday" hiding in a thread: a dated promise, or any promise to
+        # someone outside the team. Undated soft promises to teammates ("will circle back") are not tracked here.
+        external = counterpart is None or counterpart.relationship.category not in ("team", "unresolved")
+        if not in_tasks and (due is not None or external):
             out.append(_mk("commitment_not_in_tasks", about, who, {**base, "in_tasks": False}, [c.evidence]))
     return out
 
@@ -619,6 +622,8 @@ def approvals(ci: ComputeInputs) -> list[Candidate]:
     for x in ci.extractions:
         if x.type == "automated" and isinstance(x.payload, Automated) and x.payload.action_bearing:
             a = x.payload
+            if a.action_kind == "security" and slugify(a.system) in ("github", "dependabot", "ci", "github-actions", "snyk"):
+                continue  # engineering owns dev-tool security alerts (data_generation §6: DocuSign action vs GitHub FYI)
             t = ci.threads.get(x.source_id)
             when = t.messages[-1].sent_at if t else None
             about = ci.canon(a.about) if a.about else f"approval:{slugify(a.system)}"
