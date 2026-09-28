@@ -43,7 +43,10 @@ Dev anchor is decided: **2026-09-24** (Thursday, day 30; day 1 = Wed 2026-08-26;
 3. **Manifest emitter**: build `eval.manifest_schema.Manifest` from world + labels + expectations (items with `expected` extraction, contacts, about-key merge pairs, run-day expectations, assertions, variants, sim_avery answers) → `eval/manifests/<world>.yaml`.
 4. **Validator (§9)**, run by `digest generate` and refusing on failure: every `must_include` verbatim; every `In-Reply-To` resolves; timestamps in-window with correct offsets; every label references an existing source id; no label words in prose; no gendered pronouns for Avery or Sam (check sentences that mention either); category counts within ±10%; any `reviewed: false` storyline blocks generation.
 5. `generator/cli.py: generate(world, anchor, seed)` implemented; reproducible from world files + prose + seed.
-Acceptance: validator passes; ~490–520 `.eml`; both `.ics` load; the manifest validates; `uv run pytest` green.
+
+**Two passes, because the repo is submitted the morning of 2026-09-29:**
+- **Pass 1 (for the submission):** every storyline thread (S1–S16, all beats), every planted pattern (TalentBridge ×3, the injection email, the expense reports, the Stripe payout), every must-not and classification case, the S5/S13-attachable newsletters plus the EU AI Act decoy, all 10 notes, the 5 tasks, both calendars. Background filler only as far as time allows; scale the category targets in `background.yaml` to what pass 1 renders so the ±10% count check is meaningful, and record the reduced counts in the manifest `meta.counts`. Acceptance: validator passes; the manifest validates; `uv run pytest` green.
+- **Pass 2 (walkthrough week):** fill the background to ~490–520 `.eml` at ~20 per weekday and ~6 per weekend day; restore the full category targets.
 
 **Later (M8):** `world/heldout/` with a different anchor, the same trap *types* in different disguises and, where possible, different names. Do it in a fresh session. Never tune it to results.
 

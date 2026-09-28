@@ -2,6 +2,8 @@
 
 You are building **the product**: `digest/` and its prompts. The design is frozen; implement it.
 
+**Deadline:** the repo is submitted the morning of 2026-09-29. For the submission you must reach **M5**: `digest run` producing a real digest end to end, on `tests/fixtures/mini` at minimum and on `data/dev` when it lands. Prefer a working, honest pipeline over a complete one: if a stage is thin, make it degrade visibly (header note, `ctx.degrade`) rather than stop. M7–M9 wait for the walkthrough week.
+
 ## Read first, in this order
 1. `CLAUDE.md` (golden rules; the addendum at the bottom).
 2. This file.

@@ -42,12 +42,9 @@ Options: full ~500 emails · minimum ~150. Cost is now session time, not API spe
 
 Every `expectations:` block in `world/dev/storylines/*.yaml` needs `reviewed: true` from Shubham before `digest generate` will run. Nothing to decide yet; this is a reminder that it is the largest single block of Shubham's time (~1–2 h of careful reading).
 
-### 5. Walkthrough date — sets the cut line
-
-CLAUDE.md says: if time runs short, shrink the held-out world and M9 first, never eval. Knowing the date (or the day the repo must be shared) decides how much of M8/M9 is realistic.
-
 ## Decided
 
+- **2026-09-28 · deadline:** the repo is submitted the morning of 2026-09-29; the walkthrough is the following week. Cut line recorded in CLAUDE.md ("Deadline") and `docs/handoffs/STATUS.md`. Building continues after submission until the walkthrough.
 - **2026-09-28 · dev anchor = 2026-09-24** (Thursday = day 30; day 1 = 2026-08-26; run days Sun 20 – Thu 24 Sept; all PDT, no DST crossing). `world/dev/world.yaml` carries `anchor: 2026-09-24`; `digest generate --anchor` overrides. Held-out anchor is decided separately at M8.
 - **2026-09-28 · OpenRouter key limit:** Shubham raises it; not a build concern. Cost is still logged per run.
 - **2026-09-28 · commit policy (a):** each track session commits its own paths at milestone ends with a `[A-product]` / `[B-data]` / `[C-grader]` prefix; the orchestrator commits foundation, integration and docs; never `git add -A`; stagger commits if sessions run at the same moment.
