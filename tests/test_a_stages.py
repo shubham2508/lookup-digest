@@ -196,3 +196,17 @@ def test_stale_inbox_qualifies_reduced_items_too():
     qualify_reduced(SimpleNamespace(items=[quiet, news]), {"email": stale})
     assert "may be a sync gap" in quiet.why.lower() and "Tue 18:00" in quiet.why
     assert news.why == "Price cut on Oct 1."
+
+
+def test_third_morning_says_third_time_flagged():
+    from types import SimpleNamespace
+
+    from digest.pipeline import frame_escalation
+
+    flat = SimpleNamespace(id="i1", what="Send the index", why="Promised Monday.")
+    framed = SimpleNamespace(id="i2", what="Reply to Oren", why="Still waiting after four days.")
+    fresh = SimpleNamespace(id="i3", what="Approve expenses", why="Three reports.")
+    by_item = {"i1": SimpleNamespace(times_surfaced=2), "i2": SimpleNamespace(times_surfaced=3), "i3": SimpleNamespace(times_surfaced=1)}
+    frame_escalation(SimpleNamespace(items=[flat, framed, fresh]), by_item)
+    assert flat.why == "Promised Monday. Third time flagged."
+    assert framed.why == "Still waiting after four days." and fresh.why == "Three reports."

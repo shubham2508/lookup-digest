@@ -65,7 +65,7 @@ def answer(question_id: str, option: int, world: str, settings: Settings | None 
     if item["options"] and not 1 <= option <= len(item["options"]):
         raise NoSuchQuestion(f"{question_id.upper()} has {len(item['options'])} options; {option} is out of range")
     created = now or datetime.now(ZoneInfo(settings.timezone)).replace(microsecond=0)
-    ruling = make_ruling(question_id.upper(), option, item, action.get("text", ""), created)
+    ruling = make_ruling(question_id.upper(), option, item, action.get("text", ""), created, digest_day=run_dir.name[:10])
     ruling["run_dir"] = str(run_dir)
     save_ruling(rulings_path(world, settings), ruling)
     with Store(ROOT / settings.store.path_template.format(world=world)) as st:

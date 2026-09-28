@@ -60,6 +60,7 @@ def test_rulings_roundtrip_and_matching(tmp_path):
     item = {"about": "rollout:northstar", "entities": ["tomas-reyes"], "candidate_types": ["reply_owed"], "question": "Northstar forward?",
             "options": ["renewal risk", "billing: delegate", "FYI"]}
     r = make_ruling("Q1", 2, item, "Q1 · Northstar forward?", datetime.fromisoformat("2026-09-24T06:10:00-07:00"))
+    assert make_ruling("Q1", 1, item, "", datetime.fromisoformat("2026-09-28T13:00:00-07:00"), digest_day="2026-09-21")["id"] == "R-20260921-Q1"
     assert r["id"] == "R-20260924-Q1" and r["ruling"] == "billing: delegate" and r["scope"] == {"about": "rollout:northstar", "contact": "tomas-reyes", "thread_kind": "reply_owed"}
     save_ruling(path, r)
     save_ruling(path, dict(r, ruling="changed"))     # same id → replaced, not duplicated

@@ -125,8 +125,10 @@ def record_items(store: Store, run_id: str, reduced: dict[str, ReduceItem], comp
     return n
 
 
-def make_ruling(question_id: str, option: int, item: dict, action_text: str, created: datetime) -> dict:
-    """A ruling from an answered card: scope = the item's about key + first contact entity + candidate type."""
+def make_ruling(question_id: str, option: int, item: dict, action_text: str, created: datetime, digest_day: str | None = None) -> dict:
+    """A ruling from an answered card: scope = the item's about key + first contact entity + candidate type. The id
+    carries the digest's date (Q1 exists every morning), not the wall clock: a simulated week answered in one sitting
+    must not overwrite Monday's Q1 with Tuesday's."""
     options = item.get("options") or []
     chosen = options[option - 1] if 1 <= option <= len(options) else f"option {option}"
     scope = {"about": item.get("about")}
@@ -134,6 +136,7 @@ def make_ruling(question_id: str, option: int, item: dict, action_text: str, cre
         scope["contact"] = item["entities"][0]
     if item.get("candidate_types"):
         scope["thread_kind"] = item["candidate_types"][0]
-    return {"id": f"R-{created.strftime('%Y%m%d')}-{question_id}", "scope": scope, "ruling": chosen, "option_chosen": option,
+    day = (digest_day or created.strftime("%Y-%m-%d")).replace("-", "")
+    return {"id": f"R-{day}-{question_id}", "scope": scope, "ruling": chosen, "option_chosen": option,
             "from_question": question_id, "question": item.get("question") or action_text, "created": created.isoformat(),
             "expires": (created + timedelta(days=RULING_TTL_DAYS)).isoformat()}

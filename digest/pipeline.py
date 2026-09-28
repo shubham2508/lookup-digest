@@ -3,6 +3,7 @@ milestones append compute → triage → reduce → compose → materialize → 
 model output or a broken source: it degrades and records why (CLAUDE.md rule 5, DESIGN_LOG §4.4)."""
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
@@ -93,6 +94,21 @@ def qualify_for_freshness(composed: ComposeResult, by_item: dict, cands: dict, f
         add = _freshness_qualifiers(set(it.candidate_types), ci.why, freshness)
         if add:
             ci.why = (ci.why.rstrip() + " " + " ".join(add)).strip()
+
+
+_ORDINAL = {2: "Second", 3: "Third", 4: "Fourth", 5: "Fifth", 6: "Sixth", 7: "Seventh", 8: "Eighth"}
+_ESCALATED = re.compile(r"\b(again|still|flagged|(second|third|fourth|fifth|sixth|seventh|eighth|\d+(st|nd|rd|th)) time)\b", re.I)
+
+
+def frame_escalation(composed: ComposeResult, by_item: dict) -> None:
+    """Triage's rule 'escalate framing when times_surfaced >= 2', enforced in code: compose rewrites the why and can
+    drop it. An item shown on two earlier mornings says so on the third."""
+    for ci in composed.items:
+        it = by_item.get(ci.id)
+        if it is None or it.times_surfaced < 2 or _ESCALATED.search(f"{ci.what} {ci.why}"):
+            continue
+        n = it.times_surfaced + 1
+        ci.why = f"{ci.why.rstrip()} {_ORDINAL.get(n, f'{n}th')} time flagged.".strip()
 
 
 def _decider(llm: LLM, settings: Settings, ctx: RunContext):
@@ -246,6 +262,7 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
         if cstats.fallback:
             stage_notes.append("compose fell back to triage order")
         qualify_for_freshness(composed, by_item, cands, norm.freshness, as_of_dt)
+        frame_escalation(composed, by_item)
 
         with ctx.timed("materialize"):
             actions, mstats = materialize(llm, composed, by_item, cands, comp, profile.config, settings, ctx, overrides)
