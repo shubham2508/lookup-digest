@@ -15,13 +15,35 @@ def _todo(what: str, track: str, milestone: str) -> None:
 
 
 def run(
-    world: str = typer.Option("dev", "--world", help="dev | heldout"),
+    world: str = typer.Option("dev", "--world", help="dev | heldout | a path such as tests/fixtures/mini"),
     as_of: str = typer.Option(None, "--as-of", help="YYYY-MM-DDTHH:MM in PT; default now"),
     customize: Path = typer.Option(None, "--customize", help="profile/customize/<x>.md"),
     variant: str = typer.Option(None, "--variant", help="stale_inbox | no_notes | corrupt_ics"),
 ) -> None:
     """Produce the digest for a world as of a timestamp."""
-    _todo("digest run", "Track A", "M5")
+    from .ingest import DataMissing
+    from .pipeline import run_pipeline
+
+    if customize is not None:
+        typer.echo("digest run: --customize is accepted but ignored until M7 (Track A).")
+    try:
+        result = run_pipeline(world, as_of, variant=variant, customize=customize)
+    except DataMissing as e:
+        typer.echo(f"digest run: {e}. Generate the world first (digest generate --world {world}).")
+        raise typer.Exit(2) from None
+    s = result.summary
+    typer.echo(f"run {s['run_id']}: as of {s['as_of']} · {result.freshness_line}")
+    typer.echo(f"  owner={s['owner_email']} threads={s['threads']} messages={s['messages']} "
+               f"(forwarded {s['forwarded_messages']}) events={s['events']} notes={s['notes']} tasks={s['tasks']}")
+    ex = s["extract"]
+    typer.echo(f"  extractions={s['extractions']} llm_calls={ex['llm_calls']} cached={ex['cached']} "
+               f"marketing_skipped={ex['skipped_marketing']} invalid={ex['invalid']} "
+               f"evidence={ex['evidence_valid']}/{ex['evidence_checked']} dropped={ex['evidence_dropped']} "
+               f"replaced={ex['evidence_replaced']}")
+    typer.echo(f"  cost_usd={s['cost_usd']:.6f} degradations={s['degradations']} artifacts={result.ctx.run_dir}")
+    typer.echo(f"digest run: stages {', '.join(result.pending_stages)} not implemented yet (Track A, M4/M5); "
+               f"wrote {result.ctx.path('extractions').name}.")
+    raise typer.Exit(NOT_IMPLEMENTED_EXIT)
 
 
 def answer(

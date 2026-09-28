@@ -1,0 +1,223 @@
+# profile.yaml — compiled from profile.md by prompts/profile_compiler.md (architecture §5.1).
+# Review this file; the tool never edits profile.md. Delete it to force a recompile.
+person: Avery Chen
+company: Tessera
+timezone: America/Los_Angeles
+contacts:
+- name: Sam Park
+  emails: []
+  role_at_org: null
+  category: family
+  subtype: partner
+  tier: P0
+  tier_condition: null
+  rules:
+  - never_draft
+  notes: Sam Park (partner) — anything from Sam is P0. Personal.
+- name: Priya Iyer
+  emails: []
+  role_at_org: null
+  category: team
+  subtype: cofounder
+  tier: P0
+  tier_condition: null
+  rules:
+  - email_means_intentional
+  notes: Priya Iyer (co-founder, CTO) — P0. We talk constantly. If she emails instead of slacks, it's intentional
+    and important.
+- name: Marcus Webb
+  emails: []
+  role_at_org: null
+  category: capital
+  subtype: lead_investor
+  tier: P0
+  tier_condition: during the raise
+  rules: []
+  notes: Marcus Webb (Series A lead at Inflection Point Ventures) — P0 during the raise. I do not miss replies to
+    Marcus.
+- name: Diane Okafor
+  emails: []
+  role_at_org: null
+  category: capital
+  subtype: board
+  tier: P1
+  tier_condition: null
+  rules:
+  - quarterly_update_owed
+  notes: Diane Okafor (board member, prior seed lead) — P1. She's patient but I owe her quarterly updates and don't
+    always send them.
+- name: Jordan Liu
+  emails: []
+  role_at_org: null
+  category: team
+  subtype: head_of_eng
+  tier: P1
+  tier_condition: null
+  rules:
+  - escalation_rare_listen
+  notes: Jordan Liu (Head of Eng) — P1. He escalates rarely; when he does, listen.
+- name: Tomás Reyes
+  emails: []
+  role_at_org: null
+  category: team
+  subtype: head_of_gtm
+  tier: P1
+  tier_condition: null
+  rules:
+  - find_the_one_thing
+  notes: Tomás Reyes (Head of GTM) — P1. He emails too much. Look for the one thing that actually matters in each
+    thread.
+- name: Ben Schaffer
+  emails: []
+  role_at_org: null
+  category: capital
+  subtype: deal_counsel
+  tier: P0
+  tier_condition: during the raise; P2 otherwise
+  rules: []
+  notes: Ben Schaffer (lawyer, Wilson Sonsini) — P0 during the raise, P2 otherwise.
+- name: null
+  emails: []
+  role_at_org:
+    role: procurement lead
+    orgs:
+    - Halberd Manufacturing
+    - Northstar Foods
+    - Veritas Components
+  category: customer
+  subtype: reference
+  tier: P1
+  tier_condition: null
+  rules:
+  - same_day_reply
+  notes: The procurement leads at Halberd Manufacturing, Northstar Foods, and Veritas Components — our three reference
+    customers. Anything from them is P1 and gets a same-day reply, period.
+- name: null
+  emails: []
+  role_at_org:
+    role: recruiter cold-emailing me
+    orgs: []
+  category: cold_inbound
+  subtype: recruiter
+  tier: null
+  tier_condition: null
+  rules:
+  - never_draft
+  - recruiter_pattern_only
+  - no_surface_individual
+  notes: Recruiters cold-emailing me — P4. Don't draft replies. Don't surface them unless three+ from the same firm
+    in a week, then surface as a pattern, not as individual threads.
+facts:
+- subject: headcount
+  value: 12-person
+- subject: business_type
+  value: B2B SaaS company
+- subject: market
+  value: mid-market manufacturers
+- subject: product
+  value: supply-chain visibility
+- subject: ARR
+  value: ~$3.2M
+- subject: seed_raised
+  value: $6M
+- subject: seed_when
+  value: 14 months ago
+- subject: stage
+  value: early phase of a Series A raise
+- subject: runway
+  value: okay but not comfortable
+- subject: location
+  value: Oakland
+- subject: family
+  value: my partner Sam and our 4-year-old, Wren
+- subject: prior_company
+  value: the first one sold to a logistics incumbent in 2020 for not very much
+- subject: open_reqs
+  value: hiring two engineers and a designer
+- subject: reference_customers
+  value: Halberd Manufacturing, Northstar Foods, and Veritas Components
+thresholds:
+  investor_quiet_business_days: 3
+  hiring_stall_days: 5
+  recruiter_pattern:
+    count: 3
+    window_days: 7
+blocks:
+- days:
+  - TUE
+  - THU
+  start: 09:00
+  end: '11:00'
+read_windows:
+- 06:15-06:45
+- 12:30-13:00
+- after Wren is asleep
+standing_topics:
+- supply-chain visibility
+- mid-market manufacturers
+- B2B SaaS
+- Series A raise
+- ARR
+- runway
+- hiring engineers and a designer
+- reference customers
+judgment_rules:
+- '- I read email between 6:15-6:45am, then 12:30-1pm, then once after Wren is asleep.'
+- '- Anything that arrives outside those windows can wait.'
+- '- I batch reply. I almost never reply in real time.'
+- '- I block 9-11am Tue/Thu for deep work. Anyone scheduling over that block without asking is doing something wrong,
+  and I want to know.'
+- '- Quiet investor threads. If Marcus or another VC went quiet, I want to know after three business days, not three
+  weeks.'
+- '- Customer health signals buried in support threads. If Halberd''s procurement lead is suddenly quieter, that''s
+  a flag.'
+- '- Calendar collisions involving Wren''s daycare, doctor appointments, or anything Sam put on our shared calendar.
+  Family first. Always.'
+- '- Promises I made in email and didn''t put on a todo list. "I''ll send that by Friday" hiding in a Tuesday thread.'
+- '- Hiring loops that have stalled. We''re hiring two engineers and a designer; if a candidate is mid-loop and
+  nobody has moved them in 5+ days, that''s on me.'
+digest_prefs:
+- 'A great digest answers three questions in under 90 seconds of reading:'
+- 1. **What needs me today?** Not what's interesting. Not what's new. What requires *my* judgment, *my* signature,
+  *my* reply, before end of day.
+- 2. **What am I about to drop?** Threads that have gone quiet on my end. Calendar conflicts I haven't resolved.
+  Decisions I deferred and forgot.
+- 3. **What can I dispatch right now?** Replies under 3 sentences. Quick yes/no approvals. Calendar accepts/declines.
+  Drafts you can write *for* me and I just send.
+- A bad digest tells me about my own calendar like I haven't seen it, summarizes threads I just sent, or pretends
+  a marketing newsletter is news.
+- '- Newsletters. Even the good ones. Even Stratechery. I''ll read them when I want to.'
+- '- Calendar invites I already accepted. I don''t need a reminder that I have a meeting at 2pm; my calendar app
+  does that.'
+- '- Marketing emails from SaaS tools, even ones we pay for.'
+- '- Long threads where I''ve already had the last word and nobody else has replied.'
+- '- Anything where the only "action" is "FYI."'
+- '- If the inbox data is older than 24 hours, say so.'
+- '- If you can''t tell whether a thread is urgent, say "I''m not sure" and show me the thread.'
+- '- If you drafted a reply based on assumptions, flag the assumptions.'
+- '- If two sources disagree (e.g., calendar says I''m meeting Marcus Friday but email says we moved to Monday),
+  tell me — don''t pick one and hide it.'
+- Pacific time. My day starts at 6am. The digest runs at 6:00am sharp. "Today" in the digest means today's calendar
+  plus anything that needs a reply before midnight Pacific.
+tone:
+- '- Short. Lowercase greetings or none at all. Sign off with "Avery" or nothing.'
+- '- No "I hope this email finds you well." No "circling back." No "just wanted to."'
+- '- Direct but not cold. Warmth comes from specificity, not adjectives. "Thanks for the rev share on Halberd, that''s
+  the thing I wanted" beats "Thanks so much!!"'
+- '- For investors during the raise, slightly more polished. Still short.'
+- '- For Sam: don''t draft. Surface and let me write.'
+hard_rules:
+  never_draft_for:
+  - Sam Park
+  - Recruiters cold-emailing me
+  no_newsletter_items: true
+  recruiter_pattern_only: true
+  cite_everything: true
+  flag_stale_email_hours: 24
+_meta:
+  source: /Users/shubham/Desktop/work/lookup-digest/profile/profile.md
+  source_hash: d8ff5a83e3d944d3
+  prompt_version: profile_compiler@v2
+  model: openai/gpt-6-luna
+  compiled_at: '2026-09-28T08:11:17+00:00'
+  note: Compiled from profile.md for review. Hand edits are kept until profile.md changes (source_hash).

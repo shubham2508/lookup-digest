@@ -16,10 +16,18 @@ def test_help_lists_every_command():
 
 
 def test_stubs_say_not_implemented():
-    for args in (["run"], ["generate"], ["eval"], ["simulate"], ["baseline"], ["answer", "Q1", "2"]):
+    # eval / simulate are implemented (Track C, M6); their CLI tests live in tests/test_c_report.py
+    for args in (["generate"], ["baseline"], ["answer", "Q1", "2"]):
         r = runner.invoke(app, args)
         assert r.exit_code == NOT_IMPLEMENTED_EXIT, (args, r.output)
         assert "not implemented" in r.output and "Track" in r.output
+
+
+def test_run_without_data_says_so():
+    """`run` is real since A M3; with no generated world it must say so instead of crashing (exit 2)."""
+    r = runner.invoke(app, ["run", "--world", "data/_no_such_world"])
+    assert r.exit_code == 2, r.output
+    assert "no data directory" in r.output and "digest generate" in r.output
 
 
 def test_db_init_creates_store():
