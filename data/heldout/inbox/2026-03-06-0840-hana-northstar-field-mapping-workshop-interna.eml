@@ -1,0 +1,25 @@
+Message-ID: <20260306-0840.hana@tessera.io>
+Date: Fri, 06 Mar 2026 08:40:07 -0800
+From: Hana Okada <hana@tessera.io>
+To: Jordan Liu <jordan@tessera.io>, Arjun Rao <arjun@tessera.io>
+Cc: Avery Chen <avery@tessera.io>, =?utf-8?q?Tom=C3=A1s?= Reyes <tomas@tessera.io>, Carmen Ortiz <carmen@tessera.io>
+Subject: Northstar field-mapping workshop - internal notes
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Internal notes from yesterday's field-mapping workshop at Fresno (Rosa Jimenez + two planners; Arjun on for the first hour). Elise has already said there are no open questions on their side, so this is just for us.
+
+Output:
+- [x] Mapping table v1: 38 fields across DELVRY03 and WHSCON, committed as connectors/sap/mappings/northstar-fresno.yaml. Arjun's loader validated it on the first try, which the planners found very funny for reasons I don't fully understand.
+- [x] Two fields the planners said they never look at (LIFEX, TRAID) dropped from the shift board view, kept in the export.
+- [ ] Plant codes for both Fresno lines: Rosa sends them by **Tue Mar 10**. Until then the fixtures use "FRS1"/"FRS2".
+- [ ] Units: their SAP stores case counts, their board shows pallets. Conversion factor per SKU lives in a table Rosa maintains; she'll send it with the plant codes. Arjun: this is a mapping-table entry, not code.
+- [ ] Carmen: the 31 sandbox fixtures are now annotated with what each one should produce on the board; in the shared drive under Northstar / fixtures.
+
+Timeline unchanged: parallel run **Mar 30-31**, live **Wed Apr 1**.
+
+One human note: Rosa asked whether the board could show "the truck is here" as an event. It can't today, it's a good idea, and I've put it in the ideas list rather than the go-live scope.
+
+Hana Okada
+Solutions Engineering, Tessera

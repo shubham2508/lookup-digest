@@ -1,0 +1,22 @@
+Message-ID: <20260317-1425.jordan@tessera.io>
+Date: Tue, 17 Mar 2026 14:25:15 -0700
+From: Jordan Liu <jordan@tessera.io>
+To: Carmen Ortiz <carmen@tessera.io>
+Cc: Hana Okada <hana@tessera.io>, Avery Chen <avery@tessera.io>, Arjun Rao <arjun@tessera.io>
+Subject: Re: QA plan for the Northstar cutover - nightly smoke suite + go/no-go criteria
+In-Reply-To: <20260317-1340.carmen@tessera.io>
+References: <20260317-1340.carmen@tessera.io>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Carmen,
+
+Good. Two additions to the smoke set, then this is the plan:
+
+- The CSV export path with a two-plant-code fixture; the planners export every morning and it is the first thing they will look at.
+- The shift-board date picker in the evening hours (17:00-24:00 PT), since the planners' second shift will be the first real users.
+
+Impact if either breaks: annoying, not blocking, but I would rather know Monday than Wednesday. Hana, please put the go/no-go criteria into runbook v2 as written.
+
+Jordan

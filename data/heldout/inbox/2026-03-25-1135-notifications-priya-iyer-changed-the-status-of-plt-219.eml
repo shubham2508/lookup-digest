@@ -1,0 +1,21 @@
+Message-ID: <20260325-1135.notifications@linear.app>
+Date: Wed, 25 Mar 2026 11:35:16 -0700
+From: Linear <notifications@linear.app>
+To: Avery Chen <avery@tessera.io>
+Subject: Priya Iyer changed the status of PLT-219 to Done
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Priya Iyer changed the status from In Review to Done
+
+PLT-219 · GPU pool autoscaler: scale to a lower floor off-hours
+Project: Platform reliability · Cycle 8
+Assignee: Priya Iyer
+
+shipped. floor is 4 nodes 22:00-06:00, 6 otherwise. watching the morning ramp for a week.
+
+View issue: https://linear.app/tessera/issue/PLT-219
+
+--
+You are receiving this because you are subscribed to this issue. Manage notifications: https://linear.app/tessera/settings/notifications

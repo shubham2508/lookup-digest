@@ -1,0 +1,27 @@
+Message-ID: <20260304-1020.newsletter@vercel.com>
+Date: Wed, 04 Mar 2026 10:20:39 -0800
+From: Vercel <newsletter@vercel.com>
+To: Avery Chen <avery@tessera.io>
+Subject: Vercel this month: Fluid compute pricing, AI Gateway GA, and Ship 2026 dates
+List-Unsubscribe: <mailto:unsubscribe@vercel.com?subject=unsubscribe>, <https://vercel.com/u/16ed9bad>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Vercel Newsletter - March 2026
+
+Fluid compute pricing
+Functions now bill on active CPU time rather than wall-clock duration. For most apps that wait on databases and APIs, that means a lower bill with no code change. See the pricing page for details.
+
+AI Gateway is generally available
+One endpoint, every major model provider, with automatic failover, spend limits and per-model usage reports. Bring your own keys or use ours.
+
+Ship 2026
+Our annual conference is June 24, New York and online. Registration opens next month.
+
+Also this month: Next.js 16.2 with faster builds, a new observability dashboard for edge requests, and Vercel Agent in preview.
+
+Read the full changelog: https://vercel.com/changelog
+
+Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723. Unsubscribe: https://vercel.com/e/u/9ppz

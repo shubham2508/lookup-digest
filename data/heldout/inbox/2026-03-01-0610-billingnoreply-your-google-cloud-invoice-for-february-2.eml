@@ -1,0 +1,30 @@
+Message-ID: <20260301-0610.billingnoreply@google.com>
+Date: Sun, 01 Mar 2026 06:10:50 -0800
+From: Google Cloud Billing <billing-noreply@google.com>
+To: Avery Chen <avery@tessera.io>
+Subject: Your Google Cloud invoice for February 2026 is available
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Google Cloud
+
+Your invoice for billing account Tessera Production (01A2B3-C4D5E6-F7G8H9) is now available.
+
+Invoice number: 4471820933
+Invoice date: Mar 1, 2026
+Billing period: Feb 1 - Feb 28, 2026
+Amount due: $38,214.67
+Payment: charged automatically to the payment method on file
+
+Top services this period
+  Compute Engine (GPU reserved capacity)      $24,880.00
+  Compute Engine (general purpose)             $6,412.19
+  Cloud SQL                                    $3,208.40
+  Cloud Storage and networking                 $2,101.58
+  Other                                        $1,612.50
+
+View invoice: https://console.cloud.google.com/billing/01A2B3-C4D5E6-F7G8H9/history
+
+This is an automated message. Replies are not monitored.
+Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043

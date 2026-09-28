@@ -1,0 +1,24 @@
+Message-ID: <20260316-0930.owen@inflectionpoint.vc>
+Date: Mon, 16 Mar 2026 09:30:25 -0700
+From: Owen Achebe <owen@inflectionpoint.vc>
+To: Priya Iyer <priya@tessera.io>
+Cc: Avery Chen <avery@tessera.io>
+Subject: Data room - folder naming for the technical diligence materials
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi Priya,
+
+Ahead of the technical diligence session, Marcus has asked that the technical materials sit in their own folder so the analysts and our technical advisor are not searching across the room. Could you place them under:
+
+Technical / 01 Architecture (system diagrams, data flow, tenancy model)
+Technical / 02 Security (SOC 2 report, February pen-test summary, policies)
+Technical / 03 Reliability (incident log for the last 12 months, uptime by customer)
+Technical / 04 Roadmap (the H1 plan, in whatever form it is in)
+
+No new documents are needed at this stage; this is only about where the existing ones live. If a different structure makes more sense on your side, that is fine too, as long as it is consistent.
+
+Best regards,
+
+Owen Achebe | Associate | Inflection Point Ventures

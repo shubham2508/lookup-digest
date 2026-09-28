@@ -1,0 +1,22 @@
+Message-ID: <20260323-1605.notifications@linear.app>
+Date: Mon, 23 Mar 2026 16:05:27 -0700
+From: Linear <notifications@linear.app>
+To: Avery Chen <avery@tessera.io>
+Subject: Carmen Ortiz created NS-415
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Carmen Ortiz created a new issue
+
+NS-415 · Dashboard date picker shows UTC on the Fresno tenant
+Project: Northstar SAP connector · Cycle 7
+Assignee: Felix Wagner
+Priority: Medium
+
+Fresno tenant only; the Modesto tenant renders local time correctly. Cosmetic, not in the go-live path; Apr 7 patch. Ticket key for Rosa's report: support #2296.
+
+View issue: https://linear.app/tessera/issue/NS-415
+
+--
+You are receiving this because you are subscribed to the project Northstar SAP connector. Manage notifications: https://linear.app/tessera/settings/notifications

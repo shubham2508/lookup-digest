@@ -1,0 +1,28 @@
+Message-ID: <20260310-1130.hello@inferenceweekly.ai>
+Date: Tue, 10 Mar 2026 11:30:12 -0700
+From: Inference Weekly <hello@inferenceweekly.ai>
+To: Avery Chen <avery@tessera.io>
+Subject: Inference Weekly bulletin: a major API provider is down for most customers (ongoing)
+List-Unsubscribe: <mailto:unsubscribe@inferenceweekly.ai?subject=unsubscribe>, <https://inferenceweekly.ai/u/1328e5d8>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+INFERENCE WEEKLY - BULLETIN
+Tuesday, March 10, 2026, 11:30am Pacific
+
+A short one outside the usual Friday slot because a lot of you are affected.
+
+One of the three frontier API providers has been returning elevated error rates since about 8:40am Pacific. Readers report 30-70% of requests failing with 5xx errors across all model tiers; the batch tier appears unaffected because it is queued. The provider's status page moved from "investigating" to "identified" at 10:15 and says a fix is rolling out region by region. No cause has been given.
+
+What teams are doing, from the replies so far:
+- Those with a routing gateway in front of the API flipped a fallback to a second provider within minutes and are mostly fine, at a higher cost per token.
+- Those calling the API directly are either retrying with backoff and eating the latency or have degraded the feature.
+- Two teams discovered that their fallback path had never been tested and does not work. Both are fixing it live.
+
+If you have a fallback configured, now is when you learn whether it works. If you do not, the cheapest insurance is a gateway with a second provider key, and it takes an afternoon.
+
+We will have the full picture and the provider's post-mortem in Friday's issue. Reply with your experience; anonymized reports help everyone.
+
+Inference Weekly is free and reader-supported. Unsubscribe: https://inferenceweekly.ai/u/x

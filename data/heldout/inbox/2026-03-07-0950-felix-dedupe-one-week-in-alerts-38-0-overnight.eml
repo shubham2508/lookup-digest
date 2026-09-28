@@ -1,0 +1,19 @@
+Message-ID: <20260307-0950.felix@tessera.io>
+Date: Sat, 07 Mar 2026 09:50:39 -0800
+From: Felix Wagner <felix@tessera.io>
+To: Tessera Engineering <eng@tessera.io>
+Cc: Jordan Liu <jordan@tessera.io>, Avery Chen <avery@tessera.io>
+Subject: dedupe one week in: alerts -38%, 0 overnight pages
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+saturday stats, because I was up anyway:
+
+#527 has been live since monday. late-lot alerts sent: 214 vs 347 the week before (-38%). alerts folded: 133. overnight pages: 0. veritas night shift got 4 texts on thursday instead of 19.
+
+no config changes needed, 600s window seems right. lmk if anyone sees a fold that shouldnt have folded.
+
+back to my weekend
+
+Felix

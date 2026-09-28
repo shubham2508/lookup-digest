@@ -1,0 +1,30 @@
+Message-ID: <20260323-0700.issue@computeledger.co>
+Date: Mon, 23 Mar 2026 07:00:47 -0700
+From: Compute Ledger <issue@computeledger.co>
+To: Avery Chen <avery@tessera.io>
+Subject: Compute Ledger #40: a frontier model with a 'flex' tier / 4-bit is the new 8-bit / data-center REITs
+List-Unsubscribe: <mailto:unsubscribe@computeledger.co?subject=unsubscribe>, <https://computeledger.co/u/4425f809>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+COMPUTE LEDGER - Issue 40 - Monday, March 23, 2026
+
+Three things this week.
+
+1. Meridian AI launches Cobalt-4 with a "flex" service tier
+
+The model itself is a solid frontier release, strongest on agentic tool use in our tests. The pricing is the news: a flex tier at 50% of standard price with a stated p99 latency of 30 seconds, aimed at background and agentic jobs that do not have a human waiting. It sits between the interactive tier and the 24-hour batch tier, and it is the first time a lab has priced latency as a dial rather than a switch. Expect the others to copy it by summer.
+
+2. 4-bit weights are now the production default for open models
+
+The two largest hosting providers switched their default open-model deployments to 4-bit quantization this month, after a year of 8-bit. Quality loss on the standard suites is under half a point; throughput roughly doubles. If your vendor is still serving you 16-bit weights and charging you for it, that is a conversation.
+
+3. Data-center REITs report record leasing and warn about 2027
+
+Two of the three largest reported the strongest quarterly leasing in their history and then spent their calls warning that power constraints mean 2027 deliveries will be well below demand. Pre-leasing on 2027 space is already at 80%. The message for anyone planning to rent a lot of compute two years out: the price of that space is being set now, and it is going up, not down.
+
+That is the issue. Reply with tips; we read everything.
+
+Compute Ledger is written by two people in Oakland and supported by readers. Forward it to someone who runs a GPU budget.

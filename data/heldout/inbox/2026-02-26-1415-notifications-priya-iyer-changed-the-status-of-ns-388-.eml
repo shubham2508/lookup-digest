@@ -1,0 +1,19 @@
+Message-ID: <20260226-1415.notifications@linear.app>
+Date: Thu, 26 Feb 2026 14:15:42 -0800
+From: Linear <notifications@linear.app>
+To: Avery Chen <avery@tessera.io>
+Subject: Priya Iyer changed the status of NS-388 to Done
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Priya Iyer changed the status from In Review to Done
+
+NS-388 · IDoc parser: handle repeated E1EDP01 segments in a single message
+Project: Northstar SAP connector · Cycle 6
+Assignee: Priya Iyer
+
+View issue: https://linear.app/tessera/issue/NS-388
+
+--
+You are receiving this because you are subscribed to this issue. Manage notifications: https://linear.app/tessera/settings/notifications

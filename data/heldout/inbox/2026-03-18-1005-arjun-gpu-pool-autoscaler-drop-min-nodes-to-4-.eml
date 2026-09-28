@@ -1,0 +1,26 @@
+Message-ID: <20260318-1005.arjun@tessera.io>
+Date: Wed, 18 Mar 2026 10:05:03 -0700
+From: Arjun Rao <arjun@tessera.io>
+To: Jordan Liu <jordan@tessera.io>
+Cc: Priya Iyer <priya@tessera.io>, Avery Chen <avery@tessera.io>
+Subject: gpu pool autoscaler: drop min nodes to 4 off-hours?
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi Jordan,
+
+Proposal for the GPU pool autoscaler, for your OK before I change anything in production.
+
+Today the pool holds a minimum of 6 on-demand nodes around the clock, on top of the 8 reserved nodes that are always warm. Outside business hours (19:00 to 06:00 PT) the only steady consumer is the Halberd backfill queue, which averaged 2.1 nodes over the last 14 days and peaked at 3.4. I would like to drop the off-hours minimum from 6 to 4 and leave the business-hours minimum alone.
+
+What changes:
+- Off-hours on-demand spend drops by roughly 30 node-hours a night, about $9.6k a month at the current rate.
+- Scale-up latency is the risk: a cold node takes 6 to 8 minutes. The backfill queue tolerates that. The Northstar ingest path does not run on this pool, so it is unaffected.
+- Rollback is a one-line config revert; the steps are in the runbook: https://runbooks.tessera.io/gpu-pool-autoscaler#min-nodes
+
+I have the change staged behind a flag and can ship it tonight if you are fine with it. Priya, cc'ing you since this touches the reserved-pool accounting you and Nora are looking at.
+
+Thanks,
+
+Arjun

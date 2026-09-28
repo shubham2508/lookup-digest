@@ -1,0 +1,23 @@
+Message-ID: <20260310-1550.kofi@tessera.io>
+Date: Tue, 10 Mar 2026 15:50:53 -0700
+From: Kofi Mensah <kofi@tessera.io>
+To: Arjun Rao <arjun@tessera.io>, Felix Wagner <felix@tessera.io>
+Cc: Jordan Liu <jordan@tessera.io>, Avery Chen <avery@tessera.io>
+Subject: PR #538 - export scheduler retry/backoff - merge before or after Carmen's nightly?
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi both,
+
+https://github.com/tessera-io/platform/pull/538
+
+Retries for the nightly scheduled exports: exponential backoff starting at 30s, capped at 10 minutes, five attempts, then the job is marked "failed" with the last error in the export history panel instead of silently not appearing (which is what Coastline hit in February, twice). Approved by Arjun in the PR already, thank you.
+
+Question, and I genuinely don't know the right answer so I'm asking rather than guessing: is it ok to merge today so it goes out with Monday's release, or should I wait for Carmen's nightly regression run tonight and merge tomorrow morning? The suite doesn't cover the scheduler yet, so the nightly wouldn't actually exercise it, but it feels wrong to merge on a Tuesday afternoon before a release without something running against it.
+
+Either is fine by me, I just don't want to be the reason for a Monday surprise.
+
+Thanks!
+
+Kofi

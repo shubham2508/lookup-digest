@@ -1,0 +1,30 @@
+Message-ID: <20260309-0700.issue@computeledger.co>
+Date: Mon, 09 Mar 2026 07:00:51 -0700
+From: Compute Ledger <issue@computeledger.co>
+To: Avery Chen <avery@tessera.io>
+Subject: Compute Ledger #36: agents flip the token mix / a new inference ASIC ships / liquid cooling by default
+List-Unsubscribe: <mailto:unsubscribe@computeledger.co?subject=unsubscribe>, <https://computeledger.co/u/bfc6bcd4>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+COMPUTE LEDGER - Issue 36 - Monday, March 9, 2026
+
+Three things this week.
+
+1. Agentic workloads have inverted the token mix, and the pricing has not caught up
+
+A year ago the typical production workload was 10 input tokens for every output token. Agent loops, with their tool calls and long reasoning traces, run closer to 3 to 1, and for coding agents it is under 2 to 1. Output tokens cost four to five times input tokens at every provider, so the effective price per request has risen even as list prices fell. Three teams told us their per-user model cost doubled in six months with no change in model or list price. If you are budgeting on input-token math, redo it.
+
+2. Lattice Silicon ships its inference ASIC in volume
+
+The chip does one thing: run transformer inference at high batch with 8-bit weights. On the two open models we tested it delivers about 60% of the cost per token of a general-purpose accelerator at equivalent latency. The catch is model support: new architectures take the vendor two to three months to bring up. For stable workloads on stable models it is real; for anyone chasing the latest release it is a liability.
+
+3. Liquid cooling is now the default in new builds
+
+Every data center project announced this quarter at more than 50MW specifies direct-to-chip liquid cooling. Air-cooled halls are being retrofitted or left for CPUs. The knock-on is that a lot of 2021-vintage colocation space is now the wrong shape for AI, which is why colocation rates for AI-ready space are up 30% while general-purpose rates are flat.
+
+That is the issue. Reply with tips; we read everything.
+
+Compute Ledger is written by two people in Oakland and supported by readers. Forward it to someone who runs a GPU budget.

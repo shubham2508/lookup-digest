@@ -1,0 +1,27 @@
+Message-ID: <20260226-0905.hello@linear.app>
+Date: Thu, 26 Feb 2026 09:05:55 -0800
+From: Linear <hello@linear.app>
+To: Avery Chen <avery@tessera.io>
+Subject: Linear Changelog: Customer requests, initiative updates, and a faster mobile app
+List-Unsubscribe: <mailto:unsubscribe@linear.app?subject=unsubscribe>, <https://linear.app/u/543b2844>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+This week in Linear
+
+Customer requests
+Link support conversations and sales calls to issues so your team can see which customers asked for what. Requests roll up by customer and by revenue, so prioritization stops being a guess.
+
+Initiative updates
+Initiative owners can post a short weekly update with a health status. Updates appear in a single feed for leadership and can be sent to Slack automatically.
+
+Mobile
+The iOS and Android apps are rebuilt on a new rendering engine. Issue lists open in half the time and offline edits sync when you're back online.
+
+Also shipped: SLA reminders in triage, a redesigned keyboard shortcut reference, and GitLab merge request linking.
+
+Full changelog: https://linear.app/changelog/2026-02-26
+
+Manage email preferences or unsubscribe: https://linear.app/e/pref/9m1kd

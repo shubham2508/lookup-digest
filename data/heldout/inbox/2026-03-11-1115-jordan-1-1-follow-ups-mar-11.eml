@@ -1,0 +1,22 @@
+Message-ID: <20260311-1115.jordan@tessera.io>
+Date: Wed, 11 Mar 2026 11:15:09 -0700
+From: Jordan Liu <jordan@tessera.io>
+To: Avery Chen <avery@tessera.io>
+Subject: 1:1 follow-ups - Mar 11
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Avery,
+
+Follow-ups from this morning:
+
+- Support triage: two weeks in, engineer time on inbound is down from ~9 h/week to ~3. Ruth's weekly has the numbers. Keeping it.
+- Laptops: ordered Mar 2, ETA the week of the 23rd. Nora has it.
+- Hack day is tomorrow, demos 17:00 in the big room. You're judging; Felix is recording it for the remote folks.
+- Sprint 15 planned this morning; notes to eng list in a minute. Headline is the WHSCON parser and cutover runbook v1.
+- On-call load: Felix raised it this morning, I've replied and I'm folding it into the infra review I'm setting up for the 17th. Nothing for you before then; I'll bring you a proposal after.
+
+That's all from my side.
+
+Jordan

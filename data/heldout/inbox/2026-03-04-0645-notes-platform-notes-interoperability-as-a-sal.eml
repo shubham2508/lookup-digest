@@ -1,0 +1,27 @@
+Message-ID: <20260304-0645.notes@platformnotes.io>
+Date: Wed, 04 Mar 2026 06:45:14 -0800
+From: Platform Notes <notes@platformnotes.io>
+To: Avery Chen <avery@tessera.io>
+Subject: Platform Notes: Interoperability as a sales strategy
+List-Unsubscribe: <mailto:unsubscribe@platformnotes.io?subject=unsubscribe>, <https://platformnotes.io/u/81ce3c53>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+PLATFORM NOTES
+Wednesday, March 4, 2026
+
+Interoperability as a sales strategy
+
+Incumbents defend by closing; challengers attack by opening. This is old, but the current version has a twist worth noting: the challengers are not just opening their own systems, they are building the interoperability their customers wish the incumbent offered, and using it as the wedge.
+
+The mechanics work like this. A mid-market customer runs an incumbent system of record it cannot replace. A challenger arrives with a narrow product that sits beside it, reads from it, and does one thing better. The challenger's connector to the incumbent is better than the incumbent's own export, because the challenger's survival depends on it and the incumbent's does not. Within a year the customer is running reports out of the challenger, because that is where the data is usable. Within two, the challenger is proposing to become the system of record for the next plant, the next region, the next division.
+
+Incumbents see this coming and respond by throttling APIs and charging for exports. It rarely works, because the customer experiences the throttling as the incumbent's fault, which it is, and because there is always a file export, a database replica, or a screen to scrape.
+
+For challengers, the strategic discipline is to resist becoming the system of record too early. The narrow product beside the incumbent is a good business with a short sales cycle. The replacement is a great business with a two-year sales cycle and a services organization. Get to the second by earning it through the first, not by pitching it on day one.
+
+Read on the web: https://platformnotes.io/2026/interoperability
+
+Platform Notes goes out Monday, Wednesday and Friday. Unsubscribe: https://platformnotes.io/u

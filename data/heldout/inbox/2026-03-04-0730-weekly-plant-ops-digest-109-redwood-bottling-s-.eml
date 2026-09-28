@@ -1,0 +1,29 @@
+Message-ID: <20260304-0730.weekly@plantopsdigest.com>
+Date: Wed, 04 Mar 2026 07:30:14 -0800
+From: Plant Ops Digest <weekly@plantopsdigest.com>
+To: Avery Chen <avery@tessera.io>
+Subject: Plant Ops Digest #109: Redwood Bottling's line-4 rebuild, maintenance backlogs, who owns the historian
+List-Unsubscribe: <mailto:unsubscribe@plantopsdigest.com?subject=unsubscribe>, <https://plantopsdigest.com/u/346a7509>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+PLANT OPS DIGEST
+Issue 109 | Wednesday, March 4, 2026
+
+Four items this week.
+
+PLANT OF THE WEEK: Redwood Bottling, Sacramento, CA
+A co-packer rebuilt its slowest line over a single long weekend, replacing a 1998 filler and re-laying the conveyor so the labeler is no longer the bottleneck. Throughput up 35%. The interesting decision was what they did not do: they kept the old PLCs and put a gateway in front of them rather than rip and replace. "We wanted the data, not a new control system," the operations director told us. That sentence is the whole industrial-software market in nine words.
+
+MAINTENANCE BACKLOGS ARE AT A TEN-YEAR HIGH
+A trade association survey puts the average deferred-maintenance backlog at mid-size plants at 14 weeks, up from 9 in 2019. The causes are the usual: a retiring workforce, parts lead times, and capital that went to automation instead. Predictive-maintenance vendors will tell you this is their moment. It might be; it is also why the pilots stall, because the team that would act on the predictions is the team that is 14 weeks behind.
+
+WHO OWNS THE HISTORIAN
+An argument breaking out at several plants we talk to: the process historian was IT's system for twenty years, and now three different software vendors want to read from it, write to it, or replace it. The plants that are handling this well have one person, usually in operations, who owns data access and says yes or no in a week. The ones handling it badly have a committee.
+
+READER QUESTION
+"How much should a scheduling tool cost for a two-line food plant?" Less than the scheduler's salary, more than the ERP module you already own and do not use. If a vendor quotes six figures for two lines, they are pricing the enterprise and hoping you do not notice.
+
+Plant Ops Digest is published every Wednesday. Forward freely. Manage your subscription: https://plantopsdigest.com/manage

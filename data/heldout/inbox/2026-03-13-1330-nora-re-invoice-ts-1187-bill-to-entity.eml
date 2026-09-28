@@ -1,0 +1,39 @@
+Message-ID: <20260313-1330.nora@tessera.io>
+Date: Fri, 13 Mar 2026 13:30:20 -0700
+From: Nora Blake <nora@tessera.io>
+To: Victor Szabo <victor.szabo@northstarfoods.com>
+Cc: Elise Moreau <elise.moreau@northstarfoods.com>, Avery Chen <avery@tessera.io>
+Subject: Re: Invoice TS-1187 - bill-to entity
+In-Reply-To: <20260313-1015.victor.szabo@northstarfoods.com>
+References: <20260313-1015.victor.szabo@northstarfoods.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi Victor,
+
+Reissued, attached. Summary so it is easy to match:
+
+| Field        | Original                 | Corrected                                  |
+|--------------|--------------------------|--------------------------------------------|
+| Invoice no.  | TS-1187                  | TS-1187-R1                                 |
+| Bill to      | Northstar Foods, Inc.    | Northstar Foods Manufacturing LLC (Fresno) |
+| PO reference | 4500218831               | 4500218831                                 |
+| Amount       | $18,750.00               | $18,750.00                                 |
+| Due          | Mar 29, 2026             | Apr 16, 2026                               |
+
+Apologies for the miss on our side; I have corrected the entity on your customer record so future invoices go out right the first time.
+
+Nora Blake
+Operations & Finance | Tessera
+
+On Fri, Mar 13, 2026 at 10:15 AM, Victor Szabo <victor.szabo@northstarfoods.com> wrote:
+> Dear Ms. Blake,
+>
+> Invoice TS-1187 (dated February 27, 2026, amount $18,750.00, PO 4500218831) has been received by Accounts Payable. The invoice is addressed to Northstar Foods, Inc. The purchase order was raised by Northstar Foods Manufacturing LLC (Fresno), and our system will not match an invoice against a PO from a different legal entity.
+>
+> Please reissue the invoice to Northstar Foods Manufacturing LLC, 4410 S. Cedar Avenue, Fresno, CA 93725, keeping the PO reference. Remittance will follow within our standard 30-day terms from the date of the corrected invoice.
+>
+> Regards,
+>
+> Victor Szabo | Accounts Payable | Northstar Foods

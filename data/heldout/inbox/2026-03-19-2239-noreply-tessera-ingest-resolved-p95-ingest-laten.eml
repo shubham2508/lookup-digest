@@ -1,0 +1,26 @@
+Message-ID: <20260319-2239.noreply@md.getsentry.com>
+Date: Thu, 19 Mar 2026 22:39:35 -0700
+From: Sentry <noreply@md.getsentry.com>
+To: Avery Chen <avery@tessera.io>
+Subject: [tessera-ingest] Resolved: p95 ingest latency above 30s for 10 minutes (production)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Sentry
+
+Metric alert: Ingest latency p95 (production)
+Status: Resolved
+Resolved: Mar 19, 2026, 10:39 PM PDT (open for 32 minutes)
+
+p95 ingest latency has been below 30s for 15 minutes. Current value: 2.1s.
+
+Related issue
+  TimeoutError: gateway replay buffer flush exceeded 20s (ingest/replay.py)
+  Marked resolved by Arjun Rao at 10:24 PM PDT (gateway reconnect on the veritas-prod tenant; replay buffer drained).
+
+Environment: production · Project: tessera-ingest
+View alert: https://tessera.sentry.io/alerts/rules/details/2231/
+
+--
+You are receiving this because you are on this alert rule's notification list. Manage alert rules: https://tessera.sentry.io/alerts/rules/

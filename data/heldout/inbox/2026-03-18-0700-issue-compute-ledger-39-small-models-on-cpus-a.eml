@@ -1,0 +1,30 @@
+Message-ID: <20260318-0700.issue@computeledger.co>
+Date: Wed, 18 Mar 2026 07:00:25 -0700
+From: Compute Ledger <issue@computeledger.co>
+To: Avery Chen <avery@tessera.io>
+Subject: Compute Ledger #39: small models on CPUs / a fine-tuning service shuts down / Virginia's grid says no
+List-Unsubscribe: <mailto:unsubscribe@computeledger.co?subject=unsubscribe>, <https://computeledger.co/u/f100c32b>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+COMPUTE LEDGER - Issue 39 - Wednesday, March 18, 2026
+
+Three things this week.
+
+1. Sub-4B models on ordinary CPUs are good enough for a surprising amount of work
+
+We ran the current crop of 1B-4B models on a standard cloud CPU instance with the newest quantized runtimes. Classification, routing, entity extraction and short summarization all ran at 20-40 tokens per second per core with accuracy within two points of the hosted mid-tier models. The cost per million tokens on that hardware is a few cents. If you are paying a hosted provider to classify support tickets, you are probably overpaying by two orders of magnitude.
+
+2. Finetune.dev shuts down; customers have 60 days to export
+
+The fine-tuning-as-a-service startup raised $40M in 2024 and could not make the unit economics work as base models got good enough that fine-tuning became a niche. Customers get their weights back; the hosted endpoints go dark on May 15. This is the third company in the category to close in a year. Fine-tuning is not dead, but the market for it as a standalone product appears to be.
+
+3. A Virginia utility stops accepting new large-load applications
+
+The largest utility in the state's data-center corridor said it will not take new interconnection requests above 100MW until 2028 while it works through the existing queue. Developers are moving to Ohio, Texas and Wyoming. The capacity you rent in 2027 is being sited right now, and it is not in Ashburn.
+
+That is the issue. Reply with tips; we read everything.
+
+Compute Ledger is written by two people in Oakland and supported by readers. Forward it to someone who runs a GPU budget.

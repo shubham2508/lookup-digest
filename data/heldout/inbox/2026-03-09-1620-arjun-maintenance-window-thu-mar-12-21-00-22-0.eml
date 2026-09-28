@@ -1,0 +1,27 @@
+Message-ID: <20260309-1620.arjun@tessera.io>
+Date: Mon, 09 Mar 2026 16:20:07 -0700
+From: Arjun Rao <arjun@tessera.io>
+To: Tessera Engineering <eng@tessera.io>, Hana Okada <hana@tessera.io>, Ruth Adeyemi <ruth@tessera.io>
+Cc: Avery Chen <avery@tessera.io>, =?utf-8?q?Tom=C3=A1s?= Reyes <tomas@tessera.io>
+Subject: Maintenance window Thu Mar 12, 21:00-22:00 PT - search index rebuild
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi all,
+
+Proposed maintenance window: Thursday, March 12, 21:00-22:00 PT, to rebuild the search index on the new storage class. Jordan has approved it.
+
+What customers will see: lot search and the shift-board filter return "index updating" for roughly 25 minutes in the middle of the window; ingest, alerts and exports are unaffected. No plant we serve runs a shift change in that hour; I checked the three reference plants' shift calendars and Coastline's.
+
+What I need from Hana and Ruth: the usual status-page notice plus an email to the customer contacts, ideally by tomorrow. Text you can paste:
+
+"Tessera will perform scheduled maintenance on Thursday, March 12 from 9:00 to 10:00 pm Pacific. Lot search and board filters may be briefly unavailable; data collection, alerts and exports continue normally. No action is needed."
+
+Rollback: the old index stays warm until Friday noon; switching back is one flag. Steps: https://runbooks.tessera.io/maintenance/search-index-rebuild
+
+Avery, Tomás: FYI only.
+
+Thanks,
+
+Arjun

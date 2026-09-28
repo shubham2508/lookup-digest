@@ -1,0 +1,20 @@
+Message-ID: <20260226-1120.ruth@tessera.io>
+Date: Thu, 26 Feb 2026 11:20:45 -0800
+From: Ruth Adeyemi <ruth@tessera.io>
+To: Hana Okada <hana@tessera.io>
+Cc: Avery Chen <avery@tessera.io>, Jordan Liu <jordan@tessera.io>
+Subject: Updated the 'scheduled export' help macro (CS-2231, CS-2240)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hana,
+
+FYI: I rewrote the "Scheduled export - setup and troubleshooting" macro after two cases this week where customers followed the old text and got stuck.
+
+CS-2231 (Coastline, purchasing mailbox): "we set the export for 02:00 and it never runs" - the old macro didn't say the schedule is in plant-local time, not the browser's. Added a line and a screenshot.
+CS-2240 (Halberd, Line 1 scheduler): "where do I see if last night's export actually ran?" - added the Export history panel steps. Their words: "found it, that panel is hiding in plain sight".
+
+Both cases closed. The macro is in the help center under Exports > Scheduled exports, and I've linked it from the in-app tooltip. No action for anyone; sharing since you send this one to prospects during scoping.
+
+Ruth | Tessera Support

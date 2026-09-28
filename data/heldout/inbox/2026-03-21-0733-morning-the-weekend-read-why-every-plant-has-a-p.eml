@@ -1,0 +1,27 @@
+Message-ID: <20260321-0733.morning@scmorning.co>
+Date: Sat, 21 Mar 2026 07:33:21 -0700
+From: Supply Chain Morning <morning@scmorning.co>
+To: Avery Chen <avery@tessera.io>
+Subject: The Weekend Read: why every plant has a person named Dave who knows where the parts are
+List-Unsubscribe: <mailto:unsubscribe@scmorning.co?subject=unsubscribe>, <https://scmorning.co/u/e19eadc2>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+SUPPLY CHAIN MORNING - THE WEEKEND READ
+Saturday, March 21, 2026
+
+Visit enough mid-size factories and you meet him: the veteran who knows that the bin count on line 4 is always fifty short, that the Tuesday supplier ships on Wednesday, that the machine the system says is available is down every third shift for a reason nobody documented. The name changes; the role does not. Every scheduling and inventory system in the building is, in practice, a suggestion that this person corrects.
+
+The software industry has spent thirty years trying to replace him and has mostly failed, for two reasons. The first is data: his knowledge is exactly the set of facts that never got into the ERP, because entering them was nobody's job. The second is trust: when the system and the veteran disagree, the plant manager sides with the veteran, because the veteran has been right before and the system has not.
+
+The newest wave of plant-floor tools is taking a different approach. Instead of replacing his judgment, they try to capture it: they watch what he overrides, ask why, and feed the answer back. The pitch to the plant manager is not "the system is smarter than Dave"; it is "the system remembers what Dave knows when Dave retires," which is a pitch plant managers, staring at an average workforce age of 51, actually respond to.
+
+Whether this works at scale is the open question of the decade for industrial software. What is clear from the deployments we have seen is that the tools that ship a line-side tablet and a way to say "no, because" get used, and the ones that ship a dashboard for the VP do not.
+
+The full piece, with three case studies: https://scmorning.co/weekend/dave
+
+Back Monday.
+
+Supply Chain Morning is an independent daily brief written in Oakland. Manage your subscription: https://scmorning.co/manage

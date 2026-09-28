@@ -1,0 +1,17 @@
+Message-ID: <20260304-0910.felix@tessera.io>
+Date: Wed, 04 Mar 2026 09:10:37 -0800
+From: Felix Wagner <felix@tessera.io>
+To: Arjun Rao <arjun@tessera.io>
+Cc: Kofi Mensah <kofi@tessera.io>, Jordan Liu <jordan@tessera.io>, Avery Chen <avery@tessera.io>
+Subject: Re: PR #512 - SAP IDoc parser (DELVRY03), mapping-table driven
+In-Reply-To: <20260303-1440.arjun@tessera.io>
+References: <20260303-1440.arjun@tessera.io>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+read all 3. lgtm, approved.
+
+one nit, non blocking: the segment iterator allocs a dict per segment, fine at 40mb but worth a slots class later. left a comment. also the malformed fixture #2 error message says "segement". typo, but customers will see it.
+
+Felix

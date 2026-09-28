@@ -1,0 +1,15 @@
+Message-ID: <20260318-1152.priya@tessera.io>
+Date: Wed, 18 Mar 2026 11:52:02 -0700
+From: Priya Iyer <priya@tessera.io>
+To: Jordan Liu <jordan@tessera.io>
+Cc: Arjun Rao <arjun@tessera.io>, Avery Chen <avery@tessera.io>
+Subject: Re: gpu pool autoscaler: drop min nodes to 4 off-hours?
+In-Reply-To: <20260318-1140.jordan@tessera.io>
+References: <20260318-1005.arjun@tessera.io> <20260318-1140.jordan@tessera.io>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
++1. ship it. keep the reserved 8 warm regardless, we're paying for them either way.
+
+p

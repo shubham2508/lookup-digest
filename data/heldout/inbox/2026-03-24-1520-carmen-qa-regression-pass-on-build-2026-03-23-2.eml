@@ -1,0 +1,31 @@
+Message-ID: <20260324-1520.carmen@tessera.io>
+Date: Tue, 24 Mar 2026 15:20:02 -0700
+From: Carmen Ortiz <carmen@tessera.io>
+To: Jordan Liu <jordan@tessera.io>
+Cc: Avery Chen <avery@tessera.io>, Hana Okada <hana@tessera.io>
+Subject: QA: regression pass on build 2026.03.23-2 - two non-blocking issues (Northstar connector)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Summary: full regression pass on build 2026.03.23-2 (the go-live candidate for the Northstar SAP connector) finished at 14:50. 412 tests run, 410 pass, 2 fail. Both failures are the two issues I mentioned at standup this morning; both are non-blocking; both are in Linear. Nothing needed from anyone outside eng, writing it up so it is in one place.
+
+1) NS-412 - CSV export: plant-code column
+   Severity: S3, non-blocking (cosmetic; data intact)
+   Repro: Reports > Export CSV on a Northstar plant with two plant codes (test fixture "Fresno-2"). The plant_code column is populated on the first row of each shift block and blank on the rest.
+   Cause: the export groups by shift and only writes the group key once; the SAP-sourced rows have the code on every row, so the grouping hides it.
+   Workaround: fill down in Excel, or use the JSON export.
+   Owner: Felix. Fix is a one-liner in the exporter; scheduled for the first post-go-live patch, not the cutover build.
+
+2) NS-415 - Date picker shows UTC on the shift board
+   Severity: S3, non-blocking (confusing; no data loss)
+   Repro: Shift board > date picker, any Fresno line, between 17:00 and 23:59 PT. The picker highlights tomorrow's date while the board shows today's shifts.
+   Cause: the picker widget reads the browser's UTC date; the board correctly uses plant-local. Only the highlight is wrong.
+   Workaround: read the board header, not the picker.
+   Owner: Kofi. Same patch.
+
+Neither issue is in the go-live path: the cutover uses the connector, the ingest queue and the shift board, all green. I re-ran the Northstar smoke suite (88 tests) on the same build after the pass: 88/88.
+
+Next: nightly regression on every build through the freeze. I will only email again if something red shows up.
+
+Carmen Ortiz — QA

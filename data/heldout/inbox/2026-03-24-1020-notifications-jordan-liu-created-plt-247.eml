@@ -1,0 +1,22 @@
+Message-ID: <20260324-1020.notifications@linear.app>
+Date: Tue, 24 Mar 2026 10:20:52 -0700
+From: Linear <notifications@linear.app>
+To: Avery Chen <avery@tessera.io>
+Subject: Jordan Liu created PLT-247
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Jordan Liu created a new issue
+
+PLT-247 · Quillon integration spike (half day): evidence collector API against our staging tenant
+Project: Platform reliability · Cycle 7
+Assignee: Kofi Mensah
+Priority: Medium
+
+Half a day, not a full one. Goal: know before Thursday's demo whether their collector can read our audit log without a custom connector.
+
+View issue: https://linear.app/tessera/issue/PLT-247
+
+--
+You are receiving this because you are subscribed to the project Platform reliability. Manage notifications: https://linear.app/tessera/settings/notifications

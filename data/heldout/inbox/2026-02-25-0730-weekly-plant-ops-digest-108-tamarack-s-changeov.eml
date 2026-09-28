@@ -1,0 +1,29 @@
+Message-ID: <20260225-0730.weekly@plantopsdigest.com>
+Date: Wed, 25 Feb 2026 07:30:51 -0800
+From: Plant Ops Digest <weekly@plantopsdigest.com>
+To: Avery Chen <avery@tessera.io>
+Subject: Plant Ops Digest #108: Tamarack's changeover win, the OEE argument, a scheduler's reader question
+List-Unsubscribe: <mailto:unsubscribe@plantopsdigest.com?subject=unsubscribe>, <https://plantopsdigest.com/u/b4f2ad98>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+PLANT OPS DIGEST
+Issue 108 | Wednesday, February 25, 2026
+
+For people who run plants and the people who sell to them. Four items this week.
+
+PLANT OF THE WEEK: Tamarack Metalworks, Erie, PA
+A 220-person job shop cut average changeover time on its CNC cells from 48 minutes to 19 by doing nothing more sophisticated than filming twenty changeovers and having the operators watch them together. The software they bought afterward to schedule around the new times was, in the plant manager's words, "the easy part." We visited; the whiteboard is still there.
+
+THE OEE ARGUMENT, AGAIN
+A consulting firm published a piece this week saying overall equipment effectiveness is "the most misused number in manufacturing." They are right that plants game it (redefining planned downtime is the classic move), and wrong that the answer is to stop tracking it. The answer is to track the three components separately and never let anyone report the product. Our take on the site.
+
+AI ON THE FLOOR: what is actually deployed
+We surveyed 140 plants with under 500 employees. Deployed in production: vision inspection (44%), predictive maintenance on at least one asset class (31%), scheduling assistance (18%), anything involving a language model (9%). Piloted and abandoned: 27% had at least one. The abandonments cluster around tools that needed data the plant did not have.
+
+READER QUESTION
+"Our scheduler retires in June and the schedule lives in his head. Where do we start?" Start by having him narrate a week of scheduling decisions into a recorder. Transcribe it. You will find the rules. Then decide whether to buy software, and buy the software that lets you encode those rules rather than the one with the nicest Gantt chart.
+
+Plant Ops Digest is published every Wednesday. Forward freely. Manage your subscription: https://plantopsdigest.com/manage

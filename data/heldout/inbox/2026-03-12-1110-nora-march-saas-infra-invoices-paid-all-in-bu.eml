@@ -1,0 +1,33 @@
+Message-ID: <20260312-1110.nora@tessera.io>
+Date: Thu, 12 Mar 2026 11:10:10 -0700
+From: Nora Blake <nora@tessera.io>
+To: Avery Chen <avery@tessera.io>
+Subject: March SaaS + infra invoices - paid, all in budget (FYI)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Avery,
+
+Monthly vendor run, all paid on the Brex card or by ACH this week, all within the lines we budgeted. Nothing to approve; this is the visibility email you asked for in January.
+
+| Vendor | March | Feb | Note |
+|---|---|---|---|
+| Google Cloud (Feb usage) | $18,240.11 | $17,655.90 | ingest volume up with the Northstar sandbox |
+| Google Workspace | $1,092.00 | $1,092.00 | |
+| GitHub | $588.00 | $588.00 | |
+| Notion | $384.00 | $384.00 | |
+| Linear | $312.00 | $312.00 | |
+| Slack | $437.50 | $437.50 | |
+| Zoom | $299.90 | $299.90 | |
+| Figma | $180.00 | $180.00 | |
+| Sentry | $89.00 | $89.00 | |
+| Twilio (SMS alerts) | $612.40 | $941.20 | down 35% since the alert grouping |
+| **Total** | **$22,234.91** | **$21,979.50** | |
+
+The only line moving is Google Cloud, and that is the sandbox traffic, which stops after go-live. Twilio is the fun one: the dedupe change pays for itself.
+
+Full ledger is in the finance folder under 2026-03. Have a good Thursday.
+
+Nora Blake
+Operations & Finance | Tessera

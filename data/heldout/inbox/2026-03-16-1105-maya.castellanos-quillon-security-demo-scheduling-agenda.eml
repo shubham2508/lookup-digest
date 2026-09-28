@@ -1,0 +1,26 @@
+Message-ID: <20260316-1105.maya.castellanos@quillonsec.com>
+Date: Mon, 16 Mar 2026 11:05:28 -0700
+From: Maya Castellanos <maya.castellanos@quillonsec.com>
+To: Priya Iyer <priya@tessera.io>
+Cc: Avery Chen <avery@tessera.io>
+Subject: Quillon Security - demo scheduling + agenda
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi Priya,
+
+Thank you for the time on Thursday. Hearing how Tessera runs the Halberd and Northstar environments today made it clear where we would fit and where we would not, which I appreciate more than a polished pitch.
+
+The natural next step is a working demo with Avery in the room. Proposed agenda, 45 minutes:
+
+- 10 min: where your SOC 2 evidence lives today and what your auditor asks for each cycle
+- 20 min: live walkthrough in a sandbox tenant mapped to your stack (GitHub, Google Cloud, Okta, Linear)
+- 10 min: scoping and pricing shape for a 12-person team
+- 5 min: next steps
+
+Would the week of March 23 work? I am happy to flex around Avery's calendar, mornings or afternoons.
+
+Best,
+
+Maya Castellanos | Account Executive | Quillon Security | quillonsec.com/meet/maya

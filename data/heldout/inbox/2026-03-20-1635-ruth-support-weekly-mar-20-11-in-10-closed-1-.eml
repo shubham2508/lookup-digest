@@ -1,0 +1,25 @@
+Message-ID: <20260320-1635.ruth@tessera.io>
+Date: Fri, 20 Mar 2026 16:35:42 -0700
+From: Ruth Adeyemi <ruth@tessera.io>
+To: Jordan Liu <jordan@tessera.io>, =?utf-8?q?Tom=C3=A1s?= Reyes <tomas@tessera.io>
+Cc: Avery Chen <avery@tessera.io>
+Subject: Support weekly - Mar 20: 11 in, 10 closed, 1 open (S3)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Week of Mar 16. 11 cases in, 10 closed, 1 open (S3). Median first response 36 min, median close 4.8 h. No S1/S2. Quietest week since January; nothing for anyone outside support.
+
+By customer:
+- Northstar (4): Rosa Jimenez's planners, pre-training questions on the shift board (filters, the two-plant-code view). All closed same day; I've handed the recurring ones to Hana for the training deck. Rosa: "we'll stop asking after Tuesday, promise."
+- Coastline (3): steps to pin the export column order (closed, CS-2263), one "Failed" export that was their ERP being down for maintenance, which is exactly what the new state is for (closed), one password reset.
+- Halberd (2): one password reset; one question from a Line 1 supervisor about the (x4) grouping in SMS ("is this new?" - yes; closed with the release note).
+- Veritas (0): nothing this week.
+- Other (2): one Pinewood scheduler asking whether the help center applies to pilots (yes), one spam.
+
+Open (S3):
+- CS-2268 Coastline: audit log export beta returns the proxy IP for SSO users. Known, footnoted in the release notes; Felix has a follow-up ticket. Customer is fine with it.
+
+Trend: export-related cases down again; scheduler retries removed the "it didn't run" category entirely this week.
+
+Ruth | Tessera Support

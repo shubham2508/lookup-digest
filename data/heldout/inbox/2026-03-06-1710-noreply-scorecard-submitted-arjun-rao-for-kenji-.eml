@@ -1,0 +1,25 @@
+Message-ID: <20260306-1710.noreply@ashbyhq.com>
+Date: Fri, 06 Mar 2026 17:10:46 -0800
+From: Ashby <no-reply@ashbyhq.com>
+To: Avery Chen <avery@tessera.io>
+Subject: Scorecard submitted: Arjun Rao for Kenji Mori (Backend Engineer)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Arjun Rao submitted a scorecard.
+
+Candidate: Kenji Mori
+Job: Backend Engineer
+Interview: Onsite - Systems design (Mar 6, 2026, 10:00 AM PST)
+Overall recommendation: Strong Yes
+
+Highlights (from the scorecard):
+- Decomposed the ingest problem cleanly and raised backpressure unprompted.
+- Knew when a Postgres index would hurt more than help.
+- Talks through tradeoffs without being asked.
+
+View scorecard: https://app.ashbyhq.com/candidates/c_2b7e9c40/scorecards/sc_4e18
+
+--
+You are receiving this email because you are on the hiring team for Backend Engineer.

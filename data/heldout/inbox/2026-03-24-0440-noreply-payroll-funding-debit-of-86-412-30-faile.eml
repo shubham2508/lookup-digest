@@ -1,0 +1,34 @@
+Message-ID: <20260324-0440.noreply@gusto.com>
+Date: Tue, 24 Mar 2026 04:40:55 -0700
+From: Gusto <no-reply@gusto.com>
+To: Avery Chen <avery@tessera.io>
+Subject: Payroll funding debit of $86,412.30 failed - bank account verification required
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi Avery,
+
+The ACH debit to fund your Mar 31 payroll was returned by your bank.
+
+Amount: $86,412.30
+Bank account: Cascade Community Bank, checking ending in 8837
+Debit initiated: Mon, Mar 23, 2026
+Returned: Tue, Mar 24, 2026
+Return code: R03 - unable to locate account
+Status: bank account verification required
+
+What this means
+Gusto has not received the funds for the Mar 31 pay date. To pay your team on time, Gusto must receive cleared funds by the funding deadline, Fri, Mar 27, 2026.
+
+What to do
+1. Verify the new bank account in Gusto: Company > Bank accounts > Verify. Confirm the two test deposit amounts, or re-enter the routing and account numbers if the test deposits never posted.
+2. Once the account is verified, Gusto retries the debit automatically. If the retry has not cleared by Mar 27, the Mar 31 payroll will be paid late.
+
+No action is needed if you already re-verified the account today.
+
+Verify bank account: https://app.gusto.com/company/bank-accounts
+
+Questions? Visit the Gusto Help Center at support.gusto.com or reply to this email to reach payroll support.
+
+Gusto, 525 20th Street, San Francisco, CA 94107

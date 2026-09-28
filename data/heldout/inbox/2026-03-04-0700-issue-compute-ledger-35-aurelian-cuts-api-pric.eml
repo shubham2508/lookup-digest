@@ -1,0 +1,30 @@
+Message-ID: <20260304-0700.issue@computeledger.co>
+Date: Wed, 04 Mar 2026 07:00:12 -0800
+From: Compute Ledger <issue@computeledger.co>
+To: Avery Chen <avery@tessera.io>
+Subject: Compute Ledger #35: Aurelian cuts API prices 40% / Halyard Cloud files to go public / batch tiers everywhere
+List-Unsubscribe: <mailto:unsubscribe@computeledger.co?subject=unsubscribe>, <https://computeledger.co/u/702062ac>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+COMPUTE LEDGER - Issue 35 - Wednesday, March 4, 2026
+
+Three things this week.
+
+1. Aurelian cuts Sable-3 API prices by 40%, a week after launch
+
+Input tokens on the large model drop to $1.80 per million, output to $9. Aurelian said the cut reflects "serving efficiencies," which is what you say when a competitor is about to launch. The two other frontier labs have not matched yet; one of them told a customer on the record that it will "not compete on list price," which is a sentence that ages badly. For application companies the arithmetic is simple: if your model spend is more than a fifth of COGS, this cut is worth a re-quote this week.
+
+2. Halyard Cloud files its S-1
+
+The neocloud reports $1.4B in trailing revenue, 71% of it from three customers, and $6B in committed purchase obligations for accelerators it has not yet received. The filing is a good read if you want to understand how the capacity you rent is financed: mostly debt, secured by the chips, with the debt covenants tied to utilization. When utilization drops, the incentives get strange.
+
+3. Everyone has a batch tier now
+
+All three frontier labs and the two largest hosting providers offer a 50% discount for asynchronous requests with a 24-hour completion window. Our survey of forty production teams found that about 30% of their token volume could move to batch with no product change, and almost none of it has. The savings are real; the engineering ticket to route the traffic keeps losing to the next feature.
+
+That is the issue. Reply with tips; we read everything.
+
+Compute Ledger is written by two people in Oakland and supported by readers. Forward it to someone who runs a GPU budget.

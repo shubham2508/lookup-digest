@@ -1,0 +1,27 @@
+Message-ID: <20260318-0645.notes@platformnotes.io>
+Date: Wed, 18 Mar 2026 06:45:13 -0700
+From: Platform Notes <notes@platformnotes.io>
+To: Avery Chen <avery@tessera.io>
+Subject: Platform Notes: On-prem is not coming back, but the gateway is
+List-Unsubscribe: <mailto:unsubscribe@platformnotes.io?subject=unsubscribe>, <https://platformnotes.io/u/43a04340>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+PLATFORM NOTES
+Wednesday, March 18, 2026
+
+On-prem is not coming back, but the gateway is
+
+Every few years someone predicts the return of on-premises software, and every few years the cloud share goes up anyway. The prediction is wrong, but it is wrong about something real: a growing number of buyers, especially in industrial settings, want the software in the cloud and the data connection under their control.
+
+The shape that satisfies both is the gateway: a small piece of software, sometimes on a small box, that sits inside the customer's network, talks to the machines and the legacy systems, and sends what it is allowed to send to the cloud. It is not on-prem software in the old sense; nothing important runs there. It is a controlled door.
+
+Gateways are having a moment for three reasons. Plant networks are air-gapped or nearly so, and the security team will not open them to a SaaS vendor's IP range. Regulators in several jurisdictions now ask where data physically crosses a boundary, and a gateway gives a clean answer. And the machines themselves speak protocols from the 1990s that no cloud service is going to learn.
+
+For vendors, the gateway is a cost and a moat. It is a cost because it is a deployed artifact that has to be updated, monitored and supported at a hundred sites. It is a moat because once it is installed and trusted, the customer does not want a second one from a competitor. The vendors that treat the gateway as a first-class product, with its own release notes and its own uptime number, are the ones the plant's IT team stops arguing with.
+
+Read on the web: https://platformnotes.io/2026/gateway
+
+Platform Notes goes out Monday, Wednesday and Friday. Unsubscribe: https://platformnotes.io/u

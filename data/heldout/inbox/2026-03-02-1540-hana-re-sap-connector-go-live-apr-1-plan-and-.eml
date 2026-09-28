@@ -1,0 +1,39 @@
+Message-ID: <20260302-1540.hana@tessera.io>
+Date: Mon, 02 Mar 2026 15:40:16 -0800
+From: Hana Okada <hana@tessera.io>
+To: Elise Moreau <elise.moreau@northstarfoods.com>
+Cc: Avery Chen <avery@tessera.io>
+Subject: Re: SAP connector go-live - Apr 1 plan and owners
+In-Reply-To: <20260302-1005.elise.moreau@northstarfoods.com>
+References: <20260226-0935.elise.moreau@northstarfoods.com> <20260226-1320.avery@tessera.io> <20260302-1005.elise.moreau@northstarfoods.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hi Elise,
+
+Let's do **Thursday, March 5, 9:00–11:30 PT** for the field-mapping workshop. Rosa and one person from your SAP team is plenty.
+
+Attached: the mapping template. Before Thursday it would help to have:
+- [ ] plant and work-center codes for Fresno
+- [ ] the unit-of-measure list for the release view
+- [ ] one sample production-order export (any week)
+
+Plan v1 is attached again with the owners column filled in. Go-live stays **Wednesday, April 1**.
+
+Hana
+
+Hana Okada
+Solutions Engineering, Tessera
+
+On Mon, Mar 2, 2026 at 10:05 AM, Elise Moreau <elise.moreau@northstarfoods.com> wrote:
+> Hana,
+>
+> Thanks for the draft plan, it reads well. Attached is the Fresno contact list. Rosa Jimenez runs production scheduling there and will be your day-to-day; she knows the SAP release view better than anyone.
+>
+> - When would you like to run the field-mapping workshop? Our SAP team is holding this Thursday or Friday.
+> - Is there a template we should fill in beforehand?
+>
+> Elise
+>
+> Elise Moreau | Procurement Lead | Northstar Foods

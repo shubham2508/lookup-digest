@@ -1,6 +1,6 @@
 id: S15
 name: declined-infra-review
-reviewed: false
+reviewed: true
 tier_truth: P1
 summary: >
   Jordan organized an "On-call & infra review" for Tuesday day 21 (Mar 17) 09:30–10:30, over Avery's deep-work

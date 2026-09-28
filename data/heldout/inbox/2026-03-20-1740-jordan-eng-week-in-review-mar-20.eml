@@ -1,0 +1,29 @@
+Message-ID: <20260320-1740.jordan@tessera.io>
+Date: Fri, 20 Mar 2026 17:40:21 -0700
+From: Jordan Liu <jordan@tessera.io>
+To: Tessera Engineering <eng@tessera.io>
+Cc: Avery Chen <avery@tessera.io>
+Subject: Eng week in review - Mar 20
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Shipped:
+- Release 2026.03.2 on Monday: scheduled-export retries, audit log export beta, grouped counts in SMS, PDF fix. Clean.
+- WHSCON parser (Arjun). Merged Tuesday. The connector now handles both message types Northstar sends; regression suite 40/40.
+- Audit log export v2, #551 (Felix). Streams; the 200k-row tenant no longer falls over.
+- Nightly Northstar smoke suite (Carmen): four nights, 88/88 each. Go/no-go criteria are written down.
+- Cutover runbook v1 to Northstar (Hana, Wednesday). v2 with the go/no-go criteria next week.
+- Alert re-tiering (Arjun, today). Sentry error-rate alerts no longer page overnight unless the rate holds for 15 minutes; they go to the morning summary instead. Expect fewer pages next week.
+
+In progress:
+- Cutover build: release candidate Monday, then only fixes.
+- Pager-bot as a real thing (Kofi), small.
+
+Watching:
+- Halberd Line 3 MES upgrade is Wednesday 3/25 from 18:00, Sanjay's team with Arjun on our side and Felix as backup. Their change, our feed; we'll watch the ingest lag alert for Line 3 that night.
+- Freeze starts Mon 3/30. Sprint 16 plan on Wednesday will spell out what "freeze" means.
+
+Good weekend.
+
+Jordan

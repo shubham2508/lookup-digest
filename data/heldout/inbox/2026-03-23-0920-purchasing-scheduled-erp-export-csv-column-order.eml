@@ -1,0 +1,21 @@
+Message-ID: <20260323-0920.purchasing@coastlinecorrugated.com>
+Date: Mon, 23 Mar 2026 09:20:15 -0700
+From: Coastline Purchasing <purchasing@coastlinecorrugated.com>
+To: Tessera Support <support@tessera.io>
+Cc: Avery Chen <avery@tessera.io>
+Subject: Scheduled ERP export - CSV column order
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Hello Tessera Support,
+
+Since Saturday night the scheduled ERP export (nightly CSV, "coastline_orders_daily") has arrived with a different column order. Our ERP import (Epicor) maps by position and rejected the Sunday and Monday files with "field 7: non-numeric value".
+
+Nothing changed on our side. Could you tell us how to restore the previous column order? Our planners load this file at 06:00 and have been keying the changes by hand for two days.
+
+We have copied Avery Chen as the account contact on file.
+
+Thank you,
+
+Purchasing Department | Coastline Corrugated

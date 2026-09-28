@@ -1,0 +1,28 @@
+Message-ID: <20260227-1705.jordan@tessera.io>
+Date: Fri, 27 Feb 2026 17:05:36 -0800
+From: Jordan Liu <jordan@tessera.io>
+To: Tessera Engineering <eng@tessera.io>
+Cc: Avery Chen <avery@tessera.io>
+Subject: Eng week in review - Feb 27
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Short one, it's Friday.
+
+Shipped:
+- Spec-reference custom field on lot records, flowing to the CSV export (Hana + Felix). Veritas's AS9100 auditor is now a satisfied person.
+- Late-lot alert dedupe, #527 (Felix). Merged this morning; goes out with Monday's release.
+- SSO enforced on GitHub from Monday (Arjun). If your push fails Monday, read Arjun's email before you page anyone.
+
+In progress:
+- SAP IDoc parser, DELVRY03 first (Arjun). Fixtures from Northstar's sandbox arrived Thursday.
+- Export scheduler retries (Kofi). Design agreed, code next week.
+- Connector regression suite v1 (Carmen). 12 of 40 cases written.
+
+Watching:
+- Ingest p95 on the two largest feeds crept to ~800ms this week. Not customer-visible. Arjun suspects the new field's index; he'll look Monday.
+
+Have a good weekend.
+
+Jordan

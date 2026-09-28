@@ -1,0 +1,29 @@
+Message-ID: <20260323-1002.notifications@brex.com>
+Date: Mon, 23 Mar 2026 10:02:06 -0700
+From: Brex <notifications@brex.com>
+To: Avery Chen <avery@tessera.io>
+Subject: Expense report from Arjun Rao needs your approval ($742.16)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Arjun Rao submitted an expense report that needs your approval.
+
+Report: February expenses
+Amount: $742.16
+Submitted: Mar 23, 2026, 10:01 AM PDT
+Approver: Avery Chen
+
+Line items
+  Feb 3    Amazon              USB to RS-485 isolators (x2), bench rig             $138.90
+  Feb 10   Lyft                Halberd site visit (round trip)                     $64.20
+  Feb 12   Digi-Key            Modbus gateway spares                               $221.46
+  Feb 19   Souvla              Team lunch, on-call retro (4)                       $147.60
+  Feb 24   Manning             Books, 2 titles                                     $170.00
+
+All five line items have receipts attached and match the card transactions.
+
+Approve: https://dashboard.brex.com/approvals/exp_4Kd9Wq2Lm
+Review in Brex: https://dashboard.brex.com/expenses/reports/exp_4Kd9Wq2Lm
+
+You are receiving this because you are the expense approver for Arjun Rao.

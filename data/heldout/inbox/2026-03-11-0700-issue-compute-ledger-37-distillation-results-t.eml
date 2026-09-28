@@ -1,0 +1,30 @@
+Message-ID: <20260311-0700.issue@computeledger.co>
+Date: Wed, 11 Mar 2026 07:00:15 -0700
+From: Compute Ledger <issue@computeledger.co>
+To: Avery Chen <avery@tessera.io>
+Subject: Compute Ledger #37: distillation results that matter / a benchmark gets retired / a 40-hour cluster outage
+List-Unsubscribe: <mailto:unsubscribe@computeledger.co?subject=unsubscribe>, <https://computeledger.co/u/28d7b7eb>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+COMPUTE LEDGER - Issue 37 - Wednesday, March 11, 2026
+
+Three things this week.
+
+1. A distillation paper with production-grade numbers
+
+A group at a Swiss university distilled a frontier model's behavior on a narrow task (structured extraction from industrial maintenance logs) into a 3B model and matched the teacher on their held-back set at 1/40th the serving cost. What makes this paper different from the hundred before it is that they published the failure analysis: the small model fails on exactly the inputs where the teacher's answer was itself inconsistent. Distill the task, not the model, and check your teacher first.
+
+2. The most-cited reasoning benchmark is retired after a contamination audit
+
+The maintainers found that 31% of its problems appear, with solutions, in a widely used pretraining corpus. Every frontier model's score on it is now uninterpretable. Nobody is surprised and everybody is annoyed. If your vendor's marketing quotes this benchmark, ask for the private-set number.
+
+3. A large hosting provider lost a 4,000-accelerator cluster for 40 hours
+
+The cause was a firmware update to the networking switches that had passed staging and failed at scale. Customers on the affected cluster were moved to other regions with, per three of them, no notice and a 20% latency hit. The provider's status page said "degraded performance" for the whole 40 hours. Read your SLA; most of them define availability in a way that made this incident a non-event.
+
+That is the issue. Reply with tips; we read everything.
+
+Compute Ledger is written by two people in Oakland and supported by readers. Forward it to someone who runs a GPU budget.

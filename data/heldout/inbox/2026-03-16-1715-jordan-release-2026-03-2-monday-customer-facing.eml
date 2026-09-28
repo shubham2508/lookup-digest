@@ -1,0 +1,26 @@
+Message-ID: <20260316-1715.jordan@tessera.io>
+Date: Mon, 16 Mar 2026 17:15:46 -0700
+From: Jordan Liu <jordan@tessera.io>
+To: Hana Okada <hana@tessera.io>, Ruth Adeyemi <ruth@tessera.io>
+Cc: Avery Chen <avery@tessera.io>, =?utf-8?q?Tom=C3=A1s?= Reyes <tomas@tessera.io>, Leo Marchetti <leo@tessera.io>
+Subject: Release 2026.03.2 (Monday) - customer-facing notes
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+Release 2026.03.2 went out at 16:00, clean. Notes below; Hana already did the wording pass on Friday so Ruth can post these as-is. Tomás, Leo: FYI, and feel free to send the link to anyone who asked for the export change.
+
+New
+- Scheduled exports retry automatically. If your nightly export fails (ERP unreachable, network blip), Tessera retries up to five times over about half an hour. If it still fails, the export shows as "Failed" with the reason in Export history, instead of quietly not appearing.
+- Audit log export (beta). Administrators can export the last 90 days of user and configuration changes as CSV, under Settings > Audit log.
+
+Improved
+- Grouped alert counts now appear in the SMS text as well as in the app: "Station 3B late (x4)".
+
+Fixed
+- The PDF shift report no longer breaks a table across pages on Letter paper.
+- Export history shows the correct local time for jobs that ran on the night the clocks changed.
+
+Next release is the go-live build for the SAP connector; after that we freeze until April 2.
+
+Jordan

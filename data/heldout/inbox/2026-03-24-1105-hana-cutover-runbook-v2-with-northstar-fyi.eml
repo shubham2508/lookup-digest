@@ -1,0 +1,23 @@
+Message-ID: <20260324-1105.hana@tessera.io>
+Date: Tue, 24 Mar 2026 11:05:05 -0700
+From: Hana Okada <hana@tessera.io>
+To: Jordan Liu <jordan@tessera.io>, =?utf-8?q?Tom=C3=A1s?= Reyes <tomas@tessera.io>
+Cc: Avery Chen <avery@tessera.io>, Arjun Rao <arjun@tessera.io>, Carmen Ortiz <carmen@tessera.io>
+Subject: Cutover runbook v2 - with Northstar (FYI)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+FYI: cutover runbook v2 went to Elise and Rosa last night, and I walked Rosa's planners through the cutover-week section at this morning's training. No questions that changed anything.
+
+Changes from v1:
+- [x] Go/no-go criteria added as Carmen wrote them (smoke 88/88 for five nights, 0 open S1/S2, parallel-run board within 2 lots per shift, rollback rehearsed).
+- [x] Rollback rehearsed on staging **Fri Mar 20** (Arjun): 11 minutes end to end.
+- [x] Parallel run **Mon Mar 30 - Tue Mar 31**; go/no-go call **Mon Mar 30, 16:00** (Elise, Rosa, Jordan, Arjun, me; Avery optional).
+- [x] Connector live **Wed Apr 1, 06:00**; I'm on site at Fresno from 05:30.
+- [x] Two known S3s (NS-412 plant-code column in CSV, NS-415 date-picker highlight) listed with the first post-go-live patch as the fix date; neither is in the cutover path.
+
+Status: on track for Apr 1. Nothing needed from anyone on this email.
+
+Hana Okada
+Solutions Engineering, Tessera

@@ -1,0 +1,33 @@
+Message-ID: <20260305-0545.letters@runwaynotes.co>
+Date: Thu, 05 Mar 2026 05:45:46 -0800
+From: Runway Notes <letters@runwaynotes.co>
+To: Avery Chen <avery@tessera.io>
+Subject: Runway Notes: Usage pricing without pricing yourself out
+List-Unsubscribe: <mailto:unsubscribe@runwaynotes.co?subject=unsubscribe>, <https://runwaynotes.co/u/b490eec3>
+Precedence: bulk
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+MIME-Version: 1.0
+
+RUNWAY NOTES
+Thursday, March 5, 2026
+
+Usage pricing without pricing yourself out
+
+A founder asked me last week whether to move from seats to usage. The honest answer is that the question is wrong. Nobody moves from seats to usage; they move from one bundle of predictability and upside to a different one, and the work is in choosing the bundle.
+
+Pure usage is what your finance team fears: revenue that goes down when the customer has a quiet month, a forecast that is a guess, and a renewal conversation in which the customer has a spreadsheet of exactly what they used and exactly what it cost you. It is also what your customers' procurement teams increasingly demand, because it looks like risk transfer.
+
+The compromise that works, in the companies I have watched do it well, has three parts. A platform fee that covers your fixed cost of serving the account and is not negotiable. A committed usage tier, bought annually, priced at a discount to the rack rate. And overage priced at rack, billed monthly, with a mechanism to true up the commitment mid-year if the customer is consistently over.
+
+The committed tier does most of the work. It gives finance an ARR number they can defend, it gives the customer a budget number they can defend, and it converts the awkward "you used more than you paid for" conversation into "you are growing, let's raise the commitment," which is a conversation salespeople like having.
+
+One warning. If your cost of goods scales with usage (compute, tokens, third-party data), price the overage with a margin that survives the customer's worst month, not their average one. I have seen two companies this year with negative gross margin on their largest account because the overage was priced off a model cost that has since doubled.
+
+Benchmarks: among the Series A and B companies in our set that report a hybrid model, the platform fee is 20-35% of the average contract, the committed tier covers 70-85% of realized usage, and overage runs 10-25% above the committed rate.
+
+THIS WEEK'S ROUND-UP
+- The public SaaS median EV/revenue multiple is 6.1x, flat for six months.
+- A useful post on why "expansion ARR" should exclude price increases, with worked examples.
+
+Runway Notes is a weekly letter for operators. Reply to reach a person. Unsubscribe: https://runwaynotes.co/u
