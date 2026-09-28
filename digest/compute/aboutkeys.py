@@ -89,19 +89,19 @@ class AboutMerger:
             return None
         if fuzz.ratio(a.slug, b.slug) >= self.threshold:
             return "fuzzy-ratio"
+        # deal:series-a never swallows deal:series-a:cap-table; rollout:halberd may absorb rollout:halberd:oct-6
+        subtopic_blocked = _is_subtopic(a.slug, b.slug) and a.kind not in _SPECIFIC_KINDS
+        ents = (a.entities & b.entities) - self.generic_entities
+        msgs = {m for m in (a.messages & b.messages) if not m.startswith(("note:", "task:", "event:"))}  # notes mention everything
+        if not subtopic_blocked and ents and msgs:
+            return "shared-entity-and-evidence"
         if a.kind == "board-update":
             return "singleton-kind"  # one board update is ever in play; every spelling of it is the same item
         if a.kind in _SPECIFIC_KINDS and _tokens_overlap(a.slug, b.slug):
             return "same-kind-token"
-        if _is_prefix(a.slug, b.slug):
+        if not subtopic_blocked and _is_prefix(a.slug, b.slug):
             return "slug-prefix"  # deal:aperture ~ deal:aperture-capital, report:soc-2 ~ report:soc-2-type-ii
-        if _is_subtopic(a.slug, b.slug) and a.kind not in _SPECIFIC_KINDS:
-            return None  # deal:series-a never swallows deal:series-a:cap-table; rollout:halberd may absorb rollout:halberd:oct-6
-        ents = (a.entities & b.entities) - self.generic_entities
-        msgs = {m for m in (a.messages & b.messages) if not m.startswith(("note:", "task:", "event:"))}  # notes mention everything
-        if ents and msgs:
-            return "shared-entity-and-evidence"
-        if msgs and _tokens_overlap(a.slug, b.slug):
+        if not subtopic_blocked and msgs and _tokens_overlap(a.slug, b.slug):
             return "shared-evidence-and-token"
         return None
 
