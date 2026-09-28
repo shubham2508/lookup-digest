@@ -22,3 +22,19 @@ def test_run_dir_suffix_for_customize_and_baseline(tmp_path):
     both = RunContext("dev", dt, runs_dir=tmp_path, variant="stale_inbox", customize=tmp_path / "weekend.md")
     assert both.run_dir.name == "2026-09-24T06-00_stale_inbox+customize-weekend"
     assert both.finish()["suffix"] == "stale_inbox+customize-weekend"
+
+
+def test_write_json_handles_lists_of_models(tmp_path):
+    from digest.schemas import Contact
+    ctx = RunContext("dev", parse_as_of("2026-09-24T06:00"), runs_dir=tmp_path)
+    ctx.write_json("contacts", [Contact(contact_id="sam-park", names=["Sam Park"]), Contact(contact_id="x")])
+    data = ctx.read_json("contacts")
+    assert isinstance(data, list) and data[0]["contact_id"] == "sam-park" and data[0]["names"] == ["Sam Park"]
+    ctx.write_json("reduce", {"items": [ReduceItem(id="i1", about="deal:x", candidate_ids=[], priority="P1", section="pulse")]})
+    assert ctx.read_json("reduce")["items"][0]["about"] == "deal:x"
+
+
+def test_tag_in_suffix(tmp_path):
+    dt = parse_as_of("2026-09-24T06:00")
+    assert RunContext("dev", dt, runs_dir=tmp_path, tag="sim").run_dir.name == "2026-09-24T06-00_sim"
+    assert RunContext("dev", dt, runs_dir=tmp_path, variant="no_notes", tag="sim").run_dir.name == "2026-09-24T06-00_no_notes+sim"

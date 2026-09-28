@@ -50,8 +50,13 @@ def run_dir_name(as_of: datetime, variant: str | None = None) -> str:
 
 
 def _jsonable(obj: Any) -> Any:
+    """Recursively convert Pydantic models (at any depth) so lists of models serialize as JSON objects."""
     if isinstance(obj, BaseModel):
         return obj.model_dump(mode="json")
+    if isinstance(obj, dict):
+        return {k: _jsonable(v) for k, v in obj.items()}
+    if isinstance(obj, (list, tuple, set)):
+        return [_jsonable(v) for v in obj]
     return obj
 
 
@@ -63,6 +68,7 @@ class RunContext:
     customize: Path | None = None
     runs_dir: Path | None = None
     baseline: bool = False
+    tag: str | None = None
     run_dir: Path = field(init=False)
     cost_log: CostLog = field(init=False)
     degradations: list[dict] = field(default_factory=list)
@@ -71,7 +77,7 @@ class RunContext:
 
     @property
     def suffix(self) -> str | None:
-        """Run-dir suffix: <variant>, customize-<stem>, baseline, joined with '+' when combined (OPEN_QUESTIONS #7c)."""
+        """Run-dir suffix: <variant>, customize-<stem>, baseline, <tag>, joined with '+' when combined (OPEN_QUESTIONS #7c, #14)."""
         parts = []
         if self.variant:
             parts.append(self.variant)
@@ -79,6 +85,8 @@ class RunContext:
             parts.append(f"customize-{Path(self.customize).stem}")
         if self.baseline:
             parts.append("baseline")
+        if self.tag:
+            parts.append(self.tag)
         return "+".join(parts) or None
 
     def __post_init__(self) -> None:
@@ -139,7 +147,7 @@ class RunContext:
         self.write_jsonl("degradations", self.degradations)
         summary = {
             "run_id": self.run_id, "world": self.world, "as_of": self.as_of.isoformat(), "variant": self.variant,
-            "baseline": self.baseline, "suffix": self.suffix,
+            "baseline": self.baseline, "tag": self.tag, "suffix": self.suffix,
             "customize": str(self.customize) if self.customize else None, "timings_s": self.timings,
             "wall_s": round(time.time() - self.started_at, 3), "cost_usd": totals["cost_usd"],
             "llm_calls": totals["calls"], "llm_cached": totals["cached"], "degradations": len(self.degradations),
