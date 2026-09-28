@@ -1,0 +1,140 @@
+{
+  "run_id": "dev/2026-09-20T06-00",
+  "world": "dev",
+  "as_of": "2026-09-20T06:00:00-07:00",
+  "variant": null,
+  "baseline": false,
+  "tag": null,
+  "suffix": null,
+  "customize": null,
+  "timings_s": {
+    "compile_profile": 0.007,
+    "ingest": 0.418,
+    "normalize": 0.029,
+    "extract": 1.578,
+    "persist": 0.022,
+    "compute": 0.111,
+    "triage": 0.028,
+    "reduce": 0.0,
+    "compose": 0.002,
+    "materialize": 0.004,
+    "verify": 0.001,
+    "render": 0.0
+  },
+  "wall_s": 2.227,
+  "cost_usd": 0.0,
+  "llm_calls": 261,
+  "llm_cached": 261,
+  "degradations": 22,
+  "owner_email": "avery@tessera.io",
+  "threads": 283,
+  "messages": 422,
+  "forwarded_messages": 1,
+  "events": 107,
+  "notes": 7,
+  "tasks": 5,
+  "extractions": 295,
+  "extract": {
+    "documents": 295,
+    "llm_calls": 245,
+    "cached": 245,
+    "skipped_marketing": 50,
+    "invalid": 0,
+    "evidence_checked": 1049,
+    "evidence_valid": 1037,
+    "evidence_dropped": 21,
+    "evidence_replaced": 0,
+    "type_changes": []
+  },
+  "compute": {
+    "contacts": 113,
+    "candidates": 76,
+    "by_type": {
+      "approval_pending": 9,
+      "calendar_conflict:family": 1,
+      "commitment_not_in_tasks": 15,
+      "commitment_overdue": 8,
+      "contradiction": 8,
+      "news_attachment": 1,
+      "obligation_cadence": 1,
+      "profile_drift": 4,
+      "quiet_thread": 8,
+      "reply_owed": 17,
+      "stale_source": 1,
+      "task_due": 3
+    },
+    "about_merges": 17,
+    "facts_drift": 2
+  },
+  "triage": {
+    "candidates": 76,
+    "packs": 13,
+    "cached": 13,
+    "invalid_packs": 0,
+    "missing": [],
+    "fixes": 1,
+    "rulings_applied": 0
+  },
+  "reduce": {
+    "items": 22,
+    "overflow": 0,
+    "dropped": 42,
+    "merges": 17
+  },
+  "compose": {
+    "cached": true,
+    "fallback": false,
+    "fixes": [],
+    "one_thing": "i9",
+    "placed": 15,
+    "cut": 7
+  },
+  "materialize": {
+    "actions": 15,
+    "llm_calls": 2,
+    "cached": 2,
+    "draft_retries": 0,
+    "drafts_dropped": 0
+  },
+  "verify": {
+    "violations": [],
+    "stats": {
+      "words": 344,
+      "budget": 350,
+      "header_present": true,
+      "items": 15,
+      "items_cited": 15,
+      "citations_total": 20,
+      "citations_resolved": 20
+    }
+  },
+  "history": {
+    "resolved_later": 0,
+    "answered_after_digest": 0
+  },
+  "freshness": {
+    "email": {
+      "state": "ok",
+      "latest": "2026-09-19T10:20:58-07:00",
+      "age_hours": 19.65
+    },
+    "calendar": {
+      "state": "ok",
+      "latest": "2026-09-28T03:03:45.861684-07:00",
+      "age_hours": -189.06
+    },
+    "notes": {
+      "state": "ok",
+      "latest": "2026-09-17T00:00:00-07:00",
+      "age_hours": 78.0
+    },
+    "tasks": {
+      "state": "stale",
+      "latest": "2026-09-12T18:20:00-07:00",
+      "age_hours": 179.67
+    }
+  },
+  "profile_cached": true,
+  "pending_stages": [],
+  "header": "As of Sun 06:00 PT · inbox synced Sat 10:20 · calendar ok · notes ok · tasks stale (7 days)"
+}

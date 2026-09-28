@@ -1,0 +1,464 @@
+{
+  "one_thing_id": "i3",
+  "sections": [
+    {
+      "name": "urgent",
+      "item_ids": [
+        "i4",
+        "i5",
+        "i6",
+        "i8",
+        "i11",
+        "i12",
+        "i13",
+        "i14",
+        "i16",
+        "i20",
+        "i21",
+        "i24"
+      ]
+    },
+    {
+      "name": "decisions",
+      "item_ids": [
+        "i7",
+        "i9",
+        "i10",
+        "i18",
+        "i23"
+      ]
+    },
+    {
+      "name": "news",
+      "item_ids": []
+    },
+    {
+      "name": "pulse",
+      "item_ids": []
+    },
+    {
+      "name": "calendar_personal",
+      "item_ids": [
+        "i1",
+        "i2",
+        "i15",
+        "i17",
+        "i25"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "i3",
+      "what": "Upload cohort and Q4 pipeline details to the data room",
+      "why": "Third flag; Sep 11 promise 12 days overdue",
+      "final_actions": [
+        {
+          "type": "task",
+          "target": "Put customer cohort analysis and Q4 pipeline detail in the data room",
+          "brief": "Today, upload the promised materials and notify Marcus when complete.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i4",
+      "what": "Send Marcus the updated cap table and option-pool numbers",
+      "why": "Missed Sep 22 promise; waiting 37 hours",
+      "final_actions": [
+        {
+          "type": "forward_delegate",
+          "target": "bschaffer@wsgr.com",
+          "brief": "Confirm v3 is current and send the updated cap table to Marcus if ready.",
+          "assumptions": [
+            "Ben's v3 cap table is the version Avery intended to send."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        },
+        {
+          "type": "task",
+          "target": "Send updated cap table to Marcus",
+          "brief": "Due 11:00 today; reconcile the option-pool refresh and send after Ben confirms v3.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i5",
+      "what": "Prepare Elena’s architecture, uptime, and inference-cost materials",
+      "why": "Third flag; requested by Friday, Sep 25",
+      "final_actions": [
+        {
+          "type": "task",
+          "target": "Prepare Elena’s diligence materials",
+          "brief": "Prepare the architecture overview, customer-level ingest uptime, and inference-cost assumptions by Friday.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i6",
+      "what": "Forward Elena’s IPV request to Ben",
+      "why": "Third flag; promised immediate notice when IPV wrote",
+      "final_actions": [
+        {
+          "type": "forward_delegate",
+          "target": "bschaffer@wsgr.com",
+          "brief": "Forward Elena’s diligence request and ask Ben to advise on legal and data-room items.",
+          "assumptions": [
+            "Elena's September 23 request is the IPV item Avery promised to share."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i8",
+      "what": "Verify ARR before replying to Marcus",
+      "why": "Third flag; quiet 3 days; profile’s $3.2M is stale",
+      "final_actions": [
+        {
+          "type": "question",
+          "target": null,
+          "brief": "What current ARR figure is verified for Marcus? The August deck’s $3.2M is stale; reported revenue is not an ARR figure.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i11",
+      "what": "Verify Halberd’s cross-tenant SSO sweep",
+      "why": "Third flag; sweep completion remains unconfirmed",
+      "final_actions": [
+        {
+          "type": "task",
+          "target": "Confirm the cross-tenant SSO sweep is complete",
+          "brief": "Check today whether the sweep finished; contact Halberd only if an issue remains.",
+          "assumptions": [
+            "The cross-tenant check mentioned in the incident thread may still be open."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i12",
+      "what": "Send Diane the overdue raise update",
+      "why": "Third flag; Sep 7 promise is 17 days overdue",
+      "final_actions": [
+        {
+          "type": "task",
+          "target": "Send Diane a proper update",
+          "brief": "Send the overdue update promised for next week.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i13",
+      "what": "Finish and send Diane’s September investor update",
+      "why": "Five days overdue; task data 11 days stale; profile ARR stale",
+      "final_actions": [
+        {
+          "type": "task",
+          "target": "Finish and send Diane the September investor update",
+          "brief": "Verify the draft is still unsent and confirm current ARR before sending today.",
+          "assumptions": [
+            "Task data is 11 days stale; verify the task remains open.",
+            "The profile ARR figure is stale; verify against current financials."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i14",
+      "what": "Wait for engineering’s Veritas line 2 update",
+      "why": "Engineering owns the investigation and promised an ETA",
+      "final_actions": [
+        {
+          "type": "watch",
+          "target": "Veritas ingest failing - line 2 schema",
+          "brief": "Monitor for engineering’s ETA or resolution; alert Avery when an update arrives.",
+          "assumptions": [
+            "Engineering still owns the incident investigation."
+          ],
+          "watch_trigger": "Engineering posts an ETA or confirms recovery",
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i16",
+      "what": "Send David availability for a meeting",
+      "why": "Third flag; promised times are 17 days overdue",
+      "final_actions": [
+        {
+          "type": "task",
+          "target": "Send David Kim times for next week",
+          "brief": "Check availability and send David meeting times today.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i20",
+      "what": "Confirm Halberd’s Oct 6 go-live with Renee",
+      "why": "Renee’s reply deadline is Thursday evening; QA regressions are non-blocking",
+      "final_actions": [
+        {
+          "type": "reply",
+          "target": null,
+          "brief": "Confirm October 6 remains on; note known QA regressions are tagged non-blocking. See the SOC 2 forwarding separately.",
+          "assumptions": [
+            "The prior October 6 go-live remains the plan; no newer blocker is known."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i21",
+      "what": "Have Jordan forward Renee the SOC 2 report",
+      "why": "Third flag; promised forwarding remains unconfirmed",
+      "final_actions": [
+        {
+          "type": "forward_delegate",
+          "target": "jordan@tessera.io",
+          "brief": "Forward the SOC 2 report directly to Renee today and confirm when sent.",
+          "assumptions": [
+            "The report has not already been forwarded."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i24",
+      "what": "Choose the format for Lumen’s 10:30 demo",
+      "why": "Agenda choice missed Wednesday; demo is today",
+      "final_actions": [
+        {
+          "type": "decide",
+          "target": "Lumen demo agenda",
+          "brief": "Use the API-focused walkthrough for today’s demo.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i7",
+      "what": "Resolve the diligence-call time",
+      "why": "Calendar: Fri Sep 25 10:00; email: Mon Sep 28 10:00",
+      "final_actions": [
+        {
+          "type": "question",
+          "target": null,
+          "brief": "Which diligence-call time is current: Friday, Sep 25 at 10:00, or Monday, Sep 28 at 10:00?",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i9",
+      "what": "Choose Priya’s Q2 backfill concurrency cap",
+      "why": "Decision due today, Thursday",
+      "final_actions": [
+        {
+          "type": "read",
+          "target": null,
+          "brief": "Review Priya’s Q2 document comment and available concurrency-cap options.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": "msg:<20260923-0840.priya@tessera.io>"
+        }
+      ]
+    },
+    {
+      "id": "i10",
+      "what": "Decide how to handle August inference spend",
+      "why": "August spend $41k vs $22k model; decision due this week",
+      "final_actions": [
+        {
+          "type": "read",
+          "target": null,
+          "brief": "Review Priya’s options for handling the $41k August inference spend against the $22k model.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": "msg:<20260922-1510.priya@tessera.io>"
+        }
+      ]
+    },
+    {
+      "id": "i18",
+      "what": "Review Kim’s coverage before deciding on Oct 5–9 PTO",
+      "why": "Yes/no due today; coverage spans close, payroll, invoices",
+      "final_actions": [
+        {
+          "type": "read",
+          "target": null,
+          "brief": "Review Kim’s proposed close, payroll, and invoice coverage before deciding on PTO.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": "msg:<20260923-1640.kim@tessera.io>"
+        }
+      ]
+    },
+    {
+      "id": "i23",
+      "what": "Sign Mei’s offer letter in DocuSign",
+      "why": "Sign by midnight tonight; competing offer expires Friday",
+      "final_actions": [
+        {
+          "type": "approve",
+          "target": "DocuSign",
+          "brief": "Sign Mei’s offer letter before midnight tonight.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i1",
+      "what": "Move Q2 planning around Wren’s 3:00 pediatrician visit",
+      "why": "Sync overlap: 30 minutes; family appointment comes first",
+      "final_actions": [
+        {
+          "type": "calendar_response",
+          "target": "q2-planning-sync-20260924",
+          "brief": "Propose moving the Q2 planning sync so Avery can attend Wren’s 3:00 PM appointment.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i2",
+      "what": "Handle Wren’s Thursday 5:00 pickup",
+      "why": "Agreed Tue/Thu commitment; third flag",
+      "final_actions": [
+        {
+          "type": "task",
+          "target": "Handle Wren's Thursday pickup",
+          "brief": "Due today at 5:00 PM.",
+          "assumptions": [
+            "The agreed Tuesday/Thursday pickup commitment is still active."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i15",
+      "what": "Confirm coverage for Wren during daycare closure",
+      "why": "Little Acorns is closed today; coverage unknown",
+      "final_actions": [
+        {
+          "type": "message_person",
+          "target": "sam@parkchen.family",
+          "brief": "Ask whether coverage is arranged for Wren during Little Acorns’ closure today.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i17",
+      "what": "Bring Wren’s insurance card to the well visit",
+      "why": "Today at 3:00; arrive 10 minutes early with insurance card",
+      "final_actions": [
+        {
+          "type": "task",
+          "target": "Bring insurance card to Wren's well visit",
+          "brief": "Due 2:50 PM today; bring the card for Wren’s 3:00 PM visit.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i25",
+      "what": "Move Lumen’s demo outside the protected deep-work block",
+      "why": "10:30 start overlaps 9–11 block by 30 minutes",
+      "final_actions": [
+        {
+          "type": "calendar_response",
+          "target": "lumen-demo-20260924",
+          "brief": "Propose moving the Lumen demo outside Avery’s Thursday 9–11 deep-work block.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    }
+  ],
+  "header_notes": [
+    "Tasks are 11 days stale; verify task status before relying on open or due states."
+  ],
+  "cut_ids": [
+    "i19",
+    "i22",
+    "i26",
+    "i27",
+    "i28",
+    "i29",
+    "i30",
+    "i31",
+    "i32",
+    "i33",
+    "i34",
+    "i35",
+    "i36",
+    "i37",
+    "i38",
+    "i39",
+    "i40",
+    "i41",
+    "i42",
+    "i43",
+    "i44",
+    "i45",
+    "i46",
+    "i47",
+    "i48",
+    "i49",
+    "i50",
+    "i51",
+    "i52",
+    "i53",
+    "i54",
+    "i55",
+    "i56",
+    "i57",
+    "i58",
+    "i59",
+    "i60"
+  ]
+}

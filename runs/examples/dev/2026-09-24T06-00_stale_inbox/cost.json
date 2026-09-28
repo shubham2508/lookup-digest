@@ -1,0 +1,38 @@
+{
+  "calls": 315,
+  "cached": 312,
+  "prompt_tokens": 48003,
+  "completion_tokens": 14811,
+  "cost_usd": 0.013406,
+  "cost_unknown_calls": 0,
+  "by_role": {
+    "extractor": {
+      "calls": 293,
+      "cached": 293,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "cost_usd": 0.0
+    },
+    "triage": {
+      "calls": 19,
+      "cached": 18,
+      "prompt_tokens": 7921,
+      "completion_tokens": 3036,
+      "cost_usd": 0.002508
+    },
+    "compose": {
+      "calls": 1,
+      "cached": 0,
+      "prompt_tokens": 11272,
+      "completion_tokens": 11681,
+      "cost_usd": 0.007249
+    },
+    "materializer": {
+      "calls": 2,
+      "cached": 1,
+      "prompt_tokens": 28810,
+      "completion_tokens": 94,
+      "cost_usd": 0.003648
+    }
+  }
+}

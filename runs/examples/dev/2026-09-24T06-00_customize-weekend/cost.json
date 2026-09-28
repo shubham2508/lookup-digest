@@ -1,0 +1,38 @@
+{
+  "calls": 339,
+  "cached": 338,
+  "prompt_tokens": 3443,
+  "completion_tokens": 1921,
+  "cost_usd": 0.001391,
+  "cost_unknown_calls": 0,
+  "by_role": {
+    "compiler": {
+      "calls": 1,
+      "cached": 1,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "cost_usd": 0.0
+    },
+    "extractor": {
+      "calls": 315,
+      "cached": 315,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "cost_usd": 0.0
+    },
+    "triage": {
+      "calls": 22,
+      "cached": 22,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "cost_usd": 0.0
+    },
+    "compose": {
+      "calls": 1,
+      "cached": 0,
+      "prompt_tokens": 3443,
+      "completion_tokens": 1921,
+      "cost_usd": 0.001391
+    }
+  }
+}

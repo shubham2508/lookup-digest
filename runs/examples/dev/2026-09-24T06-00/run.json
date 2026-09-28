@@ -1,0 +1,180 @@
+{
+  "run_id": "dev/2026-09-24T06-00",
+  "world": "dev",
+  "as_of": "2026-09-24T06:00:00-07:00",
+  "variant": null,
+  "baseline": false,
+  "tag": null,
+  "suffix": null,
+  "customize": null,
+  "timings_s": {
+    "compile_profile": 0.008,
+    "ingest": 0.482,
+    "normalize": 0.042,
+    "extract": 2.308,
+    "persist": 0.032,
+    "compute": 0.205,
+    "triage": 106.684,
+    "reduce": 0.001,
+    "compose": 125.25,
+    "materialize": 16.757,
+    "verify": 0.006,
+    "render": 0.002
+  },
+  "wall_s": 251.828,
+  "cost_usd": 0.071486,
+  "llm_calls": 343,
+  "llm_cached": 318,
+  "degradations": 40,
+  "owner_email": "avery@tessera.io",
+  "threads": 359,
+  "messages": 528,
+  "forwarded_messages": 8,
+  "events": 112,
+  "notes": 10,
+  "tasks": 5,
+  "extractions": 374,
+  "extract": {
+    "documents": 374,
+    "llm_calls": 315,
+    "cached": 315,
+    "skipped_marketing": 59,
+    "invalid": 0,
+    "evidence_checked": 1377,
+    "evidence_valid": 1353,
+    "evidence_dropped": 39,
+    "evidence_replaced": 1,
+    "type_changes": []
+  },
+  "compute": {
+    "contacts": 130,
+    "candidates": 130,
+    "by_type": {
+      "approval_pending": 24,
+      "calendar_conflict:deep_work": 1,
+      "calendar_conflict:family": 3,
+      "commitment_due": 1,
+      "commitment_not_in_tasks": 18,
+      "commitment_overdue": 10,
+      "contradiction": 11,
+      "hiring_stall": 2,
+      "news_attachment": 2,
+      "obligation_cadence": 1,
+      "profile_drift": 5,
+      "quiet_thread": 10,
+      "recruiter_pattern": 1,
+      "reply_owed": 36,
+      "stale_source": 1,
+      "task_due": 4
+    },
+    "about_merges": 25,
+    "facts_drift": 3
+  },
+  "triage": {
+    "candidates": 130,
+    "packs": 22,
+    "cached": 3,
+    "invalid_packs": 0,
+    "missing": [],
+    "fixes": 0,
+    "rulings_applied": 0
+  },
+  "reduce": {
+    "items": 60,
+    "overflow": 35,
+    "dropped": 43,
+    "merges": 25
+  },
+  "compose": {
+    "cached": false,
+    "fallback": false,
+    "fixes": [
+      "i26 unplaced → also pending",
+      "i27 unplaced → also pending",
+      "i28 unplaced → also pending",
+      "i29 unplaced → also pending",
+      "i30 unplaced → also pending",
+      "i31 unplaced → also pending",
+      "i32 unplaced → also pending",
+      "i33 unplaced → also pending",
+      "i34 unplaced → also pending",
+      "i35 unplaced → also pending",
+      "i36 unplaced → also pending",
+      "i37 unplaced → also pending",
+      "i38 unplaced → also pending",
+      "i39 unplaced → also pending",
+      "i40 unplaced → also pending",
+      "i41 unplaced → also pending",
+      "i42 unplaced → also pending",
+      "i43 unplaced → also pending",
+      "i44 unplaced → also pending",
+      "i45 unplaced → also pending",
+      "i46 unplaced → also pending",
+      "i47 unplaced → also pending",
+      "i48 unplaced → also pending",
+      "i49 unplaced → also pending",
+      "i50 unplaced → also pending",
+      "i51 unplaced → also pending",
+      "i52 unplaced → also pending",
+      "i53 unplaced → also pending",
+      "i54 unplaced → also pending",
+      "i55 unplaced → also pending",
+      "i56 unplaced → also pending",
+      "i57 unplaced → also pending",
+      "i58 unplaced → also pending",
+      "i59 unplaced → also pending",
+      "i60 unplaced → also pending"
+    ],
+    "one_thing": "i3",
+    "placed": 23,
+    "cut": 37
+  },
+  "materialize": {
+    "actions": 24,
+    "llm_calls": 5,
+    "cached": 0,
+    "draft_retries": 0,
+    "drafts_dropped": 0
+  },
+  "verify": {
+    "violations": [],
+    "stats": {
+      "words": 341,
+      "budget": 350,
+      "header_present": true,
+      "items": 23,
+      "items_cited": 23,
+      "citations_total": 33,
+      "citations_resolved": 33
+    }
+  },
+  "history": {
+    "resolved_later": 2,
+    "answered_after_digest": 0
+  },
+  "freshness": {
+    "email": {
+      "state": "ok",
+      "latest": "2026-09-24T05:55:17-07:00",
+      "age_hours": 0.08
+    },
+    "calendar": {
+      "state": "ok",
+      "latest": "2026-09-28T03:03:45.861684-07:00",
+      "age_hours": -93.06
+    },
+    "notes": {
+      "state": "ok",
+      "latest": "2026-09-22T00:00:00-07:00",
+      "age_hours": 54.0
+    },
+    "tasks": {
+      "state": "stale",
+      "latest": "2026-09-12T18:20:00-07:00",
+      "age_hours": 275.67
+    }
+  },
+  "profile_cached": true,
+  "pending_stages": [],
+  "header": "As of Thu 06:00 PT · inbox synced 05:55 · calendar ok · notes ok · tasks stale (11 days)"
+}

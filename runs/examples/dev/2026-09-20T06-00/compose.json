@@ -1,0 +1,303 @@
+{
+  "one_thing_id": "i9",
+  "sections": [
+    {
+      "name": "urgent",
+      "item_ids": [
+        "i1",
+        "i2",
+        "i3",
+        "i4",
+        "i5",
+        "i6",
+        "i7",
+        "i8",
+        "i11",
+        "i13"
+      ]
+    },
+    {
+      "name": "decisions",
+      "item_ids": [
+        "i12",
+        "i16",
+        "i21"
+      ]
+    },
+    {
+      "name": "news",
+      "item_ids": []
+    },
+    {
+      "name": "pulse",
+      "item_ids": []
+    },
+    {
+      "name": "calendar_personal",
+      "item_ids": [
+        "i10"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "i9",
+      "what": "Send David Kim meeting times by 11:00",
+      "why": "You promised times by Sep 7; the commitment is 13 days overdue, due 11:00 today.",
+      "final_actions": [
+        {
+          "type": "task",
+          "target": "Send David some times for next week",
+          "brief": "Identify available slots and send David times by 11:00 today.",
+          "assumptions": [
+            "Avery still intends to meet with David"
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i1",
+      "what": "Forward Marcus’s procurement-reference and ARR request to Ben",
+      "why": "Marcus’s Sep 18 diligence request is still not looped in; you also promised Ben immediate IPV updates.",
+      "final_actions": [
+        {
+          "type": "forward_delegate",
+          "target": "bschaffer@wsgr.com",
+          "brief": "Forward Marcus’s Sep 18 request for two procurement-side references and ARR confirmation against the $3.2M August-deck figure.",
+          "assumptions": [
+            "Marcus’s Sep 18 message has not already been forwarded."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i2",
+      "what": "Check Halberd’s cross-tenant SSO sweep",
+      "why": "Pilot users recovered; the cross-tenant sweep has no status after Sep 8.",
+      "final_actions": [
+        {
+          "type": "task",
+          "target": "Call Halberd about the cross-tenant SSO sweep",
+          "brief": "Confirm sweep status without asserting a fix; the pilot users had regained access.",
+          "assumptions": [
+            "The cross-tenant check may still be unresolved."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i3",
+      "what": "Verify Diane received your promised raise update",
+      "why": "Your Sep 7 update promise remains untracked; Diane said no rush, but the thread still awaits you.",
+      "final_actions": [
+        {
+          "type": "read",
+          "target": null,
+          "brief": "Check whether Diane has received the promised raise update before preparing another.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": "<20260906-1530.diane@cobaltridge.vc>"
+        }
+      ]
+    },
+    {
+      "id": "i4",
+      "what": "Verify and send Diane’s September investor update",
+      "why": "September update was due Sep 18; task data is stale, and draft/ARR dependencies remain.",
+      "final_actions": [
+        {
+          "type": "task",
+          "target": "Send Diane the September investor update",
+          "brief": "Verify it is still open, finish the draft, get the ARR number from Kim, and send.",
+          "assumptions": [
+            "Task data is stale; verify the update remains unsent before sending."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i5",
+      "what": "Check whether the Aperture call is still wanted before scheduling",
+      "why": "Aperture has been quiet 11 business days; the scheduling promise and 11:00 deadline are tracked in i9.",
+      "final_actions": [
+        {
+          "type": "read",
+          "target": null,
+          "brief": "Review the Aperture thread; confirm the call remains wanted before sending the times already due in i9.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i6",
+      "what": "Verify Northstar’s weekly report leads with line counts",
+      "why": "Grace’s Sep 1 format ask is unanswered here; later Northstar activity may have resolved it.",
+      "final_actions": [
+        {
+          "type": "read",
+          "target": null,
+          "brief": "Check whether the weekly report now leads with line counts before details, and whether Grace still needs a response.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": "<20260901-0840.grace.lindqvist@northstarfoods.com>"
+        }
+      ]
+    },
+    {
+      "id": "i7",
+      "what": "Confirm whether you can attend Northstar’s Sept 30 QBR",
+      "why": "Grace’s attendance ask remains unanswered; Sept 30 is tentative pending Henrik’s office.",
+      "final_actions": [
+        {
+          "type": "read",
+          "target": null,
+          "brief": "Check the thread and calendar, then determine whether you can attend the QBR.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": "<20260907-1345.grace.lindqvist@northstarfoods.com>"
+        }
+      ]
+    },
+    {
+      "id": "i8",
+      "what": "Check whether the Veritas procurement meeting happened and needs follow-up",
+      "why": "The invite is confirmed, but the record doesn’t establish attendance or follow-up.",
+      "final_actions": [
+        {
+          "type": "read",
+          "target": null,
+          "brief": "Check the meeting thread for attendance and any follow-up owed to Nadia.",
+          "assumptions": [
+            "The meeting was scheduled for Sept 17; attendance is not established here."
+          ],
+          "watch_trigger": null,
+          "read_start": "<20260910-1330.tomas@tessera.io>"
+        }
+      ]
+    },
+    {
+      "id": "i11",
+      "what": "Have Jordan send Renee Halberd’s SOC 2 report",
+      "why": "You promised Jordan would send Renee Halberd’s SOC 2 report; this is untracked and undated.",
+      "final_actions": [
+        {
+          "type": "task",
+          "target": "Have Jordan forward the SOC 2 report to Renee",
+          "brief": "Ask Jordan to send the report directly to Renee; see the overdue Halberd report check in i13.",
+          "assumptions": [
+            "Jordan owns forwarding the report."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i13",
+      "what": "Verify Halberd’s SOC 2 Type II report was sent",
+      "why": "Task says the report was due Sep 11; tasks are seven days stale, so verify it isn’t done.",
+      "final_actions": [
+        {
+          "type": "task",
+          "target": "Send Halberd the SOC 2 Type II report",
+          "brief": "Verify it wasn’t already sent; if still open, send the report to Halberd.",
+          "assumptions": [
+            "Tasks are stale; the report may already have been sent."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i12",
+      "what": "Finalize Mei’s offer number and send the offer Monday",
+      "why": "You promised Monday delivery; Mei’s offer is due Sep 21.",
+      "final_actions": [
+        {
+          "type": "task",
+          "target": "Finalize Mei Tanaka offer number and send offer",
+          "brief": "Finalize the number and send the offer Monday, Sep 21.",
+          "assumptions": [
+            "Avery approved the offer in principle; finalize the number before sending."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i16",
+      "what": "Tell Bram to hold the three designer profiles",
+      "why": "Hiring sync says the search is paused pending the raise; Bram asks who should screen three profiles.",
+      "final_actions": [
+        {
+          "type": "reply",
+          "target": "bram-kessler",
+          "brief": "The designer search is paused pending the raise; hold the three profiles and do not schedule screening.",
+          "assumptions": [
+            "Hiring sync says the designer search is paused pending the raise."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i21",
+      "what": "Reconcile ARR before sharing a figure",
+      "why": "Internal ARR is $3.2M at July end vs $3.4M Sep 15; recruiter separately claims $40M. See Marcus’s request in i1.",
+      "final_actions": [
+        {
+          "type": "read",
+          "target": null,
+          "brief": "Review the internal ARR figures before relying on or sharing an ARR number.",
+          "assumptions": [
+            "The finance-sync figure is newer than the board-meeting figure; the recruiter claim is unverified."
+          ],
+          "watch_trigger": null,
+          "read_start": "<20260827-1435.marisol@hexlinesearch.com>"
+        }
+      ]
+    },
+    {
+      "id": "i10",
+      "what": "Clarify who is covering Sam’s dentist appointment",
+      "why": "Sam’s Sep 22 appointment overlaps your Tuesday deep-work block by 30 minutes; attendance is unclear.",
+      "final_actions": [
+        {
+          "type": "message_person",
+          "target": "sam@parkchen.family",
+          "brief": "Ask whether Avery is expected to cover the appointment; it overlaps deep work from 9:00 to 9:30 Tuesday.",
+          "assumptions": [
+            "The shared-calendar entry does not establish who is attending."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    }
+  ],
+  "header_notes": [
+    "Task data is 7 days stale; verify open status before acting."
+  ],
+  "cut_ids": [
+    "i14",
+    "i15",
+    "i17",
+    "i18",
+    "i19",
+    "i20",
+    "i22"
+  ]
+}

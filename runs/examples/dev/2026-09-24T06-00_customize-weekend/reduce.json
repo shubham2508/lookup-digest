@@ -1,0 +1,2978 @@
+{
+  "items": [
+    {
+      "id": "i1",
+      "about": "family:wren-pediatrician-3-00pm",
+      "candidate_ids": [
+        "c28"
+      ],
+      "candidate_types": [
+        "calendar_conflict:family"
+      ],
+      "priority": "P0",
+      "section": "calendar_personal",
+      "due_today": true,
+      "confidence": "high",
+      "why": "Wren's 3pm pediatrician appointment overlaps Avery-organized Q2 planning by 30 minutes today.",
+      "citations": [
+        {
+          "source_id": "event:wren-pediatrician-20260924",
+          "quote": "Wren - pediatrician 3:00pm"
+        },
+        {
+          "source_id": "event:q2-planning-sync-20260924",
+          "quote": "Q2 planning sync"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "message_person",
+          "target": "sam@parkchen.family",
+          "brief": "Ask whether Avery is expected to take Wren to the 3pm appointment.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        },
+        {
+          "type": "calendar_response",
+          "target": "q2-planning-sync-20260924",
+          "brief": "Propose moving the sync to 11:30am today to avoid Wren's appointment.",
+          "assumptions": [
+            "The 11:30am slot is available."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": {
+        "type": "third_party",
+        "question": "Is Avery expected to take Wren to the 3pm appointment?",
+        "options": [
+          "Yes, Avery is taking Wren",
+          "No, Sam is taking Wren",
+          "That has not been agreed"
+        ],
+        "default": 3
+      },
+      "entities": [
+        "sam-park",
+        "wren"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i2",
+      "about": "family:family",
+      "candidate_ids": [
+        "c35"
+      ],
+      "candidate_types": [
+        "commitment_not_in_tasks"
+      ],
+      "priority": "P0",
+      "section": "calendar_personal",
+      "due_today": true,
+      "confidence": "high",
+      "why": "Avery committed to Thursday pickup and blocked 5:00 for it; it is today.",
+      "citations": [
+        {
+          "source_id": "msg:<20260830-1915.avery@tessera.io>",
+          "quote": "yes to both, i'll block 5:00 on those days"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "task",
+          "target": "Handle Wren's Thursday pickup",
+          "brief": "due today, 5:00pm",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "sam-park"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i3",
+      "about": "deal:series-a",
+      "candidate_ids": [
+        "c51",
+        "c81"
+      ],
+      "candidate_types": [
+        "commitment_overdue",
+        "quiet_thread"
+      ],
+      "priority": "P0",
+      "section": "urgent",
+      "due_today": true,
+      "confidence": "high",
+      "why": "Promised lead investor Marcus diligence materials by Friday; the data-room commitment is 12 days overdue.",
+      "citations": [
+        {
+          "source_id": "msg:<20260909-1405.avery@tessera.io>",
+          "quote": "will be in the data room by Friday"
+        },
+        {
+          "source_id": "msg:<20260910-0750.marcus@inflectionpoint.vc>",
+          "quote": "The partnership wants to proceed to diligence"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "read",
+          "target": null,
+          "brief": "Review the Marcus thread and verify whether the cohort analysis and Q4 pipeline detail reached the data room.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": "<20260909-1405.avery@tessera.io>"
+        },
+        {
+          "type": "task",
+          "target": "Put customer cohort analysis and Q4 pipeline detail in the data room",
+          "brief": "due 11:00 today",
+          "assumptions": [
+            "The promised materials have not yet been delivered."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        },
+        {
+          "type": "task",
+          "target": "Send Marcus customer cohort analysis and Q4 pipeline detail",
+          "brief": "due today; deliver the promised diligence materials",
+          "assumptions": [
+            "These materials have not already been sent."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "marcus-webb",
+        "inflection-point-ventures"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i4",
+      "about": "deal:series-a:cap-table",
+      "candidate_ids": [
+        "c7",
+        "c34",
+        "c52",
+        "c95",
+        "c96"
+      ],
+      "candidate_types": [
+        "approval_pending",
+        "commitment_not_in_tasks",
+        "commitment_overdue",
+        "reply_owed",
+        "reply_owed"
+      ],
+      "priority": "P0",
+      "section": "urgent",
+      "due_today": true,
+      "confidence": "high",
+      "why": "Marcus’s team still needs final option-pool numbers; Avery’s promised cap-table send is overdue.",
+      "citations": [
+        {
+          "source_id": "msg:<20260923-1005.nfeld@wsgr.com>",
+          "quote": "Marcus's team asked us on Tuesday whether the option pool numbers in v3 are final."
+        },
+        {
+          "source_id": "msg:<20260922-2130.avery@tessera.io>",
+          "quote": "will send it tonight"
+        },
+        {
+          "source_id": "msg:<20260922-1642.marcus@inflectionpoint.vc>",
+          "quote": "Can you send it over?"
+        },
+        {
+          "source_id": "msg:<20260923-1005.nfeld@wsgr.com>",
+          "quote": "Do you have any comments on v3 before we send the final to IPV's counsel?"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "task",
+          "target": "Send updated Series A cap table to Marcus",
+          "brief": "due 11:00 today",
+          "assumptions": [
+            "Reconcile the option-pool numbers in v3 before sending."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        },
+        {
+          "type": "task",
+          "target": "Send Marcus the updated cap table",
+          "brief": "due today, 9:00am",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        },
+        {
+          "type": "forward_delegate",
+          "target": "bschaffer@wsgr.com",
+          "brief": "Confirm cap table v3 is current and ready to send to Marcus.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        },
+        {
+          "type": "task",
+          "target": "Send reconciled cap table v3 to Marcus",
+          "brief": "Due today: reconcile the numbers and send the updated cap table with the option-pool refresh.",
+          "assumptions": [
+            "The promised send is still outstanding; confirm v3 is reconciled before sending."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        },
+        {
+          "type": "read",
+          "target": "Cap table v3 review",
+          "brief": "Review v3 and verify the option-pool numbers before counsel sends the final to IPV.",
+          "assumptions": [
+            "The 12% post-money pool figure in v3 still requires Avery’s confirmation."
+          ],
+          "watch_trigger": null,
+          "read_start": "<20260923-1005.nfeld@wsgr.com>"
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "naomi-feld",
+        "marcus-webb",
+        "inflection-point-ventures",
+        "wilson-sonsini-goodrich-rosati"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i5",
+      "about": "deal:series-a",
+      "candidate_ids": [
+        "c33",
+        "c82"
+      ],
+      "candidate_types": [
+        "commitment_not_in_tasks",
+        "quiet_thread"
+      ],
+      "priority": "P0",
+      "section": "urgent",
+      "due_today": true,
+      "confidence": "high",
+      "why": "Elena's IPV request arrived, triggering Avery's promise to loop Ben in immediately.",
+      "citations": [
+        {
+          "source_id": "msg:<20260914-1745.avery@tessera.io>",
+          "quote": "will loop you in the moment anything arrives from IPV."
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "forward_delegate",
+          "target": "bschaffer@wsgr.com",
+          "brief": "Forward Elena's architecture, uptime, and inference-cost request; flag Monday's working session.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        },
+        {
+          "type": "reply",
+          "target": "Ben Schaffer (existing thread)",
+          "brief": "Tell Ben IPV has started diligence and Elena requested architecture, customer-level uptime, and inference-cost materials.",
+          "assumptions": [
+            "Elena’s September 23 request is the IPV response Avery promised to share."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "ben-schaffer",
+        "wilson-sonsini-goodrich-rosati"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i6",
+      "about": "deal:series-a",
+      "candidate_ids": [
+        "c58"
+      ],
+      "candidate_types": [
+        "contradiction"
+      ],
+      "priority": "P0",
+      "section": "calendar_personal",
+      "due_today": true,
+      "confidence": "high",
+      "why": "Email says the diligence call moved to Sep 28; calendar still lists Sep 25, tomorrow.",
+      "citations": [
+        {
+          "source_id": "msg:<20260922-1115.marcus@inflectionpoint.vc>",
+          "quote": "Can we do Monday, Sep 28, 10am instead?"
+        },
+        {
+          "source_id": "event:ipv-diligence-call-20260925",
+          "quote": "Tessera x IPV - diligence call"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "calendar_response",
+          "target": "ipv-diligence-call-20260925",
+          "brief": "Propose moving the diligence call to Monday, Sep 28, at 10am, per Marcus's email.",
+          "assumptions": [
+            "Marcus's proposed Sep 28 time is the agreed schedule."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": {
+        "type": "factual",
+        "question": "Conflicting schedule records for the IPV diligence call.",
+        "options": [
+          "Email says Monday, Sep 28, at 10am",
+          "Calendar says Friday, Sep 25, at 10am"
+        ],
+        "default": 1
+      },
+      "entities": [
+        "ravi-menon",
+        "marcus-webb"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i7",
+      "about": "other:q2-doc",
+      "candidate_ids": [
+        "c118"
+      ],
+      "candidate_types": [
+        "reply_owed"
+      ],
+      "priority": "P0",
+      "section": "decisions",
+      "due_today": true,
+      "confidence": "high",
+      "why": "Priya’s intentional co-founder email asks Avery to choose a backfill concurrency cap before Thursday.",
+      "citations": [
+        {
+          "source_id": "msg:<20260923-0840.priya@tessera.io>",
+          "quote": "pick one before thursday"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "read",
+          "target": null,
+          "brief": "Review the Q2 document comment and available concurrency-cap options.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": "<20260923-0840.priya@tessera.io>"
+        },
+        {
+          "type": "decide",
+          "target": "Q2 backfill concurrency cap",
+          "brief": "Choose a concurrency cap from the Q2 document options.",
+          "assumptions": [
+            "Review the options in the Q2 document before deciding."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "priya-iyer",
+        "tessera"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i8",
+      "about": "other:inference-spend",
+      "candidate_ids": [
+        "c115"
+      ],
+      "candidate_types": [
+        "reply_owed"
+      ],
+      "priority": "P0",
+      "section": "decisions",
+      "due_today": true,
+      "confidence": "high",
+      "why": "Priya’s intentional co-founder email asks Avery to choose an inference-spend option this week.",
+      "citations": [
+        {
+          "source_id": "msg:<20260922-1510.priya@tessera.io>",
+          "quote": "need a decision this week"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "read",
+          "target": null,
+          "brief": "Review Priya’s inference-spend options and supporting details.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": "<20260922-1510.priya@tessera.io>"
+        },
+        {
+          "type": "decide",
+          "target": "Inference spend",
+          "brief": "Choose how to handle August inference spend, $41k versus the $22k model.",
+          "assumptions": [
+            "Review the options and supporting details before deciding."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "priya-iyer",
+        "tessera"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i9",
+      "about": "rollout:halberd",
+      "candidate_ids": [
+        "c122"
+      ],
+      "candidate_types": [
+        "reply_owed"
+      ],
+      "priority": "P0",
+      "section": "urgent",
+      "due_today": true,
+      "confidence": "medium",
+      "why": "Priya reported the Okta issue fixed for 12 users, but completion of the broader tenant sweep is not shown after 11 business days.",
+      "citations": [
+        {
+          "source_id": "msg:<20260908-0930.priya@tessera.io>",
+          "quote": "sweeping them today."
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "task",
+          "target": "Confirm Halberd tenant sweep is complete",
+          "brief": "Due today; verify the sweep status with Priya and close the customer incident.",
+          "assumptions": [
+            "The broader tenant sweep may still be outstanding; the reported pilot-user login issue was fixed."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "priya-iyer",
+        "tessera"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i10",
+      "about": "board-update:september-investor-update",
+      "candidate_ids": [
+        "c48",
+        "c73",
+        "c49",
+        "c127"
+      ],
+      "candidate_types": [
+        "commitment_overdue",
+        "obligation_cadence",
+        "commitment_overdue",
+        "task_due"
+      ],
+      "priority": "P0",
+      "section": "urgent",
+      "due_today": true,
+      "confidence": "high",
+      "why": "Diane’s September investor update is five days overdue; the draft and ARR confirmation still gate sending.",
+      "citations": [
+        {
+          "source_id": "note:notes/avery-todos.md",
+          "quote": "send Diane the Sept update (by 9/18)"
+        },
+        {
+          "source_id": "note:notes/board-meeting-minutes.md",
+          "quote": "monthly investor updates during the raise. Agreed."
+        },
+        {
+          "source_id": "task:send-diane-the-september-board-update",
+          "quote": "Send Diane the September board update"
+        },
+        {
+          "source_id": "note:notes/board-meeting-minutes.md",
+          "quote": "Avery: September investor update (mid-Sep)"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "task",
+          "target": "Send Diane the September investor update",
+          "brief": "Due today; complete the draft and confirm the ARR number with Kim first.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        },
+        {
+          "type": "task",
+          "target": "Send Diane the September board update",
+          "brief": "Confirm the task is still open and send the September update today.",
+          "assumptions": [
+            "Task data is stale; verify the task remains open before acting."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        },
+        {
+          "type": "task",
+          "target": "Prepare and send September investor update",
+          "brief": "due 11:00 today",
+          "assumptions": [
+            "An unsent draft exists in notes/board-update-draft.md."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "diane-okafor"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "stale"
+    },
+    {
+      "id": "i11",
+      "about": "incident:veritas-line-2",
+      "candidate_ids": [
+        "c108"
+      ],
+      "candidate_types": [
+        "reply_owed"
+      ],
+      "priority": "P0",
+      "section": "urgent",
+      "due_today": true,
+      "confidence": "high",
+      "why": "Veritas production ingest is failing; Jordan and Sofia are investigating, and Avery should contact the customer before they write.",
+      "citations": [
+        {
+          "source_id": "msg:<20260923-2100.jordan@tessera.io>",
+          "quote": "I'll update this thread as soon as we have one."
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "task",
+          "target": "Call Veritas about the line 2 ingest failure",
+          "brief": "due today; confirm impact and share status without promising a fix",
+          "assumptions": [
+            "Jordan and Sofia are still investigating and have not established an ETA."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "jordan-liu",
+        "tessera"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i12",
+      "about": "family:little-acorns",
+      "candidate_ids": [
+        "c26"
+      ],
+      "candidate_types": [
+        "calendar_conflict:family"
+      ],
+      "priority": "P0",
+      "section": "calendar_personal",
+      "due_today": true,
+      "confidence": "high",
+      "why": "Little Acorns is closed today, creating an immediate Wren-care gap across Avery's workday.",
+      "citations": [
+        {
+          "source_id": "msg:<20260923-1745.director@littleacornsoakland.com>",
+          "quote": "Little Acorns will be closed Thursday, September 24."
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "message_person",
+          "target": "sam@parkchen.family",
+          "brief": "Ask who is covering Wren during today's daycare closure.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": {
+        "type": "third_party",
+        "question": "Who is covering Wren while daycare is closed today?",
+        "options": [
+          "Sam is covering",
+          "Avery is covering",
+          "Coverage is still undecided"
+        ],
+        "default": 3
+      },
+      "entities": [
+        "beatriz-nunes"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i13",
+      "about": "family:wren",
+      "candidate_ids": [
+        "c8"
+      ],
+      "candidate_types": [
+        "approval_pending"
+      ],
+      "priority": "P0",
+      "section": "calendar_personal",
+      "due_today": true,
+      "confidence": "high",
+      "why": "Wren’s well visit is today; remember the insurance card and arrive 10 minutes early.",
+      "citations": [
+        {
+          "source_id": "msg:<20260923-2110.reminders@oaklandpediatrics.com>",
+          "quote": "Wren has an appointment at Oakland Pediatrics."
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "task",
+          "target": "Bring insurance card to Wren’s well visit",
+          "brief": "due 2:50pm today",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i14",
+      "about": "deal:series-a",
+      "candidate_ids": [
+        "c83",
+        "c93"
+      ],
+      "candidate_types": [
+        "quiet_thread",
+        "reply_owed"
+      ],
+      "priority": "P1",
+      "section": "pulse",
+      "due_today": true,
+      "confidence": "high",
+      "why": "Marcus’s ARR question reached the three-business-day quiet threshold; the profile says ~$3.2M, while effective data is $50M–$500M and the profile is stale.",
+      "citations": [
+        {
+          "source_id": "msg:<20260918-1752.marcus@inflectionpoint.vc>",
+          "quote": "Can you confirm current ARR?"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "read",
+          "target": null,
+          "brief": "Review the ARR source and reconcile it before answering Marcus.",
+          "assumptions": [
+            "The profile ARR is stale; the effective data value needs verification before being stated as ARR."
+          ],
+          "watch_trigger": null,
+          "read_start": "<20260918-1752.marcus@inflectionpoint.vc>"
+        },
+        {
+          "type": "read",
+          "target": "Marcus’s ARR and customer-reference request",
+          "brief": "Review the request and verify current ARR and two suitable procurement-side references before replying.",
+          "assumptions": [
+            "The current ARR and reference names are not established by the provided thread summary."
+          ],
+          "watch_trigger": null,
+          "read_start": "<20260918-1752.marcus@inflectionpoint.vc>"
+        }
+      ],
+      "ambiguity": {
+        "type": "factual",
+        "question": "What is Tessera’s current ARR? The profile says ~$3.2M, while the effective data value is $50M–$500M.",
+        "options": [
+          "Use the effective data value ($50M–$500M)",
+          "Verify the current ARR before replying"
+        ],
+        "default": 2
+      },
+      "entities": [
+        "marcus-webb",
+        "inflection-point-ventures"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i15",
+      "about": "other:kim-pto",
+      "candidate_ids": [
+        "c116",
+        "c20"
+      ],
+      "candidate_types": [
+        "reply_owed",
+        "approval_pending"
+      ],
+      "priority": "P1",
+      "section": "decisions",
+      "due_today": true,
+      "confidence": "high",
+      "why": "Kim needs a yes/no on Oct 5–9 PTO by Thursday and says close, payroll, and invoice coverage is outlined.",
+      "citations": [
+        {
+          "source_id": "msg:<20260923-1640.kim@tessera.io>",
+          "quote": "A yes/no by Thursday is all I need."
+        },
+        {
+          "source_id": "msg:<20260923-1640.kim@tessera.io>",
+          "quote": "Could I take Oct 5-9 (Monday through Friday) as PTO?"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "read",
+          "target": null,
+          "brief": "Review Kim’s proposed coverage for close, payroll, and invoices.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": "<20260923-1640.kim@tessera.io>"
+        },
+        {
+          "type": "decide",
+          "target": "Kim’s PTO request, Oct 5–9",
+          "brief": "Decide whether to approve the requested PTO after reviewing coverage.",
+          "assumptions": [
+            "Kim’s outlined coverage is in the email."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        },
+        {
+          "type": "approve",
+          "target": "kim@tessera.io",
+          "brief": "Approve Kim’s PTO request for October 5–9.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "kim-delgado",
+        "tessera"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i16",
+      "about": "deal:series-a",
+      "candidate_ids": [
+        "c31",
+        "c50",
+        "c80"
+      ],
+      "candidate_types": [
+        "commitment_not_in_tasks",
+        "commitment_overdue",
+        "quiet_thread"
+      ],
+      "priority": "P1",
+      "section": "urgent",
+      "due_today": true,
+      "confidence": "high",
+      "why": "Diane's promised Series A update was due last week and remains absent from tasks.",
+      "citations": [
+        {
+          "source_id": "msg:<20260906-1405.avery@tessera.io>",
+          "quote": "I'll get one out next week once Wednesday is behind us."
+        },
+        {
+          "source_id": "msg:<20260906-1530.diane@cobaltridge.vc>",
+          "quote": "And no rush on the update; get through Wednesday first."
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "task",
+          "target": "Send Diane the September board update",
+          "brief": "due today, 9:00am",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        },
+        {
+          "type": "read",
+          "target": null,
+          "brief": "Review the Diane thread and existing send-update task before preparing the overdue update.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": "<20260906-1405.avery@tessera.io>"
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "diane-okafor",
+        "cobalt-ridge"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i17",
+      "about": "rollout:northstar-foods",
+      "candidate_ids": [
+        "c125",
+        "c88"
+      ],
+      "candidate_types": [
+        "reply_owed",
+        "quiet_thread"
+      ],
+      "priority": "P1",
+      "section": "urgent",
+      "due_today": true,
+      "confidence": "high",
+      "why": "Northstar’s renewal-window contact requested a line-count-first weekly report format 16 business days ago; completion is not shown.",
+      "citations": [
+        {
+          "source_id": "msg:<20260901-0840.grace.lindqvist@northstarfoods.com>",
+          "quote": "could the weekly version lead with the count by line (line 1 / line 2) and then the detail?"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "task",
+          "target": "Verify Northstar weekly exception report setup",
+          "brief": "Due today; confirm Yuki configured line counts before details and follow up with Grace if not.",
+          "assumptions": [
+            "Avery previously said Yuki would set up the weekly report; no completion is shown."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        },
+        {
+          "type": "read",
+          "target": null,
+          "brief": "Verify whether Yuki implemented Grace’s requested weekly report ordering; follow up only if it remains open.",
+          "assumptions": [
+            "Avery’s earlier assignment to Yuki may have been completed."
+          ],
+          "watch_trigger": null,
+          "read_start": "<20260901-0840.grace.lindqvist@northstarfoods.com>"
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "grace-lindqvist",
+        "northstar-foods"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i18",
+      "about": "meeting:northstar-foods-qbr",
+      "candidate_ids": [
+        "c85"
+      ],
+      "candidate_types": [
+        "quiet_thread"
+      ],
+      "priority": "P1",
+      "section": "urgent",
+      "due_today": true,
+      "confidence": "high",
+      "why": "Grace’s Sept. 7 attendance ask is unanswered; the Northstar QBR is scheduled tentatively for Sept. 30.",
+      "citations": [
+        {
+          "source_id": "msg:<20260907-1345.grace.lindqvist@northstarfoods.com>",
+          "quote": "Avery, if you can make it"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "decide",
+          "target": null,
+          "brief": "Decide whether to attend Northstar’s Sept. 30 QBR (Option B), then answer Grace.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "grace-lindqvist",
+        "northstar-foods"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i19",
+      "about": "rollout:halberd",
+      "candidate_ids": [
+        "c87",
+        "c124"
+      ],
+      "candidate_types": [
+        "quiet_thread",
+        "reply_owed"
+      ],
+      "priority": "P1",
+      "section": "urgent",
+      "due_today": true,
+      "confidence": "medium",
+      "why": "Renee needs an Oct. 6 confirmation by tonight; the provided evidence does not establish whether the date holds.",
+      "citations": [
+        {
+          "source_id": "msg:<20260923-1408.renee.tan@halberd.com>",
+          "quote": "is Oct 6 still on?"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "read",
+          "target": null,
+          "brief": "Check the rollout thread for confirmation that Oct. 6 remains on before responding to Renee.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": "<20260923-1408.renee.tan@halberd.com>"
+        },
+        {
+          "type": "task",
+          "target": "Verify Halberd October 6 go-live status",
+          "brief": "Due today, before replying to Renee; confirm whether the date still holds with the rollout owner.",
+          "assumptions": [
+            "The prior plan scheduled October 6, but current status is unconfirmed."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "renee-tan",
+        "halberd-manufacturing"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i20",
+      "about": "rollout:halberd",
+      "candidate_ids": [
+        "c47"
+      ],
+      "candidate_types": [
+        "commitment_not_in_tasks"
+      ],
+      "priority": "P1",
+      "section": "urgent",
+      "due_today": true,
+      "confidence": "medium",
+      "why": "Renee’s Oct 6 date check is due Thursday evening; the Sep 16 SOC 2-forward commitment has no recorded completion.",
+      "citations": [
+        {
+          "source_id": "msg:<20260916-1240.avery@tessera.io>",
+          "quote": "I'll have him forward it to you directly"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "task",
+          "target": "Confirm SOC 2 report was forwarded and reply to Renee about the Oct 6 date",
+          "brief": "Due today, before Thursday evening.",
+          "assumptions": [
+            "No completion is recorded for the SOC 2 forward.",
+            "Renee's date question needs a reply by Thursday evening."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "renee-tan"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i21",
+      "about": "pricing:pricing-deck",
+      "candidate_ids": [
+        "c120"
+      ],
+      "candidate_types": [
+        "reply_owed"
+      ],
+      "priority": "P1",
+      "section": "urgent",
+      "due_today": true,
+      "confidence": "high",
+      "why": "Avery promised pricing-deck feedback by Friday; that commitment is overdue since Sept 18.",
+      "citations": [
+        {
+          "source_id": "msg:<20260916-1805.avery@tessera.io>",
+          "quote": "will get you feedback by Friday"
+        },
+        {
+          "source_id": "msg:<20260916-1040.tomas@tessera.io>",
+          "quote": "I'd love your feedback by Friday"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "read",
+          "target": null,
+          "brief": "Review pricing deck v2 to prepare the overdue feedback.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": "<20260916-1040.tomas@tessera.io>"
+        },
+        {
+          "type": "task",
+          "target": "Send Tomás feedback on pricing deck v2",
+          "brief": "Overdue; complete today.",
+          "assumptions": [
+            "Avery’s promised feedback has not been sent."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "tomas-reyes",
+        "tessera"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i22",
+      "about": "offer:mei-tanaka",
+      "candidate_ids": [
+        "c19",
+        "c114"
+      ],
+      "candidate_types": [
+        "approval_pending",
+        "reply_owed"
+      ],
+      "priority": "P1",
+      "section": "decisions",
+      "due_today": true,
+      "confidence": "high",
+      "why": "Mei’s offer signature takes a minute and is needed before Friday; the deadline is tonight.",
+      "citations": [
+        {
+          "source_id": "msg:<20260922-1822.tomas@tessera.io>",
+          "quote": "the signature takes about a minute, and it needs to happen before Friday"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "approve",
+          "target": "thread:20260922-1822.tomas@tessera.io",
+          "brief": "Sign Mei’s offer letter in DocuSign before Friday.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        },
+        {
+          "type": "approve",
+          "target": "DocuSign",
+          "brief": "Sign Mei’s offer letter before Friday; Tomás says it takes about a minute.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "tomas-reyes",
+        "tessera"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i23",
+      "about": "meeting:aperture-call",
+      "candidate_ids": [
+        "c55",
+        "c39"
+      ],
+      "candidate_types": [
+        "commitment_overdue",
+        "commitment_not_in_tasks"
+      ],
+      "priority": "P1",
+      "section": "urgent",
+      "due_today": true,
+      "confidence": "high",
+      "why": "Avery promised David times on Sep 3; the commitment is 17 days overdue.",
+      "citations": [
+        {
+          "source_id": "msg:<20260903-1540.avery@tessera.io>",
+          "quote": "I'll send some times for next week"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "task",
+          "target": "Send David Kim available times",
+          "brief": "Due today; send David times for next week.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        },
+        {
+          "type": "task",
+          "target": "Reconnect with David Kim",
+          "brief": "due this week",
+          "assumptions": [
+            "The original timing promise is now stale; propose new meeting times."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "david-kim"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i24",
+      "about": "deal:aperture",
+      "candidate_ids": [
+        "c79"
+      ],
+      "candidate_types": [
+        "quiet_thread"
+      ],
+      "priority": "P1",
+      "section": "urgent",
+      "due_today": true,
+      "confidence": "high",
+      "why": "Avery promised David call times for the following week; that commitment is now substantially overdue.",
+      "citations": [
+        {
+          "source_id": "msg:<20260903-1540.avery@tessera.io>",
+          "quote": "I'll send some times for next week"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "task",
+          "target": "Send David Kim meeting times",
+          "brief": "due today; choose available slots and send them",
+          "assumptions": [
+            "Avery still wants to take the possible call."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "david-kim",
+        "aperture-capital"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i25",
+      "about": "meeting:lumen-demo",
+      "candidate_ids": [
+        "c113"
+      ],
+      "candidate_types": [
+        "reply_owed"
+      ],
+      "priority": "P1",
+      "section": "decisions",
+      "due_today": true,
+      "confidence": "high",
+      "why": "The agenda choice was due Wednesday EOD, and the Lumen demo is scheduled for Thursday at 10:30.",
+      "citations": [
+        {
+          "source_id": "msg:<20260922-1731.dana.whitfield@lumenanalytics.com>",
+          "quote": "I just need to know by Wednesday EOD"
+        },
+        {
+          "source_id": "msg:<20260922-1731.dana.whitfield@lumenanalytics.com>",
+          "quote": "Which would you rather we run?"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "question",
+          "target": null,
+          "brief": "Choose the standard demo or API-focused walkthrough for today’s 10:30 Lumen meeting.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": {
+        "type": "preference",
+        "question": "Which format should Dana use for the Lumen demo today?",
+        "options": [
+          "Standard demo",
+          "API-focused walkthrough"
+        ],
+        "default": 1
+      },
+      "entities": [
+        "dana-whitfield",
+        "lumen-analytics"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i26",
+      "about": "other:manufacturing-signal",
+      "candidate_ids": [
+        "c117"
+      ],
+      "candidate_types": [
+        "reply_owed"
+      ],
+      "priority": "P1",
+      "section": "urgent",
+      "due_today": true,
+      "confidence": "high",
+      "why": "Reporter’s comment deadline is Thursday noon Pacific; the request requires answers to three substantive questions.",
+      "citations": [
+        {
+          "source_id": "msg:<20260922-0950.sasha.kimura@manufacturingsignal.com>",
+          "quote": "My deadline is Thursday noon Pacific."
+        },
+        {
+          "source_id": "msg:<20260922-0950.sasha.kimura@manufacturingsignal.com>",
+          "quote": "I have three questions:"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "read",
+          "target": null,
+          "brief": "Review Sasha’s three questions about plant-floor AI deployment.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": "<20260922-0950.sasha.kimura@manufacturingsignal.com>"
+        },
+        {
+          "type": "task",
+          "target": "Answer Manufacturing Signal’s comment request",
+          "brief": "Due today by noon Pacific.",
+          "assumptions": [
+            "The response requires Avery’s comments on the three questions."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "sasha-kimura",
+        "manufacturing-signal"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i27",
+      "about": "report:soc-2-type-ii",
+      "candidate_ids": [
+        "c130"
+      ],
+      "candidate_types": [
+        "task_due"
+      ],
+      "priority": "P1",
+      "section": "urgent",
+      "due_today": true,
+      "confidence": "medium",
+      "why": "Halberd's SOC 2 report task is 13 days overdue; task list is stale, so confirm it remains open.",
+      "citations": [
+        {
+          "source_id": "task:send-halberd-the-soc-2-type-ii-report",
+          "quote": "Send Halberd the SOC 2 Type II report"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "task",
+          "target": "Send Halberd the SOC 2 Type II report",
+          "brief": "Confirm it is still open and send today.",
+          "assumptions": [
+            "Tasks are stale; the report may already have been sent."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "halberd"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "stale"
+    },
+    {
+      "id": "i28",
+      "about": "invoice:cl-88213",
+      "candidate_ids": [
+        "c10"
+      ],
+      "candidate_types": [
+        "approval_pending"
+      ],
+      "priority": "P1",
+      "section": "decisions",
+      "due_today": true,
+      "confidence": "high",
+      "why": "The $4,850 invoice deadline passed; the notice warns of service interruption and a late fee.",
+      "citations": [
+        {
+          "source_id": "msg:<20260923-1230.ops@cloudledger-billing.com>",
+          "quote": "approval must be received by end of business today"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "decide",
+          "target": "CloudLedger invoice CL-88213",
+          "brief": "Decide whether to approve the $4,850 overdue invoice or pay it to avoid interruption and a late fee.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i29",
+      "about": "meeting:q2-planning-sync",
+      "candidate_ids": [
+        "c29",
+        "c41"
+      ],
+      "candidate_types": [
+        "commitment_due",
+        "commitment_not_in_tasks"
+      ],
+      "priority": "P1",
+      "section": "urgent",
+      "due_today": true,
+      "confidence": "high",
+      "why": "Jordan's and Priya's planning comments remain unresolved, and the sync is today at 2:30pm.",
+      "citations": [
+        {
+          "source_id": "note:notes/q2-planning.md",
+          "quote": "Two open comments below, unresolved; resolve before the sync or take them live."
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "task",
+          "target": "Resolve Jordan's and Priya's Q2 planning comments",
+          "brief": "due before the 2:30pm sync today",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        },
+        {
+          "type": "task",
+          "target": "Resolve Jordan's and Priya's planning comments",
+          "brief": "due before today's 2:30pm sync",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i30",
+      "about": "candidate:ines-ferreira",
+      "candidate_ids": [
+        "c5"
+      ],
+      "candidate_types": [
+        "approval_pending"
+      ],
+      "priority": "P1",
+      "section": "urgent",
+      "due_today": true,
+      "confidence": "high",
+      "why": "Ines’s interview is scheduled for 4pm today; check the invite and her logistics question before then.",
+      "citations": [
+        {
+          "source_id": "msg:<20260920-2018.calendarnotification@google.com>",
+          "quote": "You have been invited to the following event."
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "read",
+          "target": "Ines Ferreira interview details",
+          "brief": "Check today’s interview invite and Ines’s question about format and preparation.",
+          "assumptions": [
+            "The interview invitation is for today at 4pm."
+          ],
+          "watch_trigger": null,
+          "read_start": "thread:20260923-1930.ines.ferreira.eng@gmail.com"
+        }
+      ],
+      "ambiguity": null,
+      "entities": [],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i31",
+      "about": "approval:google",
+      "candidate_ids": [
+        "c2"
+      ],
+      "candidate_types": [
+        "approval_pending"
+      ],
+      "priority": "P1",
+      "section": "decisions",
+      "due_today": true,
+      "confidence": "high",
+      "why": "Review the new Google sign-in today; the account alert says it came from a previously used Mac.",
+      "citations": [
+        {
+          "source_id": "msg:<20260923-0715.noreply@accounts.google.com>",
+          "quote": "Check activity: https://myaccount.google.com/notifications"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "read",
+          "target": "Google Account sign-in alert",
+          "brief": "Review the sign-in activity and take any needed security step.",
+          "assumptions": [
+            "The sign-in alert identifies a previously used Mac."
+          ],
+          "watch_trigger": null,
+          "read_start": "<20260923-0715.noreply@accounts.google.com>"
+        }
+      ],
+      "ambiguity": null,
+      "entities": [],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i32",
+      "about": "other:stripe-payout",
+      "candidate_ids": [
+        "c21"
+      ],
+      "candidate_types": [
+        "approval_pending"
+      ],
+      "priority": "P1",
+      "section": "urgent",
+      "due_today": true,
+      "confidence": "high",
+      "why": "Stripe payouts of $18,420.55 are paused pending bank verification; the issue has been waiting over two days.",
+      "citations": [
+        {
+          "source_id": "msg:<20260922-0312.notifications@stripe.com>",
+          "quote": "Automatic payouts are paused for this account until it is verified."
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "read",
+          "target": "thread:20260922-0312.notifications@stripe.com",
+          "brief": "Review the Stripe notice and its bank-verification steps to resume automatic payouts.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": "<20260922-0312.notifications@stripe.com>"
+        }
+      ],
+      "ambiguity": null,
+      "entities": [],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i33",
+      "about": "candidate:ines-ferreira",
+      "candidate_ids": [
+        "c92"
+      ],
+      "candidate_types": [
+        "reply_owed"
+      ],
+      "priority": "P1",
+      "section": "urgent",
+      "due_today": true,
+      "confidence": "medium",
+      "why": "Ines’s interview is tomorrow at 4pm; format and preparation details remain unanswered.",
+      "citations": [
+        {
+          "source_id": "msg:<20260923-1930.ines.ferreira.eng@gmail.com>",
+          "quote": "Is there anything you would like me to prepare or bring along?"
+        },
+        {
+          "source_id": "msg:<20260923-1930.ines.ferreira.eng@gmail.com>",
+          "quote": "Will the interview be over video or in person at your office?"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "read",
+          "target": "Interview logistics for Ines Ferreira",
+          "brief": "Check the interview invite or thread for the format and any preparation guidance before replying.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": "<20260923-1930.ines.ferreira.eng@gmail.com>"
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "ines-ferreira"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i34",
+      "about": "deal:series-a",
+      "candidate_ids": [
+        "c94"
+      ],
+      "candidate_types": [
+        "reply_owed"
+      ],
+      "priority": "P1",
+      "section": "urgent",
+      "due_today": false,
+      "confidence": "high",
+      "why": "Elena requested diligence materials by Friday for Monday’s working session; the deliverables need preparation.",
+      "citations": [
+        {
+          "source_id": "msg:<20260923-0605.elena@inflectionpoint.vc>",
+          "quote": "If you can get these to me by Friday"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "task",
+          "target": "Prepare Elena’s diligence materials",
+          "brief": "Due Friday: send architecture overview, customer ingest uptime, and inference-cost assumptions.",
+          "assumptions": [
+            "The three requested materials are not yet sent."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "elena-vasquez",
+        "inflection-point-ventures"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i35",
+      "about": "rollout:halberd",
+      "candidate_ids": [
+        "c123"
+      ],
+      "candidate_types": [
+        "reply_owed"
+      ],
+      "priority": "P1",
+      "section": "decisions",
+      "due_today": false,
+      "confidence": "high",
+      "why": "Halberd’s procurement lead wants 30 minutes next week to scope Kansas City before the October 15 budget close.",
+      "citations": [
+        {
+          "source_id": "msg:<20260922-1040.curtis.ayala@halberd.com>",
+          "quote": "Do you have 30 minutes next week?"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "task",
+          "target": "Schedule 30 minutes with Curtis about Halberd Kansas City",
+          "brief": "Due by Friday; find a 30-minute slot next week and arrange the discussion.",
+          "assumptions": [
+            "The discussion is conditional on the October 6 Fresno outcome."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "curtis-ayala",
+        "halberd-manufacturing"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i36",
+      "about": "pricing:plant-bundle",
+      "candidate_ids": [
+        "c22",
+        "c119"
+      ],
+      "candidate_types": [
+        "approval_pending",
+        "reply_owed"
+      ],
+      "priority": "P1",
+      "section": "decisions",
+      "due_today": false,
+      "confidence": "high",
+      "why": "Tomás needs approval of the $48k Plant Bundle price by Friday before quoting Meridian.",
+      "citations": [
+        {
+          "source_id": "msg:<20260922-1305.tomas@tessera.io>",
+          "quote": "What I need from you is a sign-off on the $48k number by Friday"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "decide",
+          "target": "thread:20260922-1305.tomas@tessera.io",
+          "brief": "Decide whether to approve the $48k Plant Bundle price before Tomás quotes Meridian.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        },
+        {
+          "type": "read",
+          "target": null,
+          "brief": "Review Tomás’s Plant Bundle pricing request and supporting context.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": "<20260922-1305.tomas@tessera.io>"
+        },
+        {
+          "type": "decide",
+          "target": "Plant Bundle price",
+          "brief": "Decide whether to sign off on the $48k price by Friday.",
+          "assumptions": [
+            "Review the pricing context before deciding."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "tomas-reyes",
+        "tessera"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i37",
+      "about": "renewal:northstar",
+      "candidate_ids": [
+        "c121"
+      ],
+      "candidate_types": [
+        "reply_owed"
+      ],
+      "priority": "P1",
+      "section": "decisions",
+      "due_today": false,
+      "confidence": "high",
+      "why": "Tomás forwarded unresolved Northstar downtime-log and renewal-review items, but “thoughts?” does not specify the decision needed.",
+      "citations": [
+        {
+          "source_id": "msg:<20260923-2211.tomas@tessera.io>",
+          "quote": "thoughts?"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "question",
+          "target": null,
+          "brief": "Choose whether to prioritize downtime-log questions, renewal-review requirements, or review the full thread first.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        },
+        {
+          "type": "read",
+          "target": null,
+          "brief": "Review Tomás’s forwarded Northstar thread and identify the open asks and commitments.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": "<20260923-2211.tomas@tessera.io>"
+        }
+      ],
+      "ambiguity": {
+        "type": "preference",
+        "question": "What should Avery prioritize in Tomás’s Northstar forward?",
+        "options": [
+          "Treat the downtime-log questions as the priority",
+          "Focus on renewal-review requirements",
+          "Review the full thread before choosing"
+        ],
+        "default": 3
+      },
+      "entities": [
+        "tomas-reyes",
+        "tessera"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i38",
+      "about": "pricing:plant-bundle",
+      "candidate_ids": [
+        "c45"
+      ],
+      "candidate_types": [
+        "commitment_not_in_tasks"
+      ],
+      "priority": "P1",
+      "section": "decisions",
+      "due_today": false,
+      "confidence": "high",
+      "why": "Plant Bundle sign-off is still open and due Friday, Sep 25.",
+      "citations": [
+        {
+          "source_id": "note:notes/gtm-weekly.md",
+          "quote": "Avery: Plant Bundle sign-off by Fri 9/25. (open)"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "decide",
+          "target": "Plant Bundle pricing",
+          "brief": "Review the proposal and decide whether to sign off by Fri 9/25.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i39",
+      "about": "offer:mei-tanaka",
+      "candidate_ids": [
+        "c18"
+      ],
+      "candidate_types": [
+        "approval_pending"
+      ],
+      "priority": "P1",
+      "section": "decisions",
+      "due_today": false,
+      "confidence": "high",
+      "why": "Mei Tanaka's Backend Engineer offer still needs Avery's signature; no signing deadline is stated.",
+      "citations": [
+        {
+          "source_id": "msg:<20260922-0840.dse@docusign.net>",
+          "quote": "Avery Chen (avery@tessera.io) - Needs to sign"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "read",
+          "target": null,
+          "brief": "Review Mei Tanaka's offer letter and signing details.",
+          "assumptions": [
+            "The DocuSign signature remains outstanding."
+          ],
+          "watch_trigger": null,
+          "read_start": "<20260922-0840.dse@docusign.net>"
+        }
+      ],
+      "ambiguity": null,
+      "entities": [],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i40",
+      "about": "meeting:lumen-analytics-tessera-demo",
+      "candidate_ids": [
+        "c25"
+      ],
+      "candidate_types": [
+        "calendar_conflict:deep_work"
+      ],
+      "priority": "P2",
+      "section": "calendar_personal",
+      "due_today": true,
+      "confidence": "high",
+      "why": "Lumen demo overlaps Thursday deep work by 30 minutes; Avery wants to know when meetings are scheduled over the block.",
+      "citations": [
+        {
+          "source_id": "event:lumen-demo-20260924",
+          "quote": "Lumen Analytics <> Tessera - demo"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "calendar_response",
+          "target": "lumen-demo-20260924",
+          "brief": "Propose moving the demo to 11:15am today.",
+          "assumptions": [
+            "The 11:15am slot is available."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "dana-whitfield",
+        "lumen-analytics"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i41",
+      "about": "meeting:ipv-board-composition",
+      "candidate_ids": [
+        "c111"
+      ],
+      "candidate_types": [
+        "reply_owed"
+      ],
+      "priority": "P2",
+      "section": "decisions",
+      "due_today": true,
+      "confidence": "high",
+      "why": "Hollis asks for 20 minutes Thursday afternoon to discuss IPV’s board composition; whether to meet is unclear.",
+      "citations": [
+        {
+          "source_id": "msg:<20260923-0820.hollis.grant@gmail.com>",
+          "quote": "got 20 minutes Thursday afternoon?"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "question",
+          "target": null,
+          "brief": "Choose whether to meet Hollis Thursday afternoon or ask to reschedule.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": {
+        "type": "preference",
+        "question": "Should Avery meet Hollis Thursday afternoon about IPV’s board composition?",
+        "options": [
+          "Meet Thursday",
+          "Decline",
+          "Ask to reschedule"
+        ],
+        "default": 1
+      },
+      "entities": [
+        "hollis-grant"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i42",
+      "about": "meeting:thu-review",
+      "candidate_ids": [
+        "c128"
+      ],
+      "candidate_types": [
+        "task_due"
+      ],
+      "priority": "P2",
+      "section": "urgent",
+      "due_today": true,
+      "confidence": "medium",
+      "why": "Q2 planning doc is due for today's Thu review; task list is stale, so confirm it remains open.",
+      "citations": [
+        {
+          "source_id": "task:finalize-q2-planning-doc-for-the-thu-review",
+          "quote": "Finalize Q2 planning doc for the Thu review"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "task",
+          "target": "Finalize Q2 planning doc for the Thu review",
+          "brief": "Confirm it is still open and finalize today.",
+          "assumptions": [
+            "Tasks are stale; the doc may already be finalized."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "q2-planning-doc",
+        "thu-review"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "stale"
+    },
+    {
+      "id": "i43",
+      "about": "meeting:lumen-analytics-demo",
+      "candidate_ids": [
+        "c16"
+      ],
+      "candidate_types": [
+        "approval_pending"
+      ],
+      "priority": "P2",
+      "section": "decisions",
+      "due_today": true,
+      "confidence": "medium",
+      "why": "Lumen Analytics demo invitation is for today; RSVP choice and event details are unclear.",
+      "citations": [
+        {
+          "source_id": "msg:<20260922-1731.calendarnotification@google.com>",
+          "quote": "You have been invited to the following event."
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "read",
+          "target": null,
+          "brief": "Review the Lumen Analytics demo invitation and event details.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": "<20260922-1731.calendarnotification@google.com>"
+        },
+        {
+          "type": "question",
+          "target": null,
+          "brief": "Decide whether to attend the Lumen Analytics demo today.",
+          "assumptions": [
+            "Invitation is for today, but event details are not included."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": {
+        "type": "preference",
+        "question": "Should Avery attend the Lumen Analytics demo today?",
+        "options": [
+          "Accept",
+          "Decline",
+          "Review details before deciding"
+        ],
+        "default": 3
+      },
+      "entities": [],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i44",
+      "about": "meeting:cobalt-ridge-founders-dinner",
+      "candidate_ids": [
+        "c84",
+        "c109"
+      ],
+      "candidate_types": [
+        "quiet_thread",
+        "reply_owed"
+      ],
+      "priority": "P2",
+      "section": "pulse",
+      "due_today": false,
+      "confidence": "high",
+      "why": "Cobalt’s founders dinner RSVP is due October 2, so Avery has time to decide before the deadline.",
+      "citations": [
+        {
+          "source_id": "msg:<20260904-1000.office@cobaltridge.vc>",
+          "quote": "RSVP by October 2"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "question",
+          "target": null,
+          "brief": "Choose whether to attend the October 8 founders dinner; RSVP is due October 2.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": {
+        "type": "preference",
+        "question": "Should Avery attend Cobalt Ridge’s October 8 founders dinner?",
+        "options": [
+          "RSVP yes",
+          "Decline",
+          "Defer the decision until closer to October 2"
+        ],
+        "default": 3
+      },
+      "entities": [
+        "cobalt-ridge-ventures"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i45",
+      "about": "other:profile-drift:nadia-rahimi",
+      "candidate_ids": [
+        "c76",
+        "c77"
+      ],
+      "candidate_types": [
+        "profile_drift",
+        "profile_drift"
+      ],
+      "priority": "P2",
+      "section": "pulse",
+      "due_today": false,
+      "confidence": "high",
+      "why": "Nadia says she replaced Simon as Veritas procurement lead; Simon’s profile is stale.",
+      "citations": [
+        {
+          "source_id": "msg:<20260909-0920.nadia.rahimi@veritascomponents.com>",
+          "quote": "I'm taking over from Simon as procurement lead at Veritas as of today."
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "profile_update",
+          "target": null,
+          "brief": "Update Simon Achterberg’s role: replaced by Nadia Rahimi as Procurement Lead at Veritas Components.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "simon-achterberg",
+        "nadia-rahimi"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i46",
+      "about": "hiring-req:product-designer",
+      "candidate_ids": [
+        "c104"
+      ],
+      "candidate_types": [
+        "reply_owed"
+      ],
+      "priority": "P2",
+      "section": "pulse",
+      "due_today": false,
+      "confidence": "high",
+      "why": "Designer search is paused pending the raise; Bram is still asking for profile feedback and calibration.",
+      "citations": [
+        {
+          "source_id": "msg:<20260923-1500.bram@keystonesearch.com>",
+          "quote": "Could we find 15 minutes this week or early next to calibrate?"
+        },
+        {
+          "source_id": "msg:<20260918-1520.bram@keystonesearch.com>",
+          "quote": "Who should screen them first on your side"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "reply",
+          "target": "bram@keystonesearch.com",
+          "brief": "Tell Bram the designer search is paused pending the raise; ask him to hold the profiles and calibration.",
+          "assumptions": [
+            "The hiring-sync note that the designer search is paused remains current."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "bram-kessler",
+        "keystone-search"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i47",
+      "about": "candidate:avery-chen",
+      "candidate_ids": [
+        "c91"
+      ],
+      "candidate_types": [
+        "reply_owed"
+      ],
+      "priority": "P2",
+      "section": "pulse",
+      "due_today": false,
+      "confidence": "medium",
+      "why": "Several unsolicited recruiter approaches surfaced; do not reply to cold inbound recruiters.",
+      "citations": [
+        {
+          "source_id": "msg:<20260911-0830.marisol@hexlinesearch.com>",
+          "quote": "If you are not interested, a quick reply saying so would be very helpful"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "watch",
+          "target": "recruiter approaches",
+          "brief": "Track unsolicited recruiter approaches without replying.",
+          "assumptions": [
+            "This is part of the recurring cold-inbound recruiter pattern."
+          ],
+          "watch_trigger": "Escalate if a recruiter approach becomes a warm referral or Avery expresses interest.",
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "marisol-vega",
+        "hexline-search"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i48",
+      "about": "meeting:nia-bassett",
+      "candidate_ids": [
+        "c40"
+      ],
+      "candidate_types": [
+        "commitment_not_in_tasks"
+      ],
+      "priority": "P2",
+      "section": "pulse",
+      "due_today": false,
+      "confidence": "high",
+      "why": "You promised to text Nia about meeting again in October; that timing starts next week.",
+      "citations": [
+        {
+          "source_id": "msg:<20260916-0910.avery@tessera.io>",
+          "quote": "i'll text you"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "task",
+          "target": "Text Nia to arrange a meeting",
+          "brief": "due October 1",
+          "assumptions": [
+            "October means the upcoming October."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "nia-bassett"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i49",
+      "about": "meeting:industrial-iot-board",
+      "candidate_ids": [
+        "c14",
+        "c110"
+      ],
+      "candidate_types": [
+        "approval_pending",
+        "reply_owed"
+      ],
+      "priority": "P2",
+      "section": "decisions",
+      "due_today": false,
+      "confidence": "high",
+      "why": "Owen asks permission to put Avery forward for an independent director role; no deadline is stated.",
+      "citations": [
+        {
+          "source_id": "msg:<20260908-1310.owen@cascadepartners.co>",
+          "quote": "I'd like to put your name forward, with your permission."
+        },
+        {
+          "source_id": "msg:<20260920-1805.owen@cascadepartners.co>",
+          "quote": "Could you spare 20 minutes this week?"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "decide",
+          "target": null,
+          "brief": "Decide whether Owen may put Avery forward for the independent director role.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        },
+        {
+          "type": "question",
+          "target": null,
+          "brief": "Decide whether Owen may nominate Avery, or whether to discuss first.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": {
+        "type": "preference",
+        "question": "Should Owen put Avery forward for the independent director role?",
+        "options": [
+          "Give permission",
+          "Ask for role details first",
+          "Decline"
+        ],
+        "default": 2
+      },
+      "entities": [
+        "owen-fitzgerald",
+        "cascade-partners"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i50",
+      "about": "report:delaware-franchise-tax",
+      "candidate_ids": [
+        "c23"
+      ],
+      "candidate_types": [
+        "approval_pending"
+      ],
+      "priority": "P2",
+      "section": "decisions",
+      "due_today": false,
+      "confidence": "high",
+      "why": "An authorized officer must sign the amended Delaware franchise tax report by October 1.",
+      "citations": [
+        {
+          "source_id": "msg:<20260921-1130.notices@statewideagents.com>",
+          "quote": "The amended report must be signed by an authorized officer of the corporation."
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "task",
+          "target": "Sign and file amended Delaware franchise tax report",
+          "brief": "Due October 1.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i51",
+      "about": "candidate:theo-lindgren",
+      "candidate_ids": [
+        "c70"
+      ],
+      "candidate_types": [
+        "hiring_stall"
+      ],
+      "priority": "P2",
+      "section": "pulse",
+      "due_today": false,
+      "confidence": "high",
+      "why": "Theo Lindgren’s onsite was September 17; seven days have passed, exceeding the five-day hiring-stall threshold.",
+      "citations": [
+        {
+          "source_id": "msg:<20260910-1030.jordan@tessera.io>",
+          "quote": "Theo Lindgren's onsite is Thursday the 17th"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "task",
+          "target": "Schedule Theo Lindgren debrief",
+          "brief": "Due this week; move the stalled onsite loop forward.",
+          "assumptions": [
+            "No debrief or next step has been scheduled since the onsite."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "theo-lindgren"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i52",
+      "about": "other:profile-drift:runway",
+      "candidate_ids": [
+        "c78",
+        "c67",
+        "c68"
+      ],
+      "candidate_types": [
+        "profile_drift",
+        "contradiction",
+        "contradiction"
+      ],
+      "priority": "P2",
+      "section": "pulse",
+      "due_today": false,
+      "confidence": "high",
+      "why": "Planning notes give runway as 19 months; the profile only says “okay but not comfortable.”",
+      "citations": [
+        {
+          "source_id": "note:notes/q2-planning.md",
+          "quote": "Runway 19 months without the A."
+        },
+        {
+          "source_id": "note:notes/board-meeting-minutes.md",
+          "quote": "~21 months of runway at current burn before any Series A money."
+        },
+        {
+          "source_id": "note:notes/finance-sync.md",
+          "quote": "19 months at current burn, no A money assumed."
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "profile_update",
+          "target": null,
+          "brief": "Update runway in the profile to 19 months without the Series A.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i53",
+      "about": "deal:aperture",
+      "candidate_ids": [
+        "c30"
+      ],
+      "candidate_types": [
+        "commitment_not_in_tasks"
+      ],
+      "priority": "P2",
+      "section": "decisions",
+      "due_today": false,
+      "confidence": "medium",
+      "why": "The Aug 27 commitment to take the first Aperture call has no due date and is not in tasks.",
+      "citations": [
+        {
+          "source_id": "note:notes/board-meeting-minutes.md",
+          "quote": "first Aperture call"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "decide",
+          "target": "deal:aperture",
+          "brief": "Confirm whether the first Aperture call is still an active commitment; if so, set a date.",
+          "assumptions": [
+            "The commitment may still be outstanding because no completion is recorded."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i54",
+      "about": "other:profile-drift:arr",
+      "candidate_ids": [
+        "c63",
+        "c64",
+        "c65",
+        "c66",
+        "c74",
+        "c75"
+      ],
+      "candidate_types": [
+        "contradiction",
+        "contradiction",
+        "contradiction",
+        "contradiction",
+        "profile_drift",
+        "profile_drift"
+      ],
+      "priority": "P2",
+      "section": "decisions",
+      "due_today": false,
+      "confidence": "medium",
+      "why": "Profile says 12-person; Jordan's note says fifth person in rotation, so the profile appears stale.",
+      "citations": [
+        {
+          "source_id": "note:notes/board-update-draft.md",
+          "quote": "Headcount: 12"
+        },
+        {
+          "source_id": "note:notes/jordan-1on1.md",
+          "quote": "Jordan wants a 5th person in the rotation."
+        },
+        {
+          "source_id": "msg:<20260922-0950.sasha.kimura@manufacturingsignal.com>",
+          "quote": "roughly $50M-$500M revenue"
+        },
+        {
+          "source_id": "msg:<20260922-1730.jordan@tessera.io>",
+          "quote": "the 5th person we parked"
+        },
+        {
+          "source_id": "note:notes/finance-sync.md",
+          "quote": "ARR $3.4M as of Sep 15."
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "profile_update",
+          "target": null,
+          "brief": "Update headcount context to: fifth person in the rotation (profile currently says 12-person).",
+          "assumptions": [
+            "The computed effective fact, '5th person we parked,' is the appropriate profile value."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i55",
+      "about": "other:talentbridge-cto-role",
+      "candidate_ids": [
+        "c89"
+      ],
+      "candidate_types": [
+        "recruiter_pattern"
+      ],
+      "priority": "P2",
+      "section": "pulse",
+      "due_today": false,
+      "confidence": "high",
+      "why": "TalentBridge sent three unsolicited executive-role messages in one week, forming a recruiter pattern.",
+      "citations": [
+        {
+          "source_id": "msg:<20260918-1020.chad.morrison@talentbridge-recruiting.com>",
+          "quote": "VP Engineering opportunity - Series B logistics platform"
+        },
+        {
+          "source_id": "msg:<20260921-0905.kelsey.vaughn@talentbridge-recruiting.com>",
+          "quote": "Following up on Chad's note - CTO search"
+        },
+        {
+          "source_id": "msg:<20260923-1120.chad.morrison@talentbridge-recruiting.com>",
+          "quote": "Re: VP Engineering opportunity - last try"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "watch",
+          "target": "TalentBridge Recruiting",
+          "brief": "Track the repeated unsolicited executive-role outreach.",
+          "assumptions": [],
+          "watch_trigger": "Escalate if TalentBridge sends another message or a role directly matches an open Tessera hiring need.",
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "chad-morrison",
+        "kelsey-vaughn"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i56",
+      "about": "approval:ana-kowalski",
+      "candidate_ids": [
+        "c1"
+      ],
+      "candidate_types": [
+        "approval_pending"
+      ],
+      "priority": "P3",
+      "section": "decisions",
+      "due_today": false,
+      "confidence": "high",
+      "why": "Ramp approval is pending for Ana Kowalski’s $1,284.10 September expense report.",
+      "citations": [
+        {
+          "source_id": "msg:<20260921-1004.noreply.a4eee3@ramp.com>",
+          "quote": "needs your approval"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "approve",
+          "target": "Ramp",
+          "brief": "Approve Ana Kowalski’s September expense report for $1,284.10.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i57",
+      "about": "approval:september-expenses",
+      "candidate_ids": [
+        "c3"
+      ],
+      "candidate_types": [
+        "approval_pending"
+      ],
+      "priority": "P3",
+      "section": "decisions",
+      "due_today": false,
+      "confidence": "high",
+      "why": "Ramp approval is pending for Yuki Sato’s $388 September expense report.",
+      "citations": [
+        {
+          "source_id": "msg:<20260921-1005.noreply@ramp.com>",
+          "quote": "needs your approval"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "approve",
+          "target": "Ramp",
+          "brief": "Approve Yuki Sato’s September expense report for $388.00.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i58",
+      "about": "approval:sofia-andrade-expense-report",
+      "candidate_ids": [
+        "c4"
+      ],
+      "candidate_types": [
+        "approval_pending"
+      ],
+      "priority": "P3",
+      "section": "decisions",
+      "due_today": false,
+      "confidence": "high",
+      "why": "Ramp approval is pending for Sofia Andrade’s $612.40 September expense report.",
+      "citations": [
+        {
+          "source_id": "msg:<20260921-1004.noreply@ramp.com>",
+          "quote": "needs your approval"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "approve",
+          "target": "Ramp",
+          "brief": "Approve Sofia Andrade’s September expense report for $612.40.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    }
+  ],
+  "overflow": [
+    "i26",
+    "i27",
+    "i28",
+    "i29",
+    "i30",
+    "i31",
+    "i32",
+    "i33",
+    "i34",
+    "i35",
+    "i36",
+    "i37",
+    "i38",
+    "i39",
+    "i40",
+    "i41",
+    "i42",
+    "i43",
+    "i44",
+    "i45",
+    "i46",
+    "i47",
+    "i48",
+    "i49",
+    "i50",
+    "i51",
+    "i52",
+    "i53",
+    "i54",
+    "i55",
+    "i56",
+    "i57",
+    "i58"
+  ],
+  "about_merges": [
+    {
+      "canonical": "board-update:september-investor-update",
+      "merged": [
+        "board-update:board-comp",
+        "board-update:cadence",
+        "board-update:investor-updates",
+        "board-update:sept-update",
+        "board-update:september",
+        "board-update:series-a"
+      ],
+      "reason": "singleton-kind"
+    },
+    {
+      "canonical": "contract:halberd",
+      "merged": [
+        "contract:northstar"
+      ],
+      "reason": "shared-entity-and-evidence"
+    },
+    {
+      "canonical": "contract:meridian-foods-nda",
+      "merged": [
+        "contract:meridian-foods:mutual-nda"
+      ],
+      "reason": "same-kind-token"
+    },
+    {
+      "canonical": "deal:aperture",
+      "merged": [
+        "deal:aperture-capital"
+      ],
+      "reason": "slug-prefix"
+    },
+    {
+      "canonical": "deal:series-a:cap-table",
+      "merged": [
+        "deal:series-a:board-seat",
+        "deal:series-a:board-update"
+      ],
+      "reason": "fuzzy-ratio, shared-entity-and-evidence"
+    },
+    {
+      "canonical": "family:little-acorns",
+      "merged": [
+        "family:little-acorns-closure",
+        "family:planned-reopening"
+      ],
+      "reason": "shared-entity-and-evidence, slug-prefix"
+    },
+    {
+      "canonical": "family:thanksgiving",
+      "merged": [
+        "family:wren-daycare"
+      ],
+      "reason": "shared-entity-and-evidence"
+    },
+    {
+      "canonical": "hiring-req:backend-engineers",
+      "merged": [
+        "hiring-req:backend",
+        "hiring-req:backend-engineer",
+        "hiring-req:second-backend"
+      ],
+      "reason": "fuzzy-ratio, same-kind-token, shared-entity-and-evidence"
+    },
+    {
+      "canonical": "hiring-req:vp-engineering",
+      "merged": [
+        "hiring-req:austin-engineering-leaders"
+      ],
+      "reason": "same-kind-token"
+    },
+    {
+      "canonical": "hiring-req:vp-product",
+      "merged": [
+        "hiring-req:head-of-product"
+      ],
+      "reason": "shared-entity-and-evidence"
+    },
+    {
+      "canonical": "incident:dashboard-ci",
+      "merged": [
+        "incident:dashboard-dependabot-alert",
+        "incident:tessera-dashboard"
+      ],
+      "reason": "same-kind-token"
+    },
+    {
+      "canonical": "meeting:ipv-partnership",
+      "merged": [
+        "meeting:ipv-partnership-pitch",
+        "meeting:ipv-partnership-session",
+        "meeting:partnership-session"
+      ],
+      "reason": "fuzzy-ratio, slug-prefix"
+    },
+    {
+      "canonical": "meeting:pipeline-review",
+      "merged": [
+        "meeting:avery-tomas-1-1",
+        "meeting:northstar-invoice",
+        "meeting:northstar-qbr"
+      ],
+      "reason": "shared-entity-and-evidence"
+    },
+    {
+      "canonical": "offer:mei-tanaka",
+      "merged": [
+        "candidate:mei-tanaka"
+      ],
+      "reason": "kind-alias"
+    },
+    {
+      "canonical": "other:meridian",
+      "merged": [
+        "other:meridian-foods"
+      ],
+      "reason": "slug-prefix"
+    },
+    {
+      "canonical": "other:northstar",
+      "merged": [
+        "other:northstar-check-in",
+        "other:northstar-foods"
+      ],
+      "reason": "slug-prefix"
+    },
+    {
+      "canonical": "other:profile-drift:arr",
+      "merged": [
+        "other:profile-drift:headcount"
+      ],
+      "reason": "shared-evidence-and-token"
+    },
+    {
+      "canonical": "other:profile-drift:nadia-rahimi",
+      "merged": [
+        "other:profile-drift:simon-achterberg"
+      ],
+      "reason": "shared-evidence-and-token"
+    },
+    {
+      "canonical": "other:sprint-19",
+      "merged": [
+        "other:sprint-18"
+      ],
+      "reason": "fuzzy-ratio"
+    },
+    {
+      "canonical": "other:talentbridge-cto-role",
+      "merged": [
+        "other:recruiter-pattern:talentbridge-recruiting"
+      ],
+      "reason": "shared-evidence-and-token"
+    },
+    {
+      "canonical": "report:inference-spend",
+      "merged": [
+        "report:inference-costs"
+      ],
+      "reason": "same-kind-token"
+    },
+    {
+      "canonical": "report:q4-events",
+      "merged": [
+        "report:pipeline",
+        "report:pipeline-review",
+        "report:weekly-pipeline"
+      ],
+      "reason": "same-kind-token, shared-entity-and-evidence"
+    },
+    {
+      "canonical": "report:support-tickets",
+      "merged": [
+        "report:support-tickets-week-sep-14"
+      ],
+      "reason": "same-kind-token"
+    },
+    {
+      "canonical": "rollout:northstar-foods",
+      "merged": [
+        "rollout:meridian-foods",
+        "rollout:northstar"
+      ],
+      "reason": "same-kind-token"
+    },
+    {
+      "canonical": "rollout:ridgeway-metals",
+      "merged": [
+        "rollout:ridgeway"
+      ],
+      "reason": "same-kind-token"
+    }
+  ],
+  "dropped": [
+    "c6",
+    "c9",
+    "c11",
+    "c12",
+    "c13",
+    "c15",
+    "c17",
+    "c24",
+    "c27",
+    "c32",
+    "c36",
+    "c37",
+    "c38",
+    "c42",
+    "c43",
+    "c44",
+    "c46",
+    "c53",
+    "c54",
+    "c56",
+    "c57",
+    "c59",
+    "c60",
+    "c61",
+    "c62",
+    "c69",
+    "c71",
+    "c72",
+    "c86",
+    "c90",
+    "c97",
+    "c98",
+    "c99",
+    "c100",
+    "c101",
+    "c102",
+    "c103",
+    "c105",
+    "c106",
+    "c107",
+    "c112",
+    "c126",
+    "c129"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "violations": [],
+  "stats": {
+    "words": 341,
+    "budget": 350,
+    "header_present": true,
+    "items": 18,
+    "items_cited": 18,
+    "citations_total": 27,
+    "citations_resolved": 27
+  }
+}

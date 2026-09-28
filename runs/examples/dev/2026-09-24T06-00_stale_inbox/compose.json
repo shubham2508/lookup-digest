@@ -1,0 +1,386 @@
+{
+  "one_thing_id": "i3",
+  "sections": [
+    {
+      "name": "urgent",
+      "item_ids": [
+        "i5",
+        "i7",
+        "i8",
+        "i9",
+        "i10",
+        "i11",
+        "i12",
+        "i13",
+        "i15",
+        "i16",
+        "i17",
+        "i18"
+      ]
+    },
+    {
+      "name": "decisions",
+      "item_ids": [
+        "i4",
+        "i6"
+      ]
+    },
+    {
+      "name": "news",
+      "item_ids": []
+    },
+    {
+      "name": "pulse",
+      "item_ids": []
+    },
+    {
+      "name": "calendar_personal",
+      "item_ids": [
+        "i1",
+        "i2",
+        "i14"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "i3",
+      "what": "Send Marcus the reconciled cap table by 11am",
+      "why": "Promised Tuesday night; lead investor still waiting; completion unverified in the 32h-stale inbox.",
+      "final_actions": [
+        {
+          "type": "task",
+          "target": "Send updated cap table to Marcus",
+          "brief": "Reconcile the numbers against v3 and send by 11am today.",
+          "assumptions": [
+            "Inbox is stale; verify it has not already been sent.",
+            "Ben’s v3 may be the current version."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        },
+        {
+          "type": "forward_delegate",
+          "target": "bschaffer@wsgr.com",
+          "brief": "Confirm whether cap table v3 is reconciled and ready to send to Marcus.",
+          "assumptions": [
+            "Email is stale and may reflect a sync gap."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i5",
+      "what": "Answer Marcus’s ARR and reference request",
+      "why": "Lead investor has waited 3 business days; profile ARR is stale, and effective data spans $50M–$500M.",
+      "final_actions": [
+        {
+          "type": "read",
+          "target": null,
+          "brief": "Review Marcus’s request, identify two procurement references, and verify effective ARR before replying.",
+          "assumptions": [
+            "Email is stale and may reflect a sync gap.",
+            "The ~$3.2M profile ARR is stale; effective data says $50M–$500M."
+          ],
+          "watch_trigger": null,
+          "read_start": "<20260918-1752.marcus@inflectionpoint.vc>"
+        }
+      ]
+    },
+    {
+      "id": "i7",
+      "what": "Verify Halberd’s tenant sweep",
+      "why": "Logins for 12 pilot users were restored; sweep completion remains unconfirmed in stale email.",
+      "final_actions": [
+        {
+          "type": "task",
+          "target": "Confirm Halberd tenant sweep status",
+          "brief": "Verify whether the tenant sweep is complete by 10am today.",
+          "assumptions": [
+            "Email is stale; check whether the sweep is already complete before contacting Halberd."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i8",
+      "what": "Verify Diane received the promised raise update",
+      "why": "Update promised after Sep 9; commitment is 17 days overdue, though Diane said no rush.",
+      "final_actions": [
+        {
+          "type": "read",
+          "target": null,
+          "brief": "Check whether the earlier raise update was sent; distinguish it from the September update tracked in i9.",
+          "assumptions": [
+            "Email is stale; confirm the update remains outstanding before acting."
+          ],
+          "watch_trigger": null,
+          "read_start": "<20260906-1405.avery@tessera.io>"
+        }
+      ]
+    },
+    {
+      "id": "i9",
+      "what": "Send Diane’s September investor update",
+      "why": "Commitment says Sep 18; task says Sep 15 and remains open; tasks are 11 days stale.",
+      "final_actions": [
+        {
+          "type": "task",
+          "target": "Complete and send Diane the September investor update",
+          "brief": "Get Kim’s ARR number, complete the draft, and send by 11am today.",
+          "assumptions": [
+            "Task data is stale; verify the update remains unsent before sending."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i10",
+      "what": "Check whether Northstar’s weekly report format was implemented",
+      "why": "Grace’s line-count-first request is 16 business days old; inbox data is 32 hours stale.",
+      "final_actions": [
+        {
+          "type": "read",
+          "target": null,
+          "brief": "Check for Yuki’s report setup and whether Grace’s requested format was implemented.",
+          "assumptions": [
+            "Email is stale; confirm whether the request remains open before replying."
+          ],
+          "watch_trigger": null,
+          "read_start": "<20260831-1420.grace.lindqvist@northstarfoods.com>"
+        }
+      ]
+    },
+    {
+      "id": "i11",
+      "what": "Confirm Jordan sent Renee the SOC 2 report",
+      "why": "Halberd forwarding was promised; stale inbox leaves completion unverified.",
+      "final_actions": [
+        {
+          "type": "task",
+          "target": "Confirm Jordan forwarded the SOC 2 report to Renee",
+          "brief": "Check by 12:30pm today.",
+          "assumptions": [
+            "Email is stale; confirm the report has not already been forwarded."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i12",
+      "what": "Check whether pricing-deck feedback is still owed",
+      "why": "Promised by Sep 18; six days overdue in 32h-stale email.",
+      "final_actions": [
+        {
+          "type": "read",
+          "target": null,
+          "brief": "Review the pricing-deck thread and check for later completion.",
+          "assumptions": [
+            "Email may have a sync gap; confirm whether feedback remains outstanding."
+          ],
+          "watch_trigger": null,
+          "read_start": "<20260916-1040.tomas@tessera.io>"
+        }
+      ]
+    },
+    {
+      "id": "i13",
+      "what": "Choose the format for today’s Lumen demo",
+      "why": "Dana’s Wednesday EOD choice deadline passed; demo is 10:30 today.",
+      "final_actions": [
+        {
+          "type": "question",
+          "target": null,
+          "brief": "Choose the standard demo or API-focused walkthrough for today’s 10:30 demo.",
+          "assumptions": [
+            "The demo remains scheduled for today; inbox may be stale or have a sync gap."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i15",
+      "what": "Review Sasha’s comment request before noon",
+      "why": "Manufacturing Signal’s deadline is today at 12pm Pacific; verify facts before commenting.",
+      "final_actions": [
+        {
+          "type": "read",
+          "target": null,
+          "brief": "Review the three questions and verify current facts before deciding whether to comment.",
+          "assumptions": [
+            "Use the reported $50M–$500M range rather than the stale profile value; inbox may have a sync gap."
+          ],
+          "watch_trigger": null,
+          "read_start": "<20260922-0950.sasha.kimura@manufacturingsignal.com>"
+        }
+      ]
+    },
+    {
+      "id": "i16",
+      "what": "Finalize the Q2 planning doc",
+      "why": "Due for today’s Thursday review; task source is 11 days stale.",
+      "final_actions": []
+    },
+    {
+      "id": "i17",
+      "what": "Resolve or take Jordan and Priya’s comments live",
+      "why": "Two comments remain open before the 2:30pm planning sync today.",
+      "final_actions": [
+        {
+          "type": "decide",
+          "target": "Q2 planning sync",
+          "brief": "Choose whether to resolve both comments before the sync or take them live.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        },
+        {
+          "type": "task",
+          "target": "Resolve Jordan's and Priya's planning comments",
+          "brief": "Due before the 2:30pm sync today.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i18",
+      "what": "Verify Stripe’s payout hold and bank-check requirement",
+      "why": "Automatic payouts paused after an $18,420.55 failure; notification is 32 hours stale.",
+      "final_actions": [
+        {
+          "type": "read",
+          "target": "Stripe payout notification",
+          "brief": "Check the failed payout and what bank verification is required to resume payouts.",
+          "assumptions": [
+            "The stale notification may no longer reflect the current payout status."
+          ],
+          "watch_trigger": null,
+          "read_start": "<20260922-0312.notifications@stripe.com>"
+        }
+      ]
+    },
+    {
+      "id": "i4",
+      "what": "Resolve the diligence-call date mismatch",
+      "why": "Calendar says Sep 25 at 10am; stale email requests Sep 28 at 10am.",
+      "final_actions": [
+        {
+          "type": "question",
+          "target": null,
+          "brief": "Which date is current? Calendar shows Sep 25 at 10am; the stale email requests Sep 28 at 10am.",
+          "assumptions": [
+            "The email may have been superseded or not synced."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i6",
+      "what": "Choose a plan for inference spend",
+      "why": "Priya reports $41k versus a $22k model; decision requested by Friday, Sep 25.",
+      "final_actions": [
+        {
+          "type": "read",
+          "target": null,
+          "brief": "Review Priya’s two options for handling inference spend and decide.",
+          "assumptions": [
+            "Inbox may be missing newer messages because email is stale."
+          ],
+          "watch_trigger": null,
+          "read_start": "<20260922-1510.priya@tessera.io>"
+        }
+      ]
+    },
+    {
+      "id": "i1",
+      "what": "Resolve Wren’s appointment/Q2 sync overlap",
+      "why": "Pediatrician at 3pm overlaps your 2:30 sync by 30 minutes today.",
+      "final_actions": [
+        {
+          "type": "message_person",
+          "target": "sam@parkchen.family",
+          "brief": "Ask whether Sam expects Avery to take Wren to the 3pm pediatrician appointment.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i2",
+      "what": "Confirm today’s 5pm daycare pickup",
+      "why": "August email says Tue/Thu; schedule may have changed, and inbox data is 32 hours stale.",
+      "final_actions": [
+        {
+          "type": "task",
+          "target": "Wren daycare pickup",
+          "brief": "Due 5:00pm today.",
+          "assumptions": [
+            "August email says Tuesday and Thursday pickups; verify the schedule has not changed."
+          ],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i14",
+      "what": "Move the Lumen demo outside protected deep work",
+      "why": "10:30 demo overlaps your Thu 9–11 block by 30 minutes; see i13.",
+      "final_actions": [
+        {
+          "type": "calendar_response",
+          "target": "lumen-demo-20260924",
+          "brief": "Propose moving the demo to 11:15am today, after the deep-work block.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    }
+  ],
+  "header_notes": [
+    "Inbox data is 32 hours stale; task data is 11 days stale. Verify completion and status before acting."
+  ],
+  "cut_ids": [
+    "i19",
+    "i20",
+    "i21",
+    "i22",
+    "i23",
+    "i24",
+    "i25",
+    "i26",
+    "i27",
+    "i28",
+    "i29",
+    "i30",
+    "i31",
+    "i32",
+    "i33",
+    "i34",
+    "i35",
+    "i36",
+    "i37",
+    "i38",
+    "i39",
+    "i40",
+    "i41",
+    "i42",
+    "i43"
+  ]
+}

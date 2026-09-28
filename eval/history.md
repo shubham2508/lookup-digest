@@ -8,3 +8,6 @@ One line per prompt change (CLAUDE.md rule 10): date · prompt · version · hea
 | 2026-09-28 | extractor | v1 | — | — | — | — | ≈$0.01 (fixture) | A M3: first version; 19/19 quotes verified on the fixture |
 | 2026-09-28 | triage | v2 | — | — | — | — | — | A M5: v1→v2 explicit ambiguity.default + one result per id (after the llm.py `_strip` fix); fixture: 0 invalid packs |
 | 2026-09-28 | compose · materializer · customize_compiler · baseline | v1 | — | — | — | — | ≈$0.005–0.02/run (fixture) | A M5/M7/M8: first versions; `digest eval --world dev` pending Track B's data |
+| 2026-09-28 | extractor | v1 | — | — | — | — | — | first real dev run; baseline for later changes |
+| 2026-09-28 | triage | v2 → v4 | 91.7% → 100% | 114/175 → 120/175 | 4.7% → 5.9% | 100% → 50% | $0.040 → $0.049 | before→after spans code fixes too (Tuesday crash, P0 restore), not only the prompt. Changes: quiet-threshold rule (S3), dev notifications/RSVP/generic news excluded, co-founder email and team escalation → P0 |
+| 2026-09-28 | compose | v1 → v3 | (same runs) | | | | | one thing = one item; cut from the bottom; today's hard deadline preferred. One-thing accuracy fell: see DESIGN.md |
