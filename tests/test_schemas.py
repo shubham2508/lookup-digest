@@ -62,16 +62,17 @@ def test_ambiguity_and_action_shapes():
     assert p.watch_trigger
 
 
-def _walk(node, path=""):
+def _walk(node, path="", in_properties=False):
     if isinstance(node, dict):
-        if node.get("type") == "object":
+        if not in_properties and node.get("type") == "object":
             assert "properties" in node, f"{path}: free-form object (dict) is not allowed in an LLM output model"
             assert node.get("additionalProperties") is False, f"{path}: additionalProperties must be false"
             assert set(node.get("required", [])) == set(node["properties"]), f"{path}: all properties must be required"
-        for k in ("format", "pattern", "minLength", "maxLength", "default"):
-            assert k not in node, f"{path}: keyword {k} is not allowed in strict schema"
+        if not in_properties:   # keys of a `properties` map are field names (Ambiguity.default), not keywords
+            for k in ("format", "pattern", "minLength", "maxLength", "default"):
+                assert k not in node, f"{path}: keyword {k} is not allowed in strict schema"
         for k, v in node.items():
-            _walk(v, f"{path}/{k}")
+            _walk(v, f"{path}/{k}", in_properties=(k == "properties"))
     elif isinstance(node, list):
         for i, v in enumerate(node):
             _walk(v, f"{path}[{i}]")

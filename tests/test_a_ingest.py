@@ -87,6 +87,15 @@ def test_note_header_and_tasks_parse():
     assert tasks[0].due.isoformat() == "2026-09-18" and tasks[1].status == "done" and tasks[2].due is None
 
 
+def test_last_modified_header_beats_mtime():
+    from digest.ingest.notes import last_modified_header
+    n = parse_note_text("<!-- last-modified: 2026-09-12T10:00:00-07:00 -->\nDate: 2026-09-10 | Attendees: A\n\n# T\n", "notes/x.md", None, TZ)
+    assert n.mtime.isoformat() == "2026-09-12T10:00:00-07:00" and n.header_date.isoformat() == "2026-09-10"
+    tasks = parse_tasks_text("<!-- last-modified: 2026-09-12 -->\n- [ ] Call Ben (due: 2026-09-20)\n", None, TZ)
+    assert tasks[0].file_last_modified.isoformat() == "2026-09-12T00:00:00-07:00"
+    assert last_modified_header("no header") is None
+
+
 def test_data_dir_must_exist():
     with pytest.raises(DataMissing):
         load_world(Path("/definitely/not/here"), AS_OF, TZ)

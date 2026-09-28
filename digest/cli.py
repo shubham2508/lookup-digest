@@ -24,26 +24,22 @@ def run(
     from .ingest import DataMissing
     from .pipeline import run_pipeline
 
-    if customize is not None:
-        typer.echo("digest run: --customize is accepted but ignored until M7 (Track A).")
     try:
         result = run_pipeline(world, as_of, variant=variant, customize=customize)
     except DataMissing as e:
         typer.echo(f"digest run: {e}. Generate the world first (digest generate --world {world}).")
         raise typer.Exit(2) from None
     s = result.summary
-    typer.echo(f"run {s['run_id']}: as of {s['as_of']} · {result.freshness_line}")
-    typer.echo(f"  owner={s['owner_email']} threads={s['threads']} messages={s['messages']} "
-               f"(forwarded {s['forwarded_messages']}) events={s['events']} notes={s['notes']} tasks={s['tasks']}")
-    ex = s["extract"]
-    typer.echo(f"  extractions={s['extractions']} llm_calls={ex['llm_calls']} cached={ex['cached']} "
-               f"marketing_skipped={ex['skipped_marketing']} invalid={ex['invalid']} "
-               f"evidence={ex['evidence_valid']}/{ex['evidence_checked']} dropped={ex['evidence_dropped']} "
-               f"replaced={ex['evidence_replaced']}")
-    typer.echo(f"  cost_usd={s['cost_usd']:.6f} degradations={s['degradations']} artifacts={result.ctx.run_dir}")
-    typer.echo(f"digest run: stages {', '.join(result.pending_stages)} not implemented yet (Track A, M4/M5); "
-               f"wrote {result.ctx.path('extractions').name}.")
-    raise typer.Exit(NOT_IMPLEMENTED_EXIT)
+    typer.echo(f"run {s['run_id']}: {s['header']}")
+    typer.echo(f"  owner={s['owner_email']} threads={s['threads']} messages={s['messages']} events={s['events']} notes={s['notes']} tasks={s['tasks']}")
+    ex, tr, rd, cp, mt = s["extract"], s["triage"], s["reduce"], s["compose"], s["materialize"]
+    typer.echo(f"  extractions={s['extractions']} (llm {ex['llm_calls']}, cached {ex['cached']}, evidence {ex['evidence_valid']}/{ex['evidence_checked']})"
+               f" candidates={s['compute']['candidates']} triage_packs={tr['packs']} items={rd['items']} placed={cp['placed']} cut={cp['cut']}"
+               f" actions={mt['actions']} one_thing={cp['one_thing']}")
+    v = s["verify"]["stats"]
+    typer.echo(f"  verify: {len(s['verify']['violations'])} violation(s) handled · {v['words']}/{v['budget']} words · "
+               f"{v['items_cited']}/{v['items']} items cited · cost_usd={s['cost_usd']:.4f} · degradations={s['degradations']}")
+    typer.echo(f"  digest: {result.ctx.path('digest')}")
 
 
 def answer(
@@ -51,16 +47,35 @@ def answer(
     option: int = typer.Argument(..., help="1-based option"),
     world: str = typer.Option("dev", "--world"),
 ) -> None:
-    """Answer a question card; writes rulings.yaml."""
-    _todo("digest answer", "Track A", "M9")
+    """Answer a question card from the latest digest; writes runs/<world>/rulings.yaml and the store."""
+    from .answer import NoSuchQuestion
+    from .answer import answer as do_answer
+
+    try:
+        r = do_answer(question_id, option, world)
+    except NoSuchQuestion as e:
+        typer.echo(f"digest answer: {e}")
+        raise typer.Exit(2) from None
+    typer.echo(f"ruling {r['id']}: {r['question']} → ({r['option_chosen']}) {r['ruling']}")
+    typer.echo(f"  scope={r['scope']} expires={r['expires'][:10]} · applied to the next `digest run --world {world}`")
 
 
 def baseline(
     world: str = typer.Option("dev", "--world"),
     as_of: str = typer.Option(None, "--as-of"),
 ) -> None:
-    """Naive one-call baseline over the whole corpus."""
-    _todo("digest baseline", "Track A", "M8")
+    """Naive one-call baseline over the whole corpus (eval.md §8); writes runs/<world>/<as_of>_baseline/."""
+    from .baseline import run_baseline
+    from .ingest import DataMissing
+
+    try:
+        s = run_baseline(world, as_of)
+    except DataMissing as e:
+        typer.echo(f"digest baseline: {e}")
+        raise typer.Exit(2) from None
+    typer.echo(f"baseline {s['run_id']}: threads={s['threads']} corpus_chars={s['corpus_chars']} dropped={s['threads_dropped']} "
+               f"words={s['words']} cost_usd={s['cost_usd']:.4f} degradations={s['degradations']}")
+    typer.echo(f"  digest: {s['digest']}")
 
 
 class SmokeOutput(BaseModel):

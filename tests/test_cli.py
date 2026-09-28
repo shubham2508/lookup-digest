@@ -2,7 +2,6 @@
 from typer.testing import CliRunner
 
 from cli.main import app
-from digest.cli import NOT_IMPLEMENTED_EXIT
 from digest.paths import ROOT
 
 runner = CliRunner()
@@ -15,12 +14,11 @@ def test_help_lists_every_command():
         assert c in r.output, c
 
 
-def test_stubs_say_not_implemented():
-    # eval / simulate are implemented (Track C, M6); their CLI tests live in tests/test_c_report.py
-    for args in (["generate"], ["baseline"], ["answer", "Q1", "2"]):
-        r = runner.invoke(app, args)
-        assert r.exit_code == NOT_IMPLEMENTED_EXIT, (args, r.output)
-        assert "not implemented" in r.output and "Track" in r.output
+def test_answer_and_baseline_without_state_say_so():
+    r = runner.invoke(app, ["answer", "Q1", "1", "--world", "_no_such_world_a"])
+    assert r.exit_code == 2 and "no digest run found" in r.output, r.output
+    r = runner.invoke(app, ["baseline", "--world", "data/_no_such_world"])
+    assert r.exit_code == 2 and "no data directory" in r.output, r.output
 
 
 def test_run_without_data_says_so():

@@ -52,10 +52,11 @@ class LLMSessionRole(LLMError):
     """The role is served by a Claude Code session, not an API (generator)."""
 
 
-def _strip(node: Any) -> Any:
+def _strip(node: Any, in_properties: bool = False) -> Any:
     if isinstance(node, dict):
-        out = {k: _strip(v) for k, v in node.items() if k not in _STRIP_KEYS}
-        if out.get("type") == "object" and "properties" in out:
+        # keys of a `properties` map are field names, never keywords: a field called `default` must survive
+        out = {k: _strip(v, in_properties=(k == "properties")) for k, v in node.items() if in_properties or k not in _STRIP_KEYS}
+        if not in_properties and out.get("type") == "object" and "properties" in out:
             out["additionalProperties"] = False
             out["required"] = list(out["properties"].keys())
         return out

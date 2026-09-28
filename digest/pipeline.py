@@ -9,19 +9,34 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from .compile.profile import CompiledProfile, compile_profile
+from .compose import compose_digest, title_for
+from .compute import ComputeResult, compute_world
 from .config import Settings, load_settings
 from .extract import ExtractStats, extract_world
+from .history import (
+    answered_after_digest,
+    load_rulings,
+    mark_resolved,
+    record_items,
+    rulings_path,
+    times_surfaced,
+)
 from .ingest import DataMissing, load_world
 from .llm import LLM
+from .materialize import materialize, suggested_tasks_md
 from .normalize import NormalizedWorld, normalize_world
 from .normalize.freshness import header_fragment
 from .paths import ROOT, data_dir
+from .reduce import reduce_items
+from .render import CitationIndex, render_digest
 from .runs import RunContext, parse_as_of
-from .schemas import Extraction
+from .schemas import ComposeResult, CustomizeOverrides, Extraction, ReduceResult, VerifyResult
 from .store import Store
+from .triage import triage_candidates
+from .verify import verify
 
-STAGES_M3 = ("compile_profile", "ingest", "normalize", "extract")
-STAGES_PENDING = ("compute", "triage", "reduce", "compose", "materialize", "verify", "render")
+STAGES = ("compile_profile", "ingest", "normalize", "extract", "compute", "triage", "reduce", "compose", "materialize", "verify", "render")
+STAGES_PENDING: tuple[str, ...] = ()
 
 
 @dataclass
@@ -32,7 +47,12 @@ class PipelineResult:
     extractions: list[Extraction]
     extract_stats: ExtractStats
     summary: dict
-    pending_stages: tuple[str, ...]
+    pending_stages: tuple[str, ...] = ()
+    compute: ComputeResult | None = None
+    reduce: ReduceResult | None = None
+    compose: ComposeResult | None = None
+    verify: VerifyResult | None = None
+    digest_md: str = ""
 
     @property
     def freshness_line(self) -> str:
@@ -75,6 +95,7 @@ def persist(store: Store, ctx: RunContext, world: NormalizedWorld, extractions: 
 def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = None, customize: Path | None = None,
                  runs_dir: Path | None = None, llm: LLM | None = None, settings: Settings | None = None,
                  profile_path: Path | None = None, profile_out: Path | None = None, store: Store | None = None) -> PipelineResult:
+    """The whole DAG for one as-of. Every LLM stage degrades on invalid output; nothing here raises on model errors."""
     settings = settings or load_settings()
     tz = ZoneInfo(settings.timezone)
     as_of_dt = parse_as_of(as_of, settings.timezone) if as_of else datetime.now(tz).replace(microsecond=0)
@@ -90,6 +111,13 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
         profile = compile_profile(llm, profile_path, profile_out, tag="profile")
         if profile.degraded:
             ctx.degrade("compile_profile", "profile.md", profile.degraded)
+    overrides: CustomizeOverrides | None = None
+    customize_notes: list[str] = []
+    if customize is not None:
+        with ctx.timed("compile_customize"):
+            from .compile.customize import compile_customize
+
+            overrides, customize_notes = compile_customize(llm, Path(customize), ctx)
 
     with ctx.timed("ingest"):
         raw = load_world(ddir, as_of_dt, tz, variant)
@@ -108,24 +136,127 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
         extractions, stats = extract_world(llm, norm, profile.config, settings, ctx)
     ctx.write_jsonl("extractions", extractions)
 
-    with ctx.timed("persist"):
-        own_store = store is None
-        st = store or Store(store_path(settings, world))
-        try:
-            with st:
-                persist(st, ctx, norm, extractions)
-        finally:
-            if own_store:
-                st.close()
+    own_store = store is None
+    st = store or Store(store_path(settings, world))
+    st.connect()
+    try:
+        with ctx.timed("persist"):
+            persist(st, ctx, norm, extractions)
+        stage_notes: list[str] = []
+        if profile.degraded:
+            stage_notes.append("profile compiled with fallback config")
+        for kind, f in norm.freshness.items():
+            if f.state != "ok":
+                stage_notes.append(f"{kind} {f.state}")
+
+        with ctx.timed("compute"):
+            comp = compute_world(norm, extractions, profile.config, settings, as_of_dt)
+            plain = variant is None and customize is None
+            surfaced = times_surfaced(st, world, as_of_dt) if plain else {}
+            for c in comp.candidates:
+                c.times_surfaced = surfaced.get(c.about, 0)
+            resolved = mark_resolved(st, world, as_of_dt, comp.candidates) if plain else 0
+            answered = answered_after_digest(st, world, as_of_dt, comp.candidates, {t.thread_id: t for t in norm.threads}) if plain else set()
+            for cid in answered:
+                ctx.degrade("compute", cid, "answered_after_digest", detail="Avery replied after the digest showed it; not re-surfaced")
+            comp.candidates = [c for c in comp.candidates if c.candidate_id not in answered]
+        ctx.write_json("contacts", comp.contacts)
+        ctx.write_jsonl("candidates", comp.candidates)
+        st.upsert_many("contacts", [{"contact_id": c.contact_id, "category": c.relationship.category, "tier": c.tier, **c.model_dump(mode="json")} for c in comp.contacts])
+        st.upsert_many("candidates", [{"run_id": ctx.run_id, "candidate_id": c.candidate_id, "type": c.type, "about": c.about, **c.model_dump(mode="json")} for c in comp.candidates])
+
+        rulings = load_rulings(rulings_path(world, settings), as_of_dt)
+        with ctx.timed("triage"):
+            triage, tstats = triage_candidates(llm, comp.candidates, comp, profile.config, settings, ctx, rulings, as_of=as_of_dt)
+        ctx.write_jsonl("triage", triage)
+        st.upsert_many("triage_results", [{"run_id": ctx.run_id, "candidate_id": r.candidate_id, "include": r.include, "priority": r.priority,
+                                           "section": r.section, **r.model_dump(mode="json")} for r in triage])
+        if tstats.invalid_packs or tstats.missing:
+            stage_notes.append(f"triage skipped {tstats.invalid_packs} pack(s), {len(tstats.missing)} item(s) shown from facts")
+
+        with ctx.timed("reduce"):
+            reduced = reduce_items(triage, comp.candidates, comp, settings.budget.k_cap, comp.about_merges)
+        ctx.write_json("reduce", reduced)
+        by_item = {it.id: it for it in reduced.items}
+        cands = {c.candidate_id: c for c in comp.candidates}
+        freshness_line = " · ".join(header_fragment(f, as_of_dt) for f in norm.freshness.values())
+        header = f"As of {as_of_dt.strftime('%a %H:%M')} PT · {freshness_line}"
+        if tstats.rulings_applied:
+            header += f" · applied {tstats.rulings_applied} learned rule{'s' if tstats.rulings_applied != 1 else ''}"
+
+        with ctx.timed("compose"):
+            composed, cstats = compose_digest(llm, reduced, cands, profile.config, settings, ctx, freshness_line=freshness_line,
+                                              rulings_applied=tstats.rulings_applied, customize=overrides, stage_notes=stage_notes,
+                                              as_of=as_of_dt.isoformat(), compute=comp)
+        if cstats.fallback:
+            stage_notes.append("compose fell back to triage order")
+
+        with ctx.timed("materialize"):
+            actions, mstats = materialize(llm, composed, by_item, cands, comp, profile.config, settings, ctx, overrides)
+        with ctx.timed("verify"):
+            budget = overrides.length_words if overrides and overrides.length_words else settings.budget.length_words
+            known = CitationIndex(norm).known
+            msg_thread = {f"msg:{m.message_id}": t.thread_id for t in norm.threads for m in t.messages}
+            router_types = {t.thread_id: t.router_type for t in norm.threads}
+            ver = verify(composed, by_item, actions, cands, comp, triage, known, router_types, budget, header, overrides,
+                         overflow=reduced.overflow, msg_thread=msg_thread)
+            for iid in cstats.outside_filter:
+                if iid not in ver.outside_filter:
+                    ver.outside_filter.append(iid)
+                    ver.also_pending = [i for i in ver.also_pending if i != iid]
+            for iid in cstats.hidden_by_focus:
+                ver.also_pending = [i for i in ver.also_pending if i != iid]
+        ctx.write_json("compose", composed)
+        ctx.write_jsonl("actions", ver.actions)
+        ctx.write_json("verify", ver.result)
+        ctx.write_text("suggested_tasks", suggested_tasks_md(ver.actions, as_of_dt.date().isoformat()))
+        notes = list(dict.fromkeys(list(composed.header_notes) + customize_notes))
+        dropped_n = sum(1 for v in ver.result.violations if v.fix == "dropped")
+        if dropped_n:
+            notes.append(f"{dropped_n} item(s) removed by hard rules (see verify.json)")
+        if ctx.degradations:
+            skipped = [d for d in ctx.degradations if d["reason"] not in ("code_fix", "evidence_replaced", "evidence_invalid")]
+            if skipped:
+                notes.append(f"{len(skipped)} item(s) degraded (see degradations.jsonl)")
+        if resolved:
+            notes.append(f"{resolved} earlier item(s) resolved")
+        with ctx.timed("render"):
+            titles = {it.id: title_for(it, cands) for it in reduced.items}
+            md = render_digest(as_of=as_of_dt, header=header, compose=ver.compose, reduced=by_item, actions=ver.actions, cands=cands,
+                               world=norm, also_pending=ver.also_pending, outside_filter=ver.outside_filter, titles=titles,
+                               customize=overrides, header_notes=notes)
+        ctx.write_text("digest", md)
+        ver.result.stats.header_present = True
+        ctx.write_json("verify", ver.result)
+        actions_by_item: dict[str, list[str]] = {}
+        for a in ver.actions:
+            actions_by_item.setdefault(a.item_id, []).append(a.type)
+        record_items(st, ctx.run_id, by_item, ver.compose, ver.also_pending, ver.outside_filter, actions_by_item, surfaced)
+        st.upsert("runs", {"run_id": ctx.run_id, "world": world, "as_of": as_of_dt.isoformat(), "variant": variant,
+                           "customize": str(customize) if customize else None, "baseline": False,
+                           "cost_usd": ctx.cost_log.totals()["cost_usd"], "created_at": datetime.now(ZoneInfo("UTC")).isoformat(timespec="seconds")})
+        st.commit()
+    finally:
+        if own_store:
+            st.close()
 
     summary = ctx.finish()
     summary.update({
         "owner_email": norm.owner_email, "threads": len(norm.threads), "messages": len(norm.messages),
         "forwarded_messages": norm.forwarded_count, "events": len(norm.events), "notes": len(norm.notes),
         "tasks": len(norm.tasks), "extractions": len(extractions), "extract": stats.__dict__,
+        "compute": comp.stats, "triage": {"candidates": tstats.candidates, "packs": tstats.packs, "cached": tstats.cached,
+                                          "invalid_packs": tstats.invalid_packs, "missing": tstats.missing, "fixes": len(tstats.fixes),
+                                          "rulings_applied": tstats.rulings_applied},
+        "reduce": {"items": len(reduced.items), "overflow": len(reduced.overflow), "dropped": len(reduced.dropped), "merges": len(reduced.about_merges)},
+        "compose": {"cached": cstats.cached, "fallback": cstats.fallback, "fixes": cstats.fixes, "one_thing": composed.one_thing_id,
+                    "placed": sum(len(s.item_ids) for s in composed.sections) + (1 if composed.one_thing_id else 0), "cut": len(composed.cut_ids)},
+        "materialize": {"actions": mstats.actions, "llm_calls": mstats.llm_calls, "cached": mstats.cached, "draft_retries": mstats.draft_retries,
+                        "drafts_dropped": mstats.drafts_dropped},
+        "verify": ver.result.model_dump(mode="json"), "history": {"resolved_later": resolved, "answered_after_digest": len(answered)},
         "freshness": {k: {"state": f.state, "latest": f.latest_item_time.isoformat() if f.latest_item_time else None,
                           "age_hours": f.age_hours} for k, f in norm.freshness.items()},
-        "profile_cached": profile.cached, "pending_stages": list(STAGES_PENDING),
+        "profile_cached": profile.cached, "pending_stages": [], "header": header,
     })
     ctx.write_json("run", summary)
-    return PipelineResult(ctx, profile, norm, extractions, stats, summary, STAGES_PENDING)
+    return PipelineResult(ctx, profile, norm, extractions, stats, summary, (), comp, reduced, ver.compose, ver.result, md)

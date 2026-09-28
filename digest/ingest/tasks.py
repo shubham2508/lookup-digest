@@ -7,6 +7,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from ..schemas import NormalizedTask
+from .notes import last_modified_header
 
 _TASK_RE = re.compile(r"^\s*[-*]\s*\[(?P<done>[ xX])\]\s*(?P<title>.*?)\s*(?:\(due:\s*(?P<due>\d{4}-\d{2}-\d{2})\s*\))?\s*$")
 _SLUG_RE = re.compile(r"[^a-z0-9]+")
@@ -17,7 +18,10 @@ def slugify(text: str, max_len: int = 60) -> str:
     return s[:max_len].rstrip("-") or "task"
 
 
-def parse_tasks_text(text: str, mtime: datetime | None) -> list[NormalizedTask]:
+def parse_tasks_text(text: str, mtime: datetime | None, tz: ZoneInfo | None = None) -> list[NormalizedTask]:
+    lm = last_modified_header(text, tz or (mtime.tzinfo if mtime else None))
+    if lm is not None:
+        mtime = lm
     tasks: list[NormalizedTask] = []
     seen: dict[str, int] = {}
     for line in text.replace("\r\n", "\n").split("\n"):
@@ -36,4 +40,4 @@ def parse_tasks_text(text: str, mtime: datetime | None) -> list[NormalizedTask]:
 
 def parse_tasks(path: Path, tz: ZoneInfo) -> list[NormalizedTask]:
     mtime = datetime.fromtimestamp(path.stat().st_mtime, tz)
-    return parse_tasks_text(path.read_text(encoding="utf-8"), mtime)
+    return parse_tasks_text(path.read_text(encoding="utf-8"), mtime, tz)

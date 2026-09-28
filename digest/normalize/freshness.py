@@ -43,7 +43,8 @@ def freshness_report(raw: RawWorld, as_of: datetime, cfg: FreshnessCfg, tz: Zone
 
     st = raw.sources["calendar"]
     stamps = [e.last_modified or e.created or e.dtstamp for e in raw.events]
-    latest = max((s for s in stamps if s is not None), default=None)
+    # OPEN_QUESTIONS #14: a quiet calendar is not a stale one; the .ics sync time (file mtime) counts too
+    latest = max((s for s in [*stamps, raw.calendar_mtime] if s is not None), default=None)
     age = _age(as_of, latest)
     state = st.state if st.state != "ok" else ("stale" if age is not None and age > cfg.calendar_stale_hours else "ok")
     if st.state == "ok" and latest is None:

@@ -44,6 +44,7 @@ class RawWorld:
     notes: list[RawNote] = field(default_factory=list)
     tasks: list[NormalizedTask] = field(default_factory=list)
     tasks_mtime: datetime | None = None
+    calendar_mtime: datetime | None = None
     sources: dict[str, SourceStatus] = field(default_factory=dict)
 
 
@@ -91,6 +92,8 @@ def _load_calendar(world: RawWorld, tz: ZoneInfo) -> None:
             continue
         found += 1
         try:
+            mt = datetime.fromtimestamp(p.stat().st_mtime, tz)
+            world.calendar_mtime = max(world.calendar_mtime, mt) if world.calendar_mtime else mt
             data = p.read_bytes()
             if world.variant == "corrupt_ics" and calendar == "work":
                 data = data[: len(data) // 2]   # truncated mid-file (data_generation §10)
@@ -152,7 +155,7 @@ def _load_tasks(world: RawWorld, tz: ZoneInfo) -> None:
         return
     try:
         world.tasks = parse_tasks(p, tz)
-        world.tasks_mtime = datetime.fromtimestamp(p.stat().st_mtime, tz)
+        world.tasks_mtime = world.tasks[0].file_last_modified if world.tasks else datetime.fromtimestamp(p.stat().st_mtime, tz)
     except Exception as e:  # noqa: BLE001
         st.state, st.detail = "unreadable", str(e)
         return

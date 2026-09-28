@@ -129,7 +129,11 @@ def test_freshness_and_header_fragments(mini_dir):
     assert header_fragment(f["email"], AS_OF) == "inbox synced Wed 21:10" and header_fragment(f["calendar"], AS_OF) == "calendar ok"
     late = _world(mini_dir, parse_as_of("2026-09-26T06:00"))
     assert late.freshness["email"].state == "stale" and header_fragment(late.freshness["email"], late.as_of) == "inbox stale (2 days)"
-    assert late.freshness["calendar"].state == "stale"
+    assert late.freshness["calendar"].state == "ok", "a quiet calendar whose .ics was synced recently is not stale (OPEN_QUESTIONS #14)"
+    raw = load_world(mini_dir, parse_as_of("2026-09-26T06:00"), TZ)
+    raw.calendar_mtime = None
+    from digest.normalize.freshness import freshness_report
+    assert freshness_report(raw, raw.as_of, SETTINGS.freshness, TZ)["calendar"].state == "stale", "no sync time known: latest event change counts"
     hidden = normalize_world(load_world(mini_dir, AS_OF, TZ, variant="no_notes"), SETTINGS, "Avery Chen")
     assert hidden.freshness["notes"].state == "missing" and header_fragment(hidden.freshness["notes"], AS_OF) == "notes missing"
 

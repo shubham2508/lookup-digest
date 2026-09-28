@@ -663,9 +663,21 @@ class VerifyResult(Model):
     stats: VerifyStats = Field(default_factory=VerifyStats)
 
 
+class TriageBatch(Model):
+    """Triage packs 5–10 candidates per call (architecture §7); one TriageResult per candidate id in the pack."""
+    results: list[TriageResult]
+
+
+class BaselineDigest(Model):
+    """The naive one-call baseline (eval.md §8) returns the whole digest as markdown."""
+    markdown: str = Field(description="the complete digest in the default format, with citations")
+
+
 LLM_OUTPUT_MODELS: dict[str, type[Model]] = {
     "ExtractorOutput": ExtractorOutput,
     "TriageResult": TriageResult,
+    "TriageBatch": TriageBatch,
+    "BaselineDigest": BaselineDigest,
     "ComposeResult": ComposeResult,
     "DraftOutput": DraftOutput,
     "DecideOutput": DecideOutput,

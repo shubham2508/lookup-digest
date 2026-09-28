@@ -20,6 +20,18 @@ Judge plan (Shubham, 2026-09-28): the first judging round runs on Fable via the 
 
 OpenRouter spend on this config ≈ $4–5 (pipeline ≈ $3, judge ≈ $1–1.6, sim_avery ≈ 0). Generation costs nothing on OpenRouter.
 
+### 14. Track A · M4–M9 notes (A-product, 2026-09-28): implemented as suggested; confirm or redirect
+
+| # | What · where | Options | Implemented (suggestion) |
+|---|---|---|---|
+| 14a | **`calendar_conflict:family` without an overlapping work event.** §6.4 requires overlap with an accepted/organized work event, but the M4 acceptance (and the fixture) expect the pediatrician at 15:00 with nothing booked. | (1) strict overlap only; (2) also flag a personal-domain slot that falls inside the workday (Mon–Fri 09:00–18:00) with `facts.overlaps_work_event = false`, triage decides | (2). Overlaps, when present, are listed in `facts.overlaps`. |
+| 14b | **Calendar freshness.** §3 says `latest_item_time` = max event `last_modified`, so a calendar nobody edited for two days reads "calendar stale (2 days)" on quiet mornings. | (1) spec literal; (2) also count the `.ics` file mtime (the sync time) | (2): `max(event stamps, ics mtime)`; unreadable/missing still flagged; `corrupt_ics` still yields "calendar unreadable". |
+| 14c | **`digest/llm.py` `_strip`** removed any schema key named `default`, including the *property* `Ambiguity.default`, so triage could never emit it (two failed packs per run). Fixed in place: keys inside a `properties` map are field names, never keywords. `tests/test_schemas.py` `_walk` adjusted the same way. Orchestrator-owned file; please review the 3-line change. | — | fixed |
+| 14d | **Handoff example "Fri→Tue = 2 business days"** conflicts with the decided rule #8(a) (weekday dates strictly between message and run date: Fri→Tue = 1). | — | Implemented #8(a); `tests/test_a_compute.py` documents Fri→Mon 0, Fri→Tue 1, Thu→Tue 2, Wed→Tue 3. |
+| 14e | **Triage packing.** `TriageBatch {results: [TriageResult]}` registered in `digest/schemas.py` (allowed by the handoff) so 5–10 candidates share one call; a pack that fails validation twice is retried candidate-by-candidate before any fallback. `BaselineDigest {markdown}` registered for `digest baseline`. | — | done |
+| 14f | **`tests/test_cli.py`** lost `test_stubs_say_not_implemented`: every command is real now (A: run/answer/baseline; B: generate; C: eval/simulate). Replaced by no-state checks for `answer` and `baseline`. | — | done |
+| 14g | **`digest answer` picks the latest plain run** (no variant/customize/baseline suffix) of the world; a question number refers to that digest only. `digest simulate` runs days in order, so this is the intended card. | — | done |
+
 ## Decided
 
 - **2026-09-28 · Track C M7–M9 questions (#13, restored below), ruled:**

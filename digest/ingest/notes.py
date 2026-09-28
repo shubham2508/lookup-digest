@@ -9,6 +9,23 @@ from zoneinfo import ZoneInfo
 
 from dateutil import parser as dateparser
 
+LAST_MODIFIED_RE = re.compile(r"<!--\s*last-modified:\s*([^>]+?)\s*-->", re.IGNORECASE)
+
+
+def last_modified_header(text: str, tz: ZoneInfo | None = None) -> datetime | None:
+    """OPEN_QUESTIONS #6c: the generator writes `<!-- last-modified: <ISO> -->` as the first line; it beats the file mtime."""
+    m = LAST_MODIFIED_RE.search(text[:300])
+    if not m:
+        return None
+    try:
+        dt = dateparser.parse(m.group(1).strip())
+    except (ValueError, OverflowError):
+        return None
+    if dt.tzinfo is None and tz is not None:
+        dt = dt.replace(tzinfo=tz)
+    return dt
+
+
 _HEADER_RE = re.compile(r"^\s*(?:Date:\s*(?P<date>[^|]*?))?\s*(?:\|\s*)?(?:Attendees:\s*(?P<att>.*))?\s*$", re.IGNORECASE)
 
 
@@ -38,10 +55,14 @@ def parse_note_header(first_line: str) -> tuple[date | None, list[str]]:
     return d, att
 
 
-def parse_note_text(text: str, rel_path: str, mtime: datetime | None) -> RawNote:
+def parse_note_text(text: str, rel_path: str, mtime: datetime | None, tz: ZoneInfo | None = None) -> RawNote:
     text = text.replace("\r\n", "\n")
     lines = text.split("\n")
-    header_date, attendees = parse_note_header(lines[0]) if lines else (None, [])
+    lm = last_modified_header(text, tz or (mtime.tzinfo if mtime else None))
+    if lm is not None:
+        mtime = lm
+    first = 1 if lines and LAST_MODIFIED_RE.match(lines[0].strip()) else 0
+    header_date, attendees = parse_note_header(lines[first]) if len(lines) > first else (None, [])
     title = Path(rel_path).stem
     for ln in lines:
         if ln.startswith("#"):
@@ -52,4 +73,4 @@ def parse_note_text(text: str, rel_path: str, mtime: datetime | None) -> RawNote
 
 def parse_note(path: Path, data_dir: Path, tz: ZoneInfo) -> RawNote:
     mtime = datetime.fromtimestamp(path.stat().st_mtime, tz)
-    return parse_note_text(path.read_text(encoding="utf-8"), path.relative_to(data_dir).as_posix(), mtime)
+    return parse_note_text(path.read_text(encoding="utf-8"), path.relative_to(data_dir).as_posix(), mtime, tz)
