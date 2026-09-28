@@ -83,3 +83,9 @@ Contacts and sweeps are cached; a full Thursday sweep set ≈ $0.05. Never run t
 
 ## Commits
 `[v2-B] B3: sweeps …`, your paths only. The orchestrator merges `v2-b-spine` into `main`.
+
+## Unattended mode (Shubham is asleep)
+Do not stop to ask. When something is ambiguous: write it to `OPEN_QUESTIONS.md` (what, options, what you picked),
+take the default from `MIGRATION_PLAN.md` §5 or the most conservative option, and continue. When a permission or
+tool prompt would block you, prefer the path that does not need it. Finish every deliverable you can, write your
+STATUS file, and stop only then. The orchestrator reviews everything at the merge.

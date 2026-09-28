@@ -78,7 +78,7 @@ alone (nets/sweeps may be absent), verify passes, `findings.jsonl` written. Then
 (from `runs/examples/dev/2026-09-24T06-00/triage.jsonl` + `candidates.jsonl` on `main`), side by side:
 `thread:20260922-1642.marcus@inflectionpoint.vc`, `thread:20260923-2100.jordan@tessera.io`,
 `thread:20260923-1745.director@littleacornsoakland.com`, `thread:20260922-1115.marcus@inflectionpoint.vc`,
-`thread:20260916-1040.tomas@tessera.io`. **Stop there**; Shubham reviews before P3–P5 are merged.
+`thread:20260916-1040.tomas@tessera.io`. Then **continue with A4–A5**; do not wait. The orchestrator reviews the checkpoint against fixed criteria (the planted issue found, priority within the expected band, an expected action type, no fact absent from the raw thread) and records the verdict in `OPEN_QUESTIONS.md`.
 
 ## B's function signatures (call these; B implements)
 ```python
@@ -98,3 +98,9 @@ once in one worktree.
 ## Commits
 `[v2-A] A3: reader stage …`, your paths only, never `git add -A`. When done, write `docs/handoffs/v2-A-STATUS.md`
 (what landed, what didn't, cost of a Thursday run) and stop; the orchestrator merges `v2-a-readers` into `main`.
+
+## Unattended mode (Shubham is asleep)
+Do not stop to ask. When something is ambiguous: write it to `OPEN_QUESTIONS.md` (what, options, what you picked),
+take the default from `MIGRATION_PLAN.md` §5 or the most conservative option, and continue. When a permission or
+tool prompt would block you, prefer the path that does not need it. Finish every deliverable you can, write your
+STATUS file, and stop only then. The orchestrator reviews everything at the merge.
