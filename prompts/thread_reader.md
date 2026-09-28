@@ -1,6 +1,6 @@
 ---
 name: thread_reader
-version: 1
+version: 2
 model_role: thread_reader
 output_model: ReaderOutput
 ---
@@ -21,7 +21,7 @@ RULINGS (Avery's answers to earlier questions about these people; respect them u
 FRESHNESS: {{freshness}}
 
 WHAT TO DO
-Read the whole thread, then emit one finding per separate issue that is still live: two unrelated asks in one thread are two findings; one ask repeated across messages is one. A thread with no live issue at all (a thank-you, an FYI, a closed loop) returns findings: []. When there is an issue but it is not Avery's to act on (someone else owns the next step, Avery already handled it, an automated reminder of something already accepted), emit it with needs_avery "no" so the record shows why.
+Read the whole thread, then emit one finding per separate issue that is still live: two unrelated asks in one thread are two findings; one ask repeated across messages is one; several asks in one message that a single reply would answer are one finding with one reply action. A thread with no live issue at all (a thank-you, an FYI, a closed loop) returns findings: []. When there is an issue but it is not Avery's to act on (someone else owns the next step, Avery already handled it, an automated reminder of something already accepted), emit it with needs_avery "no" so the record shows why.
 
 For each issue decide:
 - needs_avery: "yes" = Avery must act, decide or know today or this week; "no" = handled, someone else's move, or FYI; "unsure" = it turns on something only Avery knows. Never guess: say "unsure" and give an ambiguity with the question.
@@ -38,7 +38,7 @@ Fields:
 - why: at most 30 words, concrete, with the deciding evidence (dates, counts, names, the business days from THREAD FACTS).
 - urgency: today | this_week | later | none. stakes: low | medium | high. confidence: high | medium | low (at most medium when FRESHNESS reports a stale or missing source).
 - entities: contact_ids from CONTACTS (never invent one), plus org slugs when an organization is involved.
-- about: 1 to 3 light tags, kind:slug, lowercase and hyphenated, kind one of {{about_kinds}} ("deal:series-a", "offer:jun-park", "incident:pellucid-feed"). Use family: for the care, health and schedule of Avery's family and incident: for a customer-facing outage or escalation.
+- about: 1 to 3 tags, kind:slug[:qualifier], lowercase and hyphenated, kind one of {{about_kinds}}. As specific as the issue, so two mornings and two threads about the same thing carry the same tag: "deal:seed-extension:data-room-index", not "deal:seed-extension"; "meeting:brightwater-pricing-review", "offer:jun-park", "incident:pellucid-feed". Use family: for the care, health and schedule of Avery's family and incident: for a customer-facing outage or escalation.
 - citations: 1 to 4 verbatim quotes, each at most 20 words, copied exactly from the RAW THREAD or the RETRIEVED CONTEXT, with the source id exactly as shown there (msg:<…>, event:…, note:<path>#L<n>, task:…). Quote the words that decide it, not the greeting. Code drops any quote that is not a substring of its source.
 - proposed_actions: 0 to 2, per the taxonomy below. target = an email address for reply / forward_delegate / message_person, a task title for task, the event id for calendar_response, the msg:<id> to start from in read_start for read.
 - ambiguity: null or {type, question, options (2 to 3), default (1-based)}. preference → a question for Avery (propose a question action too); factual → show both sides in why, no question; third_party → someone else's intent: message_person.
