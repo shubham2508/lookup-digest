@@ -36,6 +36,14 @@ longer occurs. (b) Block the citation match only when the item also cites one of
 
 ## Decided
 
+- **2026-09-29 ~05:30 · #19 v2 pivot approved; the P2 reader checkpoint is delegated to the orchestrator** (Shubham,
+  before sleeping). Criteria, fixed now so the review is not a judgment call made after seeing the output: for each
+  of the five planted threads in `docs/handoffs/v2-A-readers.md`, (1) the planted issue appears as a Finding with
+  `needs_avery: yes`; (2) its priority is within the answer key's band for that item; (3) one of the expected action
+  types is proposed; (4) no fact in `why`/`title` is absent from the raw thread. Pass = readers match or beat v1 triage
+  on ≥4 of 5 and never fail (4). Fail = stop the merge of P3–P5, keep v1, report in the morning. Tracks run
+  unattended (defaults from MIGRATION_PLAN.md §5 instead of questions).
+
 - **2026-09-29 · Orchestrator fixes from the final dev runs (implementing the spec, no design change).** Traced with
   the debug-trap procedure; each is a commit with a test. Tier inheritance only at outside firms (every Tessera
   teammate had inherited the co-founder's P0). Jev picks under p 0.7 go to the LLM linker (an obvious meeting move
