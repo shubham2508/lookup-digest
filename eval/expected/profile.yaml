@@ -1,0 +1,153 @@
+# Expected output of the profile compiler (specs/prompts.md P1) for profile/profile.md, hand-written by Track C.
+# Shape: digest.schemas.ProfileConfig. Scored field by field by eval/scorer/profile_diff.py.
+# REVIEW (Shubham): values marked "inferred" are not stated verbatim in profile.md; confirm or correct them.
+# Rule tags are scored only for the machine-checkable ones: never_draft, same_day_reply, email_means_intentional,
+# pattern_only. Prose lists (judgment_rules, digest_prefs, tone) are scored by coverage of the snippets below.
+
+person: Avery Chen
+company: Tessera
+timezone: America/Los_Angeles
+
+contacts:
+  - name: Sam Park
+    emails: []
+    role_at_org: null
+    category: family
+    subtype: partner
+    tier: P0
+    tier_condition: null
+    rules: [never_draft]
+    notes: "anything from Sam is P0. Personal."
+  - name: Priya Iyer
+    emails: []
+    role_at_org: null
+    category: team
+    subtype: cofounder_cto          # inferred tag for "co-founder, CTO"
+    tier: P0
+    tier_condition: null
+    rules: [email_means_intentional]
+    notes: "P0. We talk constantly. If she emails instead of slacks, it's intentional and important."
+  - name: Marcus Webb
+    emails: []
+    role_at_org: null
+    category: capital
+    subtype: lead_investor
+    tier: P0
+    tier_condition: during the raise
+    rules: []
+    notes: "P0 during the raise. I do not miss replies to Marcus."
+  - name: Diane Okafor
+    emails: []
+    role_at_org: null
+    category: capital
+    subtype: board_member
+    tier: P1
+    tier_condition: null
+    rules: []
+    notes: "P1. She's patient but I owe her quarterly updates and don't always send them."
+  - name: Jordan Liu
+    emails: []
+    role_at_org: null
+    category: team
+    subtype: head_of_eng
+    tier: P1
+    tier_condition: null
+    rules: []
+    notes: "P1. He escalates rarely; when he does, listen."
+  - name: Tomás Reyes
+    emails: []
+    role_at_org: null
+    category: team
+    subtype: head_of_gtm
+    tier: P1
+    tier_condition: null
+    rules: []
+    notes: "P1. He emails too much. Look for the one thing that actually matters in each thread."
+  - name: Ben Schaffer
+    emails: []
+    role_at_org: null
+    category: legal_gov
+    subtype: deal_counsel
+    tier: P0
+    tier_condition: during the raise, P2 otherwise
+    rules: []
+    notes: "P0 during the raise, P2 otherwise."
+  - name: null
+    emails: []
+    role_at_org: {role: procurement lead, orgs: [Halberd Manufacturing, Northstar Foods, Veritas Components]}
+    category: customer
+    subtype: reference
+    tier: P1
+    tier_condition: null
+    rules: [same_day_reply]
+    notes: "our three reference customers. Anything from them is P1 and gets a same-day reply, period."
+  - name: null
+    emails: []
+    role_at_org: {role: recruiter, orgs: []}
+    category: cold_inbound
+    subtype: recruiter
+    tier: null                      # the profile says P4, which is outside the P0-P3 vocabulary
+    tier_condition: null
+    rules: [never_draft, pattern_only]
+    notes: "P4. Don't draft replies. Don't surface them unless three+ from the same firm in a week, then surface as a pattern, not as individual threads."
+
+facts:
+  - {subject: ARR, value: "$3.2M"}
+  - {subject: seed_raised, value: "$6M"}
+  - {subject: seed_age, value: "14 months"}
+  - {subject: headcount, value: "12"}
+  - {subject: raise_stage, value: "early Series A"}
+  - {subject: open_reqs, value: "two engineers and a designer"}
+  - {subject: board_update_cadence, value: quarterly}
+
+thresholds:
+  investor_quiet_business_days: 3
+  hiring_stall_days: 5
+  recruiter_pattern: {count: 3, window_days: 7}
+
+blocks:
+  - {days: [TUE, THU], start: "09:00", end: "11:00"}
+
+read_windows: ["06:15-06:45", "12:30-13:00", "evening"]
+
+standing_topics:                    # inferred: profile.md names no topics; these are what its priorities imply
+  - fundraising
+  - customers
+  - hiring
+  - supply-chain
+  - manufacturing
+  - inference-cost
+
+judgment_rules:
+  - "Override based on content."
+  - "If Marcus or another VC went quiet, I want to know after three business days, not three weeks."
+  - "If Halberd's procurement lead is suddenly quieter, that's a flag."
+  - "Calendar collisions involving Wren's daycare, doctor appointments, or anything Sam put on our shared calendar. Family first. Always."
+  - "Promises I made in email and didn't put on a todo list."
+  - "if a candidate is mid-loop and nobody has moved them in 5+ days, that's on me."
+  - "Anyone scheduling over that block without asking is doing something wrong, and I want to know."
+
+digest_prefs:
+  - "A great digest answers three questions in under 90 seconds of reading"
+  - "Newsletters. Even the good ones. Even Stratechery."
+  - "Calendar invites I already accepted."
+  - "Marketing emails from SaaS tools, even ones we pay for."
+  - "Long threads where I've already had the last word and nobody else has replied."
+  - "Anything where the only \"action\" is \"FYI.\""
+  - "If you can't tell whether a thread is urgent, say \"I'm not sure\" and show me the thread."
+  - "If two sources disagree"
+
+tone:
+  - "Short. Lowercase greetings or none at all. Sign off with \"Avery\" or nothing."
+  - "No \"I hope this email finds you well.\" No \"circling back.\" No \"just wanted to.\""
+  - "Direct but not cold. Warmth comes from specificity, not adjectives."
+  - "For investors during the raise, slightly more polished. Still short."
+  - "For Sam: don't draft. Surface and let me write."
+  - "If you drafted a reply based on assumptions, flag the assumptions."
+
+hard_rules:
+  never_draft_for: [Sam Park]
+  no_newsletter_items: true
+  recruiter_pattern_only: true
+  cite_everything: true             # inferred: architecture §8 rule 5; profile.md asks for honesty, not citations
+  flag_stale_email_hours: 24

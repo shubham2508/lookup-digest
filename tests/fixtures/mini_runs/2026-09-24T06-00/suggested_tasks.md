@@ -1,0 +1,1 @@
+- [ ] Send cap table to Marcus (due: 2026-09-24)

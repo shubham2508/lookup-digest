@@ -1,0 +1,27 @@
+# Customize suite (eval.md §6): assertions for runs with --customize profile/customize/<stem>.md.
+# Scored against runs/<world>/<as_of>_customize-<stem>/ (OPEN_QUESTIONS.md #6), on the last run day unless run_day is set.
+# World-agnostic selectors only (type / category / source_kind), so the same suite scores dev and held-out.
+# Not code-checkable, reported through the judge instead: "draft tone changes" (formal.md).
+assertions:
+  # board_prep.md — capital/board items first; ARR drift surfaced; Sam's conflict still present as a one-liner
+  - {id: cz-board-capital-first, kind: item_present, customize: board_prep, args: {category: capital, position_max: 2},
+     description: "a capital/board item leads the digest"}
+  - {id: cz-board-arr-drift, kind: item_present, customize: board_prep, args: {type: [contradiction, profile_drift]},
+     description: "ARR drift ($3.2M profile vs $3.4M data) surfaced as a contradiction or profile_drift"}
+  - {id: cz-board-family-conflict, kind: item_present, customize: board_prep, args: {type: "calendar_conflict:family"},
+     description: "Sam's calendar conflict still present (any placement, a one-liner is enough)"}
+  - {id: cz-board-citations, kind: citations_present, customize: board_prep}
+  # weekend.md — ≤100 words; only P0 or family
+  - {id: cz-weekend-length, kind: word_count_max, customize: weekend, args: {max: 100}}
+  - {id: cz-weekend-p0-family, kind: priorities_only, customize: weekend, args: {priorities: [P0], or_categories: [family]}}
+  # newsletters.md — newsletter items allowed and cited
+  - {id: cz-newsletters-allowed, kind: item_present, customize: newsletters, args: {source_kind: newsletter}}
+  - {id: cz-newsletters-cited, kind: citations_present, customize: newsletters}
+  # no_citations.md — citations stay; header notes the rejected instruction
+  - {id: cz-nocite-still-cited, kind: citations_present, customize: no_citations}
+  - {id: cz-nocite-noted, kind: customize_rejected_noted, customize: no_citations, args: {instruction: [citation, citations]}}
+  # formal.md — still no draft to Sam (tone change is judged, not asserted)
+  - {id: cz-formal-no-draft-sam, kind: no_draft_to, customize: formal, args: {rule: never_draft}}
+  # garbage.md — default digest + "customize file not understood"
+  - {id: cz-garbage-not-understood, kind: customize_not_understood, customize: garbage}
+  - {id: cz-garbage-cited, kind: citations_present, customize: garbage}

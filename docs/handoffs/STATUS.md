@@ -16,8 +16,9 @@ A reaches M5 (a digest end to end) · B reaches M2 pass 1 (all storylines and tr
 - (not started) Next: M1 storyline drafts → Shubham review gate.
 
 ## C · Grader
-- (not started) Next: M6.
+- 2026-09-28 · M6 done (scorer side). `digest eval --world tests/fixtures/mini --runs tests/fixtures/mini_runs` writes `eval/reports/tests_fixtures_mini_2026-09-28.md`: per-stage metrics (§2.1–2.5), P0 gate (fails on purpose: the fake run's triage drops the daycare P0), 32/32 assertion checkers, stage attribution with `file#Lnn` links, judge (E1, skipped: no model yet; calibration table via `--calibrate-judge`), sim_avery (E2, code-first + LLM fallback), `eval/history.py`, expected `eval/expected/profile.yaml` + field diff (Shubham reviews), six `profile/customize/*.md` + `eval/customize_suite.yaml`. Also scored A's real M3 extractions on the fixture: 6/6 joined via `thread:<Message-ID>`, all fields correct. 117 `test_c_*` tests; full suite green. Contract gaps in OPEN_QUESTIONS.md #7 (reduce/actions/verify shapes, manifest message labels on every item, customize/baseline run-dir suffixes, about-merge log, assertion arg shapes). Next: real `digest eval --world dev` at integration; M7 customize/variant runs.
 
 ## Blockers / waiting on Shubham
+- Track C contract gaps (OPEN_QUESTIONS.md #7): 7a needs the orchestrator, 7b needs B (message labels on every manifest item), 7c/7d need A.
 - Judge model pick (OPEN_QUESTIONS.md #1) — after the Fable calibration round (`judge_reference` role). Scorer work is unblocked.
 - Held-out anchor (#2) — decide at M8; suggestion 2026-03-26. Dev anchor is decided: 2026-09-24.
