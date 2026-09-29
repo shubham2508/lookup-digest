@@ -159,6 +159,9 @@ def _key(f: Finding) -> str:
     return about_key(f.about[0] if f.about else "", f.title)
 
 
+SHARED_ENTITY_MAX_KEYS = 8   # a person on more keys than this is a hub (the company, a co-founder), not a link
+
+
 def group_findings(findings: list[Finding], linker) -> list[AboutMerge]:
     """Topic keys (each surfacing finding's first `about` tag, normalized as to_candidate does) that the linker judges
     to name the same thing; only same-kind keys group (Linker.group_topics). Canonical = the key most findings use,
@@ -175,6 +178,18 @@ def group_findings(findings: list[Finding], linker) -> list[AboutMerge]:
     by_kind: dict[str, list[dict]] = defaultdict(list)
     for k in sorted(uses):
         by_kind[k.split(":", 1)[0]].append({"key": k, "text": "; ".join(texts[k][:3])})
+    # keys of different kinds that share a person are compared too (a reader tags one decision approval:… in an email
+    # and other:… in a doc comment); the linker still decides sameness. Entities on many keys are generic (the company).
+    ents: dict[str, set[str]] = defaultdict(set)
+    for f in findings:
+        if f.needs_avery != "no":
+            for e in f.entities:
+                if e:
+                    ents[e].add(_key(f))
+    for e, keys in sorted(ents.items()):
+        kinds = {k.split(":", 1)[0] for k in keys}
+        if 2 <= len(keys) <= SHARED_ENTITY_MAX_KEYS and len(kinds) > 1:
+            by_kind[f"shared:{e}"] = [{"key": k, "text": "; ".join(texts[k][:3])} for k in sorted(keys)]
     groups = linker.group_topics(dict(by_kind)) if linker is not None else []
     parent = {k: k for k in uses}
 

@@ -52,14 +52,15 @@ def _cap_confidence(conf: str, cap: str) -> str:
 
 def join_keys(c: Candidate) -> list[tuple]:
     """Two candidates are one item when a key matches. A qualified about key (deal:series-a:cap-table) joins across
-    threads; a shared citation (same message, same quote) joins within one. v1 rule candidates (no `origin`) and safety
+    threads; a shared message citation (same message, same quote) joins within one; notes and events are context that unrelated findings cite together. v1 rule candidates (no `origin`) and safety
     nets still join by thread (reply owed + gone quiet on one email are one item); reader findings do not, because a
     reader splits one thread into separate issues on purpose (PIVOT_SPEC §5.4)."""
     keys: list[tuple] = []
     if c.about.count(":") >= 2:
         keys.append(("about", c.about))
     for e in c.evidence:
-        keys.append(("cite", e.source_id, e.quote))
+        if e.source_id.startswith("msg:"):   # a shared *message* is one thing; a shared note or event is background many findings cite
+            keys.append(("cite", e.source_id, e.quote))
     if c.facts.get("thread_id") and c.facts.get("origin") in (None, "safety_net"):
         keys.append(("thread", str(c.facts["thread_id"])))
     if not keys:

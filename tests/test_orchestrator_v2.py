@@ -29,6 +29,8 @@ def test_join_keys_reader_findings_do_not_join_by_thread():
     net = Candidate(candidate_id="c2", type="quiet_thread", about="deal:series-a", evidence=ev, facts={"thread_id": "thread:<m1>", "origin": "safety_net"})
     v1 = Candidate(candidate_id="c3", type="reply_owed", about="deal:series-a", facts={"thread_id": "thread:<m1>"})
     assert ("thread", "thread:<m1>") not in join_keys(reader) and ("cite", "msg:<m1>", "will send it tonight") in join_keys(reader)
+    ctx_cite = Candidate(candidate_id="c6", type="x", about="hiring-req:on-call", evidence=[Evidence(source_id="note:notes/q2.md", quote="on-call")], facts={"origin": "thread_reader"})
+    assert not any(k[0] == "cite" for k in join_keys(ctx_cite)), "a shared note or event never joins items"
     assert ("thread", "thread:<m1>") in join_keys(net) and ("thread", "thread:<m1>") in join_keys(v1)
     assert join_keys(Candidate(candidate_id="c4", type="x", about="deal:series-a:cap-table"))[0] == ("about", "deal:series-a:cap-table")
     assert join_keys(Candidate(candidate_id="c5", type="x", about="deal:series-a")) == [("about", "deal:series-a")]
@@ -94,3 +96,28 @@ def test_reduce_joins_same_tag_across_threads_and_applies_about_merges():
     red = reduce_items([tri(c.candidate_id) for c in cands], cands, comp, 25, merges)
     groups = sorted(sorted(it.candidate_ids) for it in red.items)
     assert groups == [["c1", "c2"], ["c3"], ["c4", "c5"]]
+
+
+def test_group_findings_compares_different_kinds_that_share_a_person():
+    from digest.compute.merge import group_findings
+    from digest.schemas import Finding
+
+    def fnd(fid, about, ents, title):
+        return Finding(finding_id=fid, origin="thread_reader", needs_avery="yes", title=title, kind="decision", why="w", priority="P0",
+                       urgency="today", deadline=None, stakes="high", confidence="high", section="decisions", entities=ents, about=[about],
+                       citations=[Evidence(source_id=f"msg:<{fid}>", quote="q")], proposed_actions=[], ambiguity=None, contradictions=[],
+                       freshness_caveat=None, suspicious_instructions=[])
+
+    seen = {}
+
+    class StubLinker:
+        def group_topics(self, by_kind):
+            seen.update(by_kind)
+            return [[r["key"] for r in rows] for b, rows in by_kind.items() if b.startswith("shared:") and len(rows) == 2]
+
+    fs = [fnd("f1", "approval:inference-spend", ["priya-iyer"], "Decide the inference spend"),
+          fnd("f2", "other:backfill-cap", ["priya-iyer"], "Choose the backfill cap"),
+          fnd("f3", "offer:jun-park", ["jun-park"], "Sign Jun's offer")]
+    merges = group_findings(fs, StubLinker())
+    assert "shared:priya-iyer" in seen and "shared:jun-park" not in seen, "only a person on two or more keys of different kinds opens a comparison"
+    assert len(merges) == 1 and set([merges[0].canonical, *merges[0].merged]) == {"approval:inference-spend", "other:backfill-cap"}

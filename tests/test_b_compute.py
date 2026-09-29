@@ -451,7 +451,7 @@ def test_group_findings_uses_the_linker_and_canonical_is_the_common_key():
           _finding("f4", about=("offer:mei",), title="Sign Mei's offer"), _finding("f5", about=("deal:x",), needs="no")]
     lk = StubLinker(groups=[["deal:series-a:captable", "deal:series-a:cap-table"]])
     merges = group_findings(fs, lk)
-    assert set(lk.by_kind) == {"deal", "offer"} and {r["key"] for r in lk.by_kind["deal"]} == {"deal:series-a:cap-table", "deal:series-a:captable"}
+    assert set(lk.by_kind) >= {"deal", "offer"}   # plus shared:<person> buckets for cross-kind keys (orchestrator) and {r["key"] for r in lk.by_kind["deal"]} == {"deal:series-a:cap-table", "deal:series-a:captable"}
     assert "deal:x" not in json.dumps(lk.by_kind), "needs_avery no findings do not surface, so they are not grouped"
     assert len(merges) == 1 and merges[0].canonical == "deal:series-a:cap-table" and merges[0].merged == ["deal:series-a:captable"]
     assert [f.about[0] for f in apply_merges(fs, merges)][:3] == ["deal:series-a:cap-table"] * 3
