@@ -4,10 +4,12 @@ A one-page 6:00am PT triage digest for "Avery Chen", built from a synthetic mont
 
 ## Install
 
+Needs [uv](https://docs.astral.sh/uv/) (it fetches Python 3.12 itself).
+
 ```
-uv sync --all-groups          # installs Python 3.12 and every dependency into .venv
+uv sync --all-groups          # every dependency into .venv
 cp .env.example .env          # paste an OPENROUTER_API_KEY with a few dollars of credit
-uv run pytest                 # ~400 tests, no network
+uv run pytest                 # ~400 tests, no network, no key
 ```
 
 Everything else is in the repo: both worlds' data (`data/dev`, `data/heldout`), the answer keys, the profile, the prompts, the config, finished example runs under `runs/examples/` (digests, every artifact, one full LLM trace) and the final reports under `eval/reports/`. Without a key you can read those; with one, a morning takes about 8 minutes and $0.30 cold (readers are cached per thread and date; a rerun is a cent) and the full eval matrix about $2 per world. Models are in `config/models.yaml`: the pipeline on `openai/gpt-6-luna`, TypeSafe's Jev for "same thing?" decisions (the LLM if unavailable), `deepseek/deepseek-v4.1-flash` as judge.
@@ -22,7 +24,7 @@ uv run digest baseline --world dev --as-of 2026-09-24T06:00               # naiv
 uv run digest ui                                                          # http://127.0.0.1:8765
 ```
 
-A run writes `runs/dev/<as_of>/digest.md` and every stage's artifact: `contacts.json`, `findings.jsonl`, `links.jsonl`, `reduce.json`, `compose.json`, `actions.jsonl`, `verify.json`, `cost.json`, `trace.jsonl` (every LLM call with its prompt and answer). Dev run days are Sun 2026-09-20 to Thu 2026-09-24. `--customize` takes any sentence (nine examples in `profile/customize/`); the UI runs a morning and shows the digest, why each item is there, and every LLM call by phase.
+A run writes `runs/dev/<as_of>/digest.md` and every stage's artifact: `contacts.json`, `findings.jsonl`, `links.jsonl`, `reduce.json`, `compose.json`, `actions.jsonl`, `verify.json`, `cost.json`, `trace.jsonl` (every LLM call with its prompt and answer). Run days: dev Sun 2026-09-20 to Thu 2026-09-24, held-out Sun 2026-03-22 to Thu 2026-03-26 (`--world heldout`). Without a key, `run` stops and says so. `--customize` takes any sentence (nine examples in `profile/customize/`); the UI runs a morning and shows the digest, why each item is there, and every LLM call by phase.
 
 ## Memory
 
@@ -33,13 +35,17 @@ uv run digest run --world dev --as-of 2026-09-22T06:00      # Tuesday: "applied 
 uv run digest simulate --world dev --days 5 --fresh          # the whole loop with a simulated Avery (~$1)
 ```
 
+Answers are kept in `runs/<world>/rulings.yaml` and apply to every later run of that world; `--fresh` and the eval matrix set it and the history store aside first (renamed, never deleted).
+
 ## Evaluate
 
 ```
-uv run digest eval --world dev --customize-suite --baseline   # score the runs on disk → eval/reports/dev_<date>.md
 uv run digest eval --matrix --world dev --keep-going          # every run (5 mornings, variants, customize, baseline, simulate), then the report
-uv run digest eval --world dev --judge-export items.jsonl     # judge items for in-session grading; --judge-scores f reads them back; --judge runs the API judge
+uv run digest eval --world dev --customize-suite --baseline   # rescore the runs on disk → eval/reports/dev_<date>.md
+uv run digest eval --world dev --judge                        # + the API judge (cents); --judge-export f / --judge-scores f for in-session grading
 ```
+
+A fresh clone has no runs to score: start with the matrix (cold, about $2 and 1.5–2 h per world; dev and held-out can run at the same time, each has its own store). The submitted reports are `eval/reports/{dev,heldout}_2026-09-29.md`, with the in-session judge scores in `eval/judge/in_session/`.
 
 The report: §1 v1 / v2 / baseline on dev and held-out (P0 recall is the only gate; trap assertions, noise, the one thing, judge, cost), §2 diagnostics per morning with every miss attributed to the stage that lost it, then variants, customize and the simulation checks. Credit is decided by exact keys and cited sources, the product's decider for the ambiguous cases; every decision is listed. `eval/history.md` logs prompt changes; v1 is tag `v1-extraction-centric`.
 

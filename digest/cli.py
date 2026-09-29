@@ -9,6 +9,22 @@ from pydantic import BaseModel
 NOT_IMPLEMENTED_EXIT = 3
 
 
+def require_key(world: str) -> None:
+    """Fail fast when the world has data but no API key is configured: without one every model call fails and the
+    digest degrades to code-only, which reads like a bad product rather than a missing setting."""
+    from .config import load_models
+    from .llm import load_api_key
+    from .paths import data_dir
+
+    if not data_dir(world).exists():
+        return   # the command reports the missing data itself
+    env = load_models().provider.api_key_env
+    if not load_api_key(env):
+        typer.echo(f"{env} is not set: copy .env.example to .env and paste an OpenRouter key "
+                   "(every model call needs it; without it the digest is code-only).")
+        raise typer.Exit(2)
+
+
 def _todo(what: str, track: str, milestone: str) -> None:
     typer.echo(f"{what}: not implemented yet ({track}, {milestone}). See docs/handoffs/.")
     raise typer.Exit(NOT_IMPLEMENTED_EXIT)
@@ -25,6 +41,7 @@ def run(
     from .ingest import DataMissing
     from .pipeline import run_pipeline
 
+    require_key(world)
     try:
         result = run_pipeline(world, as_of, variant=variant, customize=customize, tag=tag)
     except DataMissing as e:
@@ -73,6 +90,7 @@ def baseline(
     from .baseline import run_baseline
     from .ingest import DataMissing
 
+    require_key(world)
     try:
         s = run_baseline(world, as_of)
     except DataMissing as e:

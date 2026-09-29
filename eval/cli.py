@@ -35,6 +35,10 @@ def evaluate(
 ) -> None:
     """Score runs against the world's manifest and write eval/reports/<world>_<date>.md."""
     if matrix:
+        if not dry_run:
+            from digest.cli import require_key
+
+            require_key(world)
         _matrix(world, dry_run, keep_going)
         return
     from eval.judge.judge import calibrate, digest_item, draft_items, export_items, judge_items, load_scores
@@ -123,6 +127,9 @@ def simulate(
         typer.echo(f"no manifest at {mpath} (Track B writes eval/manifests/<world>.yaml)")
         raise typer.Exit(2)
     manifest = load_manifest(mpath)
+    from digest.cli import require_key
+
+    require_key(world)
     root = _runs_root(world, runs)
     transcript = run_sim(world, days, manifest, root, log=typer.echo, fresh=fresh)
     ws = score_world(world, root, manifest=manifest)

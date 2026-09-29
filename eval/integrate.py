@@ -4,6 +4,7 @@
     scripts/integrate.sh dev
 
 For the world's manifest (run days 26–30 at meta.as_of_time, 06:00 PT):
+  0. fresh      rulings.yaml and store.sqlite set aside (renamed), so no earlier answer or history leaks in
   1. runs       `digest run` for every run day
   2. variants   on the last run day: the honesty variants (stale_inbox, no_notes, corrupt_ics)
   3. customize  on the last run day: every profile/customize/*.md
@@ -107,6 +108,13 @@ def run_matrix(world: str, manifest: Manifest, *, dry_run: bool = False, keep_go
     res = MatrixResult(world=world, started=datetime.now().isoformat(timespec="seconds"),
                        steps=plan(world, manifest, customize_dir))
     stop = False
+    if not dry_run:
+        # the plain mornings must not see rulings or history left by an earlier simulate or `digest answer`: start
+        # from a clean state every time, so the matrix is reproducible (renamed to *.bak-<ts>, never deleted)
+        from eval.sim_avery.sim import set_aside_state
+
+        for m in set_aside_state(runs_root or ROOT / "runs" / world, world):
+            log(f"fresh: {m}")
     for n, s in enumerate(res.steps, 1):
         if dry_run:
             s.status = "planned"

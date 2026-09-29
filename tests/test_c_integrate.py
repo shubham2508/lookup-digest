@@ -166,3 +166,12 @@ def test_item_matches_by_candidate_fallback(tmp_path, manifest):
     # but a key another expectation owns is never borrowed: the daycare item stays missing
     assert any(m.what.startswith("P0 missing: family:daycare") for m in c.misses)
     assert load_views(manifest, tmp_path)[DAY].rendered[0].about == "family:wren"
+
+
+def test_matrix_starts_without_earlier_rulings_or_history(tmp_path, manifest):
+    """Reproducible: a rulings.yaml or store left by an earlier simulate / `digest answer` is set aside, not used."""
+    (tmp_path / "rulings.yaml").write_text("rulings: []\n")
+    (tmp_path / "store.sqlite").write_text("")
+    run_matrix("w", manifest, cmd=Fake(), log=lambda _: None, runs_root=tmp_path)
+    assert not (tmp_path / "rulings.yaml").exists() and not (tmp_path / "store.sqlite").exists()
+    assert any(p.name.startswith("rulings.yaml.bak-") for p in tmp_path.iterdir())
