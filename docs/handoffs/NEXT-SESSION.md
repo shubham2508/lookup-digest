@@ -1,6 +1,7 @@
 # Orchestrator handoff — start here (written 2026-09-29 morning, after the v2 build)
 
-Read `CLAUDE.md`, `specs/PIVOT_SPEC.md`, `MIGRATION_PLAN.md`, then this page. Shubham wants short, plain answers,
+Read `CLAUDE.md`, `specs/PIVOT_SPEC.md`, `MIGRATION_PLAN.md`, then this page. `STATUS.md` has the build's timeline and the
+three v2 track reports; `v2-A-checkpoint.md` is the evidence behind the P2 gate (`OPEN_QUESTIONS.md` #19). Shubham wants short, plain answers,
 tables over paragraphs, a status line between long steps, and no fixable issue shipped as "week two".
 
 ## Where things stand
@@ -14,7 +15,7 @@ tables over paragraphs, a status line between long steps, and no fixable issue s
   $0.18 a cold morning; held-out P0 84.6%, traps 149/207, noise 6.1%, one thing 2/2, memory 14/15, $0.29. Judge
   (in-session, `eval/judge/in_session/*.yaml`, read back with `--judge-scores`): dev digest 4.4/3.4/4.4, drafts
   4.7/4.3/3.5; held-out digest 4.4/3.2/4.4, drafts 4.2/4.5/3.2. Reports: `eval/reports/{dev,heldout}_2026-09-29.md`.
-- Decisions taken while Shubham slept are in `OPEN_QUESTIONS.md` → Decided (#19 verdict, #20, #21, #22 accepted).
+- Decisions taken while Shubham slept are in `OPEN_QUESTIONS.md` → Decided (#19 verdict, #20, #21, #22 accepted, #23).
   #18 is closed by **#23**: the grader matches by exact key, unique sources and the product's decider; no string
   similarity remains anywhere in the repo.
 
@@ -43,3 +44,10 @@ tables over paragraphs, a status line between long steps, and no fixable issue s
 ## Budget
 
 OpenRouter key: limit $25, about $8.5 left after the final matrices ($4.7 for both worlds).
+
+## How a track session works (if the build is ever split again)
+
+One session per track in its own git worktree, started with one line ("Track A, v2"); it reads `CLAUDE.md`, then a
+handoff doc (ownership, read list, no-touch list, deliverables, acceptance), then its read list. Questions go in
+`OPEN_QUESTIONS.md`; progress in `STATUS.md`; the session ends by writing its report and stopping; the orchestrator
+merges. The v2 handoffs are in the transcripts (`sessions/*_v2.txt`) and summarized in `MIGRATION_PLAN.md` §1.

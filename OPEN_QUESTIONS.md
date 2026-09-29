@@ -100,7 +100,7 @@ contact_classifier,calendar_sweep,notes_tasks_sweep,news_sweep}.md`.
 
 - **2026-09-29 ~05:30 · #19 v2 pivot approved; the P2 reader checkpoint is delegated to the orchestrator** (Shubham,
   before sleeping). Criteria, fixed now so the review is not a judgment call made after seeing the output: for each
-  of the five planted threads in `docs/handoffs/v2-A-readers.md`, (1) the planted issue appears as a Finding with
+  of the five planted threads listed in `docs/handoffs/v2-A-checkpoint.md`, (1) the planted issue appears as a Finding with
   `needs_avery: yes`; (2) its priority is within the answer key's band for that item; (3) one of the expected action
   types is proposed; (4) no fact in `why`/`title` is absent from the raw thread. Pass = readers match or beat v1 triage
   on ≥4 of 5 and never fail (4). Fail = stop the merge of P3–P5, keep v1, report in the morning. Tracks run
