@@ -14,6 +14,7 @@ from .compile.profile import CompiledProfile, compile_profile
 from .compose import compose_digest, title_for
 from .compute import ComputeResult, assemble, build_spine
 from .config import Settings, load_settings
+from .normalize.freshness import reader_notes
 from .history import (
     surfaced_count,
     answered_after_digest,
@@ -289,7 +290,11 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
         ctx.write_jsonl("actions", ver.actions)
         ctx.write_json("verify", ver.result)
         ctx.write_text("suggested_tasks", suggested_tasks_md(ver.actions, as_of_dt.date().isoformat()))
-        notes = list(dict.fromkeys(list(composed.header_notes) + customize_notes))
+        # freshness lines are code's (same words every morning); compose's own restatements of them are dropped
+        fresh_lines = reader_notes(norm.freshness, as_of_dt)
+        _restates = re.compile(r"\b(stale|synced?|sync gap|days? old|not (been )?(updated|refreshed)|unreadable|missing)\b", re.I)
+        model_notes = [n for n in composed.header_notes if not (fresh_lines and _restates.search(n))]
+        notes = list(dict.fromkeys(fresh_lines + model_notes + customize_notes))
         dropped_n = sum(1 for v in ver.result.violations if v.fix == "dropped")
         if dropped_n:
             notes.append(f"{dropped_n} item{'s' if dropped_n != 1 else ''} withheld by a hard rule")

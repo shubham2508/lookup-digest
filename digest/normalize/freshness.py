@@ -79,3 +79,32 @@ def header_fragment(f: SourceFreshness, as_of: datetime) -> str:
         span = f"{int(days)} days" if days >= 2 else f"{int(f.age_hours)}h"
         return f"{label} stale ({span})"
     return f"{label} {f.state}"
+
+
+def reader_notes(freshness: dict, as_of: datetime) -> list[str]:
+    """One plain sentence per stale or missing source, for the person reading the digest (the chips above them are for
+    the eye; these say what the staleness means). Written by code, so the wording is the same every morning."""
+    out: list[str] = []
+    for kind in ("email", "calendar", "notes", "tasks"):
+        f = freshness.get(kind)
+        if f is None or f.state == "ok":
+            continue
+        days = int(f.age_hours / 24) if f.age_hours is not None else None
+        span = f"{days} days" if days is not None and days >= 2 else (f"{int(f.age_hours)} hours" if f.age_hours is not None else "a while")
+        if kind == "email" and f.state == "stale":
+            when = f.latest_item_time.strftime("%a %H:%M") if f.latest_item_time else "some time ago"
+            out.append(f"Your inbox last synced {when}: replies since then are not here, so anything shown as still waiting may be a sync gap.")
+        elif kind == "email":
+            out.append("Your inbox could not be read: this page is built from the calendar, notes and tasks only.")
+        elif kind == "calendar":
+            out.append("Your work calendar could not be read: meeting overlaps were not checked.")
+        elif kind == "notes" and f.state == "stale":
+            out.append(f"Your notes have not changed in {span}: anything drawn from them may be out of date.")
+        elif kind == "notes":
+            out.append("No notes were available this morning.")
+        elif kind == "tasks" and f.state == "stale":
+            out.append(f"Your task list has not been updated in {span}: tasks it shows as open may be done, and promises made since may be missing.")
+        elif kind == "tasks":
+            out.append("No task list was available this morning.")
+    return out
+

@@ -121,3 +121,19 @@ def test_group_findings_compares_different_kinds_that_share_a_person():
     merges = group_findings(fs, StubLinker())
     assert "shared:priya-iyer" in seen and "shared:jun-park" not in seen, "only a person on two or more keys of different kinds opens a comparison"
     assert len(merges) == 1 and set([merges[0].canonical, *merges[0].merged]) == {"approval:inference-spend", "other:backfill-cap"}
+
+
+def test_reader_notes_are_plain_and_deterministic():
+    from datetime import datetime
+    from digest.normalize.freshness import reader_notes
+
+    fr = {"email": SimpleNamespace(state="stale", age_hours=32.0, latest_item_time=datetime(2026, 9, 22, 21, 30, tzinfo=TZ)),
+          "calendar": SimpleNamespace(state="unreadable", age_hours=None, latest_item_time=None),
+          "notes": SimpleNamespace(state="ok", age_hours=1.0, latest_item_time=None),
+          "tasks": SimpleNamespace(state="stale", age_hours=10 * 24.0, latest_item_time=None)}
+    notes = reader_notes(fr, datetime(2026, 9, 24, 6, 0, tzinfo=TZ))
+    assert notes == reader_notes(fr, datetime(2026, 9, 24, 6, 0, tzinfo=TZ)) and len(notes) == 3
+    assert notes[0].startswith("Your inbox last synced Tue 21:30") and "sync gap" in notes[0]
+    assert "overlaps were not checked" in notes[1]
+    assert notes[2].startswith("Your task list has not been updated in 10 days")
+    assert reader_notes({"tasks": SimpleNamespace(state="ok", age_hours=2.0, latest_item_time=None)}, datetime(2026, 9, 24, 6, 0, tzinfo=TZ)) == []

@@ -1,6 +1,6 @@
 ---
 name: compose
-version: 6
+version: 7
 model_role: compose
 output_model: ComposeResult
 ---
@@ -22,7 +22,7 @@ JOBS
 5. Question budget: at most {{question_budget}} question actions in the whole digest; extra questions take their default or become read.
 6. Framing per kept item: what = verb-first, specific, one line (no trailing period needed); why = why now, at most 20 words, with the evidence that ranked it (dates, counts, names). Direct, no filler. Escalate framing when times_surfaced ≥ 2 ("third time flagged").
 7. Apply customize: section order, exclusions, focus, length, tone notes, calendar_full_schedule. Locked invariants stay: citations, staleness/contradiction flags, hard rules, and a P0 excluded by a filter still appears (put it in cut_ids so it renders as a one-liner under "Also outside your filter").
-8. header_notes: short honesty lines for the header (customize rejections, "not understood", skipped items, stale sources). Empty list if nothing to say.
+8. header_notes: short honesty lines for the header (customize rejections, "not understood", skipped items). Freshness (stale or missing sources) is written by code; never restate it here. Empty list if nothing to say.
 9. Finalize actions: keep, merge, or change types when the global view shows a better one (a reply becomes forward_delegate when someone else owns it); enrich briefs with cross-item context (e.g., "mention their trade-show case study" inside the Halden reply). Keep each item's action list to 0–2. Never add drafts for never_draft contacts; message_person instead.
 
 RULES
