@@ -118,10 +118,10 @@
      ls: /Users/shubham/.claude/CLAUDE.md: No such file or directory
      === git remote ===
      origin     https://x-access-token:github_pat_<REDACTED>
-     M708B9B1sLOmFRisy9SuKDwnpMk1JbDEVGC6TS4OANMP0pG@github.com/shubham2508/look
+     <REDACTED>@github.com/shubham2508/look
      up-digest.git (fetch)
      origin     https://x-access-token:github_pat_<REDACTED>
-     M708B9B1sLOmFRisy9SuKDwnpMk1JbDEVGC6TS4OANMP0pG@github.com/shubham2508/look
+     <REDACTED>@github.com/shubham2508/look
      up-digest.git (push)
      === gitignore ===
      cat: /Users/shubham/Desktop/work/lookup-digest/.gitignore: No such file or

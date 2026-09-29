@@ -1,6 +1,20 @@
 # Daily Digest
 
-A one-page 6:00am PT triage digest for "Avery Chen", built from a synthetic month of email, calendar, notes and tasks. LLM readers judge the raw threads; code does the math, the hard rules and a recall floor; the page is scored against a human-reviewed answer key. Design and results: `DESIGN.md`. What it does and how each part is tested: `docs/CAPABILITIES.md`. The spec: `specs/PIVOT_SPEC.md`, `CLAUDE.md`.
+A one-page 6:00am PT triage digest for "Avery Chen", built from a synthetic month of email, calendar, notes and tasks. LLM readers judge the raw threads; code does the math, the hard rules and a recall floor; the page is scored against a human-reviewed answer key.
+
+**Results** (five mornings per world; P0 recall is the gate): P0 recall 100% on dev and 92.3% on held-out (a second world, run once, never tuned on); the one thing right on every morning that has one; noise 5.5% / 6.1%. The one-call baseline gets 50% / 0% P0. About $0.30 a cold morning.
+
+## For reviewers
+
+| To see | Open |
+|---|---|
+| The design, results and what was rejected, on one page | `DESIGN.md` |
+| What a morning looks like | `runs/examples/dev/2026-09-24T06-00/digest.md` (every artifact and LLM call beside it) |
+| Scores, and every miss traced to the stage that lost it | `eval/reports/dev_2026-09-29.md`, `heldout_2026-09-29.md`, `review_fixes_2026-09-29.md` |
+| What it does and how each capability is tested | `docs/CAPABILITIES.md` |
+| Why each decision, and who proposed it | `docs/DESIGN_LOG.md` §14–15, `OPEN_QUESTIONS.md` → Decided |
+| How Claude Code was used | `sessions/` (every session's transcript), `CLAUDE.md` (the agents' standing rules), `docs/handoffs/` |
+| The spec | `specs/PIVOT_SPEC.md` |
 
 ## Install
 
