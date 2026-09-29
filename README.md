@@ -13,6 +13,31 @@ uv run digest llm-check       # one live structured call through OpenRouter, cac
 
 Models are in `config/models.yaml`: the pipeline runs on `openai/gpt-6-luna` with reasoning effort per role; TypeSafe's Jev answers the linker's "same thing?" questions first. The synthetic world's prose was written by a Claude session, not an API call. The judge role is `deepseek/deepseek-v4.1-flash`; the submitted scores were produced in-session (see Evaluate).
 
+## Fresh clone: what you need, what you get
+
+| You need | Why |
+|---|---|
+| `uv` (it installs Python 3.12 into `.venv`) | `uv sync --all-groups` |
+| An OpenRouter key with a few dollars of credit, in `.env` | one morning costs about $0.20 cold (readers are cached per thread and date; a rerun is a cent); the full eval matrix about $2 per world. TypeSafe's Jev is used through the same key when available; if it is not, the linker falls back to the LLM on its own |
+
+Everything else is in the repo: both worlds' data (`data/dev`, `data/heldout`: inbox, calendars, notes, tasks), the answer keys, the profile, the prompts, the config, finished example runs under `runs/examples/` (digests, every artifact, one full LLM trace) and the final reports under `eval/reports/`. So without a key you can still read a digest and its trace; with one, your first `digest run` produces the same kind of page in 4–5 minutes. Local only, created on first use: `.env`, `runs/`, the LLM cache in `.cache/`, the SQLite store, the compiled `profile/profile.yaml`.
+
+**Try the memory in two minutes of typing** (about $0.60, three cold mornings):
+
+```
+uv run digest run --world dev --as-of 2026-09-21T06:00      # Monday: a question card Q1 appears
+uv run digest answer Q1 2 --world dev                        # answer it → runs/dev/rulings.yaml
+uv run digest run --world dev --as-of 2026-09-22T06:00      # Tuesday: header says "applied 1 learned rule"; the card is gone
+uv run digest run --world dev --as-of 2026-09-23T06:00      # Wednesday: an item shown three mornings running says "third time flagged"
+```
+
+Or let the harness do the whole loop with a simulated Avery answering the cards from the answer key, then score it (report §6 "Multi-day simulation"):
+
+```
+uv run digest simulate --world dev --days 5 --fresh          # ~$1, 15–20 min
+uv run digest eval --world dev
+```
+
 ## Run it against the dataset
 
 ```
