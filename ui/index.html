@@ -324,13 +324,14 @@ async function digestView() {
     close(); if (sec === "one" && /^\*\*/.test(l)) html += itemHtml(l); else html += `<div class="plain">${inline(l)}</div>`;
   }
   close(); if (sec === "one") html += "</div>";
-  if (pend.length) html += `<details><summary>${esc(pend[0])}: the overflow list, not part of the page Avery reads</summary><ul>${pend.slice(1).map(p => { const [b] = cites(p); return `<li>${inline(b)}</li>`; }).join("")}</ul></details>`;
-  return note + `<div class="page">${html}</div>`;
+  if (pend.length) html += `<details><summary>${esc(pend[0])}: the tail of the page, one line each (folded here, printed in full on the page)</summary><ul>${pend.slice(1).map(p => { const [b] = cites(p); return `<li>${inline(b)}</li>`; }).join("")}</ul></details>`;
+  const banner = `<div class="explain" style="max-width:760px;margin-bottom:12px"><b>This is the page Avery gets at 06:00.</b> Nothing here is added by the UI: the header is the honesty line, each item is what · why · sources · actions, drafts are quoted. <details style="display:inline"><summary style="display:inline;cursor:pointer">raw markdown</summary><pre style="white-space:pre-wrap">${esc(d.text)}</pre></details></div>`;
+  return note + banner + `<div class="page">${html}</div>`;
 }
 
 // ======================= 2. why each item =======================
 async function whyView() {
-  const [cands, tri, red, comp, acts, ver, ex] = await Promise.all(["candidates", "triage", "reduce", "compose", "actions", "verify", "extractions"].map(art));
+  const [cands, tri, red, comp, acts, ver, ex, fnd] = await Promise.all(["candidates", "triage", "reduce", "compose", "actions", "verify", "extractions", "findings"].map(art));
   if (!cands || !red) return `<div class="empty">This run has no pipeline artifacts (a baseline is a single LLM call).</div>`;
   const C = {}; cands.forEach(c => C[c.candidate_id] = c); const T = {}; (tri || []).forEach(t => T[t.candidate_id] = t);
   const X = {}; (ex || []).forEach(x => X[x.source_id] = x); const CI = {}; (comp?.items || []).forEach(i => CI[i.id] = i);
@@ -343,12 +344,13 @@ async function whyView() {
   const card = ([id, where]) => { const it = RI[id]; if (!it) return ""; const ci = CI[id] || {};
     return `<div class="card" data-kind="item" data-id="${esc(id)}" data-search="${esc((ci.what || "") + " " + it.about + " " + it.candidate_types.join(" ") + " " + (it.why || "")).toLowerCase()}"><div class="head"><span class="pill ${it.priority}">${it.priority}</span><span class="t">${esc(ci.what || it.about)}</span><span class="small muted">${esc(where)}</span></div><div class="timeline" hidden></div></div>`; };
   const dcard = (c) => `<div class="card" data-kind="dropped" data-id="${esc(c.candidate_id)}" data-search="${esc((c.type + " " + c.about + " " + (T[c.candidate_id].why || "") + " " + (SUBJ[c.facts.thread_id]?.subject || "")).toLowerCase())}"><div class="head"><span class="pill code">${esc(c.type)}</span><span class="t">${esc(SUBJ[c.facts.thread_id]?.subject || c.about)}</span><span class="small muted">${esc(T[c.candidate_id].why || "")}</span></div><div class="timeline" hidden></div></div>`;
-  WHY = { C, T, X, CI, RI, acts: acts || [], ver, comp };
-  return `<div class="toolbar"><input id="whyq" type="text" placeholder="Search items: a name, a topic, a word from the email…"><span class="small muted">Click an item to see its path: email → facts → rule → triage → page → action.</span></div>
+  const FD = {}; (fnd || []).forEach(f => { if (f.candidate_id) FD[f.candidate_id] = f; });
+  WHY = { C, T, X, CI, RI, FD, acts: acts || [], ver, comp };
+  return `<div class="toolbar"><input id="whyq" type="text" placeholder="Search items: a name, a topic, a word from the email…"><span class="small muted">Click an item to see its path: source → finding → code checks → merge → page → action.</span></div>
     <div class="group-title">On the page (${placed.length})</div>${placed.map(card).join("")}
     <div class="group-title">Also pending, the overflow (${pend.length})</div>${pend.map(card).join("")}
     ${over.length ? `<div class="group-title">Considered but over the cap (${over.length})</div>${over.map(card).join("")}` : ""}
-    <div class="group-title">Dropped by triage (${dropped.length})</div>${dropped.map(dcard).join("")}`;
+    <div class="group-title">Read but not shown (${dropped.length})</div>${dropped.map(dcard).join("")}`;
 }
 let WHY = null;
 function srcLabel(e) { const id = e.source_id;
@@ -362,29 +364,49 @@ function timelineFor(id, kind) {
   const threads = [...new Set(cands.map(c => c.facts.thread_id).filter(Boolean))];
   let s = "";
   s += step(1, "data", "Source", evid.slice(0, 6).map(e => `<div class="quote">“${esc(e.quote)}” <span class="cite">${esc(srcLabel(e))}</span> <button class="link" data-src="${esc(e.source_id)}">open original</button></div>`).join("") || `<span class="small muted">no quotes</span>`);
-  s += step(2, "llm", "Extractor read it", threads.length ? threads.map(t => { const x = W.X[t]; const p = x?.payload || {};
-    return `<div class="sub"><b>${esc(SUBJ[t]?.subject || t)}</b><br>${esc(p.summary || x?.type || "")}${p.intent_primary ? `<div class="kv"><span><b>intent:</b> ${esc(p.intent_primary)}</span><span><b>ball with:</b> ${esc(p.ball?.awaiting)}</span><span><b>asks:</b> ${(p.asks || []).length}</span><span><b>promises:</b> ${(p.commitments || []).length}</span></div>` : ""}<button class="link" data-call="tag=${esc(t)}">see this LLM call</button></div>`; }).join("") : `<span class="small muted">from a note, task or calendar event</span>`);
-  s += step(3, "code", "A rule in compute flagged it", cands.map(c => `<div class="sub"><span class="pill code">${esc(c.type)}</span> <span class="small">${esc(c.about)}</span>${facts(c.facts)}</div>`).join(""));
-  s += step(4, "llm", "Triage judged it", cands.map(c => { const t = W.T[c.candidate_id] || {};
-    return `<div class="sub">${t.include ? `<span class="pill ok">kept</span> <span class="pill ${t.priority}">${t.priority}</span> ${esc(t.section || "")}` : `<span class="pill bad">dropped</span>`} · ${esc(t.why || "")}${(t.proposed_actions || []).length ? `<div class="small muted">proposed: ${t.proposed_actions.map(a => a.type).join(", ")}</div>` : ""}<button class="link" data-call="cand=${esc(c.candidate_id)}">see this LLM call</button></div>`; }).join(""));
+  const originName = (o) => ({ thread_reader: "a thread reader", calendar_sweep: "the calendar sweep", notes_tasks_sweep: "the notes + tasks sweep", news_sweep: "the news sweep", safety_net: "a safety net (code)" })[o] || (o ? esc(o) : "a v1 rule");
+  const anyLLM = cands.some(c => (W.FD[c.candidate_id]?.origin || c.facts?.origin) !== "safety_net");
+  s += step(2, anyLLM ? "llm" : "code", "Found by", cands.map(c => { const f = W.FD[c.candidate_id]; const o = f?.origin || c.facts?.origin; const x = threads.length && !f ? W.X[threads[0]] : null;
+    if (f) return `<div class="sub"><b>${originName(o)}</b>${f.rescued_by_safety_net ? ` <span class="pill">rescued: no reader raised it</span>` : ""}<br><b>${esc(f.title)}</b> <span class="small muted">· ${esc(f.kind)}</span><br>${esc(f.why || "")}${f.deadline?.raw ? `<div class="small muted">deadline: ${esc(f.deadline.raw)}${f.deadline.resolved ? " → " + esc(f.deadline.resolved) : ""}</div>` : ""}${(f.contradictions || []).length ? `<div class="small muted">contradiction: ${esc(f.contradictions.join("; "))}</div>` : ""}${o === "thread_reader" && c.facts?.thread_id ? `<button class="link" data-call="tag=${esc(c.facts.thread_id)}">see the reader's call</button>` : ""}</div>`;
+    if (x) { const p = x.payload || {}; return `<div class="sub"><b>the v1 extractor</b><br>${esc(p.summary || x.type || "")}<button class="link" data-call="tag=${esc(threads[0])}">see this LLM call</button></div>`; }
+    return `<div class="sub"><b>${originName(o)}</b> <span class="pill code">${esc(c.type)}</span> <span class="small">${esc(c.about)}</span>${facts(c.facts)}</div>`; }).join(""));
+  s += step(3, "code", "Checked by code", cands.map(c => { const t = W.T[c.candidate_id] || {}; const f = W.FD[c.candidate_id];
+    return `<div class="sub"><span class="small">${f ? `needs Avery: <b>${esc(f.needs_avery)}</b> · reader's priority <b>${esc(f.priority)}</b>` : `rule <b>${esc(c.type)}</b>`}</span>${t.priority && f && t.priority !== f.priority ? ` <span class="pill">floor: ${esc(f.priority)} → ${esc(t.priority)}</span>` : ""}${facts(c.facts)}</div>`; }).join(""));
+  s += step(4, "code", "Kept or dropped", cands.map(c => { const t = W.T[c.candidate_id] || {};
+    return `<div class="sub">${t.include ? `<span class="pill ok">kept</span> <span class="pill ${t.priority}">${t.priority}</span> ${esc(t.section || "")}` : `<span class="pill bad">not shown</span>`} · ${esc(t.why || "")}${(t.proposed_actions || []).length ? `<div class="small muted">proposed: ${t.proposed_actions.map(a => a.type).join(", ")}</div>` : ""}</div>`; }).join(""));
   if (it) {
     const where = W.comp?.one_thing_id === id ? "placed as THE ONE THING" : (W.comp?.sections || []).find(x => x.item_ids.includes(id)) ? "placed in " + W.comp.sections.find(x => x.item_ids.includes(id)).name : (W.comp?.cut_ids || []).includes(id) ? "cut to Also pending" : "not placed (over the cap)";
-    s += step(5, "code", "Reduce merged it", `<div class="small">${cands.length} candidate(s) → one item <b>${esc(id)}</b> · ${esc(it.about)} · ${it.priority}${it.times_surfaced ? ` · shown ${it.times_surfaced} time(s) before` : ""}</div>`);
+    s += step(5, "code", cands.length > 1 ? "Merged into one item" : "One finding, one item", `<div class="small">${cands.length} finding(s) → one item <b>${esc(id)}</b> · ${esc(it.about)} · ${it.priority}${it.times_surfaced ? ` · shown ${it.times_surfaced} time(s) before` : ""}</div>`);
     const ci = W.CI[id] || {};
     s += step(6, "llm", "Compose wrote it", `<div class="small"><b>${esc(where)}</b></div>${ci.what ? `<div class="sub"><b>${esc(ci.what)}</b><br>${esc(ci.why || "")}</div>` : ""}<button class="link" data-call="tag=compose">see this LLM call</button>`);
     const acts = W.acts.filter(a => a.item_id === id);
     s += step(7, acts.some(a => a.llm) ? "llm" : "code", "Action", acts.length ? acts.map(a => `<div class="sub"><span class="pill">${esc(a.type)}</span> ${a.llm ? `<span class="pill llm">written by LLM</span>` : `<span class="pill code">template</span>`}<div>${esc(a.draft || a.text || "")}</div>${a.llm ? `<button class="link" data-call="item=${esc(id)}">see this LLM call</button>` : ""}</div>`).join("") : `<span class="small muted">no action</span>`);
     const vs = (W.ver?.violations || []).filter(v => v.item_id === id);
-    s += step(8, "code", "Verify checked it", vs.length ? vs.map(v => `<div class="sub">rule ${v.rule}: ${esc(v.detail)} → <b>${esc(v.fix)}</b></div>`).join("") : `<span class="small muted">passed all 11 hard rules</span>`);
+    s += step(8, "code", "Verify checked it", vs.length ? vs.map(v => `<div class="sub">rule ${v.rule}: ${esc(v.detail)} → <b>${esc(v.fix)}</b></div>`).join("") : `<span class="small muted">passed every hard rule</span>`);
   }
   return s;
 }
 
 // ======================= 3. llm calls =======================
-const STAGES = [["compiler", "1 · Compile the profile and customize prompt"], ["extractor", "2 · Extract facts, one call per thread / note / task"], ["linker", "2b · Link: which things are the same (topics, promises↔tasks, email↔calendar, news↔items)"], ["triage", "3 · Triage candidates, packs of 6"], ["compose", "4 · Compose the page"], ["materializer", "5 · Write drafts and decisions"], ["judge", "Judge"], ["sim_avery", "Simulated Avery"]];
+// v2 phases (specs/PIVOT_SPEC.md): code prepares and checks, models read and write. A role not listed lands in "other".
+const PHASES = [
+  ["compile", "0 · Compile the profile and the customize prompt", ["compiler"], true],
+  ["spine", "1 · Prepare: who is who (signature parser + contact classifier, one cached call per contact)", ["signature_parser", "contact_classifier"], false],
+  ["read", "2 · Read: one thread reader per human thread (raw thread + retrieved context → Findings)", ["thread_reader"], false],
+  ["sweep", "2 · Read: sweeps over the calendar, notes + tasks, newsletters", ["calendar_sweep", "notes_tasks_sweep", "news_sweep"], true],
+  ["link", "3 · Check: is this the same thing? (Jev first, the LLM when Jev is unsure)", ["linker"], true],
+  ["compose", "4 · Write: compose the page (one call, sees raw excerpts)", ["compose"], true],
+  ["draft", "4 · Write: drafts and decide cards (each reads the message it answers)", ["materializer"], true],
+  ["v1", "v1 stages, kept for old runs (extractor, triage)", ["extractor", "triage"], false],
+  ["judge", "Judge", ["judge"], true], ["sim", "Simulated Avery", ["sim_avery"], true],
+];
 function callLabel(r, i) {
   const tag = r.tag || "";
-  if (r.role === "extractor") { const s = SUBJ[tag]; return s ? `${s.subject} <span class="muted small">· ${esc(s.from)}</span>` : esc(tag.replace(/^note:notes\//, "note ").replace(/^task:/, "task ")); }
+  if (r.role === "extractor" || r.role === "thread_reader") { const s = SUBJ[tag]; return s ? `${esc(s.subject)} <span class="muted small">· ${esc(s.from)}</span>` : esc(tag.replace(/^note:notes\//, "note ").replace(/^task:/, "task ")); }
+  if (r.role === "signature_parser") return "signature of " + esc(tag.replace(/^(sig|signature)[:_]?/, ""));
+  if (r.role === "contact_classifier") return "classify " + esc(tag.replace(/^(classify|contact)[:_]?/, ""));
+  if (/sweep$/.test(r.role)) return esc(r.role.replace("_", " + ").replace("sweep", "sweep") + (tag ? " · " + tag : ""));
+  if (r.role === "linker" && r.prompt_version === "jev-decisions") return "Jev · " + esc(tag.replace("link:", "").replace(/_/g, " "));
   if (r.role === "triage") { const ids = tag.replace("triage:", "").split(","); const C = WHY?.C || {}; return `${ids.length} candidates: ` + esc(ids.map(id => C[id] ? C[id].type.replace("calendar_conflict:", "cal:") : id).join(", ")); }
   if (r.role === "materializer") { const [k, item, typ] = tag.split(":"); return `${esc(typ || k)} for ${esc(item)}: ` + esc((WHY?.CI?.[item]?.what) || ""); }
   if (r.role === "compose") return "the whole page (one call)";
@@ -395,10 +417,16 @@ async function callsView() {
   const rows = await art("trace");
   if (!rows) return `<div class="empty">This run was made before full tracing. Run this morning again to see every prompt and output.</div>`;
   if (!WHY) await whyView();
-  CALLS = rows.map((r, i) => ({ ...r, i, label: callLabel(r, i), hay: (r.tag + " " + r.role + " " + callLabel(r, i) + " " + JSON.stringify(r.output || r.raw || "") + " " + (r.messages || []).map(m => m.content).join(" ")).toLowerCase() }));
-  const groups = STAGES.map(([role, title]) => [role, title, CALLS.filter(c => c.role === role)]).filter(g => g[2].length);
-  return `<div class="toolbar"><input id="callq" type="text" placeholder="Search calls: a name, a thread subject, any word in a prompt or output…"><span class="small muted" id="callcount">${rows.length} calls in pipeline order</span></div>` +
-    groups.map(([role, title, cs]) => `<details class="grp" data-role="${role}" ${role === "extractor" ? "" : "open"}><summary><span class="t">${title}</span><span class="small muted">${cs.length} calls · ${cs.filter(c => c.cached).length} cached · ${money(cs.reduce((a, c) => a + (c.cost_usd || 0), 0))}</span></summary>` +
+  const phaseOf = (role) => (PHASES.find(p => p[2].includes(role)) || ["other", "other"])[1];
+  CALLS = rows.map((r, i) => ({ ...r, i, label: callLabel(r, i), hay: (r.tag + " " + r.role + " " + phaseOf(r.role) + " " + callLabel(r, i) + " " + JSON.stringify(r.output || r.raw || "") + " " + (r.messages || []).map(m => m.content).join(" ")).toLowerCase() }));
+  const known = new Set(PHASES.flatMap(p => p[2]));
+  const groups = PHASES.map(([key, title, roles, open]) => [key, title, CALLS.filter(c => roles.includes(c.role)), open]).filter(g => g[2].length);
+  const other = CALLS.filter(c => !known.has(c.role)); if (other.length) groups.push(["other", "other roles", other, true]);
+  const live = CALLS.filter(c => !c.cached).length, cost = CALLS.reduce((a, c) => a + (c.cost_usd || 0), 0);
+  const strip = `<div class="stats" style="margin:0 0 12px">${groups.map(([k, t, cs]) => `<div><b>${cs.length}</b>${esc(t.split(":")[0].replace(/^\d · /, ""))} · ${money(cs.reduce((a, c) => a + (c.cost_usd || 0), 0))}</div>`).join("")}</div>`;
+  return `<div class="explain" style="margin-bottom:10px">Every model call of this morning, grouped by phase. Code stages (ingest, normalize, safety nets, reconcile, verify, render) make no calls. Click a call for its full prompt and answer.</div>` + strip +
+    `<div class="toolbar"><input id="callq" type="text" placeholder="Search calls: a person, a thread subject, a phase, any word in a prompt or output…"><span class="small muted" id="callcount">${rows.length} calls · ${live} live · ${money(cost)}</span></div>` +
+    groups.map(([role, title, cs, open]) => `<details class="grp" data-role="${role}" ${open ? "open" : ""}><summary><span class="t">${title}</span><span class="small muted">${cs.length} calls · ${cs.filter(c => c.cached).length} cached · ${money(cs.reduce((a, c) => a + (c.cost_usd || 0), 0))}</span></summary>` +
       cs.map(c => `<div class="call" data-i="${c.i}"><div class="head"><span class="muted small">#${c.i + 1}</span><span>${c.label}</span><span class="small">${c.cached ? "cached" : "live"}</span><span class="small muted">${c.prompt_tokens || 0}+${c.completion_tokens || 0} tok</span><span class="small">${(c.cost_usd || 0).toFixed(4)}</span><span>${c.invalid ? `<span class="pill bad">invalid</span>` : c.retries ? `<span class="pill">retried</span>` : `<span class="pill ok">ok</span>`}</span></div><div class="body" hidden></div></div>`).join("") + `</details>`).join("");
 }
 let CALLS = [];
@@ -436,7 +464,7 @@ function wire() {
   const cq = $("#callq"); if (cq) cq.oninput = () => { const q = cq.value.trim().toLowerCase(); let n = 0;
     $$(".call").forEach(el => { const hit = !q || CALLS[+el.dataset.i].hay.includes(q); el.hidden = !hit; if (hit) n++; });
     $$(".grp").forEach(g => { const any = $$(".call", g).some(el => !el.hidden); g.hidden = !any; if (q && any) g.open = true; });
-    $("#callcount").textContent = q ? `${n} of ${CALLS.length} calls match` : `${CALLS.length} calls in pipeline order`; };
+    $("#callcount").textContent = q ? `${n} of ${CALLS.length} calls match` : `${CALLS.length} calls · ${CALLS.filter(c => !c.cached).length} live · ${money(CALLS.reduce((a, c) => a + (c.cost_usd || 0), 0))}`; };
 }
 function wireLinks(root) {
   $$("[data-src]", root).forEach(b => b.onclick = (e) => { e.stopPropagation(); openSource(b.dataset.src); });
