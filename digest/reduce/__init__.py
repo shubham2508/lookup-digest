@@ -89,10 +89,20 @@ def reduce_items(results: list[TriageResult], cands: list[Candidate], compute: C
         if ra != rb:
             parent[rb] = ra
 
+    # the linker's about merges (compute) join whatever keys they name, coarse or not (OPEN_QUESTIONS #22h)
+    merge_group: dict[str, int] = {}
+    for n, m in enumerate(about_merges or []):
+        for k in (m.canonical, *m.merged):
+            merge_group[k] = n
     first_by: dict[tuple, str] = {}
     for r in kept:
         c = by_id[r.candidate_id]
-        for k in join_keys(c):
+        keys = join_keys(c)
+        if c.facts.get("origin"):   # v2 finding: the same tag on two threads that share a person is one thing (#22h)
+            keys += [("about-entity", c.about, e) for e in c.entities if e]
+        if c.about in merge_group:
+            keys.append(("merge", merge_group[c.about]))
+        for k in keys:
             if k in first_by:
                 join(first_by[k], r.candidate_id)
             else:

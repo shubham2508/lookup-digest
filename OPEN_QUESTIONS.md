@@ -69,6 +69,15 @@ contact_classifier,calendar_sweep,notes_tasks_sweep,news_sweep}.md`.
 
 ## Decided
 
+- **2026-09-29 ~07:40 · #21 (C) and #22 (B) accepted as built** (orchestrator, delegated). #21a–f: key-only selectors
+  borrow the answer key's sources; v1 column as reported with the rescored line beneath; count-by-key for rule-less
+  types; reader truth from the labels; `spine` and `net` stages. #22a–g: waiting nets covered by a reader that read the
+  thread; thresholds (capital ≥ 3 business days, other P0 contacts any unanswered message); automated-request net in
+  code; personal-date collisions left to readers and the calendar sweep; classifier only for contacts with mail;
+  retrieval ranks same-people threads by subject overlap; B's integration edits kept. #22h done in reduce: identical
+  v2 tags on threads that share a person join, and every linker about-merge pair joins. #22i: history line with the
+  final run.
+
 - **2026-09-29 ~05:45 · #20 judging and eval spend for v2** (Shubham): no OpenRouter spend on evaluation. The
   judge of record for the v2 numbers is the Claude Code orchestrator session (Fable 5.1) applying `prompts/judge.md`
   in-session to the final digests; `deepseek/deepseek-v4.1-flash` stays configured for a later API run (cents).

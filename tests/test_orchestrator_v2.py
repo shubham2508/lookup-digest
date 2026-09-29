@@ -68,3 +68,29 @@ def test_times_surfaced_counts_by_thread_when_tags_change(tmp_path):
         today = [Candidate(candidate_id="c9", type="x", about="deal:cap-table:v3", facts={"thread_id": "thread:<m1>"})]
         assert mark_resolved(st, "w", parse_as_of("2026-09-24T06:00"), today) == 0
         assert mark_resolved(st, "w", parse_as_of("2026-09-24T06:00"), []) == 2
+
+
+def test_reduce_joins_same_tag_across_threads_and_applies_about_merges():
+    from digest.reduce import reduce_items
+    from digest.schemas import AboutMerge, TriageResult
+
+    as_of = parse_as_of("2026-09-24T06:00")
+    comp = SimpleNamespace(context=SimpleNamespace(as_of=as_of), directory=SimpleNamespace(by_slug={}))
+
+    def cand(cid, about, ents, thread, quote):
+        return Candidate(candidate_id=cid, type="k", about=about, entities=ents, evidence=[Evidence(source_id=f"msg:<{thread}>", quote=quote)],
+                         facts={"thread_id": f"thread:<{thread}>", "origin": "thread_reader"})
+
+    def tri(cid):
+        return TriageResult(candidate_id=cid, include=True, section="urgent", priority="P1", due_today=False, confidence="high",
+                            why=f"why {cid}", citations=[], ambiguity=None, proposed_actions=[])
+
+    cands = [cand("c1", "meeting:ipv-call", ["marcus-webb"], "m1", "Monday works"),          # same tag, shared person → one item
+             cand("c2", "meeting:ipv-call", ["marcus-webb", "elena"], "m2", "see you Monday"),
+             cand("c3", "meeting:ipv-call", ["someone-else"], "m3", "different meeting?"),  # same tag, nobody in common → apart
+             cand("c4", "approval:inference-spend", ["priya-iyer"], "m4", "cap the backfill"),
+             cand("c5", "other:backfill-cap", ["priya-iyer"], "m5", "choose the cap")]
+    merges = [AboutMerge(canonical="approval:inference-spend", merged=["other:backfill-cap"], reason="linker")]
+    red = reduce_items([tri(c.candidate_id) for c in cands], cands, comp, 25, merges)
+    groups = sorted(sorted(it.candidate_ids) for it in red.items)
+    assert groups == [["c1", "c2"], ["c3"], ["c4", "c5"]]
