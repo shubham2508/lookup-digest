@@ -142,21 +142,6 @@ def freshness_cap(kinds: list[SourceKind], freshness: dict) -> FreshnessCap:
     return cap
 
 
-def apply_context(cands: list[Candidate], idx: ContextIndex, freshness: dict) -> None:
-    """Fill context_refs, source_dependencies, freshness_cap; add the sync-gap qualifier (architecture §6.5)."""
-    for c in cands:
-        own = {e.source_id for e in c.evidence} | {c.facts.get("thread_id", "")}
-        ents = set(c.entities) | set(c.facts.get("entity_keys", []))
-        c.context_refs = idx.related(ents, {c.about}, own)
-        c.source_dependencies = dependencies(c)
-        c.freshness_cap = freshness_cap(c.source_dependencies, freshness)
-        if c.freshness_cap != "none":
-            stale = [k for k in c.source_dependencies if freshness.get(k) and freshness[k].state != "ok"]
-            c.facts["freshness_note"] = f"{', '.join(stale)} {'stale' if c.freshness_cap == 'stale' else 'missing/unreadable'}: confidence capped at medium"
-            if c.type in ("quiet_thread", "commitment_overdue", "reply_owed", "cadence_drop"):
-                c.facts["qualifier"] = "may be a sync gap"
-
-
 # ----------------------------------------------------------------------------- v2 retrieval
 class ContextRef(Model):
     """One retrieved snippet. `text` is verbatim from the source (plus a one-line label), so a reader's quote from it
@@ -184,6 +169,7 @@ STOP = frozenset({
 })
 
 
+
 def _words(text: str) -> set[str]:
     return {w.strip("'-") for w in _WORD.findall(fold(text))} - STOP
 
@@ -202,10 +188,10 @@ def _excerpt(m: NormalizedMessage, label: str) -> ContextRef:
     return ContextRef(source_id=f"msg:{m.message_id}", text=f"{label} · {_stamp(m.sent_at)} · from {who} · subject: {m.subject}\n{body}")
 
 
-def _event_text(e: NormalizedEvent, as_of: datetime) -> str:
+def _event_text(e: NormalizedEvent, as_of: datetime, me: str = "owner") -> str:
     who = ", ".join(a.name or a.email for a in e.attendees[:8])
     return (f"{e.title} · {e.calendar} calendar · {_stamp(e.start)}–{e.end.strftime('%H:%M')} "
-            f"({'past' if e.end < as_of else 'upcoming'}) · organizer {e.organizer} · Avery: {e.avery_partstat}"
+            f"({'past' if e.end < as_of else 'upcoming'}) · organizer {e.organizer} · {me}: {e.avery_partstat}"
             + (f" · attendees: {who}" if who else ""))
 
 
@@ -263,7 +249,7 @@ def retrieve(thread: NormalizedThread, world: NormalizedWorld, directory, as_of:
         else:
             continue
         ranked.append(((r, -len(keywords & _words(e.title)), abs((e.start - as_of).total_seconds()) / 86400),
-                       ContextRef(source_id=f"event:{e.uid}", text=_event_text(e, as_of))))
+                       ContextRef(source_id=f"event:{e.uid}", text=_event_text(e, as_of, world.owner_name))))
     # notes: the lines that mention a participant, the org or a subject word, with a line on each side
     for n in world.notes:
         lines = n.text.split("\n")
@@ -320,7 +306,7 @@ def retrieve(thread: NormalizedThread, world: NormalizedWorld, directory, as_of:
     return out
 
 
-__all__ = ["ContextIndex", "ContextRef", "apply_context", "dependencies", "freshness_cap", "retrieve", "source_kind"]
+__all__ = ["ContextIndex", "ContextRef", "dependencies", "freshness_cap", "retrieve", "source_kind"]
 
 
 def _unused(_: date) -> None:  # keep `date` import for type hints in annotations

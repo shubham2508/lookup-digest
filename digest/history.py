@@ -70,6 +70,8 @@ def times_surfaced(store: Store, world: str, as_of: datetime, tag: str | None = 
             counts.setdefault(row["about"], set()).add(row["run_id"])
             for tid in threads.get((row["run_id"], row["about"]), ()):
                 counts.setdefault(f"thread::{tid}", set()).add(row["run_id"])
+            for sid in row.get("sources") or []:
+                counts.setdefault(f"src::{sid}", set()).add(row["run_id"])
     return {k: len(v) for k, v in counts.items()}
 
 
@@ -83,8 +85,9 @@ def _threads_by_about(store: Store, runs: set[str]) -> dict[tuple[str, str], set
     return out
 
 
-def surfaced_count(surfaced: dict[str, int], about: str, thread_id: str | None) -> int:
-    return max(surfaced.get(about, 0), surfaced.get(f"thread::{thread_id}", 0) if thread_id else 0)
+def surfaced_count(surfaced: dict[str, int], about: str, thread_id: str | None, sources=()) -> int:
+    return max([surfaced.get(about, 0), surfaced.get(f"thread::{thread_id}", 0) if thread_id else 0]
+               + [surfaced.get(f"src::{s}", 0) for s in sources])
 
 
 def mark_resolved(store: Store, world: str, as_of: datetime, current: list[Candidate], tag: str | None = None) -> int:
@@ -94,10 +97,12 @@ def mark_resolved(store: Store, world: str, as_of: datetime, current: list[Candi
         return 0
     open_abouts = {c.about for c in current}
     open_threads = {c.facts.get("thread_id") for c in current if c.facts.get("thread_id")}
+    open_sources = {e.source_id for c in current for e in c.evidence}
     threads = _threads_by_about(store, runs)
     n = 0
     for row in store.query("digest_items"):
-        still_open = row["about"] in open_abouts or bool(threads.get((row["run_id"], row["about"]), set()) & open_threads)
+        still_open = (row["about"] in open_abouts or bool(threads.get((row["run_id"], row["about"]), set()) & open_threads)
+                      or bool(set(row.get("sources") or []) & open_sources))
         if row["run_id"] in runs and row.get("surfaced") and not row.get("resolved_later") and not still_open:
             row["resolved_later"] = 1
             row["resolved_at"] = as_of.isoformat()
@@ -140,7 +145,7 @@ def record_items(store: Store, run_id: str, reduced: dict[str, ReduceItem], comp
             "run_id": run_id, "item_id": iid, "about": it.about, "surfaced": surfaced, "section": it.section, "priority": it.priority,
             "resolved_later": 0, "times_surfaced": surfaced_counts.get(it.about, 0) + (1 if surfaced else 0),
             "actions": actions_by_item.get(iid, []), "candidate_types": it.candidate_types, "entities": it.entities,
-            "one_thing": iid == compose.one_thing_id,
+            "one_thing": iid == compose.one_thing_id, "sources": sorted({e.source_id for e in it.citations}),
         })
         n += 1
     store.commit()

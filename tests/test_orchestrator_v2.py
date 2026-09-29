@@ -125,6 +125,7 @@ def test_group_findings_compares_different_kinds_that_share_a_person():
 
 def test_reader_notes_are_plain_and_deterministic():
     from datetime import datetime
+
     from digest.normalize.freshness import reader_notes
 
     fr = {"email": SimpleNamespace(state="stale", age_hours=32.0, latest_item_time=datetime(2026, 9, 22, 21, 30, tzinfo=TZ)),

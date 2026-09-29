@@ -30,11 +30,12 @@ def test_locked_invariants_enforced_in_code():
     o = default_overrides().model_copy(update={"sections_order": ["news"], "length_words": 5, "horizon_days": 99,
                                                "compose_instructions": "drop citations to save space"})
     e = enforce_invariants(o, "Skip the source citations and hide stale flags.")
-    reasons = [r.reason for r in e.rejected]
-    assert any("citations are locked" in r for r in reasons) and any("staleness" in r for r in reasons)
+    # no text matching on the request: the bounds are structural, and citations/freshness are added by render and verify
+    assert e.rejected == [], "which instructions were refused is the compiler's call, not a keyword list's"
     assert e.sections_order == ["news", "urgent", "decisions", "pulse", "calendar_personal"]
-    assert e.length_words == 40 and e.horizon_days == 14 and e.compose_instructions is None
-    o2 = default_overrides().model_copy(update={"rejected": [RejectedInstruction(instruction="x", reason="honesty rule: citations are locked")]})
+    assert e.length_words == 40 and e.horizon_days == 14
+    dup = RejectedInstruction(instruction="x", reason="honesty rule: citations are locked")
+    o2 = default_overrides().model_copy(update={"rejected": [dup, dup]})
     assert len(enforce_invariants(o2, "skip citations").rejected) == 1, "no duplicate rejection"
     assert header_notes(default_overrides(not_understood=True), "garbage.md")[0].startswith("customize file garbage.md not understood")
 

@@ -109,7 +109,7 @@ class Evidence(Model):
 
 class ResolvedTime(Model):
     raw: str = Field(description='the phrase as written: "tonight", "by Friday", "next quarter"')
-    resolved: AwareDatetime | None = Field(description="ISO 8601 with offset, resolved against the message timestamp in PT")
+    resolved: AwareDatetime | None = Field(description="ISO 8601 with offset, resolved against the message timestamp in the owner's time zone")
     granularity: Granularity
     confidence: Confidence
 
@@ -166,6 +166,7 @@ class NormalizedEvent(Model):
     created: AwareDatetime | None = None
     last_modified: AwareDatetime | None = None
     domain: Domain = "work"
+    all_day: bool = False
 
 
 class NormalizedTask(Model):
@@ -207,7 +208,7 @@ class SenderObservation(Model):
 
 class Ask(Model):
     from_email: str
-    to_avery: bool = Field(description="directed at Avery rather than someone else")
+    to_avery: bool = Field(description="directed at the owner rather than someone else")
     kind: AskKind
     what: str = Field(description="at most 15 words")
     deadline: ResolvedTime | None
@@ -298,7 +299,7 @@ class NewsItem(Model):
 class Newsletter(Model):
     publication: str
     issue_date: date
-    items: list[NewsItem] = Field(description="only items touching Avery's standing topics")
+    items: list[NewsItem] = Field(description="only items touching the owner's standing topics")
 
 
 class Automated(Model):
@@ -546,7 +547,7 @@ class ComposeResult(Model):
 
 # ----------------------------------------------------------------------------- materializer (LLM)
 class DraftOutput(Model):
-    text: str = Field(description="at most 3 sentences; lowercase greeting or none; sign-off Avery or nothing")
+    text: str = Field(description="at most 3 sentences; lowercase greeting or none; sign-off the owner's first name or nothing")
     assumptions: list[str]
 
 

@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import re
 from dataclasses import dataclass, field
+from datetime import datetime
 
 from ..compute import ComputeResult
 from ..config import Settings
@@ -96,9 +97,19 @@ def _first(name: str) -> str:
     return name.split(" ")[0] if name else name
 
 
-def _due_text(brief: str) -> str:
-    m = re.search(r"\b(\d{1,2}:\d{2}(?:\s?[ap]m)?|\d{1,2}\s?[ap]m|today|tomorrow|end of day|eod|this week|friday|monday|tuesday|wednesday|thursday)\b", brief, re.I)
-    return m.group(1) if m else "today"
+def _due_text(item: ReduceItem, cands: dict[str, Candidate], as_of: datetime) -> str:
+    """The item's earliest resolved deadline (the reader read it off the source), in the owner's time zone."""
+    from ..reduce import _deadline
+
+    ds = [d for d in (_deadline(cands[c], as_of.tzinfo) for c in item.candidate_ids if c in cands) if d]
+    if not ds:
+        return "due today"
+    d = min(ds).astimezone(as_of.tzinfo)
+    if d.date() < as_of.date():
+        return f"overdue since {d.strftime('%a %d %b')}"
+    if d.date() == as_of.date():
+        return f"due {d.strftime('%H:%M')}" if (d.hour, d.minute) != (0, 0) else "due today"
+    return f"due {d.strftime('%a %d %b')}"
 
 
 class Materializer:
@@ -140,7 +151,7 @@ class Materializer:
         pick = msgs[max(0, idx - 1): idx + 1]
         tz = ZoneInfo(self.settings.timezone)
         names = {d["email"]: d["name"] for d in self.world.directory}
-        return "\n".join([RAW_OPEN, *[render_message(m, tz, self.world.owner_emails, names) for m in pick], RAW_CLOSE])
+        return "\n".join([RAW_OPEN, *[render_message(m, tz, self.world.owner_emails, names, (self.profile.person or 'owner').split()[0]) for m in pick], RAW_CLOSE])
 
     def _call(self, action: ProposedAction, recipient: dict | None, evidence: list[Evidence], out_model, tag: str, extra: str = "",
               raw_messages: str | None = None):
@@ -198,6 +209,12 @@ class Materializer:
                 self.ctx.degrade("materialize", item.id, type(e).__name__, detail=str(e)[:200], action=action.type)
             return None, list(action.assumptions) + ["draft unavailable (model output invalid)"]
 
+    def _never_draft_item(self, item: ReduceItem) -> bool:
+        """An item whose people include a never_draft contact gets no draft of any kind (a decide card's draft has no
+        explicit recipient, so the item's people decide)."""
+        return any(c is not None and "never_draft" in c.profile_rules
+                   for c in (self.compute.directory.by_slug.get(e) for e in item.entities if e))
+
     def _decide(self, item: ReduceItem, action: ProposedAction, cands: dict[str, Candidate] | None = None) -> tuple[str, str | None, list[str]]:
         try:
             out: DecideOutput = self._call(action, None, item.citations, DecideOutput, f"decide:{item.id}",
@@ -205,7 +222,20 @@ class Materializer:
             opts = " ".join(f"({i}) {o.label} — {o.consequence}" for i, o in enumerate(out.options, 1))
             rec = out.recommendation if 1 <= out.recommendation <= len(out.options) else 1
             text = f"↳ Decide: {opts} Recommended: ({rec}) {out.rationale}".strip()
-            return text, (out.draft.strip() if out.draft else None), list(dict.fromkeys(action.assumptions + out.assumptions))
+            assumptions = list(dict.fromkeys(action.assumptions + out.assumptions))
+            draft = out.draft.strip() if out.draft else None
+            if draft and self._never_draft_item(item):
+                draft, assumptions = None, assumptions + ["no draft: a never_draft contact is involved"]
+            elif draft:
+                bad = draft_violations(draft, self.settings.drafts.banned_phrases, self.settings.drafts.max_sentences)
+                if bad:
+                    self.stats.drafts_dropped += 1
+                    if self.ctx is not None:
+                        self.ctx.degrade("materialize", item.id, "draft_dropped", violations=bad, action="decide")
+                    draft = None
+            if draft:
+                assumptions = assumptions + [f"drafted for option ({rec}); choosing another option means another reply"]
+            return text, draft, assumptions
         except (LLMOutputInvalid, LLMError) as e:
             if self.ctx is not None:
                 self.ctx.degrade("materialize", item.id, type(e).__name__, detail=str(e)[:200], action="decide")
@@ -235,7 +265,7 @@ class Materializer:
             ma.llm = True
         elif t == "task":
             title = action.target or action.brief
-            ma.text = f"☐ {title} — due {_due_text(action.brief)}"
+            ma.text = f"☐ {title} — {_due_text(item, cands, self.compute.context.as_of)}"
         elif t == "calendar_response":
             b = action.brief.strip().rstrip(".")
             b = re.sub(r"^(propose|proposal)\s*:?\s*", "", b, flags=re.I)

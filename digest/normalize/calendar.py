@@ -10,9 +10,6 @@ from dateutil.rrule import rrulestr
 from ..ingest.ics import RawEvent
 from ..schemas import Attendee, NormalizedEvent, Partstat
 
-PERSONAL_WORDS = ("pediatrician", "doctor", "dentist", "daycare", "school", "family", "personal", "vacation", "pto",
-                  "kid", "birthday", "vet ", "therapy", "gym", "haircut", "wedding", "parents", "childcare", "nanny",
-                  "pickup", "pick-up", "drop-off", "dropoff", "wren", "sam ")
 _UNTIL_RE = re.compile(r"UNTIL=(\d{8})(?:T(\d{6})(Z?))?")
 
 
@@ -38,10 +35,10 @@ def expand_rrule(rrule: str, dtstart: datetime, win_start: datetime, win_end: da
 
 
 def event_domain(ev: RawEvent) -> str:
-    if ev.calendar == "shared_family":
-        return "personal"
-    text = f"{ev.title} {ev.description or ''} {ev.location or ''}".lower() + " "
-    return "personal" if any(w in text for w in PERSONAL_WORDS) else "work"
+    """Hard facts only: the shared family calendar is personal. A work-calendar event becomes personal later, in the
+    spine, when a family contact organizes or attends it (compute.mark_family_events); what an event is *about* is the
+    calendar sweep's judgment, never a keyword match on its title."""
+    return "personal" if ev.calendar == "shared_family" else "work"
 
 
 def _partstat(ev: RawEvent, owner_emails: set[str]) -> Partstat:
@@ -60,7 +57,7 @@ def _normalized(ev: RawEvent, start: datetime, end: datetime, recurrence_id: str
         organizer_is_avery=bool(ev.organizer and ev.organizer in owner_emails),
         attendees=[Attendee(email=a.email, name=a.name, partstat=a.partstat) for a in ev.attendees],
         avery_partstat=_partstat(ev, owner_emails), created=ev.created, last_modified=ev.last_modified,
-        domain=event_domain(ev),
+        domain=event_domain(ev), all_day=bool(getattr(ev, "all_day", False)),
     )
 
 

@@ -33,6 +33,7 @@ class NormalizedWorld:
     sources: dict[str, SourceStatus]
     directory: list[dict] = field(default_factory=list)   # observed {email, name} pairs from headers
     forwarded_count: int = 0
+    owner_name: str = "owner"                              # the profile person's first name, for text shown to models
 
     @property
     def messages(self) -> list[NormalizedMessage]:
@@ -105,7 +106,7 @@ def normalize_world(raw: RawWorld, settings: Settings, person: str) -> Normalize
         as_of=raw.as_of, owner_email=owner, owner_emails=owner_emails, threads=threads, events=events,
         notes=list(raw.notes), tasks=list(raw.tasks), tasks_mtime=raw.tasks_mtime,
         freshness=freshness_report(raw, raw.as_of, settings.freshness, tz), sources=dict(raw.sources),
-        directory=directory, forwarded_count=fwd_total,
+        directory=directory, forwarded_count=fwd_total, owner_name=(person or "owner").split()[0],
     )
 
 

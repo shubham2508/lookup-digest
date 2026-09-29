@@ -54,31 +54,31 @@ TASKS = {
     "topics": ("Each item is a topic key with what a document said about it. Options are other keys of the same kind. "
                "Pick the one that names exactly the same concrete thing (same deal step, same person's hiring loop, same "
                "incident, same rollout), or none. A general topic and a specific part of it are different things."),
-    "promise_in_tasks": ("Each item is a promise Avery made. Options are Avery's open tasks and todo lines. Match an option only "
+    "promise_in_tasks": ("Each item is a promise the owner made. Options are the owner's open tasks and todo lines. Match an option only "
                          "if it tracks the same deliverable to the same person (sending the cap table ≠ reviewing the cap table)."),
-    "fulfilled_elsewhere": ("Each item is an open promise Avery made. Options are later messages, in other threads, where Avery "
+    "fulfilled_elsewhere": ("Each item is an open promise the owner made. Options are later messages, in other threads, where the owner "
                             "delivered something. Match only if the option delivers exactly what was promised."),
-    "task_done_in_email": ("Each item is an open task on Avery's list. Options are things email or notes show as already done. "
+    "task_done_in_email": ("Each item is an open task on the owner's list. Options are things email or notes show as already done. "
                            "Match only if the option completes that same task."),
     "email_meeting_to_event": ("Each item is a meeting mentioned in an email (moved, confirmed). Options are calendar events with the "
                                "same people on nearby dates. Match the one event that is the same meeting, or none."),
-    "declined_meeting_fallout": ("Each item is a meeting Avery declined. Options are decisions, agreements and requests dated after it. "
-                                 "Match the ones that came out of that meeting or need Avery's sign-off because of it."),
+    "declined_meeting_fallout": ("Each item is a meeting the owner declined. Options are decisions, agreements and requests dated after it. "
+                                 "Match the ones that came out of that meeting or need the owner's sign-off because of it."),
     "covers_expected": ("Each item is an expected digest item from a reviewed answer key (its topic key and notes). Options are "
                         "items a digest rendered that cite the same sources. Pick the rendered item that is about that same "
                         "expected item, or none; a related item on the same thread about a different issue is none."),
     "role_at_org": ("Each item is a sender (name, email, signature title, organization). Options are roles at named "
                     "organizations from the owner's profile. Match only if the sender holds that role at one of those "
                     "organizations (an acting or new holder of the role counts; a colleague in a different role does not)."),
-    "net_covers_finding": ("Each item is a fact a code check computed (a message waiting N business days for Avery, a "
+    "net_covers_finding": ("Each item is a fact a code check computed (a message waiting N business days for the owner, a "
                            "meeting inside a protected block, a family event over a work meeting, an automated request to "
                            "sign or approve). Options are issues readers or sweeps found, each labelled with the fact that "
                            "made code offer it: [same message] or [same event] (it cites exactly what the fact is about), "
                            "[same thread] or [same person] (only where to look). Match the option that is the same issue "
                            "(the same request, meeting or signature), or none. Another issue with the same person is not "
                            "the same issue."),
-    "news_to_open_item": ("Each item is a newsletter story. Options are things Avery is dealing with right now. Match only if the "
-                          "story changes what Avery should do or say about that item (a price change on a cost Avery is deciding, "
+    "news_to_open_item": ("Each item is a newsletter story. Options are things the owner is dealing with right now. Match only if the "
+                          "story changes what the owner should do or say about that item (a price change on a cost the owner is deciding, "
                           "a customer's public statement before a reply to that customer). General industry or fundraising news "
                           "matches nothing."),
 }
@@ -165,15 +165,21 @@ class Linker:
                             ids[oid] = other["key"]
                             opts.append(LinkOption(id=oid, text=f"{other['key']}: {other['text']}"))
                     qs.append(LinkQuestion(id=f"q{len(qs)}|{row['key']}", item=f"{row['key']}: {row['text']}", options=opts))
-            res = self._jev("topics", qs)   # topic grouping keeps every Jev pick (no unsure fallback)
+            res = self._jev("topics", qs, self.jev_min_p)
             if res is not None:
-                jev = res[0]
+                jev, unsure = res
                 groups = []
                 for q in qs:
                     for m in jev.get(q.id, []):
                         groups.append([q.id.split("|", 1)[1], ids[m]])
+                if unsure and self.llm is not None:   # the buckets Jev was unsure about go to the LLM, like every link task
+                    keys = {q.id.split("|", 1)[1] for q in unsure}
+                    groups += self._llm_topics({k: rows for k, rows in payload.items() if any(r["key"] in keys for r in rows)}, by_kind)
                 return groups
-        if self.llm is None:
+        return self._llm_topics(payload, by_kind)
+
+    def _llm_topics(self, payload: dict[str, list[dict]], by_kind: dict[str, list[dict]]) -> list[list[str]]:
+        if self.llm is None or not payload:
             return []
         prompt = load_prompt("topic_grouper")
         text = prompt.render(topics=json.dumps(payload, ensure_ascii=False))

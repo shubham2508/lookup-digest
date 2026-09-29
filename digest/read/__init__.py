@@ -90,7 +90,8 @@ def participants(t: NormalizedThread, owner: set[str]) -> list[str]:
     return out
 
 
-def thread_facts(t: NormalizedThread, as_of: datetime, tz: ZoneInfo, directory: ContactDirectory, owner: set[str]) -> dict:
+def thread_facts(t: NormalizedThread, as_of: datetime, tz: ZoneInfo, directory: ContactDirectory, owner: set[str],
+                 owner_name: str = "owner") -> dict:
     """PIVOT_SPEC §3.1 thin index for one thread, as facts the reader must not recompute."""
     msgs = [m for m in t.messages if m.sent_at <= as_of] or list(t.messages)
     last = msgs[-1]
@@ -104,7 +105,7 @@ def thread_facts(t: NormalizedThread, as_of: datetime, tz: ZoneInfo, directory: 
     facts: dict = {
         "thread_id": t.thread_id, "router_guess": t.router_type, "messages": len(msgs), "messages_from_avery": len(mine),
         "first_message_at": stamp(msgs[0].sent_at, tz), "last_message_at": stamp(last.sent_at, tz),
-        "last_message_by": "Avery" if last.is_from_avery else who(last.from_addr, last.from_name),
+        "last_message_by": owner_name if last.is_from_avery else who(last.from_addr, last.from_name),
         "avery_wrote_last": last.is_from_avery,
         "avery_last_message_at": stamp(mine[-1].sent_at, tz) if mine else None,
         "last_inbound": None,
@@ -157,8 +158,8 @@ def _fallback_retrieve(t: NormalizedThread, world: NormalizedWorld, as_of: datet
             continue
         seen.add(sid)
         s, en = e.start.astimezone(tz), e.end.astimezone(tz)
-        text = (f"{e.title} · {s.strftime('%a %d %b %H:%M')}–{en.strftime('%H:%M')} PT · {e.calendar} calendar · organizer "
-                f"{'Avery' if e.organizer_is_avery else e.organizer} · Avery's response: {e.avery_partstat}"
+        text = (f"{e.title} · {s.strftime('%a %d %b %H:%M')}–{en.strftime('%H:%M')} {s.tzname()} · {e.calendar} calendar · organizer "
+                f"{world.owner_name if e.organizer_is_avery else e.organizer} · {world.owner_name}'s response: {e.avery_partstat}"
                 + (f" · location {e.location}" if e.location else ""))
         out.append((e.start, ContextRef(sid, text)))
     out.sort(key=lambda x: abs((x[0] - as_of).total_seconds()))
@@ -177,7 +178,9 @@ def context_block(refs: list) -> str:
     if not refs:
         return f"{CTX_OPEN}\n(nothing retrieved)\n{CTX_CLOSE}"
     parts = [f"--- {r.source_id}\n{r.text.strip()}" for r in refs]
-    return "\n".join([CTX_OPEN, "\n\n".join(parts), CTX_CLOSE])
+    from .render import defuse
+
+    return "\n".join([CTX_OPEN, defuse("\n\n".join(parts)), CTX_CLOSE])
 
 
 def source_index(rendered: RenderedThread, refs: list, world: NormalizedWorld) -> SourceIndex:
@@ -260,7 +263,7 @@ def read_threads(llm: LLM, world: NormalizedWorld, directory: ContactDirectory, 
     calls: list[dict] = []
     shown_rulings: set[str] = set()
     for t in todo:
-        rendered = render_thread(t, world, tz)
+        rendered = render_thread(t, world, tz, owner_label=world.owner_name)
         try:
             refs = list(retrieve(t))
         except Exception as e:  # noqa: BLE001 - retrieval must never cost a thread its reading
@@ -276,7 +279,7 @@ def read_threads(llm: LLM, world: NormalizedWorld, directory: ContactDirectory, 
         ids = [c.contact_id for c in contacts]
         rs = matching_rulings(rulings, set(ids))
         shown_rulings.update(str(r.get("id")) for r in rs)
-        facts = thread_facts(t, as_of, tz, directory, owner)
+        facts = thread_facts(t, as_of, tz, directory, owner, world.owner_name)
         cards = [contact_card(c, notes_by_name, notes_by_role) for c in contacts]
         msgs = build_messages(prompt, profile, t, rendered, refs, facts, cards, rs, freshness, as_of, world.owner_email or "unknown")
         calls.append({"role": prompt.model_role, "prompt_version": prompt.version_tag, "messages": msgs, "output_model": ReaderOutput,

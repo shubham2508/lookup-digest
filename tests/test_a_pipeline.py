@@ -34,7 +34,7 @@ def test_run_pipeline_on_fixture(tmp_path):
     assert run["compute"]["candidates"] == n_cands and run["triage"]["fixes"] >= 1 and run["compose"]["one_thing"]
     assert r.freshness_line.startswith("inbox synced Wed 21:10 · calendar ok")
     md = (run_dir / "digest.md").read_text()
-    assert md.startswith("# Daily Digest — Thursday, September 24, 2026\n\nAs of Thu 06:00 PT · inbox synced Wed 21:10")
+    assert md.startswith("# Daily Digest — Thursday, September 24, 2026\n\nAs of Thu 06:00 PDT · inbox synced Wed 21:10")
     assert "## If there is one thing you must do right now" in md and "*[email: " in md and "No draft (Sam)" in md
     verify = json.loads((run_dir / "verify.json").read_text())
     assert verify["stats"]["items_cited"] == verify["stats"]["items"] and verify["stats"]["words"] <= 350

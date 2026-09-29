@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from ..compute import ComputeResult
+from ..compute.contacts import is_recruiter
 from ..schemas import (
     Candidate,
     ComposeResult,
@@ -17,7 +18,6 @@ from ..schemas import (
     VerifyViolation,
 )
 
-RECRUITER_WORDS = ("recruit", "talent", "search", "staffing", "headhunt", "sourcer")
 PRIORITY_ORDER = {"P0": 0, "P1": 1, "P2": 2, "P3": 3}
 
 
@@ -35,7 +35,7 @@ def _words(text: str) -> int:
 
 
 def _is_recruiter(c) -> bool:
-    return c is not None and c.relationship.category == "cold_inbound" and any(w in (c.relationship.subtype or "").lower() for w in RECRUITER_WORDS)
+    return is_recruiter(c)
 
 
 def verify(compose: ComposeResult, reduced: dict[str, ReduceItem], actions: list[MaterializedAction], cands: dict[str, Candidate],
@@ -107,7 +107,17 @@ def verify(compose: ComposeResult, reduced: dict[str, ReduceItem], actions: list
         contact = compute.directory.lookup(a.target if a.target and "@" in a.target else None, a.target if a.target and "@" not in a.target else None)
         if contact is None and a.recipient_name:
             contact = compute.directory.lookup(None, a.recipient_name)
-        if a.type in ("reply", "forward_delegate", "message_person") and contact and "never_draft" in contact.profile_rules and a.draft:
+        item_nd = any(c is not None and "never_draft" in c.profile_rules
+                      for c in (compute.directory.by_slug.get(e) for e in (reduced[a.item_id].entities if a.item_id in reduced else []) if e))
+        never_draft = (contact is not None and "never_draft" in contact.profile_rules) or (contact is None and item_nd)
+        if a.draft and never_draft and a.type == "decide":
+            a = a.model_copy(update={"draft": None})
+            v.append(VerifyViolation(rule=1, item_id=a.item_id, detail="decide-card draft on a never_draft contact's item removed", fix="fixed"))
+            kept_actions.append(a)
+            continue
+        if a.draft and never_draft and a.type in ("reply", "forward_delegate", "message_person"):
+            contact = contact or next(c for c in (compute.directory.by_slug.get(e) for e in reduced[a.item_id].entities if e)
+                                      if c is not None and "never_draft" in c.profile_rules)
             name = contact.names[0] if contact.names else a.target
             a = a.model_copy(update={"type": "message_person", "draft": None, "llm": False,
                                      "text": f"↳ Message {name.split(' ')[0]} about {a.brief.rstrip('.')}. No draft ({name.split(' ')[0]})."})

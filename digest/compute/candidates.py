@@ -33,12 +33,13 @@ from ..schemas import (
     ProposedAction,
     Section,
 )
-from ..util import domain_of, fold, org_from_domain, slugify
-from .contacts import ContactDirectory
+from ..util import domain_of, org_from_domain, slugify
+from .contacts import ContactDirectory, is_recruiter
 from .context import freshness_cap
 from .signals import (
     block_windows,
     business_days_between,
+    cadence_stats,
     day_label,
     end_of_business_day,
     overlap_minutes,
@@ -46,7 +47,6 @@ from .signals import (
 )
 
 WORK_HOURS = (time(9, 0), time(18, 0))
-RECRUITER_WORDS = ("recruit", "talent", "search", "staffing", "headhunt", "sourcer")
 OTHER_P0_WAIT_BUSINESS_DAYS = 0      # a P0 contact outside capital (family, co-founder): any unanswered message (OPEN_QUESTIONS #19a)
 AUTOMATED_LOOKBACK_DAYS = 7          # an automated request older than this is treated as handled or expired (#19b)
 DEV_TOOL_ORGS = ("github", "gitlab", "dependabot", "circleci", "snyk")   # engineering owns these (data_generation §6)
@@ -59,6 +59,10 @@ class Thresholds:
     recruiter_window_days: int
     family_lookahead_days: int
     behavior_window_days: int
+    cadence_ratio: float = 2.0
+    cadence_min_gap_days: int = 3
+    cadence_baseline: tuple[int, int] = (1, 20)
+    cadence_recent: tuple[int, int] = (21, 30)
 
 
 def resolve_thresholds(profile: ProfileConfig, settings: Settings) -> Thresholds:
@@ -70,6 +74,8 @@ def resolve_thresholds(profile: ProfileConfig, settings: Settings) -> Thresholds
         recruiter_count=rp.count if rp else d.recruiter_pattern.count,
         recruiter_window_days=rp.window_days if rp else d.recruiter_pattern.window_days,
         family_lookahead_days=d.family_conflict_lookahead_days, behavior_window_days=d.behavior_window_days,
+        cadence_ratio=d.cadence_drop.ratio, cadence_min_gap_days=d.cadence_drop.min_current_gap_days,
+        cadence_baseline=tuple(d.cadence_drop.baseline_days), cadence_recent=tuple(d.cadence_drop.recent_days),
     )
 
 
@@ -91,6 +97,10 @@ class ComputeInputs:
             self.thresholds = resolve_thresholds(self.profile, self.settings)
         self.threads = {t.thread_id: t for t in self.world.threads}
         self.msg_thread = {f"msg:{m.message_id}": t.thread_id for t in self.world.threads for m in t.messages}
+
+    @property
+    def owner_name(self) -> str:
+        return self.world.owner_name
 
     def contact(self, email: str | None = None, name: str | None = None) -> Contact | None:
         return self.directory.lookup(email, name)
@@ -213,14 +223,14 @@ def waiting_on_avery(ci: ComputeInputs) -> list[Finding]:
             arrived = f"{day_label(m.sent_at.date(), ci.today())} {m.sent_at.strftime('%H:%M')}"
             subject = m.subject or "(no subject)"
             if cat == "capital" and bd >= th.investor_quiet_business_days:
-                why = (f"Waiting {bd} business days for Avery (threshold {th.investor_quiet_business_days}). "
+                why = (f"Waiting {bd} business days for {ci.owner_name} (threshold {th.investor_quiet_business_days}). "
                        f"{name} ({c.relationship.subtype or cat}) wrote {arrived}.")
                 out.append(_net(ci, "quiet_thread", f"Reply to {name}: {subject}", why, priority=c.tier or "P1", section="urgent",
                                 urgency="today", stakes="high" if c.tier == "P0" else "medium", entities=_entities(c), about=[],
                                 citations=[msg_evidence(m)], actions=[_reply_or_message(c, email, f"answer {name} on \"{subject}\"")],
                                 sources=["email"]))
             elif cat != "capital" and c.tier == "P0" and bd >= OTHER_P0_WAIT_BUSINESS_DAYS:
-                why = f"No reply from Avery since {arrived}. {name} ({cat}, P0) wrote it."
+                why = f"No reply from {ci.owner_name} since {arrived}. {name} ({cat}, P0) wrote it."
                 out.append(_net(ci, "reply_owed", f"Answer {name}: {subject}", why, priority="P0", section="urgent", urgency="today",
                                 stakes="high", entities=_entities(c), about=[], citations=[msg_evidence(m)],
                                 actions=[_reply_or_message(c, email, f"answer {name} on \"{subject}\"")], sources=["email"]))
@@ -254,7 +264,7 @@ def deep_work_conflicts(ci: ComputeInputs) -> list[Finding]:
         return out   # eval.md §5 corrupt_ics: no overlap claims against a calendar we could not read
     days = _work_days_ahead(ci, 2) | {ci.today()}
     for e in ci.world.events:
-        if e.organizer_is_avery or e.avery_partstat == "DECLINED" or e.start.date() not in days or e.domain != "work":
+        if e.organizer_is_avery or e.avery_partstat == "DECLINED" or e.start.date() not in days or e.domain != "work" or e.all_day:
             continue
         for ws, we in block_windows(ci.profile.blocks, e.start.date(), ci.as_of.tzinfo):
             ov = overlap_minutes(e.start, e.end, ws, we)
@@ -263,7 +273,7 @@ def deep_work_conflicts(ci: ComputeInputs) -> list[Finding]:
             org = ci.contact(e.organizer)
             when = f"{day_label(e.start.date(), ci.today())} {e.start.strftime('%H:%M')}–{e.end.strftime('%H:%M')}"
             why = (f"{ov} minutes inside the {ws.strftime('%H:%M')}–{we.strftime('%H:%M')} deep-work block. "
-                   f"{_name(org, e.organizer)} booked \"{e.title}\" {when}; Avery: {e.avery_partstat.lower()}.")
+                   f"{_name(org, e.organizer)} booked \"{e.title}\" {when}; {ci.owner_name}: {e.avery_partstat.lower()}.")
             out.append(_net(ci, "calendar_conflict:deep_work", f"Protect deep work: {e.title}", why, priority="P2",
                             section="calendar_personal", urgency="today" if e.start.date() == ci.today() else "this_week",
                             stakes="medium", entities=_entities(org), about=[f"meeting:{slugify(e.title)}"],
@@ -278,10 +288,10 @@ def family_conflicts(ci: ComputeInputs) -> list[Finding]:
     overlaps a work event Avery accepted or organized, or falls in weekday work hours."""
     out: list[Finding] = []
     horizon = ci.today() + timedelta(days=ci.thresholds.family_lookahead_days)
-    work = [e for e in ci.world.events if e.domain == "work" and e.avery_partstat in ("ACCEPTED", "ORGANIZER")]
+    work = [e for e in ci.world.events if e.domain == "work" and not e.all_day and e.avery_partstat in ("ACCEPTED", "ORGANIZER")]
     seen: set[tuple[str, datetime]] = set()
     for p in ci.world.events:
-        if p.domain != "personal" or not (ci.today() <= p.start.date() <= horizon) or (p.uid, p.start) in seen:
+        if p.domain != "personal" or p.all_day or not (ci.today() <= p.start.date() <= horizon) or (p.uid, p.start) in seen:
             continue
         seen.add((p.uid, p.start))
         overlaps = [e for e in work if overlap_minutes(p.start, p.end, e.start, e.end) > 0]
@@ -314,7 +324,7 @@ def double_book(ci: ComputeInputs) -> list[Finding]:
     if _calendar_unreadable(ci):
         return out
     owner = ci.world.owner_emails
-    todays = [e for e in ci.world.events if e.domain == "work" and e.start.date() == ci.today()
+    todays = [e for e in ci.world.events if e.domain == "work" and not e.all_day and e.start.date() == ci.today()
               and e.avery_partstat in ("ACCEPTED", "ORGANIZER") and any(a.email not in owner for a in e.attendees)]
     for i, a in enumerate(todays):
         for b in todays[i + 1:]:
@@ -332,9 +342,7 @@ def double_book(ci: ComputeInputs) -> list[Finding]:
 
 # ----------------------------------------------------------------------------- 5: recruiters
 def _recruiter(c: Contact | None) -> bool:
-    if c is None or c.relationship.category != "cold_inbound":
-        return False
-    return "recruiter_pattern_only" in c.profile_rules or any(w in fold(c.relationship.subtype or "") for w in RECRUITER_WORDS)
+    return is_recruiter(c)
 
 
 def recruiter_patterns(ci: ComputeInputs) -> list[Finding]:
@@ -483,9 +491,38 @@ def approvals(ci: ComputeInputs) -> list[Finding]:
     return out
 
 
+def cadence_drops(ci: ComputeInputs) -> list[Finding]:
+    """9. A customer contact (reference customer, active or renewal stage, or a same-day-reply rule) whose reply gaps
+    this month are at least `cadence_ratio` × the earlier baseline and whose current silence is ≥ the minimum gap. The
+    profile asks for exactly this ("if Halberd's procurement lead is suddenly quieter, that's a flag"); it is math over
+    weeks of threads, so no single reader can see it."""
+    out: list[Finding] = []
+    th = ci.thresholds
+    for c in ci.directory.contacts:
+        rel = c.relationship
+        if rel.category != "customer" or not (rel.subtype in ("reference", "active") or rel.stage in ("active", "renewal_window", "at_risk")
+                                               or "same_day_reply" in c.profile_rules):
+            continue
+        msgs = [m for t in ci.person_threads() for m in t.messages if m.from_addr in c.emails and m.sent_at <= ci.as_of]
+        st = cadence_stats([m.sent_at for m in msgs], ci.as_of, th.cadence_baseline, th.cadence_recent, th.behavior_window_days)
+        if st is None or st.ratio is None or st.ratio < th.cadence_ratio or st.current_gap_days < th.cadence_min_gap_days:
+            continue
+        last = max(msgs, key=lambda m: m.sent_at)
+        who = _name(c, c.contact_id)
+        why = (f"Reply gaps slowed from {st.baseline_median_days} to {st.recent_median_days} days ({st.ratio}×); "
+               f"{who} has been quiet {st.current_gap_days} days.")
+        out.append(_net(ci, "cadence_drop", f"Watch {who}'s slowing replies", why, priority="P2", section="pulse",
+                        urgency="this_week", stakes="medium", entities=_entities(c), about=[f"other:cadence:{slugify(c.org or c.contact_id)}"],
+                        citations=[msg_evidence(last)],
+                        actions=[_action("watch", c.emails[0] if c.emails else None, f"reply gap {st.baseline_median_days}→{st.recent_median_days} days",
+                                         trigger="gap passes 7 days or a renewal or support issue appears")],
+                        sources=["email"]))
+    return out
+
+
 NETS: list[Callable[[ComputeInputs], list[Finding]]] = [
     waiting_on_avery, deep_work_conflicts, family_conflicts, double_book, recruiter_patterns, stale_sources, suspicious,
-    approvals,
+    approvals, cadence_drops,
 ]
 
 
@@ -497,6 +534,6 @@ def safety_nets(ci: ComputeInputs) -> list[Finding]:
     return [f.model_copy(update={"finding_id": f"net{i}"}) for i, f in enumerate(out, 1)]
 
 
-__all__ = ["ComputeInputs", "NETS", "Thresholds", "approvals", "deep_work_conflicts", "double_book", "embedded_instructions",
+__all__ = ["ComputeInputs", "NETS", "Thresholds", "approvals", "cadence_drops", "deep_work_conflicts", "double_book", "embedded_instructions",
            "event_evidence", "family_conflicts", "msg_evidence", "recruiter_patterns", "resolve_thresholds", "safety_nets",
            "stale_sources", "suspicious", "waiting_on_avery"]

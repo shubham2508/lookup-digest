@@ -15,10 +15,6 @@ provider:
   app_name: lookup-digest
 
 roles:
-  extractor:    {model: openai/gpt-6-luna, family: openai, reasoning_effort: low}
-  # max_tokens (reasoning included) stops a runaway: dev Thursday had two triage packs emit 67k and 131k tokens of
-  # whitespace (10+ min each); a normal pack needs <= 3.5k, compose <= 13k.
-  triage:       {model: openai/gpt-6-luna, family: openai, reasoning_effort: medium, max_tokens: 16000}
   compose:      {model: openai/gpt-6-luna, family: openai, reasoning_effort: high, max_tokens: 32000}
   materializer: {model: openai/gpt-6-luna, family: openai, reasoning_effort: low}
   compiler:     {model: openai/gpt-6-luna, family: openai, reasoning_effort: low}

@@ -38,6 +38,7 @@ class ComputeResult:
     stats: dict = field(default_factory=dict)
     links: list = field(default_factory=list)  # the linker's decisions with reasons (written to links.jsonl)
     triage: list[TriageResult] = field(default_factory=list)   # v2: one per candidate, mapped from its Finding
+    suspicious_sources: set = field(default_factory=set)       # source ids carrying injected instructions (never P0)
     findings: list[dict] = field(default_factory=list)          # v2: findings.jsonl rows, every origin, "no" ones too
 
     def facts_for_prompt(self) -> list[dict]:
@@ -70,6 +71,43 @@ def _b_fn(name: str, *modules: str):
 
 
 # ----------------------------------------------------------------------------- v2
+@dataclass
+class SweepFact:
+    """A changed fact a sweep or reader stated with both sides (e.g. ARR $3.2M in a draft vs $3.4M in the finance note),
+    shaped like v1's EffectiveFact so the materializer's EFFECTIVE FACTS block is filled again."""
+    subject: str
+    effective: str
+    profile_value: str | None
+    data_value: str
+    drift: bool
+    evidence: list
+
+
+def sustained_facts(findings: list[Finding]) -> list[SweepFact]:
+    out: list[SweepFact] = []
+    for f in findings:
+        if not f.contradictions:
+            continue
+        out.append(SweepFact(subject=f.title, effective="; ".join(f.contradictions)[:300], profile_value=None,
+                             data_value=f.why, drift=True, evidence=list(f.citations)))
+    return out[:30]
+
+
+def mark_family_events(world: NormalizedWorld, directory: ContactDirectory) -> int:
+    """A work-calendar event organized or attended by a family contact (per the profile and the spine) is personal.
+    Hard facts only; returns how many events changed."""
+    n = 0
+    for e in world.events:
+        if e.domain == "personal":
+            continue
+        people = [e.organizer, *(a.email for a in e.attendees)]
+        if any(c is not None and c.relationship.category == "family"
+               for c in (directory.lookup(x, None) for x in people if x and x not in world.owner_emails)):
+            e.domain = "personal"
+            n += 1
+    return n
+
+
 def build_spine(world: NormalizedWorld, profile: ProfileConfig, settings: Settings, as_of: datetime, llm=None, ctx=None,
                 decider=None) -> Spine:
     """Contacts (B's `build_contacts(world, profile, linker, llm, ctx)` once it lands; the v1 directory without
@@ -78,6 +116,7 @@ def build_spine(world: NormalizedWorld, profile: ProfileConfig, settings: Settin
 
     linker = Linker(llm, ctx, decider=decider, jev_min_p=settings.llm.jev_min_probability)
     directory = contacts_mod.build_contacts(world, profile, linker, llm, ctx)
+    mark_family_events(world, directory)
     behavior_stats(directory, world, as_of, settings.thresholds_default.behavior_window_days)
     context = ContextIndex(world, [], as_of, settings.context.window_days, settings.context.max_items)
     return Spine(directory, linker, context)
@@ -200,8 +239,10 @@ def assemble(world: NormalizedWorld, spine: Spine, read, profile: ProfileConfig,
     for f in findings:
         stats["by_origin"][f.origin] = stats["by_origin"].get(f.origin, 0) + 1
     stats["links"] = len(getattr(spine.linker, "log", []))
-    return ComputeResult(spine.directory.contacts, spine.directory, [], cands, merges, about_map, spine.context, stats,
-                         links=list(getattr(spine.linker, "log", [])), triage=triage, findings=rows)
+    sus = {e.source_id for f in findings for e in f.suspicious_instructions}
+    sus |= {e.source_id for f in findings if f.kind == "suspicious_content" for e in f.citations if e.source_id.startswith("msg:")}
+    return ComputeResult(spine.directory.contacts, spine.directory, sustained_facts(findings), cands, merges, about_map, spine.context,
+                         stats, links=list(getattr(spine.linker, "log", [])), triage=triage, findings=rows, suspicious_sources=sus)
 
 
 __all__ = ["ComputeResult", "ContactDirectory", "Spine", "assemble", "build_spine"]

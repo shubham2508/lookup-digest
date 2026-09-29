@@ -56,16 +56,16 @@ MAX_EVENTS = 4
 STAGES_FOR = {"capital": STAGE_VOCAB["capital"], "customer": STAGE_VOCAB["customer"], "vendor": STAGE_VOCAB["vendor"],
               "hiring": STAGE_VOCAB["candidate"] + STAGE_VOCAB["hiring_req"]}
 CATEGORY_GUIDE = {
-    "family": "Avery's family and the people who care for them (partner, daycare, school, pediatrician)",
+    "family": "{owner}'s family and the people who care for them (partner, daycare, school, pediatrician)",
     "capital": "investors, board members, fund staff, deal counsel on the raise",
     "customer": "people at a paying or prospective customer",
-    "team": "people who work at Avery's company",
-    "hiring": "job candidates Avery's company is interviewing, and search firms it retained",
-    "vendor": "suppliers, service providers, tools Avery's company pays for, their account managers",
+    "team": "people who work at {owner}'s company",
+    "hiring": "job candidates {owner}'s company is interviewing, and search firms it retained",
+    "vendor": "suppliers, service providers, tools {owner}'s company pays for, their account managers",
     "network": "advisors, other founders, friends of the company, introducers",
     "external_visibility": "press, conference organizers, podcast hosts, analysts",
     "legal_gov": "lawyers (other than deal counsel), regulators, government offices",
-    "cold_inbound": "unsolicited outreach: cold sales pitches, recruiters cold-emailing Avery, spam",
+    "cold_inbound": "unsolicited outreach: cold sales pitches, recruiters cold-emailing {owner}, spam",
     "automated": "systems and no-reply senders",
     "unresolved": "the evidence is too thin to say",
 }
@@ -216,10 +216,12 @@ def _profile_contacts(profile: ProfileConfig) -> tuple[list[Contact], list[RoleR
             continue
         if not pc.name:
             continue
+        never = {n.strip().lower() for n in (profile.hard_rules.never_draft_for if profile.hard_rules else [])}
+        rules_ = list(pc.rules) + (["never_draft"] if pc.name.strip().lower() in never and "never_draft" not in pc.rules else [])
         contacts.append(Contact(
             contact_id=slugify(pc.name), names=[pc.name], emails=[e.lower() for e in pc.emails],
             relationship=Relationship(category=pc.category, subtype=pc.subtype, source="profile"),
-            tier=pc.tier, profile_rules=list(pc.rules),
+            tier=pc.tier, profile_rules=rules_,
         ))
     return contacts, rules
 
@@ -244,9 +246,15 @@ def signature_input(o: _Obs) -> tuple[str, dict[str, str]]:
     return text, {f"sig:{o.email}": "\n".join(froms + sigs)}
 
 
-def _msg_view(m: NormalizedMessage) -> str:
+def is_recruiter(c: Contact | None) -> bool:
+    """A cold contact the classifier labeled `recruiter` (its exact label), or one the profile says to treat as one."""
+    return (c is not None and c.relationship.category == "cold_inbound"
+            and (c.relationship.subtype == "recruiter" or "recruiter_pattern_only" in c.profile_rules))
+
+
+def _msg_view(m: NormalizedMessage, me: str = "owner") -> str:
     who = f"{m.from_name} <{m.from_addr}>" if m.from_name else m.from_addr
-    head = f"--- msg:{m.message_id} · {m.sent_at.strftime('%a %Y-%m-%d %H:%M')} · from {who}" + (" [Avery]" if m.is_from_avery else "")
+    head = f"--- msg:{m.message_id} · {m.sent_at.strftime('%a %Y-%m-%d %H:%M')} · from {who}" + (f" [{me}]" if m.is_from_avery else "")
     to = ", ".join(m.to)
     body = " ".join((m.body_new or "").split())[:BODY_CHARS] or "(empty)"
     return f"{head}\nto: {to}\nsubject: {m.subject}\n{body}"
@@ -265,7 +273,7 @@ def representative_messages(o: _Obs) -> list[NormalizedMessage]:
     return sorted(pick, key=lambda m: m.sent_at)[:MAX_MESSAGES]
 
 
-def classifier_input(c: Contact, o: _Obs, sig: SignatureFacts | None, domain_hint: list[str], rules: list[str]) -> tuple[str, dict[str, str]]:
+def classifier_input(c: Contact, o: _Obs, sig: SignatureFacts | None, domain_hint: list[str], rules: list[str], me: str = "owner") -> tuple[str, dict[str, str]]:
     msgs = representative_messages(o)
     sources = {f"msg:{m.message_id}": f"{m.subject}\n{m.body_new or ''}" for m in msgs}
     if o.signatures:
@@ -280,7 +288,7 @@ def classifier_input(c: Contact, o: _Obs, sig: SignatureFacts | None, domain_hin
     }
     text = (f"CONTACT RECORD (code-computed)\n{json.dumps(card, ensure_ascii=False, indent=1)}\n\n"
             f"PROFILE RULES THAT MIGHT MATCH\n{json.dumps(rules, ensure_ascii=False)}\n\n"
-            + _block("MESSAGES", "\n\n".join(_msg_view(m) for m in msgs) or "(none)"))
+            + _block("MESSAGES", "\n\n".join(_msg_view(m, me) for m in msgs) or "(none)"))
     return text, sources
 
 
@@ -357,15 +365,16 @@ def classify(pending: list[tuple[Contact, _Obs]], sigs: dict[str, SignatureFacts
     prompt = load_prompt("contact_classifier")
     todo = [(c, o) for c, o in pending if o.sent or o.received]
     calls, srcs = [], []
+    me = (profile.person or "owner").split()[0]
     for c, o in todo:
         named = hints.get(domain_of(o.email), [])
         hint = [f"{x.names[0]}: {x.relationship.category}/{x.relationship.subtype}" for x in named]
-        text, sources = classifier_input(c, o, sigs.get(c.contact_id), hint, _rules_text(rules, named))
+        text, sources = classifier_input(c, o, sigs.get(c.contact_id), hint, _rules_text(rules, named), me)
         srcs.append(sources)
         calls.append({"role": prompt.model_role, "prompt_version": prompt.version_tag, "output_model": ContactClassification,
                       "messages": [{"role": "system", "content": prompt.render(
-                          avery_name=profile.person, company=profile.company or "Avery's company", owner_domain=owner_domain,
-                          categories=json.dumps(CATEGORY_GUIDE, ensure_ascii=False, indent=1),
+                          avery_name=profile.person, company=profile.company or f"{me}'s company", owner_domain=owner_domain,
+                          categories=json.dumps({k: v.format(owner=me) for k, v in CATEGORY_GUIDE.items()}, ensure_ascii=False, indent=1),
                           stages=json.dumps({k: list(v) for k, v in STAGES_FOR.items()}), contact=text)}],
                       "tag": f"classify:{o.email}"})
     out: dict[str, ContactClassification] = {}
@@ -546,12 +555,19 @@ def build_contacts(world: NormalizedWorld, profile: ProfileConfig, linker=None, 
     return d
 
 
+# Public email providers: a shared domain there is not a shared organization (a hard fact, not a similarity).
+FREE_MAIL_DOMAINS = frozenset({"gmail.com", "googlemail.com", "yahoo.com", "ymail.com", "outlook.com", "hotmail.com", "live.com",
+                               "msn.com", "icloud.com", "me.com", "mac.com", "aol.com", "proton.me", "protonmail.com", "gmx.com",
+                               "gmx.net", "zoho.com", "fastmail.com", "hey.com", "yandex.com", "mail.com", "qq.com", "163.com"})
+
+
 def inherit_org_tiers(directory: ContactDirectory, owner_emails) -> None:
     """DESIGN_LOG §9.6 / P0 cases 5 and 12: a colleague of a profile contact at the same outside org (another IPV
     partner, the WSGR associate) inherits that contact's tier during the raise. Never inside Avery's own company (a
     co-founder's P0 is theirs, not every teammate's) and never to automated senders (a firm's billing address). Rules
     such as never_draft do not propagate."""
     own = {domain_of(e) for e in owner_emails}
+    shared = own | FREE_MAIL_DOMAINS   # a domain anyone can sign up for says nothing about an organization
     higher = lambda a, b: min(a, b, key=lambda x: int(x[1]))   # noqa: E731  P0 beats P1
     org_tier: dict[str, str] = {}
     for c in directory.contacts:
@@ -559,14 +575,14 @@ def inherit_org_tiers(directory: ContactDirectory, owner_emails) -> None:
             continue
         if any(domain_of(e) in own for e in c.emails):
             continue
-        for k in ([slugify(c.org)] if c.org else []) + [domain_of(e) for e in c.emails]:
+        for k in ([slugify(c.org)] if c.org else []) + [domain_of(e) for e in c.emails if domain_of(e) not in shared]:
             org_tier[k] = higher(org_tier.get(k, "P9"), c.tier)
     for c in directory.contacts:
         if c.tier or c.relationship.source == "profile" or c.relationship.category in ("team", "automated", "cold_inbound"):
             continue
         if any(domain_of(e) in own for e in c.emails):
             continue
-        keys = ([slugify(c.org)] if c.org else []) + [domain_of(e) for e in c.emails]
+        keys = ([slugify(c.org)] if c.org else []) + [domain_of(e) for e in c.emails if domain_of(e) not in shared]
         for k in keys:
             if k in org_tier:
                 c.tier = org_tier[k]

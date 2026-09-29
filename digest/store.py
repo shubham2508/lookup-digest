@@ -126,6 +126,12 @@ class Store:
         r = cur.fetchone()
         return self._row(r) if r else None
 
+    def delete(self, table: str, where: str, params: tuple = ()) -> int:
+        if table not in SCHEMA:
+            raise KeyError(table)
+        cur = self.conn.execute(f"DELETE FROM {table} WHERE {where}", params)
+        return cur.rowcount
+
     def query(self, table: str, where: str = "", params: tuple = (), order: str = "") -> list[dict]:
         sql = f"SELECT * FROM {table}"
         if where:

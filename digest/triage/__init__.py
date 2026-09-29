@@ -8,10 +8,10 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 
 from ..compute import ComputeResult
+from ..compute.contacts import is_recruiter
 from ..runs import RunContext
 from ..schemas import Candidate, Contact, Evidence, ProposedAction, TriageResult
 
-RECRUITER_WORDS = ("recruit", "talent", "search", "staffing", "headhunt", "sourcer")
 P0_ABOUT_KINDS = ("incident:", "family:")
 
 
@@ -42,8 +42,13 @@ def _find_contact(compute: ComputeResult, target: str | None) -> Contact | None:
     return compute.directory.lookup(target if "@" in target else None, target if "@" not in target else None)
 
 
-def _suspicious(c: Candidate) -> bool:
-    return c.type == "suspicious_content" or bool(c.facts.get("instructions"))
+def _suspicious(c: Candidate, compute: ComputeResult | None = None) -> bool:
+    """The suspicious item itself, or any finding that cites a message carrying injected instructions (a reader that
+    obeyed "this is an incident" must not earn P0 through it)."""
+    if c.type == "suspicious_content" or bool(c.facts.get("instructions")):
+        return True
+    sus = getattr(compute, "suspicious_sources", None) or set()
+    return any(e.source_id in sus for e in c.evidence)
 
 
 def _p0_earned(c: Candidate, compute: ComputeResult) -> bool:
@@ -69,7 +74,7 @@ def enforce(r: TriageResult, c: Candidate, compute: ComputeResult, stats: Triage
     if c.freshness_cap != "none" and r.confidence == "high":
         upd["confidence"] = "medium"
         fixes.append("confidence capped (freshness)")
-    if _suspicious(c) and r.priority == "P0":
+    if _suspicious(c, compute) and r.priority == "P0":
         upd["priority"] = "P2"
         fixes.append("suspicious content demoted from P0")
     elif r.priority == "P0" and not _p0_earned(c, compute):
@@ -100,7 +105,7 @@ def enforce(r: TriageResult, c: Candidate, compute: ComputeResult, stats: Triage
             acts.append(a.model_copy(update={"type": "message_person"}))
             fixes.append(f"{a.type}→message_person (never_draft)")
             continue
-        if a.type in ("reply", "forward_delegate") and cat == "cold_inbound" and any(w in sub.lower() for w in RECRUITER_WORDS):
+        if a.type in ("reply", "forward_delegate") and is_recruiter(contact):
             fixes.append(f"{a.type} to recruiter dropped")
             continue
         if a.type == "watch" and not a.watch_trigger:
@@ -133,4 +138,4 @@ def enforce_all(results: list[TriageResult], cands: list[Candidate], compute: Co
     return out, stats
 
 
-__all__ = ["RECRUITER_WORDS", "TriageStats", "enforce", "enforce_all", "ruling_matches"]
+__all__ = ["TriageStats", "enforce", "enforce_all", "ruling_matches"]

@@ -60,7 +60,9 @@ def raw_excerpts(it: ReduceItem, world, limit: int = 4) -> list[dict]:
         norm, q = normalize_for_match(text), normalize_for_match(e.quote)
         i = norm.find(q)
         span = norm[max(0, i - EXCERPT_WINDOW): i + len(q) + EXCERPT_WINDOW] if i >= 0 else norm[: 2 * EXCERPT_WINDOW]
-        out.append({"source_id": e.source_id, "excerpt": f"{EXCERPT_OPEN}\n…{span}…\n{EXCERPT_CLOSE}"})
+        from ..read.render import defuse
+
+        out.append({"source_id": e.source_id, "excerpt": f"{EXCERPT_OPEN}\n…{defuse(span)}…\n{EXCERPT_CLOSE}"})
     return out
 
 
@@ -316,6 +318,16 @@ def compose_digest(llm: LLM, reduced: ReduceResult, cands: dict[str, Candidate],
             ctx.degrade("compose", "digest", type(e).__name__, detail=str(e)[:300])
         result = fallback_compose(reduced, cands)
     out = validate_compose(result, reduced, settings.budget.question_budget, stats, settings.budget.max_items)
+    if customize is not None and customize.sections_exclude:
+        known = {it.id: it for it in reduced.items}
+        for b in out.sections:
+            if b.name in customize.sections_exclude:
+                for iid in b.item_ids:
+                    if iid not in hidden and iid not in outside:
+                        (outside if known[iid].priority == "P0" else hidden).append(iid)
+        if out.one_thing_id and known.get(out.one_thing_id) and known[out.one_thing_id].section in customize.sections_exclude \
+                and known[out.one_thing_id].priority != "P0":
+            hidden.append(out.one_thing_id)
     if hidden or outside:
         placed = {out.one_thing_id} | {i for b in out.sections for i in b.item_ids}
         for iid in hidden + outside:

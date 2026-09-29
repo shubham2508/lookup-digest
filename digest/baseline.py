@@ -86,7 +86,7 @@ def run_baseline(world: str, as_of: str | None = None, *, runs_dir: Path | None 
         except (LLMOutputInvalid, LLMError) as e:
             ctx.degrade("baseline", "digest", type(e).__name__, detail=str(e)[:300])
             fresh = " · ".join(header_fragment(f, as_of_dt) for f in norm.freshness.values())
-            md = (f"# Daily Digest — {as_of_dt.strftime('%A, %B %d, %Y')}\n\nAs of {as_of_dt.strftime('%a %H:%M')} PT · {fresh}"
+            md = (f"# Daily Digest — {as_of_dt.strftime('%A, %B %d, %Y')}\n\nAs of {as_of_dt.strftime('%a %H:%M')} {as_of_dt.tzname()} · {fresh}"
                   f" · baseline unavailable ({type(e).__name__})\n")
     ctx.write_text("digest", md)
     body = re.sub(r"^\s*(#|As of|\s*[☐↳]|\s*Q\d|\s*Assumptions:|\s*\").*$", "", md, flags=re.M)

@@ -2,23 +2,14 @@
 defaults ← profile ← customize with locked invariants enforced in code, never only in the prompt."""
 from __future__ import annotations
 
-import re
 from pathlib import Path
 
 from ..llm import LLM, LLMError, LLMOutputInvalid
 from ..prompts import Prompt, load_prompt
 from ..runs import RunContext
-from ..schemas import CustomizeOverrides, Focus, RejectedInstruction, Section, ToneOverride
+from ..schemas import CustomizeOverrides, Focus, Section, ToneOverride
 
 DEFAULT_SECTIONS: list[Section] = ["urgent", "decisions", "news", "pulse", "calendar_personal"]
-LOCKED_PATTERNS = [
-    (re.compile(r"\b(skip|drop|remove|omit|no|without|hide)\b[^.]{0,40}\b(citation|source|reference)s?\b", re.I), "honesty rule: citations are locked"),
-    (re.compile(r"\b(skip|drop|remove|omit|no|hide|ignore)\b[^.]{0,40}\b(stale|staleness|contradiction|freshness)\b", re.I), "honesty rule: staleness and contradiction flags are locked"),
-    (re.compile(r"\b(draft|write|reply)\b[^.]{0,40}\b(sam)\b", re.I), "hard rule: never draft for never_draft contacts"),
-    (re.compile(r"\b(hide|drop|skip|suppress)\b[^.]{0,40}\b(p0|family)\b", re.I), "hard rule: P0 items are never hidden"),
-]
-
-
 def default_overrides(not_understood: bool = False) -> CustomizeOverrides:
     return CustomizeOverrides(sections_order=list(DEFAULT_SECTIONS), sections_exclude=[], length_words=None,
                               focus=Focus(entities=[], categories=[], mode="boost"), include_newsletters=False,
@@ -27,12 +18,11 @@ def default_overrides(not_understood: bool = False) -> CustomizeOverrides:
 
 
 def enforce_invariants(o: CustomizeOverrides, text: str) -> CustomizeOverrides:
-    """Code guarantees what the prompt only promises: locked instructions land in `rejected`, sections stay valid."""
-    rejected = list(o.rejected)
-    for pat, reason in LOCKED_PATTERNS:
-        m = pat.search(text)
-        if m and not any(reason == r.reason for r in rejected):
-            rejected.append(RejectedInstruction(instruction=m.group(0).strip(), reason=reason))
+    """Code keeps the overrides inside their bounds: valid sections, a length floor, a bounded horizon. The locked
+    invariants need no text matching: no override can drop citations or freshness (render and verify always add them),
+    hide a P0 (compose and verify move it to "Also outside your filter") or draft for a never_draft contact (verify).
+    Which instructions were refused is the compiler's judgment, reported in `rejected`."""
+    rejected = list({(r.instruction, r.reason): r for r in o.rejected}.values())
     order = [s for s in o.sections_order if s in DEFAULT_SECTIONS]
     for s in DEFAULT_SECTIONS:
         if s not in order and s not in o.sections_exclude:
@@ -41,8 +31,6 @@ def enforce_invariants(o: CustomizeOverrides, text: str) -> CustomizeOverrides:
     length = o.length_words if o.length_words and o.length_words >= 40 else (None if not o.length_words else 40)
     horizon = max(0, min(o.horizon_days, 14))
     instructions = o.compose_instructions
-    if instructions and any(w in instructions.lower() for w in ("citation", "no source")):
-        instructions = None
     return o.model_copy(update={"rejected": rejected, "sections_order": order, "length_words": length, "horizon_days": horizon,
                                 "compose_instructions": instructions})
 

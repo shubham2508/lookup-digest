@@ -13,7 +13,8 @@ DEFAULT_ORDER = ["urgent", "decisions", "news", "pulse", "calendar_personal"]
 
 
 class CitationIndex:
-    def __init__(self, world: NormalizedWorld):
+    def __init__(self, world: NormalizedWorld, owner_name: str = "you"):
+        self.owner_name = owner_name
         self.msgs = {f"msg:{m.message_id}": m for t in world.threads for m in t.messages}
         self.bulk = {f"msg:{m.message_id}" for t in world.threads if t.router_type in ("newsletter", "marketing", "automated") for m in t.messages}
         self.events = {}
@@ -32,7 +33,7 @@ class CitationIndex:
         if sid in self.msgs:
             m = self.msgs[sid]
             if m.from_addr in self.owner:
-                who = "Avery"
+                who = self.owner_name
             elif sid in self.bulk:
                 who = m.from_name or m.from_addr.split("@")[0]
             else:
@@ -97,8 +98,9 @@ def _action_lines(actions: list[MaterializedAction], item_id: str) -> list[str]:
 
 def render_digest(*, as_of: datetime, header: str, compose: ComposeResult, reduced: dict[str, ReduceItem], actions: list[MaterializedAction],
                   cands: dict[str, Candidate], world: NormalizedWorld, also_pending: list[str], outside_filter: list[str],
-                  titles: dict[str, str], customize: CustomizeOverrides | None = None, header_notes: list[str] | None = None) -> str:
-    idx = CitationIndex(world)
+                  titles: dict[str, str], customize: CustomizeOverrides | None = None, header_notes: list[str] | None = None,
+                  owner_name: str = "you") -> str:
+    idx = CitationIndex(world, owner_name)
     items = {ci.id: ci for ci in compose.items}
     out: list[str] = [f"# Daily Digest — {as_of.strftime('%A, %B %d, %Y').replace(' 0', ' ')}", ""]
     notes = [n for n in (header_notes or []) if n.strip()]

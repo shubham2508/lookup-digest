@@ -304,7 +304,12 @@ class LLM:
         msgs = list(messages)
         output: T | None = None
         for attempt in range(2):
-            content, usage = self._call(cfg, msgs, output_model.__name__, schema, max_tokens)
+            try:
+                content, usage = self._call(cfg, msgs, output_model.__name__, schema, max_tokens)
+            except LLMError:
+                raise
+            except Exception as e:  # noqa: BLE001 - timeouts, 5xx after the SDK's own retries, a response without choices
+                raise LLMError(f"{role}: transport: {type(e).__name__}: {str(e)[:200]}") from e
             usage_total.add(usage)
             raws.append(content)
             try:

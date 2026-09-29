@@ -2,17 +2,13 @@
 import json
 
 import yaml
-from a_fakes import PROFILE_JSON, fake_llm
+from a_fakes import fake_llm
 
 from digest.compile.profile import (
     compile_profile,
-    compute_slice,
-    extractor_slice,
     fallback_profile,
     load_compiled,
-    materializer_slice,
     profile_hash,
-    verify_slice,
 )
 from digest.paths import PROFILE_DIR
 from digest.prompts import load_prompt
@@ -51,14 +47,7 @@ def test_compile_degrades_to_fallback_when_output_invalid_twice(tmp_path):
     assert fb.hard_rules.cite_everything and fb.contacts == []
 
 
-def test_slices_hide_tiers_from_the_extractor():
-    cfg = ProfileConfig.model_validate(PROFILE_JSON)
-    ex = extractor_slice(cfg)
-    assert ex["standing_topics"] == PROFILE_JSON["standing_topics"]
-    assert all("tier" not in c and "rules" not in c for c in ex["contacts"])
-    assert ex["contacts"][2]["role"] == "procurement lead" and "Halberd Manufacturing" in ex["contacts"][2]["orgs"]
-    assert compute_slice(cfg)["blocks"][0]["days"] == ["TUE", "THU"] and compute_slice(cfg)["thresholds"]["investor_quiet_business_days"] == 3
-    assert materializer_slice(cfg) == {"tone": PROFILE_JSON["tone"]} and verify_slice(cfg)["never_draft_for"] == ["Sam Park"]
+def test_profile_hash_changes_with_the_prompt_version():
     assert profile_hash("a", "p@v1", "m") != profile_hash("a", "p@v2", "m")
 
 

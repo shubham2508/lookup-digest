@@ -47,6 +47,8 @@ class Prompt:
         return sorted(set(_VAR.findall(self.text)))
 
     def render(self, **values: object) -> str:
+        if "owner" not in values and values.get("avery_name"):   # the profile owner's first name, for prose in the prompt
+            values["owner"] = str(values["avery_name"]).split()[0]
         missing = [v for v in self.variables if v not in values]
         if missing:
             raise PromptError(f"prompt {self.name!r} is missing values for {missing}")

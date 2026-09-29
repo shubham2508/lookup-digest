@@ -16,7 +16,7 @@ def _todo(what: str, track: str, milestone: str) -> None:
 
 def run(
     world: str = typer.Option("dev", "--world", help="dev | heldout | a path such as tests/fixtures/mini"),
-    as_of: str = typer.Option(None, "--as-of", help="YYYY-MM-DDTHH:MM in PT; default now"),
+    as_of: str = typer.Option(None, "--as-of", help="YYYY-MM-DDTHH:MM in the profile's time zone; default now"),
     customize: Path = typer.Option(None, "--customize", help="profile/customize/<x>.md"),
     variant: str = typer.Option(None, "--variant", help="stale_inbox | no_notes | corrupt_ics"),
     tag: str = typer.Option(None, "--tag", help="run-dir tag, e.g. sim: keeps simulation runs apart from plain runs"),

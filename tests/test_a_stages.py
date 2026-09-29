@@ -214,4 +214,5 @@ def test_third_morning_says_third_time_flagged():
     by_item = {"i1": SimpleNamespace(times_surfaced=2), "i2": SimpleNamespace(times_surfaced=3), "i3": SimpleNamespace(times_surfaced=1)}
     frame_escalation(SimpleNamespace(items=[flat, framed, fresh]), by_item)
     assert flat.why == "Promised Monday. Third time flagged."
-    assert framed.why == "Still waiting after four days." and fresh.why == "Three reports."
+    assert framed.why == "Still waiting after four days. Fourth time flagged.", "code writes the count, whatever compose's words"
+    assert fresh.why == "Three reports."

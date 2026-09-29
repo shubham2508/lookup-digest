@@ -50,49 +50,56 @@ def stamp(dt: datetime, tz: ZoneInfo) -> str:
     return f"{local.isoformat(timespec='minutes')} ({local.strftime('%a')})"
 
 
-def _who(addr: str, name: str, owner: set[str]) -> str:
+OWNER_LABEL = "owner"   # fallback; render_thread labels the owner's messages with the profile person's first name
+
+
+def _who(addr: str, name: str, owner: set[str], label: str | None = None) -> str:
     base = f"{name} <{addr}>" if name else f"<{addr}>" if addr else "(unknown sender)"
-    return base + ("  [Avery]" if addr and addr in owner else "")
+    return base + (f"  [{label or OWNER_LABEL}]" if addr and addr in owner else "")
 
 
-def _addrs(addrs: list[str], names: dict[str, str], owner: set[str]) -> str:
-    return ", ".join(_who(a, names.get(a, ""), owner) for a in addrs)
+def _addrs(addrs: list[str], names: dict[str, str], owner: set[str], label: str | None = None) -> str:
+    return ", ".join(_who(a, names.get(a, ""), owner, label) for a in addrs)
 
 
-def _defuse(text: str) -> str:
-    return "\n".join(_MARKER.sub("= = =", ln) if ("RAW THREAD" in ln.upper() or ln.strip().startswith("===")) else ln
-                     for ln in text.split("\n"))
+def defuse(text: str) -> str:
+    """Content cannot close a data block early: every run of three or more "=" (what block markers are made of) is
+    broken up, wherever it sits in the line, so no marker survives in untrusted text."""
+    return _MARKER.sub("= = =", text)
 
 
-def render_message(m: NormalizedMessage, tz: ZoneInfo, owner: set[str], names: dict[str, str]) -> str:
+_defuse = defuse
+
+
+def render_message(m: NormalizedMessage, tz: ZoneInfo, owner: set[str], names: dict[str, str], label: str | None = None) -> str:
     head = [f"--- msg:{m.message_id}"]
     if m.forwarded_by:
-        head.append(f"from: {_who(m.from_addr, m.from_name, owner)}  (original sender; forwarded into this thread by "
-                    f"{_who(m.forwarded_by, names.get(m.forwarded_by, ''), owner).strip()})")
+        head.append(f"from: {_who(m.from_addr, m.from_name, owner, label)}  (original sender; forwarded into this thread by "
+                    f"{_who(m.forwarded_by, names.get(m.forwarded_by, ''), owner, label).strip()})")
     else:
-        head.append(f"from: {_who(m.from_addr, m.from_name, owner)}")
+        head.append(f"from: {_who(m.from_addr, m.from_name, owner, label)}")
     if m.to:
-        head.append("to: " + _addrs(m.to, names, owner))
+        head.append("to: " + _addrs(m.to, names, owner, label))
     if m.cc:
-        head.append("cc: " + _addrs(m.cc, names, owner))
+        head.append("cc: " + _addrs(m.cc, names, owner, label))
     head.append(f"sent: {stamp(m.sent_at, tz)}")
-    head.append(f"subject: {m.subject}")
+    head.append(f"subject: {_defuse(m.subject or '')}")
     body = (m.body_new or "").strip() or "(empty body)"
     if len(body) > BODY_MAX_CHARS:
         body = body[:BODY_MAX_CHARS].rstrip() + f"\n[… {len(body) - BODY_MAX_CHARS} more characters not shown]"
     out = "\n".join(head) + "\n\n" + _defuse(body)
     if m.signature_block:
         sig = [ln for ln in m.signature_block.strip().split("\n") if ln.strip()]
-        out += "\n[signature] " + " | ".join(ln.strip() for ln in sig[:SIGNATURE_LINES])
+        out += "\n[signature] " + _defuse(" | ".join(ln.strip() for ln in sig[:SIGNATURE_LINES]))
     return out
 
 
-def render_thread(t: NormalizedThread, world: NormalizedWorld, tz: ZoneInfo) -> RenderedThread:
+def render_thread(t: NormalizedThread, world: NormalizedWorld, tz: ZoneInfo, owner_label: str | None = None) -> RenderedThread:
     names = {d["email"]: d["name"] for d in world.directory}
     for m in t.messages:
         if m.from_addr and m.from_name:
             names.setdefault(m.from_addr, m.from_name)
-    blocks = [render_message(m, tz, world.owner_emails, names) for m in t.messages]
+    blocks = [render_message(m, tz, world.owner_emails, names, owner_label or world.owner_name) for m in t.messages]
     text = "\n".join([OPEN, f"thread: {t.thread_id} · {len(t.messages)} message(s), oldest first", "", "\n\n".join(blocks), CLOSE])
     return RenderedThread(thread_id=t.thread_id, text=text,
                           sources={f"msg:{m.message_id}": message_source_text(m) for m in t.messages},

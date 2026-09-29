@@ -4,7 +4,6 @@ reduce → compose → materialize → verify → render. Never crashes on bad m
 and records why (CLAUDE.md rule 5, DESIGN_LOG §4.4)."""
 from __future__ import annotations
 
-import re
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
@@ -14,21 +13,20 @@ from .compile.profile import CompiledProfile, compile_profile
 from .compose import compose_digest, title_for
 from .compute import ComputeResult, assemble, build_spine
 from .config import Settings, load_settings
-from .normalize.freshness import reader_notes
 from .history import (
-    surfaced_count,
     answered_after_digest,
     load_rulings,
     mark_resolved,
     record_items,
     rulings_path,
+    surfaced_count,
     times_surfaced,
 )
 from .ingest import DataMissing, load_world
 from .llm import LLM
 from .materialize import materialize, suggested_tasks_md
 from .normalize import NormalizedWorld, normalize_world
-from .normalize.freshness import header_fragment
+from .normalize.freshness import header_fragment, reader_notes
 from .paths import ROOT, data_dir
 from .read import ReadResult, read_threads
 from .reduce import reduce_items
@@ -103,15 +101,12 @@ def qualify_for_freshness(composed: ComposeResult, by_item: dict, cands: dict, f
 
 
 _ORDINAL = {2: "Second", 3: "Third", 4: "Fourth", 5: "Fifth", 6: "Sixth", 7: "Seventh", 8: "Eighth"}
-_ESCALATED = re.compile(r"\b(again|still|flagged|(second|third|fourth|fifth|sixth|seventh|eighth|\d+(st|nd|rd|th)) time)\b", re.I)
-
-
 def frame_escalation(composed: ComposeResult, by_item: dict) -> None:
-    """Triage's rule 'escalate framing when times_surfaced >= 2', enforced in code: compose rewrites the why and can
-    drop it. An item shown on two earlier mornings says so on the third."""
+    """Triage's rule 'escalate framing when times_surfaced >= 2', enforced in code: an item shown on two earlier
+    mornings says so on the third. Code writes the count; compose is told not to (compose.md rule 6)."""
     for ci in composed.items:
         it = by_item.get(ci.id)
-        if it is None or it.times_surfaced < 2 or _ESCALATED.search(f"{ci.what} {ci.why}"):
+        if it is None or it.times_surfaced < 2:
             continue
         n = it.times_surfaced + 1
         ci.why = f"{ci.why.rstrip()} {_ORDINAL.get(n, f'{n}th')} time flagged.".strip()
@@ -188,7 +183,7 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
         with ctx.timed("compile_customize"):
             from .compile.customize import compile_customize
 
-            overrides, customize_notes = compile_customize(llm, Path(customize), ctx)
+            overrides, customize_notes = compile_customize(llm, Path(customize), ctx, avery_name=profile.config.person)
 
     with ctx.timed("ingest"):
         raw = load_world(ddir, as_of_dt, tz, variant)
@@ -201,7 +196,7 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
     with ctx.timed("normalize"):
         norm = normalize_world(raw, settings, profile.config.person)
         if norm.owner_email is None:
-            ctx.degrade("normalize", "owner", "could not detect Avery's address from the data")
+            ctx.degrade("normalize", "owner", "could not detect the owner's address from the data")
 
     rulings = load_rulings(rulings_path(world, settings), as_of_dt)
     with ctx.timed("spine"):
@@ -213,6 +208,8 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
     st = store or Store(store_path(settings, world))
     st.connect()
     try:
+        for table in ("digest_items", "candidates", "triage_results"):   # a rerun of this morning replaces its rows
+            st.delete(table, "run_id = ?", (ctx.run_id,))
         with ctx.timed("persist"):
             persist(st, ctx, norm)
         stage_notes: list[str] = []
@@ -229,11 +226,11 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
             plain = variant is None and customize is None
             surfaced = times_surfaced(st, world, as_of_dt, tag=tag) if plain else {}
             for c in comp.candidates:
-                c.times_surfaced = surfaced_count(surfaced, c.about, c.facts.get("thread_id"))
+                c.times_surfaced = surfaced_count(surfaced, c.about, c.facts.get("thread_id"), [e.source_id for e in c.evidence])
             resolved = mark_resolved(st, world, as_of_dt, comp.candidates, tag=tag) if plain else 0
             answered = answered_after_digest(st, world, as_of_dt, comp.candidates, {t.thread_id: t for t in norm.threads}, tag=tag) if plain else set()
             for cid in answered:
-                ctx.degrade("compute", cid, "answered_after_digest", detail="Avery replied after the digest showed it; not re-surfaced")
+                ctx.degrade("compute", cid, "answered_after_digest", detail="the owner replied after the digest showed it; not re-surfaced")
             comp.candidates = [c for c in comp.candidates if c.candidate_id not in answered]
             comp.triage = [r for r in comp.triage if r.candidate_id not in answered]
         ctx.write_json("contacts", comp.contacts)
@@ -256,7 +253,7 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
         by_item = {it.id: it for it in reduced.items}
         cands = {c.candidate_id: c for c in comp.candidates}
         freshness_line = " · ".join(header_fragment(f, as_of_dt) for f in norm.freshness.values())
-        header = f"As of {as_of_dt.strftime('%a %H:%M')} PT · {freshness_line}"
+        header = f"As of {as_of_dt.strftime('%a %H:%M')} {as_of_dt.tzname() or ''} · {freshness_line}".replace("  ", " ")
         if tstats.rulings_applied:
             header += f" · applied {tstats.rulings_applied} learned rule{'s' if tstats.rulings_applied != 1 else ''}"
 
@@ -290,11 +287,9 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
         ctx.write_jsonl("actions", ver.actions)
         ctx.write_json("verify", ver.result)
         ctx.write_text("suggested_tasks", suggested_tasks_md(ver.actions, as_of_dt.date().isoformat()))
-        # freshness lines are code's (same words every morning); compose's own restatements of them are dropped
+        # freshness lines are code's (same words every morning); compose is told not to write them (compose.md rule 8)
         fresh_lines = reader_notes(norm.freshness, as_of_dt)
-        _restates = re.compile(r"\b(stale|synced?|sync gap|days? old|not (been )?(updated|refreshed)|unreadable|missing)\b", re.I)
-        model_notes = [n for n in composed.header_notes if not (fresh_lines and _restates.search(n))]
-        notes = list(dict.fromkeys(fresh_lines + model_notes + customize_notes))
+        notes = list(dict.fromkeys(fresh_lines + list(composed.header_notes) + customize_notes))
         dropped_n = sum(1 for v in ver.result.violations if v.fix == "dropped")
         if dropped_n:
             notes.append(f"{dropped_n} item{'s' if dropped_n != 1 else ''} withheld by a hard rule")
@@ -310,7 +305,7 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
             titles = {it.id: title_for(it, cands) for it in reduced.items}
             md = render_digest(as_of=as_of_dt, header=header, compose=ver.compose, reduced=by_item, actions=ver.actions, cands=cands,
                                world=norm, also_pending=ver.also_pending, outside_filter=ver.outside_filter, titles=titles,
-                               customize=overrides, header_notes=notes)
+                               customize=overrides, header_notes=notes, owner_name=(profile.config.person or 'you').split()[0])
         ctx.write_text("digest", md)
         ver.result.stats.header_present = True
         ctx.write_json("verify", ver.result)

@@ -41,7 +41,7 @@ ARTIFACTS: dict[str, str] = {
 
 
 def parse_as_of(value: str, tz: str = "America/Los_Angeles") -> datetime:
-    """'2026-09-24T06:00' (naive, PT) or any ISO string with an offset → aware datetime."""
+    """'2026-09-24T06:00' (naive, in settings.timezone) or any ISO string with an offset → aware datetime."""
     dt = datetime.fromisoformat(value)
     if dt.tzinfo is None:
         dt = dt.replace(tzinfo=ZoneInfo(tz))
@@ -97,6 +97,8 @@ class RunContext:
         base = self.runs_dir or RUNS_DIR
         self.run_dir = base / self.world / run_dir_name(self.as_of, self.suffix)
         self.run_dir.mkdir(parents=True, exist_ok=True)
+        for name in ("cost_log", "trace"):   # a rerun of the same morning replaces its logs instead of appending to them
+            (self.run_dir / ARTIFACTS[name]).unlink(missing_ok=True)
         self.cost_log = CostLog(self.run_dir / ARTIFACTS["cost_log"])
         self.trace_log = TraceLog(self.run_dir / ARTIFACTS["trace"])
 

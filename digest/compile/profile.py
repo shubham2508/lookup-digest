@@ -106,28 +106,7 @@ def contact_directory(cfg: ProfileConfig) -> list[dict]:
     return out
 
 
-def extractor_slice(cfg: ProfileConfig) -> dict:
-    return {"person": cfg.person, "company": cfg.company, "contacts": contact_directory(cfg),
-            "standing_topics": list(cfg.standing_topics)}
 
 
-def compute_slice(cfg: ProfileConfig) -> dict:
-    return {"contacts": [c.model_dump(mode="json") for c in cfg.contacts], "thresholds": cfg.thresholds.model_dump(mode="json"),
-            "blocks": [b.model_dump(mode="json") for b in cfg.blocks], "read_windows": list(cfg.read_windows),
-            "timezone": cfg.timezone, "facts": [f.model_dump(mode="json") for f in cfg.facts]}
 
 
-def triage_slice(cfg: ProfileConfig) -> dict:
-    return {"judgment_rules": list(cfg.judgment_rules), "contacts": [c.model_dump(mode="json") for c in cfg.contacts]}
-
-
-def compose_slice(cfg: ProfileConfig) -> dict:
-    return {"digest_prefs": list(cfg.digest_prefs)}
-
-
-def materializer_slice(cfg: ProfileConfig) -> dict:
-    return {"tone": list(cfg.tone)}
-
-
-def verify_slice(cfg: ProfileConfig) -> dict:
-    return cfg.hard_rules.model_dump(mode="json")
