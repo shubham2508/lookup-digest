@@ -221,7 +221,7 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
             if f.state != "ok":
                 stage_notes.append(f"{kind} {f.state}")
         if read.stats.failed:
-            stage_notes.append(f"{len(read.stats.failed)} thread(s) could not be read today (see degradations.jsonl)")
+            stage_notes.append(f"{len(read.stats.failed)} thread{'s' if len(read.stats.failed) != 1 else ''} could not be read today")
 
         with ctx.timed("compute"):
             comp = assemble(norm, spine, read, profile.config, settings, as_of_dt, llm=llm, ctx=ctx)
@@ -292,15 +292,15 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
         notes = list(dict.fromkeys(list(composed.header_notes) + customize_notes))
         dropped_n = sum(1 for v in ver.result.violations if v.fix == "dropped")
         if dropped_n:
-            notes.append(f"{dropped_n} item(s) removed by hard rules (see verify.json)")
+            notes.append(f"{dropped_n} item{'s' if dropped_n != 1 else ''} withheld by a hard rule")
         if ctx.degradations:
             failed_reads = set(read.stats.failed)   # already in the header as "could not be read today"
             skipped = [d for d in ctx.degradations if d["reason"] not in ("code_fix", "evidence_replaced", "evidence_invalid", "rescued_by_safety_net")
                        and not (d["stage"] == "read" and d["item"] in failed_reads)]
             if skipped:
-                notes.append(f"{len(skipped)} item(s) degraded (see degradations.jsonl)")
+                notes.append(f"{len(skipped)} item{'s' if len(skipped) != 1 else ''} could not be fully read")
         if resolved:
-            notes.append(f"{resolved} earlier item(s) resolved")
+            notes.append(f"{resolved} item{'s' if resolved != 1 else ''} from earlier digests no longer open")
         with ctx.timed("render"):
             titles = {it.id: title_for(it, cands) for it in reduced.items}
             md = render_digest(as_of=as_of_dt, header=header, compose=ver.compose, reduced=by_item, actions=ver.actions, cands=cands,
