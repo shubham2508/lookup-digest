@@ -154,9 +154,12 @@ reads its handoff doc. Ownership, read lists and no-touch lists are in `docs/han
 
 | Track | Handoff | Owns | Never opens |
 |---|---|---|---|
-| A · Product | `docs/handoffs/A-product.md` | `digest/`, `prompts/` P1–P6, `tests/test_a_*` | `world/`, `eval/`, `generator/`, the fixture manifest |
-| B · Data | `docs/handoffs/B-data.md` | `world/`, `generator/`, `data/`, `eval/manifests/`, `tests/test_b_*` | `digest/` stage code, `prompts/`, `runs/` |
-| C · Grader | `docs/handoffs/C-grader.md` | `eval/` (not manifests), `prompts/judge.md`, `profile/customize/`, `tests/test_c_*` | `digest/` stage code, `generator/`, `world/` |
+| A · Product | v1: tag `v1-extraction-centric` · v2: `docs/handoffs/v2-A-readers.md` | `digest/`, `prompts/` (readers, compose, materializer), `tests/test_a_*` | `world/`, `eval/`, `generator/`, the fixture manifest |
+| B · Data (v1) / Spine, sweeps, nets (v2) | v1: tag · v2: `docs/handoffs/v2-B-spine.md` | v1 `world/`, `generator/`, `data/`, `eval/manifests/`; v2 `digest/compute/`, sweep and classifier prompts, `tests/test_b_*` | `eval/` (v2), `runs/` |
+| C · Grader | v1: tag · v2: `docs/handoffs/v2-C-eval.md` | `eval/` (not manifests), `prompts/judge.md`, `profile/customize/`, `tests/test_c_*` | `digest/` stage code, `generator/`, `world/` |
+
+The v1 tracks worked on `main` in this directory; the v2 tracks each had a git worktree (`../lookup-digest-v2-<track>`),
+merged by the orchestrator. Each v2 track's report is `docs/handoffs/v2-<X>-STATUS.md`.
 
 Shared contracts (orchestrator-owned; change only via `OPEN_QUESTIONS.md`): `digest/schemas.py`, `digest/llm.py`,
 `digest/runs.py`, `digest/store.py`, `digest/config.py`, `eval/manifest_schema.py`, `cli/`, `config/`.

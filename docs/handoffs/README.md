@@ -1,13 +1,15 @@
 # Handoffs
 
-One Claude Code session per track, all on `main` in this directory. Start a session with one line, e.g.
-**"Track B, M2"**, and the session reads, in order: `CLAUDE.md` → its handoff doc here → its read list.
+One Claude Code session per track, started with one line ("Track A, v2"); the session reads `CLAUDE.md`, then its
+handoff doc here, then its read list. Questions go in `OPEN_QUESTIONS.md`; progress and blockers in [STATUS.md](STATUS.md);
+the entry point for the next orchestrator session is [NEXT-SESSION.md](NEXT-SESSION.md).
 
-| Track | Doc | Owns | Milestones |
-|---|---|---|---|
-| A · Product | [A-product.md](A-product.md) | `digest/`, `prompts/` (P1–P6), `tests/test_a_*.py` | M3 → M4 → M5, later M7 · M8 · M9 halves |
-| B · Data | [B-data.md](B-data.md) | `world/`, `generator/`, `data/`, `eval/manifests/`, `tests/test_b_*.py` | M1 (gate) → M2, later held-out (M8) |
-| C · Grader | [C-grader.md](C-grader.md) | `eval/` (except manifests), `prompts/judge.md`, `profile/customize/`, `tests/test_c_*.py` | M6, later M7 · M8 · M9 halves |
-| Orchestrator | (this session) | everything shared: `digest/schemas.py`, `digest/llm.py`, `digest/runs.py`, `digest/store.py`, `digest/config.py`, `eval/manifest_schema.py`, `cli/`, `config/`, docs | M0, integration, M10 |
+| Track | Handoff | Report |
+|---|---|---|
+| A · Readers (raw threads → Findings; pipeline) | [v2-A-readers.md](v2-A-readers.md) | [v2-A-STATUS.md](v2-A-STATUS.md), gate evidence [v2-A-checkpoint.md](v2-A-checkpoint.md) |
+| B · Spine, retrieval, sweeps, safety nets, reconcile | [v2-B-spine.md](v2-B-spine.md) | [v2-B-STATUS.md](v2-B-STATUS.md) |
+| C · Eval (diagnostics, v1/v2/baseline table, judge export) | [v2-C-eval.md](v2-C-eval.md) | [v2-C-STATUS.md](v2-C-STATUS.md) |
+| Orchestrator | `MIGRATION_PLAN.md`, shared contracts (`digest/schemas.py`, `digest/findings.py`, `digest/llm.py`, `config/`) | [STATUS.md](STATUS.md) |
 
-Progress and blockers go in [STATUS.md](STATUS.md). Questions go in `OPEN_QUESTIONS.md` and the session stops there.
+The v1 build (extraction-centric: tracks A product, B data, C grader; milestones M0–M10) and its handoffs are in the
+tag `v1-extraction-centric`; the session transcripts for both builds are in `sessions/`.
