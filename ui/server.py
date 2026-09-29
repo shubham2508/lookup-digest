@@ -15,6 +15,7 @@ while one is running is refused (409).
 from __future__ import annotations
 
 import json
+import re
 import subprocess
 import sys
 import threading
@@ -59,10 +60,12 @@ class Launch:
     def external_busy() -> bool:
         """A pipeline started outside the UI (a matrix in a terminal) is running: launching now would collide."""
         try:
-            r = subprocess.run(["pgrep", "-f", "digest eval --matrix|cli.main run|cli.main simulate"], capture_output=True, text=True, timeout=5)
+            r = subprocess.run(["pgrep", "-fl", "digest eval --matrix|cli.main run|cli.main simulate"], capture_output=True, text=True, timeout=5)
         except Exception:  # noqa: BLE001 - no pgrep: don't block
             return False
-        return bool(r.stdout.split())
+        # a shell whose command line merely quotes the pattern (a watcher loop, a grep) is not a pipeline
+        procs = [ln for ln in r.stdout.splitlines() if ln.strip() and not re.search(r"\b(zsh|bash|sh) -c\b|\bpgrep\b|\bgrep\b", ln)]
+        return bool(procs)
 
     def status(self) -> dict:
         tail = ""

@@ -47,3 +47,19 @@ def test_empty_or_missing_file_is_not_understood(tmp_path):
     assert o.not_understood and len(llm.client.calls) == 0
     o2, notes2 = compile_customize(llm, tmp_path / "missing.md")
     assert o2.not_understood
+
+
+def test_free_text_prompts_compile_to_bounded_overrides(tmp_path):
+    """Any sentence compiles onto the same override fields; the three added prompts map where the suite expects."""
+    from pathlib import Path
+
+    from digest.compile.customize import compile_customize
+
+    llm = fake_llm(tmp_path)
+    fam, _ = compile_customize(llm, Path("profile/customize/family_first.md"))
+    assert fam.sections_order[0] == "calendar_personal" and not fam.rejected and not fam.not_understood
+    mb, _ = compile_customize(llm, Path("profile/customize/marcus_ben_only.md"))
+    assert mb.focus.mode == "only" and set(mb.focus.entities) == {"marcus-webb", "ben-schaffer"}
+    sixty, _ = compile_customize(llm, Path("profile/customize/sixty_words.md"))
+    assert sixty.length_words == 60 and sixty.focus.mode == "boost"
+

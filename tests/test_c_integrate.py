@@ -33,7 +33,7 @@ def five_days():
 def test_plan_for_a_five_day_world(five_days):
     steps = plan("heldout", five_days)
     groups = [s.group for s in steps]
-    assert groups == ["runs"] * 5 + ["variants"] * 3 + ["customize"] * 6 + ["baseline", "simulate", "eval"]
+    assert groups == ["runs"] * 5 + ["variants"] * 3 + ["customize"] * 9 + ["baseline", "simulate", "eval"]
     assert steps[0].args == ["run", "--world", "heldout", "--as-of", "2026-09-20T06:00"]
     assert steps[4].args[-1] == "2026-09-24T06:00"
     assert steps[5].args[-2:] == ["--variant", "stale_inbox"] and steps[5].args[4] == "2026-09-24T06:00"
@@ -45,7 +45,7 @@ def test_plan_for_a_five_day_world(five_days):
 
 def test_plan_on_the_one_day_fixture(manifest):
     steps = plan("tests/fixtures/mini", manifest)
-    assert len(steps) == 13 and steps[-2].args[4] == "1"  # simulate --days = number of run days, at most 5
+    assert len(steps) == 16 and steps[-2].args[4] == "1"  # simulate --days = number of run days, at most 5
 
 
 # ----------------------------------------------------------------------------- execution
@@ -63,15 +63,15 @@ class Fake:
 def test_all_ok(tmp_path, manifest):
     fake = Fake()
     res = run_matrix("w", manifest, cmd=fake, log=lambda _: None, runs_root=tmp_path)
-    assert res.outcome == "ok" and res.exit_code == 0 and len(fake.calls) == 13
+    assert res.outcome == "ok" and res.exit_code == 0 and len(fake.calls) == 16
     log = json.loads((tmp_path / "integration.json").read_text())
-    assert log["outcome"] == "ok" and [s["status"] for s in log["steps"]] == ["ok"] * 13
+    assert log["outcome"] == "ok" and [s["status"] for s in log["steps"]] == ["ok"] * 16
 
 
 def test_stops_cleanly_where_a_stage_is_missing(tmp_path, manifest):
     logs = []
     res = run_matrix("w", manifest, cmd=Fake({"variant": 3}), log=logs.append, runs_root=tmp_path)
-    assert [s.status for s in res.steps] == ["ok", "blocked"] + ["skipped"] * 11
+    assert [s.status for s in res.steps] == ["ok", "blocked"] + ["skipped"] * 14
     assert res.outcome == "blocked" and res.exit_code == 3
     assert "not implemented (M5)" in logs[1] and "not implemented" in res.steps[1].tail
 
@@ -88,7 +88,7 @@ def test_dry_run_runs_nothing(tmp_path, manifest):
     fake = Fake()
     res = run_matrix("w", manifest, cmd=fake, dry_run=True, log=lambda _: None, runs_root=tmp_path)
     assert fake.calls == [] and res.outcome == "planned" and not (tmp_path / "integration.json").exists()
-    assert "| 13 | eval |" in res.table()
+    assert "| 16 | eval |" in res.table()
 
 
 def test_cli_matrix_without_manifest_is_blocked():

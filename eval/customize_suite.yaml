@@ -25,3 +25,16 @@ assertions:
   # garbage.md — default digest + "customize file not understood"
   - {id: cz-garbage-not-understood, kind: customize_not_understood, customize: garbage}
   - {id: cz-garbage-cited, kind: citations_present, customize: garbage}
+  # family_first.md — the section order changes: a family item leads the page (after the one thing at most)
+  - {id: cz-family-leads, kind: item_present, customize: family_first, args: {category: family, position_max: 2},
+     description: "Calendar & Personal moved to the top: a family item is first or second on the page"}
+  - {id: cz-family-cited, kind: citations_present, customize: family_first}
+  # marcus_ben_only.md — focus on two people, mode only; every item is theirs or a P0 that must still show
+  - {id: cz-marcus-ben-only, kind: priorities_only, customize: marcus_ben_only, args: {priorities: [P0], or_categories: [capital]},
+     description: "only capital items (Marcus, Ben and their colleagues) or P0s that may not be hidden"}
+  - {id: cz-marcus-ben-cited, kind: citations_present, customize: marcus_ben_only}
+  # sixty_words.md — a hard length cut: nothing but P0 survives on the page (the invariant beats the budget)
+  - {id: cz-sixty-p0-only, kind: priorities_only, customize: sixty_words, args: {priorities: [P0]},
+     description: "with 60 words, only P0 items stay on the page; the rest is in Also pending"}
+  - {id: cz-sixty-cited, kind: citations_present, customize: sixty_words}
+

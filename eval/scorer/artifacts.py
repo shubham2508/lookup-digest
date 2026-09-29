@@ -266,6 +266,23 @@ class RunView:
             rec["proposed_actions"] = [a for t in tri for a in t.get("proposed_actions", [])]
         return rec
 
+    _SECTION_TITLES = {"urgent": "## Urgent", "decisions": "## Decisions", "news": "## AI Industry News", "pulse": "## Team",
+                       "calendar_personal": "## Calendar"}
+
+    def _sections_in_rendered_order(self) -> list[dict]:
+        """compose.json lists sections in canonical order; a customize run can render them in another. Positions must
+        follow the page, so sort by where each section's heading appears in digest.md (unknown headings keep their place)."""
+        blocks = list(self.compose.get("sections", []))
+        text = self.digest_text if isinstance(getattr(self, "digest_text", None), str) else ""
+        if not text:
+            return blocks
+        pos = {}
+        for name, head in self._SECTION_TITLES.items():
+            i = text.find(head)
+            if i >= 0:
+                pos[name] = i
+        return sorted(blocks, key=lambda b: pos.get(b.get("name"), 10**9))
+
     def _build_rendered(self) -> list[RenderedItem]:
         comp_items = {c.get("id"): c for c in self.compose.get("items", []) if isinstance(c, dict)}
         dropped = {v.get("item_id") for v in self.verify.get("violations", []) if v.get("fix") == "dropped"}
@@ -280,7 +297,7 @@ class RunView:
         if one:
             placements.append((one, "one_thing", section_of.get(one)))
             seen.add(one)
-        for block in self.compose.get("sections", []):
+        for block in self._sections_in_rendered_order():
             for i in block.get("item_ids", []):
                 if i not in seen:
                     placements.append((i, "section", block.get("name")))

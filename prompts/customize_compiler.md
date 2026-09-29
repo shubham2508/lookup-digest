@@ -1,6 +1,6 @@
 ---
 name: customize_compiler
-version: 1
+version: 2
 model_role: compiler
 output_model: CustomizeOverrides
 ---
@@ -12,7 +12,7 @@ OVERRIDE FIELDS
 - sections_order: the five section keys in the order to render (urgent, decisions, news, pulse, calendar_personal); the default order unless the request reorders (e.g., "investors first" → decisions/urgent items about capital go first: put "urgent" and "decisions" first and say so in compose_instructions).
 - sections_exclude: sections to hide (subset of the five). Empty unless asked.
 - length_words: a word budget for item text when the request gives one ("under 100 words" → 100); null otherwise.
-- focus: {entities: [names or orgs to focus on], categories: [family, capital, customer, team, hiring, vendor, network, external_visibility, legal_gov, cold_inbound], mode: "boost" | "only"}. "only" hides everything else ("P0 and family only" → categories ["family"], mode "only"; P0 items outside the focus still show as one-liners, enforced by code). "boost" ranks the focus first without hiding.
+- focus: {entities: [people or orgs to focus on, written as the profile or the mail names them: a full name ("Marcus Webb"), an email, or an org; a lone first name is accepted only when the profile has exactly one such person], categories: [family, capital, customer, team, hiring, vendor, network, external_visibility, legal_gov, cold_inbound], mode: "boost" | "only"}. "only" hides everything else ("P0 and family only" → categories ["family"], mode "only"; P0 items outside the focus still show as one-liners, enforced by code). "boost" ranks the focus first without hiding.
 - include_newsletters: true only if the request asks for newsletter content.
 - calendar_full_schedule: true only if the request asks to see the whole calendar.
 - tone: {formality: "default" | "formal" | "casual"} for drafts.

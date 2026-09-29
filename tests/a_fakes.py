@@ -117,6 +117,12 @@ def fake_customize(prompt_text: str) -> dict:
         o["include_newsletters"] = True
     elif "board" in text:
         o["compose_instructions"] = "Board meeting tomorrow; investors first; include metrics"
+    elif "family first" in text or "calendar and family" in text:
+        o["sections_order"] = ["calendar_personal", "urgent", "decisions", "news", "pulse"]
+    elif "marcus" in text and "only" in text:
+        o["focus"] = {"entities": ["marcus-webb", "ben-schaffer"], "categories": [], "mode": "only"}
+    elif "60 words" in text:
+        o["length_words"] = 60
     else:
         o["not_understood"] = True
     return o

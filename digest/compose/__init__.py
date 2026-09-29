@@ -242,25 +242,47 @@ def apply_focus(reduced: ReduceResult, cands: dict[str, Candidate], compute, ove
     if overrides is None or overrides.focus.mode != "only" or not (overrides.focus.categories or overrides.focus.entities):
         return [], []
     cats = {c.lower() for c in overrides.focus.categories}
-    ents = {e.lower() for e in overrides.focus.entities}
+    ents = focus_contact_ids(overrides.focus.entities, compute.directory)
+    raw = {e.lower() for e in overrides.focus.entities}
     hidden: list[str] = []
     outside: list[str] = []
     for it in reduced.items:
         in_focus = False
         for e in it.entities:
             c = compute.directory.by_slug.get(e)
-            if c and (c.relationship.category in cats or any(x in ents for x in [c.contact_id.lower(), *(n.lower() for n in c.names)])):
+            if c and (c.relationship.category in cats or c.contact_id in ents):
                 in_focus = True
-            if e.lower() in ents:
+            if e.lower() in ents or e.lower() in raw:
                 in_focus = True
         if any(w in cats for w in ("family",)) and any(t.startswith("calendar_conflict:family") for t in it.candidate_types):
             in_focus = True
-        if any(x in it.about.lower() for x in ents):
+        if any(x in it.about.lower() for x in raw):
             in_focus = True
         if in_focus:
             continue
         (outside if it.priority == "P0" else hidden).append(it.id)
+    if len(hidden) + len(outside) == len(reduced.items) and reduced.items:
+        return [], []   # a filter that matches nothing hides the whole page: not what anyone asked for; the caller notes it
     return hidden, outside
+
+
+def focus_contact_ids(entities: list[str], directory) -> set[str]:
+    """The contact ids a customize focus names. A name is matched as written in the profile or the mail: contact id,
+    email, full name, or a first name when exactly one contact has it ("Marcus", "Ben"). Exact tokens, no similarity."""
+    out: set[str] = set()
+    contacts = list(getattr(directory, "contacts", []) or [])
+    for raw in entities:
+        e = (raw or "").strip().lower()
+        if not e:
+            continue
+        for c in contacts:
+            if e == c.contact_id.lower() or e in {x.lower() for x in c.emails} or e in {n.lower() for n in c.names}:
+                out.add(c.contact_id)
+        if e not in {x for c in contacts for x in (c.contact_id.lower(), *(n.lower() for n in c.names))}:
+            firsts = [c for c in contacts if any(n.lower().split()[0] == e for n in c.names if n)]
+            if len(firsts) == 1:
+                out.add(firsts[0].contact_id)
+    return out
 
 
 def compose_digest(llm: LLM, reduced: ReduceResult, cands: dict[str, Candidate], profile: ProfileConfig, settings: Settings,
@@ -271,6 +293,9 @@ def compose_digest(llm: LLM, reduced: ReduceResult, cands: dict[str, Candidate],
     stats = ComposeStats()
     budget_words = (customize.length_words if customize and customize.length_words else settings.budget.length_words)
     hidden, outside = apply_focus(reduced, cands, compute, customize) if compute is not None else ([], [])
+    if customize is not None and customize.focus.mode == "only" and (customize.focus.entities or customize.focus.categories) \
+            and not hidden and not outside and compute is not None and reduced.items:
+        stats.fixes.append("focus matched no item; showing the default page")
     items = [it for it in reduced.items if it.id not in reduced.overflow and it.id not in hidden and it.id not in outside]
     text = prompt.render(
         avery_name=profile.person, as_of=as_of, freshness=freshness_line, rulings_applied=rulings_applied,
@@ -307,4 +332,4 @@ def compose_digest(llm: LLM, reduced: ReduceResult, cands: dict[str, Candidate],
     return out, stats
 
 
-__all__ = ["SECTION_ORDER", "ComposeStats", "apply_focus", "compose_digest", "fallback_compose", "item_view", "title_for", "validate_compose"]
+__all__ = ["SECTION_ORDER", "ComposeStats", "apply_focus", "compose_digest", "fallback_compose", "focus_contact_ids", "item_view", "title_for", "validate_compose"]

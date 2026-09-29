@@ -16,6 +16,9 @@ from tests.c_helpers import DAY, MINI_RUNS, make_run, mini_manifest
 RENEE = "msg:<20260922-1408.renee@halberd.com>"
 
 
+PLANTED = ("board_prep", "formal", "garbage", "newsletters", "no_citations", "weekend")   # stems with fake runs in mini_runs
+
+
 @pytest.fixture(scope="module")
 def manifest():
     return mini_manifest()
@@ -34,7 +37,8 @@ def by_id(ws):
 def test_every_condition_is_found_by_its_run_dir_suffix(world):
     ids = [(c.kind, c.id, c.days) for c in world.conditions]
     assert ids == [("honesty", "stale_inbox", [DAY]), ("honesty", "no_notes", [DAY]), ("honesty", "corrupt_ics", [DAY]),
-                   *[("customize", s, [DAY]) for s in ("board_prep", "formal", "garbage", "newsletters", "no_citations", "weekend")]]
+                   *[("customize", s, [DAY] if s in PLANTED else []) for s in
+                     ("board_prep", "family_first", "formal", "garbage", "marcus_ben_only", "newsletters", "no_citations", "sixty_words", "weekend")]]
     assert "tasks_stale" not in by_id(world)  # built in to the world, but the mini manifest does not declare it
 
 
@@ -82,7 +86,7 @@ def test_condition_assertions_merge_manifest_and_suites(manifest):
     ids = [a.id for a in condition_assertions(m, "honesty", "stale_inbox")]
     assert ids[:2] == ["mine", "v-own"] and "hv-stale-header" in ids
     assert honesty_ids(m)[:1] == ["stale_inbox"] and "corrupt_ics" in honesty_ids(m)
-    assert customize_ids(m, True) == ["board_prep", "formal", "garbage", "newsletters", "no_citations", "weekend"]
+    assert customize_ids(m, True) == ["board_prep", "family_first", "formal", "garbage", "marcus_ben_only", "newsletters", "no_citations", "sixty_words", "weekend"]
 
 
 def test_builtin_tasks_stale_is_scored_on_default_runs_when_declared(tmp_path, manifest):
