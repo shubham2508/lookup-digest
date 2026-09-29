@@ -1,28 +1,63 @@
 {
-  "calls": 339,
-  "cached": 338,
-  "prompt_tokens": 3443,
-  "completion_tokens": 1921,
-  "cost_usd": 0.001391,
+  "calls": 302,
+  "cached": 300,
+  "prompt_tokens": 5443,
+  "completion_tokens": 2622,
+  "cost_usd": 0.001991,
   "cost_unknown_calls": 0,
   "by_role": {
     "compiler": {
+      "calls": 1,
+      "cached": 0,
+      "prompt_tokens": 1283,
+      "completion_tokens": 113,
+      "cost_usd": 0.000217
+    },
+    "signature_parser": {
+      "calls": 52,
+      "cached": 52,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "cost_usd": 0.0
+    },
+    "contact_classifier": {
+      "calls": 63,
+      "cached": 63,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "cost_usd": 0.0
+    },
+    "linker": {
+      "calls": 7,
+      "cached": 7,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "cost_usd": 0.0
+    },
+    "thread_reader": {
+      "calls": 175,
+      "cached": 175,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "cost_usd": 0.0
+    },
+    "calendar_sweep": {
       "calls": 1,
       "cached": 1,
       "prompt_tokens": 0,
       "completion_tokens": 0,
       "cost_usd": 0.0
     },
-    "extractor": {
-      "calls": 315,
-      "cached": 315,
+    "notes_tasks_sweep": {
+      "calls": 1,
+      "cached": 1,
       "prompt_tokens": 0,
       "completion_tokens": 0,
       "cost_usd": 0.0
     },
-    "triage": {
-      "calls": 22,
-      "cached": 22,
+    "news_sweep": {
+      "calls": 1,
+      "cached": 1,
       "prompt_tokens": 0,
       "completion_tokens": 0,
       "cost_usd": 0.0
@@ -30,9 +65,9 @@
     "compose": {
       "calls": 1,
       "cached": 0,
-      "prompt_tokens": 3443,
-      "completion_tokens": 1921,
-      "cost_usd": 0.001391
+      "prompt_tokens": 4160,
+      "completion_tokens": 2509,
+      "cost_usd": 0.001774
     }
   }
 }

@@ -1,0 +1,121 @@
+# In-session judge (OPEN_QUESTIONS #20): Claude Code orchestrator session, Fable 5.1, applying prompts/judge.md.
+# Scores 1–5. Reasons ≤ 25 words. Graded from the exported material only (the rendered digest or the draft + evidence).
+- id: d26/i4:reply
+  kind: draft
+  model: claude-fable-5.1 (in-session)
+  criteria:
+    - {name: factual_consistency, score: 5, reason: "Monday switch and the line-count request are both in the evidence"}
+    - {name: tone_for_recipient, score: 5, reason: "Short, lowercase, a grounded apology to a reference customer"}
+    - {name: assumptions_flagged, score: 4, reason: "Assumes the roll-up is still pending; the brief says so"}
+- id: d26/i11:forward_delegate
+  kind: draft
+  model: claude-fable-5.1 (in-session)
+  criteria:
+    - {name: factual_consistency, score: 5, reason: "Tomás's own commitment and Nadia's role are in the quotes"}
+    - {name: tone_for_recipient, score: 5, reason: "One-line delegation to a teammate"}
+    - {name: assumptions_flagged, score: 4, reason: "Nothing material assumed"}
+- id: d26/i17:reply
+  kind: draft
+  model: claude-fable-5.1 (in-session)
+  criteria:
+    - {name: factual_consistency, score: 4, reason: "$3.4M as of Sep 15 comes from the effective facts, not the quotes shown"}
+    - {name: tone_for_recipient, score: 2, reason: "Tells the lead investor 'the profile figure is stale': an internal note leaked into a capital draft"}
+    - {name: assumptions_flagged, score: 3, reason: "Assumes the finance-sync figure is final; not listed"}
+- id: d26/digest
+  kind: digest
+  model: claude-fable-5.1 (in-session)
+  criteria:
+    - {name: answers_three_questions, score: 4, reason: "One thing, decisions and drift are there; the references decide card offers weak options"}
+    - {name: no_noise, score: 3, reason: "Seven urgent items on a Sunday, several 'confirm/verify' items driven by stale tasks"}
+    - {name: honest_about_gaps, score: 4, reason: "7-day-stale tasks and 7 degraded items in the header"}
+- id: d27/i5:forward_delegate
+  kind: draft
+  model: claude-fable-5.1 (in-session)
+  criteria:
+    - {name: factual_consistency, score: 4, reason: "Matches Tomás's commitment; 'Walter' comes from the brief, not the quotes"}
+    - {name: tone_for_recipient, score: 5, reason: "Direct one-liner to the GTM lead"}
+    - {name: assumptions_flagged, score: 3, reason: "Assumes the outreach has not happened; not listed"}
+- id: d27/digest
+  kind: digest
+  model: claude-fable-5.1 (in-session)
+  criteria:
+    - {name: answers_three_questions, score: 4, reason: "Family conflict first, Diane's update with options, Plant Bundle and Marcus decisions present"}
+    - {name: no_noise, score: 4, reason: "Five urgent items, each owed; the QBR question repeats from Sunday"}
+    - {name: honest_about_gaps, score: 5, reason: "Flags a note dated after the digest as unverified; lists assumptions under the Diane decision"}
+- id: d28/i12:decide
+  kind: draft
+  model: claude-fable-5.1 (in-session)
+  criteria:
+    - {name: factual_consistency, score: 5, reason: "$48k/year and the Friday proposal are in the quotes"}
+    - {name: tone_for_recipient, score: 4, reason: "Terse approval line; fine for an internal card"}
+    - {name: assumptions_flagged, score: 2, reason: "A decide card whose draft is already 'Approved'; the choice it presupposes is not flagged"}
+- id: d28/digest
+  kind: digest
+  model: claude-fable-5.1 (in-session)
+  criteria:
+    - {name: answers_three_questions, score: 4, reason: "Pro-rata first with escalation; Stripe, Lumen and Plant Bundle decisions present"}
+    - {name: no_noise, score: 3, reason: "Repeated verify items; David's decide offers 'check the calendar' as an option"}
+    - {name: honest_about_gaps, score: 4, reason: "Stale tasks, degraded and resolved counts; 'Message them about' is a rendering slip"}
+- id: d29/i9:decide
+  kind: draft
+  model: claude-fable-5.1 (in-session)
+  criteria:
+    - {name: factual_consistency, score: 5, reason: "Option B, Wed Sept 30 at 1:00, is in the quotes"}
+    - {name: tone_for_recipient, score: 4, reason: "Warm and short for a customer contact"}
+    - {name: assumptions_flagged, score: 2, reason: "Accepts attendance inside a decide card without flagging that the decision is Avery's"}
+- id: d29/i10:forward_delegate
+  kind: draft
+  model: claude-fable-5.1 (in-session)
+  criteria:
+    - {name: factual_consistency, score: 5, reason: "Both quotes carried faithfully, including this morning's export/import"}
+    - {name: tone_for_recipient, score: 5, reason: "Clear question to Yuki, no filler"}
+    - {name: assumptions_flagged, score: 4, reason: "Nothing material assumed"}
+- id: d29/digest
+  kind: digest
+  model: claude-fable-5.1 (in-session)
+  criteria:
+    - {name: answers_three_questions, score: 5, reason: "Cap table as the one thing with the partnership meeting; decisions carry options and a recommendation"}
+    - {name: no_noise, score: 3, reason: "Eight urgent items; the QBR item both asks for a decision and drafts the acceptance"}
+    - {name: honest_about_gaps, score: 4, reason: "Header names the two items whose status stale tasks may hide; escalation counts shown"}
+- id: d30/i7:reply
+  kind: draft
+  model: claude-fable-5.1 (in-session)
+  criteria:
+    - {name: factual_consistency, score: 5, reason: "Asks exactly what the evidence leaves open: owner, status, Nadia plan"}
+    - {name: tone_for_recipient, score: 4, reason: "Three questions in one line to an exec who just did the right thing; no acknowledgement"}
+    - {name: assumptions_flagged, score: 4, reason: "Nothing material assumed"}
+- id: d30/i14:reply
+  kind: draft
+  model: claude-fable-5.1 (in-session)
+  criteria:
+    - {name: factual_consistency, score: 5, reason: "On track, non-blocking, Oct 13 patch: all quoted"}
+    - {name: tone_for_recipient, score: 5, reason: "Two sentences, the answer first, to a reference customer"}
+    - {name: assumptions_flagged, score: 5, reason: "Lists that the Sep 22 standup notes are assumed current"}
+- id: d30/i8:decide
+  kind: draft
+  model: claude-fable-5.1 (in-session)
+  criteria:
+    - {name: factual_consistency, score: 4, reason: "$41k vs $22k and 'this week' quoted; the one-week slip comes from the brief"}
+    - {name: tone_for_recipient, score: 4, reason: "Direct to the co-founder, in Avery's register"}
+    - {name: assumptions_flagged, score: 3, reason: "The draft commits to the recommended option; the schedule cost is stated, nothing listed"}
+- id: d30/i9:decide
+  kind: draft
+  model: claude-fable-5.1 (in-session)
+  criteria:
+    - {name: factual_consistency, score: 5, reason: "Grounded in the open comment about a fifth on-call person"}
+    - {name: tone_for_recipient, score: 4, reason: "Plain internal note"}
+    - {name: assumptions_flagged, score: 4, reason: "States its own hedge: a line for review, not an approved hire"}
+- id: d30/digest
+  kind: digest
+  model: claude-fable-5.1 (in-session)
+  criteria:
+    - {name: answers_three_questions, score: 5, reason: "Cap table first with today's meeting; incident, moved call, diligence materials, ARR and two decisions present"}
+    - {name: no_noise, score: 4, reason: "The cohort item asks to deliver what it says was delivered; the backfill item carries a decide and a question"}
+    - {name: honest_about_gaps, score: 5, reason: "Assumptions under drafts, stale tasks, escalation counts, the quarterly-vs-monthly conflict shown"}
+- id: baseline/d30/digest
+  kind: digest
+  model: claude-fable-5.1 (in-session)
+  criteria:
+    - {name: answers_three_questions, score: 4, reason: "Covers most of the day and catches the injection; the one thing is childcare, not the second slip to the lead investor"}
+    - {name: no_noise, score: 4, reason: "Tight list; Mei's signature and the invoice sit as urgent"}
+    - {name: honest_about_gaps, score: 2, reason: "Header says 'tasks ok' when tasks are 11 days stale; asserts a smoke suite and a reference policy the evidence does not show"}

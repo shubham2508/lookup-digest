@@ -1,38 +1,73 @@
 {
-  "calls": 315,
-  "cached": 312,
-  "prompt_tokens": 48003,
-  "completion_tokens": 14811,
-  "cost_usd": 0.013406,
+  "calls": 280,
+  "cached": 108,
+  "prompt_tokens": 1442074,
+  "completion_tokens": 143597,
+  "cost_usd": 0.244247,
   "cost_unknown_calls": 0,
   "by_role": {
-    "extractor": {
-      "calls": 293,
-      "cached": 293,
+    "signature_parser": {
+      "calls": 50,
+      "cached": 50,
       "prompt_tokens": 0,
       "completion_tokens": 0,
       "cost_usd": 0.0
     },
-    "triage": {
-      "calls": 19,
-      "cached": 18,
-      "prompt_tokens": 7921,
-      "completion_tokens": 3036,
-      "cost_usd": 0.002508
+    "contact_classifier": {
+      "calls": 57,
+      "cached": 57,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "cost_usd": 0.0
+    },
+    "linker": {
+      "calls": 6,
+      "cached": 1,
+      "prompt_tokens": 29379,
+      "completion_tokens": 7119,
+      "cost_usd": 0.001234
+    },
+    "thread_reader": {
+      "calls": 159,
+      "cached": 0,
+      "prompt_tokens": 1315340,
+      "completion_tokens": 116482,
+      "cost_usd": 0.220846
+    },
+    "news_sweep": {
+      "calls": 1,
+      "cached": 0,
+      "prompt_tokens": 33517,
+      "completion_tokens": 1715,
+      "cost_usd": 0.005047
+    },
+    "calendar_sweep": {
+      "calls": 1,
+      "cached": 0,
+      "prompt_tokens": 10779,
+      "completion_tokens": 3238,
+      "cost_usd": 0.002966
+    },
+    "notes_tasks_sweep": {
+      "calls": 1,
+      "cached": 0,
+      "prompt_tokens": 15458,
+      "completion_tokens": 5263,
+      "cost_usd": 0.004564
     },
     "compose": {
       "calls": 1,
       "cached": 0,
-      "prompt_tokens": 11272,
-      "completion_tokens": 11681,
-      "cost_usd": 0.007249
+      "prompt_tokens": 30290,
+      "completion_tokens": 8803,
+      "cost_usd": 0.008188
     },
     "materializer": {
-      "calls": 2,
-      "cached": 1,
-      "prompt_tokens": 28810,
-      "completion_tokens": 94,
-      "cost_usd": 0.003648
+      "calls": 4,
+      "cached": 0,
+      "prompt_tokens": 7311,
+      "completion_tokens": 977,
+      "cost_usd": 0.001402
     }
   }
 }

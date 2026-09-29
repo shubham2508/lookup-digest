@@ -1,0 +1,17 @@
+{
+  "calls": 1,
+  "cached": 0,
+  "prompt_tokens": 302399,
+  "completion_tokens": 32000,
+  "cost_usd": 0.036418,
+  "cost_unknown_calls": 0,
+  "by_role": {
+    "compose": {
+      "calls": 1,
+      "cached": 0,
+      "prompt_tokens": 302399,
+      "completion_tokens": 32000,
+      "cost_usd": 0.036418
+    }
+  }
+}

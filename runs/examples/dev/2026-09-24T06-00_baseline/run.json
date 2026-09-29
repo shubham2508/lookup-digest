@@ -8,17 +8,17 @@
   "suffix": "baseline",
   "customize": null,
   "timings_s": {
-    "ingest": 0.469,
-    "baseline_call": 373.312
+    "ingest": 0.399,
+    "baseline_call": 193.599
   },
-  "wall_s": 373.793,
-  "cost_usd": 0.035819,
+  "wall_s": 194.01,
+  "cost_usd": 0.033523,
   "llm_calls": 1,
   "llm_cached": 0,
   "degradations": 0,
   "threads": 359,
   "corpus_chars": 555848,
   "threads_dropped": 0,
-  "words": 758,
+  "words": 793,
   "digest": "/Users/shubham/Desktop/work/lookup-digest/runs/dev/2026-09-24T06-00_baseline/digest.md"
 }

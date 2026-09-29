@@ -1,0 +1,24 @@
+{
+  "run_id": "heldout/2026-03-26T06-00_baseline",
+  "world": "heldout",
+  "as_of": "2026-03-26T06:00:00-07:00",
+  "variant": null,
+  "baseline": true,
+  "tag": null,
+  "suffix": "baseline",
+  "customize": null,
+  "timings_s": {
+    "ingest": 0.404,
+    "baseline_call": 267.339
+  },
+  "wall_s": 267.754,
+  "cost_usd": 0.036418,
+  "llm_calls": 1,
+  "llm_cached": 0,
+  "degradations": 1,
+  "threads": 387,
+  "corpus_chars": 565166,
+  "threads_dropped": 0,
+  "words": 0,
+  "digest": "/Users/shubham/Desktop/work/lookup-digest/runs/heldout/2026-03-26T06-00_baseline/digest.md"
+}

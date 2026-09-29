@@ -1,0 +1,86 @@
+# In-session judge (OPEN_QUESTIONS #20): Claude Code orchestrator session, Fable 5.1, applying prompts/judge.md.
+# Scores 1–5. Reasons ≤ 25 words. Graded from the exported material only (the rendered digest or the draft + evidence).
+- id: d26/digest
+  kind: digest
+  model: claude-fable-5.1 (in-session)
+  criteria:
+    - {name: answers_three_questions, score: 4, reason: "One thing, decisions and contradictions are explicit; 'what changed' is carried by the stale-figure and timing conflicts"}
+    - {name: no_noise, score: 3, reason: "Mira's coffee and a prescription refill sit as urgent/calendar items on a Sunday; 14 also-pending lines"}
+    - {name: honest_about_gaps, score: 4, reason: "Header states 7-day-stale tasks and 2 degraded items; conflicting figures shown side by side"}
+- id: d27/i8:decide
+  kind: draft
+  model: claude-fable-5.1 (in-session)
+  criteria:
+    - {name: factual_consistency, score: 3, reason: "Street names and the March 23–27 dates are not in the evidence quotes shown"}
+    - {name: tone_for_recipient, score: 4, reason: "Plain instruction for a self-addressed decide card; no recipient"}
+    - {name: assumptions_flagged, score: 3, reason: "Assumes the block is affected and a car is street-parked; the brief hedges, the list is empty"}
+- id: d27/digest
+  kind: digest
+  model: claude-fable-5.1 (in-session)
+  criteria:
+    - {name: answers_three_questions, score: 4, reason: "Clear one thing, four decisions with options, conflicts named with dates and figures"}
+    - {name: no_noise, score: 3, reason: "'Confirm whether the March 4 session happened' is weak; the stipend item carries a message and a watch"}
+    - {name: honest_about_gaps, score: 4, reason: "8-day-stale tasks, 3 degraded, 8 resolved stated; both sides of each conflict shown"}
+- id: d28/i10:forward_delegate
+  kind: draft
+  model: claude-fable-5.1 (in-session)
+  criteria:
+    - {name: factual_consistency, score: 4, reason: "Matches the quotes on April 13 and fiscal close; 'anniversary is May 1' is not in the evidence"}
+    - {name: tone_for_recipient, score: 5, reason: "Short, lowercase, direct to a teammate, as the profile asks"}
+    - {name: assumptions_flagged, score: 3, reason: "Assumes Nora owns the Q2 assumption; nothing listed"}
+- id: d28/digest
+  kind: digest
+  model: claude-fable-5.1 (in-session)
+  criteria:
+    - {name: answers_three_questions, score: 4, reason: "One thing escalated as third time; decisions carry options and recommendations; changes stated"}
+    - {name: no_noise, score: 3, reason: "Mira's coffee is still urgent on its third day; two question cards plus decide cards on one page"}
+    - {name: honest_about_gaps, score: 5, reason: "Stale tasks, degraded and resolved counts; four-vs-five and $198k-vs-$185k conflicts both shown"}
+- id: d29/i6:forward_delegate
+  kind: draft
+  model: claude-fable-5.1 (in-session)
+  criteria:
+    - {name: factual_consistency, score: 5, reason: "Fields, window and on-call name all in the evidence and brief"}
+    - {name: tone_for_recipient, score: 5, reason: "One line to the head of engineering in Avery's register"}
+    - {name: assumptions_flagged, score: 4, reason: "Little assumed; the brief carries Arjun's on-call status"}
+- id: d29/i9:decide
+  kind: draft
+  model: claude-fable-5.1 (in-session)
+  criteria:
+    - {name: factual_consistency, score: 4, reason: "Consistent with Rachel's ask for a 30-minute call"}
+    - {name: tone_for_recipient, score: 4, reason: "Polished enough for a capital contact"}
+    - {name: assumptions_flagged, score: 2, reason: "A decide card whose draft already accepts the call; the choice it presupposes is not flagged"}
+- id: d29/digest
+  kind: digest
+  model: claude-fable-5.1 (in-session)
+  criteria:
+    - {name: answers_three_questions, score: 5, reason: "Operating model as the one thing with the partner meeting named; GPU decision grounded in numbers"}
+    - {name: no_noise, score: 3, reason: "'Text Jun' as urgent, Priscilla and Rex folded into one item, a 'due Tuesday' already past"}
+    - {name: honest_about_gaps, score: 4, reason: "Stale tasks and resolved counts; the training-date conflict shows both dates"}
+- id: d30/i8:reply
+  kind: draft
+  model: claude-fable-5.1 (in-session)
+  criteria:
+    - {name: factual_consistency, score: 4, reason: "Follows the brief; the evidence supports the incident and the open question of who contacts Tobias"}
+    - {name: tone_for_recipient, score: 5, reason: "Direct, short, to Jordan; approval and ask in two sentences"}
+    - {name: assumptions_flagged, score: 3, reason: "Assumes Avery approves the 7am email; not listed"}
+- id: d30/i5:forward_delegate
+  kind: draft
+  model: claude-fable-5.1 (in-session)
+  criteria:
+    - {name: factual_consistency, score: 5, reason: "Date, time and Julia all in the quotes"}
+    - {name: tone_for_recipient, score: 4, reason: "Fine for an investor's associate; could carry a thank-you"}
+    - {name: assumptions_flagged, score: 4, reason: "Nothing material assumed"}
+- id: d30/digest
+  kind: digest
+  model: claude-fable-5.1 (in-session)
+  criteria:
+    - {name: answers_three_questions, score: 5, reason: "Operating model first with today's meeting; incident, counsel, diligence materials and the GPU decision all present"}
+    - {name: no_noise, score: 4, reason: "Every urgent item is owed today; the one thing's task says 'due Tuesday' after the fact"}
+    - {name: honest_about_gaps, score: 5, reason: "Hard-rule removal, degraded and resolved counts, stale tasks, reconciled savings math all stated"}
+- id: baseline/d30/digest
+  kind: digest
+  model: claude-fable-5.1 (in-session)
+  criteria:
+    - {name: answers_three_questions, score: 1, reason: "Nothing rendered: the one-call baseline's output was invalid"}
+    - {name: no_noise, score: 3, reason: "Nothing shown, so nothing to judge"}
+    - {name: honest_about_gaps, score: 4, reason: "Says plainly that the baseline was unavailable"}

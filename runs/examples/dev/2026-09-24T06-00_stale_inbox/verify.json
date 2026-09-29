@@ -1,12 +1,19 @@
 {
-  "violations": [],
+  "violations": [
+    {
+      "rule": 9,
+      "item_id": "i12",
+      "detail": "over budget (359 > 350 words); demoted to also pending",
+      "fix": "fixed"
+    }
+  ],
   "stats": {
-    "words": 341,
+    "words": 334,
     "budget": 350,
     "header_present": true,
-    "items": 18,
-    "items_cited": 18,
-    "citations_total": 27,
-    "citations_resolved": 27
+    "items": 11,
+    "items_cited": 11,
+    "citations_total": 43,
+    "citations_resolved": 43
   }
 }

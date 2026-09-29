@@ -1,0 +1,4753 @@
+[
+  {
+    "contact_id": "sam-park",
+    "names": [
+      "Sam Park"
+    ],
+    "emails": [
+      "sam@parkchen.family"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "family",
+      "subtype": "partner",
+      "stage": null,
+      "source": "profile",
+      "evidence": []
+    },
+    "tier": "P0",
+    "profile_rules": [
+      "never_draft"
+    ],
+    "behavior": {
+      "avery_reply_rate": 1.0,
+      "median_avery_reply_hours": 0.6,
+      "last_inbound": "2026-09-21T21:15:39-07:00",
+      "last_outbound": "2026-09-22T07:10:01-07:00",
+      "initiation_ratio": 0.6,
+      "shared_meetings_30d": 5
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "priya-iyer",
+    "names": [
+      "Priya Iyer"
+    ],
+    "emails": [
+      "priya@tessera.io"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "team",
+      "subtype": "cofounder",
+      "stage": null,
+      "source": "profile",
+      "evidence": []
+    },
+    "tier": "P0",
+    "profile_rules": [
+      "email_means_intentional"
+    ],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-23T08:40:00-07:00",
+      "last_outbound": "2026-09-08T12:45:21-07:00",
+      "initiation_ratio": 0.44,
+      "shared_meetings_30d": 13
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "marcus-webb",
+    "names": [
+      "Marcus Webb"
+    ],
+    "emails": [
+      "marcus@inflectionpoint.vc"
+    ],
+    "org": "Inflection Point Ventures",
+    "title": "Partner",
+    "relationship": {
+      "category": "capital",
+      "subtype": "lead_investor",
+      "stage": null,
+      "source": "profile",
+      "evidence": [
+        {
+          "source_id": "sig:marcus@inflectionpoint.vc",
+          "quote": "Partner, Inflection Point Ventures"
+        }
+      ]
+    },
+    "tier": "P0",
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.43,
+      "median_avery_reply_hours": 6.6,
+      "last_inbound": "2026-09-22T16:42:22-07:00",
+      "last_outbound": "2026-09-22T21:30:43-07:00",
+      "initiation_ratio": 0.5,
+      "shared_meetings_30d": 1
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "diane-okafor",
+    "names": [
+      "Diane Okafor"
+    ],
+    "emails": [
+      "diane@cobaltridge.vc"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "capital",
+      "subtype": "board",
+      "stage": null,
+      "source": "profile",
+      "evidence": []
+    },
+    "tier": "P1",
+    "profile_rules": [
+      "quarterly_update_owed"
+    ],
+    "behavior": {
+      "avery_reply_rate": 0.67,
+      "median_avery_reply_hours": 13.8,
+      "last_inbound": "2026-09-10T08:30:55-07:00",
+      "last_outbound": "2026-09-11T08:20:55-07:00",
+      "initiation_ratio": 0.67,
+      "shared_meetings_30d": 1
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "jordan-liu",
+    "names": [
+      "Jordan Liu"
+    ],
+    "emails": [
+      "jordan@tessera.io"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "team",
+      "subtype": "head_of_eng",
+      "stage": null,
+      "source": "profile",
+      "evidence": []
+    },
+    "tier": "P1",
+    "profile_rules": [
+      "escalation_rare_listen"
+    ],
+    "behavior": {
+      "avery_reply_rate": 0.16,
+      "median_avery_reply_hours": 1.3,
+      "last_inbound": "2026-09-23T21:00:30-07:00",
+      "last_outbound": "2026-09-18T18:35:37-07:00",
+      "initiation_ratio": 0.3,
+      "shared_meetings_30d": 13
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "tomas-reyes",
+    "names": [
+      "Tomás Reyes"
+    ],
+    "emails": [
+      "tomas@tessera.io"
+    ],
+    "org": "Tessera",
+    "title": "Head of GTM",
+    "relationship": {
+      "category": "team",
+      "subtype": "head_of_gtm",
+      "stage": null,
+      "source": "profile",
+      "evidence": [
+        {
+          "source_id": "sig:tomas@tessera.io",
+          "quote": "Head of GTM, Tessera"
+        }
+      ]
+    },
+    "tier": "P1",
+    "profile_rules": [
+      "find_the_one_thing"
+    ],
+    "behavior": {
+      "avery_reply_rate": 0.15,
+      "median_avery_reply_hours": 1.2,
+      "last_inbound": "2026-09-23T22:11:18-07:00",
+      "last_outbound": "2026-09-18T14:20:10-07:00",
+      "initiation_ratio": 0.29,
+      "shared_meetings_30d": 13
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "ben-schaffer",
+    "names": [
+      "Ben Schaffer"
+    ],
+    "emails": [
+      "bschaffer@wsgr.com"
+    ],
+    "org": "Wilson Sonsini Goodrich & Rosati",
+    "title": null,
+    "relationship": {
+      "category": "capital",
+      "subtype": "deal_counsel",
+      "stage": null,
+      "source": "profile",
+      "evidence": [
+        {
+          "source_id": "sig:bschaffer@wsgr.com",
+          "quote": "Wilson Sonsini Goodrich & Rosati"
+        }
+      ]
+    },
+    "tier": "P0",
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.4,
+      "median_avery_reply_hours": 3.5,
+      "last_inbound": "2026-09-21T09:11:06-07:00",
+      "last_outbound": "2026-09-14T17:45:56-07:00",
+      "initiation_ratio": 0.71,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "sc-brief",
+    "names": [
+      "SC Brief"
+    ],
+    "emails": [
+      "brief@scbrief.io"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "newsletter",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "stratechery",
+    "names": [
+      "Stratechery"
+    ],
+    "emails": [
+      "email@stratechery.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": null,
+      "stage": null,
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "sig:email@stratechery.com",
+          "quote": "You are receiving this because you subscribed to Stratechery Daily Updates."
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-04T06:15:48-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "factory-floor-weekly",
+    "names": [
+      "Factory Floor Weekly"
+    ],
+    "emails": [
+      "weekly@factoryfloor.news"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "newsletter",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "latent-dispatch",
+    "names": [
+      "Latent Dispatch"
+    ],
+    "emails": [
+      "hello@latentdispatch.ai"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": null,
+      "stage": null,
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "sig:hello@latentdispatch.ai",
+          "quote": "You're getting this because you signed up at latentdispatch.ai."
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-23T07:09:54-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "notion",
+    "names": [
+      "Notion"
+    ],
+    "emails": [
+      "team@mail.notion.so"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "marketing",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "brett-callahan",
+    "names": [
+      "Brett Callahan"
+    ],
+    "emails": [
+      "brett.callahan@pinnacletalentpartners.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "cold_inbound",
+      "subtype": "recruiter",
+      "stage": null,
+      "source": "profile",
+      "evidence": [
+        {
+          "source_id": "msg:<20260826-0812.brett.callahan@pinnacletalentpartners.com>",
+          "quote": "Would you be open to a 15-minute call this week or next to hear more?"
+        },
+        {
+          "source_id": "msg:<20260909-0955.brett.callahan@pinnacletalentpartners.com>",
+          "quote": "Circling back on my note from a couple of weeks ago about the VP of Engineering role"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [
+      "never_draft",
+      "recruiter_pattern_only",
+      "no_surface_individual"
+    ],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-09T09:55:08-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "lauren-whitaker",
+    "names": [
+      "Lauren Whitaker"
+    ],
+    "emails": [
+      "lauren@cobaltridge.vc"
+    ],
+    "org": "Cobalt Ridge Ventures",
+    "title": "Executive Assistant to Diane Okafor",
+    "relationship": {
+      "category": "capital",
+      "subtype": "fund_staff",
+      "stage": "existing",
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "sig:lauren@cobaltridge.vc",
+          "quote": "Executive Assistant to Diane Okafor | Cobalt Ridge Ventures"
+        },
+        {
+          "source_id": "msg:<20260826-0940.lauren@cobaltridge.vc>",
+          "quote": "Confirming Diane for the Tessera board meeting tomorrow"
+        }
+      ]
+    },
+    "tier": "P1",
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 1.0,
+      "median_avery_reply_hours": 0.8,
+      "last_inbound": "2026-08-26T09:40:28-07:00",
+      "last_outbound": "2026-08-26T10:30:18-07:00",
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "github",
+    "names": [
+      "GitHub"
+    ],
+    "emails": [
+      "notifications@github.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "automated",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "gong",
+    "names": [
+      "Gong"
+    ],
+    "emails": [
+      "hello@gong.io"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "marketing",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "tessera-engineering",
+    "names": [
+      "Tessera Engineering"
+    ],
+    "emails": [
+      "eng@tessera.io"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "team",
+      "subtype": null,
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": "2026-09-21T18:10:31-07:00",
+      "initiation_ratio": 0.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "sofia-andrade",
+    "names": [
+      "Sofia Andrade"
+    ],
+    "emails": [
+      "sofia@tessera.io"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "team",
+      "subtype": null,
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.08,
+      "median_avery_reply_hours": 3.8,
+      "last_inbound": "2026-09-21T14:20:38-07:00",
+      "last_outbound": "2026-09-21T18:10:31-07:00",
+      "initiation_ratio": 0.42,
+      "shared_meetings_30d": 2
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "saas-operator",
+    "names": [
+      "SaaS Operator"
+    ],
+    "emails": [
+      "letters@saasoperator.co"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "newsletter",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "model-watch",
+    "names": [
+      "Model Watch"
+    ],
+    "emails": [
+      "issue@modelwatch.dev"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "newsletter",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "grace-lindqvist",
+    "names": [
+      "Grace Lindqvist"
+    ],
+    "emails": [
+      "grace.lindqvist@northstarfoods.com"
+    ],
+    "org": "Northstar Foods",
+    "title": "Procurement Manager",
+    "relationship": {
+      "category": "customer",
+      "subtype": "reference",
+      "stage": "onboarding",
+      "source": "profile",
+      "evidence": [
+        {
+          "source_id": "sig:grace.lindqvist@northstarfoods.com",
+          "quote": "Procurement Manager | Northstar Foods"
+        },
+        {
+          "source_id": "sig:grace.lindqvist@northstarfoods.com",
+          "quote": "Grace Lindqvist\nProcurement Manager | Northstar Foods"
+        },
+        {
+          "source_id": "msg:<20260827-0835.grace.lindqvist@northstarfoods.com>",
+          "quote": "Line 2 gets its tags loaded this week"
+        },
+        {
+          "source_id": "msg:<20260914-1500.grace.lindqvist@northstarfoods.com>",
+          "quote": "I'd like this off my list before the QBR."
+        }
+      ]
+    },
+    "tier": "P1",
+    "profile_rules": [
+      "same_day_reply"
+    ],
+    "behavior": {
+      "avery_reply_rate": 0.08,
+      "median_avery_reply_hours": 1.8,
+      "last_inbound": "2026-09-18T09:30:36-07:00",
+      "last_outbound": "2026-08-31T16:05:29-07:00",
+      "initiation_ratio": 0.8,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "yuki-sato",
+    "names": [
+      "Yuki Sato"
+    ],
+    "emails": [
+      "yuki@tessera.io"
+    ],
+    "org": "Tessera",
+    "title": "Solutions Engineering",
+    "relationship": {
+      "category": "team",
+      "subtype": null,
+      "stage": null,
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "sig:yuki@tessera.io",
+          "quote": "Solutions Engineering, Tessera"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.22,
+      "median_avery_reply_hours": 203.3,
+      "last_inbound": "2026-09-21T15:00:14-07:00",
+      "last_outbound": "2026-09-16T12:40:36-07:00",
+      "initiation_ratio": 0.2,
+      "shared_meetings_30d": 6
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "linear",
+    "names": [
+      "Linear"
+    ],
+    "emails": [
+      "hello@linear.app"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "marketing",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "renee-tan",
+    "names": [
+      "Renee Tan"
+    ],
+    "emails": [
+      "renee.tan@halberd.com"
+    ],
+    "org": "Halberd Manufacturing",
+    "title": "Procurement Lead",
+    "relationship": {
+      "category": "customer",
+      "subtype": "reference",
+      "stage": "onboarding",
+      "source": "profile",
+      "evidence": [
+        {
+          "source_id": "sig:renee.tan@halberd.com",
+          "quote": "Procurement Lead | Halberd Manufacturing"
+        },
+        {
+          "source_id": "sig:renee.tan@halberd.com",
+          "quote": "Renee Tan | Procurement Lead | Halberd Manufacturing"
+        },
+        {
+          "source_id": "msg:<20260827-0940.renee.tan@halberd.com>",
+          "quote": "I'd like to propose Oct 6 as go-live for Fresno."
+        },
+        {
+          "source_id": "msg:<20260918-1130.renee.tan@halberd.com>",
+          "quote": "14 operators confirmed for the 29th (9 day shift, 5 swing), plus Joel and me."
+        }
+      ]
+    },
+    "tier": "P1",
+    "profile_rules": [
+      "same_day_reply"
+    ],
+    "behavior": {
+      "avery_reply_rate": 0.4,
+      "median_avery_reply_hours": 171.7,
+      "last_inbound": "2026-09-23T14:08:40-07:00",
+      "last_outbound": "2026-09-16T12:40:36-07:00",
+      "initiation_ratio": 0.6,
+      "shared_meetings_30d": 4
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "dev-patel",
+    "names": [
+      "Dev Patel"
+    ],
+    "emails": [
+      "dev@tessera.io"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "team",
+      "subtype": null,
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-22T12:15:52-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 0.25,
+      "shared_meetings_30d": 2
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "omar-haddad",
+    "names": [
+      "Omar Haddad"
+    ],
+    "emails": [
+      "omar@tessera.io"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "team",
+      "subtype": null,
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-22T11:30:56-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 0.57,
+      "shared_meetings_30d": 2
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "simon-achterberg",
+    "names": [
+      "Simon Achterberg"
+    ],
+    "emails": [
+      "simon.achterberg@veritascomponents.com"
+    ],
+    "org": "Veritas Components",
+    "title": "Procurement Lead",
+    "relationship": {
+      "category": "customer",
+      "subtype": "reference",
+      "stage": "active",
+      "source": "profile",
+      "evidence": [
+        {
+          "source_id": "sig:simon.achterberg@veritascomponents.com",
+          "quote": "Procurement Lead | Veritas Components"
+        },
+        {
+          "source_id": "msg:<20260903-0830.simon.achterberg@veritascomponents.com>",
+          "quote": "before the October renewal"
+        },
+        {
+          "source_id": "msg:<20260908-0900.simon.achterberg@veritascomponents.com>",
+          "quote": "My successor starts tomorrow"
+        }
+      ]
+    },
+    "tier": "P1",
+    "profile_rules": [
+      "same_day_reply"
+    ],
+    "behavior": {
+      "avery_reply_rate": 0.17,
+      "median_avery_reply_hours": 4.7,
+      "last_inbound": "2026-09-08T09:00:30-07:00",
+      "last_outbound": "2026-09-09T12:05:54-07:00",
+      "initiation_ratio": 0.67,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "carta",
+    "names": [
+      "Carta"
+    ],
+    "emails": [
+      "events@carta.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "marketing",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "marisol-vega",
+    "names": [
+      "Marisol Vega"
+    ],
+    "emails": [
+      "marisol@hexlinesearch.com"
+    ],
+    "org": "Hexline Search",
+    "title": "Partner",
+    "relationship": {
+      "category": "cold_inbound",
+      "subtype": "recruiter",
+      "stage": null,
+      "source": "profile",
+      "evidence": [
+        {
+          "source_id": "sig:marisol@hexlinesearch.com",
+          "quote": "Partner, Hexline Search"
+        },
+        {
+          "source_id": "msg:<20260827-1435.marisol@hexlinesearch.com>",
+          "quote": "Would you have 20 minutes next week for a confidential conversation?"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [
+      "never_draft",
+      "recruiter_pattern_only",
+      "no_surface_individual"
+    ],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-22T10:33:33-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "loom",
+    "names": [
+      "Loom"
+    ],
+    "emails": [
+      "hello@loom.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "marketing",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "gusto",
+    "names": [
+      "Gusto"
+    ],
+    "emails": [
+      "no-reply@gusto.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "automated",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "oakland-tech-digest",
+    "names": [
+      "Oakland Tech Digest"
+    ],
+    "emails": [
+      "news@oaklandtechdigest.org"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "newsletter",
+      "stage": null,
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "sig:news@oaklandtechdigest.org",
+          "quote": "Oakland Tech Digest is a volunteer newsletter."
+        },
+        {
+          "source_id": "msg:<20260828-0745.news@oaklandtechdigest.org>",
+          "quote": "Here is what is happening in East Bay tech over the next two weeks."
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-18T07:48:51-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "greenhouse",
+    "names": [
+      "Greenhouse"
+    ],
+    "emails": [
+      "no-reply@greenhouse.io"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "automated",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "figma",
+    "names": [
+      "Figma"
+    ],
+    "emails": [
+      "hello@mail.figma.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "marketing",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "kim-delgado",
+    "names": [
+      "Kim Delgado"
+    ],
+    "emails": [
+      "kim@tessera.io"
+    ],
+    "org": "Tessera",
+    "title": "Ops & Finance",
+    "relationship": {
+      "category": "team",
+      "subtype": null,
+      "stage": null,
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "sig:kim@tessera.io",
+          "quote": "Ops & Finance, Tessera"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.17,
+      "median_avery_reply_hours": 0.8,
+      "last_inbound": "2026-09-23T16:40:55-07:00",
+      "last_outbound": "2026-09-16T12:40:34-07:00",
+      "initiation_ratio": 0.31,
+      "shared_meetings_30d": 9
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "tessera-team",
+    "names": [
+      "Tessera Team"
+    ],
+    "emails": [
+      "team@tessera.io"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "team",
+      "subtype": null,
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": "2026-08-28T09:20:36-07:00",
+      "initiation_ratio": 0.0,
+      "shared_meetings_30d": 2
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "hubspot",
+    "names": [
+      "HubSpot"
+    ],
+    "emails": [
+      "marketing@hubspot.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "marketing",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "hollis-grant",
+    "names": [
+      "Hollis Grant"
+    ],
+    "emails": [
+      "hollis.grant@gmail.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "network",
+      "subtype": "advisor",
+      "stage": null,
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "msg:<20260829-0815.hollis.grant@gmail.com>",
+          "quote": "when IPV asks for a seat, and they will, do you already know what you're giving up to get it?"
+        },
+        {
+          "source_id": "msg:<20260923-0820.hollis.grant@gmail.com>",
+          "quote": "I have a thought on board composition you should hear before the A closes"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.75,
+      "median_avery_reply_hours": 1.7,
+      "last_inbound": "2026-09-23T08:20:43-07:00",
+      "last_outbound": "2026-09-12T18:05:52-07:00",
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 1
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "canva",
+    "names": [
+      "Canva"
+    ],
+    "emails": [
+      "hello@engage.canva.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "marketing",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "bram-kessler",
+    "names": [
+      "Bram Kessler"
+    ],
+    "emails": [
+      "bram@keystonesearch.com"
+    ],
+    "org": "Keystone Search",
+    "title": "Partner",
+    "relationship": {
+      "category": "hiring",
+      "subtype": "retained_search",
+      "stage": "open",
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "sig:bram@keystonesearch.com",
+          "quote": "Partner, Keystone Search"
+        },
+        {
+          "source_id": "sig:bram@keystonesearch.com",
+          "quote": "retained search for design & product leadership"
+        },
+        {
+          "source_id": "msg:<20260829-1430.bram@keystonesearch.com>",
+          "quote": "The engagement letter is countersigned"
+        },
+        {
+          "source_id": "msg:<20260918-1520.bram@keystonesearch.com>",
+          "quote": "First batch: three profiles for the Product Designer search"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-23T15:00:15-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 0.5,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "aws-billing",
+    "names": [
+      "AWS Billing"
+    ],
+    "emails": [
+      "no-reply@aws.amazon.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "automated",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "founders-ledger",
+    "names": [
+      "Founders Ledger"
+    ],
+    "emails": [
+      "digest@foundersledger.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "newsletter",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "grammarly",
+    "names": [
+      "Grammarly"
+    ],
+    "emails": [
+      "info@send.grammarly.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "marketing",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "wsgr-billing",
+    "names": [
+      "WSGR Billing"
+    ],
+    "emails": [
+      "billing@wsgr.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "automated",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "slack",
+    "names": [
+      "Slack"
+    ],
+    "emails": [
+      "hello@email.slack.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "marketing",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "ana-kowalski",
+    "names": [
+      "Ana Kowalski"
+    ],
+    "emails": [
+      "ana@tessera.io"
+    ],
+    "org": "Tessera",
+    "title": "AE",
+    "relationship": {
+      "category": "team",
+      "subtype": null,
+      "stage": null,
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "sig:ana@tessera.io",
+          "quote": "AE, Tessera"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.17,
+      "median_avery_reply_hours": 0.8,
+      "last_inbound": "2026-09-22T16:00:04-07:00",
+      "last_outbound": "2026-09-18T14:20:10-07:00",
+      "initiation_ratio": 0.21,
+      "shared_meetings_30d": 2
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "graham-pryce",
+    "names": [
+      "Graham Pryce"
+    ],
+    "emails": [
+      "g.pryce@northgateexec.com"
+    ],
+    "org": "Northgate Executive",
+    "title": "Senior Associate",
+    "relationship": {
+      "category": "cold_inbound",
+      "subtype": "recruiter",
+      "stage": null,
+      "source": "profile",
+      "evidence": [
+        {
+          "source_id": "sig:g.pryce@northgateexec.com",
+          "quote": "Senior Associate | Northgate Executive"
+        },
+        {
+          "source_id": "msg:<20260831-0920.g.pryce@northgateexec.com>",
+          "quote": "I'm working on a Head of Product search"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [
+      "never_draft",
+      "recruiter_pattern_only",
+      "no_surface_individual"
+    ],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-23T09:14:26-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "datadog",
+    "names": [
+      "Datadog"
+    ],
+    "emails": [
+      "info@datadoghq.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "marketing",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "david-kim",
+    "names": [
+      "David Kim"
+    ],
+    "emails": [
+      "david@aperturecap.com"
+    ],
+    "org": "Aperture Capital",
+    "title": "Partner",
+    "relationship": {
+      "category": "capital",
+      "subtype": "lead_investor",
+      "stage": "in_conversation",
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "sig:david@aperturecap.com",
+          "quote": "Partner, Aperture Capital"
+        },
+        {
+          "source_id": "msg:<20260831-1020.david@aperturecap.com>",
+          "quote": "Aperture is a $180M fund, we lead and co-lead Series A rounds"
+        },
+        {
+          "source_id": "msg:<20260903-1115.david@aperturecap.com>",
+          "quote": "I'm happy to dig in whenever you're ready; a 45-minute call would do it"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 1.0,
+      "median_avery_reply_hours": 13.1,
+      "last_inbound": "2026-09-03T11:15:25-07:00",
+      "last_outbound": "2026-09-03T15:40:41-07:00",
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "zoom",
+    "names": [
+      "Zoom"
+    ],
+    "emails": [
+      "no-reply@zoom.us"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "automated",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "deel",
+    "names": [
+      "Deel"
+    ],
+    "emails": [
+      "hello@deel.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "marketing",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "stripe",
+    "names": [
+      "Stripe"
+    ],
+    "emails": [
+      "notifications@stripe.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "automated",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "lakeshore-athletic-club",
+    "names": [
+      "Lakeshore Athletic Club"
+    ],
+    "emails": [
+      "members@lakeshoreathletic.club"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "unresolved",
+      "subtype": null,
+      "stage": null,
+      "source": "unresolved",
+      "evidence": [
+        {
+          "source_id": "msg:<20260901-0605.members@lakeshoreathletic.club>",
+          "quote": "Your Lakeshore membership renews Oct 1 - no action needed"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-01T06:05:25-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "mateo-silva",
+    "names": [
+      "Mateo Silva"
+    ],
+    "emails": [
+      "mateo@tessera.io"
+    ],
+    "org": "Tessera Support",
+    "title": null,
+    "relationship": {
+      "category": "team",
+      "subtype": null,
+      "stage": null,
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "sig:mateo@tessera.io",
+          "quote": "Mateo | Tessera Support"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.14,
+      "median_avery_reply_hours": 0.8,
+      "last_inbound": "2026-09-18T16:30:31-07:00",
+      "last_outbound": "2026-09-04T17:05:36-07:00",
+      "initiation_ratio": 0.5,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "vanta",
+    "names": [
+      "Vanta"
+    ],
+    "emails": [
+      "hello@vanta.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "marketing",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "walter-kessling",
+    "names": [
+      "Walter Kessling"
+    ],
+    "emails": [
+      "walter.kessling@veritascomponents.com"
+    ],
+    "org": "Veritas Components",
+    "title": "Chief Financial Officer",
+    "relationship": {
+      "category": "customer",
+      "subtype": "customer_champion",
+      "stage": "renewal_window",
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "sig:walter.kessling@veritascomponents.com",
+          "quote": "Chief Financial Officer, Veritas Components"
+        },
+        {
+          "source_id": "msg:<20260902-1320.walter.kessling@veritascomponents.com>",
+          "quote": "Every renewal above the review threshold goes through our annual vendor review"
+        }
+      ]
+    },
+    "tier": "P1",
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 1.0,
+      "median_avery_reply_hours": 3.8,
+      "last_inbound": "2026-09-02T13:20:47-07:00",
+      "last_outbound": "2026-09-02T17:10:16-07:00",
+      "initiation_ratio": 0.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "mixpanel",
+    "names": [
+      "Mixpanel"
+    ],
+    "emails": [
+      "hello@mixpanel.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "marketing",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "zoom-mail",
+    "names": [
+      "Zoom"
+    ],
+    "emails": [
+      "zoom@mail.zoom.us"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "marketing",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "rippling",
+    "names": [
+      "Rippling"
+    ],
+    "emails": [
+      "team@rippling.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "marketing",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "tanya-osgood",
+    "names": [
+      "Tanya Osgood"
+    ],
+    "emails": [
+      "tanya@riverbendrecruiting.com"
+    ],
+    "org": "Riverbend Recruiting",
+    "title": "Account Manager",
+    "relationship": {
+      "category": "cold_inbound",
+      "subtype": "recruiter",
+      "stage": null,
+      "source": "profile",
+      "evidence": [
+        {
+          "source_id": "sig:tanya@riverbendrecruiting.com",
+          "quote": "Tanya Osgood | Account Manager\nRiverbend Recruiting - Engineering Talent for Startups"
+        },
+        {
+          "source_id": "msg:<20260902-1105.tanya@riverbendrecruiting.com>",
+          "quote": "Do you have 15 minutes this week to chat about your open roles?"
+        },
+        {
+          "source_id": "msg:<20260916-0905.tanya@riverbendrecruiting.com>",
+          "quote": "Following up from a couple of weeks ago."
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [
+      "never_draft",
+      "recruiter_pattern_only",
+      "no_surface_individual"
+    ],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-16T09:05:57-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "felix-amari",
+    "names": [
+      "Felix Amari"
+    ],
+    "emails": [
+      "felix@amarifamilyoffice.com"
+    ],
+    "org": "Amari Family Office",
+    "title": null,
+    "relationship": {
+      "category": "capital",
+      "subtype": "existing",
+      "stage": "existing",
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "sig:felix@amarifamilyoffice.com",
+          "quote": "Amari Family Office"
+        },
+        {
+          "source_id": "msg:<20260902-1130.felix@amarifamilyoffice.com>",
+          "quote": "I'd like to take my pro rata when the time comes."
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 1.0,
+      "median_avery_reply_hours": 1.6,
+      "last_inbound": "2026-09-02T11:30:43-07:00",
+      "last_outbound": "2026-09-02T13:05:52-07:00",
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "denise-farrow",
+    "names": [
+      "Denise Farrow"
+    ],
+    "emails": [
+      "denise.farrow.recruits@gmail.com"
+    ],
+    "org": null,
+    "title": "Independent technical recruiter",
+    "relationship": {
+      "category": "cold_inbound",
+      "subtype": "recruiter",
+      "stage": null,
+      "source": "profile",
+      "evidence": [
+        {
+          "source_id": "sig:denise.farrow.recruits@gmail.com",
+          "quote": "Independent technical recruiter"
+        },
+        {
+          "source_id": "msg:<20260903-0745.denise.farrow.recruits@gmail.com>",
+          "quote": "Would you be up for a 15 minute call?"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [
+      "never_draft",
+      "recruiter_pattern_only",
+      "no_surface_individual"
+    ],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-21T13:47:57-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "tyler-brooks",
+    "names": [
+      "Tyler Brooks"
+    ],
+    "emails": [
+      "tyler.brooks@dataforge.io"
+    ],
+    "org": "DataForge",
+    "title": null,
+    "relationship": {
+      "category": "cold_inbound",
+      "subtype": "sales_pitch",
+      "stage": null,
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "sig:tyler.brooks@dataforge.io",
+          "quote": "Tyler Brooks | DataForge | Book a demo"
+        },
+        {
+          "source_id": "msg:<20260903-0805.tyler.brooks@dataforge.io>",
+          "quote": "DataForge helps Series A companies like yours cut ETL and warehouse costs by up to 40%"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-17T08:00:13-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "github-explore",
+    "names": [
+      "GitHub"
+    ],
+    "emails": [
+      "github@explore.github.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "newsletter",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "ravi-menon",
+    "names": [
+      "Ravi Menon"
+    ],
+    "emails": [
+      "ravi@inflectionpoint.vc"
+    ],
+    "org": "Inflection Point Ventures",
+    "title": "Associate",
+    "relationship": {
+      "category": "capital",
+      "subtype": "fund_staff",
+      "stage": "diligence",
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "sig:ravi@inflectionpoint.vc",
+          "quote": "Associate, Inflection Point Ventures"
+        },
+        {
+          "source_id": "msg:<20260909-1430.ravi@inflectionpoint.vc>",
+          "quote": "To keep the diligence work moving, could we get data room access for two of our analysts?"
+        },
+        {
+          "source_id": "msg:<20260911-1015.ravi@inflectionpoint.vc>",
+          "quote": "We want to make sure we're not double-counting in our model."
+        }
+      ]
+    },
+    "tier": "P0",
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-11T10:15:29-07:00",
+      "last_outbound": "2026-09-22T17:50:03-07:00",
+      "initiation_ratio": 0.5,
+      "shared_meetings_30d": 2
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "paul-osei",
+    "names": [
+      "Paul Osei"
+    ],
+    "emails": [
+      "paul.osei@northstarfoods.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "customer",
+      "subtype": null,
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": "P1",
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": 0.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "brex",
+    "names": [
+      "Brex"
+    ],
+    "emails": [
+      "hello@brex.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "marketing",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "jordan-liu-google-calendar",
+    "names": [
+      "Jordan Liu (Google Calendar)",
+      "Ravi Menon (Google Calendar)",
+      "Kim Delgado (Google Calendar)",
+      "Tomás Reyes (Google Calendar)",
+      "Priya Iyer (Google Calendar)",
+      "Ines Ferreira (Google Calendar)",
+      "Dana Whitfield (Google Calendar)"
+    ],
+    "emails": [
+      "calendar-notification@google.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "automated",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "calendly",
+    "names": [
+      "Calendly"
+    ],
+    "emails": [
+      "hello@calendly.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "marketing",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "kai-chen",
+    "names": [
+      "Kai Chen"
+    ],
+    "emails": [
+      "kai.chen.oak@gmail.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "family",
+      "subtype": "family_member",
+      "stage": null,
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "msg:<20260903-2015.kai.chen.oak@gmail.com>",
+          "quote": "I'll bring the physical box at thanksgiving."
+        },
+        {
+          "source_id": "msg:<20260920-0940.kai.chen.oak@gmail.com>",
+          "quote": "finally pulled last sunday's lake pics off my phone."
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-20T09:40:18-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "ramp",
+    "names": [
+      "Ramp"
+    ],
+    "emails": [
+      "news@ramp.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "marketing",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "cobalt-ridge-ventures",
+    "names": [
+      "Cobalt Ridge Ventures"
+    ],
+    "emails": [
+      "office@cobaltridge.vc"
+    ],
+    "org": "Cobalt Ridge Ventures",
+    "title": null,
+    "relationship": {
+      "category": "capital",
+      "subtype": "fund_staff",
+      "stage": "existing",
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "sig:office@cobaltridge.vc",
+          "quote": "Cobalt Ridge Ventures | Platform Team"
+        },
+        {
+          "source_id": "msg:<20260904-1000.office@cobaltridge.vc>",
+          "quote": "Please join us for our fall portfolio founders dinner."
+        }
+      ]
+    },
+    "tier": "P1",
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-04T10:00:45-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "nia-bassett",
+    "names": [
+      "Nia Bassett"
+    ],
+    "emails": [
+      "nia@corvidrobotics.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "network",
+      "subtype": "advisor",
+      "stage": null,
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "msg:<20260904-1120.nia@corvidrobotics.com>",
+          "quote": "I told her about Tessera and she's applying through your careers page this weekend with my name on it."
+        },
+        {
+          "source_id": "msg:<20260916-0840.nia@corvidrobotics.com>",
+          "quote": "great seeing you Saturday - that was the first time I've laughed about a board deck in months."
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.67,
+      "median_avery_reply_hours": 1.1,
+      "last_inbound": "2026-09-16T08:40:11-07:00",
+      "last_outbound": "2026-09-16T09:10:16-07:00",
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "carla-mendes",
+    "names": [
+      "Carla Mendes"
+    ],
+    "emails": [
+      "carla.mendes@meridianfoods.com"
+    ],
+    "org": "Meridian Foods",
+    "title": "Director, Supply Chain",
+    "relationship": {
+      "category": "customer",
+      "subtype": "supply_chain_lead",
+      "stage": "prospect",
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "sig:carla.mendes@meridianfoods.com",
+          "quote": "Director, Supply Chain | Meridian Foods"
+        },
+        {
+          "source_id": "msg:<20260904-1130.carla.mendes@meridianfoods.com>",
+          "quote": "We are looking at two other vendors in parallel"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-04T11:30:09-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "miro",
+    "names": [
+      "Miro"
+    ],
+    "emails": [
+      "hello@miro.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "marketing",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "kyle-brannigan",
+    "names": [
+      "Kyle Brannigan"
+    ],
+    "emails": [
+      "kyle@apextalent.io"
+    ],
+    "org": "Apex Talent",
+    "title": "Talent Partner",
+    "relationship": {
+      "category": "cold_inbound",
+      "subtype": "recruiter",
+      "stage": null,
+      "source": "profile",
+      "evidence": [
+        {
+          "source_id": "sig:kyle@apextalent.io",
+          "quote": "Kyle Brannigan | Talent Partner | Apex Talent"
+        },
+        {
+          "source_id": "sig:kyle@apextalent.io",
+          "quote": "Talent Partner | Apex Talent"
+        },
+        {
+          "source_id": "msg:<20260904-1530.kyle@apextalent.io>",
+          "quote": "I'm leading a Chief Product Officer search for a supply chain SaaS company"
+        },
+        {
+          "source_id": "msg:<20260924-0540.kyle@apextalent.io>",
+          "quote": "Last attempt, I promise!"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [
+      "never_draft",
+      "recruiter_pattern_only",
+      "no_surface_individual"
+    ],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-24T05:40:52-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "slack-slack",
+    "names": [
+      "Slack"
+    ],
+    "emails": [
+      "notification@slack.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "automated",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "asana",
+    "names": [
+      "Asana"
+    ],
+    "emails": [
+      "team@asana.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "marketing",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "gwen-farrow",
+    "names": [
+      "Gwen Farrow"
+    ],
+    "emails": [
+      "gfarrow@harrisonstreetpartners.com"
+    ],
+    "org": "Harrison Street Partners",
+    "title": "Property Manager",
+    "relationship": {
+      "category": "vendor",
+      "subtype": "property_manager",
+      "stage": "active_contract",
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "sig:gfarrow@harrisonstreetpartners.com",
+          "quote": "Property Manager, Harrison Street Partners"
+        },
+        {
+          "source_id": "msg:<20260905-1140.gfarrow@harrisonstreetpartners.com>",
+          "quote": "Your lease for Suite 310 at 2201 Harrison St runs through March 31, 2027."
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-05T11:40:00-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "webflow",
+    "names": [
+      "Webflow"
+    ],
+    "emails": [
+      "team@webflow.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "marketing",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "joel-brennan",
+    "names": [
+      "Joel Brennan"
+    ],
+    "emails": [
+      "joel.brennan@halberd.com"
+    ],
+    "org": "Halberd Manufacturing",
+    "title": "IT Systems",
+    "relationship": {
+      "category": "customer",
+      "subtype": "engineer",
+      "stage": "onboarding",
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "sig:joel.brennan@halberd.com",
+          "quote": "Joel Brennan | IT Systems | Halberd Manufacturing"
+        },
+        {
+          "source_id": "msg:<20260906-1120.joel.brennan@halberd.com>",
+          "quote": "We're standing up the pilot group ahead of Tuesday and SAML is failing for every user"
+        }
+      ]
+    },
+    "tier": "P1",
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-06T11:20:37-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "tessera-support",
+    "names": [
+      "Tessera Support"
+    ],
+    "emails": [
+      "support@tessera.io"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "team",
+      "subtype": null,
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": 0.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "gusto-mail",
+    "names": [
+      "Gusto"
+    ],
+    "emails": [
+      "gusto@mail.gusto.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "marketing",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "mei-tanaka",
+    "names": [
+      "Mei Tanaka"
+    ],
+    "emails": [
+      "mei.tanaka.dev@gmail.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "hiring",
+      "subtype": "candidate",
+      "stage": "onsite",
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "msg:<20260907-0910.mei.tanaka.dev@gmail.com>",
+          "quote": "Thank you for organising the onsite"
+        },
+        {
+          "source_id": "msg:<20260907-0910.mei.tanaka.dev@gmail.com>",
+          "quote": "I will wait to hear from you on next steps whenever the panel has had a chance to compare notes."
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-07T09:10:11-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "alicia-moreau",
+    "names": [
+      "Alicia Moreau"
+    ],
+    "emails": [
+      "amoreau@summitsearchgroup.com"
+    ],
+    "org": "Summit Search Group",
+    "title": "Research Director",
+    "relationship": {
+      "category": "cold_inbound",
+      "subtype": "recruiter",
+      "stage": null,
+      "source": "profile",
+      "evidence": [
+        {
+          "source_id": "sig:amoreau@summitsearchgroup.com",
+          "quote": "Research Director, Summit Search Group"
+        },
+        {
+          "source_id": "msg:<20260907-1000.amoreau@summitsearchgroup.com>",
+          "quote": "Following up on my note from last month regarding the VP Engineering search"
+        },
+        {
+          "source_id": "msg:<20260918-0758.amoreau@summitsearchgroup.com>",
+          "quote": "If there is any interest, I need 15 minutes before then."
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [
+      "never_draft",
+      "recruiter_pattern_only",
+      "no_surface_individual"
+    ],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-18T07:58:42-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "dale-whitcombe",
+    "names": [
+      "Dale Whitcombe"
+    ],
+    "emails": [
+      "dwhitcombe@ridgewaymetals.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "customer",
+      "subtype": "customer_champion",
+      "stage": "prospect",
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "msg:<20260907-1020.dwhitcombe@ridgewaymetals.com>",
+          "quote": "I would like a short call to scope a trial on one line"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-07T10:20:06-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "intercom",
+    "names": [
+      "Intercom"
+    ],
+    "emails": [
+      "team@intercom.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "marketing",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "rina-shah",
+    "names": [
+      "Rina Shah"
+    ],
+    "emails": [
+      "rina@pinnaclecpa.com"
+    ],
+    "org": "Pinnacle CPA",
+    "title": "CPA",
+    "relationship": {
+      "category": "vendor",
+      "subtype": "account_manager",
+      "stage": "active_contract",
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "sig:rina@pinnaclecpa.com",
+          "quote": "Rina Shah, CPA | Pinnacle CPA"
+        },
+        {
+          "source_id": "msg:<20260908-1015.rina@pinnaclecpa.com>",
+          "quote": "Confirming that the Q3 2026 estimated tax payments for Tessera, Inc. were submitted"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-08T10:15:12-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "snowflake",
+    "names": [
+      "Snowflake"
+    ],
+    "emails": [
+      "events@snowflake.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "marketing",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "owen-fitzgerald",
+    "names": [
+      "Owen Fitzgerald"
+    ],
+    "emails": [
+      "owen@cascadepartners.co"
+    ],
+    "org": "Cascade Partners",
+    "title": "Partner",
+    "relationship": {
+      "category": "network",
+      "subtype": "advisor",
+      "stage": null,
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "sig:owen@cascadepartners.co",
+          "quote": "Partner, Cascade Partners"
+        },
+        {
+          "source_id": "sig:owen@cascadepartners.co",
+          "quote": "Partner, Cascade Partners\nBoard & Executive Search"
+        },
+        {
+          "source_id": "msg:<20260908-1310.owen@cascadepartners.co>",
+          "quote": "I'd like to put your name forward, with your permission."
+        },
+        {
+          "source_id": "msg:<20260920-1805.owen@cascadepartners.co>",
+          "quote": "they're specifically looking for a founder's perspective on their platform strategy."
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-20T18:05:37-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "1password",
+    "names": [
+      "1Password"
+    ],
+    "emails": [
+      "hello@1password.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "marketing",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "grand-avenue-dental",
+    "names": [
+      "Grand Avenue Dental"
+    ],
+    "emails": [
+      "appointments@grandavedental.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "family",
+      "subtype": "dentist",
+      "stage": null,
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "msg:<20260909-0700.appointments@grandavedental.com>",
+          "quote": "This confirms your appointment at Grand Avenue Dental"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-09T07:00:25-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "nadia-rahimi",
+    "names": [
+      "Nadia Rahimi"
+    ],
+    "emails": [
+      "nadia.rahimi@veritascomponents.com"
+    ],
+    "org": "Veritas Components",
+    "title": "Procurement Lead",
+    "relationship": {
+      "category": "customer",
+      "subtype": "reference",
+      "stage": "active",
+      "source": "profile",
+      "evidence": [
+        {
+          "source_id": "sig:nadia.rahimi@veritascomponents.com",
+          "quote": "Procurement Lead | Veritas Components"
+        },
+        {
+          "source_id": "sig:nadia.rahimi@veritascomponents.com",
+          "quote": "Nadia Rahimi | Procurement Lead | Veritas Components"
+        },
+        {
+          "source_id": "msg:<20260909-0920.nadia.rahimi@veritascomponents.com>",
+          "quote": "I'm taking over from Simon as procurement lead at Veritas as of today."
+        },
+        {
+          "source_id": "msg:<20260917-1030.nadia.rahimi@veritascomponents.com>",
+          "quote": "Go-live is Wednesday the 23rd, and I'd like Tessera ingesting from the first shift"
+        }
+      ]
+    },
+    "tier": "P1",
+    "profile_rules": [
+      "same_day_reply"
+    ],
+    "behavior": {
+      "avery_reply_rate": 0.14,
+      "median_avery_reply_hours": 2.8,
+      "last_inbound": "2026-09-23T09:00:06-07:00",
+      "last_outbound": "2026-09-09T12:05:54-07:00",
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "elena-vasquez",
+    "names": [
+      "Elena Vasquez"
+    ],
+    "emails": [
+      "elena@inflectionpoint.vc"
+    ],
+    "org": "Inflection Point Ventures",
+    "title": "Partner",
+    "relationship": {
+      "category": "capital",
+      "subtype": "fund_staff",
+      "stage": "diligence",
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "sig:elena@inflectionpoint.vc",
+          "quote": "Elena Vasquez | Partner | Inflection Point Ventures"
+        },
+        {
+          "source_id": "msg:<20260922-1750.avery@tessera.io>",
+          "quote": "Tessera x IPV - diligence call Friday"
+        },
+        {
+          "source_id": "msg:<20260923-0605.elena@inflectionpoint.vc>",
+          "quote": "So the call is a working session rather than a tour"
+        }
+      ]
+    },
+    "tier": "P0",
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-23T06:05:13-07:00",
+      "last_outbound": "2026-09-22T17:50:03-07:00",
+      "initiation_ratio": 0.33,
+      "shared_meetings_30d": 1
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "vercel",
+    "names": [
+      "Vercel"
+    ],
+    "emails": [
+      "newsletter@vercel.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "newsletter",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "tessa-ruiz",
+    "names": [
+      "Tessa Ruiz"
+    ],
+    "emails": [
+      "tessa@northwindcap.com"
+    ],
+    "org": "Northwind Capital",
+    "title": "Principal",
+    "relationship": {
+      "category": "capital",
+      "subtype": "fund_staff",
+      "stage": "in_conversation",
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "sig:tessa@northwindcap.com",
+          "quote": "Principal, Northwind Capital"
+        },
+        {
+          "source_id": "msg:<20260910-1110.tessa@northwindcap.com>",
+          "quote": "Northwind is a $240M early-stage fund; I lead our supply-chain and industrial software work"
+        },
+        {
+          "source_id": "msg:<20260911-1005.tessa@northwindcap.com>",
+          "quote": "Thursday 9/17 at 1pm it is!"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.5,
+      "median_avery_reply_hours": 21.2,
+      "last_inbound": "2026-09-11T10:05:43-07:00",
+      "last_outbound": "2026-09-11T08:20:55-07:00",
+      "initiation_ratio": 0.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "lattice",
+    "names": [
+      "Lattice"
+    ],
+    "emails": [
+      "hello@lattice.com"
+    ],
+    "org": "Lattice",
+    "title": null,
+    "relationship": {
+      "category": "cold_inbound",
+      "subtype": "sales_pitch",
+      "stage": null,
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "sig:hello@lattice.com",
+          "quote": "Lattice | 360 Spear St, San Francisco, CA 94105"
+        },
+        {
+          "source_id": "msg:<20260910-1110.hello@lattice.com>",
+          "quote": "Lattice's Startup plan is built for exactly this stage:"
+        },
+        {
+          "source_id": "msg:<20260910-1110.hello@lattice.com>",
+          "quote": "Startups under 50 employees get Lattice for $5 per person per month for the first year."
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-10T11:10:30-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "retool",
+    "names": [
+      "Retool"
+    ],
+    "emails": [
+      "hello@retool.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "marketing",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "greg-tolliver",
+    "names": [
+      "Greg Tolliver"
+    ],
+    "emails": [
+      "gregtolliver.search@gmail.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "cold_inbound",
+      "subtype": "recruiter",
+      "stage": null,
+      "source": "profile",
+      "evidence": [
+        {
+          "source_id": "sig:gregtolliver.search@gmail.com",
+          "quote": "Technical Recruiting | Austin, TX"
+        },
+        {
+          "source_id": "msg:<20260910-1620.gregtolliver.search@gmail.com>",
+          "quote": "I represent several venture-backed companies in Austin, TX that are actively hiring engineering leaders"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [
+      "never_draft",
+      "recruiter_pattern_only",
+      "no_surface_individual"
+    ],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-10T16:20:03-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "rohan-desai",
+    "names": [
+      "Rohan Desai"
+    ],
+    "emails": [
+      "rohan.desai.eng@gmail.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "hiring",
+      "subtype": "candidate",
+      "stage": "withdrawn",
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "msg:<20260911-0850.rohan.desai.eng@gmail.com>",
+          "quote": "I'm withdrawing from the backend engineer process at Tessera."
+        },
+        {
+          "source_id": "msg:<20260911-0850.rohan.desai.eng@gmail.com>",
+          "quote": "I accepted an offer yesterday from a company I'd been talking to since July"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-11T08:50:09-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "supply-chain-tech-summit",
+    "names": [
+      "Supply Chain Tech Summit"
+    ],
+    "emails": [
+      "speakers@sctechsummit.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "external_visibility",
+      "subtype": "conference_organizer",
+      "stage": null,
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "msg:<20260911-1230.speakers@sctechsummit.com>",
+          "quote": "The Supply Chain Tech Summit returns to Chicago on March 9 to 11, 2027"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-11T12:30:56-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "colin-marsh",
+    "names": [
+      "Colin Marsh"
+    ],
+    "emails": [
+      "colinmar@amazon.com"
+    ],
+    "org": "Amazon Web Services",
+    "title": "Account Manager, Startups",
+    "relationship": {
+      "category": "vendor",
+      "subtype": "account_manager",
+      "stage": "active_contract",
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "sig:colinmar@amazon.com",
+          "quote": "Account Manager, Startups | Amazon Web Services"
+        },
+        {
+          "source_id": "msg:<20260911-1405.colinmar@amazon.com>",
+          "quote": "your AWS account manager for the startup segment"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-11T14:05:14-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "naomi-feld",
+    "names": [
+      "Naomi Feld"
+    ],
+    "emails": [
+      "nfeld@wsgr.com"
+    ],
+    "org": "Wilson Sonsini Goodrich & Rosati",
+    "title": "Associate",
+    "relationship": {
+      "category": "capital",
+      "subtype": "deal_counsel",
+      "stage": "diligence",
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "sig:nfeld@wsgr.com",
+          "quote": "Naomi Feld\nAssociate\nWilson Sonsini Goodrich & Rosati"
+        },
+        {
+          "source_id": "sig:nfeld@wsgr.com",
+          "quote": "Naomi Feld | Associate | Wilson Sonsini Goodrich & Rosati"
+        },
+        {
+          "source_id": "msg:<20260911-1530.nfeld@wsgr.com>",
+          "quote": "Ahead of IPV's counsel reviewing the data room"
+        },
+        {
+          "source_id": "msg:<20260923-1005.nfeld@wsgr.com>",
+          "quote": "before we send the final to IPV's counsel"
+        }
+      ]
+    },
+    "tier": "P0",
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-23T10:05:23-07:00",
+      "last_outbound": "2026-09-14T17:45:56-07:00",
+      "initiation_ratio": 0.5,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "airtable",
+    "names": [
+      "Airtable"
+    ],
+    "emails": [
+      "team@airtable.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "marketing",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "grand-lake-neighbors",
+    "names": [
+      "Grand Lake Neighbors"
+    ],
+    "emails": [
+      "list@grandlakeneighbors.org"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "unresolved",
+      "subtype": null,
+      "stage": null,
+      "source": "unresolved",
+      "evidence": [
+        {
+          "source_id": "msg:<20260913-0830.list@grandlakeneighbors.org>",
+          "quote": "Fall block party: Sunday, October 11, 3-6pm on Rand Ave"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-13T08:30:25-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "simone-laurent",
+    "names": [
+      "Simone Laurent"
+    ],
+    "emails": [
+      "simone.laurent@northgateexec.com"
+    ],
+    "org": "Northgate Executive",
+    "title": "Partner",
+    "relationship": {
+      "category": "cold_inbound",
+      "subtype": "recruiter",
+      "stage": null,
+      "source": "profile",
+      "evidence": [
+        {
+          "source_id": "sig:simone.laurent@northgateexec.com",
+          "quote": "Partner | Northgate Executive"
+        },
+        {
+          "source_id": "msg:<20260914-1015.simone.laurent@northgateexec.com>",
+          "quote": "I would welcome the opportunity to share more about the role and the leadership team."
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [
+      "never_draft",
+      "recruiter_pattern_only",
+      "no_surface_individual"
+    ],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-14T10:15:47-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "dana-whitfield",
+    "names": [
+      "Dana Whitfield"
+    ],
+    "emails": [
+      "dana.whitfield@lumenanalytics.com"
+    ],
+    "org": "Lumen Analytics",
+    "title": "Account Executive",
+    "relationship": {
+      "category": "cold_inbound",
+      "subtype": "sales_pitch",
+      "stage": null,
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "sig:dana.whitfield@lumenanalytics.com",
+          "quote": "Account Executive | Lumen Analytics"
+        },
+        {
+          "source_id": "sig:dana.whitfield@lumenanalytics.com",
+          "quote": "Dana Whitfield | Account Executive | Lumen Analytics"
+        },
+        {
+          "source_id": "msg:<20260914-1100.dana.whitfield@lumenanalytics.com>",
+          "quote": "can I get you and Avery into a proper demo?"
+        },
+        {
+          "source_id": "msg:<20260922-1731.dana.whitfield@lumenanalytics.com>",
+          "quote": "I've just sent over an invite for 10:30"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-22T17:31:35-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "devin-okoro",
+    "names": [
+      "Devin Okoro"
+    ],
+    "emails": [
+      "devin.okoro.pod@gmail.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "external_visibility",
+      "subtype": "podcast_host",
+      "stage": null,
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "msg:<20260914-1300.devin.okoro.pod@gmail.com>",
+          "quote": "I host a small podcast on supply-chain operations"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 1.0,
+      "median_avery_reply_hours": 6.5,
+      "last_inbound": "2026-09-14T13:00:30-07:00",
+      "last_outbound": "2026-09-14T19:30:07-07:00",
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "segment",
+    "names": [
+      "Segment"
+    ],
+    "emails": [
+      "hello@segment.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "marketing",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "docusign",
+    "names": [
+      "DocuSign"
+    ],
+    "emails": [
+      "dse@docusign.net"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "automated",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "lena-hoffmann",
+    "names": [
+      "Lena Hoffmann"
+    ],
+    "emails": [
+      "lena@tessera.io"
+    ],
+    "org": null,
+    "title": "QA",
+    "relationship": {
+      "category": "team",
+      "subtype": null,
+      "stage": null,
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "sig:lena@tessera.io",
+          "quote": "Lena Hoffmann | QA"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-22T11:00:52-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 0.67,
+      "shared_meetings_30d": 2
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "linear-linear",
+    "names": [
+      "Linear"
+    ],
+    "emails": [
+      "notifications@linear.app"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "automated",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "ivan-petrov",
+    "names": [
+      "Ivan Petrov"
+    ],
+    "emails": [
+      "ivan.petrov@veritascomponents.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "customer",
+      "subtype": null,
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": "P1",
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": 0.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "mila-ostrowski",
+    "names": [
+      "Mila Ostrowski"
+    ],
+    "emails": [
+      "mila@harborinsurance.com"
+    ],
+    "org": "Harbor Insurance Brokers",
+    "title": null,
+    "relationship": {
+      "category": "vendor",
+      "subtype": "account_manager",
+      "stage": "renewal_due",
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "sig:mila@harborinsurance.com",
+          "quote": "Mila Ostrowski | Harbor Insurance Brokers"
+        },
+        {
+          "source_id": "msg:<20260917-1420.mila@harborinsurance.com>",
+          "quote": "Attached is the D&O renewal quote from Beacon Mutual for the 2026-27 policy year"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-17T14:20:35-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "lauren-pike",
+    "names": [
+      "Lauren Pike"
+    ],
+    "emails": [
+      "laurenpike.talent@gmail.com"
+    ],
+    "org": null,
+    "title": "Fractional Leadership Placement",
+    "relationship": {
+      "category": "cold_inbound",
+      "subtype": "recruiter",
+      "stage": null,
+      "source": "profile",
+      "evidence": [
+        {
+          "source_id": "sig:laurenpike.talent@gmail.com",
+          "quote": "Fractional Leadership Placement"
+        },
+        {
+          "source_id": "msg:<20260917-1450.laurenpike.talent@gmail.com>",
+          "quote": "I work with a small group of founders who need part-time executive help"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [
+      "never_draft",
+      "recruiter_pattern_only",
+      "no_surface_individual"
+    ],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-17T14:50:29-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "1password-1password",
+    "names": [
+      "1Password"
+    ],
+    "emails": [
+      "no-reply@1password.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "automated",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "chad-morrison",
+    "names": [
+      "Chad Morrison"
+    ],
+    "emails": [
+      "chad.morrison@talentbridge-recruiting.com"
+    ],
+    "org": "TalentBridge Recruiting",
+    "title": "Senior Recruiter",
+    "relationship": {
+      "category": "cold_inbound",
+      "subtype": "recruiter",
+      "stage": null,
+      "source": "profile",
+      "evidence": [
+        {
+          "source_id": "sig:chad.morrison@talentbridge-recruiting.com",
+          "quote": "Senior Recruiter | TalentBridge Recruiting"
+        },
+        {
+          "source_id": "sig:chad.morrison@talentbridge-recruiting.com",
+          "quote": "Chad Morrison | Senior Recruiter | TalentBridge Recruiting"
+        },
+        {
+          "source_id": "msg:<20260918-1020.chad.morrison@talentbridge-recruiting.com>",
+          "quote": "Would you be open to a brief 15-minute"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [
+      "never_draft",
+      "recruiter_pattern_only",
+      "no_surface_individual"
+    ],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-23T11:20:39-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "leah-brandt",
+    "names": [
+      "Leah Brandt"
+    ],
+    "emails": [
+      "leah.brandt@vanta.com"
+    ],
+    "org": "Vanta",
+    "title": "Customer Success Manager",
+    "relationship": {
+      "category": "vendor",
+      "subtype": "account_manager",
+      "stage": "active_contract",
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "sig:leah.brandt@vanta.com",
+          "quote": "Customer Success Manager, Vanta"
+        },
+        {
+          "source_id": "msg:<20260919-0900.leah.brandt@vanta.com>",
+          "quote": "Monthly check-in from your Vanta customer success manager"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-19T09:00:31-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "sofia-andrade-gmail",
+    "names": [
+      "Sofia Andrade"
+    ],
+    "emails": [
+      "sofia.andrade.sf@gmail.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "unresolved",
+      "subtype": null,
+      "stage": null,
+      "source": "unresolved",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": 0.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "notion-mail",
+    "names": [
+      "Notion"
+    ],
+    "emails": [
+      "notify@mail.notion.so"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "automated",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "jill-petrakis",
+    "names": [
+      "Jill Petrakis"
+    ],
+    "emails": [
+      "jill.petrakis@pinnacletalentpartners.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "cold_inbound",
+      "subtype": "recruiter",
+      "stage": null,
+      "source": "profile",
+      "evidence": [
+        {
+          "source_id": "msg:<20260921-0822.jill.petrakis@pinnacletalentpartners.com>",
+          "quote": "I'm leading a CTO search for a climate hardware company in the East Bay"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [
+      "never_draft",
+      "recruiter_pattern_only",
+      "no_surface_individual"
+    ],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-21T08:22:52-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "kelsey-vaughn",
+    "names": [
+      "Kelsey Vaughn"
+    ],
+    "emails": [
+      "kelsey.vaughn@talentbridge-recruiting.com"
+    ],
+    "org": "TalentBridge Recruiting",
+    "title": "Talent Partner",
+    "relationship": {
+      "category": "cold_inbound",
+      "subtype": "recruiter",
+      "stage": null,
+      "source": "profile",
+      "evidence": [
+        {
+          "source_id": "sig:kelsey.vaughn@talentbridge-recruiting.com",
+          "quote": "Kelsey Vaughn | Talent Partner | TalentBridge Recruiting"
+        },
+        {
+          "source_id": "msg:<20260921-0905.kelsey.vaughn@talentbridge-recruiting.com>",
+          "quote": "If you have 15 minutes this week, I'd love to walk you through both roles."
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [
+      "never_draft",
+      "recruiter_pattern_only",
+      "no_surface_individual"
+    ],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-21T09:05:13-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "brightline-procurement",
+    "names": [
+      "Brightline Procurement"
+    ],
+    "emails": [
+      "procurement@brightlinepkg.com"
+    ],
+    "org": "Brightline Packaging",
+    "title": null,
+    "relationship": {
+      "category": "customer",
+      "subtype": "customer_champion",
+      "stage": "active",
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "sig:procurement@brightlinepkg.com",
+          "quote": "Procurement Team | Brightline Packaging"
+        },
+        {
+          "source_id": "msg:<20260921-0930.procurement@brightlinepkg.com>",
+          "quote": "We are rolling Tessera out to a second group of users at our Reno facility"
+        },
+        {
+          "source_id": "msg:<20260922-0815.procurement@brightlinepkg.com>",
+          "quote": "we have confirmed with one supervisor and two operators that the correct roles are applied"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-22T08:15:34-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "ramp-ramp",
+    "names": [
+      "Ramp"
+    ],
+    "emails": [
+      "no-reply@ramp.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "automated",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "statewide-registered-agents",
+    "names": [
+      "Statewide Registered Agents"
+    ],
+    "emails": [
+      "notices@statewideagents.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "vendor",
+      "subtype": "registered_agent",
+      "stage": "active_contract",
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "msg:<20260921-1130.notices@statewideagents.com>",
+          "quote": "We received the following notice from the Delaware Division of Corporations on behalf of Tessera, Inc."
+        },
+        {
+          "source_id": "msg:<20260921-1130.notices@statewideagents.com>",
+          "quote": "Statewide Registered Agents does not prepare or file franchise tax reports"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-21T11:30:04-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "sasha-kimura",
+    "names": [
+      "Sasha Kimura"
+    ],
+    "emails": [
+      "sasha.kimura@manufacturingsignal.com"
+    ],
+    "org": "Manufacturing Signal",
+    "title": "Senior Reporter",
+    "relationship": {
+      "category": "external_visibility",
+      "subtype": "journalist",
+      "stage": null,
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "sig:sasha.kimura@manufacturingsignal.com",
+          "quote": "Senior Reporter, Manufacturing Signal"
+        },
+        {
+          "source_id": "sig:sasha.kimura@manufacturingsignal.com",
+          "quote": "Sasha Kimura | Senior Reporter, Manufacturing Signal"
+        },
+        {
+          "source_id": "msg:<20260922-0950.sasha.kimura@manufacturingsignal.com>",
+          "quote": "I'm writing a piece on how mid-market manufacturers"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-22T09:50:28-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "curtis-ayala",
+    "names": [
+      "Curtis Ayala"
+    ],
+    "emails": [
+      "curtis.ayala@halberd.com"
+    ],
+    "org": "Halberd Manufacturing",
+    "title": "VP Operations",
+    "relationship": {
+      "category": "customer",
+      "subtype": "customer_champion",
+      "stage": "prospect",
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "sig:curtis.ayala@halberd.com",
+          "quote": "VP Operations, Halberd Manufacturing"
+        },
+        {
+          "source_id": "msg:<20260922-1040.curtis.ayala@halberd.com>",
+          "quote": "I want to talk about our Kansas City plant."
+        },
+        {
+          "source_id": "msg:<20260922-1040.curtis.ayala@halberd.com>",
+          "quote": "I'd like Kansas City scoped and in the budget"
+        }
+      ]
+    },
+    "tier": "P1",
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-22T10:40:40-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "jae-whitlock",
+    "names": [
+      "Jae Whitlock"
+    ],
+    "emails": [
+      "jae.whitlock@gmail.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "network",
+      "subtype": "advisor",
+      "stage": null,
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "msg:<20260922-2010.jae.whitlock@gmail.com>",
+          "quote": "we met at the founders dinner in July"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-22T20:10:49-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "google",
+    "names": [
+      "Google"
+    ],
+    "emails": [
+      "no-reply@accounts.google.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "automated",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "metrika-billing",
+    "names": [
+      "Metrika Billing"
+    ],
+    "emails": [
+      "billing@metrika.io"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "automated",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "cloudledger-billing",
+    "names": [
+      "CloudLedger Billing"
+    ],
+    "emails": [
+      "ops@cloudledger-billing.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "vendor",
+      "subtype": "account_manager",
+      "stage": "active_contract",
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "msg:<20260923-1230.ops@cloudledger-billing.com>",
+          "quote": "Service: CloudLedger Managed Reconciliation, Enterprise tier (annual)"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-23T12:30:37-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "beatriz-nunes",
+    "names": [
+      "Beatriz Nunes"
+    ],
+    "emails": [
+      "director@littleacornsoakland.com"
+    ],
+    "org": "Little Acorns Daycare",
+    "title": "Director",
+    "relationship": {
+      "category": "family",
+      "subtype": "daycare",
+      "stage": null,
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "sig:director@littleacornsoakland.com",
+          "quote": "Director, Little Acorns Daycare"
+        },
+        {
+          "source_id": "msg:<20260923-1745.director@littleacornsoakland.com>",
+          "quote": "Dear Little Acorns families"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-23T17:45:02-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "little-acorns-families",
+    "names": [
+      "Little Acorns Families"
+    ],
+    "emails": [
+      "families@littleacornsoakland.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "unresolved",
+      "subtype": null,
+      "stage": null,
+      "source": "unresolved",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": 0.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "ines-ferreira",
+    "names": [
+      "Ines Ferreira"
+    ],
+    "emails": [
+      "ines.ferreira.eng@gmail.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "hiring",
+      "subtype": "candidate",
+      "stage": "onsite",
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "msg:<20260923-1930.ines.ferreira.eng@gmail.com>",
+          "quote": "I am looking forward to our conversation tomorrow at 4."
+        },
+        {
+          "source_id": "msg:<20260923-1930.ines.ferreira.eng@gmail.com>",
+          "quote": "Jordan mentioned you would be joining for the last part of the interview loop."
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-23T19:30:11-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "oakland-pediatrics",
+    "names": [
+      "Oakland Pediatrics"
+    ],
+    "emails": [
+      "reminders@oaklandpediatrics.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "family",
+      "subtype": "pediatrician",
+      "stage": null,
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "msg:<20260923-2110.reminders@oaklandpediatrics.com>",
+          "quote": "Wren has an appointment at Oakland Pediatrics."
+        },
+        {
+          "source_id": "msg:<20260923-2110.reminders@oaklandpediatrics.com>",
+          "quote": "Visit type: 4-year well visit"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-23T21:10:32-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "marta-kowalczyk",
+    "names": [
+      "Marta Kowalczyk"
+    ],
+    "emails": [
+      "marta.kowalczyk@northstarfoods.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "customer",
+      "subtype": "customer_champion",
+      "stage": "active",
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "msg:<fwd5.20260923-2211.tomas@tessera.io>",
+          "quote": "what line 2 is getting us vs. line 1 for the budget review"
+        },
+        {
+          "source_id": "msg:<fwd1.20260923-2211.tomas@tessera.io>",
+          "quote": "line 2 changeover starts Oct 5"
+        }
+      ]
+    },
+    "tier": "P1",
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-23T17:55:00-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "henrik-dahl",
+    "names": [
+      "Henrik Dahl"
+    ],
+    "emails": [
+      "henrik.dahl@northstarfoods.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "customer",
+      "subtype": "reference",
+      "stage": "renewal_window",
+      "source": "profile",
+      "evidence": [
+        {
+          "source_id": "msg:<fwd3.20260923-2211.tomas@tessera.io>",
+          "quote": "Tessera's renewal will go through a formal vendor review this quarter"
+        }
+      ]
+    },
+    "tier": "P1",
+    "profile_rules": [
+      "same_day_reply"
+    ],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-23T09:15:00-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 0.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "theo-lindgren",
+    "names": [
+      "Theo Lindgren"
+    ],
+    "emails": [
+      "theo.lindgren@gmail.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "unresolved",
+      "subtype": null,
+      "stage": null,
+      "source": "unresolved",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 1
+    },
+    "drift": []
+  }
+]

@@ -9,23 +9,27 @@
   "customize": null,
   "timings_s": {
     "compile_profile": 0.007,
-    "ingest": 0.435,
-    "normalize": 0.034,
-    "extract": 1.884,
-    "persist": 0.024,
-    "compute": 0.145,
-    "triage": 34.964,
+    "ingest": 0.369,
+    "normalize": 0.032,
+    "spine": 0.239,
+    "read": 163.735,
+    "persist": 0.013,
+    "sweep": 54.223,
+    "nets": 0.43,
+    "merge": 1.919,
+    "compute": 56.59,
+    "enforce": 0.005,
     "reduce": 0.001,
-    "compose": 108.57,
-    "materialize": 2.788,
-    "verify": 0.004,
+    "compose": 66.499,
+    "materialize": 13.798,
+    "verify": 0.006,
     "render": 0.001
   },
-  "wall_s": 148.9,
-  "cost_usd": 0.013406,
-  "llm_calls": 315,
-  "llm_cached": 312,
-  "degradations": 36,
+  "wall_s": 301.333,
+  "cost_usd": 0.244247,
+  "llm_calls": 280,
+  "llm_cached": 108,
+  "degradations": 20,
   "owner_email": "avery@tessera.io",
   "threads": 333,
   "messages": 491,
@@ -33,56 +37,49 @@
   "events": 112,
   "notes": 10,
   "tasks": 5,
-  "extractions": 348,
-  "extract": {
-    "documents": 348,
-    "llm_calls": 293,
-    "cached": 293,
-    "skipped_marketing": 55,
-    "invalid": 0,
-    "evidence_checked": 1285,
-    "evidence_valid": 1266,
-    "evidence_dropped": 31,
-    "evidence_replaced": 1,
-    "type_changes": []
+  "read": {
+    "threads_read": 159,
+    "llm_calls": 159,
+    "cached": 0,
+    "failed": 0,
+    "findings": 54,
+    "needs_avery": {
+      "yes": 35,
+      "no": 18,
+      "unsure": 1
+    },
+    "citations_dropped": 13,
+    "findings_dropped": 0,
+    "rulings_applied": 0,
+    "retrieval": "compute.context.retrieve"
   },
   "compute": {
-    "contacts": 122,
-    "candidates": 113,
-    "by_type": {
-      "approval_pending": 19,
-      "calendar_conflict:deep_work": 1,
-      "calendar_conflict:family": 1,
-      "commitment_due": 1,
-      "commitment_not_in_tasks": 18,
-      "commitment_overdue": 10,
-      "contradiction": 11,
-      "hiring_stall": 2,
-      "news_attachment": 1,
-      "obligation_cadence": 1,
-      "profile_drift": 5,
-      "quiet_thread": 9,
-      "reply_owed": 28,
-      "stale_source": 2,
-      "task_due": 4
+    "contacts": 130,
+    "reader_findings": 54,
+    "sweep_findings": 12,
+    "net_findings": 19,
+    "rescues": 2,
+    "about_merges": 4,
+    "candidates": 50,
+    "by_origin": {
+      "thread_reader": 54,
+      "calendar_sweep": 4,
+      "notes_tasks_sweep": 7,
+      "news_sweep": 1,
+      "safety_net": 4
     },
-    "about_merges": 22,
-    "facts_drift": 3
+    "links": 125
   },
   "triage": {
-    "candidates": 113,
-    "packs": 19,
-    "cached": 18,
-    "invalid_packs": 0,
-    "missing": [],
-    "fixes": 4,
+    "candidates": 50,
+    "fixes": 5,
     "rulings_applied": 0
   },
   "reduce": {
-    "items": 43,
-    "overflow": 18,
-    "dropped": 52,
-    "merges": 22
+    "items": 37,
+    "overflow": 12,
+    "dropped": 0,
+    "merges": 4
   },
   "compose": {
     "cached": false,
@@ -100,34 +97,41 @@
       "i35 unplaced → also pending",
       "i36 unplaced → also pending",
       "i37 unplaced → also pending",
-      "i38 unplaced → also pending",
-      "i39 unplaced → also pending",
-      "i40 unplaced → also pending",
-      "i41 unplaced → also pending",
-      "i42 unplaced → also pending",
-      "i43 unplaced → also pending"
+      "i18 moved to also pending (page limit 12)",
+      "i17 moved to also pending (page limit 12)",
+      "i16 moved to also pending (page limit 12)",
+      "i15 moved to also pending (page limit 12)",
+      "i14 moved to also pending (page limit 12)",
+      "i13 moved to also pending (page limit 12)"
     ],
     "one_thing": "i3",
-    "placed": 18,
-    "cut": 25
+    "placed": 11,
+    "cut": 26
   },
   "materialize": {
-    "actions": 19,
-    "llm_calls": 2,
-    "cached": 1,
+    "actions": 14,
+    "llm_calls": 4,
+    "cached": 0,
     "draft_retries": 0,
     "drafts_dropped": 0
   },
   "verify": {
-    "violations": [],
+    "violations": [
+      {
+        "rule": 9,
+        "item_id": "i12",
+        "detail": "over budget (359 > 350 words); demoted to also pending",
+        "fix": "fixed"
+      }
+    ],
     "stats": {
-      "words": 341,
+      "words": 334,
       "budget": 350,
       "header_present": true,
-      "items": 18,
-      "items_cited": 18,
-      "citations_total": 27,
-      "citations_resolved": 27
+      "items": 11,
+      "items_cited": 11,
+      "citations_total": 43,
+      "citations_resolved": 43
     }
   },
   "history": {

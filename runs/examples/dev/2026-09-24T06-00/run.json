@@ -8,24 +8,28 @@
   "suffix": null,
   "customize": null,
   "timings_s": {
-    "compile_profile": 0.008,
-    "ingest": 0.482,
-    "normalize": 0.042,
-    "extract": 2.308,
-    "persist": 0.032,
-    "compute": 0.205,
-    "triage": 106.684,
+    "compile_profile": 0.007,
+    "ingest": 0.37,
+    "normalize": 0.035,
+    "spine": 0.245,
+    "read": 1.325,
+    "persist": 0.013,
+    "sweep": 0.015,
+    "nets": 0.011,
+    "merge": 1.392,
+    "compute": 1.434,
+    "enforce": 0.004,
     "reduce": 0.001,
-    "compose": 125.25,
-    "materialize": 16.757,
-    "verify": 0.006,
-    "render": 0.002
+    "compose": 89.182,
+    "materialize": 11.293,
+    "verify": 0.007,
+    "render": 0.001
   },
-  "wall_s": 251.828,
-  "cost_usd": 0.071486,
-  "llm_calls": 343,
-  "llm_cached": 318,
-  "degradations": 40,
+  "wall_s": 103.949,
+  "cost_usd": 0.01283,
+  "llm_calls": 305,
+  "llm_cached": 297,
+  "degradations": 28,
   "owner_email": "avery@tessera.io",
   "threads": 359,
   "messages": 528,
@@ -33,57 +37,49 @@
   "events": 112,
   "notes": 10,
   "tasks": 5,
-  "extractions": 374,
-  "extract": {
-    "documents": 374,
-    "llm_calls": 315,
-    "cached": 315,
-    "skipped_marketing": 59,
-    "invalid": 0,
-    "evidence_checked": 1377,
-    "evidence_valid": 1353,
-    "evidence_dropped": 39,
-    "evidence_replaced": 1,
-    "type_changes": []
+  "read": {
+    "threads_read": 175,
+    "llm_calls": 175,
+    "cached": 175,
+    "failed": 0,
+    "findings": 69,
+    "needs_avery": {
+      "yes": 47,
+      "no": 20,
+      "unsure": 2
+    },
+    "citations_dropped": 17,
+    "findings_dropped": 1,
+    "rulings_applied": 0,
+    "retrieval": "compute.context.retrieve"
   },
   "compute": {
-    "contacts": 130,
-    "candidates": 130,
-    "by_type": {
-      "approval_pending": 24,
-      "calendar_conflict:deep_work": 1,
-      "calendar_conflict:family": 3,
-      "commitment_due": 1,
-      "commitment_not_in_tasks": 18,
-      "commitment_overdue": 10,
-      "contradiction": 11,
-      "hiring_stall": 2,
-      "news_attachment": 2,
-      "obligation_cadence": 1,
-      "profile_drift": 5,
-      "quiet_thread": 10,
-      "recruiter_pattern": 1,
-      "reply_owed": 36,
-      "stale_source": 1,
-      "task_due": 4
+    "contacts": 138,
+    "reader_findings": 69,
+    "sweep_findings": 16,
+    "net_findings": 22,
+    "rescues": 3,
+    "about_merges": 7,
+    "candidates": 67,
+    "by_origin": {
+      "thread_reader": 69,
+      "calendar_sweep": 5,
+      "notes_tasks_sweep": 8,
+      "news_sweep": 3,
+      "safety_net": 4
     },
-    "about_merges": 25,
-    "facts_drift": 3
+    "links": 157
   },
   "triage": {
-    "candidates": 130,
-    "packs": 22,
-    "cached": 3,
-    "invalid_packs": 0,
-    "missing": [],
-    "fixes": 0,
+    "candidates": 67,
+    "fixes": 4,
     "rulings_applied": 0
   },
   "reduce": {
-    "items": 60,
-    "overflow": 35,
-    "dropped": 43,
-    "merges": 25
+    "items": 45,
+    "overflow": 20,
+    "dropped": 0,
+    "merges": 7
   },
   "compose": {
     "cached": false,
@@ -109,29 +105,19 @@
       "i43 unplaced → also pending",
       "i44 unplaced → also pending",
       "i45 unplaced → also pending",
-      "i46 unplaced → also pending",
-      "i47 unplaced → also pending",
-      "i48 unplaced → also pending",
-      "i49 unplaced → also pending",
-      "i50 unplaced → also pending",
-      "i51 unplaced → also pending",
-      "i52 unplaced → also pending",
-      "i53 unplaced → also pending",
-      "i54 unplaced → also pending",
-      "i55 unplaced → also pending",
-      "i56 unplaced → also pending",
-      "i57 unplaced → also pending",
-      "i58 unplaced → also pending",
-      "i59 unplaced → also pending",
-      "i60 unplaced → also pending"
+      "i22 moved to also pending (page limit 12)",
+      "i21 moved to also pending (page limit 12)",
+      "i19 moved to also pending (page limit 12)",
+      "i18 moved to also pending (page limit 12)",
+      "i15 moved to also pending (page limit 12)"
     ],
     "one_thing": "i3",
-    "placed": 23,
-    "cut": 37
+    "placed": 12,
+    "cut": 33
   },
   "materialize": {
-    "actions": 24,
-    "llm_calls": 5,
+    "actions": 17,
+    "llm_calls": 4,
     "cached": 0,
     "draft_retries": 0,
     "drafts_dropped": 0
@@ -139,17 +125,17 @@
   "verify": {
     "violations": [],
     "stats": {
-      "words": 341,
+      "words": 236,
       "budget": 350,
       "header_present": true,
-      "items": 23,
-      "items_cited": 23,
-      "citations_total": 33,
-      "citations_resolved": 33
+      "items": 12,
+      "items_cited": 12,
+      "citations_total": 52,
+      "citations_resolved": 52
     }
   },
   "history": {
-    "resolved_later": 2,
+    "resolved_later": 14,
     "answered_after_digest": 0
   },
   "freshness": {

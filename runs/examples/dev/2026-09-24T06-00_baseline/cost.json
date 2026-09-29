@@ -1,17 +1,17 @@
 {
   "calls": 1,
   "cached": 0,
-  "prompt_tokens": 301277,
-  "completion_tokens": 30954,
-  "cost_usd": 0.035819,
+  "prompt_tokens": 302051,
+  "completion_tokens": 26168,
+  "cost_usd": 0.033523,
   "cost_unknown_calls": 0,
   "by_role": {
     "compose": {
       "calls": 1,
       "cached": 0,
-      "prompt_tokens": 301277,
-      "completion_tokens": 30954,
-      "cost_usd": 0.035819
+      "prompt_tokens": 302051,
+      "completion_tokens": 26168,
+      "cost_usd": 0.033523
     }
   }
 }

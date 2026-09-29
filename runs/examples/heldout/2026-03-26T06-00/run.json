@@ -1,0 +1,190 @@
+{
+  "run_id": "heldout/2026-03-26T06-00",
+  "world": "heldout",
+  "as_of": "2026-03-26T06:00:00-07:00",
+  "variant": null,
+  "baseline": false,
+  "tag": null,
+  "suffix": null,
+  "customize": null,
+  "timings_s": {
+    "compile_profile": 0.007,
+    "ingest": 0.379,
+    "normalize": 0.032,
+    "spine": 12.551,
+    "read": 236.08,
+    "persist": 0.015,
+    "sweep": 49.318,
+    "nets": 2.162,
+    "merge": 2.919,
+    "compute": 54.427,
+    "enforce": 0.005,
+    "reduce": 0.001,
+    "compose": 102.825,
+    "materialize": 6.992,
+    "verify": 0.004,
+    "render": 0.001
+  },
+  "wall_s": 413.36,
+  "cost_usd": 0.343436,
+  "llm_calls": 400,
+  "llm_cached": 140,
+  "degradations": 28,
+  "owner_email": "avery@tessera.io",
+  "threads": 387,
+  "messages": 534,
+  "forwarded_messages": 7,
+  "events": 122,
+  "notes": 10,
+  "tasks": 5,
+  "read": {
+    "threads_read": 220,
+    "llm_calls": 220,
+    "cached": 0,
+    "failed": 0,
+    "findings": 88,
+    "needs_avery": {
+      "yes": 53,
+      "no": 27,
+      "unsure": 8
+    },
+    "citations_dropped": 19,
+    "findings_dropped": 0,
+    "rulings_applied": 0,
+    "retrieval": "compute.context.retrieve"
+  },
+  "compute": {
+    "contacts": 148,
+    "reader_findings": 88,
+    "sweep_findings": 11,
+    "net_findings": 25,
+    "rescues": 2,
+    "about_merges": 7,
+    "candidates": 74,
+    "by_origin": {
+      "thread_reader": 88,
+      "calendar_sweep": 3,
+      "notes_tasks_sweep": 6,
+      "news_sweep": 2,
+      "safety_net": 3
+    },
+    "links": 179
+  },
+  "triage": {
+    "candidates": 74,
+    "fixes": 4,
+    "rulings_applied": 0
+  },
+  "reduce": {
+    "items": 52,
+    "overflow": 27,
+    "dropped": 0,
+    "merges": 7
+  },
+  "compose": {
+    "cached": false,
+    "fallback": false,
+    "fixes": [
+      "one thing removed from its section (no repeats)",
+      "i26 unplaced → also pending",
+      "i27 unplaced → also pending",
+      "i28 unplaced → also pending",
+      "i29 unplaced → also pending",
+      "i30 unplaced → also pending",
+      "i31 unplaced → also pending",
+      "i32 unplaced → also pending",
+      "i33 unplaced → also pending",
+      "i34 unplaced → also pending",
+      "i35 unplaced → also pending",
+      "i36 unplaced → also pending",
+      "i37 unplaced → also pending",
+      "i38 unplaced → also pending",
+      "i39 unplaced → also pending",
+      "i40 unplaced → also pending",
+      "i41 unplaced → also pending",
+      "i42 unplaced → also pending",
+      "i43 unplaced → also pending",
+      "i44 unplaced → also pending",
+      "i45 unplaced → also pending",
+      "i46 unplaced → also pending",
+      "i47 unplaced → also pending",
+      "i48 unplaced → also pending",
+      "i49 unplaced → also pending",
+      "i50 unplaced → also pending",
+      "i51 unplaced → also pending",
+      "i52 unplaced → also pending",
+      "i23 moved to also pending (page limit 12)",
+      "i22 moved to also pending (page limit 12)",
+      "i21 moved to also pending (page limit 12)",
+      "i20 moved to also pending (page limit 12)",
+      "i19 moved to also pending (page limit 12)",
+      "i17 moved to also pending (page limit 12)",
+      "i16 moved to also pending (page limit 12)",
+      "i15 moved to also pending (page limit 12)"
+    ],
+    "one_thing": "i2",
+    "placed": 11,
+    "cut": 41
+  },
+  "materialize": {
+    "actions": 13,
+    "llm_calls": 3,
+    "cached": 0,
+    "draft_retries": 0,
+    "drafts_dropped": 0
+  },
+  "verify": {
+    "violations": [
+      {
+        "rule": 3,
+        "item_id": "i10",
+        "detail": "only newsletter/marketing sources",
+        "fix": "dropped"
+      },
+      {
+        "rule": 7,
+        "item_id": "i10",
+        "detail": "P0 item was not placed; added as a one-liner",
+        "fix": "fixed"
+      }
+    ],
+    "stats": {
+      "words": 275,
+      "budget": 350,
+      "header_present": true,
+      "items": 11,
+      "items_cited": 11,
+      "citations_total": 44,
+      "citations_resolved": 44
+    }
+  },
+  "history": {
+    "resolved_later": 14,
+    "answered_after_digest": 0
+  },
+  "freshness": {
+    "email": {
+      "state": "ok",
+      "latest": "2026-03-26T05:45:17-07:00",
+      "age_hours": 0.25
+    },
+    "calendar": {
+      "state": "ok",
+      "latest": "2026-09-28T04:06:53.190771-07:00",
+      "age_hours": -4462.11
+    },
+    "notes": {
+      "state": "ok",
+      "latest": "2026-03-24T00:00:00-07:00",
+      "age_hours": 54.0
+    },
+    "tasks": {
+      "state": "stale",
+      "latest": "2026-03-14T18:05:00-07:00",
+      "age_hours": 275.92
+    }
+  },
+  "profile_cached": true,
+  "pending_stages": [],
+  "header": "As of Thu 06:00 PT · inbox synced 05:45 · calendar ok · notes ok · tasks stale (11 days)"
+}

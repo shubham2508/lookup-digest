@@ -1,5 +1,5 @@
 {
-  "one_thing_id": "i12",
+  "one_thing_id": "i10",
   "sections": [
     {
       "name": "urgent",
@@ -20,21 +20,35 @@
     {
       "name": "calendar_personal",
       "item_ids": [
-        "i1",
-        "i2"
+        "i1"
       ]
     }
   ],
   "items": [
     {
-      "id": "i12",
-      "what": "Arrange Wren coverage for today's daycare closure",
-      "why": "Little Acorns is closed today, leaving a care gap across your workday.",
+      "id": "i10",
+      "what": "Arrange care for Wren during today’s daycare closure",
+      "why": "Little Acorns is closed today with no drop-off or pickup; the closure notice arrived last night.",
       "final_actions": [
         {
           "type": "message_person",
           "target": "sam@parkchen.family",
-          "brief": "Ask who is covering Wren during today's daycare closure, including the 3pm pediatrician appointment.",
+          "brief": "Coordinate care for Wren today because Little Acorns is closed; also confirm who is taking Wren to the 3:00 PM appointment that overlaps Q2 planning.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i2",
+      "what": "Promised both analyses by Friday, Sep 11; Marcus says analysts start once they have access; neither delivery appears here or in retrieved context. Waiting 9 business days for Avery (threshold 3).",
+      "why": "Promised both analyses by Friday, Sep 11; Marcus says analysts start once they have access; neither delivery appears here or in retrieved context. Waiting 9 business days for Avery (threshold 3).",
+      "final_actions": [
+        {
+          "type": "task",
+          "target": "Put the cohort analysis and Q4 pipeline detail in the data room",
+          "brief": "Overdue; promised by Friday",
           "assumptions": [],
           "watch_trigger": null,
           "read_start": null
@@ -43,48 +57,21 @@
     },
     {
       "id": "i3",
-      "what": "Promised lead investor Marcus diligence materials by Friday; the data-room commitment is 12 days overdue.",
-      "why": "Promised lead investor Marcus diligence materials by Friday; the data-room commitment is 12 days overdue.",
+      "what": "Naomi asked for comments Wednesday morning; Marcus's team is waiting on Avery's confirmation, and counsel hoped to send v3 Wednesday.",
+      "why": "Naomi asked for comments Wednesday morning; Marcus's team is waiting on Avery's confirmation, and counsel hoped to send v3 Wednesday.",
       "final_actions": [
         {
           "type": "read",
           "target": null,
-          "brief": "Review the Marcus thread and verify whether the cohort analysis and Q4 pipeline detail reached the data room.",
+          "brief": "Review cap table v3 and Naomi's request before confirming whether it is ready to send.",
           "assumptions": [],
           "watch_trigger": null,
-          "read_start": "<20260909-1405.avery@tessera.io>"
+          "read_start": "msg:<20260921-0911.bschaffer@wsgr.com>"
         },
         {
           "type": "task",
-          "target": "Put customer cohort analysis and Q4 pipeline detail in the data room",
-          "brief": "due 11:00 today",
-          "assumptions": [
-            "The promised materials have not yet been delivered."
-          ],
-          "watch_trigger": null,
-          "read_start": null
-        }
-      ]
-    },
-    {
-      "id": "i4",
-      "what": "Marcus’s team still needs final option-pool numbers; Avery’s promised cap-table send is overdue.",
-      "why": "Marcus’s team still needs final option-pool numbers; Avery’s promised cap-table send is overdue.",
-      "final_actions": [
-        {
-          "type": "task",
-          "target": "Send updated Series A cap table to Marcus",
-          "brief": "due 11:00 today",
-          "assumptions": [
-            "Reconcile the option-pool numbers in v3 before sending."
-          ],
-          "watch_trigger": null,
-          "read_start": null
-        },
-        {
-          "type": "task",
-          "target": "Send Marcus the updated cap table",
-          "brief": "due today, 9:00am",
+          "target": "Send Marcus the reconciled cap table",
+          "brief": "Overdue since Tuesday night; send final numbers before Thursday’s partnership meeting.",
           "assumptions": [],
           "watch_trigger": null,
           "read_start": null
@@ -93,164 +80,13 @@
     },
     {
       "id": "i5",
-      "what": "Elena's IPV request arrived, triggering Avery's promise to loop Ben in immediately.",
-      "why": "Elena's IPV request arrived, triggering Avery's promise to loop Ben in immediately.",
-      "final_actions": [
-        {
-          "type": "forward_delegate",
-          "target": "bschaffer@wsgr.com",
-          "brief": "Forward Elena's architecture, uptime, and inference-cost request; flag Monday's working session.",
-          "assumptions": [],
-          "watch_trigger": null,
-          "read_start": null
-        },
-        {
-          "type": "reply",
-          "target": "Ben Schaffer (existing thread)",
-          "brief": "Tell Ben IPV has started diligence and Elena requested architecture, customer-level uptime, and inference-cost materials.",
-          "assumptions": [
-            "Elena’s September 23 request is the IPV response Avery promised to share."
-          ],
-          "watch_trigger": null,
-          "read_start": null
-        }
-      ]
-    },
-    {
-      "id": "i9",
-      "what": "Priya reported the Okta issue fixed for 12 users, but completion of the broader tenant sweep is not shown after 11 business days.",
-      "why": "Priya reported the Okta issue fixed for 12 users, but completion of the broader tenant sweep is not shown after 11 business days.",
+      "what": "Elena wants three diligence deliverables before Monday and asks for them by Friday; that deadline is next business day. Tasks are stale 11 days, so tracking is unverified.",
+      "why": "Elena wants three diligence deliverables before Monday and asks for them by Friday; that deadline is next business day. Tasks are stale 11 days, so tracking is unverified.",
       "final_actions": [
         {
           "type": "task",
-          "target": "Confirm Halberd tenant sweep is complete",
-          "brief": "Due today; verify the sweep status with Priya and close the customer incident.",
-          "assumptions": [
-            "The broader tenant sweep may still be outstanding; the reported pilot-user login issue was fixed."
-          ],
-          "watch_trigger": null,
-          "read_start": null
-        }
-      ]
-    },
-    {
-      "id": "i10",
-      "what": "Diane’s September investor update is five days overdue; the draft and ARR confirmation still gate sending.",
-      "why": "Diane’s September investor update is five days overdue; the draft and ARR confirmation still gate sending.",
-      "final_actions": [
-        {
-          "type": "task",
-          "target": "Send Diane the September investor update",
-          "brief": "Due today; complete the draft and confirm the ARR number with Kim first.",
-          "assumptions": [],
-          "watch_trigger": null,
-          "read_start": null
-        },
-        {
-          "type": "task",
-          "target": "Send Diane the September board update",
-          "brief": "Confirm the task is still open and send the September update today.",
-          "assumptions": [
-            "Task data is stale; verify the task remains open before acting."
-          ],
-          "watch_trigger": null,
-          "read_start": null
-        }
-      ]
-    },
-    {
-      "id": "i11",
-      "what": "Veritas production ingest is failing; Jordan and Sofia are investigating, and Avery should contact the customer before they write.",
-      "why": "Veritas production ingest is failing; Jordan and Sofia are investigating, and Avery should contact the customer before they write.",
-      "final_actions": [
-        {
-          "type": "task",
-          "target": "Call Veritas about the line 2 ingest failure",
-          "brief": "due today; confirm impact and share status without promising a fix",
-          "assumptions": [
-            "Jordan and Sofia are still investigating and have not established an ETA."
-          ],
-          "watch_trigger": null,
-          "read_start": null
-        }
-      ]
-    },
-    {
-      "id": "i7",
-      "what": "Priya’s intentional co-founder email asks Avery to choose a backfill concurrency cap before Thursday.",
-      "why": "Priya’s intentional co-founder email asks Avery to choose a backfill concurrency cap before Thursday.",
-      "final_actions": [
-        {
-          "type": "read",
-          "target": null,
-          "brief": "Review the Q2 document comment and available concurrency-cap options.",
-          "assumptions": [],
-          "watch_trigger": null,
-          "read_start": "<20260923-0840.priya@tessera.io>"
-        },
-        {
-          "type": "decide",
-          "target": "Q2 backfill concurrency cap",
-          "brief": "Choose a concurrency cap from the Q2 document options.",
-          "assumptions": [
-            "Review the options in the Q2 document before deciding."
-          ],
-          "watch_trigger": null,
-          "read_start": null
-        }
-      ]
-    },
-    {
-      "id": "i8",
-      "what": "Priya’s intentional co-founder email asks Avery to choose an inference-spend option this week.",
-      "why": "Priya’s intentional co-founder email asks Avery to choose an inference-spend option this week.",
-      "final_actions": [
-        {
-          "type": "read",
-          "target": null,
-          "brief": "Review Priya’s inference-spend options and supporting details.",
-          "assumptions": [],
-          "watch_trigger": null,
-          "read_start": "<20260922-1510.priya@tessera.io>"
-        },
-        {
-          "type": "decide",
-          "target": "Inference spend",
-          "brief": "Choose how to handle August inference spend, $41k versus the $22k model.",
-          "assumptions": [
-            "Review the options and supporting details before deciding."
-          ],
-          "watch_trigger": null,
-          "read_start": null
-        }
-      ]
-    },
-    {
-      "id": "i1",
-      "what": "Resolve Wren's 3pm appointment and Q2 sync conflict",
-      "why": "Today, the appointment overlaps your 2:30–3:30 sync by 30 minutes.",
-      "final_actions": [
-        {
-          "type": "calendar_response",
-          "target": "q2-planning-sync-20260924",
-          "brief": "Propose moving the sync to 11:30am today to avoid Wren's appointment.",
-          "assumptions": [
-            "The 11:30am slot is available."
-          ],
-          "watch_trigger": null,
-          "read_start": null
-        }
-      ]
-    },
-    {
-      "id": "i2",
-      "what": "Handle Wren's Thursday pickup at 5pm",
-      "why": "You committed to Thursday pickup this week; today is Thursday.",
-      "final_actions": [
-        {
-          "type": "task",
-          "target": "Handle Wren's Thursday pickup",
-          "brief": "Due today at 5:00pm.",
+          "target": "Prepare and send Elena's three diligence materials",
+          "brief": "due Fri",
           "assumptions": [],
           "watch_trigger": null,
           "read_start": null
@@ -259,30 +95,120 @@
     },
     {
       "id": "i6",
-      "what": "Email says the diligence call moved to Sep 28; calendar still lists Sep 25, tomorrow.",
-      "why": "Email says the diligence call moved to Sep 28; calendar still lists Sep 25, tomorrow.",
+      "what": "Marcus’s two-part Sept 18 ask remains unanswered; 3 business days have passed, meeting the quiet-thread threshold. The profile gives approximate ARR but no reference contact preferences. Waiting 3 business days for Avery (threshold 3).",
+      "why": "Marcus’s two-part Sept 18 ask remains unanswered; 3 business days have passed, meeting the quiet-thread threshold. The profile gives approximate ARR but no reference contact preferences. Waiting 3 business days for Avery (threshold 3).",
       "final_actions": [
         {
-          "type": "calendar_response",
-          "target": "ipv-diligence-call-20260925",
-          "brief": "Propose moving the diligence call to Monday, Sep 28, at 10am, per Marcus's email.",
-          "assumptions": [
-            "Marcus's proposed Sep 28 time is the agreed schedule."
-          ],
+          "type": "task",
+          "target": "Reply to Marcus with current ARR and reference contacts",
+          "brief": "Done when Marcus has current ARR and two references with preferred contact methods.",
+          "assumptions": [],
           "watch_trigger": null,
           "read_start": null
         }
       ]
     },
     {
-      "id": "i13",
-      "what": "Wren’s well visit is today; remember the insurance card and arrive 10 minutes early.",
-      "why": "Wren’s well visit is today; remember the insurance card and arrive 10 minutes early.",
+      "id": "i7",
+      "what": "Jordan reports 100% of Veritas line 2 batches rejected since 18:10 and warns Nadia may email in the morning; the issue is now active.",
+      "why": "Jordan reports 100% of Veritas line 2 batches rejected since 18:10 and warns Nadia may email in the morning; the issue is now active.",
       "final_actions": [
         {
-          "type": "task",
-          "target": "Bring insurance card to Wren’s well visit",
-          "brief": "due 2:50pm today",
+          "type": "read",
+          "target": null,
+          "brief": "Review Jordan’s full escalation for current status and recovery details.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": "msg:<20260923-2100.jordan@tessera.io>"
+        },
+        {
+          "type": "reply",
+          "target": "jordan@tessera.io",
+          "brief": "Ask for the current recovery owner/status and the customer update plan before Nadia’s morning email.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i8",
+      "what": "Priya asks for a decision this week; today's 14:30 planning sync lists it unresolved. August was $41k vs $22k modeled, with September projected ~$38k. No reply from Avery since Tue 22 Sep 15:10.",
+      "why": "Priya asks for a decision this week; today's 14:30 planning sync lists it unresolved. August was $41k vs $22k modeled, with September projected ~$38k. No reply from Avery since Tue 22 Sep 15:10.",
+      "final_actions": [
+        {
+          "type": "decide",
+          "target": null,
+          "brief": "Choose between capping concurrency at 2, delaying Halberd's backfill about a week, and absorbing roughly $38k/month through the raise.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        },
+        {
+          "type": "question",
+          "target": null,
+          "brief": "Which tradeoff do you want: cap backfill concurrency at 2, or leave it uncapped?",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i9",
+      "what": "The planning doc says Jordan’s and Priya’s comments remain open and must be resolved before today’s 14:30 review; this links reader findings f28 and f52.",
+      "why": "The planning doc says Jordan’s and Priya’s comments remain open and must be resolved before today’s 14:30 review; this links reader findings f28 and f52.",
+      "final_actions": [
+        {
+          "type": "decide",
+          "target": null,
+          "brief": "Resolve Jordan’s fifth on-call headcount comment and Priya’s backfill concurrency cap comment before the review.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        },
+        {
+          "type": "question",
+          "target": null,
+          "brief": "Choose whether to make a fifth on-call person an explicit Q2 headcount line.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i1",
+      "what": "Resolve Wren’s 3:00 PM appointment and Q2 planning overlap",
+      "why": "The pediatrician visit overlaps your 2:30–3:30 sync by 30 minutes; the calendar event is still marked NEEDS-ACTION.",
+      "final_actions": [
+        {
+          "type": "calendar_response",
+          "target": "wren-pediatrician-20260924",
+          "brief": "Accept the calendar event for Wren’s pediatrician appointment today.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i4",
+      "what": "The accepted calendar event still shows Friday; Marcus moved the call to Monday, and Avery asked for a replacement invite. Fix the calendar before Friday’s slot.",
+      "why": "The accepted calendar event still shows Friday; Marcus moved the call to Monday, and Avery asked for a replacement invite. Fix the calendar before Friday’s slot.",
+      "final_actions": [
+        {
+          "type": "calendar_response",
+          "target": "ipv-diligence-call-20260925",
+          "brief": "Propose: move to Monday, Sep 28 at 10am to match the email.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        },
+        {
+          "type": "calendar_response",
+          "target": "event:ipv-diligence-call-20260925",
+          "brief": "Propose: move the call from Fri Sep 25 at 10:00 to Mon Sep 28 at 10:00.",
           "assumptions": [],
           "watch_trigger": null,
           "read_start": null
@@ -291,17 +217,17 @@
     }
   ],
   "header_notes": [
-    "Task data is stale (11 days)."
+    "Task data is 11 days stale."
   ],
   "cut_ids": [
     "i26",
+    "i33",
     "i27",
     "i28",
     "i29",
     "i30",
     "i31",
     "i32",
-    "i33",
     "i34",
     "i35",
     "i36",
@@ -314,18 +240,13 @@
     "i43",
     "i44",
     "i45",
-    "i46",
-    "i47",
-    "i48",
-    "i49",
-    "i50",
-    "i51",
-    "i52",
-    "i53",
-    "i54",
-    "i55",
-    "i56",
-    "i57",
-    "i58"
+    "i2",
+    "i3",
+    "i4",
+    "i5",
+    "i6",
+    "i7",
+    "i8",
+    "i9"
   ]
 }

@@ -1,38 +1,73 @@
 {
-  "calls": 343,
-  "cached": 318,
-  "prompt_tokens": 286157,
-  "completion_tokens": 71436,
-  "cost_usd": 0.071486,
+  "calls": 305,
+  "cached": 297,
+  "prompt_tokens": 58695,
+  "completion_tokens": 18670,
+  "cost_usd": 0.01283,
   "cost_unknown_calls": 0,
   "by_role": {
-    "extractor": {
-      "calls": 315,
-      "cached": 315,
+    "signature_parser": {
+      "calls": 52,
+      "cached": 52,
       "prompt_tokens": 0,
       "completion_tokens": 0,
       "cost_usd": 0.0
     },
-    "triage": {
-      "calls": 22,
-      "cached": 3,
-      "prompt_tokens": 123561,
-      "completion_tokens": 55135,
-      "cost_usd": 0.043011
+    "contact_classifier": {
+      "calls": 63,
+      "cached": 63,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "cost_usd": 0.0
+    },
+    "linker": {
+      "calls": 7,
+      "cached": 4,
+      "prompt_tokens": 17891,
+      "completion_tokens": 4713,
+      "cost_usd": 0.000751
+    },
+    "thread_reader": {
+      "calls": 175,
+      "cached": 175,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "cost_usd": 0.0
+    },
+    "calendar_sweep": {
+      "calls": 1,
+      "cached": 1,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "cost_usd": 0.0
+    },
+    "notes_tasks_sweep": {
+      "calls": 1,
+      "cached": 1,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "cost_usd": 0.0
+    },
+    "news_sweep": {
+      "calls": 1,
+      "cached": 1,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "cost_usd": 0.0
     },
     "compose": {
       "calls": 1,
       "cached": 0,
-      "prompt_tokens": 11760,
-      "completion_tokens": 15409,
-      "cost_usd": 0.009174
+      "prompt_tokens": 33563,
+      "completion_tokens": 13287,
+      "cost_usd": 0.010839
     },
     "materializer": {
-      "calls": 5,
+      "calls": 4,
       "cached": 0,
-      "prompt_tokens": 150836,
-      "completion_tokens": 892,
-      "cost_usd": 0.0193
+      "prompt_tokens": 7241,
+      "completion_tokens": 670,
+      "cost_usd": 0.00124
     }
   }
 }

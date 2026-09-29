@@ -1,0 +1,125 @@
+{"task": "role_at_org", "question": "s0", "matches": ["r0"], "reason": "jev p=0.99", "by": "jev"}
+{"task": "role_at_org", "question": "s1", "matches": ["r0"], "reason": "jev p=0.96", "by": "jev"}
+{"task": "role_at_org", "question": "s2", "matches": ["r0"], "reason": "jev p=0.98", "by": "jev"}
+{"task": "role_at_org", "question": "s3", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "role_at_org", "question": "s4", "matches": [], "reason": "jev p=0.87", "by": "jev"}
+{"task": "role_at_org", "question": "s5", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "role_at_org", "question": "s6", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "role_at_org", "question": "s7", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "role_at_org", "question": "s8", "matches": ["r0"], "reason": "jev p=0.99", "by": "jev"}
+{"task": "role_at_org", "question": "s9", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "role_at_org", "question": "s10", "matches": [], "reason": "jev p=0.98", "by": "jev"}
+{"task": "role_at_org", "question": "s11", "matches": [], "reason": "jev p=0.91", "by": "jev"}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n1", "thread": "thread:20260828-0920.marcus@inflectionpoint.vc", "by": "reader_read_thread", "fact": "Waiting 18 business days for Avery (threshold 3).", "summary": "Avery sent Marcus the deck and August metrics on Aug 28; Marcus confirmed receipt on Aug 30 and said Ravi would follow up on timing. The thread is closed."}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n2", "finding": "f7", "by": "same_thread", "finding_needs_avery": "yes"}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n3", "finding": "f9", "by": "same_thread", "finding_needs_avery": "no"}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n4", "thread": "thread:20260903-0930.ravi@inflectionpoint.vc", "by": "reader_read_thread", "fact": "Waiting 11 business days for Avery (threshold 3).", "summary": "Ravi arranged the Sep 9 IPV partnership session, provided logistics, and loaded the deck. The session is past; no live action remains in this thread."}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n5", "finding": "f11", "by": "same_thread", "finding_needs_avery": "unsure"}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n6", "finding": "f16", "by": "same_thread", "finding_needs_avery": "yes"}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n7", "thread": "thread:20260909-1405.avery@tessera.io", "by": "reader_read_thread", "fact": "Waiting 9 business days for Avery (threshold 3).", "summary": "Avery promised cohort analysis and pipeline detail by Friday; the Sept. 10 data-room update delivered both. Marcus then advanced IPV to diligence."}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n8", "thread": "thread:20260910-0830.diane@cobaltridge.vc", "by": "reader_read_thread", "fact": "Waiting 8 business days for Avery (threshold 3).", "summary": "Diane introduced Avery to Tessa, and they scheduled a September 17 call. Retrieved context also shows Diane’s September investor update is still unsent and overdue."}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n9", "thread": "thread:20260910-0900.avery@tessera.io", "by": "reader_read_thread", "fact": "Waiting 9 business days for Avery (threshold 3).", "summary": "Avery shared the updated data room with Marcus; Marcus confirmed receipt and said Ravi’s team would begin reviewing it."}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n10", "thread": "thread:20260915-1420.bschaffer@wsgr.com", "by": "reader_read_thread", "fact": "Waiting 6 business days for Avery (threshold 3).", "summary": "Ben reports the August new-hire 83(b) elections were filed on September 11, copies were distributed, and nothing further is needed."}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n11", "finding": "f41", "by": "same_thread", "finding_needs_avery": "yes"}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "reply_owed", "net_id": "n12", "finding": "f50", "by": "same_thread", "finding_needs_avery": "yes"}
+{"task": "net_covers_finding", "question": "n0", "matches": ["s2"], "reason": "jev p=0.86", "by": "jev"}
+{"task": "net_covers_finding", "question": "n1", "matches": ["s1"], "reason": "jev p=0.83", "by": "jev"}
+{"task": "net_covers_finding", "question": "n2", "matches": ["f53"], "reason": "jev p=0.77", "by": "jev"}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "calendar_conflict:deep_work", "net_id": "n13", "finding": "s2", "by": "linker", "finding_needs_avery": "yes"}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "calendar_conflict:family", "net_id": "n14", "finding": "s1", "by": "linker", "finding_needs_avery": "yes"}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "approval_pending", "net_id": "n17", "finding": "f53", "by": "linker", "finding_needs_avery": "yes"}
+{"task": "topics", "question": "q0|approval:inference-spend-backfill-concurrency", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q1|approval:plant-bundle-pricing", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q2|approval:ramp", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q3|approval:stripe", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q4|board-update:diane-september-update", "matches": ["k12"], "reason": "jev p=0.64", "by": "jev"}
+{"task": "topics", "question": "q5|board-update:september-investor-update", "matches": ["k13"], "reason": "jev p=0.78", "by": "jev"}
+{"task": "topics", "question": "q6|contract:2201-harrison-lease-renewal", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q7|contract:august-start-ciiaas", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q8|contract:delaware-franchise-tax-amended-report", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q9|deal:meridian-plant-bundle-quote", "matches": ["k21"], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "question": "q10|deal:meridian:plant-bundle-pricing", "matches": ["k27"], "reason": "jev p=0.63", "by": "jev"}
+{"task": "topics", "question": "q11|deal:meridian:plant-bundle-quote", "matches": ["k32"], "reason": "jev p=0.93", "by": "jev"}
+{"task": "topics", "question": "q12|deal:series-a:aperture-investor-call", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "question": "q13|deal:series-a:board-composition", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "question": "q14|deal:series-a:customer-references", "matches": [], "reason": "jev p=0.96", "by": "jev"}
+{"task": "topics", "question": "q15|deal:series-a:option-pool-cap-table", "matches": [], "reason": "jev p=0.97", "by": "jev"}
+{"task": "topics", "question": "q16|family:tahoe-cabin", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q17|family:thanksgiving-hosting", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q18|family:wren-pediatrician", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q19|hiring-req:fifth-on-call-person", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q20|hiring-req:product-designer-search", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q21|meeting:cobalt-ridge-portfolio-founders-dinner", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "question": "q22|meeting:customer-roundtable-october", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q23|meeting:halberd-kansas-city-scope", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q24|meeting:ipv-diligence-call", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q25|meeting:jae-whitlock-intro", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q26|meeting:lumen-analytics-demo-api-walkthrough", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q27|meeting:northstar-qbr", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "question": "q28|meeting:q2-planning-sync", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q29|other:august-expenses", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q30|other:hollis-board-comp", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "question": "q31|other:industrial-iot-board-seat", "matches": [], "reason": "jev p=0.98", "by": "jev"}
+{"task": "topics", "question": "q32|other:news:argent-batch-discount", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q33|other:on-call-rotation:headcount", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q34|other:profile-arr", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q35|other:sofia-wedding", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q36|report:halberd-soc-2-type-ii", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q37|report:mid-market-ai-deployment", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "question": "q38|rollout:northstar-line-2-exception-report", "matches": [], "reason": "jev p=0.95", "by": "jev"}
+{"task": "topics", "question": "q39|rollout:northstar-weekly-exception-report", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "question": "q40|approval:plant-bundle-pricing", "matches": ["k173"], "reason": "jev p=0.75", "by": "jev"}
+{"task": "topics", "question": "q41|board-update:september-investor-update", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q42|deal:meridian:plant-bundle-pricing", "matches": ["k180"], "reason": "jev p=0.56", "by": "jev"}
+{"task": "topics", "question": "q43|deal:meridian:plant-bundle-quote", "matches": ["k186"], "reason": "jev p=0.74", "by": "jev"}
+{"task": "topics", "question": "q44|meeting:customer-roundtable-october", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q45|contract:august-start-ciiaas", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q46|deal:series-a:board-composition", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q47|meeting:northstar-qbr", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q48|rollout:northstar-line-2-exception-report", "matches": [], "reason": "jev p=0.72", "by": "jev"}
+{"task": "topics", "question": "q49|rollout:northstar-weekly-exception-report", "matches": [], "reason": "jev p=0.94", "by": "jev"}
+{"task": "topics", "question": "q50|incident:halberd-sso-cross-tenant", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q51|meeting:halberd-kansas-city-scope", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q52|report:halberd-soc-2-type-ii", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q53|deal:series-a:customer-references", "matches": [], "reason": "jev p=0.97", "by": "jev"}
+{"task": "topics", "question": "q54|deal:series-a:option-pool-cap-table", "matches": [], "reason": "jev p=0.98", "by": "jev"}
+{"task": "topics", "question": "q55|meeting:ipv-diligence-call", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q56|approval:inference-spend-backfill-concurrency", "matches": [], "reason": "jev p=0.60", "by": "jev"}
+{"task": "topics", "question": "q57|candidate:theo-lindgren", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q58|hiring-req:fifth-on-call-person", "matches": ["k229"], "reason": "jev p=0.97", "by": "jev"}
+{"task": "topics", "question": "q59|incident:halberd-sso-cross-tenant", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q60|meeting:q2-planning-sync", "matches": ["k236"], "reason": "jev p=0.68", "by": "jev"}
+{"task": "topics", "question": "q61|offer:mei-tanaka", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q62|other:on-call-rotation:headcount", "matches": ["k250"], "reason": "jev p=0.96", "by": "jev"}
+{"task": "topics", "question": "q63|approval:plant-bundle-pricing", "matches": ["k258"], "reason": "jev p=0.88", "by": "jev"}
+{"task": "topics", "question": "q64|board-update:september-investor-update", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q65|contract:2201-harrison-lease-renewal", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q66|contract:august-start-ciiaas", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q67|contract:delaware-franchise-tax-amended-report", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q68|deal:meridian:plant-bundle-pricing", "matches": ["k279"], "reason": "jev p=0.90", "by": "jev"}
+{"task": "topics", "question": "q69|deal:series-a:customer-references", "matches": [], "reason": "jev p=0.97", "by": "jev"}
+{"task": "topics", "question": "q70|deal:series-a:option-pool-cap-table", "matches": [], "reason": "jev p=0.97", "by": "jev"}
+{"task": "topics", "question": "q71|meeting:ipv-diligence-call", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q72|meeting:northstar-qbr", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q73|rollout:northstar-line-2-exception-report", "matches": [], "reason": "jev p=0.78", "by": "jev"}
+{"task": "topics", "question": "q74|rollout:northstar-weekly-exception-report", "matches": [], "reason": "jev p=0.92", "by": "jev"}
+{"task": "topics", "question": "q75|approval:inference-spend-backfill-concurrency", "matches": [], "reason": "jev p=0.57", "by": "jev"}
+{"task": "topics", "question": "q76|incident:halberd-sso-cross-tenant", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q77|meeting:lumen-analytics-demo-api-walkthrough", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q78|meeting:q2-planning-sync", "matches": ["k308"], "reason": "jev p=0.55", "by": "jev"}
+{"task": "topics", "question": "q79|other:news:argent-batch-discount", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "question": "q80|incident:halberd-sso-cross-tenant", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q81|meeting:halberd-kansas-city-scope", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q82|report:halberd-soc-2-type-ii", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q83|hiring-req:fifth-on-call-person", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q84|other:sofia-wedding", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q85|approval:plant-bundle-pricing", "matches": ["k325"], "reason": "jev p=0.81", "by": "jev"}
+{"task": "topics", "question": "q86|board-update:september-investor-update", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q87|deal:meridian:plant-bundle-pricing", "matches": ["k332"], "reason": "jev p=0.81", "by": "jev"}
+{"task": "topics", "question": "q88|meeting:customer-roundtable-october", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q89|offer:mei-tanaka", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q90|contract:august-start-ciiaas", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q91|deal:series-a:board-composition", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q92|board-update:september-investor-update", "matches": [], "reason": "jev p=0.97", "by": "jev"}
+{"task": "topics", "question": "q93|deal:meridian:plant-bundle-pricing", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q94|report:halberd-soc-2-type-ii", "matches": [], "reason": "jev p=1.00", "by": "jev"}

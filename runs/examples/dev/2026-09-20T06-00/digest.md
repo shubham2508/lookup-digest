@@ -1,51 +1,43 @@
 # Daily Digest — Sunday, September 20, 2026
 
-As of Sun 06:00 PT · inbox synced Sat 10:20 · calendar ok · notes ok · tasks stale (7 days) · Task data is 7 days stale; verify open status before acting.
+As of Sun 06:00 PT · inbox synced Sat 10:20 · calendar ok · notes ok · tasks stale (7 days) · Tasks were last refreshed seven days ago; completion or status changes may be missing. · 7 item(s) degraded (see degradations.jsonl)
 
 ## If there is one thing you must do right now
 
-**Send David Kim meeting times by 11:00.** You promised times by Sep 7; the commitment is 13 days overdue, due 11:00 today. *[email: Avery, Thu 15:40]*
-  ☐ Send David some times for next week — due 11:00
+**Decide whether to add an independent director and confirm Cobalt’s pro rata intent with Diane.** Ben’s Sep 14 checklist leaves both open; the four-business-day capital threshold has passed. *[email: Ben, Mon 11:30] [email: Avery, Mon 17:45]*
+  ☐ Discuss board composition and Cobalt pro rata with Diane — due today
 
 ---
 
 ## Urgent To-Do Today
 
-- **Forward Marcus’s procurement-reference and ARR request to Ben.** Marcus’s Sep 18 diligence request is still not looped in; you also promised Ben immediate IPV updates. *[email: Avery, Mon 17:45]*
-  ↳ Forward to Ben with:
-  "ben, forwarding Marcus’s Sep 18 request for two procurement-side references and confirmation of ARR against the $3.2M figure in the August deck. Can you advise on the references and confirm the figure?"
-  Assumptions: Marcus’s Sep 18 message has not already been forwarded.
-- **Check Halberd’s cross-tenant SSO sweep.** Pilot users recovered; the cross-tenant sweep has no status after Sep 8. *[email: Priya, Tue 09:30]*
-  ☐ Call Halberd about the cross-tenant SSO sweep — due today
-- **Verify Diane received your promised raise update.** Your Sep 7 update promise remains untracked; Diane said no rush, but the thread still awaits you. *[email: Avery, Sun 14:05] [email: Diane, Sun 15:30]*
-  ↳ Open How's the raise going?; start at <20260906-1530.diane@cobaltridge.vc>.
-- **Verify and send Diane’s September investor update.** September update was due Sep 18; task data is stale, and draft/ARR dependencies remain. *[note: avery-todos.md] [task: Send Diane the September board update]*
-  ☐ Send Diane the September investor update — due today
-- **Check whether the Aperture call is still wanted before scheduling.** Aperture has been quiet 11 business days; the scheduling promise and 11:00 deadline are tracked in i9. *[email: Avery, Thu 15:40]*
-  ↳ Open the thread; start at the latest message.
-- **Verify Northstar’s weekly report leads with line counts.** Grace’s Sep 1 format ask is unanswered here; later Northstar activity may have resolved it. *[email: Grace, Tue 08:40]*
-  ↳ Open Weekly exception report - format; start at <20260901-0840.grace.lindqvist@northstarfoods.com>.
-- **Confirm whether you can attend Northstar’s Sept 30 QBR.** Grace’s attendance ask remains unanswered; Sept 30 is tentative pending Henrik’s office. *[email: Grace, Mon 13:45]*
-  ↳ Open the thread; start at <20260907-1345.grace.lindqvist@northstarfoods.com>.
-- **Check whether the Veritas procurement meeting happened and needs follow-up.** The invite is confirmed, but the record doesn’t establish attendance or follow-up. *[email: Tomás, Thu 13:30]*
-  ↳ Open Introduction - taking over procurement; start at <20260910-1330.tomas@tessera.io>.
-- **Have Jordan send Renee Halberd’s SOC 2 report.** You promised Jordan would send Renee Halberd’s SOC 2 report; this is untracked and undated. *[email: Avery, Wed 12:40]*
-  ☐ Have Jordan forward the SOC 2 report to Renee — due today
-- **Verify Halberd’s SOC 2 Type II report was sent.** Task says the report was due Sep 11; tasks are seven days stale, so verify it isn’t done. *[task: Send Halberd the SOC 2 Type II report]*
-  ☐ Send Halberd the SOC 2 Type II report — due today
+- **Confirm Priya completed the three-tenant SSO sweep.** Halberd’s 12 pilot users passed retesting; Priya said three other tenants were being swept Sep 8, with no completion found. *[email: Priya, Tue 09:30] [email: Renee, Tue 09:10]*
+  ↳ Message Priya about confirm the Sep 8 sweep covered all three tenants and whether any login failures remain. No draft (needs your words).
+- **Reply to Grace with the weekly roll-up status and line-count ordering.** You promised the Monday switch; Grace’s line-count request remains unconfirmed 13 business days later. *[email: Avery, Mon 16:05] [email: Grace, Tue 08:40] [note: customer-health-review.md]*
+  ↳ Draft to Grace:
+  "grace, sorry for the delay. I’m checking with Yuki on the weekly roll-up and the requested line-count ordering, then I’ll send you a status update. Avery"
+  ☐ Confirm Northstar weekly roll-up setup and line-count request with Yuki — due today
+- **Verify whether Renee received the Halberd SOC 2 report.** Sep 15 review says Renee got it Sep 8; Sep 16 email promised a direct copy, so verify before closing the stale task. *[email: Avery, Wed 12:40] [note: customer-health-review.md]*
+  ☐ Confirm Renee’s Halberd SOC 2 receipt — due today
+- **Confirm Veritas’s line 2 production sample arrived.** Sep 17 notes lacked the production schema; Yuki’s sample was due Sep 18, with staging starting Monday Sep 21. *[note: jordan-1on1.md] [email: Yuki, Thu 15:40]*
+  ↳ Message Yuki about confirm Ivan’s line 2 sample arrived; if not, agree a fallback before Sofia starts staging Monday. No draft (needs your words).
+- **Choose whether to attend Northstar’s Sep 30 QBR.** Grace penciled Option B at 1:00 pending Henrik; Tomás said your attendance would help. *[email: Tomás, Mon 17:30] [email: Grace, Tue 08:55]*
+  Q1 · Do you want to attend the Sept. 30 QBR to help Grace get Henrik there? (1) Attend; Grace can tell Henrik's office you will be there. (2) Do not attend; Tomás can represent Tessera.. Default if unanswered: 1 → digest answer Q1 1
+- **Send David times for the investor call.** You promised Sep 3 to send times for a 45-minute call with David and Iris; 11 business days passed without delivery. *[email: Avery, Thu 15:40] [email: David, Thu 11:15]*
+  ☐ Send David call times — due today
+- **Check Tomás’s overdue Veritas renewal outreach.** Tomás committed to outreach the week of Sep 14; Sep 15 notes still say timing is unclear before the Oct 1 renewal. *[email: Avery, Wed 17:10] [note: customer-health-review.md] [email: Simon, Tue 09:00]*
+  ↳ Forward to Tomás with:
+  "tomás, did you reach out to Nadia about the renewal timing? if not, please follow up and let me know the status."
 
 ---
 
 ## Decisions & Approvals
 
-- **Finalize Mei’s offer number and send the offer Monday.** You promised Monday delivery; Mei’s offer is due Sep 21. *[email: Avery, Mon 13:40]*
-  ☐ Finalize Mei Tanaka offer number and send offer — due Monday
-- **Tell Bram to hold the three designer profiles.** Hiring sync says the search is paused pending the raise; Bram asks who should screen three profiles. *[email: Bram, Fri 15:20]*
-  ↳ Draft to Bram:
-  "bram, the designer search is paused pending the raise. please hold the three profiles; we won’t schedule screening for now."
-  Assumptions: Hiring sync says the designer search is paused pending the raise.
-- **Reconcile ARR before sharing a figure.** Internal ARR is $3.2M at July end vs $3.4M Sep 15; recruiter separately claims $40M. See Marcus’s request in i1. *[note: board-meeting-minutes.md] [email: Marisol, Thu 14:35] [note: finance-sync.md]*
-  ↳ Open ARR; start at <20260827-1435.marisol@hexlinesearch.com>.
+- **Choose two procurement-side references for IPV.** Marcus’s Sep 18 diligence note requests names and preferred contact methods within the next couple of weeks. *[email: Marcus, Fri 17:52]*
+  ↳ Decide: (1) Ask the team for procurement-side rollout references and their preferred contact methods — Gets the information Marcus requested without guessing at names or contact preferences. (2) Tell Marcus the references will follow once two contacts are confirmed — Sets an expectation but does not yet provide the names or contact preferences. Recommended: (1) No customer names or contact preferences are included in the available information, so they need to be verified before sharing.
+- **Reply to Marcus with current ARR.** Marcus asks before diligence proceeds; Sep 16 finance sync says $3.4M, while your profile still says about $3.2M. *[email: Marcus, Fri 17:52]*
+  ↳ Draft to Marcus:
+  "marcus, ARR is $3.4M as of Sep 15, based on our Sep 16 finance sync. The profile figure is stale. Avery"
 
 ---
 
@@ -63,19 +55,23 @@ Nothing today.
 
 ## Calendar & Personal
 
-- **Clarify who is covering Sam’s dentist appointment.** Sam’s Sep 22 appointment overlaps your Tuesday deep-work block by 30 minutes; attendance is unclear. *[cal: shared, added Sat 21:47] [cal: work, Deep work]*
-  ↳ Message Sam about ask whether Avery is expected to cover the appointment; it overlaps deep work from 9:00 to 9:30 Tuesday. No draft (Sam).
+- **Ask Sam whether Avery is expected at the dentist appointment.** Tue Sep 22 dentist overlaps Deep work 9–11 by 30 minutes; the calendar marks it NEEDS-ACTION. *[cal: shared, added Sat 21:47] [cal: work, Deep work]*
+  ↳ Message Sam about ask whether Avery is expected at the dentist and how to resolve the overlap with deep work. No draft (Sam).
+- **Move the Priya 1:1 to after GTM weekly.** Mon Sep 21 GTM weekly overlaps Avery’s Priya 1:1 by 15 minutes; both meetings include others. *[cal: work, GTM weekly] [cal: work, 1:1 Priya / Avery]*
+  ↳ Propose: moving the 1:1 to after GTM weekly ends at 16:15.
 
 0 other meetings, nothing to act on.
 
 ---
 
-## Also pending (7)
+## Also pending (13)
 
-- **Re-engage Cobalt Ridge Ventures: Cobalt Ridge Ventures invited Avery to its October 8 portfol.** *[email: Cobalt, Fri 10:00]*
-- **Reply to Owen Fitzgerald: Board-level opportunity in industrial IoT.** *[email: Owen, Tue 13:10]*
-- **Track the promise: text Nia to arrange meeting again.** *[email: Avery, Wed 09:10]*
-- **Sources disagree: headcount.** *[note: jordan-1on1.md]*
-- **Sources disagree: runway.** *[note: board-meeting-minutes.md]*
-- **Track the promise: take first Aperture call.** *[note: board-meeting-minutes.md]*
-- **Profile drift: simon-achterberg.role.** *[email: Nadia, Wed 09:20]*
+- **Prepare for the Halberd rollout meeting.** *[cal: work, Halberd rollout weekly]*
+- **Submit Theo's Greenhouse scorecard.** *[email: Jordan, Thu 18:10]*
+- **Pursue another Tahoe cabin or drop the booking.** *[note: avery-todos.md]*
+- **Verify the pickup blocks were added.** *[email: Avery, Sun 19:15]*
+- **Get Priya's criteria for the Lumen demo.** *[note: avery-todos.md]*
+- **Track Northstar's missed downtime-report follow-up.** *[email: Tomás, Mon 17:45]*
+- **Decide whether to open October's customer roundtable.** *[email: Tomás, Wed 10:40]*
+- **Confirm Tomás paused Keystone's designer search.** *[note: hiring-sync.md]*
+- …and 5 more lower-priority items (full list in reduce.json).

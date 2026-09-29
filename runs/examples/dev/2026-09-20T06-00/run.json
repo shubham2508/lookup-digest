@@ -8,24 +8,28 @@
   "suffix": null,
   "customize": null,
   "timings_s": {
-    "compile_profile": 0.007,
-    "ingest": 0.418,
-    "normalize": 0.029,
-    "extract": 1.578,
-    "persist": 0.022,
-    "compute": 0.111,
-    "triage": 0.028,
-    "reduce": 0.0,
-    "compose": 0.002,
-    "materialize": 0.004,
-    "verify": 0.001,
-    "render": 0.0
+    "compile_profile": 0.009,
+    "ingest": 0.477,
+    "normalize": 0.031,
+    "spine": 9.205,
+    "read": 137.398,
+    "persist": 0.013,
+    "sweep": 47.079,
+    "nets": 0.502,
+    "merge": 0.957,
+    "compute": 48.552,
+    "enforce": 0.002,
+    "reduce": 0.001,
+    "compose": 71.367,
+    "materialize": 8.4,
+    "verify": 0.004,
+    "render": 0.001
   },
-  "wall_s": 2.227,
-  "cost_usd": 0.0,
-  "llm_calls": 261,
-  "llm_cached": 261,
-  "degradations": 22,
+  "wall_s": 275.529,
+  "cost_usd": 0.202189,
+  "llm_calls": 241,
+  "llm_cached": 78,
+  "degradations": 16,
   "owner_email": "avery@tessera.io",
   "threads": 283,
   "messages": 422,
@@ -33,79 +37,78 @@
   "events": 107,
   "notes": 7,
   "tasks": 5,
-  "extractions": 295,
-  "extract": {
-    "documents": 295,
-    "llm_calls": 245,
-    "cached": 245,
-    "skipped_marketing": 50,
-    "invalid": 0,
-    "evidence_checked": 1049,
-    "evidence_valid": 1037,
-    "evidence_dropped": 21,
-    "evidence_replaced": 0,
-    "type_changes": []
+  "read": {
+    "threads_read": 133,
+    "llm_calls": 133,
+    "cached": 0,
+    "failed": 0,
+    "findings": 42,
+    "needs_avery": {
+      "yes": 20,
+      "no": 22,
+      "unsure": 0
+    },
+    "citations_dropped": 6,
+    "findings_dropped": 0,
+    "rulings_applied": 0,
+    "retrieval": "compute.context.retrieve"
   },
   "compute": {
-    "contacts": 113,
-    "candidates": 76,
-    "by_type": {
-      "approval_pending": 9,
-      "calendar_conflict:family": 1,
-      "commitment_not_in_tasks": 15,
-      "commitment_overdue": 8,
-      "contradiction": 8,
-      "news_attachment": 1,
-      "obligation_cadence": 1,
-      "profile_drift": 4,
-      "quiet_thread": 8,
-      "reply_owed": 17,
-      "stale_source": 1,
-      "task_due": 3
+    "contacts": 119,
+    "reader_findings": 42,
+    "sweep_findings": 9,
+    "net_findings": 12,
+    "rescues": 0,
+    "about_merges": 0,
+    "candidates": 29,
+    "by_origin": {
+      "thread_reader": 42,
+      "calendar_sweep": 3,
+      "notes_tasks_sweep": 6,
+      "safety_net": 1
     },
-    "about_merges": 17,
-    "facts_drift": 2
+    "links": 70
   },
   "triage": {
-    "candidates": 76,
-    "packs": 13,
-    "cached": 13,
-    "invalid_packs": 0,
-    "missing": [],
-    "fixes": 1,
+    "candidates": 29,
+    "fixes": 3,
     "rulings_applied": 0
   },
   "reduce": {
-    "items": 22,
+    "items": 25,
     "overflow": 0,
-    "dropped": 42,
-    "merges": 17
+    "dropped": 0,
+    "merges": 0
   },
   "compose": {
-    "cached": true,
+    "cached": false,
     "fallback": false,
-    "fixes": [],
-    "one_thing": "i9",
-    "placed": 15,
-    "cut": 7
+    "fixes": [
+      "one thing i3 is not P0 while P0 items exist → i1",
+      "i3 unplaced → also pending",
+      "i23 moved to also pending (page limit 12)"
+    ],
+    "one_thing": "i1",
+    "placed": 12,
+    "cut": 13
   },
   "materialize": {
-    "actions": 15,
-    "llm_calls": 2,
-    "cached": 2,
+    "actions": 13,
+    "llm_calls": 4,
+    "cached": 0,
     "draft_retries": 0,
     "drafts_dropped": 0
   },
   "verify": {
     "violations": [],
     "stats": {
-      "words": 344,
+      "words": 313,
       "budget": 350,
       "header_present": true,
-      "items": 15,
-      "items_cited": 15,
-      "citations_total": 20,
-      "citations_resolved": 20
+      "items": 12,
+      "items_cited": 12,
+      "citations_total": 30,
+      "citations_resolved": 30
     }
   },
   "history": {

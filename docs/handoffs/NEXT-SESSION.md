@@ -1,76 +1,44 @@
-> **2026-09-29 05:00 — superseded for the v2 pivot.** Read `specs/PIVOT_SPEC.md`, `MIGRATION_PLAN.md`, then
-> `docs/handoffs/v2-A-readers.md` / `v2-B-spine.md` / `v2-C-eval.md` (tracks) or `STATUS.md` (orchestrator). The
-> v1 close-out steps below still apply to the v1 tag if the pivot is abandoned.
+# Orchestrator handoff — start here (written 2026-09-29 morning, after the v2 build)
 
-# Orchestrator handoff — start here (written 2026-09-28, late)
-
-Read `CLAUDE.md` first, then this page, then `docs/handoffs/STATUS.md` and `OPEN_QUESTIONS.md` → Decided (#13–#17).
-Shubham wants short, plain answers, tables over paragraphs, and a status line between long steps.
+Read `CLAUDE.md`, `specs/PIVOT_SPEC.md`, `MIGRATION_PLAN.md`, then this page. Shubham wants short, plain answers,
+tables over paragraphs, a status line between long steps, and no fixable issue shipped as "week two".
 
 ## Where things stand
 
-- **Build:** all milestones M0–M10 exist. Tracks A, B, C are done and closed; this orchestrator owns everything now.
-- **Submission:** the repo is due the morning of 2026-09-29; walkthrough the following week.
-- **Last commit:** `196e557` — known issues fixed in code (thread-level merge in reduce, earned P0, exact-scope rulings,
-  linker for role-at-org, P0 one-thing guard) and **Jev** behind the linker. All tests green.
-- **No final numbers yet on this code.** The stale dev report was deleted (a7ae466+); the final matrix writes the
-  reports to quote. Earlier numbers (before commit 5038594, the prompt-leak fix) are not results.
+- **v2 ("read, don't extract") is built, integrated and measured.** Three parallel sessions (A readers, B spine/sweeps/
+  nets, C eval) built on the `Finding` contract; the orchestrator merged them, fixed integration (A5, reduce, merge,
+  compose v6), ran both final matrices, judged in-session, and filled `DESIGN.md`, `README.md`, `eval/history.md`.
+- **v1 is tag `v1-extraction-centric`**; its reports are `eval/reports/*_2026-09-29_v1.md`. Rejected design, kept for the
+  comparison.
+- **Final numbers (both worlds, five mornings):** dev P0 100%, traps 126/175, noise 5.5%, one thing 2/2, memory 11/11,
+  $0.18 a cold morning; held-out P0 84.6%, traps 149/207, noise 6.1%, one thing 2/2, memory 14/15, $0.29. Judge
+  (in-session, `eval/judge/in_session/*.yaml`, read back with `--judge-scores`): dev digest 4.4/3.4/4.4, drafts
+  4.7/4.3/3.5; held-out digest 4.4/3.2/4.4, drafts 4.2/4.5/3.2. Reports: `eval/reports/{dev,heldout}_2026-09-29.md`.
+- Decisions taken while Shubham slept are in `OPEN_QUESTIONS.md` → Decided (#19 verdict, #20, #21, #22 accepted).
+  Still open for Shubham: **#18** (the scorer's claimed-key guard; it costs held-out one P0 credit on day 30).
 
-## What to do next, in order
+## To do next (Shubham, then the orchestrator)
 
-1. **Live Jev check — done once (it did finish):** Thursday dev gave P0 19 → 12 (key: 8), 12 items on the page, 348 of 448 link decisions by Jev, $0.22 for the run. Jev failed on two question types with `max_tokens_exceeded` (news and topics: too many long options per request); `jev.py` now splits requests by size (commit after 8f6ec60). Rerun Thursday once to confirm no fallback, and look at why compose picked Jordan's Veritas incident as the one thing (the key expects the cap table on day 30; both are P0 due today — check the compose trace before changing anything).
-   Previous note, kept for reference: The first attempt was cut off by a 15-minute tool timeout during
-   triage (it got through extraction and linking: Jev 21 calls, $0.02). Run it detached so no timeout kills it:
-   `rm -rf runs/dev && mkdir -p runs/dev && nohup uv run digest run --world dev --as-of 2026-09-24T06:00 > runs/dev/thu.log 2>&1 &`
-   then wait for `runs/dev/2026-09-24T06-00/run.json`. When it finishes:
-   - `links.jsonl`: decisions marked `"by": "jev"` with `p=` probabilities; spot-check a few for sense.
-   - Two question types fell back to the LLM (`linker@v2`, `topic_grouper@v2` calls in `cost.jsonl`). Find why in
-     `degradations.jsonl` (`jev_failed_fallback_llm`) or the trace; likely a request-size or option-count limit
-     (Jev: 255 options per question, ~32k tokens per request). Fix in `digest/compute/jev.py` (chunking) if simple.
-   - `digest.md`: P0 count should now be near the answer key's 8 on Thursday; page ≤ 12 items; one thing = cap table.
-2. **Final runs** (nothing else may run at the same time; do not edit `digest/`, `prompts/`, `config/`, `eval/`
-   while they run):
-   ```
-   rm -rf runs/dev runs/heldout runs/_archive && mkdir -p runs/dev runs/heldout   # _archive = superseded local runs
-   nohup uv run digest eval --matrix --world dev --keep-going > runs/dev/matrix.log 2>&1 &
-   nohup uv run digest eval --matrix --world heldout --keep-going > runs/heldout/matrix.log 2>&1 &
-   ```
-   The two worlds run in parallel (separate stores; the LLM cache writes are atomic): ~45 min wall time.
-   Within one world the steps stay sequential (one store, history order). Cost ~$1–1.5 per world (extractor v2 is cached for dev days already run; held-out reads cold).
-   OpenRouter key: limit $10, ~$4 left at 17:30 UTC — check with the `/auth/key` call before starting.
-   If a step times out (provider stall), rerun that morning and the later ones in order, then `digest eval`.
-3. **Fill the results**: `DESIGN.md` "Results" sentence (dev + held-out: P0 recall, traps, must-not, one thing,
-   cost/run, memory checks; baseline side by side). Replace `HELDOUT_RESULTS`. Add an `eval/history.md` line for
-   triage v5 / linker+Jev with before→after.
-4. **Refresh `runs/examples/dev/`** from the final runs (digest, run.json, cost.json, compose/reduce/triage/candidates,
-   actions, verify, links; trace only for the Thursday default run), and add one held-out example.
-5. **Known-issues list in DESIGN.md**: only what the final report still shows. Shubham does not want shipped issues
-   described as "week two" when they are fixable; fix first, list only what truly remains.
-6. Commit. Tell Shubham to export this session (`/export sessions/orchestrator_final.txt`), scrub it
-   (`grep -nE 'github_pat_|sk-or-v1-[A-Za-z0-9]{20,}'`), and push.
+1. Shubham: `/export sessions/orchestrator_v2.txt` from the orchestrator session, plus `sessions/A-readers_v2.txt` and
+   `sessions/C-grader_v2.txt` from the track sessions (`sessions/B-spine_v2.txt` is in). Scrub:
+   `grep -nE 'github_pat_|sk-or-v1-[A-Za-z0-9]{20,}|OPENROUTER_API_KEY=' sessions/*`.
+2. Push `main`. The three worktrees (`../lookup-digest-v2-{a-readers,b-spine,c-eval}`) are merged; once their sessions
+   are closed: `git worktree remove <path>` and `git branch -d v2-a-readers v2-b-spine v2-c-eval`.
+3. Optional, cents: the API judge for comparison with the in-session scores:
+   `uv run digest eval --world dev --customize-suite --baseline --judge` (DeepSeek V4.1 Flash, configured).
+4. Fix-first candidates, in order of value (each is a known issue in `DESIGN.md`): `profile_update` actions from the
+   notes sweep; decide-card drafts marked as presupposing the choice; the "Message them" render fallback; the P0 floor
+   during the raise (11 vs 8 on dev Thursday). Held-out is never tuned on: re-measure dev, then report held-out once.
 
-## Things decided tonight (details in OPEN_QUESTIONS.md → Decided)
+## Tools
 
-| # | Decision |
-|---|---|
-| 15 | Simulation runs write to `<as_of>_sim/` (`--tag sim`); plain runs stay rulings-free |
-| 16 | **Linker**: an LLM (and now Jev first) decides "same thing?"; code only narrows options by hard facts. No string similarity anywhere in `digest/` |
-| 17 | **Prompt-example leak removed**: examples use a made-up cast (Dara Quinn/Brightwater, Oren Tal/Halden Mills, Nia Okoro, Jun Park, Pellucid Freight). Never reuse world names in prompts; the `debug-trap` skill has the grep |
-| — | Honesty in code: sync-gap qualifier, confidence cap, calendar "unreadable" (B's reading over C's stricter suite, noted) |
-| — | One page: ≤ 12 items; P0 never cut to also-pending; also-pending shows 8 lines + a count |
-| — | P0 must be earned: profile P0 contact (tier), escalation/incident, or family calendar conflict |
+- `uv run digest run --world dev --as-of 2026-09-24T06:00` (~$0.15 cold, a cent warm); `uv run digest eval --world dev`;
+  `uv run digest eval --matrix --world dev --keep-going` (~$2, ~2 h); `python -m digest.compute.sweeps --world dev --as-of …`.
+- `uv run digest ui` for any run; `.claude/skills/debug-trap/SKILL.md` for a failing assertion (stages are now
+  spine → read → sweep → net → merge → compose → materialize → verify).
+- Never run two pipelines in one checkout (store lock). Never edit `digest/`, `prompts/`, `config/`, `eval/` while a
+  matrix runs.
 
-## Tools that exist
+## Budget
 
-- `uv run digest ui` (or F5 "Digest" in VS Code): run a morning, then tabs Digest / Why each item / LLM calls; buttons
-  for Score runs, Full matrix, Simulate. It refuses to launch while another pipeline runs.
-- `.claude/skills/debug-trap/SKILL.md`: the procedure for any failing assertion or missing item.
-- Explainer pages (claude.ai artifacts, private): Digest Engine Walkthrough, Digest Agents and Prompts. Their numbers
-  are stale; republish from this repo's final numbers if Shubham asks.
-
-## Watch-outs
-
-- Never run two pipelines at once (they deadlock on the store/cache). Edit code only when nothing runs, or in a git
-  worktree.
-- OpenRouter sometimes stalls a call for minutes; timeouts are 90 s per request and 30 min per matrix step.
-- Held-out: never tune on it. Report it once, on the final code.
+OpenRouter key: limit $25, about $8.5 left after the final matrices ($4.7 for both worlds).
