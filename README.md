@@ -12,7 +12,7 @@ A one-page 6:00am PT triage digest for "Avery Chen", built from a synthetic mont
 | What a morning looks like | `runs/examples/dev/2026-09-24T06-00/digest.md` (every artifact and LLM call beside it) |
 | Scores, and every miss traced to the stage that lost it | `eval/reports/dev_2026-09-29.md`, `heldout_2026-09-29.md`, `review_fixes_2026-09-29.md` |
 | What it does and how each capability is tested | `docs/CAPABILITIES.md` |
-| Why each decision, and who proposed it | `docs/DESIGN_LOG.md` §14–15, `OPEN_QUESTIONS.md` → Decided |
+| Why each decision was made, and what was rejected | `docs/DESIGN_LOG.md`, `OPEN_QUESTIONS.md` → Decided |
 | How Claude Code was used | `sessions/` (every session's transcript), `CLAUDE.md` (the agents' standing rules), `docs/handoffs/` |
 | The spec | `specs/PIVOT_SPEC.md` |
 
