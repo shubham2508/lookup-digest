@@ -26,7 +26,7 @@ from digest.compute.contacts import (
     collect_observations,
 )
 from digest.compute.context import retrieve
-from digest.compute.merge import apply_merges, group_findings, reconcile, thread_of
+from digest.compute.merge import apply_merges, group_findings, net_fact, reconcile, thread_of
 from digest.compute.signals import (
     block_windows,
     business_days_between,
@@ -383,44 +383,58 @@ def test_reconcile_attaches_a_covered_net_and_rescues_the_rest():
     reader = _finding("f1")
     other = _finding("f2", title="Book the partner meeting room", entities=("marcus-webb",), cites=[Evidence(source_id="msg:<m9>", quote="room")])
     covered = _finding("net1", kind="quiet_thread", title="Reply to Marcus Webb: cap table?", origin="safety_net",
-                       cites=[Evidence(source_id="msg:<m1>", quote="cap table?")]).model_copy(update={"why": "Marcus Webb has waited 3 business days."})
+                       cites=[Evidence(source_id="msg:<m1>", quote="cap table?")]).model_copy(
+                           update={"why": "Waiting 3 business days for Avery (threshold 3). Marcus Webb wrote Fri 16:42."})
     lonely = _finding("net2", kind="calendar_conflict:deep_work", title="Protect deep work: Lumen demo", origin="safety_net",
                       entities=("dana",), cites=[Evidence(source_id="event:lumen", quote="Lumen demo")])
     stale = _finding("net3", kind="stale_source", title="Check the email sync", origin="safety_net", needs="no", entities=(),
                      cites=[Evidence(source_id="msg:<m9>", quote="x")])
-    lk = StubLinker({"net_covers_finding": {"quiet_thread": ["f1"]}})
+    lk = StubLinker()
     logs = []
     out, rescues = reconcile([reader, other], [covered, lonely, stale], lk, msg_thread={"msg:<m1>": "t1", "msg:<m2>": "t1"},
                              log=lambda r, d: logs.append((r, d)))
     ids = [f.finding_id for f in out]
     assert ids == ["f1", "f2", "net2", "net3"], "the covered net is dropped; the rescue and the freshness fact stay"
-    assert "(computed: Marcus Webb has waited 3 business days.)" in out[0].why and Evidence(source_id="msg:<m1>", quote="cap table?") in out[0].citations
+    assert out[0].why == "Promised Tuesday; still unsent. Waiting 3 business days for Avery (threshold 3)." and \
+        Evidence(source_id="msg:<m1>", quote="cap table?") in out[0].citations, "only the computed fact is appended"
     assert [r["net"] for r in rescues] == ["calendar_conflict:deep_work"] and rescues[0]["options"] == 0, "stale_source is never a rescue"
-    q = lk.asked[0][1]
-    assert {o.id for o in q.options} == {"f1"}, "a finding on the same thread outranks one that only shares the person"
-    assert logs[0][1]["by"] == "linker" and logs[0][1]["finding"] == "f1"
+    assert lk.asked == [] and logs[0][1]["by"] == "same_thread", "a finding on the same thread covers a waiting net (spec §5.3)"
     out2, rescues2 = reconcile([reader, other], [covered], StubLinker(), msg_thread={})
-    assert [r["net"] for r in rescues2] == ["quiet_thread"] and rescues2[0]["options"] == 2 and out2[-1].finding_id == "net1"
+    assert [r["net"] for r in rescues2] == ["quiet_thread"] and rescues2[0]["options"] == 2 and out2[-1].finding_id == "net1", \
+        "without the thread map only shared people narrow, and the linker decides"
     _, rescues3 = reconcile([reader], [covered], None)
     assert len(rescues3) == 1, "no linker: nothing matches, the net stays"
 
 
-def test_reconcile_offers_the_readers_summary_when_it_raised_nothing_on_the_thread():
+def test_reconcile_asks_the_linker_for_event_nets():
+    prep = _finding("s1", origin="calendar_sweep", title="Prep the Lumen demo", entities=(), cites=[Evidence(source_id="event:lumen", quote="Lumen demo")])
+    guard = _finding("s2", origin="calendar_sweep", title="Move the Lumen demo out of deep work", entities=(),
+                     cites=[Evidence(source_id="event:lumen", quote="Lumen demo")])
+    net = _finding("net1", kind="calendar_conflict:deep_work", title="Protect deep work: Lumen demo", origin="safety_net", entities=(),
+                   cites=[Evidence(source_id="event:lumen", quote="Lumen demo")])
+    lk = StubLinker({"net_covers_finding": {"calendar_conflict:deep_work": ["s2"]}})
+    out, rescues = reconcile([prep, guard], [net], lk)
+    q = lk.asked[0][1]
+    assert [o.id for o in q.options] == ["s1", "s2"] and all(o.text.startswith("[same event]") for o in q.options)
+    assert rescues == [] and "deep-work" not in out[0].why and out[1].why.endswith(net_fact(net))
+
+
+def test_reconcile_defers_to_the_reader_on_a_thread_it_read_and_rescues_unread_ones():
     other = _finding("f2", title="Send Marcus the cap table", cites=[Evidence(source_id="msg:<m9>", quote="cap table")])
     net = _finding("net1", kind="quiet_thread", title="Reply to Marcus Webb: Re: Deck", origin="safety_net",
-                   cites=[Evidence(source_id="msg:<d1>", quote="Re: Deck")])
+                   cites=[Evidence(source_id="msg:<d1>", quote="Re: Deck")]).model_copy(
+                       update={"why": "Waiting 18 business days for Avery (threshold 3). Marcus Webb wrote Sun 30 Aug."})
     mt = {"msg:<d1>": "t-deck", "msg:<m9>": "t-cap"}
-    lk = StubLinker({"net_covers_finding": {"quiet_thread": ["read:t-deck"]}})
-    logs = []
-    out, rescues = reconcile([other], [net], lk, msg_thread=mt, summaries={"t-deck": "Marcus thanks Avery for the deck."},
-                             log=lambda r, d: logs.append(d))
-    q = lk.asked[0][1]
-    assert [o.id for o in q.options] == ["read:t-deck"] and "Marcus thanks Avery for the deck." in q.options[0].text, \
-        "the thread was read and raised nothing: its summary is the only option, not Marcus's other issues"
-    assert [f.finding_id for f in out] == ["f2"] and rescues == [] and logs[0]["by"] == "reader_summary"
-    assert "computed" not in out[0].why
+    lk = StubLinker({"net_covers_finding": {"quiet_thread": ["f2"]}})
+    out, rescues = reconcile([other], [net], lk, msg_thread=mt, summaries={"t-deck": "Marcus thanks Avery for the deck."})
+    assert [f.finding_id for f in out] == ["f2"] and rescues == [] and lk.asked == [], \
+        "the reader read the raw thread and raised nothing: a code heuristic does not overrule it, and no other issue absorbs it"
+    assert out[0].why == other.why
+    decision = lk.log[-1]
+    assert decision["by"] == "reader_read_thread" and decision["fact"].startswith("Waiting 18") and "thanks Avery" in decision["summary"], \
+        "logged to the linker log (links.jsonl) for the audit"
     _, unread = reconcile([other], [net], StubLinker(), msg_thread=mt, summaries={})
-    assert unread[0]["options"] == 1, "an unread thread falls back to findings about the same person"
+    assert unread[0]["options"] == 1, "an unread thread (reader failed): findings about the same person are offered, then rescue"
 
 
 def test_reported_suspicious_quote_is_the_readers_flag_not_a_rescue():
@@ -461,19 +475,20 @@ def test_family_lookahead_window(days):
     assert bool(family_conflicts(ci_for(w))) == (days == 0)
 
 
-def test_same_message_covers_a_waiting_net_without_the_linker_and_patterns_get_no_summary():
+def test_same_message_covers_a_waiting_net_without_the_linker_and_a_pattern_is_not_one_thread():
     q = Evidence(source_id="msg:<t1>", quote="Two things")
     refs = _finding("f1", title="Pick two customer references", cites=[q])
     arr = _finding("f2", title="Confirm current ARR", cites=[q]).model_copy(update={"priority": "P1"})
-    net = _finding("net1", kind="quiet_thread", title="Reply to Marcus Webb: Two things", origin="safety_net", cites=[q])
+    net = _finding("net1", kind="quiet_thread", title="Reply to Marcus Webb: Two things", origin="safety_net", cites=[q]).model_copy(
+        update={"why": "Waiting 3 business days for Avery (threshold 3). Marcus Webb wrote Fri 17:52."})
     lk = StubLinker()
     out, rescues = reconcile([refs, arr], [net], lk, msg_thread={"msg:<t1>": "t"})
-    assert rescues == [] and lk.asked == [] and "(computed:" in out[0].why and "(computed:" not in out[1].why, "the P0 one takes the fact"
+    assert rescues == [] and lk.asked == [] and out[0].why != refs.why and out[1].why == arr.why, "the P0 one takes the fact"
     pattern = _finding("net2", kind="recruiter_pattern", title="Note the recruiter pattern", origin="safety_net", entities=("scout-1",),
                        cites=[Evidence(source_id="msg:<r1>", quote="Opportunity")])
-    lk2 = StubLinker({"net_covers_finding": {"recruiter_pattern": ["read:tr1"]}})
+    lk2 = StubLinker()
     _, rescues2 = reconcile([], [pattern], lk2, msg_thread={"msg:<r1>": "tr1"}, summaries={"tr1": "A cold recruiter pitch; nothing for Avery."})
-    assert [r["net"] for r in rescues2] == ["recruiter_pattern"] and lk2.asked == [], "one reader's summary never covers a pattern"
+    assert [r["net"] for r in rescues2] == ["recruiter_pattern"] and lk2.asked == [], "one reader's reading never covers a pattern"
 
 
 def test_retrieval_finds_the_later_thread_that_delivered_a_promise():

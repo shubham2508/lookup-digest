@@ -213,13 +213,14 @@ def waiting_on_avery(ci: ComputeInputs) -> list[Finding]:
             arrived = f"{day_label(m.sent_at.date(), ci.today())} {m.sent_at.strftime('%H:%M')}"
             subject = m.subject or "(no subject)"
             if cat == "capital" and bd >= th.investor_quiet_business_days:
-                why = f"{name} ({c.relationship.subtype or cat}) has waited {bd} business days since {arrived}; the threshold is {th.investor_quiet_business_days}."
+                why = (f"Waiting {bd} business days for Avery (threshold {th.investor_quiet_business_days}). "
+                       f"{name} ({c.relationship.subtype or cat}) wrote {arrived}.")
                 out.append(_net(ci, "quiet_thread", f"Reply to {name}: {subject}", why, priority=c.tier or "P1", section="urgent",
                                 urgency="today", stakes="high" if c.tier == "P0" else "medium", entities=_entities(c), about=[],
                                 citations=[msg_evidence(m)], actions=[_reply_or_message(c, email, f"answer {name} on \"{subject}\"")],
                                 sources=["email"]))
             elif cat != "capital" and c.tier == "P0" and bd >= OTHER_P0_WAIT_BUSINESS_DAYS:
-                why = f"{name} ({cat}, P0) wrote {arrived}; no reply from Avery since."
+                why = f"No reply from Avery since {arrived}. {name} ({cat}, P0) wrote it."
                 out.append(_net(ci, "reply_owed", f"Answer {name}: {subject}", why, priority="P0", section="urgent", urgency="today",
                                 stakes="high", entities=_entities(c), about=[], citations=[msg_evidence(m)],
                                 actions=[_reply_or_message(c, email, f"answer {name} on \"{subject}\"")], sources=["email"]))
@@ -228,7 +229,7 @@ def waiting_on_avery(ci: ComputeInputs) -> list[Finding]:
                 if ci.as_of <= eod:
                     continue
                 hours = round((ci.as_of - m.sent_at).total_seconds() / 3600)
-                why = f"Reference customer {name} wrote {arrived}; unanswered past that business day's end ({hours} hours)."
+                why = f"Unanswered past the end of its business day ({hours} hours). Reference customer {name} wrote {arrived}."
                 out.append(_net(ci, "quiet_thread", f"Reply to {name}: {subject}", why, priority=c.tier or "P1", section="urgent",
                                 urgency="today", stakes="high", entities=_entities(c), about=[], citations=[msg_evidence(m)],
                                 actions=[_reply_or_message(c, email, f"answer {name} on \"{subject}\" today")], sources=["email"]))
@@ -261,8 +262,8 @@ def deep_work_conflicts(ci: ComputeInputs) -> list[Finding]:
                 continue
             org = ci.contact(e.organizer)
             when = f"{day_label(e.start.date(), ci.today())} {e.start.strftime('%H:%M')}–{e.end.strftime('%H:%M')}"
-            why = (f"{_name(org, e.organizer)} booked \"{e.title}\" {when}, {ov} minutes inside the "
-                   f"{ws.strftime('%H:%M')}–{we.strftime('%H:%M')} deep-work block; Avery: {e.avery_partstat.lower()}.")
+            why = (f"{ov} minutes inside the {ws.strftime('%H:%M')}–{we.strftime('%H:%M')} deep-work block. "
+                   f"{_name(org, e.organizer)} booked \"{e.title}\" {when}; Avery: {e.avery_partstat.lower()}.")
             out.append(_net(ci, "calendar_conflict:deep_work", f"Protect deep work: {e.title}", why, priority="P2",
                             section="calendar_personal", urgency="today" if e.start.date() == ci.today() else "this_week",
                             stakes="medium", entities=_entities(org), about=[f"meeting:{slugify(e.title)}"],
@@ -290,7 +291,7 @@ def family_conflicts(ci: ComputeInputs) -> list[Finding]:
         org = ci.contact(p.organizer)
         when = f"{day_label(p.start.date(), ci.today())} {p.start.strftime('%H:%M')}–{p.end.strftime('%H:%M')}"
         clash = "; ".join(f"\"{e.title}\" {e.start.strftime('%H:%M')}–{e.end.strftime('%H:%M')}" for e in overlaps[:2])
-        why = f"\"{p.title}\" {when}" + (f" overlaps {clash}" if overlaps else " falls in work hours") + "."
+        why = (f"Overlaps {clash}." if overlaps else "Falls in work hours.") + f" \"{p.title}\" {when}."
         if _calendar_unreadable(ci):
             why += " Work calendar unreadable: overlaps not checked."
         created = f" Added {p.created.strftime('%a %H:%M')}." if p.created else ""
@@ -319,8 +320,8 @@ def double_book(ci: ComputeInputs) -> list[Finding]:
         for b in todays[i + 1:]:
             ov = overlap_minutes(a.start, a.end, b.start, b.end)
             if ov > 0:
-                why = (f"\"{a.title}\" {a.start.strftime('%H:%M')}–{a.end.strftime('%H:%M')} and \"{b.title}\" "
-                       f"{b.start.strftime('%H:%M')}–{b.end.strftime('%H:%M')} overlap {ov} minutes today; both accepted.")
+                why = (f"Double-booked {ov} minutes today, both accepted. \"{a.title}\" {a.start.strftime('%H:%M')}–"
+                       f"{a.end.strftime('%H:%M')} and \"{b.title}\" {b.start.strftime('%H:%M')}–{b.end.strftime('%H:%M')}.")
                 out.append(_net(ci, "calendar_conflict:double_book", f"Pick one: {a.title} or {b.title}", why, priority="P1",
                                 section="calendar_personal", urgency="today", stakes="medium", entities=[],
                                 about=[f"meeting:{slugify(a.title)}"], citations=[event_evidence(a), event_evidence(b)],
@@ -474,7 +475,7 @@ def approvals(ci: ComputeInputs) -> list[Finding]:
         n = len(msgs)
         what = msgs[0].subject if n == 1 else f"{n} {system} requests"
         received = ", ".join(sorted({day_label(m.sent_at.date(), ci.today()) for m in msgs}))
-        why = f"{system}: {what}; received {received}; still the latest message of its thread."
+        why = f"Still open: the latest message of its thread, received {received}. {system}: {what}."
         out.append(_net(ci, "approval_pending", f"{_VERB[kind]}: {what}", why, priority=_PRIORITY[kind], section="decisions",
                         urgency="today" if kind != "approval" else "this_week", stakes="medium" if kind != "approval" else "low",
                         entities=[slugify(system), *people], about=[f"approval:{slugify(system)}"], citations=[msg_evidence(m) for m in msgs[:4]],

@@ -69,16 +69,11 @@ TASKS = {
                     "organizations (an acting or new holder of the role counts; a colleague in a different role does not)."),
     "net_covers_finding": ("Each item is a fact a code check computed (a message waiting N business days for Avery, a "
                            "meeting inside a protected block, a family event over a work meeting, an automated request to "
-                           "sign or approve). Options are issues that readers found in the same thread, event or with the "
-                           "same people, or the reader's own summary of the thread the fact is about. Match the option that "
-                           "already accounts for the fact: the same issue (the same unanswered message, meeting or request), "
-                           "or a reader summary showing the thread needs nothing more from Avery (a thank-you, a confirmation, "
-                           "an FYI, something a teammate handled). The bracket before each option is a fact code checked: "
-                           "[same message] means the option cites the very message the fact is about, so it accounts for "
-                           "it even when the reader split that message into several issues (pick one); [same event] "
-                           "likewise; [same thread] and [same person] only say where to look. Match none when the fact may "
-                           "still need Avery and no option is about it. Another issue with the same person is not the "
-                           "same issue."),
+                           "sign or approve). Options are issues readers or sweeps found, each labelled with the fact that "
+                           "made code offer it: [same message] or [same event] (it cites exactly what the fact is about), "
+                           "[same thread] or [same person] (only where to look). Match the option that is the same issue "
+                           "(the same request, meeting or signature), or none. Another issue with the same person is not "
+                           "the same issue."),
     "news_to_open_item": ("Each item is a newsletter story. Options are things Avery is dealing with right now. Match only if the "
                           "story changes what Avery should do or say about that item (a price change on a cost Avery is deciding, "
                           "a customer's public statement before a reply to that customer). General industry or fundraising news "
