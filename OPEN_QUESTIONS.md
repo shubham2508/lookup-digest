@@ -69,6 +69,18 @@ contact_classifier,calendar_sweep,notes_tasks_sweep,news_sweep}.md`.
 
 ## Decided
 
+- **2026-09-29 evening · #25 final code review: fix high and medium, verify with one day** (Shubham: "fix high severity
+  and medium ones … one day iteration is also fine"). Fixed: decide-card drafts pass the never-draft and draft checks
+  (materialize and verify); a customize "hide section" moves a P0 to "Also outside your filter"; any API/transport
+  error degrades instead of crashing; calendar personal/work from the calendar and family contacts, not keywords;
+  all-day events make no conflicts; no tier inheritance on free-mail domains; suspicious-by-source for "never P0";
+  topic grouping sends Jev's unsure picks to the LLM; history links items by cited source; rerun logs replace, not
+  append; every "===" run in untrusted text is defused; the cadence net; drift facts reach drafts; the owner's name and
+  time zone come from the profile. Also removed every keyword decision left in `digest/` (router newsletter/marketing
+  split no longer gates reading, recruiter = the classifier's exact label, the compose-notes filter, the task due date
+  from the resolved deadline, the customize regex guard) and the dead v1 code. Verified by rerunning Thursday per
+  world without rulings: `eval/reports/review_fixes_2026-09-29.md` (dev day 30 unchanged; held-out day 30 P0 7/8 → 8/8).
+
 - **2026-09-29 ~10:30 · #24 how dedupe/merge works on free-text findings, and how sure we are** (Shubham: "findings are
   free text, how can you be sure?"). The unit on the page is the *issue*, and one issue lives in several threads and
   sources, so findings are merged across threads by `digest/reduce/__init__.py::join_keys` and

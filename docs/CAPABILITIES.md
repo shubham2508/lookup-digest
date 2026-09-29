@@ -26,6 +26,6 @@ reported. Reports: `eval/reports/dev_2026-09-29.md`, `heldout_2026-09-29.md` (v1
 | Where a miss happened | every failed assertion is attributed to the first stage that lost it: spine → read → sweep → net → merge → compose → materialize → verify; reader recall, sweep recall, rescue list, merge errors, contact classification per day | §2 diagnostics |
 | The grader never uses string similarity | exact keys, unique sources, the product's decider for shared sources; every decision listed | report notes ("matching: …"), `OPEN_QUESTIONS.md` #23 |
 
-Unit tests (`uv run pytest`, ~390): parsing and threading, business-day and overlap formulas, every safety net, the
+Unit tests (`uv run pytest`, ~400): parsing and threading, business-day and overlap formulas, every safety net, the
 Finding contract, reconcile and merge, the code floors, the customize compiler's mapping and locked invariants, the
 scorer's matching, the import boundary (`digest/` never reads `world/` or `eval/`).

@@ -7,10 +7,10 @@ A one-page 6:00am PT triage digest for "Avery Chen", built from a synthetic mont
 ```
 uv sync --all-groups          # installs Python 3.12 and every dependency into .venv
 cp .env.example .env          # paste an OPENROUTER_API_KEY with a few dollars of credit
-uv run pytest                 # ~390 tests, no network
+uv run pytest                 # ~400 tests, no network
 ```
 
-Everything else is in the repo: both worlds' data (`data/dev`, `data/heldout`), the answer keys, the profile, the prompts, the config, finished example runs under `runs/examples/` (digests, every artifact, one full LLM trace) and the final reports under `eval/reports/`. Without a key you can read those; with one, a morning costs about $0.20 cold (readers are cached per thread and date; a rerun is a cent) and the full eval matrix about $2 per world. Models are in `config/models.yaml`: the pipeline on `openai/gpt-6-luna`, TypeSafe's Jev for "same thing?" decisions (the LLM if unavailable), `deepseek/deepseek-v4.1-flash` as judge.
+Everything else is in the repo: both worlds' data (`data/dev`, `data/heldout`), the answer keys, the profile, the prompts, the config, finished example runs under `runs/examples/` (digests, every artifact, one full LLM trace) and the final reports under `eval/reports/`. Without a key you can read those; with one, a morning takes about 8 minutes and $0.30 cold (readers are cached per thread and date; a rerun is a cent) and the full eval matrix about $2 per world. Models are in `config/models.yaml`: the pipeline on `openai/gpt-6-luna`, TypeSafe's Jev for "same thing?" decisions (the LLM if unavailable), `deepseek/deepseek-v4.1-flash` as judge.
 
 ## Run
 
