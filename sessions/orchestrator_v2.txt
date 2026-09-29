@@ -9491,3 +9491,1177 @@ appear" completed (exit code 0)
   not be related to the current task.</ide_opened_file>
 
 ❯ what is #guard 18
+
+⏺ #18 is a rule in the scorer, not in the product. It's in
+  eval/scorer/common.py.
+
+  What it does. An answer-key item can be matched to a rendered item two ways:
+  by topic key, or by citations (the item cites one of the sources the key
+  lists). The guard says: refuse the citation match when the rendered item's own
+  key looks like a different expected item's key that day. It exists so one
+  rendered item can't be credited for two expected items. Example it was written
+  for: Sam's email is cited by both the pediatrician conflict and the daycare
+  ask; without the guard one item could satisfy both.
+
+  What it costs. It also refuses legitimate credit when items merge or get a
+  near-identical key:
+
+  Case: dev day 30, v1
+  What happened: The diligence-call contradiction was on the page, P0, citing
+  the
+  right email and event, but keyed deal:series-a:diligence; that resembles
+  deal:series-a:diligence-prep (Elena's item), so the guard refused the match
+  Effect: reported as a P0 miss until I keyed contradictions by the meeting
+  ────────────────────────────────────────
+  Case: held-out day 30, v2
+  What happened: The early-dismissal notice merged into the ENT-appointment item
+
+  (both cite Sam's message). The merged item's key resembles the ENT key, so
+  the dismissal can't be credited through its citations
+  Effect: 1 of held-out's 2 P0 misses
+
+  Options
+
+  a
+  Change: Leave it. Document the case (done)
+  Held-out P0: 84.6%
+  Cost: none
+  ────────────────────────────────────────
+  b
+  Change: A rendered item may satisfy several expected items when it cites each
+  one's sources; the merge-error diagnostic still flags the merge
+  Held-out P0: 92.3%
+  Cost: changing the grader after seeing results; needs a sentence in DESIGN.md
+  saying so
+
+  My recommendation: (a) for the submission. Loosening the grader after it
+  produced the number is exactly what a reviewer would probe; the merge itself
+  is a real defect (two family items became one) and is listed as such. (b) is
+  defensible later, with the diagnostic recording the merge. Your call; the
+  default if you say nothing is (a).
+
+❯ <ide_opened_file>The user opened the file
+  /Users/shubham/Desktop/work/lookup-digest/orchestrator_v2.txt in the IDE.
+  This may or may not be related to the current task.</ide_opened_file>
+
+❯ but what shuold be the actual behavior for it? from what i read rihtnow its
+  some code match not llm match ?
+
+⏺ You read it right. The scorer decides "is this rendered item the expected
+  item?" in three ways, and one of them is string similarity:
+
+  ┌──────┬─────────────────────────────────────────────────┬────────────────┐
+  │ Step │           How the scorer matches now            │      Kind      │
+  ├──────┼─────────────────────────────────────────────────┼────────────────┤
+  │      │ The rendered item cites one of the sources the  │ exact, code,   │
+  │ 1    │ answer key lists for the expected item (message │ good           │
+  │      │  ids, event ids)                                │                │
+  ├──────┼─────────────────────────────────────────────────┼────────────────┤
+  │ 2    │ The rendered item's topic key resembles the     │ string         │
+  │      │ expected key (rapidfuzz ratio ≥ 0.85)           │ similarity     │
+  ├──────┼─────────────────────────────────────────────────┼────────────────┤
+  │      │ The #18 guard: refuse step 1 if the item's key  │ string         │
+  │ 3    │ resembles another expected item's key           │ similarity     │
+  │      │                                                 │ again          │
+  └──────┴─────────────────────────────────────────────────┴────────────────┘
+
+  Step 2 made sense in v1, where keys were a fixed vocabulary. In v2 readers
+  write free-text tags, so a ratio on tags is the word-match you rejected in the
+  product, now sitting in the grader.
+
+  What the behavior should be
+
+  1. Sources first, exactly. An expected item is satisfied by a rendered item
+     that cites one of its sources. When two expected items share a source
+     (Sam's email backs both the pediatrician and the daycare item), each is
+     satisfied only by a citation of a source unique to it. That's deterministic
+     and needs no guard.
+  2. When sources don't settle it, a decider decides. For the leftover cases (an
+     expected item whose sources are all shared, or an item that cites nothing
+     unique), ask Jev or the judge model: "does this rendered item cover this
+     expected item?" with the item text and the key's title and notes. Same
+     principle as #16 in the product: code narrows by hard facts, a model
+     decides sameness.
+  3. No ratio on keys anywhere. Topic keys stay useful for the merge-error
+     diagnostic (how many items per expected item) and for history, not for
+     credit.
+
+  Cost: scorer only, no pipeline runs; about an hour to change, re-score both
+  worlds for free (Jev questions cost fractions of a cent), refill the numbers
+  in DESIGN.md. The numbers will move a little in both directions (some credits
+  gained where tags drifted, some lost where a fuzzy key was flattering). I'd
+  note in DESIGN.md that the scorer's matching was changed from fuzzy keys to
+  exact sources plus a decider before the final scoring.
+
+  Recommendation: do it. It removes the one place string similarity still
+  decides anything in this repo, and it's the answer to "how do you know the
+  digest is good?" that survives the walkthrough. Say go and I'll do it now; the
+  alternative is to ship as is with #18 documented.
+
+❯ yes do it whats the cost of doing it ? its only erval right? and you are only
+  doing eval riht so it shoudl be fine ?
+
+⏺ Yes: eval only. No pipeline runs, no reader calls. Re-scoring both worlds is
+  code and free; the only spend is the decider's yes/no questions, a few hundred
+  Jev calls at $0.00002 each, cents in total. Nothing under digest/ changes, so
+  the digests already produced stand as they are; only how they're credited
+  changes. About an hour, then I refill the numbers.
+
+  Starting with the matching code as it is.
+
+⏺ Bash(grep -rn "about_match\|any_about_match" eval/ --include=*.py | grep -v
+      "def about_match\|def any_about_match" | awk -F: '{print $1}' | sort |
+      uniq -c; echo; sed…)
+  ⎿  (No output)
+
+⏺ Bash(grep -n "def select_items\|def select_signals\|def select_candidates\|def
+      _by_cites\|def _by_candidate_fallback\|def claimed_abouts\|def
+      candidates_for_expected…)
+  ⎿  Error: Exit code 1
+     107:def claimed_abouts(manifest: Manifest, day: int | None, about: str |
+     None) -> list[str]:
+     134:def _by_cites(item_about: str | None, sources: set[str], cites_any:
+     list[str], claimed: list[str]) -> bool:
+     138:def select_items(view: RunView, manifest: Manifest, args: dict,
+     cites_any: list[str] | None = None,
+     281:def select_signals(view: RunView, ctype: str | None = None, about: str
+     | None = None, cites_any: list[str] | None = None,
+     sed: 1: ",+30p
+     ": invalid command code ,
+
+⏺ Bash(sed -n "$(grep -n 'def select_signals' eval/scorer/common.py | cut -d:
+      -f1),+45p" eval/scorer/common.py; grep -n "class ExpectedItem" -A 14
+      eval/manifest_schema…)
+  ⎿  (No output)
+
+⏺ Bash(grep -rn "about_match\|any_about_match" eval/scorer/*.py eval/*.py | grep
+      -v "def about_match\|def any_about_match" | cut -d: -f1 | sort | uniq -c;
+      echo; sed -n…)
+  ⎿  (No output)
+
+⏺ Bash(sed -n 1,60p digest/compute/jev.py | grep -n "class JevDecider\|def
+      __init__\|def pick\|self\.\(url\|key\|model\)\|import" ; grep -n "def
+      _decider" -A 16 digest…)
+  ⎿  (No output)
+
+⏺ I'll make about_match exact equality, match items/findings source-first using
+  a source unique to the expected item, and route ambiguous shared-source cases
+  to the decider (Jev or LLM) via the product's linker. Next, five reads before
+  writing this up. · summary
+
+⏺ Bash(sed -n 200,280p eval/scorer/common.py)
+  ⎿  (No output)
+
+⏺ Bash(grep -n "^TASKS" -A 14 digest/compute/linker.py | head -20; sed -n 33,46p
+      digest/compute/jev.py; grep -n "def load_api_key\|def load_models"
+      digest/llm.py diges…)
+  ⎿  (No output)
+
+  Searched for 1 pattern (ctrl+o to expand)
+
+⏺ I'll now implement the changes: adding an exact about_match, a new
+  eval/scorer/coverage.py scorer (handling unique vs. shared sources, one
+  question per expected item per day, memoized and logged), rewiring the
+  selectors to use it, dropping the token heuristic from the #9 fallback,
+  updating the linker task text, and adding tests. · summary
+
+⏺ Bash(python3 - <<'EOF'
+      def sub(p, old, new, count=1):…)
+  ⎿  Updated digest/compute/linker.py (+3 -0)
+      64                                 "same people on nearby dates. Ma
+          tch the one event that is the same meeting, or none."),
+      65      "declined_meeting_fallout": ("Each item is a meeting Avery 
+          declined. Options are decisions, agreements and requests dated 
+          after it. "
+      66                                   "Match the ones that came out 
+          of that meeting or need Avery's sign-off because of it."),
+      67 +    "covers_expected": ("Each item is an expected digest item f
+         +rom a reviewed answer key (its topic key and notes). Options ar
+         +e "                                                            
+      68 +                        "items a digest rendered that cite the 
+         +same sources. Pick the rendered item that is about that same " 
+      69 +                        "expected item, or none; a related item
+         + on the same thread about a different issue is none."),        
+      70      "role_at_org": ("Each item is a sender (name, email, signat
+          ure title, organization). Options are roles at named "
+      71                      "organizations from the owner's profile. Ma
+          tch only if the sender holds that role at one of those "
+      72                      "organizations (an acting or new holder of 
+          the role counts; a colleague in a different role does not)."),
+  ⎿  Updated eval/scorer/common.py (+13 -18)
+      10  from eval.manifest_schema import Manifest
+      11  
+      12  from .artifacts import RenderedItem, RunView, Signal
+      13 +from .coverage import covered_items, covered_signals           
+      14  from .match import about_match, split_about, type_matches
+      15  
+      16  GENERIC_TOKENS = {"the", "and", "for", "with", "other", "meetin
+          g", "update", "series"}
+     ...
+      149      cites_any = cites_any if cites_any is not None else list(a
+           rgs.get("cites_any") or [])
+      150      day = day if day is not None else view.day
+      151      cites_any = cites_any or expected_cites(manifest, day, arg
+           s.get("about"))
+      151 -    claimed = claimed_abouts(manifest, day, args.get("about"))
+      152 +    covered = covered_items(view, manifest, args["about"], cit
+          +es_any, day) if "about" in args else None                     
+      153      out = []
+      154      for it in view.rendered:
+      154 -        if "about" in args and not (about_match(it.about, args
+          -["about"]) or _by_cites(it.about, it.source_ids, cites_any, cl
+          -aimed)                                                        
+      155 -                                    or any(about_match(a, args
+          -["about"]) for s in view.item_signals(it) for a in s.abouts)  
+      156 -                                    or _by_signal_fallback(vie
+          -w, manifest, it, args["about"], day, claimed)):               
+      155 +        if covered is not None and it.id not in covered:      
+      156              continue
+      157          if "source_id" in args and args["source_id"] not in it
+           .source_ids:
+      158              continue
+     ...
+      217  
+      218  
+      219  def fallback_signal_match(view: RunView, s: Signal, about: str
+           , storyline: str | None = None) -> bool:
+      221 -    """OPEN_QUESTIONS #9: a key that doesn't fuzzy-match still
+          - matches (the caller checks the type) when the finding        
+      222 -    shares a citation with a source labeled with that key or w
+          -ith the storyline, or an entity / citation token."""          
+      220 +    """OPEN_QUESTIONS #9, sources only: a finding of the expec
+          +ted type matches when it cites a source the answer key        
+      221 +    labels with that key, or a source of the same storyline. (
+          +The former token-in-entity heuristic is gone: #23.)"""        
+      222      manifest = view.index.manifest
+      223      if s.sources & labeled_with(manifest, about):
+      224          return True
+      226 -    if storyline and any(manifest.item(x).storyline == storyli
+          -ne for x in s.sources):                                       
+      227 -        return True                                           
+      228 -    blob = " ".join([*s.entities, *s.refs]).lower()           
+      229 -    return any(tok in blob for tok in about_tokens(about))    
+      225 +    return bool(storyline and any(manifest.item(x).storyline =
+          += storyline for x in s.sources))                              
+      226  
+      227  
+      228  def _claimed_by_other(s: Signal, claimed: list[str]) -> bool:
+     ...
+      239  
+     … 34 more lines (ctrl+o to expand)
+  ⎿  Updated eval/scorer/match.py (+7 -10)
+      1  """Matching rules shared by every metric (extraction_schema §7 "
+         Matching rules for scoring").
+      2  
+      3 -- About keys: same `kind`, and the rest (slug + qualifier) has a
+        - fuzzy ratio ≥ 0.85. Strict on purpose: the scorer              
+      4 -  must not be kinder than the product. (Grader side only; the pr
+        -oduct decides sameness with its linker.)                        
+      3 +- About keys: exact equality of kind and slug (case-insensitive)
+        +. No string similarity anywhere in the grader since             
+      4 +  2026-09-29 (OPEN_QUESTIONS #23): v2 readers write free tags, s
+        +o whether a rendered item *is* an expected item is              
+      5 +  decided by sources (a citation of a source unique to that expe
+        +cted item) and, for the ambiguous rest, by the same             
+      6 +  decider the product uses (`scorer/coverage.py`).              
+      7  - Source references: product evidence IDs (`msg:<message-id>`, `
+         thread:<root message-id>`, `note:<path>#L<n>`,
+      8    `task:<id>`, `event:<uid>`) are mapped back to manifest `sourc
+         e_id`s through the manifest's message labels. The
+      9    product assigns its own thread IDs, so a thread is identified 
+         by its messages, never by its ID.
+     ...
+      19  from typing import Any
+      20  from zoneinfo import ZoneInfo
+      21  
+      20 -from rapidfuzz import fuzz                                     
+      21 -                                                               
+      22  from eval.manifest_schema import Manifest
+      23  
+      24  FUZZY_RATIO = 0.85
+     ...
+      31      return kind, rest
+      32  
+      33  
+      34 -def about_match(a: str | None, b: str | None, ratio: float = FU
+         -ZZY_RATIO) -> bool:                                            
+      34 +def about_match(a: str | None, b: str | None, ratio: float | No
+         +ne = None) -> bool:                                            
+      35 +    """Exact key equality (kind and slug). `ratio` is accepted 
+         +and ignored: no fuzzy matching in the grader."""               
+      36      if not a or not b:
+      37          return False
+      37 -    ka, ra = split_about(a)                                    
+      38 -    kb, rb = split_about(b)                                    
+      39 -    if ka != kb:                                               
+      40 -        return False                                           
+      41 -    return ra == rb or fuzz.ratio(ra, rb) / 100.0 >= ratio     
+      38 +    return split_about(a) == split_about(b)                    
+      39  
+      40  
+      41  def any_about_match(key: str | None, keys: Iterable[str]) -> bo
+          ol:
+⏺ Write(eval/scorer/coverage.py)
+  ⎿  Wrote 150 lines to eval/scorer/coverage.py
+      1 """Which rendered items (or findings) cover an expected item (OPE
+      2 the #18 "claimed key" guard).
+      3
+      4 Sources first, exactly: an expected item is covered by a rendered
+      5 (a source no other expected item lists). When two expected items
+        share every source (Sam's one email backs both the
+        ms are ambiguous and a decider settles them: the same
+      7 linker the product uses (Jev first, the LLM when Jev is unsure),
+        asked once per expected item per day with the
+         slug equal) also
+     … +180 lines (ctrl+o to expand)
+
+⏺ Now: verify the ROOT import I used exists, write the coverage tests, run the
+  suite to see what exact matching broke, and read the runner/report hooks for
+  the matching summary.
+
+  Searched for 1 pattern (ctrl+o to expand)
+
+⏺ Write(tests/test_c_coverage.py)
+  ⎿  Wrote 72 lines to tests/test_c_coverage.py
+       1 """Orchestrator: coverage matching (OPEN_QUESTIONS #23): exact k
+       2 from types import SimpleNamespace
+       3
+       4 from eval.scorer.coverage import Coverage, covered_items, other_
+       5 from eval.scorer.match import about_match
+       6
+       8 def test_about_match_is_exact_now():
+       9     assert about_match("deal:series-a:cap-table", "DEAL:series-a
+         :cap-table")
+         es-a:captable"), "no ratio: a near key is not the key"
+     … +91 lines (ctrl+o to expand)
+
+⏺ Bash(uv run pytest -q -x --ignore=tests/test_c_coverage.py >
+      /tmp/pytest_out.txt 2>&1; rc=$?; tail -1 /tmp/pytest_out.txt; grep -E
+      "^FAILED|^ERROR|Error" /tmp/pytest…)
+  ⎿  (No output)
+
+⏺ I found that the ROOT import belongs in digest.paths, not digest.config, which
+  is why the decider silently failed to build. I'll fix that and check each
+  failing test's assertion to see which fixtures relied on fuzzy matching.
+  · summary
+
+⏺ Bash(sed -i '' 's/            from digest.config import ROOT, load_models,
+      load_settings/            from digest.config import load_models,
+      load_settings\n…)
+  ⎿  Updated eval/scorer/coverage.py (+2 -1)
+      32          try:
+      33              from digest.compute.jev import JevDecider
+      34              from digest.compute.linker import Linker
+      35 -            from digest.config import ROOT, load_models, load_s
+         -ettings                                                        
+      35 +            from digest.config import load_models, load_setting
+         +s                                                              
+      36 +            from digest.paths import ROOT                      
+      37              from digest.llm import LLM, load_api_key
+      38  
+      39              models, settings = load_models(), load_settings()
+
+⏺ The live decider is running during fixture tests because of a key in .env,
+  making them network-dependent and causing the planted-miss case to falsely
+  pass. I'll disable the live decider under pytest unless explicitly injected,
+  make the fuzzy-expectation test exact, then examine the remaining issues
+  around the fixture item behind the planted-miss case. · summary
+
+⏺ Bash(python3 - <<'EOF'
+      def sub(p, old, new):…)
+  ⎿  Updated eval/scorer/coverage.py (+3 -0)
+       9  Every decision is logged on the view (`view.coverage_log`) and 
+          summarized in the report."""
+      10  from __future__ import annotations
+      11  
+      12 +import os                                                      
+      13  from dataclasses import dataclass, field
+      14  
+      15  from eval.manifest_schema import Manifest
+     ...
+      30          if self.tried:
+      31              return self.linker
+      32          self.tried = True
+      33 +        if os.environ.get("PYTEST_CURRENT_TEST") or os.environ.
+         +get("DIGEST_EVAL_NO_DECIDER"):                                 
+      34 +            return None   # tests inject a stub or run strict; 
+         +never a live model call from the suite                         
+      35          try:
+      36              from digest.compute.jev import JevDecider
+      37              from digest.compute.linker import Linker
+  ⎿  Updated tests/test_c_match.py (+4 -7)
+      17  PT = ZoneInfo("America/Los_Angeles")
+      18  
+      19  
+      20 -def test_about_match_uses_the_compute_merge_rule():            
+      21 -    m = mini_manifest()                                        
+      22 -    for a, b in m.about_keys.should_merge:                     
+      23 -        assert about_match(a, b)                               
+      24 -    for a, b in m.about_keys.should_not_merge:                 
+      25 -        assert not about_match(a, b)                           
+      26 -    assert not about_match("offer:mei-tanaka", "candidate:mei-t
+         -anaka")  # kind must agree                                     
+      20 +def test_about_match_is_exact_since_the_coverage_rewrite():    
+      21 +    """OPEN_QUESTIONS #23: no string similarity in the grader; 
+         +sameness comes from sources and the decider."""                
+      22      assert about_match("offer:mei-tanaka", "OFFER:mei-tanaka")
+      23 +    assert not about_match("deal:series-a:cap-table", "deal:ser
+         +ies-a:captable")                                               
+      24 +    assert not about_match("offer:mei-tanaka", "candidate:mei-t
+         +anaka")  # kind must agree                                     
+      25      assert not about_match(None, "offer:x")
+      26  
+      27  
+
+⏺ Bash(python3 -c "
+      import json…)
+  ⎿  (No output)
+
+⏺ I've pinned down the correct guard for #18: an item whose key exactly matches
+  another expected item's key belongs solely to that item, with no ratio-based
+  credit sharing—while the held-out case is unaffected since its merged key is
+  unique. Now applying that fix, re-running the C tests and full suite, and
+  checking how the runner collects notes so matching decisions surface in the
+  report. · summary
+
+⏺ Bash(python3 - <<'EOF'
+      def sub(p, old, new):…)
+  ⎿  Updated eval/scorer/coverage.py (+21 -3)
+       99      return {s for ei in _day_items(manifest, day) if not about
+           _match(ei.about, about) for s in ei.cites_any}
+      100  
+      101  
+      102 +def other_keys(manifest: Manifest, day: int | None, about: str
+          +) -> list[str]:                                               
+      103 +    """The other expected items' keys that day. An item labele
+          +d with one of them, exactly, is that item and is never        
+      104 +    credited here (the old #18 guard, without the string ratio
+          +)."""                                                         
+      105 +    return [ei.about for ei in _day_items(manifest, day) if no
+          +t about_match(ei.about, about)]                               
+      106 +                                                              
+      107 +                                                              
+      108  def expected_text(manifest: Manifest, day: int | None, about: 
+           str, ctype: str | None = None) -> str:
+      109      parts = [about] + ([f"({ctype})"] if ctype else [])
+      110      for ei in _day_items(manifest, day):
+     ...
+      123      cov = coverage_of(view)
+      124      cites = set(cites_any or []) or sources_for(manifest, day,
+            about)
+      125      unique = cites - other_sources(manifest, day, about)
+      126 +    others = other_keys(manifest, day, about)                 
+      127      sure: set[str] = set()
+      128      ambiguous: list[tuple[str, str]] = []
+      129      for it in view.rendered:
+      130          keys = [it.about] + [a for s in view.item_signals(it) 
+           for a in s.abouts]
+      124 -        if any(about_match(k, about) for k in keys) or (it.sou
+          -rce_ids & unique):                                            
+      131 +        if any(about_match(k, about) for k in keys):          
+      132 +            sure.add(it.id)                                   
+      133 +            continue                                          
+      134 +        if any(about_match(it.about, o) for o in others):     
+      135 +            continue                                          
+      136 +        if it.source_ids & unique:                            
+      137              sure.add(it.id)
+      138          elif it.source_ids & cites:
+      139              ambiguous.append((it.id, f"{it.what or it.about} —
+            {it.why or ''} [{it.section or it.placement}]"))
+     ...
+      148      cov = coverage_of(view)
+      149      cites = set(cites_any or []) or sources_for(manifest, day,
+            about)
+      150      unique = cites - other_sources(manifest, day, about)
+      151 +    others = other_keys(manifest, day, about)                 
+      152      sure: set[int] = set()
+      153      ambiguous: list[tuple[str, str]] = []
+      154      by_key: dict[str, int] = {}
+      155      for s in view.signals:
+      143 -        if any(about_match(a, about) for a in s.abouts) or (s.
+          -sources & unique):                                            
+      156 +        if any(about_match(a, about) for a in s.abouts):      
+     … 13 more lines (ctrl+o to expand)
+
+⏺ Bash(sed -n 140,175p eval/scorer/runner.py)
+  ⎿  (No output)
+
+⏺ I'll restore the #9 candidate fallback that got dropped when rewiring the item
+  path, applying the exact-key claim and updating the report notes, then rerun
+  the test suite. · summary
+
+⏺ Bash(python3 - <<'EOF'
+      def sub(p, old, new):…)
+  ⎿  Updated eval/scorer/common.py (+4 -4)
+      10  from eval.manifest_schema import Manifest
+      11  
+      12  from .artifacts import RenderedItem, RunView, Signal
+      13 -from .coverage import covered_items, covered_signals           
+      13 +from .coverage import covered_items, covered_signals, other_key
+         +s                                                              
+      14  from .match import about_match, split_about, type_matches
+      15  
+      16  GENERIC_TOKENS = {"the", "and", "for", "with", "other", "meetin
+          g", "update", "series"}
+     ...
+      152      covered = covered_items(view, manifest, args["about"], cit
+           es_any, day) if "about" in args else None
+      153      out = []
+      154      for it in view.rendered:
+      155 -        if covered is not None and it.id not in covered:      
+      155 +        if covered is not None and it.id not in covered and no
+          +t _by_signal_fallback(view, manifest, it, args["about"], day):
+      156              continue
+      157          if "source_id" in args and args["source_id"] not in it
+           .source_ids:
+      158              continue
+     ...
+      243      """OPEN_QUESTIONS #9 for rendered items: a finding behind 
+           the item is the day's expected signal for this key by
+      244      type + a citation the answer key labels with that key or i
+           ts storyline (e.g. a net's `family:wren` whose evidence
+      245      is `event:wren-pediatrician-…` is the manifest's `family:p
+           ediatrician`)."""
+      246 -    if day is None or not it.candidate_ids:                   
+      247 -        return False                                          
+      246 +    if day is None or not it.candidate_ids or any(about_match(
+          +it.about, k) for k in other_keys(manifest, day, about)):      
+      247 +        return False   # an item labeled with another expected
+          + item's key, exactly, is that item                            
+      248      try:
+      249          expected = [c for c in manifest.run_day(day).candidate
+           s if about_match(c.about, about)]
+      250      except KeyError:
+  ⎿  Updated eval/scorer/runner.py (+20 -0)
+      133      return {d: RunView(p, index, ROOT, day=d) for d, p in find
+           _runs(manifest, runs_root, suffix).items()}
+      134  
+      135  
+      136 +def _matching_notes(views: dict) -> list[str]:                
+      137 +    """How expected items were credited (OPEN_QUESTIONS #23): 
+          +exact keys and unique sources need no decision; the           
+      138 +    shared-source cases the decider settled, or could not, are
+          + listed so the grading is auditable."""                       
+      139 +    from collections import Counter                           
+      140 +                                                              
+      141 +    decided: Counter[str] = Counter()                         
+      142 +    lines: list[str] = []                                     
+      143 +    for day, view in sorted(views.items()):                   
+      144 +        cov = getattr(view, "coverage", None)                 
+      145 +        for e in (cov.log if cov else []):                    
+      146 +            decided[e["by"]] += 1                             
+      147 +            lines.append(f"day {day} · {e['about']}: {len(e['o
+          +ptions'])} shared-source candidate(s) → "                     
+      148 +                         f"{', '.join(e['matches']) or 'none'}
+          + ({e['by']})")                                                
+      149 +    if not lines:                                             
+      150 +        return []                                             
+      151 +    head = "matching: " + ", ".join(f"{n} by {by}" for by, n i
+          +n decided.most_common()) + "; the rest by exact key or a uniqu
+          +e source"                                                     
+      152 +    return [head] + lines[:40]                                
+      153 +                                                              
+      154 +                                                              
+      155  def score_world(world: str, runs_root: Path | None = None, *, 
+           suffix: str | None = None, label: str = "pipeline",
+      156                  manifest: Manifest | None = None, customize_su
+           ite: bool = False, conditions: bool = True) -> WorldScore:
+      157      """Score every run day found under runs_root (with `suffix
+           `, if any) and the assertions that belong to it:
+     ...
+      173      for day, view in sorted(views.items()):
+      174          ws.runs[day] = score_run(view, manifest, day)
+      175          ws.notes += [f"day {day}: malformed artifact: {m}" for
+            m in view.malformed]
+      176 +    ws.notes += _matching_notes(views)                        
+      177  
+      178      if suffix in (None, "baseline"):
+      179          base = [a for a in manifest.assertions if not a.varian
+           t and not a.customize]
+
+⏺ Bash(uv run pytest -q --tb=short
+      tests/test_c_integrate.py::test_item_matches_by_candidate_fallback 2>&1 |
+      grep -E "^E |^tests/" | cut -c1-260 | head -8; grep -n "de…)
+  ⎿  (No output)
+
+⏺ There's still one failure since the fixture relied on the old "wren" heuristic
+  instead of the event source. I'll check whether the real manifest labels
+  events with family:pediatrician so the fixture and answer key can align
+  properly. · summary
+
+  Searched for 1 pattern (ctrl+o to expand)
+
+⏺ I'll add the pediatrician event as a source in the mini fixture, mirroring how
+  the real manifest declares it with storyline: S11, rather than relying on the
+  token heuristic. First checking the fixture's source shape and the schema.
+  · summary
+
+⏺ Bash(sed -n 60,100p tests/fixtures/mini/manifest.yaml; grep -n "kind: event"
+      -B1 -A8 tests/fixtures/mini/manifest.yaml | head -20)
+  ⎿  (No output)
+
+  Searched for 1 pattern (ctrl+o to expand)
+
+⏺ I'll add the event as a declared source in the fixture, matching the uid used
+  in its runs, log this as #23 in OPEN_QUESTIONS, then run the test suite.
+  · summary
+
+⏺ Bash(python3 - <<'EOF'
+      def sub(p, old, new):…)
+  ⎿  Updated OPEN_QUESTIONS.md (+11 -0)
+      69  
+      70  ## Decided
+      71  
+      72 +- **2026-09-29 ~09:30 · #23 grader matching without string simi
+         +larity; closes #18** (Shubham: "what should the actual         
+      73 +  behavior be? it's a code match, not an LLM match"). `eval/sco
+         +rer/match.py::about_match` is exact key equality; the          
+      74 +  rapidfuzz ratio is gone. Whether a rendered item (or finding)
+         + *is* an expected item is decided in                           
+      75 +  `eval/scorer/coverage.py`: (1) an exact key, or a citation of
+         + a source **unique** to that expected item that day;           
+      76 +  (2) an item labeled, exactly, with another expected item's ke
+         +y is that item and is never credited here (the old #18         
+      77 +  guard without the ratio); (3) items that cite only sources sh
+         +ared with other expected items go to the decider, the          
+      78 +  product's own linker (Jev first, the LLM under p 0.7), one qu
+         +estion per expected item per day, memoized, logged in          
+      79 +  the report's notes ("matching: …"). The #9 fallback keeps its
+         + source routes (a source labeled with the key, or of           
+      80 +  the same storyline) and drops the token-in-entity heuristic. 
+         +Under pytest no live decider is built (tests inject a          
+      81 +  stub or run strict). Held-out and dev were re-scored on the s
+         +ame runs; no pipeline change.                                  
+      82 +                                                               
+      83  - **2026-09-29 ~07:40 · #21 (C) and #22 (B) accepted as built**
+           (orchestrator, delegated). #21a–f: key-only selectors
+      84    borrow the answer key's sources; v1 column as reported with t
+          he rescored line beneath; count-by-key for rule-less
+      85    types; reader truth from the labels; `spine` and `net` stages
+          . #22a–g: waiting nets covered by a reader that read the
+  ⎿  Updated tests/fixtures/mini/manifest.yaml (+7 -0)
+      84        closed_by_courtesy: false
+      85        sender_relationship: {category: family, subtype: partner}
+      86        asks: [{to_avery: true, kind: decision, deadline_day: 30,
+           status: open}]
+      87 +  - source_id: "event:wren-pediatrician-20260924@parkfamily.exa
+         +mple"                                                          
+      88 +    kind: event                                                
+      89 +    storyline: S11                                             
+      90 +    must_not_surface: false                                    
+      91 +    expected:                                                  
+      92 +      type: event                                              
+      93 +      about: []                                                
+      94  
+      95  contacts:
+      96    - {email: renee.tan@halberd.com, name: Renee Tan, org: Halber
+          d Manufacturing, title: Procurement Lead,
+
+⏺ Bash(sed -n 56,140p eval/scorer/match.py | grep -n "def \|event\|kind" | head
+      -30)
+  ⎿  (No output)
+
+⏺ Bash(grep -n "def manifest\|def make_run\|load_manifest\|MINI"
+      tests/test_c_integrate.py | head -8; uv run pytest -q --tb=short
+      tests/test_c_integrate.py::test_item_…)
+  ⎿  (No output)
+
+⏺ The digest-level check now passes; the finding-level check still fails because
+  the fixture's event id needs to be a bare uid and select_signals's fallback
+  call is missing the expected candidate's storyline. I'll fix both issues and
+  rerun the suite. · summary
+⏺ Bash(python3 - <<'EOF'
+      def sub(p, old, new):…)
+  ⎿  Updated eval/scorer/common.py (+2 -1)
+      286      `live` keeps only findings that reach the digest (needs_av
+           ery yes, or unsure with a card)."""
+      287      cites_any = cites_any or expected_cites(view.index.manifes
+           t, view.day, about)
+      288      covered = covered_signals(view, about, cites_any, ctype) i
+           f about else set()
+      289 +    storylines = {c.storyline for c in _day_expected(view, abo
+          +ut) if c.storyline} if about else set()                       
+      290      out = []
+      291      for s in view.signals:
+      292          if live and not s.live:
+     ...
+      295          if about:
+      296              foreign = not typed and names_a_v1_rule(s.type)
+      297              direct = not foreign and id(s) in covered
+      297 -            fallback = ctype is not None and typed and fallbac
+          -k_signal_match(view, s, about)                                
+      298 +            fallback = ctype is not None and typed and any(fal
+          +lback_signal_match(view, s, about, st) for st in (storylines o
+          +r {None}))                                                    
+      299              ok = (typed and (direct or fallback)) if (ctype in
+            STRUCTURAL_TYPES) else (direct or fallback)
+      300          else:
+      301              ok = typed
+  ⎿  Updated tests/fixtures/mini/manifest.yaml (+1 -1)
+      84        closed_by_courtesy: false
+      85        sender_relationship: {category: family, subtype: partner}
+      86        asks: [{to_avery: true, kind: decision, deadline_day: 30,
+           status: open}]
+      87 -  - source_id: "event:wren-pediatrician-20260924@parkfamily.exa
+         -mple"                                                          
+      87 +  - source_id: event:wren-pediatrician-20260924                
+      88      kind: event
+      89      storyline: S11
+      90      must_not_surface: false
+
+⏺ Suite green (386 tests). Committing the scorer change and, in parallel,
+  re-scoring both worlds on the same runs with the live decider.
+
+⏺ Bash(git add eval/scorer/match.py eval/scorer/coverage.py
+      eval/scorer/common.py eval/scorer/runner.py digest/compute/linker.py
+      tests/test_c_coverage.py tests/test_c_…)
+  ⎿  (No output)
+
+⏺ Bash(for w in dev heldout; do uv run digest eval --world $w --customize-suite
+      --baseline --judge-scores eval/judge/in_session/${w}_2026-09-29.yaml >
+      /tmp/rescore_$w.…)
+  ⎿  Updated eval/reports/dev_2026-09-29.md (+27 -15)
+       2  
+       3  Manifest world `dev`, anchor 2026-09-24 (day 30), run days [26,
+           27, 28, 29, 30]. P0 recall is the only gate; everything else i
+          s reported.
+       4  
+       5 +> matching: 4 by jev, 2 by llm_after_unsure_jev; the rest by ex
+         +act key or a unique source                                     
+       6 +                                                               
+       7 +> day 28 · candidate:theo-lindgren: 3 shared-source candidate(s
+         +) → none (jev)                                                 
+       8 +                                                               
+       9 +> day 28 · other:profile-open-reqs: 3 shared-source candidate(s
+         +) → none (jev)                                                 
+      10 +                                                               
+      11 +> day 29 · renewal:veritas: 4 shared-source candidate(s) → s437
+         +1802416 (llm_after_unsure_jev)                                 
+      12 +                                                               
+      13 +> day 29 · pricing:plant-bundle: 4 shared-source candidate(s) →
+         + none (jev)                                                    
+      14 +                                                               
+      15 +> day 30 · renewal:veritas: 3 shared-source candidate(s) → s437
+         +7295088, s4377289184 (llm_after_unsure_jev)                    
+      16 +                                                               
+      17 +> day 30 · pricing:plant-bundle: 3 shared-source candidate(s) →
+         + none (jev)                                                    
+      18 +                                                               
+      19  ## 1. Summary: v1 / v2 / baseline
+      20  
+      21  | metric | v1 · dev | v2 · dev | baseline · dev | v1 · heldout 
+          | v2 · heldout | baseline · heldout |
+      22  |---|---|---|---|---|---|---|
+      23  | P0 recall (gate = 100%) | 100% | 100% ✅ | 0.5 ❌ | 0.846 | 0
+          .846 ❌ | 0% ❌ |
+      10 -| Trap assertions passed | 115/175 | 126/175 | 40/74 | 129/207 
+         -| 149/207 | 37/83 |                                            
+      24 +| Trap assertions passed | 115/175 | 127/175 | 40/74 | 129/207 
+         +| 149/207 | 37/83 |                                            
+      25  | Must-not rate | 0.066 | 0.055 | 0.012 | 0.066 | 0.061 | 0% |
+      26  | One-thing accuracy | 100% | 100% | 0% | 0.5 | 100% | 0% |
+      27  | Judge · digest (3 questions / no noise / honest) | — | 4.4 / 
+          3.4 / 4.4 | 4.0 / 4.0 / 2.0 | — | — | — |
+     ...
+      35  
+      36  ## 2. Diagnostics (PIVOT_SPEC §6: where it failed; §1 is the ta
+          rget)
+      37  
+      24 -Misses by attributed stage: spine 461, read 371, sweep 8, net 1
+         -2, merge 147, compose 5                                        
+      38 +Misses by attributed stage: spine 461, read 368, sweep 9, net 1
+         +2, merge 147, compose 5                                        
+      39  
+      40  ### Day 26 · `/Users/shubham/Desktop/work/lookup-digest/runs/de
+          v/2026-09-20T06-00`
+      41  
+     ...
+      121  | trap_recall | 0.778 |
+      122  | calendar_traps_found | 0/0 |
+      123  | notes_tasks_traps_found | 7/9 |
+      110 -| traps_found_by_origin | notes_tasks_sweep: 6; thread_reader:
+          - 7 |                                                          
+      124 +| traps_found_by_origin | notes_tasks_sweep: 5; thread_reader:
+          + 7 |                                                          
+     … 85 more lines (ctrl+o to expand)
+  ⎿  … 1 more file changed
+  ⎿  (timeout 10m)
+
+⏺ The decider run confirmed both held-out P0 misses—the day-29 reader judgment
+  and the day-30 merge issue—with the merge miss verified as a real gap rather
+  than a grading error. Now pulling the updated headline rows for both worlds.
+  · summary
+
+⏺ Bash(for w in dev heldout; do echo "=== $w"; grep -E "^\| (P0 recall|Trap
+      assertions|Must-not|One-thing|Judge ·|Cost / run)"
+      eval/reports/${w}_2026-09-29.md | cut -c…)
+  ⎿  (No output)
+
+⏺ Re-scoring shows dev traps now at 127/175 (up from 126), with everything else
+  unchanged and v1 kept as originally reported since its runs aren't available.
+  I'll update the numbers and #18 wording across DESIGN.md, history, README, and
+  the handoff, then commit and update my memory note. · summary
+
+⏺ Bash(python3 - <<'EOF'
+      def sub(p, old, new, count=1):…)
+  ⎿  Updated DESIGN.md (+5 -5)
+      10  - **Read, don't extract.** Judgment stages read the source. A r
+          eader sees the whole thread as written, the people on it (categ
+          ory, tier, the profile's own words), facts code computed (busin
+          ess days waiting, who wrote last) and what code retrieved becau
+          se it might matter. It emits open-world **Findings**: what Aver
+          y should do, why, priority, deadline, actions, ambiguity, contr
+          adictions, each with verbatim citations that code checks exist.
+           Nothing is limited to a schema of asks and commitments.
+      11  - **Entities are the spine, code is the floor.** Code does the 
+          math, enforces the hard rules (no drafts to Sam, recruiters onl
+          y as a pattern, every claim cited, P0 only for a profile-tier c
+          ontact, an incident or a family matter, suspicious content neve
+          r P0) and runs eight **safety nets** under recall; a net a read
+          er already covered attaches to that finding, the rest are logge
+          d as rescues. "Is this the same thing?" is never string similar
+          ity: TypeSafe's Jev (calibrated probabilities) answers first, t
+          he LLM when Jev is unsure.
+      12  - **Actions are a judgment.** Eleven action types; a draft only
+           when Avery can finish it in under a minute. Honesty changes co
+          nclusions: a stale inbox caps confidence and says "may be a syn
+          c gap"; contradictions show both sides; drift becomes a propose
+          d profile update, never an edit.
+      13 -- **The eval is the product's mirror.** A 30-day world authored
+         - as storylines whose `expectations:` are the answer key, review
+         -ed by a human before any data existed. The target is digest-lev
+         -el: P0 recall (the gate), trap assertions, noise, the one thing
+         -. Stage metrics (reader recall on planted threads, sweep recall
+         -, rescues, merge errors, contact classification) are diagnostic
+         -s, each miss attributed to the first stage that lost it.       
+      13 +- **The eval is the product's mirror.** A 30-day world authored
+         + as storylines whose `expectations:` are the answer key, review
+         +ed by a human before any data existed. The target is digest-lev
+         +el: P0 recall (the gate), trap assertions, noise, the one thing
+         +. Stage metrics (reader recall on planted threads, sweep recall
+         +, rescues, merge errors, contact classification) are diagnostic
+         +s, each miss attributed to the first stage that lost it. Credit
+         + is decided by sources, never by string similarity.            
+      14  
+      15  ## Results (five mornings per world)
+      16  
+      17  | | v1 dev | **v2 dev** | baseline dev | v1 held-out | **v2 hel
+          d-out** | baseline held-out |
+      18  |---|---|---|---|---|---|---|
+      19  | P0 recall (gate 100%) | 100% | 100% | 50% | 84.6% | 84.6% | 0
+          % |
+      20 -| Trap checks | 118/175 | 126/175 | 40/74 | 137/207 | 149/207 |
+         - 37/83 |                                                       
+      20 +| Trap checks | 115/175 | 127/175 | 40/74 | 129/207 | 149/207 |
+         + 37/83 |                                                       
+      21  | Noise (must-not rate) | 6.6% | 5.5% | 1.2% | 6.6% | 6.1% | 0%
+           |
+      22  | One thing right | 2/2 | 2/2 | 0/2 | 1/2 | 2/2 | 0/2 |
+      23  | Judge, digest / drafts (1–5) | — | 4.4 / 3.4 / 4.4 · 4.7 / 4.
+          3 / 3.5 | 4.0 / 4.0 / 2.0 | — | 4.4 / 3.2 / 4.4 · 4.2 / 4.5 / 3
+          .2 | 1.0 / 3.0 / 4.0 |
+      24  | Memory checks (5-day simulation) | 20/21 | 11/11 | — | 12/13 
+          | 14/15 | — |
+      25  | Cost per morning | $0.05 cached | $0.18 cold | $0.03 | $0.19 
+          cold | $0.29 cold | $0.04 |
+      26  
+      27 -v1 is rescored with the v2 scorer so the comparison is like for
+         - like (as first reported: 115/175 and 129/207). Held-out is a s
+         -econd world with new people and disguised traps, run once on th
+         -e final code and never tuned on; the dev/held-out gap is the ho
+         -nest measure of fit. Judge criteria: digest = answers the three
+         - questions / no noise / honest about gaps; drafts = factual / t
+         -one / assumptions flagged. The judge is this Claude Code sessio
+         -n applying `prompts/judge.md` (scores in `eval/judge/in_session
+         -/`, read back by `--judge-scores`); the DeepSeek judge stays co
+         -nfigured for an API run.                                       
+      27 +v1 is as its own reports scored it (its runs are not on disk to
+         + rescore; the tag rebuilds them). Matching in the grader uses n
+         +o string similarity: an item is credited by an exact key or a c
+         +itation of a source unique to the expected item, and the shared
+         +-source cases go to the same decider the product uses, every de
+         +cision listed in the report (`OPEN_QUESTIONS.md` #23). Held-out
+         + is a second world with new people and disguised traps, run onc
+         +e on the final code and never tuned on; the dev/held-out gap is
+         + the honest measure of fit. Judge criteria: digest = answers th
+         +e three questions / no noise / honest about gaps; drafts = fact
+         +ual / tone / assumptions flagged. The judge is this Claude Code
+         + session applying `prompts/judge.md` (scores in `eval/judge/in_
+         +session/`, read back by `--judge-scores`); the DeepSeek judge s
+         +tays configured for an API run.                                
+      28  
+      29  ## Why the design changed on the last night
+      30  
+     ...
+      36  |---|---|
+      37  | Extraction-centric pipeline (v1) | Lossy and closed-world; re
+          warded metadata accuracy over digest usefulness |
+      38  | One long-context call over the whole inbox | Misses can't be 
+          attributed; kept only as the baseline to beat |
+      39 -| String similarity for "same thing?" | Misfired on real data; 
+         -hard-fact narrowing plus a classifier and an LLM instead |     
+      39 +| String similarity for "same thing?", in the product or the gr
+         +ader | Misfired on real data; hard-fact narrowing plus a classi
+         +fier and an LLM instead |                                      
+      40  | Rulings as prompt edits | Opaque; a rulings store with exact 
+          scope, provenance and expiry instead |
+      41  | Customize as a runtime plugin | Untrusted per-run text must n
+          ot add capabilities |
+      42  
+     ...
+      48  
+      49  | Issue | Where | Cause |
+      50  |---|---|---|
+      51 -| Held-out misses one P0 on two of five mornings | read, merge 
+         -| Day 29: the reader took the moved diligence call as the coord
+         -inator's move while the calendar still disagreed (it surfaced o
+         -n day 30). Day 30: the early-dismissal notice merged into the E
+         -NT item (both cite Sam's message); the scorer's claimed-key gua
+         -rd then cannot credit it (`OPEN_QUESTIONS.md` #18) |           
+      51 +| Held-out misses one P0 on two of five mornings | read, merge 
+         +| Day 29: the reader took the moved diligence call as the coord
+         +inator's move while the calendar still disagreed (it surfaced o
+         +n day 30). Day 30: the early-dismissal notice merged into the E
+         +NT item (both cite Sam's message) and the page does not cite th
+         +e dismissal email, so the merge loses it |                     
+      52  | P0 generous during the raise | read, floors | Dev Thursday: 1
+          1 P0 items vs the key's 8; every IPV and WSGR thread is P0-elig
+          ible by profile tier |
+      53  | Decide-card drafts already commit | materialize | Judge `assu
+          mptions_flagged` 3.5 / 3.2: the draft for the recommended optio
+          n is not marked as presupposing it; one internal remark ("the p
+          rofile figure is stale") reached a reply to Marcus |
+      54  | No `profile_update` actions | read, sweep | Drift is reported
+           but the profile line is never proposed; six assertions in each
+           world |
+  ⎿  Updated README.md (+1 -1)
+      42  uv run digest eval --world dev --judge-scores scores.yaml   # r
+          ead the scores back into the report (--judge runs the API judge
+           instead)
+      43  ```
+      44  
+      45 -Scores every run against `eval/manifests/dev.yaml` and writes `
+         -eval/reports/dev_<date>.md`: §1 a v1 / v2 / baseline table (P0 
+         -recall, the only gate; trap assertions; must-not rate; one-thin
+         -g accuracy; judge; cost), §2 diagnostics per morning (reader re
+         -call on planted threads, sweep and safety-net recall with the r
+         -escue list, merge errors, hard rules, contact classification), 
+         -then the honesty variants, the customize suite and the simulati
+         -on checks. `eval/history.md` logs prompt changes with before an
+         -d after numbers. The v1 pipeline is tag `v1-extraction-centric`
+         -; its reports are `eval/reports/*_v1.md`.                      
+      45 +Scores every run against `eval/manifests/dev.yaml` and writes `
+         +eval/reports/dev_<date>.md`: §1 a v1 / v2 / baseline table (P0 
+         +recall, the only gate; trap assertions; must-not rate; one-thin
+         +g accuracy; judge; cost), §2 diagnostics per morning (reader re
+         +call on planted threads, sweep and safety-net recall with the r
+         +escue list, merge errors, hard rules, contact classification), 
+         +then the honesty variants, the customize suite and the simulati
+         +on checks. Credit is decided by exact keys and by sources (a ci
+         +tation of a source unique to the expected item); the shared-sou
+         +rce cases go to the product's decider and every such decision i
+         +s listed in the report. `eval/history.md` logs prompt changes w
+         +ith before and after numbers. The v1 pipeline is tag `v1-extrac
+         +tion-centric`; its reports are `eval/reports/*_v1.md`.         
+      46  
+      47  ## Debug UI
+      48  
+  ⎿  Updated docs/handoffs/NEXT-SESSION.md (+3 -2)
+      10    compose v6), ran both final matrices, judged in-session, and 
+          filled `DESIGN.md`, `README.md`, `eval/history.md`.
+      11  - **v1 is tag `v1-extraction-centric`**; its reports are `eval/
+          reports/*_2026-09-29_v1.md`. Rejected design, kept for the
+      12    comparison.
+      13 -- **Final numbers (both worlds, five mornings):** dev P0 100%, 
+         -traps 126/175, noise 5.5%, one thing 2/2, memory 11/11,        
+      13 +- **Final numbers (both worlds, five mornings):** dev P0 100%, 
+         +traps 127/175, noise 5.5%, one thing 2/2, memory 11/11,        
+      14    $0.18 a cold morning; held-out P0 84.6%, traps 149/207, noise
+           6.1%, one thing 2/2, memory 14/15, $0.29. Judge
+      15    (in-session, `eval/judge/in_session/*.yaml`, read back with `
+          --judge-scores`): dev digest 4.4/3.4/4.4, drafts
+      16    4.7/4.3/3.5; held-out digest 4.4/3.2/4.4, drafts 4.2/4.5/3.2.
+           Reports: `eval/reports/{dev,heldout}_2026-09-29.md`.
+      17  - Decisions taken while Shubham slept are in `OPEN_QUESTIONS.md
+          ` → Decided (#19 verdict, #20, #21, #22 accepted).
+      18 -  Still open for Shubham: **#18** (the scorer's claimed-key gua
+         -rd; it costs held-out one P0 credit on day 30).                
+      18 +  #18 is closed by **#23**: the grader matches by exact key, un
+         +ique sources and the product's decider; no string              
+      19 +  similarity remains anywhere in the repo.                     
+      20  
+      21  ## To do next (Shubham, then the orchestrator)
+      22  
+  ⎿  Updated docs/handoffs/STATUS.md (+1 -1)
+       6  **Full scope today, 2026-09-28. Submission tomorrow morning; wa
+          lkthrough the following week.** Nothing deferred. Next up: A → 
+          M4/M5 then M7/M8/M9 · B → M2 after Shubham's approval, then M8 
+          held-out (anchor 2026-03-26) in a fresh session · C → M7/M8/M9 
+          halves · orchestrator → integration as soon as A M5 + B M2 land
+          , then M10.
+       7  
+       8  ## Orchestrator
+       9 -- 2026-09-29 ~08:30 · **v2 built, merged, measured.** A/B/C mer
+         -ged into main; orchestrator: A5, reduce/merge fixes, compose v6
+         -, final matrices both worlds, in-session judge (#20), DESIGN.md
+         -/README/history/examples. Dev P0 100% · traps 126/175 · noise 5
+         -.5% · one thing 2/2; held-out P0 84.6% · traps 149/207 · noise 
+         -6.1% · one thing 2/2. Next: docs/handoffs/NEXT-SESSION.md (expo
+         -rts, push, #18).                                               
+       9 +- 2026-09-29 ~08:30 · **v2 built, merged, measured.** A/B/C mer
+         +ged into main; orchestrator: A5, reduce/merge fixes, compose v6
+         +, final matrices both worlds, in-session judge (#20), DESIGN.md
+         +/README/history/examples. Dev P0 100% · traps 126/175 · noise 5
+         +.5% · one thing 2/2; held-out P0 84.6% · traps 149/207 · noise 
+         +6.1% · one thing 2/2. Grader rewired without string similarity 
+         +(#23). Next: docs/handoffs/NEXT-SESSION.md (exports, push).    
+      10  - 2026-09-29 ~05:00 · **v2 pivot approved** (specs/PIVOT_SPEC.m
+          d, MIGRATION_PLAN.md). v1 tagged `v1-extraction-centric`. Share
+          d contracts landed: `Finding` schema, `digest/findings.py` mapp
+          ing, reader/sweep roles, `cache_salt`, `findings.jsonl`. Three 
+          worktrees: `../lookup-digest-v2-{a-readers,b-spine,c-eval}`; ha
+          ndoffs `docs/handoffs/v2-{A,B,C}-*.md`. Gate after A's P2: 5 pl
+          anted threads side by side. Track status files: `docs/handoffs/
+          v2-*-STATUS.md`.
+      11  - 2026-09-28 ~23:00 · Known issues fixed in code; Jev behind th
+          e linker (196e557). No final numbers on this code yet. **Next s
+          ession: read docs/handoffs/NEXT-SESSION.md.**
+      12  - 2026-09-28 17:20 · First dev day (26) exposed a candidate flo
+          od (124 candidates, 50 items, $0.47/run) and the S3 trap failin
+          g. Fixed in compute + prompts: cold-inbound threads never becom
+          e candidates; Capital asks without a deadline carry `below_quie
+          t_threshold` and triage excludes them before 3 business days (S
+          3); news attaches only to exact contact/org slugs or whole acti
+          ve about-key slugs (14 → 1); schedule contradictions use one oc
+          currence per recurring event; claim conflicts only when they to
+          uch a profile fact or a draft; about-key merge unifies board-up
+          date spellings, offer~candidate, and same-kind token overlaps; 
+          triage v3, compose v2 (one thing = one item). Day 26 rerun: 93 
+          candidates, 31 items, $0.05. Matrix relaunched. Held-out author
+          ed by B (de321b4), gated on review; its run also needs the key 
+          limit raised (≈ $1.5 more).
+  ⎿  Updated eval/history.md (+2 -1)
+      12  | 2026-09-28 | triage | v2 → v4 | 91.7% → 100% | 114/175 → 120/
+          175 | 4.7% → 5.9% | 100% → 50% | $0.040 → $0.049 | before→after
+           spans code fixes too (Tuesday crash, P0 restore), not only the
+           prompt. Changes: quiet-threshold rule (S3), dev notifications/
+          RSVP/generic news excluded, co-founder email and team escalatio
+          n → P0 |
+      13  | 2026-09-28 | compose | v1 → v3 | (same runs) | | | | | one th
+          ing = one item; cut from the bottom; today's hard deadline pref
+          erred. One-thing accuracy fell: see DESIGN.md |
+      14  | 2026-09-28 | extractor · triage · compose · materializer · li
+          nker · topic_grouper | v1→2 · v4→5 · v3→4 · v1→2 · v1→2 · v1→2 
+          | (next report) | | | | | leak removed: examples copied dev sto
+          rylines (S1 cap table, S2 diligence move, S3/S10 $3.4M, S5 Oct 
+          6, S8 Mei, S13 DeepSeek); now a made-up cast in no mailbox. Tri
+          age's 'Sam and Wren' rule → 'contacts whose category is family'
+          . Scores before this line were measured with the leak. |
+      15 -| 2026-09-29 | **v2 pivot** (specs/PIVOT_SPEC.md): thread_reade
+         -r v1→2 · calendar_sweep v1 · notes_tasks_sweep v2 · news_sweep 
+         -v2 · contact_classifier v2 · signature_parser v1 · compose v4→6
+         - · materializer v2→3; extractor and triage retired | see left |
+         - dev 100% → 100% · held-out 84.6% → 84.6% | dev 118/175 → 126/1
+         -75 · held-out 137/207 → 149/207 (v1 rescored with the v2 scorer
+         -) | dev 6.6% → 5.5% · held-out 6.6% → 6.1% | dev 2/2 → 2/2 · he
+         -ld-out 1/2 → 2/2 | dev $0.05 cached → $0.18 cold · held-out $0.
+         -19 → $0.29 | Readers judge raw threads with retrieved context; 
+         -sweeps over calendar, notes+tasks, newsletters; eight safety ne
+         -ts as a recall floor (rescues logged); the linker (Jev, LLM whe
+         -n unsure) reconciles and merges; compose reads raw excerpts, th
+         -e drafter the raw message. Judge (in-session, #20): dev digest 
+         -4.4/3.4/4.4 drafts 4.7/4.3/3.5; held-out digest 4.4/3.2/4.4 dra
+         -fts 4.2/4.5/3.2. Reports: eval/reports/{dev,heldout}_2026-09-29
+         -.md; v1 in *_v1.md |                                           
+      15 +| 2026-09-29 | **v2 pivot** (specs/PIVOT_SPEC.md): thread_reade
+         +r v1→2 · calendar_sweep v1 · notes_tasks_sweep v2 · news_sweep 
+         +v2 · contact_classifier v2 · signature_parser v1 · compose v4→6
+         + · materializer v2→3; extractor and triage retired | see left |
+         + dev 100% → 100% · held-out 84.6% → 84.6% | dev 115/175 → 127/1
+         +75 · held-out 129/207 → 149/207 (v1 as reported) | dev 6.6% → 5
+         +.5% · held-out 6.6% → 6.1% | dev 2/2 → 2/2 · held-out 1/2 → 2/2
+         + | dev $0.05 cached → $0.18 cold · held-out $0.19 → $0.29 | Rea
+         +ders judge raw threads with retrieved context; sweeps over cale
+         +ndar, notes+tasks, newsletters; eight safety nets as a recall f
+         +loor (rescues logged); the linker (Jev, LLM when unsure) reconc
+         +iles and merges; compose reads raw excerpts, the drafter the ra
+         +w message. Judge (in-session, #20): dev digest 4.4/3.4/4.4 draf
+         +ts 4.7/4.3/3.5; held-out digest 4.4/3.2/4.4 drafts 4.2/4.5/3.2.
+         + Reports: eval/reports/{dev,heldout}_2026-09-29.md; v1 in *_v1.
+         +md |                                                           
+      16 +| 2026-09-29 | *grader* (#23, no prompt): exact keys, unique so
+         +urces, decider for shared sources; rapidfuzz removed | — | dev 
+         +100% · held-out 84.6% (unchanged) | dev 126 → 127/175 · held-ou
+         +t 149/207 (unchanged) | unchanged | unchanged | — | Same runs r
+         +e-scored; every shared-source decision is listed in the report 
+         +notes (dev 6, held-out 20; Jev decided most, the LLM the unsure
+         + ones). Closes #18 |                                           
+
+  Wrote 1 memory (ctrl+o to expand)
+
+⏺ Bash(git status --short; ls -la orchestrator_v2.txt " p.txt" 2>/dev/null | awk
+      '{print $5, $9, $10}'; head -c 300 " p.txt" 2>/dev/null; echo; grep -cE
+      'sk-or-v1-[A-Z…)
+  ⎿  No matches found
+
+⏺ No API keys found in either file. I'll move orchestrator_v2.txt into sessions/
+  and commit it, leaving the stray-named duplicate  p.txt for you to delete.
+  · summary
+
+⏺ Bash(mv orchestrator_v2.txt sessions/orchestrator_v2.txt && git add
+      sessions/orchestrator_v2.txt && git commit -q -m "[orchestrator] sessions:
+      orchestrator v2 export…)
+  ⎿  2 files changed (binary, mode only or too large to show)
+
+⏺ Done. The grader change is in (4dc44e6), both worlds are re-scored on the same
+  runs (e4fd584), and your export is committed (0b8ed7b). Cost of the whole
+  thing: a few dozen Jev questions, cents.
+
+  What changed in the grader (#23, closes #18)
+
+  Before: Key resemblance (rapidfuzz ≥ 0.85) could credit or block an item
+  Now: Exact key equality only
+  ────────────────────────────────────────
+  Before: Citation match blocked when the item's key resembled another expected
+  key
+  Now: An item labeled exactly with another expected item's key is that item;
+  otherwise a citation of a source unique to the expected item credits it
+  ────────────────────────────────────────
+  Before: Token-in-entity heuristic in the #9 fallback
+  Now: Source routes only (a labeled source, or the same storyline)
+  ────────────────────────────────────────
+  Before: —
+  Now: Items citing only shared sources go to the product's decider (Jev, LLM
+  when unsure), one question per expected item per day; every decision is
+  listed in the report notes (dev 6, held-out 20)
+
+  Numbers after re-scoring
+
+  ┌───────────┬───────────────────┬─────────────┐
+  │           │      v2 dev       │ v2 held-out │
+  ├───────────┼───────────────────┼─────────────┤
+  │ P0 recall │ 100%              │ 84.6%       │
+  ├───────────┼───────────────────┼─────────────┤
+  │ Traps     │ 127/175 (was 126) │ 149/207     │
+  ├───────────┼───────────────────┼─────────────┤
+  │ Noise     │ 5.5%              │ 6.1%        │
+  ├───────────┼───────────────────┼─────────────┤
+  │ One thing │ 2/2               │ 2/2         │
+  └───────────┴───────────────────┴─────────────┘
+
+  Held-out's two P0 misses stand and are real: a reader judgment on day 29, and
+  on day 30 the early-dismissal notice merged into the ENT item and the page
+  doesn't cite the dismissal email, so the merge loses it, not the grader. The
+  v1 column is now shown as its own reports scored it (its runs aren't on disk
+  to re-score).
+
+  On v1 in DESIGN.md: kept in the one comparison table, as I recommended. Say
+  "drop v1" if you want it gone.
+
+  Left for you
+
+  1. Delete the stray duplicate export " p.txt" at the repo root.
+  2. Re-export this session at the very end (/export
+     sessions/orchestrator_v2.txt; the committed one predates the grader work),
+     scrub, push main.
+  3. Close the track terminals; I'll remove the worktrees and branches.
