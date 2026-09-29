@@ -11,169 +11,166 @@
 {"task": "role_at_org", "question": "s11", "matches": [], "reason": "jev p=0.92", "by": "jev"}
 {"task": "role_at_org", "question": "s12", "matches": [], "reason": "jev p=0.99", "by": "jev"}
 {"task": "role_at_org", "question": "s13", "matches": [], "reason": "jev p=0.73", "by": "jev"}
-{"task": "role_at_org", "question": "s4", "matches": [], "reason": "Martin Hale is identified as Halberd Manufacturing’s CFO, not its procurement lead.", "by": "llm_after_unsure_jev"}
-{"task": "role_at_org", "question": "s14", "matches": [], "reason": "Hugo Lambert is identified as Veritas Components’ Finance Director, not its procurement lead.", "by": "llm_after_unsure_jev"}
+{"task": "role_at_org", "question": "s4", "matches": [], "reason": "Martin Hale is Halberd Manufacturing’s Chief Financial Officer, not its procurement lead.", "by": "llm_after_unsure_jev"}
+{"task": "role_at_org", "question": "s14", "matches": [], "reason": "Hugo Lambert is identified as Veritas’s Finance Director, not its procurement lead.", "by": "llm_after_unsure_jev"}
 {"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n1", "finding": "f6", "by": "same_thread", "finding_needs_avery": "yes"}
 {"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n2", "thread": "thread:20260304-1000.platform@granitebay.vc", "by": "reader_read_thread", "fact": "Waiting 15 business days for Avery (threshold 3).", "summary": "Granite Bay sent a March portfolio update with survey and event information; it explicitly says no reply is needed."}
-{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n3", "finding": "f24", "by": "same_thread", "finding_needs_avery": "yes"}
-{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n4", "finding": "f26", "by": "same_thread", "finding_needs_avery": "yes"}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n3", "finding": "f23", "by": "same_thread", "finding_needs_avery": "yes"}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n4", "finding": "f25", "by": "same_thread", "finding_needs_avery": "yes"}
 {"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n5", "thread": "thread:20260312-0900.avery@tessera.io", "by": "reader_read_thread", "fact": "Waiting 9 business days for Avery (threshold 3).", "summary": "Avery shared the diligence folder and confirmed analyst access; Marcus acknowledged receipt and said Owen’s team would start reviewing contracts. The exchange is closed."}
 {"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n6", "thread": "thread:20260313-1010.diane@granitebay.vc", "by": "reader_read_thread", "fact": "Waiting 3 business days for Avery (threshold 3).", "summary": "Marco accepted Avery’s March 26 introduction meeting and confirmed reading the materials. Separately, retrieved context shows Diane’s March investor update remains unsent and overdue."}
 {"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n7", "thread": "thread:20260315-0800.platform@granitebay.vc", "by": "reader_read_thread", "fact": "Waiting 8 business days for Avery (threshold 3).", "summary": "Granite Bay shared a June 11 annual-meeting save-the-date and updated portfolio perks; no reply is needed."}
 {"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n8", "thread": "thread:20260315-2030.elliot@ninebark.vc", "by": "reader_read_thread", "fact": "Waiting 8 business days for Avery (threshold 3).", "summary": "Elliot introduced Ninebark Ventures and offered to be a resource; explicitly made no ask."}
 {"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n9", "thread": "thread:20260317-1015.bschaffer@wsgr.com", "by": "reader_read_thread", "fact": "Waiting 6 business days for Avery (threshold 3).", "summary": "Ben confirms Felix and Carmen’s CIIAAs are executed and filed, completing the IPV counsel request; Nora has the originals. No action is needed."}
-{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n10", "finding": "f38", "by": "same_thread", "finding_needs_avery": "yes"}
-{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n11", "finding": "f40", "by": "same_thread", "finding_needs_avery": "yes"}
-{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n12", "finding": "f44", "by": "same_thread", "finding_needs_avery": "yes"}
-{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n13", "finding": "f50", "by": "same_thread", "finding_needs_avery": "yes"}
-{"task": "net_covers_finding", "decision": "net_covered", "net": "reply_owed", "net_id": "n14", "finding": "f71", "by": "same_thread", "finding_needs_avery": "yes"}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n10", "finding": "f37", "by": "same_thread", "finding_needs_avery": "yes"}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n11", "finding": "f39", "by": "same_thread", "finding_needs_avery": "yes"}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n12", "finding": "f43", "by": "same_thread", "finding_needs_avery": "yes"}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n13", "finding": "f49", "by": "same_thread", "finding_needs_avery": "yes"}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "reply_owed", "net_id": "n14", "finding": "f70", "by": "same_thread", "finding_needs_avery": "yes"}
 {"task": "net_covers_finding", "decision": "net_covered", "net": "reply_owed", "net_id": "n15", "finding": "f75", "by": "same_thread", "finding_needs_avery": "yes"}
-{"task": "net_covers_finding", "decision": "net_covered", "net": "reply_owed", "net_id": "n16", "finding": "f76", "by": "same_thread", "finding_needs_avery": "yes"}
-{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n17", "finding": "f79", "by": "same_thread", "finding_needs_avery": "yes"}
-{"task": "net_covers_finding", "decision": "net_covered", "net": "reply_owed", "net_id": "n18", "finding": "f60", "by": "same_thread", "finding_needs_avery": "yes"}
-{"task": "net_covers_finding", "decision": "net_covered", "net": "suspicious_content", "net_id": "n23", "finding": "f78", "by": "reported_quote"}
-{"task": "net_covers_finding", "question": "n0", "matches": ["s1"], "reason": "jev p=0.79", "by": "jev"}
-{"task": "net_covers_finding", "question": "n1", "matches": ["s2"], "reason": "jev p=0.77", "by": "jev"}
-{"task": "net_covers_finding", "question": "n2", "matches": ["f16", "f69"], "reason": "Both options describe the same pending signature on Kenji Mori’s offer letter; f16 and f69 refer to the same Friday-noon deadline and offer-stage signing request.", "by": "llm_after_unsure_jev"}
-{"task": "net_covers_finding", "decision": "net_covered", "net": "calendar_conflict:deep_work", "net_id": "n19", "finding": "s1", "by": "linker", "finding_needs_avery": "yes"}
-{"task": "net_covers_finding", "decision": "net_covered", "net": "calendar_conflict:family", "net_id": "n20", "finding": "s2", "by": "linker", "finding_needs_avery": "yes"}
-{"task": "net_covers_finding", "decision": "net_covered", "net": "approval_pending", "net_id": "n25", "finding": "f16", "by": "linker", "finding_needs_avery": "yes"}
-{"task": "topics", "question": "q0|approval:brex", "matches": [], "reason": "jev p=0.89", "by": "jev"}
-{"task": "topics", "question": "q1|approval:february-expenses", "matches": [], "reason": "jev p=0.78", "by": "jev"}
-{"task": "topics", "question": "q2|approval:gpu-commit-renewal", "matches": ["k12"], "reason": "jev p=0.61", "by": "jev"}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n16", "finding": "f78", "by": "same_thread", "finding_needs_avery": "yes"}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "reply_owed", "net_id": "n17", "finding": "f59", "by": "same_thread", "finding_needs_avery": "yes"}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "suspicious_content", "net_id": "n22", "finding": "f77", "by": "reported_quote"}
+{"task": "net_covers_finding", "question": "n0", "matches": ["s1"], "reason": "jev p=0.73", "by": "jev"}
+{"task": "net_covers_finding", "question": "n1", "matches": ["s2"], "reason": "jev p=0.76", "by": "jev"}
+{"task": "net_covers_finding", "question": "n3", "matches": [], "reason": "jev p=0.97", "by": "jev"}
+{"task": "net_covers_finding", "question": "n4", "matches": [], "reason": "jev p=0.97", "by": "jev"}
+{"task": "net_covers_finding", "question": "n2", "matches": ["f15", "f68"], "reason": "Both describe your pending signature on Kenji Mori’s offer letter; f68 also gives its competing Friday deadline.", "by": "llm_after_unsure_jev"}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "calendar_conflict:deep_work", "net_id": "n18", "finding": "s1", "by": "linker", "finding_needs_avery": "yes"}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "calendar_conflict:family", "net_id": "n19", "finding": "s2", "by": "linker", "finding_needs_avery": "yes"}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "approval_pending", "net_id": "n24", "finding": "f15", "by": "linker", "finding_needs_avery": "yes"}
+{"task": "topics", "question": "q0|approval:brex", "matches": [], "reason": "jev p=0.91", "by": "jev"}
+{"task": "topics", "question": "q1|approval:february-expenses", "matches": [], "reason": "jev p=0.77", "by": "jev"}
 {"task": "topics", "question": "q3|approval:gpu-reserved-commit-kestrel", "matches": [], "reason": "jev p=0.82", "by": "jev"}
-{"task": "topics", "question": "q4|approval:on-call-stipend", "matches": ["k24"], "reason": "jev p=0.67", "by": "jev"}
-{"task": "topics", "question": "q5|approval:primary-on-call-stipend", "matches": ["k29"], "reason": "jev p=0.60", "by": "jev"}
-{"task": "topics", "question": "q6|candidate:clara-voss:designer-role", "matches": ["k30"], "reason": "jev p=0.51", "by": "jev"}
-{"task": "topics", "question": "q7|candidate:clara-voss:product-designer", "matches": [], "reason": "jev p=0.62", "by": "jev"}
 {"task": "topics", "question": "q8|candidate:maren-holt", "matches": [], "reason": "jev p=1.00", "by": "jev"}
 {"task": "topics", "question": "q9|deal:larkspur:working-session", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q10|deal:series-a:architecture-diagram", "matches": [], "reason": "jev p=0.96", "by": "jev"}
-{"task": "topics", "question": "q11|deal:series-a:cohort-expansion-data", "matches": [], "reason": "jev p=0.90", "by": "jev"}
-{"task": "topics", "question": "q12|deal:series-a:cohort-retention-table", "matches": [], "reason": "jev p=0.88", "by": "jev"}
+{"task": "topics", "question": "q10|deal:series-a:architecture-diagram", "matches": [], "reason": "jev p=0.91", "by": "jev"}
+{"task": "topics", "question": "q11|deal:series-a:cohort-expansion-data", "matches": [], "reason": "jev p=0.91", "by": "jev"}
+{"task": "topics", "question": "q12|deal:series-a:cohort-retention-table", "matches": [], "reason": "jev p=0.85", "by": "jev"}
 {"task": "topics", "question": "q13|deal:series-a:disclosure-schedules", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q14|deal:series-a:investor-introduction", "matches": [], "reason": "jev p=0.93", "by": "jev"}
-{"task": "topics", "question": "q15|deal:series-a:investor-meeting", "matches": [], "reason": "jev p=0.95", "by": "jev"}
-{"task": "topics", "question": "q16|deal:series-a:kite-hill-capital", "matches": [], "reason": "jev p=0.94", "by": "jev"}
+{"task": "topics", "question": "q14|deal:series-a:investor-introduction", "matches": [], "reason": "jev p=0.92", "by": "jev"}
+{"task": "topics", "question": "q15|deal:series-a:investor-meeting", "matches": [], "reason": "jev p=0.93", "by": "jev"}
+{"task": "topics", "question": "q16|deal:series-a:kite-hill-capital", "matches": [], "reason": "jev p=0.97", "by": "jev"}
 {"task": "topics", "question": "q17|deal:series-a:operating-model", "matches": [], "reason": "jev p=0.90", "by": "jev"}
-{"task": "topics", "question": "q18|deal:series-a:option-pool", "matches": [], "reason": "jev p=0.93", "by": "jev"}
-{"task": "topics", "question": "q19|deal:series-a:reference-customer-contacts", "matches": [], "reason": "jev p=0.93", "by": "jev"}
-{"task": "topics", "question": "q20|deal:series-a:technical-diligence", "matches": [], "reason": "jev p=0.95", "by": "jev"}
-{"task": "topics", "question": "q21|family:east-bay-childrens-museum-membership", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q22|family:juns-birthday", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q23|family:mom-april-visit", "matches": [], "reason": "jev p=0.77", "by": "jev"}
-{"task": "topics", "question": "q24|family:moms-dinner", "matches": [], "reason": "jev p=0.98", "by": "jev"}
-{"task": "topics", "question": "q25|family:wren-bath", "matches": [], "reason": "jev p=0.99", "by": "jev"}
-{"task": "topics", "question": "q26|family:wren-ent-follow-up", "matches": ["k208"], "reason": "jev p=0.96", "by": "jev"}
-{"task": "topics", "question": "q27|family:wren-ent-hearing-recheck", "matches": ["k215"], "reason": "jev p=0.62", "by": "jev"}
-{"task": "topics", "question": "q28|family:wren-pickup", "matches": ["k223"], "reason": "jev p=0.58", "by": "jev"}
-{"task": "topics", "question": "q29|hiring-req:engineering-and-designer-roles", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "question": "q18|deal:series-a:reference-customer-contacts", "matches": [], "reason": "jev p=0.95", "by": "jev"}
+{"task": "topics", "question": "q19|deal:series-a:technical-diligence", "matches": [], "reason": "jev p=0.96", "by": "jev"}
+{"task": "topics", "question": "q20|family:east-bay-childrens-museum-membership", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q21|family:juns-birthday", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q22|family:mendocino-house", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q23|family:mom-april-visit", "matches": [], "reason": "jev p=0.74", "by": "jev"}
+{"task": "topics", "question": "q24|family:moms-dinner", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "question": "q25|family:wren-bath", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q26|family:wren-ent-follow-up", "matches": ["k200"], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "question": "q29|hiring-req:backend-2", "matches": [], "reason": "jev p=1.00", "by": "jev"}
 {"task": "topics", "question": "q30|hiring-req:engineering-headcount:post-june-contingency", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q31|incident:halberd-line-3-mes-timestamp-offset", "matches": [], "reason": "jev p=0.87", "by": "jev"}
-{"task": "topics", "question": "q32|incident:halberd-line-3-timestamps", "matches": [], "reason": "jev p=0.77", "by": "jev"}
-{"task": "topics", "question": "q33|meeting:emeka-coffee-grand", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q34|meeting:granite-bay-founder-dinner", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q35|meeting:ipv-technical-diligence", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "question": "q31|incident:halberd-line-3-mes-timestamp-offset", "matches": [], "reason": "jev p=0.83", "by": "jev"}
+{"task": "topics", "question": "q32|incident:halberd-line-3-timestamps", "matches": [], "reason": "jev p=0.78", "by": "jev"}
+{"task": "topics", "question": "q33|meeting:granite-bay-founder-dinner", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q34|meeting:ipv-technical-diligence", "matches": [], "reason": "jev p=0.98", "by": "jev"}
+{"task": "topics", "question": "q35|meeting:ipv-term-sheet-option-pool", "matches": [], "reason": "jev p=0.98", "by": "jev"}
 {"task": "topics", "question": "q36|meeting:quillon-security-demo", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q37|other:california-si-550-filing", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q38|other:github-sso-access", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q39|other:h1-planning-doc", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q40|other:halberd-reference-case-study", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q41|other:hana-pto-mar27-30", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q42|other:kofi-wedding-invitations", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q43|other:news-kestrel-gpu-price-increase", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q44|other:news-northstar-fresno-sap-cutover", "matches": [], "reason": "jev p=0.99", "by": "jev"}
-{"task": "topics", "question": "q45|other:nimbuspay-onboarding-fee", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q46|other:parking-permit", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q47|other:pillar-forge-coffee", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q48|other:plant-floor-ai-article", "matches": [], "reason": "jev p=0.96", "by": "jev"}
-{"task": "topics", "question": "q49|other:profile-arr", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q50|other:recruiter-pattern:hirevector", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q51|renewal:cyber-liability-2026-27", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q52|renewal:halberd-manufacturing:fy-timing", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q53|renewal:veritas-components:vendor-review", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q54|rollout:northstar-modesto-fresno-expansion", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q55|rollout:northstar-sap-connector-apr-1", "matches": [], "reason": "jev p=0.97", "by": "jev"}
-{"task": "topics", "question": "q56|rollout:northstar-sap-connector-freeze", "matches": [], "reason": "jev p=0.87", "by": "jev"}
-{"task": "topics", "question": "q57|rollout:security-key-enrollment", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q58|approval:on-call-stipend", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q59|incident:halberd-line-3-mes-timestamp-offset", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q60|other:github-sso-access", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q61|report:northstar-pen-test-summary", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q62|board-update:march-investor-update", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q63|deal:larkspur:working-session", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q64|other:news-northstar-fresno-sap-cutover", "matches": ["k455"], "reason": "jev p=0.68", "by": "jev"}
-{"task": "topics", "question": "q65|rollout:northstar-modesto-fresno-expansion", "matches": [], "reason": "jev p=0.98", "by": "jev"}
-{"task": "topics", "question": "q66|rollout:northstar-sap-connector-apr-1", "matches": [], "reason": "jev p=0.85", "by": "jev"}
-{"task": "topics", "question": "q67|rollout:northstar-sap-connector-freeze", "matches": [], "reason": "jev p=0.80", "by": "jev"}
-{"task": "topics", "question": "q68|deal:series-a:option-pool", "matches": [], "reason": "jev p=0.97", "by": "jev"}
-{"task": "topics", "question": "q69|meeting:emeka-coffee-grand", "matches": [], "reason": "jev p=0.86", "by": "jev"}
+{"task": "topics", "question": "q37|other:cadence:halberd-manufacturing", "matches": [], "reason": "jev p=0.87", "by": "jev"}
+{"task": "topics", "question": "q38|other:cadence:veritas-components", "matches": [], "reason": "jev p=0.95", "by": "jev"}
+{"task": "topics", "question": "q39|other:california-si-550-filing", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q40|other:github-sso-access", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q41|other:h1-planning-headcount", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q42|other:halberd-reference-case-study", "matches": [], "reason": "jev p=0.92", "by": "jev"}
+{"task": "topics", "question": "q43|other:hana-pto-mar27-30", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "question": "q44|other:kofi-wedding-invitations", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q45|other:news-kestrel-gpu-price", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "question": "q46|other:news-northstar-fresno-cutover", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q47|other:nimbuspay-onboarding-fee", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q48|other:parking-permit", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q49|other:pillar-forge-coffee", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q50|other:plant-floor-ai-article", "matches": [], "reason": "jev p=0.93", "by": "jev"}
+{"task": "topics", "question": "q51|other:profile-arr", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q52|other:recruiter-pattern:hirevector", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q53|renewal:cyber-liability-2026-27", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q54|renewal:halberd-manufacturing:fy-timing", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q55|renewal:veritas-components:vendor-review", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q56|rollout:northstar-modesto-fresno-expansion", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q57|rollout:northstar-sap-connector-apr-1", "matches": [], "reason": "jev p=0.96", "by": "jev"}
+{"task": "topics", "question": "q58|rollout:northstar-sap-connector-freeze", "matches": [], "reason": "jev p=0.88", "by": "jev"}
+{"task": "topics", "question": "q59|rollout:security-key-enrollment", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q60|approval:on-call-stipend", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q61|incident:halberd-line-3-mes-timestamp-offset", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q62|other:github-sso-access", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q63|report:northstar-pen-test-summary", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q64|board-update:march-investor-update", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q65|deal:larkspur:working-session", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q66|other:news-northstar-fresno-cutover", "matches": [], "reason": "jev p=0.81", "by": "jev"}
+{"task": "topics", "question": "q67|rollout:northstar-modesto-fresno-expansion", "matches": [], "reason": "jev p=0.96", "by": "jev"}
+{"task": "topics", "question": "q68|rollout:northstar-sap-connector-apr-1", "matches": [], "reason": "jev p=0.93", "by": "jev"}
+{"task": "topics", "question": "q69|rollout:northstar-sap-connector-freeze", "matches": [], "reason": "jev p=0.89", "by": "jev"}
 {"task": "topics", "question": "q70|approval:on-call-stipend", "matches": [], "reason": "jev p=0.99", "by": "jev"}
 {"task": "topics", "question": "q71|other:github-sso-access", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q72|family:wren-ent-follow-up", "matches": [], "reason": "jev p=0.99", "by": "jev"}
-{"task": "topics", "question": "q73|incident:halberd-line-3-mes-timestamp-offset", "matches": ["k475"], "reason": "jev p=0.57", "by": "jev"}
-{"task": "topics", "question": "q74|incident:halberd-line-3-timestamps", "matches": ["k479"], "reason": "jev p=0.72", "by": "jev"}
-{"task": "topics", "question": "q75|other:halberd-reference-case-study", "matches": [], "reason": "jev p=0.98", "by": "jev"}
-{"task": "topics", "question": "q76|renewal:halberd-manufacturing:fy-timing", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q77|other:halberd-reference-case-study", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q78|other:hana-pto-mar27-30", "matches": [], "reason": "jev p=0.99", "by": "jev"}
-{"task": "topics", "question": "q79|renewal:veritas-components:vendor-review", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q80|report:northstar-pen-test-summary", "matches": [], "reason": "jev p=0.98", "by": "jev"}
-{"task": "topics", "question": "q81|rollout:northstar-sap-connector-freeze", "matches": [], "reason": "jev p=0.96", "by": "jev"}
-{"task": "topics", "question": "q82|deal:series-a:architecture-diagram", "matches": [], "reason": "jev p=0.87", "by": "jev"}
-{"task": "topics", "question": "q83|deal:series-a:cohort-retention-table", "matches": [], "reason": "jev p=0.97", "by": "jev"}
-{"task": "topics", "question": "q84|deal:series-a:operating-model", "matches": [], "reason": "jev p=0.97", "by": "jev"}
-{"task": "topics", "question": "q85|deal:series-a:reference-customer-contacts", "matches": [], "reason": "jev p=0.99", "by": "jev"}
-{"task": "topics", "question": "q86|deal:series-a:technical-diligence", "matches": ["k534"], "reason": "jev p=0.52", "by": "jev"}
-{"task": "topics", "question": "q87|meeting:ipv-technical-diligence", "matches": [], "reason": "jev p=0.67", "by": "jev"}
-{"task": "topics", "question": "q88|deal:series-a:architecture-diagram", "matches": [], "reason": "jev p=0.95", "by": "jev"}
-{"task": "topics", "question": "q89|deal:series-a:reference-customer-contacts", "matches": [], "reason": "jev p=0.97", "by": "jev"}
-{"task": "topics", "question": "q90|deal:series-a:technical-diligence", "matches": ["k548"], "reason": "jev p=0.51", "by": "jev"}
-{"task": "topics", "question": "q91|meeting:ipv-technical-diligence", "matches": [], "reason": "jev p=0.75", "by": "jev"}
-{"task": "topics", "question": "q92|other:kofi-wedding-invitations", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q93|rollout:security-key-enrollment", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q94|other:halberd-reference-case-study", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q95|renewal:veritas-components:vendor-review", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q96|deal:series-a:architecture-diagram", "matches": [], "reason": "jev p=0.90", "by": "jev"}
-{"task": "topics", "question": "q97|deal:series-a:cohort-retention-table", "matches": [], "reason": "jev p=0.97", "by": "jev"}
-{"task": "topics", "question": "q98|deal:series-a:operating-model", "matches": [], "reason": "jev p=0.98", "by": "jev"}
-{"task": "topics", "question": "q99|deal:series-a:reference-customer-contacts", "matches": [], "reason": "jev p=0.99", "by": "jev"}
-{"task": "topics", "question": "q100|deal:series-a:technical-diligence", "matches": [], "reason": "jev p=0.52", "by": "jev"}
-{"task": "topics", "question": "q101|meeting:ipv-technical-diligence", "matches": [], "reason": "jev p=0.68", "by": "jev"}
-{"task": "topics", "question": "q102|approval:february-expenses", "matches": [], "reason": "jev p=0.96", "by": "jev"}
-{"task": "topics", "question": "q103|approval:on-call-stipend", "matches": [], "reason": "jev p=0.98", "by": "jev"}
-{"task": "topics", "question": "q104|offer:kenji-mori", "matches": [], "reason": "jev p=0.99", "by": "jev"}
-{"task": "topics", "question": "q105|other:california-si-550-filing", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q106|other:github-sso-access", "matches": [], "reason": "jev p=0.99", "by": "jev"}
-{"task": "topics", "question": "q107|other:parking-permit", "matches": [], "reason": "jev p=0.96", "by": "jev"}
-{"task": "topics", "question": "q108|renewal:cyber-liability-2026-27", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q109|rollout:security-key-enrollment", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q110|other:news-northstar-fresno-sap-cutover", "matches": ["k644"], "reason": "jev p=0.80", "by": "jev"}
-{"task": "topics", "question": "q111|report:northstar-pen-test-summary", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q112|rollout:northstar-modesto-fresno-expansion", "matches": [], "reason": "jev p=0.95", "by": "jev"}
-{"task": "topics", "question": "q113|rollout:northstar-sap-connector-apr-1", "matches": [], "reason": "jev p=0.79", "by": "jev"}
-{"task": "topics", "question": "q114|rollout:northstar-sap-connector-freeze", "matches": [], "reason": "jev p=0.72", "by": "jev"}
-{"task": "topics", "question": "q115|deal:series-a:architecture-diagram", "matches": [], "reason": "jev p=0.96", "by": "jev"}
-{"task": "topics", "question": "q116|deal:series-a:reference-customer-contacts", "matches": [], "reason": "jev p=0.97", "by": "jev"}
-{"task": "topics", "question": "q117|deal:series-a:technical-diligence", "matches": [], "reason": "jev p=0.51", "by": "jev"}
-{"task": "topics", "question": "q118|meeting:ipv-technical-diligence", "matches": [], "reason": "jev p=0.74", "by": "jev"}
-{"task": "topics", "question": "q119|approval:on-call-stipend", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q120|other:hana-pto-mar27-30", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q121|rollout:security-key-enrollment", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q122|approval:primary-on-call-stipend", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q123|other:github-sso-access", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q124|approval:february-expenses", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q125|other:kofi-wedding-invitations", "matches": [], "reason": "jev p=0.99", "by": "jev"}
-{"task": "topics", "question": "q126|other:parking-permit", "matches": [], "reason": "jev p=0.95", "by": "jev"}
-{"task": "topics", "question": "q127|rollout:security-key-enrollment", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q128|family:wren-ent-follow-up", "matches": [], "reason": "jev p=0.99", "by": "jev"}
-{"task": "topics", "question": "q129|incident:halberd-line-3-timestamps", "matches": [], "reason": "jev p=0.99", "by": "jev"}
-{"task": "topics", "question": "q130|renewal:halberd-manufacturing:fy-timing", "matches": [], "reason": "jev p=0.98", "by": "jev"}
-{"task": "topics", "question": "q131|candidate:clara-voss:product-designer", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q132|family:wren-ent-follow-up", "matches": [], "reason": "jev p=0.98", "by": "jev"}
-{"task": "topics", "question": "q133|other:halberd-reference-case-study", "matches": [], "reason": "jev p=0.75", "by": "jev"}
-{"task": "topics", "question": "q134|other:hana-pto-mar27-30", "matches": [], "reason": "jev p=0.98", "by": "jev"}
+{"task": "topics", "question": "q72|other:cadence:halberd-manufacturing", "matches": [], "reason": "jev p=0.96", "by": "jev"}
+{"task": "topics", "question": "q73|renewal:halberd-manufacturing:fy-timing", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "question": "q74|family:wren-ent-follow-up", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q77|other:cadence:halberd-manufacturing", "matches": [], "reason": "jev p=0.89", "by": "jev"}
+{"task": "topics", "question": "q78|other:halberd-reference-case-study", "matches": [], "reason": "jev p=0.96", "by": "jev"}
+{"task": "topics", "question": "q79|renewal:halberd-manufacturing:fy-timing", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "question": "q80|other:halberd-reference-case-study", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q81|other:hana-pto-mar27-30", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "question": "q82|renewal:veritas-components:vendor-review", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q83|report:northstar-pen-test-summary", "matches": [], "reason": "jev p=0.98", "by": "jev"}
+{"task": "topics", "question": "q84|rollout:northstar-sap-connector-freeze", "matches": [], "reason": "jev p=0.96", "by": "jev"}
+{"task": "topics", "question": "q85|deal:series-a:architecture-diagram", "matches": [], "reason": "jev p=0.86", "by": "jev"}
+{"task": "topics", "question": "q86|deal:series-a:cohort-retention-table", "matches": [], "reason": "jev p=0.96", "by": "jev"}
+{"task": "topics", "question": "q87|deal:series-a:operating-model", "matches": [], "reason": "jev p=0.98", "by": "jev"}
+{"task": "topics", "question": "q88|deal:series-a:reference-customer-contacts", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "question": "q90|meeting:ipv-technical-diligence", "matches": [], "reason": "jev p=0.73", "by": "jev"}
+{"task": "topics", "question": "q91|deal:series-a:architecture-diagram", "matches": [], "reason": "jev p=0.94", "by": "jev"}
+{"task": "topics", "question": "q92|deal:series-a:reference-customer-contacts", "matches": [], "reason": "jev p=0.98", "by": "jev"}
+{"task": "topics", "question": "q94|meeting:ipv-technical-diligence", "matches": [], "reason": "jev p=0.78", "by": "jev"}
+{"task": "topics", "question": "q95|other:kofi-wedding-invitations", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q96|rollout:security-key-enrollment", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q97|other:halberd-reference-case-study", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q98|renewal:veritas-components:vendor-review", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q99|deal:series-a:architecture-diagram", "matches": [], "reason": "jev p=0.86", "by": "jev"}
+{"task": "topics", "question": "q100|deal:series-a:cohort-retention-table", "matches": [], "reason": "jev p=0.95", "by": "jev"}
+{"task": "topics", "question": "q101|deal:series-a:operating-model", "matches": [], "reason": "jev p=0.97", "by": "jev"}
+{"task": "topics", "question": "q102|deal:series-a:reference-customer-contacts", "matches": [], "reason": "jev p=0.98", "by": "jev"}
+{"task": "topics", "question": "q104|meeting:ipv-technical-diligence", "matches": [], "reason": "jev p=0.74", "by": "jev"}
+{"task": "topics", "question": "q105|approval:february-expenses", "matches": [], "reason": "jev p=0.95", "by": "jev"}
+{"task": "topics", "question": "q106|approval:on-call-stipend", "matches": [], "reason": "jev p=0.98", "by": "jev"}
+{"task": "topics", "question": "q107|offer:kenji-mori", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "question": "q108|other:california-si-550-filing", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q109|other:github-sso-access", "matches": [], "reason": "jev p=0.98", "by": "jev"}
+{"task": "topics", "question": "q110|other:parking-permit", "matches": [], "reason": "jev p=0.96", "by": "jev"}
+{"task": "topics", "question": "q111|renewal:cyber-liability-2026-27", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q112|rollout:security-key-enrollment", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q113|other:news-northstar-fresno-cutover", "matches": [], "reason": "jev p=0.72", "by": "jev"}
+{"task": "topics", "question": "q114|report:northstar-pen-test-summary", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q115|rollout:northstar-modesto-fresno-expansion", "matches": [], "reason": "jev p=0.96", "by": "jev"}
+{"task": "topics", "question": "q116|rollout:northstar-sap-connector-apr-1", "matches": [], "reason": "jev p=0.93", "by": "jev"}
+{"task": "topics", "question": "q117|rollout:northstar-sap-connector-freeze", "matches": [], "reason": "jev p=0.88", "by": "jev"}
+{"task": "topics", "question": "q118|deal:series-a:architecture-diagram", "matches": [], "reason": "jev p=0.96", "by": "jev"}
+{"task": "topics", "question": "q119|deal:series-a:reference-customer-contacts", "matches": [], "reason": "jev p=0.98", "by": "jev"}
+{"task": "topics", "question": "q121|meeting:ipv-technical-diligence", "matches": [], "reason": "jev p=0.76", "by": "jev"}
+{"task": "topics", "question": "q122|contract:bastion-soc2-platform", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q123|meeting:quillon-security-demo", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q124|approval:on-call-stipend", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q125|other:hana-pto-mar27-30", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q126|rollout:security-key-enrollment", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q127|approval:primary-on-call-stipend", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q128|other:github-sso-access", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q129|approval:february-expenses", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q130|other:kofi-wedding-invitations", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "question": "q131|other:parking-permit", "matches": [], "reason": "jev p=0.97", "by": "jev"}
+{"task": "topics", "question": "q132|rollout:security-key-enrollment", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q133|family:wren-ent-follow-up", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q134|incident:halberd-line-3-timestamps", "matches": [], "reason": "jev p=0.99", "by": "jev"}
 {"task": "topics", "question": "q135|renewal:halberd-manufacturing:fy-timing", "matches": [], "reason": "jev p=0.98", "by": "jev"}
-{"task": "topics", "question": "q136|renewal:veritas-components:vendor-review", "matches": [], "reason": "jev p=0.97", "by": "jev"}
-{"task": "topics", "question": "q137|report:northstar-pen-test-summary", "matches": [], "reason": "jev p=0.97", "by": "jev"}
-{"task": "topics", "question": "q138|rollout:northstar-sap-connector-freeze", "matches": [], "reason": "jev p=0.94", "by": "jev"}
+{"task": "topics", "question": "q136|candidate:clara-voss:product-designer", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q137|family:wren-ent-follow-up", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q138|other:halberd-reference-case-study", "matches": [], "reason": "jev p=0.76", "by": "jev"}
+{"task": "topics", "question": "q139|other:hana-pto-mar27-30", "matches": [], "reason": "jev p=0.98", "by": "jev"}
+{"task": "topics", "question": "q140|renewal:halberd-manufacturing:fy-timing", "matches": [], "reason": "jev p=0.97", "by": "jev"}
+{"task": "topics", "question": "q141|renewal:veritas-components:vendor-review", "matches": [], "reason": "jev p=0.98", "by": "jev"}
+{"task": "topics", "question": "q142|report:northstar-pen-test-summary", "matches": [], "reason": "jev p=0.97", "by": "jev"}
+{"task": "topics", "question": "q143|rollout:northstar-sap-connector-freeze", "matches": [], "reason": "jev p=0.94", "by": "jev"}
+{"task": "topics", "question": "q144|other:cadence:veritas-components", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "question": "q145|renewal:veritas-components:vendor-review", "matches": [], "reason": "jev p=0.98", "by": "jev"}
+{"task": "topics", "matches": ["approval:gpu-commit-renewal", "approval:gpu-reserved-commit-kestrel"], "reason": "Both ask for a decision on the GPU capacity commitment renewal."}
+{"task": "topics", "matches": ["deal:series-a:technical-diligence", "meeting:ipv-technical-diligence"], "reason": "Both concern correcting or aligning the technical-diligence calendar hold."}

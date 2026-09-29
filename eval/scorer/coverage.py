@@ -36,8 +36,8 @@ class Coverage:
             from digest.compute.jev import JevDecider
             from digest.compute.linker import Linker
             from digest.config import load_models, load_settings
-            from digest.paths import ROOT
             from digest.llm import LLM, load_api_key
+            from digest.paths import ROOT
 
             models, settings = load_models(), load_settings()
             key = load_api_key(models.provider.api_key_env)

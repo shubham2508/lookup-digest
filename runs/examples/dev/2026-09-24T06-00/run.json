@@ -8,28 +8,28 @@
   "suffix": null,
   "customize": null,
   "timings_s": {
-    "compile_profile": 0.007,
-    "ingest": 0.37,
-    "normalize": 0.035,
-    "spine": 0.245,
-    "read": 1.325,
-    "persist": 0.013,
-    "sweep": 0.015,
-    "nets": 0.011,
-    "merge": 1.392,
-    "compute": 1.434,
-    "enforce": 0.004,
+    "compile_profile": 0.008,
+    "ingest": 0.437,
+    "normalize": 0.037,
+    "spine": 0.323,
+    "read": 1.398,
+    "persist": 0.016,
+    "sweep": 0.022,
+    "nets": 0.013,
+    "merge": 0.021,
+    "compute": 0.06,
+    "enforce": 0.003,
     "reduce": 0.001,
-    "compose": 89.182,
-    "materialize": 11.293,
-    "verify": 0.007,
-    "render": 0.001
+    "compose": 0.012,
+    "materialize": 0.003,
+    "verify": 0.001,
+    "render": 0.0
   },
-  "wall_s": 103.949,
-  "cost_usd": 0.01283,
+  "wall_s": 2.33,
+  "cost_usd": 0.0,
   "llm_calls": 305,
-  "llm_cached": 297,
-  "degradations": 28,
+  "llm_cached": 305,
+  "degradations": 29,
   "owner_email": "avery@tessera.io",
   "threads": 359,
   "messages": 528,
@@ -57,32 +57,32 @@
     "contacts": 138,
     "reader_findings": 69,
     "sweep_findings": 16,
-    "net_findings": 22,
-    "rescues": 3,
-    "about_merges": 7,
-    "candidates": 67,
+    "net_findings": 23,
+    "rescues": 4,
+    "about_merges": 5,
+    "candidates": 68,
     "by_origin": {
       "thread_reader": 69,
       "calendar_sweep": 5,
       "notes_tasks_sweep": 8,
       "news_sweep": 3,
-      "safety_net": 4
+      "safety_net": 5
     },
-    "links": 157
+    "links": 150
   },
   "triage": {
-    "candidates": 67,
+    "candidates": 68,
     "fixes": 4,
     "rulings_applied": 0
   },
   "reduce": {
-    "items": 45,
-    "overflow": 20,
+    "items": 48,
+    "overflow": 23,
     "dropped": 0,
-    "merges": 7
+    "merges": 5
   },
   "compose": {
-    "cached": false,
+    "cached": true,
     "fallback": false,
     "fixes": [
       "i26 unplaced → also pending",
@@ -105,37 +105,44 @@
       "i43 unplaced → also pending",
       "i44 unplaced → also pending",
       "i45 unplaced → also pending",
+      "i46 unplaced → also pending",
+      "i47 unplaced → also pending",
+      "i48 unplaced → also pending",
+      "i23 moved to also pending (page limit 12)",
       "i22 moved to also pending (page limit 12)",
       "i21 moved to also pending (page limit 12)",
+      "i20 moved to also pending (page limit 12)",
       "i19 moved to also pending (page limit 12)",
-      "i18 moved to also pending (page limit 12)",
-      "i15 moved to also pending (page limit 12)"
+      "i17 moved to also pending (page limit 12)",
+      "i16 moved to also pending (page limit 12)",
+      "i15 moved to also pending (page limit 12)",
+      "i13 moved to also pending (page limit 12)"
     ],
     "one_thing": "i3",
     "placed": 12,
-    "cut": 33
+    "cut": 36
   },
   "materialize": {
-    "actions": 17,
-    "llm_calls": 4,
-    "cached": 0,
+    "actions": 12,
+    "llm_calls": 2,
+    "cached": 2,
     "draft_retries": 0,
     "drafts_dropped": 0
   },
   "verify": {
     "violations": [],
     "stats": {
-      "words": 236,
+      "words": 223,
       "budget": 350,
       "header_present": true,
       "items": 12,
       "items_cited": 12,
-      "citations_total": 52,
-      "citations_resolved": 52
+      "citations_total": 47,
+      "citations_resolved": 47
     }
   },
   "history": {
-    "resolved_later": 14,
+    "resolved_later": 0,
     "answered_after_digest": 0
   },
   "freshness": {
@@ -162,5 +169,5 @@
   },
   "profile_cached": true,
   "pending_stages": [],
-  "header": "As of Thu 06:00 PT · inbox synced 05:55 · calendar ok · notes ok · tasks stale (11 days)"
+  "header": "As of Thu 06:00 PDT · inbox synced 05:55 · calendar ok · notes ok · tasks stale (11 days)"
 }

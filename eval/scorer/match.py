@@ -21,7 +21,6 @@ from zoneinfo import ZoneInfo
 
 from eval.manifest_schema import Manifest
 
-FUZZY_RATIO = 0.85
 PT = ZoneInfo("America/Los_Angeles")
 
 

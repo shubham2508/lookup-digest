@@ -1,9 +1,9 @@
 {
   "calls": 305,
-  "cached": 297,
-  "prompt_tokens": 58695,
-  "completion_tokens": 18670,
-  "cost_usd": 0.01283,
+  "cached": 305,
+  "prompt_tokens": 0,
+  "completion_tokens": 0,
+  "cost_usd": 0.0,
   "cost_unknown_calls": 0,
   "by_role": {
     "signature_parser": {
@@ -21,11 +21,11 @@
       "cost_usd": 0.0
     },
     "linker": {
-      "calls": 7,
-      "cached": 4,
-      "prompt_tokens": 17891,
-      "completion_tokens": 4713,
-      "cost_usd": 0.000751
+      "calls": 9,
+      "cached": 9,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "cost_usd": 0.0
     },
     "thread_reader": {
       "calls": 175,
@@ -34,7 +34,7 @@
       "completion_tokens": 0,
       "cost_usd": 0.0
     },
-    "calendar_sweep": {
+    "news_sweep": {
       "calls": 1,
       "cached": 1,
       "prompt_tokens": 0,
@@ -48,7 +48,7 @@
       "completion_tokens": 0,
       "cost_usd": 0.0
     },
-    "news_sweep": {
+    "calendar_sweep": {
       "calls": 1,
       "cached": 1,
       "prompt_tokens": 0,
@@ -57,17 +57,17 @@
     },
     "compose": {
       "calls": 1,
-      "cached": 0,
-      "prompt_tokens": 33563,
-      "completion_tokens": 13287,
-      "cost_usd": 0.010839
+      "cached": 1,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "cost_usd": 0.0
     },
     "materializer": {
-      "calls": 4,
-      "cached": 0,
-      "prompt_tokens": 7241,
-      "completion_tokens": 670,
-      "cost_usd": 0.00124
+      "calls": 2,
+      "cached": 2,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "cost_usd": 0.0
     }
   }
 }

@@ -9,27 +9,27 @@
   "customize": null,
   "timings_s": {
     "compile_profile": 0.007,
-    "ingest": 0.379,
-    "normalize": 0.032,
-    "spine": 12.551,
-    "read": 236.08,
+    "ingest": 0.428,
+    "normalize": 0.033,
+    "spine": 0.3,
+    "read": 1.646,
     "persist": 0.015,
-    "sweep": 49.318,
-    "nets": 2.162,
-    "merge": 2.919,
-    "compute": 54.427,
-    "enforce": 0.005,
+    "sweep": 0.017,
+    "nets": 0.014,
+    "merge": 0.007,
+    "compute": 0.042,
+    "enforce": 0.004,
     "reduce": 0.001,
-    "compose": 102.825,
-    "materialize": 6.992,
-    "verify": 0.004,
-    "render": 0.001
+    "compose": 0.012,
+    "materialize": 0.005,
+    "verify": 0.001,
+    "render": 0.0
   },
-  "wall_s": 413.36,
-  "cost_usd": 0.343436,
-  "llm_calls": 400,
-  "llm_cached": 140,
-  "degradations": 28,
+  "wall_s": 2.527,
+  "cost_usd": 0.0,
+  "llm_calls": 403,
+  "llm_cached": 403,
+  "degradations": 33,
   "owner_email": "avery@tessera.io",
   "threads": 387,
   "messages": 534,
@@ -40,11 +40,11 @@
   "read": {
     "threads_read": 220,
     "llm_calls": 220,
-    "cached": 0,
+    "cached": 220,
     "failed": 0,
-    "findings": 88,
+    "findings": 87,
     "needs_avery": {
-      "yes": 53,
+      "yes": 52,
       "no": 27,
       "unsure": 8
     },
@@ -55,37 +55,36 @@
   },
   "compute": {
     "contacts": 148,
-    "reader_findings": 88,
-    "sweep_findings": 11,
-    "net_findings": 25,
-    "rescues": 2,
-    "about_merges": 7,
-    "candidates": 74,
+    "reader_findings": 87,
+    "sweep_findings": 14,
+    "net_findings": 26,
+    "rescues": 4,
+    "about_merges": 3,
+    "candidates": 78,
     "by_origin": {
-      "thread_reader": 88,
-      "calendar_sweep": 3,
-      "notes_tasks_sweep": 6,
+      "thread_reader": 87,
+      "calendar_sweep": 4,
+      "notes_tasks_sweep": 8,
       "news_sweep": 2,
-      "safety_net": 3
+      "safety_net": 5
     },
-    "links": 179
+    "links": 176
   },
   "triage": {
-    "candidates": 74,
-    "fixes": 4,
+    "candidates": 78,
+    "fixes": 6,
     "rulings_applied": 0
   },
   "reduce": {
-    "items": 52,
-    "overflow": 27,
+    "items": 57,
+    "overflow": 32,
     "dropped": 0,
-    "merges": 7
+    "merges": 3
   },
   "compose": {
-    "cached": false,
+    "cached": true,
     "fallback": false,
     "fixes": [
-      "one thing removed from its section (no repeats)",
       "i26 unplaced → also pending",
       "i27 unplaced → also pending",
       "i28 unplaced → also pending",
@@ -113,23 +112,26 @@
       "i50 unplaced → also pending",
       "i51 unplaced → also pending",
       "i52 unplaced → also pending",
+      "i53 unplaced → also pending",
+      "i54 unplaced → also pending",
+      "i55 unplaced → also pending",
+      "i56 unplaced → also pending",
+      "i57 unplaced → also pending",
       "i23 moved to also pending (page limit 12)",
       "i22 moved to also pending (page limit 12)",
       "i21 moved to also pending (page limit 12)",
-      "i20 moved to also pending (page limit 12)",
-      "i19 moved to also pending (page limit 12)",
       "i17 moved to also pending (page limit 12)",
       "i16 moved to also pending (page limit 12)",
       "i15 moved to also pending (page limit 12)"
     ],
     "one_thing": "i2",
     "placed": 11,
-    "cut": 41
+    "cut": 46
   },
   "materialize": {
-    "actions": 13,
-    "llm_calls": 3,
-    "cached": 0,
+    "actions": 15,
+    "llm_calls": 5,
+    "cached": 5,
     "draft_retries": 0,
     "drafts_dropped": 0
   },
@@ -149,7 +151,7 @@
       }
     ],
     "stats": {
-      "words": 275,
+      "words": 244,
       "budget": 350,
       "header_present": true,
       "items": 11,
@@ -159,7 +161,7 @@
     }
   },
   "history": {
-    "resolved_later": 14,
+    "resolved_later": 0,
     "answered_after_digest": 0
   },
   "freshness": {
@@ -186,5 +188,5 @@
   },
   "profile_cached": true,
   "pending_stages": [],
-  "header": "As of Thu 06:00 PT · inbox synced 05:45 · calendar ok · notes ok · tasks stale (11 days)"
+  "header": "As of Thu 06:00 PDT · inbox synced 05:45 · calendar ok · notes ok · tasks stale (11 days)"
 }

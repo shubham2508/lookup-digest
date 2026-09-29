@@ -1564,7 +1564,7 @@
         }
       ]
     },
-    "tier": "P0",
+    "tier": null,
     "profile_rules": [],
     "behavior": {
       "avery_reply_rate": 0.75,

@@ -116,12 +116,52 @@
       "id": "i3",
       "about": "deal:series-a:updated-cap-table",
       "candidate_ids": [
-        "c27",
         "c35"
       ],
       "candidate_types": [
-        "Series A cap table sign-off",
         "overdue promise to lead investor"
+      ],
+      "priority": "P0",
+      "section": "urgent",
+      "due_today": true,
+      "confidence": "medium",
+      "why": "Promised Tuesday night to send v3; no delivery appears in the thread or matching task in retrieved context; Marcus needs final numbers for Thursday’s partnership meeting.",
+      "citations": [
+        {
+          "source_id": "msg:<20260922-2130.avery@tessera.io>",
+          "quote": "will send it tonight."
+        },
+        {
+          "source_id": "msg:<20260922-1642.marcus@inflectionpoint.vc>",
+          "quote": "Our partnership meeting is Thursday"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "task",
+          "target": "Send Marcus the reconciled cap table",
+          "brief": "Overdue since Tuesday night; send final numbers before Thursday’s partnership meeting.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "marcus-webb",
+        "inflection-point-ventures"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i4",
+      "about": "deal:series-a:cap-table-option-pool",
+      "candidate_ids": [
+        "c27"
+      ],
+      "candidate_types": [
+        "Series A cap table sign-off"
       ],
       "priority": "P0",
       "section": "urgent",
@@ -136,14 +176,6 @@
         {
           "source_id": "msg:<20260923-1005.nfeld@wsgr.com>",
           "quote": "We told them we were waiting on your confirmation and would revert."
-        },
-        {
-          "source_id": "msg:<20260922-2130.avery@tessera.io>",
-          "quote": "will send it tonight."
-        },
-        {
-          "source_id": "msg:<20260922-1642.marcus@inflectionpoint.vc>",
-          "quote": "Our partnership meeting is Thursday"
         }
       ],
       "proposed_actions": [
@@ -154,29 +186,19 @@
           "assumptions": [],
           "watch_trigger": null,
           "read_start": "msg:<20260921-0911.bschaffer@wsgr.com>"
-        },
-        {
-          "type": "task",
-          "target": "Send Marcus the reconciled cap table",
-          "brief": "Overdue since Tuesday night; send final numbers before Thursday’s partnership meeting.",
-          "assumptions": [],
-          "watch_trigger": null,
-          "read_start": null
         }
       ],
       "ambiguity": null,
       "entities": [
         "ben-schaffer",
         "naomi-feld",
-        "wilson-sonsini-goodrich-rosati",
-        "marcus-webb",
-        "inflection-point-ventures"
+        "wilson-sonsini-goodrich-rosati"
       ],
-      "times_surfaced": 1,
+      "times_surfaced": 0,
       "freshness_cap": "none"
     },
     {
-      "id": "i4",
+      "id": "i5",
       "about": "meeting:ipv-diligence-call",
       "candidate_ids": [
         "c32",
@@ -240,11 +262,11 @@
         "ravi-menon",
         "inflection-point-ventures"
       ],
-      "times_surfaced": 1,
+      "times_surfaced": 0,
       "freshness_cap": "none"
     },
     {
-      "id": "i5",
+      "id": "i6",
       "about": "deal:series-a:diligence-materials",
       "candidate_ids": [
         "c39"
@@ -291,7 +313,7 @@
       "freshness_cap": "none"
     },
     {
-      "id": "i6",
+      "id": "i7",
       "about": "deal:series-a:customer-references",
       "candidate_ids": [
         "c26"
@@ -337,7 +359,7 @@
       "freshness_cap": "none"
     },
     {
-      "id": "i7",
+      "id": "i8",
       "about": "incident:veritas-line-2-ingest",
       "candidate_ids": [
         "c24",
@@ -410,7 +432,7 @@
       "freshness_cap": "none"
     },
     {
-      "id": "i8",
+      "id": "i9",
       "about": "other:backfill-concurrency-cap",
       "candidate_ids": [
         "c34",
@@ -481,11 +503,11 @@
       "entities": [
         "priya-iyer"
       ],
-      "times_surfaced": 1,
+      "times_surfaced": 0,
       "freshness_cap": "none"
     },
     {
-      "id": "i9",
+      "id": "i10",
       "about": "hiring-req:on-call-fifth-person",
       "candidate_ids": [
         "c57",
@@ -566,11 +588,11 @@
         "sofia-andrade",
         "mateo-silva"
       ],
-      "times_surfaced": 3,
+      "times_surfaced": 0,
       "freshness_cap": "none"
     },
     {
-      "id": "i10",
+      "id": "i11",
       "about": "family:wren-daycare-closure",
       "candidate_ids": [
         "c45"
@@ -613,7 +635,7 @@
       "freshness_cap": "none"
     },
     {
-      "id": "i11",
+      "id": "i12",
       "about": "board-update:september-investor-update",
       "candidate_ids": [
         "c1",
@@ -683,11 +705,11 @@
         "lauren-whitaker",
         "tessa-ruiz"
       ],
-      "times_surfaced": 4,
+      "times_surfaced": 0,
       "freshness_cap": "none"
     },
     {
-      "id": "i12",
+      "id": "i13",
       "about": "rollout:northstar-weekly-exception-report-line-count",
       "candidate_ids": [
         "c5"
@@ -734,7 +756,7 @@
       "freshness_cap": "none"
     },
     {
-      "id": "i13",
+      "id": "i14",
       "about": "report:halberd-soc-2-type-ii",
       "candidate_ids": [
         "c2",
@@ -776,19 +798,17 @@
         "tomas-reyes",
         "yuki-sato"
       ],
-      "times_surfaced": 4,
+      "times_surfaced": 0,
       "freshness_cap": "none"
     },
     {
-      "id": "i14",
+      "id": "i15",
       "about": "rollout:halberd-oct-6",
       "candidate_ids": [
-        "c43",
-        "c64"
+        "c43"
       ],
       "candidate_types": [
-        "reference customer rollout-date confirmation",
-        "news about an open reference-customer item"
+        "reference customer rollout-date confirmation"
       ],
       "priority": "P1",
       "section": "urgent",
@@ -811,10 +831,6 @@
         {
           "source_id": "msg:<20260923-1408.renee.tan@halberd.com>",
           "quote": "Oct 6 - still on?"
-        },
-        {
-          "source_id": "msg:<20260923-0630.weekly@factoryfloor.news>",
-          "quote": "a broader rollout is planned for the fall"
         }
       ],
       "proposed_actions": [
@@ -827,14 +843,6 @@
           ],
           "watch_trigger": null,
           "read_start": null
-        },
-        {
-          "type": "read",
-          "target": null,
-          "brief": "Review Halberd's case study and rollout note before confirming the Oct 6 date.",
-          "assumptions": [],
-          "watch_trigger": null,
-          "read_start": "<20260923-0630.weekly@factoryfloor.news>"
         }
       ],
       "ambiguity": null,
@@ -846,8 +854,8 @@
       "freshness_cap": "none"
     },
     {
-      "id": "i15",
-      "about": "deal:meridian:plant-bundle-quote",
+      "id": "i16",
+      "about": "deal:meridian-foods:two-plant-proposal",
       "candidate_ids": [
         "c11",
         "c20",
@@ -913,11 +921,11 @@
         "carla-mendes",
         "meridian-foods"
       ],
-      "times_surfaced": 3,
+      "times_surfaced": 0,
       "freshness_cap": "none"
     },
     {
-      "id": "i16",
+      "id": "i17",
       "about": "rollout:northstar-modesto-line-2-downtime-log",
       "candidate_ids": [
         "c49"
@@ -971,7 +979,7 @@
       "freshness_cap": "none"
     },
     {
-      "id": "i17",
+      "id": "i18",
       "about": "meeting:northstar-qbr",
       "candidate_ids": [
         "c13"
@@ -1018,11 +1026,11 @@
         "northstar-foods",
         "tomas-reyes"
       ],
-      "times_surfaced": 4,
+      "times_surfaced": 0,
       "freshness_cap": "none"
     },
     {
-      "id": "i18",
+      "id": "i19",
       "about": "candidate:ines-ferreira:interview-logistics",
       "candidate_ids": [
         "c46"
@@ -1064,7 +1072,7 @@
       "freshness_cap": "none"
     },
     {
-      "id": "i19",
+      "id": "i20",
       "about": "offer:mei-tanaka",
       "candidate_ids": [
         "c37"
@@ -1107,11 +1115,11 @@
         "jordan-liu",
         "tessera"
       ],
-      "times_surfaced": 2,
+      "times_surfaced": 0,
       "freshness_cap": "none"
     },
     {
-      "id": "i20",
+      "id": "i21",
       "about": "deal:series-a:aperture-call",
       "candidate_ids": [
         "c4"
@@ -1149,11 +1157,11 @@
         "david-kim",
         "aperture-capital"
       ],
-      "times_surfaced": 4,
+      "times_surfaced": 0,
       "freshness_cap": "none"
     },
     {
-      "id": "i21",
+      "id": "i22",
       "about": "invoice:cl-88213",
       "candidate_ids": [
         "c42"
@@ -1194,7 +1202,7 @@
       "freshness_cap": "none"
     },
     {
-      "id": "i22",
+      "id": "i23",
       "about": "approval:stripe",
       "candidate_ids": [
         "c67"
@@ -1227,11 +1235,11 @@
       "entities": [
         "stripe"
       ],
-      "times_surfaced": 2,
+      "times_surfaced": 0,
       "freshness_cap": "none"
     },
     {
-      "id": "i23",
+      "id": "i24",
       "about": "deal:series-a:cobalt-pro-rata",
       "candidate_ids": [
         "c22"
@@ -1270,11 +1278,11 @@
         "wilson-sonsini-goodrich-rosati",
         "naomi-feld"
       ],
-      "times_surfaced": 4,
+      "times_surfaced": 0,
       "freshness_cap": "none"
     },
     {
-      "id": "i24",
+      "id": "i25",
       "about": "meeting:halberd-kansas-city-scoping",
       "candidate_ids": [
         "c31"
@@ -1313,11 +1321,11 @@
         "halberd-manufacturing",
         "renee-tan"
       ],
-      "times_surfaced": 1,
+      "times_surfaced": 0,
       "freshness_cap": "none"
     },
     {
-      "id": "i25",
+      "id": "i26",
       "about": "candidate:mei-tanaka",
       "candidate_ids": [
         "c10",
@@ -1374,11 +1382,11 @@
         "tomas-reyes",
         "mei-tanaka"
       ],
-      "times_surfaced": 2,
+      "times_surfaced": 0,
       "freshness_cap": "none"
     },
     {
-      "id": "i26",
+      "id": "i27",
       "about": "family:thanksgiving-plan",
       "candidate_ids": [
         "c29"
@@ -1415,11 +1423,11 @@
       "entities": [
         "sam-park"
       ],
-      "times_surfaced": 2,
+      "times_surfaced": 0,
       "freshness_cap": "none"
     },
     {
-      "id": "i27",
+      "id": "i28",
       "about": "meeting:lumen-demo",
       "candidate_ids": [
         "c50",
@@ -1482,71 +1490,34 @@
         "priya-iyer",
         "lumen-analytics"
       ],
-      "times_surfaced": 2,
-      "freshness_cap": "none"
-    },
-    {
-      "id": "i28",
-      "about": "other:news-deepseek-v4-pro-price-cut",
-      "candidate_ids": [
-        "c62"
-      ],
-      "candidate_types": [
-        "news that may change an inference-spend decision"
-      ],
-      "priority": "P2",
-      "section": "news",
-      "due_today": true,
-      "confidence": "medium",
-      "why": "A 30% Oct 1 DeepSeek-V4 Pro cut may lower costs in “Choose the backfill concurrency plan”; check whether Tessera uses that model before deciding today's cap.",
-      "citations": [
-        {
-          "source_id": "msg:<20260923-0705.issue@modelwatch.dev>",
-          "quote": "accounts above 500M tokens a month get roughly 30% off the current list price"
-        }
-      ],
-      "proposed_actions": [
-        {
-          "type": "read",
-          "target": null,
-          "brief": "Check whether Tessera uses DeepSeek-V4 Pro and how the October 1 price change affects the backfill cost decision.",
-          "assumptions": [],
-          "watch_trigger": null,
-          "read_start": "<20260923-0705.issue@modelwatch.dev>"
-        }
-      ],
-      "ambiguity": null,
-      "entities": [
-        "priya-iyer"
-      ],
       "times_surfaced": 0,
       "freshness_cap": "none"
     },
     {
       "id": "i29",
-      "about": "other:news-northstar-modesto-case-study",
+      "about": "other:news-northstar-visibility-case-study",
       "candidate_ids": [
-        "c63"
+        "c62"
       ],
       "candidate_types": [
-        "news about an open reference-customer item"
+        "reference-customer news relevant to an open meeting"
       ],
       "priority": "P2",
       "section": "news",
       "due_today": true,
       "confidence": "high",
-      "why": "Northstar Foods' Modesto case study may inform “Clarify Thursday's downtime-log workflow to Marta”; use it as context for today's walkthrough, though the vendor was unnamed.",
+      "why": "Northstar’s Modesto case study reported 40 minutes recovered per changeover; relevant before today’s “Clarify Thursday's downtime-log workflow to Marta” walkthrough.",
       "citations": [
         {
           "source_id": "msg:<20260923-0630.weekly@factoryfloor.news>",
-          "quote": "Northstar Foods presented a plant-floor visibility case study from its Modesto operation"
+          "quote": "Northstar Foods presented a plant-floor visibility case study from its Modesto operation, focused on changeover tracking"
         }
       ],
       "proposed_actions": [
         {
           "type": "read",
           "target": null,
-          "brief": "Review Northstar's case study for context before the downtime-log walkthrough.",
+          "brief": "Review Northstar’s case-study details before the walkthrough.",
           "assumptions": [],
           "watch_trigger": null,
           "read_start": "<20260923-0630.weekly@factoryfloor.news>"
@@ -1620,7 +1591,7 @@
       "entities": [
         "hollis-grant"
       ],
-      "times_surfaced": 2,
+      "times_surfaced": 0,
       "freshness_cap": "none"
     },
     {
@@ -1662,7 +1633,7 @@
         "sasha-kimura",
         "manufacturing-signal"
       ],
-      "times_surfaced": 1,
+      "times_surfaced": 0,
       "freshness_cap": "none"
     },
     {
@@ -1747,6 +1718,45 @@
     },
     {
       "id": "i34",
+      "about": "other:news-deepseek-volume-cut",
+      "candidate_ids": [
+        "c64"
+      ],
+      "candidate_types": [
+        "news that may change an inference-spend decision"
+      ],
+      "priority": "P2",
+      "section": "news",
+      "due_today": false,
+      "confidence": "medium",
+      "why": "A 30% DeepSeek-V4 Pro volume cut starts Oct 1; it could change “Choose the backfill concurrency plan” if Tessera uses that model, so check usage.",
+      "citations": [
+        {
+          "source_id": "msg:<20260923-0705.issue@modelwatch.dev>",
+          "quote": "accounts above 500M tokens a month get roughly 30% off the current list price"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "read",
+          "target": null,
+          "brief": "Check whether Tessera uses DeepSeek-V4 Pro before revisiting backfill cost assumptions.",
+          "assumptions": [
+            "Tessera’s current model/provider usage is not shown."
+          ],
+          "watch_trigger": null,
+          "read_start": "<20260923-0705.issue@modelwatch.dev>"
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "priya-iyer"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i35",
       "about": "meeting:cobalt-ridge-portfolio-founders-dinner",
       "candidate_ids": [
         "c7"
@@ -1787,11 +1797,88 @@
       "entities": [
         "cobalt-ridge-ventures"
       ],
-      "times_surfaced": 1,
+      "times_surfaced": 0,
       "freshness_cap": "none"
     },
     {
-      "id": "i35",
+      "id": "i36",
+      "about": "other:cadence:veritas-components",
+      "candidate_ids": [
+        "c68"
+      ],
+      "candidate_types": [
+        "cadence_drop"
+      ],
+      "priority": "P2",
+      "section": "pulse",
+      "due_today": false,
+      "confidence": "high",
+      "why": "Reply gaps slowed from 2.09 to 15.87 days (7.6×); Simon Achterberg has been quiet 15.87 days.",
+      "citations": [
+        {
+          "source_id": "msg:<20260908-0900.simon.achterberg@veritascomponents.com>",
+          "quote": "Re: Renewal timing - Oct 1 anniversary"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "watch",
+          "target": "simon.achterberg@veritascomponents.com",
+          "brief": "reply gap 2.09→15.87 days",
+          "assumptions": [],
+          "watch_trigger": "gap passes 7 days or a renewal or support issue appears",
+          "read_start": null
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "simon-achterberg",
+        "veritas-components"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i37",
+      "about": "other:news-halberd-visibility-case-study",
+      "candidate_ids": [
+        "c63"
+      ],
+      "candidate_types": [
+        "reference-customer news relevant to an open meeting"
+      ],
+      "priority": "P2",
+      "section": "news",
+      "due_today": false,
+      "confidence": "high",
+      "why": "Halberd reported lower unplanned downtime and a fall expansion; relevant before “Schedule Curtis for Kansas City scoping” with Halberd.",
+      "citations": [
+        {
+          "source_id": "msg:<20260923-0630.weekly@factoryfloor.news>",
+          "quote": "Halberd presenter described a meaningful drop in unplanned downtime on the pilot cells"
+        }
+      ],
+      "proposed_actions": [
+        {
+          "type": "read",
+          "target": null,
+          "brief": "Review Halberd’s case-study details before Kansas City scoping.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": "<20260923-0630.weekly@factoryfloor.news>"
+        }
+      ],
+      "ambiguity": null,
+      "entities": [
+        "curtis-ayala",
+        "halberd-manufacturing",
+        "renee-tan"
+      ],
+      "times_surfaced": 0,
+      "freshness_cap": "none"
+    },
+    {
+      "id": "i38",
       "about": "hiring-req:product-designer:keystone-search",
       "candidate_ids": [
         "c25"
@@ -1834,7 +1921,7 @@
       "freshness_cap": "none"
     },
     {
-      "id": "i36",
+      "id": "i39",
       "about": "candidate:theo-lindgren",
       "candidate_ids": [
         "c14"
@@ -1872,11 +1959,11 @@
         "jordan-liu",
         "tomas-reyes"
       ],
-      "times_surfaced": 4,
+      "times_surfaced": 0,
       "freshness_cap": "none"
     },
     {
-      "id": "i37",
+      "id": "i40",
       "about": "other:workspace-second-device",
       "candidate_ids": [
         "c6"
@@ -1919,7 +2006,7 @@
       "freshness_cap": "none"
     },
     {
-      "id": "i38",
+      "id": "i41",
       "about": "other:delaware-franchise-tax-amended-report",
       "candidate_ids": [
         "c28"
@@ -1964,11 +2051,11 @@
         "kim-delgado",
         "tessera"
       ],
-      "times_surfaced": 2,
+      "times_surfaced": 0,
       "freshness_cap": "none"
     },
     {
-      "id": "i39",
+      "id": "i42",
       "about": "board-update:independent-director-opportunity",
       "candidate_ids": [
         "c15"
@@ -2010,11 +2097,11 @@
         "owen-fitzgerald",
         "cascade-partners"
       ],
-      "times_surfaced": 3,
+      "times_surfaced": 0,
       "freshness_cap": "none"
     },
     {
-      "id": "i40",
+      "id": "i43",
       "about": "meeting:jae-whitlock",
       "candidate_ids": [
         "c38"
@@ -2056,11 +2143,11 @@
       "entities": [
         "jae-whitlock"
       ],
-      "times_surfaced": 1,
+      "times_surfaced": 0,
       "freshness_cap": "none"
     },
     {
-      "id": "i41",
+      "id": "i44",
       "about": "other:recruiter-pattern:talentbridge-recruiting",
       "candidate_ids": [
         "c65"
@@ -2106,7 +2193,7 @@
       "freshness_cap": "none"
     },
     {
-      "id": "i42",
+      "id": "i45",
       "about": "approval:kim-pto-oct-5-9",
       "candidate_ids": [
         "c44"
@@ -2156,7 +2243,7 @@
       "freshness_cap": "none"
     },
     {
-      "id": "i43",
+      "id": "i46",
       "about": "hiring-req:backend-and-designer",
       "candidate_ids": [
         "c60"
@@ -2197,7 +2284,7 @@
       "freshness_cap": "none"
     },
     {
-      "id": "i44",
+      "id": "i47",
       "about": "approval:ramp",
       "candidate_ids": [
         "c66"
@@ -2238,11 +2325,11 @@
       "entities": [
         "ramp"
       ],
-      "times_surfaced": 2,
+      "times_surfaced": 0,
       "freshness_cap": "none"
     },
     {
-      "id": "i45",
+      "id": "i48",
       "about": "other:profile-arr",
       "candidate_ids": [
         "c59"
@@ -2273,7 +2360,7 @@
       ],
       "ambiguity": null,
       "entities": [],
-      "times_surfaced": 4,
+      "times_surfaced": 0,
       "freshness_cap": "none"
     }
   ],
@@ -2297,7 +2384,10 @@
     "i42",
     "i43",
     "i44",
-    "i45"
+    "i45",
+    "i46",
+    "i47",
+    "i48"
   ],
   "about_merges": [
     {
@@ -2311,15 +2401,7 @@
       "canonical": "deal:meridian:plant-bundle-quote",
       "merged": [
         "approval:plant-bundle-pricing",
-        "deal:meridian-foods:two-plant-proposal",
         "deal:meridian-plant-bundle-quote"
-      ],
-      "reason": "linker"
-    },
-    {
-      "canonical": "deal:series-a:updated-cap-table",
-      "merged": [
-        "deal:series-a:cap-table-option-pool"
       ],
       "reason": "linker"
     },
@@ -2341,13 +2423,6 @@
       "canonical": "other:backfill-concurrency-cap",
       "merged": [
         "approval:inference-spend-backfill-cap"
-      ],
-      "reason": "linker"
-    },
-    {
-      "canonical": "rollout:halberd-oct-6",
-      "merged": [
-        "other:news-halberd-visibility-case-study"
       ],
       "reason": "linker"
     }

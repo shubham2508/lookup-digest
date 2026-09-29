@@ -9,14 +9,13 @@
         "i6",
         "i7",
         "i8",
-        "i11"
+        "i13"
       ]
     },
     {
       "name": "decisions",
       "item_ids": [
-        "i9",
-        "i13"
+        "i9"
       ]
     },
     {
@@ -31,20 +30,21 @@
       "name": "calendar_personal",
       "item_ids": [
         "i1",
-        "i5"
+        "i5",
+        "i11"
       ]
     }
   ],
   "items": [
     {
       "id": "i2",
-      "what": "Send Marcus the revised operating model before today's partner meeting",
-      "why": "Promised Tuesday before midnight; Marcus says the data room still has January's model; today's meeting depends on it.",
+      "what": "Send Marcus the revised operating model",
+      "why": "Promised Tuesday; Thursday's partner meeting is today, and the data room still has January's version.",
       "final_actions": [
         {
           "type": "task",
           "target": "Send Marcus the revised operating model",
-          "brief": "Send the promised 24-month plan with the hiring ramp; overdue since Tuesday.",
+          "brief": "Send the revised 24-month plan with the hiring ramp promised for the data room.",
           "assumptions": [],
           "watch_trigger": null,
           "read_start": null
@@ -53,13 +53,13 @@
     },
     {
       "id": "i3",
-      "what": "Reply to IPV counsel on projections and three customer-agreement amendments",
-      "why": "Wednesday's commitment is missed; counsel says a timing note suffices if the model isn't ready. Third time flagged.",
+      "what": "Resolve the disclosure schedules' open items",
+      "why": "Wednesday reply promised; projections and three customer-agreement amendments remain open.",
       "final_actions": [
         {
           "type": "read",
           "target": null,
-          "brief": "Review the draft schedules and verify model status and amendments before replying.",
+          "brief": "Review the draft schedules and verify the revised model status and any customer-agreement amendments.",
           "assumptions": [],
           "watch_trigger": null,
           "read_start": "msg:<20260323-1020.bschaffer@wsgr.com>"
@@ -68,13 +68,13 @@
     },
     {
       "id": "i4",
-      "what": "Send Julia existing architecture notes and three reference-customer contacts",
-      "why": "Due Thursday EOD for Friday's diligence session; Julia asked for existing material only.",
+      "what": "Send Julia the existing diagram, notes, and reference contacts",
+      "why": "Friday's diligence is tomorrow; both deliverables are due Thursday EOD.",
       "final_actions": [
         {
           "type": "task",
           "target": "Send Julia the architecture diagram and existing notes",
-          "brief": "Send the existing one-page architecture diagram and notes by Thursday EOD.",
+          "brief": "Send the existing diagram and notes; Julia asked for no new material, by Thursday EOD.",
           "assumptions": [],
           "watch_trigger": null,
           "read_start": null
@@ -82,7 +82,7 @@
         {
           "type": "task",
           "target": "Send Julia reference-customer contacts and reach preferences",
-          "brief": "Send procurement contacts for the three reference customers and how each prefers to be reached by Thursday EOD.",
+          "brief": "Send procurement contacts and each customer's preferred reach method by Thursday EOD.",
           "assumptions": [],
           "watch_trigger": null,
           "read_start": null
@@ -91,13 +91,13 @@
     },
     {
       "id": "i6",
-      "what": "Send Farah cohort expansion data and arrange the overdue follow-up",
-      "why": "Promised Mar 6; April partner meeting; fourth time flagged.",
+      "what": "Send Farah the cohort expansion data and arrange follow-up",
+      "why": "Promised Mar 6 for Larkspur's April meeting; no delivery appears in the thread.",
       "final_actions": [
         {
           "type": "task",
           "target": "Send Farah cohort data and arrange a follow-up",
-          "brief": "Send go-live-quarter cohort counts, expansion timing, contract-value impact, and arrange time to follow up.",
+          "brief": "Send existing go-live-quarter cohort counts, expansion timing, and contract-value impact; arrange follow-up time.",
           "assumptions": [],
           "watch_trigger": null,
           "read_start": null
@@ -106,13 +106,13 @@
     },
     {
       "id": "i7",
-      "what": "Prepare Marcus's FY24/FY25 segment GRR table and verify ARR",
-      "why": "Three business days unanswered; investor quiet threshold reached; tasks are stale.",
+      "what": "Prepare Marcus's cohort/segment GRR table and verify ARR",
+      "why": "His request has waited three business days, meeting the investor quiet threshold.",
       "final_actions": [
         {
           "type": "read",
           "target": null,
-          "brief": "Check the cohort data and whether retention changes ARR before replying.",
+          "brief": "Check the cohort table data and whether retention changes the ARR figure before replying.",
           "assumptions": [],
           "watch_trigger": null,
           "read_start": "msg:<20260320-1648.marcus@inflectionpoint.vc>"
@@ -121,43 +121,21 @@
     },
     {
       "id": "i8",
-      "what": "Choose customer contact and containment for Halberd's 8-hour Line 3 offset",
-      "why": "False alerts are eroding trust before 6:00 shift planning; Arjun is on call.",
+      "what": "Choose who contacts Tobias about Halberd's timestamp incident",
+      "why": "Line 3 events are eight hours off; false alerts are eroding trust before the 6am shift.",
       "final_actions": [
         {
           "type": "reply",
           "target": "jordan@tessera.io",
-          "brief": "Authorize Jordan to email Tobias at 7; ask for the containment plan and written approval before any parser change.",
+          "brief": "Acknowledge the escalation and ask for the containment plan and customer communication timing; don't assert a fix.",
           "assumptions": [],
           "watch_trigger": null,
           "read_start": null
-        }
-      ]
-    },
-    {
-      "id": "i11",
-      "what": "Offer Emeka a 20-minute slot to discuss the option pool",
-      "why": "Emeka wants advice before the Series A closes; no exact time or availability is supplied.",
-      "final_actions": [
+        },
         {
           "type": "question",
           "target": null,
-          "brief": "Can you offer Emeka a 20-minute slot Thursday afternoon, or should you suggest another day?",
-          "assumptions": [],
-          "watch_trigger": null,
-          "read_start": null
-        }
-      ]
-    },
-    {
-      "id": "i9",
-      "what": "Choose the GPU commitment after reconciling the savings math",
-      "why": "Priya needs a yes/no Friday; H1 doc is due today; email implies $5.75k/month, note says $9k.",
-      "final_actions": [
-        {
-          "type": "decide",
-          "target": null,
-          "brief": "Choose among the 1-year 8-GPU commit, 6-GPU plus burst, or on-demand; reconcile the savings figures.",
+          "brief": "Choose who contacts Tobias and when: you before the 11:00 QBR intro, or Jordan by email at 7.",
           "assumptions": [],
           "watch_trigger": null,
           "read_start": null
@@ -166,13 +144,28 @@
     },
     {
       "id": "i13",
-      "what": "Approve the $400/week primary on-call stipend",
-      "why": "Nora needs sign-off by Friday for April payroll; sources differ on rotation size: four people versus five. Fifth time flagged.",
+      "what": "Approve or revise the $400/week primary on-call stipend",
+      "why": "Jordan requests Friday sign-off; Nora's Mar 20 note says none needed; thread says four-person rotation, Mar 24 notes say five.",
       "final_actions": [
         {
-          "type": "approve",
+          "type": "decide",
           "target": null,
-          "brief": "Approve $400/week for the primary on-call engineer before Friday's payroll cutoff; verify the rotation count.",
+          "brief": "Confirm the rotation details and decide whether to approve the $400/week primary stipend for April payroll.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i9",
+      "what": "Choose the GPU commitment and reconcile the savings figures",
+      "why": "Priya needs a yes/no Friday; email implies $5.75k/month savings, while the H1 note says about $9k.",
+      "final_actions": [
+        {
+          "type": "decide",
+          "target": null,
+          "brief": "Choose the commitment option and reconcile the H1 note's ~$9k/month delta with the email figures.",
           "assumptions": [],
           "watch_trigger": null,
           "read_start": null
@@ -181,27 +174,27 @@
     },
     {
       "id": "i10",
-      "what": "Factor Kestrel's April 1 price rise into the GPU comparison",
-      "why": "On-demand rises 18%; committed rates are unchanged; see the GPU commitment decision.",
+      "what": "Account for Kestrel's April 1 on-demand price increase",
+      "why": "Prices rise 18%; compare against the GPU options before signing (see the GPU decision above).",
       "final_actions": []
     },
     {
       "id": "i1",
-      "what": "Take Wren to ENT; resolve the QBR overlap and 12:30 pickup",
-      "why": "Third time flagged; Sam says you must attend 11:15; it overlaps the 11:00 QBR, and pickup is unclear.",
+      "what": "Take Wren to the 11:15 ENT recheck",
+      "why": "Sam is in Sacramento and says it has to be you; the shared event still needs action.",
       "final_actions": [
         {
           "type": "calendar_response",
           "target": "event:wren-ent-20260326",
-          "brief": "Accept the 11:15 ENT appointment; Sam says you need to take Wren.",
+          "brief": "Accept the event; Avery is taking Wren to the 11:15 ENT follow-up.",
           "assumptions": [],
           "watch_trigger": null,
           "read_start": null
         },
         {
-          "type": "question",
-          "target": null,
-          "brief": "Choose lunch after ENT or daycare drop-off and 12:30 pickup; move the overlapping 11:00 QBR.",
+          "type": "message_person",
+          "target": "sam.park@fastmail.com",
+          "brief": "Confirm you'll take Wren and share your after-appointment plan; contact Sam yourself.",
           "assumptions": [],
           "watch_trigger": null,
           "read_start": null
@@ -210,13 +203,36 @@
     },
     {
       "id": "i5",
-      "what": "Have Owen correct the diligence hold to Friday at 11 and add Julia",
-      "why": "Email says Mar 27 at 11:00; calendar still says Mar 31 at 13:00–14:00 and omits Julia.",
+      "what": "Have Owen correct Friday's diligence hold and add Julia",
+      "why": "Email confirms Fri Mar 27 at 11:00; calendar still says Tue Mar 31 at 13:00 and omits Julia.",
       "final_actions": [
+        {
+          "type": "calendar_response",
+          "target": "ipv-tech-diligence-20260331",
+          "brief": "Propose moving the hold to Fri Mar 27, 11:00–12:00, matching the email.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        },
         {
           "type": "forward_delegate",
           "target": "owen@inflectionpoint.vc",
-          "brief": "Move the hold to Friday, March 27 at 11:00–12:00 and include Julia.",
+          "brief": "Update the hold to Friday at 11 and include Julia, as Avery requested.",
+          "assumptions": [],
+          "watch_trigger": null,
+          "read_start": null
+        }
+      ]
+    },
+    {
+      "id": "i11",
+      "what": "Confirm Wren's 12:15–12:30 pickup coverage",
+      "why": "Sunflower has no late room today; the ENT appointment may run until noon.",
+      "final_actions": [
+        {
+          "type": "decide",
+          "target": null,
+          "brief": "Verify pickup is covered; if not, arrange an authorized pickup before 12:30.",
           "assumptions": [],
           "watch_trigger": null,
           "read_start": null
@@ -224,13 +240,13 @@
       ]
     }
   ],
-  "header_notes": [
-    "Tasks are 11 days stale; some overdue items may already be completed or tracked."
-  ],
+  "header_notes": [],
   "cut_ids": [
     "i12",
     "i14",
     "i18",
+    "i19",
+    "i20",
     "i24",
     "i25",
     "i26",
@@ -260,11 +276,14 @@
     "i50",
     "i51",
     "i52",
+    "i53",
+    "i54",
+    "i55",
+    "i56",
+    "i57",
     "i23",
     "i22",
     "i21",
-    "i20",
-    "i19",
     "i17",
     "i16",
     "i15",
