@@ -69,6 +69,26 @@ contact_classifier,calendar_sweep,notes_tasks_sweep,news_sweep}.md`.
 
 ## Decided
 
+- **2026-09-29 ~10:30 · #24 how dedupe/merge works on free-text findings, and how sure we are** (Shubham: "findings are
+  free text, how can you be sure?"). The unit on the page is the *issue*, and one issue lives in several threads and
+  sources, so findings are merged across threads by `digest/reduce/__init__.py::join_keys` and
+  `digest/compute/merge.py`. **What is exact:** the rules never read the free text. A finding's citations are source
+  ids plus verbatim quotes that code has already checked against the source; its entities are contact ids from the
+  contact cards (names are mapped to ids, unknown ones dropped); its tags are `kind:slug` strings. Two findings join
+  when (1) they carry the same qualified tag, string-equal; (2) they cite the same message with the same words; (3) they
+  carry the same tag and share a contact id; (4) a safety net's fact is attached to the reader finding the linker says it
+  covers; (5) tags of different kinds that share a person are put to the linker (Jev, LLM under p 0.7) as a pick-one
+  question. Nothing uses similarity. A coarse tag alone (`deal:series-a`) never joins. **What free text costs:** tag
+  equality is a sufficient condition, not a necessary one; when two readers tag one issue differently and share no
+  message and no person, the issue renders twice, which the eval counts (`expected_items_rendered_twice`). When two
+  different issues share a tag and a person, they over-merge, which the eval also counts
+  (`items_merging_expected_items`). **Measured (final reports, day 30, 34 expected keys):** dev 3 rendered twice, 3
+  over-merged; held-out 7 and 7; the other days 1–4 and 0–3. Over-merging is the worse failure (an item can drop
+  off the page: held-out's early-dismissal miss); duplication only costs a slot. **Cost:** exact rules are a hash join,
+  O(findings × keys); the linker is asked only inside buckets (same tag kind, or a person on 2–8 keys), ~100 Jev
+  questions a morning. **Next step if this is tuned:** ask each reader for the tags earlier digests used on its
+  thread (tag continuity), and require a shared message or event, not only a shared person, for rule (3).
+
 - **2026-09-29 ~09:30 · #23 grader matching without string similarity; closes #18** (Shubham: "what should the actual
   behavior be? it's a code match, not an LLM match"). `eval/scorer/match.py::about_match` is exact key equality; the
   rapidfuzz ratio is gone. Whether a rendered item (or finding) *is* an expected item is decided in

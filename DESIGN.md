@@ -49,6 +49,7 @@ Ingest incrementally (hourly), compose at 06:00 PT from the delta. Local launchd
 | Issue | Where | Cause |
 |---|---|---|
 | Held-out misses one P0 on two of five mornings | read, merge | Day 29: the reader took the moved diligence call as the coordinator's move while the calendar still disagreed (it surfaced on day 30). Day 30: the early-dismissal notice merged into the ENT item (both cite Sam's message) and the page does not cite the dismissal email, so the merge loses it |
+| Merge errors on the dense day | merge | Dev: 3 of 34 expected items rendered twice, 3 merged into another item; held-out: 7 and 7. Free-text tags join only when string-equal, shared with a cited message or a person, or the linker agrees; different tags for one issue duplicate it, one tag for two issues over-merges (`OPEN_QUESTIONS.md` #24) |
 | P0 generous during the raise | read, floors | Dev Thursday: 11 P0 items vs the key's 8; every IPV and WSGR thread is P0-eligible by profile tier |
 | Decide-card drafts already commit | materialize | Judge `assumptions_flagged` 3.5 / 3.2: the draft for the recommended option is not marked as presupposing it; one internal remark ("the profile figure is stale") reached a reply to Marcus |
 | No `profile_update` actions | read, sweep | Drift is reported but the profile line is never proposed; six assertions in each world |

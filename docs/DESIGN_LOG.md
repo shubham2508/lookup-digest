@@ -682,6 +682,8 @@ Settled since v1: O1–O3 (data gen, distribution, traps), O6 (commitments × ta
 | 30 | Downstream stages see only extraction + short quotes | **Challenged (2026-09-29):** passing only extracted data downstream is wrong; extraction is lossy, and a triage that never sees the email cannot recover a miss | Raw content to triage and the materializer |
 | 31 | (v1 built: extraction-centric) | **Reviewed the build and rejected the design:** lossy pipeline centered on extraction accuracy and metadata | **v2: read, don't extract** (`specs/PIVOT_SPEC.md`). Readers and sweeps on raw content emit open-world Findings; entities are the spine; code safety nets are a recall floor; digest-level eval is the target (**Shubham's correction**). Kept from his review of the spec: no string similarity (the linker decides sameness), the P0-earned and suspicious-never-P0 code floors |
 
+| 32 | Merge findings by exact facts (tags, cited messages, contact ids), linker for the rest | **Asked:** "findings are free text, how can you be sure?" | Documented in `OPEN_QUESTIONS.md` #24 with the measured residue: on the dense day dev renders 3 of 34 expected items twice and over-merges 3; held-out 7 and 7. Over-merge is the failure that loses an item; tag continuity across mornings is the next step |
+
 Rejected alternative added 2026-09-29: **extraction-centric pipeline (v1)**: lossy and closed-world; rewarded metadata accuracy over digest usefulness. Kept as tag `v1-extraction-centric` for the v1/v2/baseline comparison.
 
 **For the walkthrough:** the biggest structural corrections (judgment vs. determinism, no hard clustering, drafter after compose, news relevance, ambiguity loop, action types, P0 depth) came from pushback on Claude's first proposals.
