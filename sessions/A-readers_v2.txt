@@ -1,0 +1,1493 @@
+
+❯ Track A, v2
+
+  Listed 1 directory (ctrl+o to expand)
+
+⏺ Bash(cat docs/handoffs/v2-A-readers.md && git worktree list && ls ../ && git
+      branch -a)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && git status
+      --short | head -30 && git log --oneline -3 && git diff --stat 5d8bfbc main
+      && ls docs/ha…)
+  ⎿  (No output)
+
+  Read 2 files (ctrl+o to expand)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && cat
+      digest/findings.py && grep -n "class \|^# " digest/schemas.py | head -120)
+  ⎿  (No output)
+
+⏺ Reading the v2 contracts before touching code (worktree
+  lookup-digest-v2-a-readers, clean at 5d8bfbc).
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && sed -n
+      1,125p digest/schemas.py && sed -n 400,560p digest/schemas.py)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && cat
+      tests/test_findings.py && cat digest/pipeline.py)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && cat
+      digest/compute/__init__.py digest/triage/__init__.py)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && cat
+      digest/normalize/text.py digest/extract/documents.py
+      digest/extract/evidence.py && sed -n 1,60p…)
+  ⎿  (No output)
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && cat
+      docs/handoffs/v2-B-spine.md && sed -n 1,40p docs/handoffs/v2-C-eval.md &&
+      ls docs/handoffs/ ../…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && wc -l
+      digest/*.py digest/*/*.py prompts/*.md tests/a_fakes.py tests/test_a_*.py
+      | sort -n | tail -7…)
+  ⎿  (No output)
+
+⏺ Still reading: llm.py, extract stage, contacts/context/signals, then
+  compose/materialize, before writing A1.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && grep -n "def
+      \|cache_salt\|class " digest/llm.py && sed -n '/def complete(/,/^    def
+      [a-z_]*(/p' d…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && sed -n
+      123,180p digest/schemas.py && sed -n 378,416p digest/schemas.py && cat
+      digest/normalize/__in…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && grep -n
+      "^def \|^class \|^    def " digest/compute/contacts.py
+      digest/compute/candidates.py digest/…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && sed -n
+      1,140p digest/compute/contacts.py && sed -n 183,384p
+      digest/compute/contacts.py)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && grep -n
+      "compute\.\|comp\.\|\.facts\b\|facts\.get\|facts\["
+      digest/reduce/__init__.py digest/compos…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && ls digest/
+      digest/*/ | head -60; grep -rn "compute\.\|comp\.\|facts\.get\|facts\["
+      digest/reduce di…)
+  ⎿  (No output)
+
+⏺ Mapping what reduce/compose/materialize/verify need from the compute result,
+  so the reader output plugs in cleanly.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && cat
+      digest/reduce/__init__.py && cat digest/compose/__init__.py)  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && cat
+      digest/materialize/__init__.py && cat prompts/materializer.md
+      prompts/compose.md)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && sed -n 1,80p
+      digest/verify/__init__.py && sed -n 90,142p digest/history.py && grep -n
+      "def " digest…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && cat
+      tests/a_fakes.py && cat tests/test_a_pipeline.py)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && sed -n 1,60p
+      digest/runs.py && ls tests/fixtures/mini tests/fixtures/mini/* | head -40
+      && ls data/…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && grep -n
+      "^def \|^from\|^import" tests/test_a_stages.py tests/test_a_extract.py
+      tests/test_a_compute…)
+  ⎿  (No output)
+
+⏺ Next: look at the five checkpoint threads in data/dev to see what the reader
+  will get.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && ls
+      data/dev/inbox | wc -l && grep -l -E
+      "20260922-1642.marcus@inflectionpoint.vc|20260923-2100.jord…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && sed -n
+      '/^class RoleAtOrg/,/^# ------.*customize/p' digest/schemas.py && sed -n
+      1,60p digest/render…)
+  ⎿  (No output)
+
+⏺ Enough context. Writing A1, the raw-thread renderer (digest/read/render.py).
+
+⏺ Write(~/Desktop/work/lookup-digest-v2-a-readers/digest/read/render.py)
+  ⎿  Wrote 134 lines to ../lookup-digest-v2-a-readers/digest/read/render.py
+      1 """Raw thread → the text a thread reader sees (specs/PIVOT_SPEC.m
+        d §5.1), plus the SourceIndex its citations are
+      3
+      4 Every message in order with its `msg:<id>`, sender (name + email)
+        , PT timestamp, To/Cc, the clean body (quoted
+        d messages attributed to their original sender. The
+      6 whole thread sits inside one labeled untrusted block; a body line
+         that imitates the block's own markers is defused so
+      8 """
+      9 from __future__ import annotations
+     … +158 lines (ctrl+o to expand)
+
+⏺ Quick look at how the five threads render from the real dev data:
+
+⏺ Bash(mkdir -p /private/tmp/claude-501/-Users-shubham-Desktop-work-lookup-diges
+      t/c491de9d-5046-48fd-bb0d-cf058c422ac9/scratchpad && cd
+      /Users/shubham/Desktop/work/loo…)
+  ⎿  (No output)
+
+⏺ Renderer output looks right (175 human/unsure threads in the 30-day window on
+  Thursday). Now the reader prompt; pulling the rubric and taxonomy lines
+  verbatim:
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && sed -n
+      14,33p prompts/triage.md | cat -A | cut -c1-60 | head -3; sed -n 14,33p
+      prompts/triage.md >…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && awk 'NR>=15
+      && NR<=36 {print NR": "substr($0,1,90)}' prompts/triage.md)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && grep -n -i
+      "tonight\|end of day\|resolved\|EOD" prompts/extractor.md | head; grep -n
+      -A12 "^judgmen…)
+  ⎿  (No output)
+
+⏺ Writing the reader prompt (prompts/thread_reader.md v1),
+  rubric/sections/taxonomy copied verbatim from triage.md lines 16–34, examples
+  on the made-up cast only.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && sed -n
+      16,34p prompts/triage.md >
+      /private/tmp/claude-501/-Users-shubham-Desktop-work-lookup-digest…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers &&
+      SP=/private/tmp/claude-501/-Users-shubham-Desktop-work-lookup-digest/c491d
+      e9d-5046-48fd-bb0d-cf058c…)
+  ⎿  Error: Exit code 1
+         2184 prompts/thread_reader.md
+
+⏺ The flagged result was just my own heredoc (it contains the example injection
+  line I wrote for the prompt); grep exiting 1 means the leak check found
+  nothing. Continuing with A3, the reader stage.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && sed -n '/def
+      complete_many/,$p' digest/llm.py && sed -n '/^class ReduceItem/,/^class
+      MaterializedAc…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && sed -n
+      80,168p digest/verify/__init__.py)
+  ⎿  (No output)
+
+⏺ Now the reader stage itself (digest/read/__init__.py):
+⏺ Write(~/Desktop/work/lookup-digest-v2-a-readers/digest/read/__init__.py)
+  ⎿  Wrote 323 lines to
+     ../lookup-digest-v2-a-readers/digest/read/__init__.py
+       1 """Thread readers (specs/PIVOT_SPEC.md §5.1): one LLM call per h
+       2 window. The reader sees the raw thread, the contact records of e
+         veryone on it, thin-index facts computed here, the
+         s and freshness; it returns open-world Findings.
+       5 Code around the call does only objective work: pick the threads,
+          compute the facts, render the untrusted blocks,
+         t is not), map entity names to contact ids, and
+       7 degrade a failed call instead of crashing (CLAUDE.md rules 5–7).
+       8 from __future__ import annotations
+      10 import json
+     … +414 lines (ctrl+o to expand)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && grep -n
+      "compute_world\|^def test" tests/test_a_compute.py | head -60; grep -rn
+      "compute_world\|Com…)
+  ⎿  No matches found
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && grep -rn
+      "compute_world\|ComputeResult\|from digest.compute import\|from
+      digest.triage\|from digest…)
+  ⎿  (No output)
+
+⏺ I'll write v2 versions of build_spine and assemble that use Track B's
+  functions when available, falling back to v1 logic otherwise, keeping imports
+  safe against Track B's changes at merge time.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && cat
+      digest/util.py | head -48 && grep -n "def header_fragment" -A12
+      digest/normalize/freshness.py)
+  ⎿  (No output)
+
+⏺ Writing digest/compute/__init__.py:
+
+⏺ Write(~/Desktop/work/lookup-digest-v2-a-readers/digest/compute/__init__.py)
+  ⎿  Error writing file
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && grep -rn
+      "EffectiveFact" digest tests --include='*.py' | grep -v "compute/facts.py"
+      | head)
+  ⎿  (No output)
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Write(~/Desktop/work/lookup-digest-v2-a-readers/digest/compute/__init__.py)
+  ⎿  Added 221 lines, removed 43 lines
+        1 -"""Compute stage (architecture §6): contacts → effective facts
+          - → about-key merge → candidates → context. Code only."""      
+        1 +"""Compute orchestration (specs/PIVOT_SPEC.md §2–§5, MIGRATION
+          +_PLAN.md §0). Code only; Track A owns this file,              
+        2 +Track B owns the modules it calls.                            
+        3 +                                                              
+        4 +v2: `build_spine` (contacts + behavior + linker) → the pipelin
+          +e runs the thread readers → `assemble` adds the sweeps        
+        5 +and the safety nets, reconciles and groups them (Track B), the
+          +n maps every Finding onto the Candidate + TriageResult        
+        6 +shapes reduce → compose → materialize → verify → render alread
+          +y consume (digest/findings.py). Until B's functions           
+        7 +land, the spine is the v1 directory built without extractions,
+          + and sweeps/nets/reconcile/merge are skipped.                 
+        8 +                                                              
+        9 +`compute_world` is the v1 extraction-centric stage, kept only 
+          +for tests/test_a_compute.py until Track B moves those         
+       10 +tests; its imports are lazy so B deleting aboutkeys.py or trim
+          +ming candidates.py cannot break this module."""               
+       11  from __future__ import annotations
+       12  
+       13 +import dataclasses                                            
+       14 +import importlib                                              
+       15 +import inspect                                                
+       16  from dataclasses import dataclass, field
+       17  from datetime import datetime
+       18  
+       19  from ..config import Settings
+       20 +from ..findings import finding_row, to_candidate, to_triage   
+       21  from ..normalize import NormalizedWorld
+        9 -from ..schemas import AboutMerge, Candidate, Contact, Extracti
+          -on, ProfileConfig                                             
+       10 -from .aboutkeys import AboutMerger, canonical_key             
+       11 -from .candidates import ComputeInputs, generate, resolve_thres
+          -holds                                                         
+       12 -from .contacts import ContactDirectory, behavior_stats, build_
+          -contacts                                                      
+       13 -from .context import ContextIndex, apply_context              
+       14 -from .facts import EffectiveFact, collect_claims, effective_fa
+          -cts                                                           
+       22 +from ..schemas import AboutMerge, Candidate, Contact, Finding,
+          + ProfileConfig, TriageResult                                  
+       23 +from . import contacts as contacts_mod                        
+       24 +from .contacts import ContactDirectory, behavior_stats        
+       25 +from .context import ContextIndex, dependencies, freshness_cap
+       26  
+       27  
+       28  @dataclass
+       29  class ComputeResult:
+       30      contacts: list[Contact]
+       31      directory: ContactDirectory
+       21 -    facts: list[EffectiveFact]                                
+       32 +    facts: list                     # effective facts (v1 Effe
+          +ctiveFact); v2: the notes+tasks sweep's changed facts (B)     
+       33      candidates: list[Candidate]
+       34      about_merges: list[AboutMerge]
+       35      about_map: dict[str, str]
+       36      context: ContextIndex
+       37      stats: dict = field(default_factory=dict)
+       38      links: list = field(default_factory=list)  # the linker's 
+           decisions with reasons (written to links.jsonl)
+       39 +    triage: list[TriageResult] = field(default_factory=list)  
+          + # v2: one per candidate, mapped from its Finding             
+       40 +    findings: list[dict] = field(default_factory=list)        
+          +  # v2: findings.jsonl rows, every origin, "no" ones too      
+       41  
+       42      def facts_for_prompt(self) -> list[dict]:
+       43          return [{"subject": f.subject, "effective": f.effectiv
+           e, "profile_value": f.profile_value, "data_value": f.data_valu
+           e,
+       44                   "drift": f.drift, "evidence": [e.model_dump(m
+           ode="json") for e in f.evidence]} for f in self.facts]
+       45  
+       46  
+       34 -def _extraction_keys(extractions: list[Extraction], slug_map: 
+          -dict[str, str], msg_thread: dict[str, str]) -> AboutMerger:   
+       47 +@dataclass                                                    
+       48 +class Spine:                                                  
+       49 +    directory: ContactDirectory                               
+       50 +    linker: object                                            
+       51 +    context: ContextIndex                                     
+       52 +                                                              
+       53 +                                                              
+       54 +def _optional(module: str):                                   
+       55 +    try:                                                      
+       56 +        return importlib.import_module(f"{__name__}.{module}")
+       57 +    except ImportError:                                       
+       58 +        return None                                           
+       59 +                                                              
+       60 +                                                              
+       61 +def _b_fn(name: str, *modules: str):                          
+       62 +    """Track B's function `name` from the first of `modules` t
+          +hat has it, else None (not landed yet)."""                    
+       63 +    for m in modules:                                         
+       64 +        mod = _optional(m)                                    
+       65 +        if mod is not None and hasattr(mod, name):            
+       66 +            return getattr(mod, name)                         
+       67 +    return None                                               
+       68 +                                                              
+       69 +                                                              
+       70 +def _inherit_org_tiers(directory, owner_emails) -> None:      
+       71 +    """v1 path only (Track B moves this into contacts.py). DES
+          +IGN_LOG §9.6 / P0 cases 5 and 12: a colleague of a            
+       72 +    profile contact at the same outside org inherits that cont
+          +act's tier during the raise. Never inside Avery's own         
+       73 +    company and never to automated senders. Rules such as neve
+          +r_draft do not propagate."""                                  
+       74 +    from ..util import domain_of, slugify                     
+       75 +                                                              
+       76 +    own = {domain_of(e) for e in owner_emails}                
+       77 +    higher = lambda a, b: min(a, b, key=lambda x: int(x[1]))  
+          + # noqa: E731  P0 beats P1                                    
+       78 +    org_tier: dict[str, str] = {}                             
+       79 +    for c in directory.contacts:                              
+       80 +        if c.relationship.source != "profile" or not c.tier or
+          + c.relationship.category == "team":                           
+       81 +            continue                                          
+       82 +        if any(domain_of(e) in own for e in c.emails):        
+       83 +            continue                                          
+       84 +        for k in ([slugify(c.org)] if c.org else []) + [domain
+          +_of(e) for e in c.emails]:                                    
+       85 +            org_tier[k] = higher(org_tier.get(k, "P9"), c.tier
+          +)                                                             
+       86 +    for c in directory.contacts:                              
+       87 +        if c.tier or c.relationship.source == "profile" or c.r
+          +elationship.category in ("team", "automated"):                
+       88 +            continue                                          
+       89 +        if any(domain_of(e) in own for e in c.emails):        
+       90 +            continue                                          
+       91 +        keys = ([slugify(c.org)] if c.org else []) + [domain_o
+          +f(e) for e in c.emails]                                       
+       92 +        for k in keys:                                        
+       93 +            if k in org_tier:                                 
+       94 +                c.tier = org_tier[k]                          
+       95 +                break                                         
+       96 +                                                              
+       97 +                                                              
+       98 +# ------------------------------------------------------------
+          +----------------- v2                                          
+       99 +def build_spine(world: NormalizedWorld, profile: ProfileConfig
+          +, settings: Settings, as_of: datetime, llm=None, ctx=None,    
+      100 +                decider=None) -> Spine:                       
+      101 +    """Contacts (B's `build_contacts(world, profile, linker, l
+          +lm, ctx)` once it lands; the v1 directory without             
+      102 +    extractions until then), behavior stats over the 30-day wi
+          +ndow, and the linker every later sameness call uses."""       
+      103 +    from .linker import Linker                                
+      104 +                                                              
+      105 +    linker = Linker(llm, ctx, decider=decider, jev_min_p=setti
+          +ngs.llm.jev_min_probability)                                  
+      106 +    if "extractions" in inspect.signature(contacts_mod.build_c
+          +ontacts).parameters:                                          
+      107 +        directory = contacts_mod.build_contacts(world, [], pro
+          +file, linker)                                                 
+      108 +        _inherit_org_tiers(directory, world.owner_emails)     
+      109 +    else:                                                     
+      110 +        directory = contacts_mod.build_contacts(world, profile
+          +, linker, llm, ctx)                                           
+      111 +    behavior_stats(directory, world, as_of, settings.threshold
+          +s_default.behavior_window_days)                               
+      112 +    context = ContextIndex(world, [], as_of, settings.context.
+          +window_days, settings.context.max_items)                      
+      113 +    return Spine(directory, linker, context)                  
+      114 +                                                              
+      115 +                                                              
+      116 +def _compute_inputs(world, profile, settings, as_of, spine: Sp
+          +ine, findings: list[Finding]):                                
+      117 +    """B's safety nets take a ComputeInputs; fill whichever of
+          + its fields exist from what v2 has."""                        
+      118 +    from . import candidates as cand_mod                      
+      119 +                                                              
+      120 +    have = {"world": world, "extractions": [], "profile": prof
+          +ile, "settings": settings, "as_of": as_of,                    
+      121 +            "directory": spine.directory, "facts": [], "about_
+          +map": {}, "linker": spine.linker, "findings": findings}       
+      122 +    if hasattr(cand_mod, "resolve_thresholds"):               
+      123 +        have["thresholds"] = cand_mod.resolve_thresholds(profi
+          +le, settings)                                                 
+      124 +    kw = {f.name: have[f.name] for f in dataclasses.fields(can
+          +d_mod.ComputeInputs) if f.init and f.name in have}            
+      125 +    return cand_mod.ComputeInputs(**kw)                       
+      126 +                                                              
+      127 +                                                              
+      128 +def _thread_of(f: Finding, msg_thread: dict[str, str]) -> str 
+          +| None:                                                       
+      129 +    for e in f.citations:                                     
+      130 +        if e.source_id in msg_thread:                         
+      131 +            return msg_thread[e.source_id]                    
+      132 +    return None                                               
+      133 +                                                              
+      134 +                                                              
+      135 +def _renumber(fs: list[Finding], prefix: str, taken: set[str])
+          + -> list[Finding]:                                            
+      136 +    out = []                                                  
+      137 +    for i, f in enumerate(fs, 1):                             
+      138 +        fid = f"{prefix}{i}"                                  
+      139 +        while fid in taken:                                   
+      140 +            fid += "x"                                        
+      141 +        taken.add(fid)                                        
+      142 +        out.append(f.model_copy(update={"finding_id": fid}))  
+      143 +    return out                                                
+      144 +                                                              
+      145 +                                                              
+      146 +class _NullTimer:                                             
+      147 +    def __enter__(self):                                      
+      148 +        return self                                           
+      149 +                                                              
+      150 +    def __exit__(self, *exc):                                 
+      151 +        return False                                          
+      152 +                                                              
+      153 +                                                              
+      154 +def assemble(world: NormalizedWorld, spine: Spine, read, profi
+          +le: ProfileConfig, settings: Settings, as_of: datetime,       
+      155 +             llm=None, ctx=None) -> ComputeResult:            
+      156 +    """Readers' findings (+ B's sweeps and safety nets when la
+          +nded) → reconcile → group → Candidate + TriageResult.         
+      157 +    `read` is digest.read.ReadResult. `enforce` (the code floo
+          +rs) runs on the result in the pipeline."""                    
+      158 +    msg_thread = {f"msg:{m.message_id}": t.thread_id for t in 
+          +world.threads for m in t.messages}                            
+      159 +    subject = {t.thread_id: t.messages[0].subject for t in wor
+          +ld.threads if t.messages}                                     
+      160 +    taken: set[str] = set()                                   
+      161 +    readers = _renumber([rf.finding for rf in read.findings], 
+          +"f", taken)                                                   
+      162 +    thread_of = {f.finding_id: rf.thread_id for f, rf in zip(r
+          +eaders, read.findings, strict=True)}                          
+      163 +    refs_of = {f.finding_id: rf.context_refs for f, rf in zip(
+          +readers, read.findings, strict=True)}                         
+      164 +    findings: list[Finding] = list(readers)                   
+      165 +    stats: dict = {"contacts": len(spine.directory.contacts), 
+          +"reader_findings": len(readers), "sweep_findings": None,      
+      166 +                   "net_findings": None, "rescues": None, "abo
+          +ut_merges": 0}                                                
+      167 +                                                              
+      168 +    def timed(stage: str):                                    
+      169 +        return ctx.timed(stage) if ctx is not None else _NullT
+          +imer()                                                        
+      170 +                                                              
+      171 +    run_sweeps = _b_fn("run_sweeps", "sweeps")                
+      172 +    if run_sweeps is not None:                                
+      173 +        with timed("sweep"):                                  
+      174 +            swept = _renumber(list(run_sweeps(world, spine.dir
+          +ectory, list(findings), profile, settings, llm, ctx, as_of)), 
+          +"s", taken)                                                   
+      175 +        findings += swept                                     
+      176 +        stats["sweep_findings"] = len(swept)                  
+      177 +                                                              
+      178 +    safety_nets = _b_fn("safety_nets", "candidates")          
+      179 +    rescued_ids: set[str] = set()                             
+      180 +    if safety_nets is not None:                               
+      181 +        with timed("nets"):                                   
+      182 +            nets = _renumber(list(safety_nets(_compute_inputs(
+          +world, profile, settings, as_of, spine, findings))), "n", take
+          +n)                                                            
+      183 +            stats["net_findings"] = len(nets)                 
+      184 +            reconcile = _b_fn("reconcile", "merge", "linker") 
+      185 +            if reconcile is not None:                         
+      186 +                findings, rescues = reconcile(findings, nets, 
+          +spine.linker)                                                 
+      187 +                stats["rescues"] = len(rescues)               
+      188 +                if ctx is not None:                           
+      189 +                    for r in rescues:                         
+      190 +                        ctx.degrade("nets", str(r.get("finding
+          +_id") or r.get("title") or r.get("net")), "rescued_by_safety_n
+          +et",                                                          
+      191 +                                    **{k: v for k, v in r.item
+          +s() if k not in ("stage", "item", "reason")})                 
+      192 +            else:                                             
+      193 +                findings = findings + nets                    
+      194 +            rescued_ids = {f.finding_id for f in findings if f
+          +.origin == "safety_net"}                                      
+      195 +                                                              
+      196 +    merges: list[AboutMerge] = []                             
+      197 +    group_findings = _b_fn("group_findings", "merge", "linker"
+          +)                                                             
+      198 +    if group_findings is not None:                            
+      199 +        with timed("merge"):                                  
+      200 +            merges = list(group_findings(findings, spine.linke
+          +r))                                                           
+      201 +    about_map = {m: g.canonical for g in merges for m in g.mer
+          +ged}                                                          
+      202 +    stats["about_merges"] = len(merges)                       
+      203 +                                                              
+      204 +    cands: list[Candidate] = []                               
+      205 +    triage: list[TriageResult] = []                           
+      206 +    rows: list[dict] = []                                     
+      207 +    for f in findings:                                        
+      208 +        tid = thread_of.get(f.finding_id) or _thread_of(f, msg
+          +_thread)                                                      
+      209 +        rescued = f.finding_id in rescued_ids                 
+      210 +        if f.needs_avery == "no":                             
+      211 +            rows.append(finding_row(f, None, thread_id=tid, re
+          +scued=rescued))                                               
+      212 +            continue                                          
+      213 +        cid = f"c{len(cands) + 1}"                            
+      214 +        c = to_candidate(f, cid, thread_id=tid, context_refs=r
+          +efs_of.get(f.finding_id, []), rescued=rescued)                
+      215 +        c.about = about_map.get(c.about, about_map.get(f.about
+          +[0] if f.about else "", c.about))                             
+      216 +        if tid and tid in subject:                            
+      217 +            c.facts["subject"] = subject[tid]                 
+      218 +        c.source_dependencies = dependencies(c)               
+      219 +        c.freshness_cap = freshness_cap(c.source_dependencies,
+          + world.freshness)                                             
+      220 +        if c.freshness_cap != "none" and "freshness_note" not 
+          +in c.facts:                                                   
+      221 +            stale = [k for k in c.source_dependencies if world
+          +.freshness.get(k) and world.freshness[k].state != "ok"]       
+      222 +            c.facts["freshness_note"] = f"{', '.join(stale)} {
+          +'stale' if c.freshness_cap == 'stale' else 'missing/unreadable
+          +'}: confidence capped at medium"                              
+      223 +        cands.append(c)                                       
+      224 +        triage.append(to_triage(f, cid))                      
+      225 +        rows.append(finding_row(f, cid, thread_id=tid, rescued
+          +=rescued))                                                    
+      226 +    stats["candidates"] = len(cands)                          
+      227 +    stats["by_origin"] = {}                                   
+      228 +    for f in findings:                                        
+      229 +        stats["by_origin"][f.origin] = stats["by_origin"].get(
+          +f.origin, 0) + 1                                              
+      230 +    stats["links"] = len(getattr(spine.linker, "log", []))    
+      231 +    return ComputeResult(spine.directory.contacts, spine.direc
+          +tory, [], cands, merges, about_map, spine.context, stats,     
+      232 +                         links=list(getattr(spine.linker, "log
+          +", [])), triage=triage, findings=rows)                        
+      233 +                                                              
+      234 +                                                              
+      235 +# ------------------------------------------------------------
+          +----------------- v1 (tests/test_a_compute.py only)           
+      236 +def _extraction_keys(extractions, slug_map: dict[str, str], ms
+          +g_thread: dict[str, str]):                                    
+      237      """Every about key in the extractions, with the entities a
+           nd evidence messages that carry it."""
+      238 +    from .aboutkeys import AboutMerger, canonical_key         
+      239 +                                                              
+      240      merger = AboutMerger()
+      241      for x in extractions:
+      242          p = x.payload
+     ...
+      268      return merger
+      269  
+      270  
+       67 -def _inherit_org_tiers(directory, owner_emails) -> None:      
+       68 -    """DESIGN_LOG §9.6 / P0 cases 5 and 12: a colleague of a p
+          -rofile contact at the same outside org (another IPV           
+       69 -    partner, the WSGR associate) inherits that contact's tier 
+          -during the raise. Never inside Avery's own company (a         
+       70 -    co-founder's P0 is theirs, not every teammate's) and never
+          - to automated senders (a firm's billing address). Rules       
+       71 -    such as never_draft do not propagate."""                  
+       72 -    from ..util import domain_of, slugify                     
+       73 -                                                              
+       74 -    own = {domain_of(e) for e in owner_emails}                
+       75 -    higher = lambda a, b: min(a, b, key=lambda x: int(x[1]))  
+          - # noqa: E731  P0 beats P1                                    
+       76 -    org_tier: dict[str, str] = {}                             
+       77 -    for c in directory.contacts:                              
+       78 -        if c.relationship.source != "profile" or not c.tier or
+          - c.relationship.category == "team":                           
+       79 -            continue                                          
+       80 -        if any(domain_of(e) in own for e in c.emails):        
+       81 -            continue                                          
+       82 -        for k in ([slugify(c.org)] if c.org else []) + [domain
+          -_of(e) for e in c.emails]:                                    
+       83 -            org_tier[k] = higher(org_tier.get(k, "P9"), c.tier
+          -)                                                             
+       84 -    for c in directory.contacts:                              
+       85 -        if c.tier or c.relationship.source == "profile" or c.r
+          -elationship.category in ("team", "automated"):                
+       86 -            continue                                          
+       87 -        if any(domain_of(e) in own for e in c.emails):        
+       88 -            continue                                          
+       89 -        keys = ([slugify(c.org)] if c.org else []) + [domain_o
+          -f(e) for e in c.emails]                                       
+       90 -        for k in keys:                                        
+       91 -            if k in org_tier:                                 
+       92 -                c.tier = org_tier[k]                          
+       93 -                break                                         
+       94 -                                                              
+       95 -                                                              
+       96 -def compute_world(world: NormalizedWorld, extractions: list[Ex
+          -traction], profile: ProfileConfig, settings: Settings,        
+      271 +def compute_world(world: NormalizedWorld, extractions: list, p
+          +rofile: ProfileConfig, settings: Settings,                    
+      272                    as_of: datetime, llm=None, ctx=None, decider
+           =None) -> ComputeResult:
+      273 +    """v1: contacts → effective facts → about-key merge → cand
+          +idate rules → context, from extractions."""                   
+      274 +    from ..util import domain_of, slugify                     
+      275 +    from .candidates import ComputeInputs, generate, resolve_t
+          +hresholds                                                     
+      276 +    from .context import apply_context                        
+      277 +    from .facts import collect_claims, effective_facts        
+      278      from .linker import Linker
+      279  
+      280      linker = Linker(llm, ctx, decider=decider, jev_min_p=setti
+           ngs.llm.jev_min_probability)
+      101 -    directory = build_contacts(world, extractions, profile, li
+          -nker)                                                         
+      281 +    directory = contacts_mod.build_contacts(world, extractions
+          +, profile, linker)                                            
+      282      _inherit_org_tiers(directory, world.owner_emails)
+      283      behavior_stats(directory, world, as_of, settings.threshold
+           s_default.behavior_window_days)
+      284      slug_map = directory.slug_map()
+     ...
+      286      facts = effective_facts(profile, collect_claims(extraction
+           s, note_dates))
+      287      msg_thread = {f"msg:{m.message_id}": t.thread_id for t in 
+           world.threads for m in t.messages}
+      288      merger = _extraction_keys(extractions, slug_map, msg_threa
+           d)
+      109 -    from ..util import domain_of, slugify                     
+      289      person = slugify(profile.person or "")
+      290      generic = {person, person.split("-")[0], slugify(profile.c
+           ompany or ""), *(domain_of(e).split(".")[0] for e in world.own
+           er_emails)}
+      291      generic |= set(world.owner_emails)
+     ...
+      302      cold = {c.contact_id for c in directory.contacts if c.rela
+           tionship.category == "cold_inbound"}
+      303      if cold:  # architecture §6.4 / §8: individual cold-inboun
+           d threads never become candidates
+      304          cands = [c for c in cands if c.type == "recruiter_patt
+           ern" or not any(e in cold for e in c.entities)]
+      126 -    # second pass: candidate-made keys (meeting:…, other:…) ma
+          -y merge with extraction keys                                  
+      305      new_keys = [c.about for c in cands if c.about not in merge
+           r.keys]
+      306      for c in cands:
+      307          f = c.facts
+     ...
+      324      return ComputeResult(directory.contacts, directory, facts,
+            cands, merges, about_map, idx, stats, links=linker.log)
+      325  
+      326  
+      149 -__all__ = ["ComputeResult", "compute_world", "ContactDirectory
+          -", "EffectiveFact"]                                           
+      327 +__all__ = ["ComputeResult", "ContactDirectory", "Spine", "asse
+          +mble", "build_spine", "compute_world"]                        
+
+⏺ Small fix: _optional should only skip a module that doesn't exist, not hide an
+  import error inside one that does.
+
+⏺ Update(~/Desktop/work/lookup-digest-v2-a-readers/digest/compute/__init__.py)
+  ⎿  Added 4 lines, removed 3 lines
+      52  
+      53  
+      54  def _optional(module: str):
+      55 -    try:                                                       
+      56 -        return importlib.import_module(f"{__name__}.{module}") 
+      57 -    except ImportError:                                        
+      55 +    """A Track B module that may not exist yet; one that exists
+         + but fails to import raises (never skipped silently)."""       
+      56 +    name = f"{__name__}.{module}"                              
+      57 +    if importlib.util.find_spec(name) is None:                 
+      58          return None
+      59 +    return importlib.import_module(name)                       
+      60  
+      61  
+      62  def _b_fn(name: str, *modules: str):
+
+⏺ Update(~/Desktop/work/lookup-digest-v2-a-readers/digest/compute/__init__.py)
+  ⎿  Added 1 line
+      12  
+      13  import dataclasses
+      14  import importlib
+      15 +import importlib.util                                          
+      16  import inspect
+      17  from dataclasses import dataclass, field
+      18  from datetime import datetime
+
+⏺ Now trimming digest/triage/__init__.py to the code floors (enforce,
+  ruling_matches), with the P0 floor extended to v2's signals:
+
+⏺ Write(~/Desktop/work/lookup-digest-v2-a-readers/digest/triage/__init__.py)
+  ⎿  Error writing file
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Write(~/Desktop/work/lookup-digest-v2-a-readers/digest/triage/__init__.py)
+  ⎿  Added 33 lines, removed 127 lines
+       1 -"""Triage stage (architecture §7, prompt P4): per candidate, pa
+         -cked 5–10 per call, parallel via complete_many.                
+       2 -Every result is validated (TriageBatch) and then checked in cod
+         -e: freshness caps, never_draft, recruiters,                    
+       3 -citations copied from candidate evidence only, watch/read compl
+         -eteness, suspicious_content never P0."""                       
+       1 +"""Code floors on every TriageResult (MIGRATION_PLAN.md §2.2). 
+         +v2 has no triage LLM call: readers, sweeps and safety          
+       2 +nets judge, and digest/findings.py maps each Finding to a Triag
+         +eResult. What stays here is what code enforces no              
+       3 +matter what a model said: P0 only when earned (a P0-tier contac
+         +t, family, or an incident/escalation), suspicious              
+       4 +content never P0, never_draft → message_person, no drafts to co
+         +ld recruiters, citations only from the finding's own           
+       5 +verified evidence, a freshness cap on confidence, and complete 
+         +watch/read actions. Plus `ruling_matches`."""                  
+       6  from __future__ import annotations
+       7  
+       6 -import json                                                    
+       8  from dataclasses import dataclass, field
+       8 -from datetime import datetime                                  
+       9  
+      10  from ..compute import ComputeResult
+      11 -from ..config import Settings                                  
+      12 -from ..llm import LLM, LLMResult                               
+      13 -from ..prompts import Prompt, load_prompt                      
+      11  from ..runs import RunContext
+      15 -from ..schemas import Candidate, Contact, Evidence, ProfileConf
+         -ig, ProposedAction, TriageBatch, TriageResult                  
+      12 +from ..schemas import Candidate, Contact, Evidence, ProposedAct
+         +ion, TriageResult                                              
+      13  
+      17 -PACK_SIZE = 6                                                  
+      14  RECRUITER_WORDS = ("recruit", "talent", "search", "staffing", "
+          headhunt", "sourcer")
+      15 +P0_ABOUT_KINDS = ("incident:", "family:")                      
+      16  
+      17  
+      18  @dataclass
+      19  class TriageStats:
+      20      candidates: int = 0
+      24 -    packs: int = 0                                             
+      25 -    cached: int = 0                                            
+      26 -    invalid_packs: int = 0                                     
+      27 -    missing: list[str] = field(default_factory=list)           
+      21      fixes: list[dict] = field(default_factory=list)
+      22      rulings_applied: int = 0
+      23  
+     ...
+      36      return bool(checks) and all(checks)
+      37  
+      38  
+      46 -def _contact_card(c: Contact) -> dict:                         
+      47 -    b = c.behavior                                             
+      48 -    return {"contact_id": c.contact_id, "names": c.names, "org"
+         -: c.org, "title": c.title,                                     
+      49 -            "category": c.relationship.category, "subtype": c.r
+         -elationship.subtype, "stage": c.relationship.stage,            
+      50 -            "tier": c.tier, "rules": c.profile_rules,          
+      51 -            "behavior": {"avery_reply_rate": b.avery_reply_rate
+         -, "median_avery_reply_hours": b.median_avery_reply_hours,      
+      52 -                         "last_inbound": b.last_inbound.isoform
+         -at() if b.last_inbound else None,                              
+      53 -                         "last_outbound": b.last_outbound.isofo
+         -rmat() if b.last_outbound else None,                           
+      54 -                         "shared_meetings_30d": b.shared_meetin
+         -gs_30d},                                                       
+      55 -            "drift": [{"field": d.field, "profile": d.profile_v
+         -alue, "data": d.data_value} for d in c.drift]}                 
+      56 -                                                               
+      57 -                                                               
+      58 -def candidate_card(c: Candidate, compute: ComputeResult, ruling
+         -s: list[dict]) -> dict:                                        
+      59 -    contacts = [compute.directory.by_slug[e] for e in c.entitie
+         -s if e in compute.directory.by_slug]                           
+      60 -    return {                                                   
+      61 -        "candidate_id": c.candidate_id, "type": c.type, "about"
+         -: c.about, "entities": c.entities,                             
+      62 -        "facts": {k: v for k, v in c.facts.items() if k not in 
+         -("entity_keys", "extra_dependencies")},                        
+      63 -        "evidence": [e.model_dump() for e in c.evidence],      
+      64 -        "context": [{"source_id": s, "summary": compute.context
+         -.summary_of(s)} for s in c.context_refs],                      
+      65 -        "contacts": [_contact_card(x) for x in contacts],      
+      66 -        "freshness_cap": c.freshness_cap, "times_surfaced": c.t
+         -imes_surfaced,                                                 
+      67 -        "rulings": [r for r in rulings if ruling_matches(r, c)]
+         -,                                                              
+      68 -    }                                                          
+      69 -                                                               
+      70 -                                                               
+      71 -def _pack_text(cards: list[dict], compute: ComputeResult) -> st
+         -r:                                                             
+      72 -    drift = [f for f in compute.facts_for_prompt() if f["drift"
+         -]]                                                             
+      73 -    return json.dumps({"effective_facts_drift": drift, "candida
+         -tes": cards}, ensure_ascii=False, default=str)                 
+      74 -                                                               
+      75 -                                                               
+      39  def _find_contact(compute: ComputeResult, target: str | None) -
+          > Contact | None:
+      40      if not target:
+      41          return None
+      42      return compute.directory.lookup(target if "@" in target els
+          e None, target if "@" not in target else None)
+      43  
+      44  
+      45 +def _suspicious(c: Candidate) -> bool:                         
+      46 +    return c.type == "suspicious_content" or bool(c.facts.get("
+         +instructions"))                                                
+      47 +                                                               
+      48 +                                                               
+      49  def _p0_earned(c: Candidate, compute: ComputeResult) -> bool:
+      50      """The rubric's P0 is 'action today AND (family, capital du
+          ring the raise, co-founder, or an escalation)'. Who is
+      84 -    family / capital-during-the-raise / co-founder comes from t
+         -he profile as contact tiers (P0 there: Sam, Priya,             
+      85 -    Marcus, Ben, and colleagues who inherit their firm's tier),
+         - so code checks the tier, not a name. Content can still        
+      86 -    earn P0: an escalation or incident, or a family calendar co
+         -nflict."""                                                     
+      87 -    if c.type == "calendar_conflict:family" or c.facts.get("esc
+         -alation") or c.about.startswith("incident:"):                  
+      51 +    family / capital-during-the-raise / co-founder comes from t
+         +he profile as contact tiers (P0 there: the partner,            
+      52 +    the co-founder, the lead investor, deal counsel, and collea
+         +gues who inherit their firm's tier), so code checks the        
+      53 +    tier or the family category, not a name. Content can still 
+         +earn P0: an escalation or incident (a v1 escalation            
+      54 +    fact, or an incident: tag), or a family matter (a family ca
+         +lendar conflict, or a family: tag)."""                         
+      55 +    if c.type == "calendar_conflict:family" or c.facts.get("esc
+         +alation") or c.about.startswith(P0_ABOUT_KINDS):               
+      56          return True
+      57 +    if any(str(t).startswith(P0_ABOUT_KINDS) for t in c.facts.g
+         +et("about_tags") or []):                                       
+      58 +        return True                                            
+      59      for e in c.entities:
+      60          ct = compute.directory.by_slug.get(e) if e else None
+      91 -        if ct is not None and ct.tier == "P0":                 
+      61 +        if ct is not None and (ct.tier == "P0" or ct.relationsh
+         +ip.category == "family"):                                      
+      62              return True
+      63      return False
+      64  
+     ...
+       69      if c.freshness_cap != "none" and r.confidence == "high":
+       70          upd["confidence"] = "medium"
+       71          fixes.append("confidence capped (freshness)")
+      102 -    if c.type == "suspicious_content" and r.priority == "P0": 
+       72 +    if _suspicious(c) and r.priority == "P0":                 
+       73          upd["priority"] = "P2"
+      104 -        fixes.append("suspicious_content demoted from P0")    
+       74 +        fixes.append("suspicious content demoted from P0")    
+       75      elif r.priority == "P0" and not _p0_earned(c, compute):
+       76          upd["priority"] = "P1"
+      107 -        fixes.append("P0 → P1: no P0 contact in the profile an
+          -d no escalation content")                                     
+      108 -    # citations: only verbatim candidate evidence             
+       77 +        fixes.append("P0 → P1: no P0 or family contact, no esc
+          +alation/incident, no family matter")                          
+       78 +    # citations: only the finding's own verified evidence     
+       79      allowed = {(e.source_id, e.quote) for e in c.evidence}
+       80      quotes = {e.quote for e in c.evidence}
+       81      cits: list[Evidence] = []
+     ...
+      121      return r.model_copy(update=upd) if upd else r
+      122  
+      123  
+      154 -def fallback_result(c: Candidate) -> TriageResult:            
+      155 -    """When a pack fails validation twice: include P0-shaped t
+          -ypes conservatively so nothing important is lost."""          
+      156 -    section = {"calendar_conflict:deep_work": "calendar_person
+          -al", "calendar_conflict:family": "calendar_personal",         
+      157 -               "calendar_conflict:double_book": "calendar_pers
+          -onal", "declined_meeting": "calendar_personal",               
+      158 -               "approval_pending": "decisions", "news_attachme
+          -nt": "news", "hiring_stall": "pulse", "cadence_drop": "pulse",
+      159 -               "recruiter_pattern": "pulse", "contradiction": 
+          -"decisions"}.get(c.type, "urgent")                            
+      160 -    prio = "P0" if c.type in ("commitment_overdue", "calendar_
+          -conflict:family") else "P2"                                   
+      161 -    return TriageResult(candidate_id=c.candidate_id, include=c
+          -.type not in ("stale_source",), section=section, priority=prio
+          -,                                                             
+      162 -                        due_today=c.type in ("commitment_overd
+          -ue", "commitment_due", "task_due"), confidence="low",         
+      163 -                        why=f"triage unavailable for this item
+          - ({c.type}); shown from computed facts", citations=list(c.evid
+          -ence[:2]),                                                    
+      164 -                        ambiguity=None, proposed_actions=[Prop
+          -osedAction(type="read", target=None, brief="open the source an
+          -d decide",                                                    
+      165 -                                                              
+          -            assumptions=["triage model output was invalid"], w
+          -atch_trigger=None,                                            
+      166 -                                                              
+          -            read_start=c.facts.get("thread_id"))])            
+      167 -                                                              
+      168 -                                                              
+      169 -def triage_candidates(llm: LLM, cands: list[Candidate], comput
+          -e: ComputeResult, profile: ProfileConfig, settings: Settings, 
+      170 -                      ctx: RunContext | None = None, rulings: 
+          -list[dict] | None = None, prompt: Prompt | None = None,       
+      171 -                      pack_size: int = PACK_SIZE, as_of: datet
+          -ime | None = None) -> tuple[list[TriageResult], TriageStats]: 
+      172 -    prompt = prompt or load_prompt("triage")                  
+      173 -    rulings = rulings or []                                   
+      174 -    stats = TriageStats(candidates=len(cands))                
+      175 -    cards = [candidate_card(c, compute, rulings) for c in cand
+          -s]                                                            
+      176 -    stats.rulings_applied = len({r.get("id") for card in cards
+          - for r in card["rulings"]})                                   
+      177 -    packs = [list(zip(cands[i:i + pack_size], cards[i:i + pack
+          -_size], strict=True)) for i in range(0, len(cands), pack_size)
+          -]                                                             
+      178 -    calls = []                                                
+      179 -    for pack in packs:                                        
+      180 -        text = prompt.render(avery_name=profile.person, as_of=
+          -(as_of or compute.context.as_of).isoformat(),                 
+      181 -                             judgment_rules=json.dumps(profile
+          -.judgment_rules, ensure_ascii=False),                         
+      182 -                             rulings=json.dumps(rulings, ensur
+          -e_ascii=False, default=str),                                  
+      183 -                             candidates=_pack_text([card for _
+          -, card in pack], compute))                                    
+      184 -        calls.append({"role": prompt.model_role, "prompt_versi
+          -on": prompt.version_tag, "messages": [{"role": "system", "cont
+          -ent": text}],                                                 
+      185 -                      "output_model": TriageBatch, "tag": "tri
+          -age:" + ",".join(c.candidate_id for c, _ in pack)})           
+      186 -    stats.packs = len(calls)                                  
+      187 -    outcomes = llm.complete_many(calls, max_workers=settings.l
+          -lm.max_workers) if calls else []                              
+      124 +def enforce_all(results: list[TriageResult], cands: list[Candi
+          +date], compute: ComputeResult, rulings: list[dict],           
+      125 +                ctx: RunContext | None = None, rulings_applied
+          +: int | None = None) -> tuple[list[TriageResult], TriageStats]
+          +:                                                             
+      126 +    """The floors on every result, in candidate order. `ruling
+          +s_applied`: how many learned rules the judging stages         
+      127 +    were shown (readers); None counts the rulings whose scope 
+          +matches a candidate exactly."""                               
+      128      by_id = {c.candidate_id: c for c in cands}
+      189 -    results: list[TriageResult] = []                          
+      129 +    stats = TriageStats(candidates=len(cands))                
+      130 +    out = [enforce(r, by_id[r.candidate_id], compute, stats, c
+          +tx) for r in results if r.candidate_id in by_id]              
+      131 +    stats.rulings_applied = rulings_applied if rulings_applied
+          + is not None else len(                                        
+      132 +        {str(r.get("id")) for r in rulings for c in cands if r
+          +uling_matches(r, c)})                                         
+      133 +    return out, stats                                         
+      134  
+      191 -    def one_call(pack) -> dict[str, TriageResult] | Exception:
+      192 -        text = prompt.render(avery_name=profile.person, as_of=
+          -(as_of or compute.context.as_of).isoformat(),                 
+      193 -                             judgment_rules=json.dumps(profile
+          -.judgment_rules, ensure_ascii=False),                         
+      194 -                             rulings=json.dumps(rulings, ensur
+          -e_ascii=False, default=str),                                  
+      195 -                             candidates=_pack_text([card for _
+          -, card in pack], compute))                                    
+      196 -        try:                                                  
+      197 -            r = llm.complete(prompt.model_role, prompt.version
+          -_tag, [{"role": "system", "content": text}], TriageBatch,     
+      198 -                             tag="triage:" + ",".join(c.candid
+          -ate_id for c, _ in pack))                                     
+      199 -        except Exception as e:  # noqa: BLE001 - reported per 
+          -candidate below                                               
+      200 -            return e                                          
+      201 -        stats.cached += 1 if r.cached else 0                  
+      202 -        return {x.candidate_id: x for x in r.output.results if
+          - x.candidate_id in by_id}                                     
+      135  
+      204 -    for pack, res in zip(packs, outcomes, strict=True):       
+      205 -        ids = [c.candidate_id for c, _ in pack]               
+      206 -        if isinstance(res, LLMResult):                        
+      207 -            stats.cached += 1 if res.cached else 0            
+      208 -            got = {r.candidate_id: r for r in res.output.resul
+          -ts if r.candidate_id in by_id}                                
+      209 -        else:                                                 
+      210 -            stats.invalid_packs += 1                          
+      211 -            if ctx is not None:                               
+      212 -                ctx.degrade("triage", ",".join(ids), type(res)
+          -.__name__, detail=str(res)[:300], recovery="retrying each cand
+          -idate alone")                                                 
+      213 -            got = {}                                          
+      214 -        for cid in ids:                                       
+      215 -            if cid in got:                                    
+      216 -                results.append(enforce(got[cid], by_id[cid], c
+          -ompute, stats, ctx))                                          
+      217 -                continue                                      
+      218 -            single = one_call([next(p for p in pack if p[0].ca
+          -ndidate_id == cid)])   # the pack lost it: ask for it alone   
+      219 -            if isinstance(single, dict) and cid in single:    
+      220 -                stats.packs += 1                              
+      221 -                results.append(enforce(single[cid], by_id[cid]
+          -, compute, stats, ctx))                                       
+      222 -                continue                                      
+      223 -            stats.missing.append(cid)                         
+      224 -            if ctx is not None:                               
+      225 -                ctx.degrade("triage", cid, "fallback_result", 
+          -detail=str(single)[:200] if isinstance(single, Exception) else
+          - "missing from output")                                       
+      226 -            results.append(enforce(fallback_result(by_id[cid])
+          -, by_id[cid], compute, stats, ctx))                           
+      227 -    return results, stats                                     
+      228 -                                                              
+      229 -                                                              
+      230 -__all__ = ["PACK_SIZE", "TriageStats", "candidate_card", "enfo
+          -rce", "fallback_result", "ruling_matches", "triage_candidates"
+          -]                                                             
+      136 +__all__ = ["RECRUITER_WORDS", "TriageStats", "enforce", "enfor
+          +ce_all", "ruling_matches"]                                    
+
+⏺ Now the pipeline rewire. Checking what else reads PipelineResult / extraction
+  fields first:
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && grep -rn
+      "extractions\|extract_stats\|\.extract\b\|\"extract\"\|'extract'" digest
+      cli tests --inclu…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && sed -n
+      20,60p digest/cli.py)
+  ⎿  (No output)
+
+⏺ Update(~/Desktop/work/lookup-digest-v2-a-readers/digest/cli.py)
+  ⎿  File must be read first
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Update(~/Desktop/work/lookup-digest-v2-a-readers/digest/cli.py)
+  ⎿  Added 6 lines, removed 3 lines
+      33      s = result.summary
+      34      typer.echo(f"run {s['run_id']}: {s['header']}")
+      35      typer.echo(f"  owner={s['owner_email']} threads={s['threads
+          ']} messages={s['messages']} events={s['events']} notes={s['not
+          es']} tasks={s['tasks']}")
+      36 -    ex, tr, rd, cp, mt = s["extract"], s["triage"], s["reduce"]
+         -, s["compose"], s["materialize"]                               
+      37 -    typer.echo(f"  extractions={s['extractions']} (llm {ex['llm
+         -_calls']}, cached {ex['cached']}, evidence {ex['evidence_valid'
+         -]}/{ex['evidence_checked']})"                                  
+      38 -               f" candidates={s['compute']['candidates']} triag
+         -e_packs={tr['packs']} items={rd['items']} placed={cp['placed']}
+         - cut={cp['cut']}"                                              
+      36 +    rdr, tr, rd, cp, mt = s["read"], s["triage"], s["reduce"], 
+         +s["compose"], s["materialize"]                                 
+      37 +    na = rdr["needs_avery"]                                    
+      38 +    typer.echo(f"  read: {rdr['threads_read']} threads (llm {rd
+         +r['llm_calls']}, cached {rdr['cached']}, failed {rdr['failed']}
+         +) → "                                                          
+      39 +               f"{rdr['findings']} findings (yes {na.get('yes',
+         + 0)} / unsure {na.get('unsure', 0)} / no {na.get('no', 0)}), " 
+      40 +               f"{rdr['citations_dropped']} citations dropped")
+      41 +    typer.echo(f"  candidates={s['compute']['candidates']} floo
+         +r_fixes={tr['fixes']} items={rd['items']} placed={cp['placed']}
+         + cut={cp['cut']}"                                              
+      42                 f" actions={mt['actions']} one_thing={cp['one_th
+          ing']}")
+      43      v = s["verify"]["stats"]
+      44      typer.echo(f"  verify: {len(s['verify']['violations'])} vio
+          lation(s) handled · {v['words']}/{v['budget']} words · "
+
+⏺ Now digest/pipeline.py:
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && python3 -
+      <<'EOF'
+      from pathlib import Path…)  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && python3 -
+      <<'EOF'
+      from pathlib import Path…)
+  ⎿  (No output)
+
+⏺ Two small compose fixes so reader findings render with their own titles (not
+  the about key) in fallback and "Also pending" lines:
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && python3 -
+      <<'EOF'
+      from pathlib import Path…)
+  ⎿  (No output)
+
+⏺ Now the tests. Reading tests/test_a_stages.py to port it from extract+triage
+  to read+enforce:
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && grep -n
+      "other meeting\|nothing to act on" digest/render/__init__.py && grep -h
+      "^From:\|^To:\|^Sub…)
+  ⎿  (No output)
+
+⏺ Adding the ReaderOutput fake to tests/a_fakes.py:
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && python3 -
+      <<'EOF'
+      from pathlib import Path…)
+  ⎿  (No output)
+
+⏺ Now porting tests/test_a_stages.py to the reader stack:
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && python3 -
+      <<'EOF'
+      from pathlib import Path…)
+  ⎿  (No output)
+
+⏺ The fake findings are shorter than v1's, so the 20-word budget never triggered
+  rule 9; tightening the planted budget:
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && sed -i ''
+      's/    tiny_budget = 20/    tiny_budget = 8/' tests/test_a_stages.py && uv
+      run pytest -q…)
+  ⎿  (No output)
+
+⏺ Stage tests green. Checking whether topic_grouper.md is still loaded by the
+  linker before deleting prompts:
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && grep -rn
+      "load_prompt(\|prompts/" digest --include='*.py' | grep -v
+      "^digest/prompts.py" ; grep -rl…)
+  ⎿  (No output)
+
+⏺ topic_grouper.md is still needed since Linker.group_topics uses it and B5's
+  group_findings reuses that logic, so I'll keep it instead of deleting it and
+  flag the conflict. Now checking test references to the other two prompts.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && grep -n
+      "extractor\|triage\b\|\"triage\"\|topic_grouper" tests/test_a_profile.py
+      tests/test_c_*.py…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && sed -n 1,70p
+      tests/test_a_extract.py && cat tests/conftest.py | head -30)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && grep -n
+      "needs Avery's action today AND\|Dispatchability test\|ACTION
+      TAXONOMY\|PRIORITY RUBRIC" sp…)
+  ⎿  (No output)
+
+⏺ Writing tests/test_a_read.py (renderer, thin-index facts, reader stage
+  behaviour, prompt shape + leak check):
+
+⏺ Write(~/Desktop/work/lookup-digest-v2-a-readers/tests/test_a_read.py)
+  ⎿  Wrote 191 lines to ../lookup-digest-v2-a-readers/tests/test_a_read.py
+       1 """Track A · v2: raw-thread renderer, thin-index facts, the thre
+         ad-reader stage (citations checked in code, cache per
+       2 as_of date, degradation), and the reader prompt's shape."""
+       3 import json
+       4 import re
+       6 from types import SimpleNamespace
+       7 from zoneinfo import ZoneInfo
+       8
+       9 import yaml
+      10 from a_fakes import AVERY, FakeClient, fake_llm, msg, thread
+     … +263 lines (ctrl+o to expand)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && uv run
+      pytest -q tests/test_a_read.py 2>&1 | tail -40)
+  ⎿  (No output)
+
+⏺ All 11 reader tests pass. Now tests/test_a_pipeline.py:
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && python3 -
+      <<'EOF'
+      from pathlib import Path…)
+  ⎿  (No output)
+
+⏺ Pipeline tests green. Now deleting the v1 extractor stage and triage prompt
+  (keeping extract/evidence.py), and dead fakes:
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && grep -ln
+      "a_fakes" tests/*.py && grep -n
+      "fake_extractor_output\|fake_triage\|TRIAGE_PLAN\|_DOC_RE\…)  ⎿  No matches found
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && python3 -
+      <<'EOF'
+      from pathlib import Path…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && uv run ruff
+      check --fix digest tests/a_fakes.py tests/test_a_read.py
+      tests/test_a_stages.py tests/t…)
+  ⎿  (No output)
+
+⏺ Ruff's autofix touched digest/compute/candidates.py, which is Track B's file.
+  Reverting it:
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && git diff
+      digest/compute/candidates.py | head -20 && git checkout
+      digest/compute/candidates.py && gi…)
+  ⎿  (No output)
+
+⏺ The suite is passing again after reverting the import-order change. Before
+  running the full ~175-thread pass, I'll do a live sanity check on just the
+  five checkpoint threads to verify reader output quality and per-call cost.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && test -f .env
+      && grep -c "OPENROUTER_API_KEY=" .env; cat >
+      /private/tmp/claude-501/-Users-shubham-De…)
+  ⎿  (No output)
+  ⎿  (timeout 10m)
+
+⏺ The five-thread test looks solid, correctly flagging the cap-table P0, the
+  calendar/email conflict, daycare closure, incident escalation, and splitting
+  the Tomás thread into two issues, at $0.0077 for 5 threads (~$0.27 for all
+  175). Launching the full Thursday run in the background now.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && uv run
+      digest run --world dev --as-of 2026-09-24T06:00 >
+      /private/tmp/claude-501/-Users-shubham-Des…)
+  ⎿  Running in the background (↓ to manage)
+
+⏺ While that runs, pulling v1's triage for the five threads from runs/examples
+  on main for the side-by-side:
+
+⏺ Bash(ls runs/examples/dev/2026-09-24T06-00/ && python3 - <<'EOF'
+      import json…)
+  ⎿  (No output)
+
+⏺ I see the v1 triage shows Avery already sent the pricing-deck notes on Sep 18
+  in a different thread, which explains why my reader flagged it as overdue—it
+  only had access to this thread. Let me verify this against the underlying
+  data.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && ls
+      data/dev/inbox | grep -i "2026-09-1[6-9].*\(avery\|tomas\)" ; grep -l -i
+      "pricing" data/dev/inbo…)
+  ⎿  (No output)
+
+⏺ The promise was delivered in a separate thread ("Notes on the pricing deck",
+  Sep 18), a cross-thread trap. Checking whether v1's final page got this right:
+
+  Searched for 1 pattern (ctrl+o to expand)
+
+⏺ v1 also missed the pricing-deck promise, so this is a pre-existing gap rather
+  than a new regression—it highlights the need to retrieve other threads
+  involving the same people. Now checking the full run.
+
+⏺ Bash(sleep 60; cat /private/tmp/claude-501/-Users-shubham-Desktop-work-lookup-
+      digest/c491de9d-5046-48fd-bb0d-cf058c422ac9/scratchpad/devrun.log; ls
+      /Users/shubham/De…)
+  ⎿  Error: Blocked: sleep 60 followed by: cat
+     /private/tmp/claude-501/-Users-shubham-Desktop-work-lookup-digest/c491de9d-
+     5046-48fd-bb0d-cf058c422ac9/scratchpad/devrun.log ls
+     /Users/shubham/Desktop/work/lookup-digest-v2-a-readers/runs/dev/ ls /Users/
+     shubham/Desktop/work/lookup-digest-v2-a-readers/.cache/llm/thread_reader wc
+     -l. To wait for a condition, use Monitor with an until-loop (e.g. `until
+     <check>; do sleep 2; done`). To wait for a command you started, use
+     run_in_background: true. Do not chain shorter sleeps to work around this
+     block.
+
+  Listed 1 directory (ctrl+o to expand)
+
+⏺ 50 of 175 threads read so far. Meanwhile, drafting the checkpoint generator
+  (raw thread, v2 findings and v1 triage for each of the five threads):
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Bash(cd /private/tmp/claude-501/-Users-shubham-Desktop-work-lookup-digest/c491
+      de9d-5046-48fd-bb0d-cf058c422ac9/scratchpad && find runs -name
+      "degradations.jsonl" -o…)
+  ⎿  (No output)
+
+⏺ 73/175. Waiting on the run to finish:
+
+⏺ I'll set up a one-call experiment: re-reading the Tomás thread alongside the
+  Sep 18 "notes on the pricing deck" thread to test whether cross-thread
+  retrieval corrects the false "overdue" call.
+
+  Listed 1 directory (ctrl+o to expand)
+
+⏺ 101/175 read. I'll wait for the run's completion notification before writing
+  the checkpoint, since its numbers and the five threads' page placement come
+  from that run.
+
+⏺ Bash(until grep -q "^exit" /private/tmp/claude-501/-Users-shubham-Desktop-work
+      -lookup-digest/c491de9d-5046-48fd-bb0d-cf058c422ac9/scratchpad/devrun.log;
+      do sleep 5;…)
+  ⎿  (No output)
+  ⎿  (timeout 10m)
+
+⏺ Background command "Run full dev Thursday digest from readers" completed (exit
+code 0)
+
+⏺ Full Thursday run passed: 175 threads read, 67 findings, verify clean (0
+  violations, 296/350 words, 13/13 items cited), $0.21. Reading the digest:
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && cat
+      runs/dev/2026-09-24T06-00/digest.md; cat
+      runs/dev/2026-09-24T06-00/degradations.jsonl | python3…)
+  ⎿  (No output)
+
+⏺ Verification passed and findings.jsonl is written, but I've spotted two
+  compose-stage issues to flag: the draft is addressed to Nadia despite the
+  action saying "Draft to Jordan," and the Tomás pricing-deck false positive is
+  still lingering in Also pending. Now running the one-call retrieval experiment
+  on the Tomás thread.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && uv run
+      python /private/tmp/claude-501/-Users-shubham-Desktop-work-lookup-digest/c
+      491de9d-5046-48fd-…)
+  ⎿  (No output)
+  ⎿  (timeout 5m)
+
+⏺ With the Sep 18 thread included, the reader correctly drops the false "overdue
+  feedback" finding and keeps only the real open item (the roundtable ask, P2),
+  confirming the fix belongs in retrieval (B2), not the reader. Now generating
+  the checkpoint sections.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && uv run
+      python /private/tmp/claude-501/-Users-shubham-Desktop-work-lookup-digest/c
+      491de9d-5046-48fd-…)
+  ⎿  (No output)
+
+⏺ Now some run-level numbers for the checkpoint (v2 vs v1 on the same Thursday):
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && python3 -
+      <<'EOF'
+      import json, collections…)
+  ⎿  (No output)
+
+⏺ 15 P0s after the code floors is too many for one morning. Checking v1's count
+  on the same day for comparison:
+
+⏺ Bash(python3 - <<'EOF'
+      import json, collections…)
+  ⎿  (No output)
+
+⏺ v1 had 17 P0 items on this day and v2 has 13, so the raise-driven P0 inflation
+  is inherited, not new. Checking the generated Tomás section, then writing the
+  checkpoint doc:
+
+⏺ Bash(sed -n '/^## 5\./,$p' /private/tmp/claude-501/-Users-shubham-Desktop-work
+      -lookup-digest/c491de9d-5046-48fd-bb0d-cf058c422ac9/scratchpad/sections.md
+      | grep -v "^…)
+  ⎿  (No output)
+
+⏺ Confirmed both Tomás findings got merged into item i15, since reduce combines
+  everything from the same thread—folding the separate roundtable ask into the
+  false feedback item. Now writing up the checkpoint doc.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers &&
+      SP=/private/tmp/claude-501/-Users-shubham-Desktop-work-lookup-digest/c491d
+      e9d-5046-48fd-bb0d-cf058c…)
+  ⎿  (No output)
+
+⏺ The compose stage rewrote the reply brief to "Send Nadia a factual status
+  update…" and the materializer followed it. Correcting problem #3 to name the
+  right stage:
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && python3 -
+      <<'EOF'
+      from pathlib import Path…)
+  ⎿  (No output)
+
+⏺ Now the track status file, then tests + lint + commit:
+
+⏺ Write(~/Desktop/work/lookup-digest-v2-a-readers/docs/handoffs/v2-A-STATUS.md)
+  ⎿  Wrote 43 lines to
+     ../lookup-digest-v2-a-readers/docs/handoffs/v2-A-STATUS.md
+       1 # v2 · Track A · status
+       3 **2026-09-29 · stopped at the P2 gate.** Review: `docs/handoffs/
+       4 triage, plus seven problems that need a decision). P3–P5 wait fo
+         r Shubham.
+       6 ## Landed (branch `v2-a-readers`)
+       8 | Deliverable | Where | Notes |
+      10 | A1 raw-thread renderer | `digest/read/render.py` | every messa
+         ge oldest first with `msg:<id>`, name + email, PT ISO time with
+         (citations may quote the full one), forwards attributed to the o
+         bodies defused; `world_source_text` backs citations of retriev
+     … +79 lines (ctrl+o to expand)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && uv run
+      pytest -q 2>&1 | tail -2 && uv run ruff check digest/read
+      digest/pipeline.py digest/compute/…)
+  ⎿  (No output)
+
+⏺ Suite green, lint clean, leak grep clean across all prompts, profile/
+  untouched. Committing my paths on v2-a-readers:
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && uv run
+      pytest -q 2>&1 | grep -E "passed|failed" ; git add digest/read
+      prompts/thread_reader.md dige…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers && uv run
+      pytest -q -p no:cacheprovider >
+      /private/tmp/claude-501/-Users-shubham-Desktop-work-lookup-d…)
+  ⎿  (No output)
+
+⏺ Track A v2 has reached the P2 gate and stopped for your review. Everything is
+  committed on v2-a-readers (9101113); nothing is merged to main. The review doc
+  is v2-A-checkpoint.md
+  (../lookup-digest-v2-a-readers/docs/handoffs/v2-A-checkpoint.md).
+
+  Gate: digest run --world dev --as-of 2026-09-24T06:00 builds the digest from
+  the thread readers alone.
+  - 175 threads read, 67 findings, 13 items on the page.
+  - Verify found 0 violations; all 13 items are cited.
+  - findings.jsonl is written.
+  - The run costs $0.21 cold ($0.205 of that is the readers, about $0.0012 per
+    thread); v1 cost $0.07 on the same day.
+  - 341 tests pass.
+
+  The five threads, reader vs v1 triage:
+
+  ┌─────────────────┬───────────────────────────────────────────────────────┐
+  │     Thread      │                        Result                         │
+  ├─────────────────┼───────────────────────────────────────────────────────┤
+  │ Marcus, cap     │ Same P0 call. One finding instead of v1's three, and  │
+  │ table           │ it states the consequence (Marcus's Thursday          │
+  │                 │ partnership meeting).                                 │
+  ├─────────────────┼───────────────────────────────────────────────────────┤
+  │ Jordan, Veritas │ Same P0. The proposed action follows the thread       │
+  │  incident       │ ("reply to Jordan") instead of v1's "call Veritas at  │
+  │                 │ 8:00", a time nobody wrote.                           │
+  ├─────────────────┼───────────────────────────────────────────────────────┤
+  │ Daycare closure │ Same P0, earned through the family: tag.              │
+  ├─────────────────┼───────────────────────────────────────────────────────┤
+  │ Marcus,         │ Same P0. Found by reading the thread against the      │
+  │ diligence call  │ calendar, with no schedule schema.                    │
+  │ moved           │                                                       │
+  ├─────────────────┼───────────────────────────────────────────────────────┤
+  │ Tomás, pricing  │ Wrong, as v1 also was: it flags the feedback as       │
+  │ deck            │ overdue, but it went out on Sep 18 in a different     │
+  │                 │ thread.                                               │
+  └─────────────────┴───────────────────────────────────────────────────────┘
+
+  On the Tomás thread I ran one extra reader call with the Sep 18 thread added
+  to its context. The false finding disappeared and only the real open ask (the
+  October roundtable, P2) remained. The problem is what the reader is given, not
+  how it reads.
+
+  Decisions I need from you:
+  1. Retrieval (Track B's module): a reader should also get other threads with
+     the same people, ranked by shared subject words. The spec currently says
+     "the previous two threads", which would miss the Sep 18 one.
+  2. Merging: reduce joins every finding from one thread into a single item, so
+     the separate roundtable ask got folded into the feedback item. I suggest
+     joining only findings that cite the same text (as the spec's merge section
+     says) and leaving the rest to B's linker-based grouping. That's my change,
+     at P5.
+  3. One thing's draft: it's labelled "Draft to Jordan" but addressed to Nadia,
+     the customer. Compose rewrote the brief and the materializer followed it.
+     At P5 I'd give the materializer the raw message it's answering, and add a
+     code check that the draft's greeting names the recipient.
+  4. Handoff conflict: I kept topic_grouper.md even though the handoff says to
+     delete it. The linker loads it, and B's merge step reuses that code.
+
+  Two more P5 items are in the doc: the "third time flagged" count may break
+  because reader tags can differ from day to day, and the stale-inbox warning
+  isn't added by code to reader items (the readers do write their own caveat).
+
+  P0 is still generous during the raise (13 P0 items vs 17 in v1). That comes
+  from the profile making Marcus, Ben and their firms P0 while the raise is on.
+
+  Please run /export sessions/A-v2_P2.txt, grep it for
+  github_pat_|sk-or-|OPENROUTER_API_KEY=, then commit it. I can't run /export
+  myself.

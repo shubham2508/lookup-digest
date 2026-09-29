@@ -1,0 +1,2401 @@
+
+❯ Track C, v2
+
+  Listed 1 directory (ctrl+o to expand)
+
+⏺ Bash(cat docs/handoffs/v2-C-eval.md && git worktree list && ls ../ && ls
+      docs/handoffs/)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && git status
+      --short | head -20 && git log --oneline -5 && ls && ls eval eval/scorer
+      tests | head -100 &…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && sed -n '1,400p'
+      specs/PIVOT_SPEC.md)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && cat
+      MIGRATION_PLAN.md)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && cat
+      digest/findings.py && grep -n "class Finding" -A 80 digest/schemas.py |
+      head -160)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && cat
+      eval/scorer/artifacts.py eval/scorer/extraction.py)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && cat
+      eval/scorer/compute.py eval/scorer/triage.py eval/scorer/attribution.py)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && cat
+      eval/scorer/assertions.py)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && cat
+      eval/scorer/runner.py eval/scorer/common.py)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && cat
+      eval/report.py)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && cat eval/cli.py
+      | head -250 && wc -l eval/cli.py)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && cat
+      eval/manifest_schema.py)
+  ⎿  (No output)
+
+⏺ Reading the Track C v2 handoff and the existing scorer before changing
+  anything. Next: assertions, match, and the fake-run fixtures.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && sed -n '1,200p'
+      eval/scorer/assertions.py)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && grep -n
+      "candidate\|extraction\|ex_misses\|def check_\|def _"
+      eval/scorer/assertions.py | sed -n '1,20…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && sed -n
+      '200,300p;470,640p' eval/scorer/assertions.py)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && cat
+      eval/scorer/match.py && sed -n '1,60p' eval/scorer/digest_metrics.py)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && cat
+      tests/fixtures/mini_runs/make_fake_run.py | head -150 && wc -l
+      tests/fixtures/mini_runs/make_fake_…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && sed -n
+      '150,480p' tests/fixtures/mini_runs/make_fake_run.py)  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && cat
+      tests/fixtures/mini/manifest.yaml | head -400 && wc -l
+      tests/fixtures/mini/manifest.yaml)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && ls -la
+      eval/manifests/ && uv run python -c "
+      from eval.manifest_schema import load_manifest…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && uv run python
+      -c "
+      from eval.manifest_schema import load_manifest…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && uv run python
+      -c "
+      from eval.manifest_schema import load_manifest…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && uv run python
+      -c "
+      from eval.manifest_schema import load_manifest…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && uv run python
+      -c "
+      from eval.manifest_schema import load_manifest…)
+  ⎿  (No output)
+
+⏺ I'm working through the truth rule against the actual dev labels, and found
+  some conflicts—must-not threads with the ball on Avery and per-day timing
+  traps that need handling. Next I'll check what hard-rule checks already exist.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && grep -rn
+      "never_draft\|suspicious\|hard.rule\|hard_rule" eval/scorer/*.py eval/*.py
+      | grep -v "^eval/s…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && grep -n
+      "ARTIFACTS" -A 30 digest/runs.py | head -50; grep -rn "findings"
+      digest/pipeline.py | head; ca…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && sed -n '1,200p'
+      docs/handoffs/v2-B-spine.md)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && tail -5
+      docs/handoffs/v2-C-eval.md; grep -n "^## \|^### \|^#[0-9]\|^| *[0-9]"
+      OPEN_QUESTIONS.md | tail…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && git log
+      --oneline -3 && git status --short | head && git -C
+      /Users/shubham/Desktop/work/lookup-digest…)
+  ⎿  (No output)
+
+⏺ Worktree was fast-forwarded by the orchestrator; main has new rulings #19/#20
+  on the judge. Reading those before building C5.
+
+⏺ Bash(git show main:OPEN_QUESTIONS.md | sed -n '1,60p')
+  ⎿  (No output)
+
+⏺ Bash(ls eval/reports/ && sed -n '1,40p' eval/reports/dev_2026-09-29.md && grep
+      -n "## 5" -A 12 eval/reports/dev_2026-09-29.md | head -30 && sed -n
+      '1,30p' eval/repor…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && wc -l
+      eval/judge/*.py && sed -n '1,400p' eval/judge/judge.py)
+  ⎿  (No output)
+
+⏺ Plan is set: I'll build new reader/sweep/net diagnostics modules, the v2
+  attribution chain, an assertion remap, a v1/v2/baseline comparison table, and
+  fake runs using findings.jsonl. Now I'll map every place that references the
+  old stage names or extractions.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && grep -rn
+      "extraction\|\"compute\"\|'compute'\|\"triage\"\|\"materializer\"\|stages\
+      [\|stages.get\|STAG…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && grep -rln
+      "extraction\|score_compute\|score_triage\|\"compute\"\|\"triage\"\|materia
+      lizer\|extractions…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && sed -n
+      '80,117p' tests/c_helpers.py && cat tests/test_c_metrics.py
+      tests/test_c_attribution.py && uv r…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && grep -n
+      "stage\|extraction\|compute\|triage\|materializer\|candidate"
+      tests/test_c_assertions.py tests…)
+  ⎿  (No output)
+⏺ Now checking how the manifest's planted calendar/notes traps can be tied to
+  sources, so sweep recall matches on real evidence rather than loose keys.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && uv run python
+      -c "
+      from eval.manifest_schema import load_manifest…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && grep -rn
+      "f\"event:\|'event:\|\"event:" digest/ | head -10; grep -rn "source_id"
+      digest/normalize/cale…)
+  ⎿  (No output)
+
+⏺ Starting the code changes: event-id resolution in the source index first, then
+  run-view findings loading.
+
+⏺ Update(~/Desktop/work/lookup-digest-v2-c-eval/eval/scorer/match.py)
+  ⎿  File must be read first
+
+⏺ Update(~/Desktop/work/lookup-digest-v2-c-eval/eval/scorer/match.py)
+  ⎿  File must be read first
+
+⏺ Update(~/Desktop/work/lookup-digest-v2-c-eval/eval/scorer/match.py)
+  ⎿  File must be read first
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && python3 -
+      <<'EOF'
+      from pathlib import Path…)
+  ⎿  (No output)
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Update(~/Desktop/work/lookup-digest-v2-c-eval/eval/scorer/artifacts.py)
+  ⎿  Added 11 lines, removed 2 lines
+       7  Item ids in compose.json are reduce ids; if reduce.json is abse
+          nt, they are looked up as candidate ids. A run with
+       8  a digest.md but no compose.json (the naive baseline, eval.md §8
+          ) is scored from the markdown alone
+       9  (`markdown_view.py`).
+      10 +                                                               
+      11 +v2 (PIVOT_SPEC §4): `findings.jsonl` holds every Finding (reade
+         +rs, sweeps, safety nets, including `needs_avery: no`)          
+      12 +plus the code-set `candidate_id`, `thread_id`, `rescued_by_safe
+         +ty_net`. Each finding becomes a `Signal`, the unit             
+      13 +the diagnostics, the candidate-kind assertions and attribution 
+         +match on; a candidate with no finding behind it (a             
+      14 +run without findings.jsonl) becomes a Signal too, so older fixt
+         +ures still score.                                              
+      15  """
+      16  from __future__ import annotations
+      17  
+     ...
+      21  from pathlib import Path
+      22  from typing import Any
+      23  
+      24 +from digest.findings import about_key                          
+      25  from digest.runs import ARTIFACTS
+      26  
+      27  from .digest_md import ParsedDigest, parse_digest
+      22 -from .match import SourceIndex, evidence_refs, max_priority    
+      28 +from .match import SourceIndex, evidence_refs, majority_source,
+         + max_priority                                                  
+      29  
+      24 -OPTIONAL_ARTIFACTS = {"trace", "links", "findings"}  # trace: d
+         -ebug only; findings: v2 (Track C makes it required with the rea
+         -der diagnostics)                                               
+      30 +OPTIONAL_ARTIFACTS = {"trace", "links", "extractions", "suggest
+         +ed_tasks"}  # trace: debug only; extractions: v1 only          
+      31  DRAFT_TYPES = ("reply", "forward_delegate", "decide", "message_
+          person")
+      32 +# the stage a finding's origin belongs to (attribution chain re
+         +ad → sweep → net → merge → compose → materialize → verify)     
+      33 +ORIGIN_STAGE = {"thread_reader": "read", "calendar_sweep": "swe
+         +ep", "notes_tasks_sweep": "sweep", "news_sweep": "sweep",      
+      34 +                "safety_net": "net"}                           
+      35  
+      36  
+      37  @dataclass
+
+⏺ Update(~/Desktop/work/lookup-digest-v2-c-eval/eval/scorer/artifacts.py)
+  ⎿  Added 1 line, removed 1 line
+      27  from .digest_md import ParsedDigest, parse_digest
+      28  from .match import SourceIndex, evidence_refs, majority_source,
+           max_priority
+      29  
+      30 -OPTIONAL_ARTIFACTS = {"trace", "links", "extractions", "suggest
+         -ed_tasks"}  # trace: debug only; extractions: v1 only          
+      30 +OPTIONAL_ARTIFACTS = {"trace", "links", "extractions"}  # trace
+         +: debug only; extractions: v1 only (gone in v2)                
+      31  DRAFT_TYPES = ("reply", "forward_delegate", "decide", "message_
+          person")
+      32  # the stage a finding's origin belongs to (attribution chain re
+          ad → sweep → net → merge → compose → materialize → verify)
+      33  ORIGIN_STAGE = {"thread_reader": "read", "calendar_sweep": "swe
+          ep", "notes_tasks_sweep": "sweep", "news_sweep": "sweep",
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Adding the Signal view (one per finding) to the run loader now.
+
+⏺ Update(~/Desktop/work/lookup-digest-v2-c-eval/eval/scorer/artifacts.py)
+  ⎿  Added 29 lines
+       72          return [a.get("type") for a in self.actions if a.get("
+           type")]
+       73  
+       74  
+       75 +@dataclass                                                    
+       76 +class Signal:                                                 
+       77 +    """One thing the pipeline noticed: a Finding (v2), or a ca
+          +ndidate that has no finding behind it."""                     
+       78 +    artifact: str              # findings | candidates        
+       79 +    row: Row                                                  
+       80 +    type: str                  # Finding.kind (safety nets kee
+          +p the v1 rule name) or Candidate.type                         
+       81 +    origin: str | None         # thread_reader | calendar_swee
+          +p | notes_tasks_sweep | news_sweep | safety_net               
+       82 +    title: str                                                
+       83 +    abouts: list[str]          # about keys (tags normalized a
+          +s digest/findings.py does, plus the candidate's key)          
+       84 +    sources: set[str]          # manifest source ids its citat
+          +ions (and, for a reader, its thread) resolve to               
+       85 +    entities: list[str]                                       
+       86 +    needs_avery: str           # yes | unsure | no            
+       87 +    live: bool                 # reaches the digest: yes, or u
+          +nsure with a question card (findings.to_triage)               
+       88 +    priority: str | None                                      
+       89 +    actions: list[str]                                        
+       90 +    candidate_id: str | None                                  
+       91 +    thread: str | None         # the manifest thread a reader 
+          +read                                                          
+       92 +    suspicious: bool                                          
+       93 +    contradiction: bool                                       
+       94 +    rescued: bool                                             
+       95 +                                                              
+       96 +    @property                                                 
+       97 +    def stage(self) -> str:                                   
+       98 +        return ORIGIN_STAGE.get(self.origin or "", "read")    
+       99 +                                                              
+      100 +    def label(self) -> str:                                   
+      101 +        return f"{self.origin or self.artifact}:{self.type} '{
+          +self.title[:60]}' ({self.needs_avery}, {self.priority})"      
+      102 +                                                              
+      103 +                                                              
+      104  class RunView:
+      105      """Everything the scorer knows about one run directory."""
+      106  
+
+⏺ Update(~/Desktop/work/lookup-digest-v2-c-eval/eval/scorer/artifacts.py)
+  ⎿  Added 1 line, removed 1 line
+      110          self.index = index
+      111          self.repo_root = repo_root
+      112          self.missing: list[str] = [a for a, f in ARTIFACTS.ite
+           ms() if a not in OPTIONAL_ARTIFACTS and not (self.dir / f).exi
+           sts()]
+      113 -        self.extractions = self._jsonl("extractions")         
+      113 +        self.findings = self._jsonl("findings")               
+      114          self.candidates = self._jsonl("candidates")
+      115          self.triage = self._jsonl("triage")
+      116          self.actions_rows = self._jsonl("actions")
+
+⏺ Update(~/Desktop/work/lookup-digest-v2-c-eval/eval/scorer/artifacts.py)
+  ⎿  Added 5 lines
+      135          for r in self.triage:
+      136              self._triage_by_cand.setdefault(r.data.get("candid
+           ate_id"), []).append(r)
+      137          self._reduce_by_id = {it.get("id"): it for it in self.
+           reduce.get("items", []) if isinstance(it, dict)}
+      138 +        self.signals: list[Signal] = self._build_signals()    
+      139 +        self._signals_by_cand: dict[str, list[Signal]] = {}   
+      140 +        for s in self.signals:                                
+      141 +            if s.candidate_id:                                
+      142 +                self._signals_by_cand.setdefault(s.candidate_i
+          +d, []).append(s)                                              
+      143          # baseline runs (and runs with no pipeline artifacts a
+           t all) are scored from digest.md; a pipeline run that
+      144          # lost compose.json is not: its missing items stay mis
+           ses attributed to compose
+      145          is_baseline = bool(self.run.get("baseline")) or self.d
+           ir.name.endswith("baseline") or "+baseline" in self.dir.name
+
+⏺ Update(~/Desktop/work/lookup-digest-v2-c-eval/eval/scorer/artifacts.py)
+  ⎿  Added 55 lines, removed 2 lines
+      190                  return c
+      191          return None
+      192  
+      193 -    def extraction_sources(self, row: Row) -> set[str]:       
+      194 -        return self.index.resolve_all(evidence_refs(row.data) 
+          -+ [row.data.get("source_id", "")])                            
+      193 +    def signals_for(self, cid: str) -> list[Signal]:          
+      194 +        return self._signals_by_cand.get(cid, [])             
+      195  
+      196 +    def signal_link(self, s: Signal) -> str:                  
+      197 +        return self.link(s.artifact, s.row.line)              
+      198 +                                                              
+      199 +    def item_signals(self, item: RenderedItem) -> list[Signal]
+          +:                                                             
+      200 +        return [s for c in item.candidate_ids for s in self.si
+          +gnals_for(c)]                                                 
+      201 +                                                              
+      202 +    # --------------------------------------------------------
+          +---------- findings → signals                                 
+      203 +    def _build_signals(self) -> list[Signal]:                 
+      204 +        out: list[Signal] = []                                
+      205 +        covered: set[str] = set()                             
+      206 +        for r in self.findings:                               
+      207 +            d = r.data                                        
+      208 +            cid = d.get("candidate_id")                       
+      209 +            cand = self.candidate(cid) if cid else None       
+      210 +            refs = evidence_refs(d.get("citations") or [])    
+      211 +            thread = self.index.resolve(d.get("thread_id")) if
+          + d.get("thread_id") else None                                 
+      212 +            if thread is None and d.get("origin") == "thread_r
+          +eader":                                                       
+      213 +                thread = majority_source(self.index, refs, kin
+          +d="thread")                                                   
+      214 +            abouts = [about_key(t, d.get("title", "")) for t i
+          +n d.get("about") or [] if t]                                  
+      215 +            if cand and cand.data.get("about"):               
+      216 +                abouts.append(cand.data["about"])             
+      217 +            needs = d.get("needs_avery") or "yes"             
+      218 +            out.append(Signal(                                
+      219 +                artifact="findings", row=r, type=d.get("kind")
+          + or "", origin=d.get("origin"), title=d.get("title") or "",   
+      220 +                abouts=abouts, sources=self.index.resolve_all(
+          +refs) | ({thread} if thread else set()),                      
+      221 +                entities=[str(e) for e in d.get("entities") or
+          + []], needs_avery=needs,                                      
+      222 +                live=needs == "yes" or (needs == "unsure" and 
+          +bool(d.get("ambiguity"))), priority=d.get("priority"),        
+      223 +                actions=[a.get("type") for a in d.get("propose
+          +d_actions") or [] if a.get("type")], candidate_id=cid,        
+      224 +                thread=thread, suspicious=bool(d.get("suspicio
+          +us_instructions")), contradiction=bool(d.get("contradictions")
+          +),                                                            
+      225 +                rescued=bool(d.get("rescued_by_safety_net"))))
+      226 +            if cid:                                           
+      227 +                covered.add(cid)                              
+      228 +        for r in self.candidates:  # candidates with no findin
+          +g behind them (runs without findings.jsonl)                   
+      229 +            d = r.data                                        
+      230 +            cid = d.get("candidate_id")                       
+      231 +            if cid in covered:                                
+      232 +                continue                                      
+      233 +            facts = d.get("facts") or {}                      
+      234 +            tri = [t.data for t in self.triage_for(cid)]      
+      235 +            refs = [e.get("source_id", "") for e in d.get("evi
+          +dence") or []] + list(d.get("context_refs") or [])            
+      236 +            needs = facts.get("needs_avery") or "yes"         
+      237 +            out.append(Signal(                                
+      238 +                artifact="candidates", row=r, type=d.get("type
+          +") or "", origin=facts.get("origin"),                         
+      239 +                title=facts.get("title") or d.get("about") or 
+          +"", abouts=[k for k in [d.get("about"), *facts.get("about_tags
+          +", [])] if k],                                                
+      240 +                sources=self.index.resolve_all(refs), entities
+          +=[str(e) for e in d.get("entities") or []], needs_avery=needs,
+      241 +                live=needs != "no", priority=max_priority(t.ge
+          +t("priority") for t in tri if t.get("include")),              
+      242 +                actions=[a.get("type") for t in tri for a in t
+          +.get("proposed_actions", []) if a.get("type")], candidate_id=c
+          +id,                                                           
+      243 +                thread=facts.get("thread_id") and self.index.r
+          +esolve(facts["thread_id"]),                                   
+      244 +                suspicious=d.get("type") == "suspicious_conten
+          +t" or bool(facts.get("instructions")),                        
+      245 +                contradiction=d.get("type") == "contradiction"
+          + or bool(facts.get("contradictions")),                        
+      246 +                rescued=bool(facts.get("rescued_by_safety_net"
+          +))))                                                          
+      247 +        return out                                            
+      248 +                                                              
+      249      # --------------------------------------------------------
+           ---------- the rendered digest
+      250      def _item_record(self, item_id: str) -> dict:
+      251          """reduce item, or a stand-in built from the candidate
+            + its triage result."""
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && python3 -
+      <<'EOF'
+      from pathlib import Path…)
+  ⎿  (No output)
+
+⏺ Now rewriting the selector half of common.py to match on signals (findings)
+  instead of candidates/extractions.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && python3 -
+      <<'EOF'
+      from pathlib import Path…)
+  ⎿  Done
+
+⏺ Now the v2 attribution chain (read → sweep → net → merge → compose →
+  materialize → verify).
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Write(~/Desktop/work/lookup-digest-v2-c-eval/eval/scorer/attribution.py)
+  ⎿  Added 91 lines, removed 60 lines
+       1 -"""Stage attribution (eval.md §1, DESIGN_LOG §10.2): every miss
+         - is pinned to the first stage that lost it.                    
+       1 +"""Stage attribution (eval.md §1, DESIGN_LOG §10.2, PIVOT_SPEC 
+         +§6): every miss is pinned to the first stage that lost it.     
+       2  
+       3 -Chain for an expected item: extraction → compute → triage → com
+         -pose (incl. reduce and verify) → materializer.                 
+       3 +v2 chain for an expected item: read → sweep → net → merge → com
+         +pose → materialize → verify.                                   
+       4 +                                                               
+       5 +- Nobody noticed it: the stage that should have. A thread's rea
+         +der (`read`); a note, task, event or newsletter's              
+       6 +  sweep (`sweep`); an automated message's safety net (`net`; re
+         +aders read human threads only).                                
+       7 +- Noticed but not surfaced, or surfaced wrong (needs_avery, pri
+         +ority, action, section): the stage of the finding's            
+       8 +  origin (reader → read, sweeps → sweep, safety net → net). Whe
+         +n the finding was right and the code floors                    
+       9 +  (triage.enforce: P0 earned, suspicious never P0, never_draft)
+         + changed it, `net` (the code between findings and merge).      
+      10 +- Surfaced but not on the page: `verify` if verify dropped it, 
+         +`merge` if reduce folded it into another item or lost          
+      11 +  it, `compose` if reduce kept it and compose did not place it 
+         +(or placed it wrong).                                          
+      12 +- On the page with the wrong action: `compose` (final actions) 
+         +or `materialize` (the rendered action).                        
+      13  Markdown-only runs (the naive baseline) are one call, so their 
+          misses are attributed to `baseline`.
+      14  
+       6 -- missing expected item / wrong property: walk the chain and st
+         -op at the first artifact that no longer carries it.            
+       7 -- unwanted item (should be absent): the stage that introduced i
+         -t. A candidate of a code-threshold type the manifest           
+       8 -  does not expect that day is compute's error (e.g. S3 quiet at
+         - 2 business days); otherwise triage, whose job is              
+       9 -  to filter what compute proposes.                             
+      15 +Unwanted item (should be absent): a safety net that fired on a 
+         +day the answer key does not expect it → `net`;                 
+      16 +otherwise the stage of the finding that said it needs Avery.   
+      17  """
+      18  from __future__ import annotations
+      19  
+     ...
+      21  
+      22  from eval.manifest_schema import Manifest
+      23  
+      17 -from .artifacts import RunView                                 
+      18 -from .common import candidates_for_expected, claimed_abouts, ex
+         -tractions_for, select_candidates, select_items                 
+      19 -from .match import about_match, type_matches                   
+      20 -from .triage import triage_outcome, triage_rows_for            
+      24 +from .artifacts import Signal, RunView                         
+      25 +from .common import claimed_abouts, select_items, signal_is_typ
+         +e, signals_for_expected                                        
+      26 +from .match import PRIORITY_ORDER, about_match, type_matches   
+      27 +from .triage import triage_outcome                             
+      28  
+      22 -THRESHOLD_TYPES = ("quiet_thread", "commitment_due", "commitmen
+         -t_overdue", "hiring_stall", "recruiter_pattern",               
+      23 -                   "cadence_drop", "calendar_conflict", "obliga
+         -tion_cadence", "task_due", "declined_meeting",                 
+      24 -                   "commitment_not_in_tasks")                  
+      29 +# v1 code-threshold types: a finding-less candidate of one of t
+         +hese that the day does not expect is a net's error             
+      30 +THRESHOLD_TYPES = ("quiet_thread", "reply_owed", "commitment_du
+         +e", "commitment_overdue", "hiring_stall",                      
+      31 +                   "recruiter_pattern", "cadence_drop", "calend
+         +ar_conflict", "obligation_cadence", "task_due",                
+      32 +                   "declined_meeting", "commitment_not_in_tasks
+         +")                                                             
+      33 +_ORIGIN_ORDER = {"thread_reader": 0, "calendar_sweep": 1, "note
+         +s_tasks_sweep": 1, "news_sweep": 1, "safety_net": 2}           
+      34  
+      35  
+      36  @dataclass
+     ...
+       40      links: list[str] = field(default_factory=list)
+       41  
+       42  
+       43 +def lead_signal(signals: list[Signal]) -> Signal | None:      
+       44 +    """The finding to blame first: a reader before a sweep bef
+          +ore a net, then the highest priority."""                      
+       45 +    return min(signals, key=lambda s: (_ORIGIN_ORDER.get(s.ori
+          +gin or "", 0), PRIORITY_ORDER.get(s.priority or "", 9)),      
+       46 +               default=None)                                  
+       47 +                                                              
+       48 +                                                              
+       49 +def producer_stage(view: RunView, about: str | None, cites: li
+          +st[str]) -> str:                                              
+       50 +    """The stage that should have noticed an expected item tha
+          +t no finding covers."""                                       
+       51 +    kinds = {view.index.kind_of(s) for s in cites}            
+       52 +    if "thread" in kinds:                                     
+       53 +        return "read"                                         
+       54 +    if kinds & {"note", "task", "event", "newsletter"}:       
+       55 +        return "sweep"                                        
+       56 +    if "automated" in kinds:                                  
+       57 +        return "net"                                          
+       58 +    return "read"                                             
+       59 +                                                              
+       60 +                                                              
+       61  def attribute_missing(view: RunView, manifest: Manifest, about
+           : str | None, cites_any: list[str] | None = None,
+       62                        *, priority: list[str] | str | None = No
+           ne, section: str | None = None,
+       36 -                      action: str | None = None, extraction_mi
+          -sses: dict[str, list] | None = None) -> Attribution:          
+       63 +                      action: str | None = None) -> Attributio
+          +n:                                                            
+       64      """Why an expected item (or one of its properties) did not
+            make it into the digest."""
+       65      if view.markdown_only:  # the naive baseline is one call: 
+           there are no stages to blame
+       66          return Attribution("baseline", "not in the baseline's 
+           digest.md as expected", [view.link("digest")])
+       67      cites = list(cites_any or [])
+       68      claimed = claimed_abouts(manifest, view.day, about)
+       42 -    ex_rows = extractions_for(view, set(cites), None if cites 
+          -else about)                                                   
+       43 -    if cites and not ex_rows:                                 
+       44 -        return Attribution("extraction", f"no extraction for {
+          -cites}", [view.link("extractions")])                          
+       45 -    if extraction_misses:                                     
+       46 -        bad = [m for s in cites for m in extraction_misses.get
+          -(s, [])]                                                      
+       47 -        if bad and not (candidates_for_expected(view, about, c
+          -ites, claimed) if about else []):                             
+       48 -            return Attribution("extraction", "; ".join(m.what 
+          -for m in bad[:3]), [m.link for m in bad[:3] if m.link])       
+       49 -                                                              
+       50 -    cands = candidates_for_expected(view, about, cites, claime
+          -d) if about else (                                            
+       51 -        select_candidates(view, cites_any=cites) if cites else
+          - [])                                                          
+       52 -    if not cands:                                             
+       53 -        return Attribution("compute", f"no candidate for {abou
+          -t or cites}", [view.link("candidates")]                       
+       54 -                           + [view.link("extractions", r.line)
+          - for r in ex_rows[:2]])                                       
+       55 -    cand_links = [view.link("candidates", c.line) for c in can
+          -ds[:2]]                                                       
+       56 -                                                              
+       57 -    rows = triage_rows_for(view, about or "", cites, claimed) 
+       58 -    out = triage_outcome(rows)                                
+       59 -    tri_link = [view.link("triage", out["line"])] if out["line
+          -"] else [view.link("triage")]                                 
+       69 +    found = signals_for_expected(view, about, cites, claimed, 
+          +live=False)                                                   
+       70 +    if not found:                                             
+       71 +        art = "findings" if view.findings else "candidates"   
+       72 +        return Attribution(producer_stage(view, about, cites),
+          + f"no finding for {about or cites}", [view.link(art)])        
+       73 +    live = [s for s in found if s.live]                       
+       74 +    if not live:                                              
+       75 +        lead = lead_signal(found)                             
+       76 +        return Attribution(lead.stage, f"{lead.label()}: not s
+          +urfaced", [view.signal_link(s) for s in found[:2]])           
+       77 +    lead = lead_signal(live)                                  
+       78 +    flinks = [view.signal_link(s) for s in live[:2]]          
+       79 +    rows = [t for s in live if s.candidate_id for t in view.tr
+          +iage_for(s.candidate_id)]                                     
+       80      if not rows:
+       61 -        return Attribution("triage", "candidate never triaged 
+          -(dropped or degraded)", cand_links + [view.link("degradations"
+          -)])                                                           
+       81 +        return Attribution(lead.stage, f"{lead.label()} has no
+          + candidate / triage row (dropped or degraded)",               
+       82 +                           flinks + [view.link("degradations")
+          +])                                                            
+       83 +    out = triage_outcome(rows)                                
+       84 +    tri_link = [view.link("triage", out["line"])]             
+       85      if not out["include"]:
+       63 -        return Attribution("triage", "triage include=false", t
+          -ri_link)                                                      
+       86 +        return Attribution("net", "the finding said it needs A
+          +very; include=false after the code floors (enforce)",         
+       87 +                           tri_link + flinks)                 
+       88      pri = [priority] if isinstance(priority, str) else priorit
+           y
+       89      if pri and out["priority"] not in pri:
+       66 -        return Attribution("triage", f"triage priority {out['p
+          -riority']}, expected {pri}", tri_link)                        
+       90 +        finding_ok = any(s.priority in pri for s in live)     
+       91 +        return Attribution("net" if finding_ok else lead.stage
+          +,                                                             
+       92 +                           f"priority {out['priority']}, expec
+          +ted {pri}" + (" (the code floors changed it)" if finding_ok el
+          +se ""),                                                       
+       93 +                           tri_link + flinks)                 
+       94      if action and action not in out["actions"]:
+       68 -        return Attribution("triage", f"triage proposed {out['a
+          -ctions']}, not {action}", tri_link)                           
+       95 +        finding_ok = any(action in s.actions for s in live)   
+       96 +        return Attribution("net" if finding_ok else lead.stage
+          +, f"proposed {out['actions']}, not {action}", tri_link + flink
+          +s)                                                            
+       97      if section and out["section"] != section:
+       70 -        return Attribution("triage", f"triage section {out['se
+          -ction']}, expected {section}", tri_link)                      
+       98 +        return Attribution(lead.stage, f"section {out['section
+          +']}, expected {section}", tri_link + flinks)                  
+       99  
+      100      rendered = select_items(view, manifest, {"about": about} i
+           f about else {}, cites) if (about or cites) else []
+      101      if not rendered:
+       74 -        rec = [it for it in view.reduce.get("items", []) if ab
+          -out_match(it.get("about"), about)]                            
+       75 -        dropped = [v for v in view.verify.get("violations", []
+          -) if v.get("fix") == "dropped"                                
+       76 -                   and any(v.get("item_id") == r.get("id") for
+          - r in rec)]                                                   
+       77 -        where = "dropped by verify" if dropped else ("kept by 
+          -reduce, not placed by compose" if rec else "lost at reduce")  
+       78 -        link = view.link("verify") if dropped else view.link("
+          -compose")                                                     
+       79 -        return Attribution("compose", where, tri_link + [link]
+          -)                                                             
+      102 +        cids = {s.candidate_id for s in live if s.candidate_id
+          +}                                                             
+      103 +        recs = [it for it in view.reduce.get("items", []) if s
+          +et(it.get("candidate_ids") or [it.get("id")]) & cids]         
+      104 +        if any(v.get("fix") == "dropped" and v.get("item_id") 
+          +in {r.get("id") for r in recs}                                
+      105 +               for v in view.verify.get("violations", [])):   
+      106 +            return Attribution("verify", "dropped by verify", 
+          +[view.link("verify")])                                        
+      107 +        shown = [x for x in (view.rendered_by_id(r.get("id")) 
+          +for r in recs) if x]                                          
+      108 +        if shown:                                             
+      109 +            return Attribution("merge", f"merged into {shown[0
+          +].id} ({shown[0].about})", [view.link("reduce")] + flinks)    
+      110 +        if recs:                                              
+      111 +            return Attribution("compose", "kept by reduce, not
+          + placed by compose", tri_link + [view.link("compose")])       
+      112 +        return Attribution("merge", "lost at reduce (grouped a
+          +way or over the cap)", tri_link + [view.link("reduce")])      
+      113      if section and not any(r.section == section for r in rende
+           red if r.placement != "also_pending"):
+      114          return Attribution("compose", f"placed in {[r.section 
+           or r.placement for r in rendered]}, expected {section}",
+      115                             [view.link("compose")])
+      116      if pri and not any(r.priority in pri for r in rendered):
+       84 -        return Attribution("compose", f"reduce priority {[r.pr
+          -iority for r in rendered]}, expected {pri}", [view.link("reduc
+          -e")])                                                         
+      117 +        return Attribution("merge", f"reduce priority {[r.prio
+          +rity for r in rendered]}, expected {pri}", [view.link("reduce"
+          +)])                                                           
+      118      if action and not any(action in r.action_types for r in re
+           ndered):
+      119          return Attribution("compose", f"final actions {[r.acti
+           on_types for r in rendered]} lack {action}", [view.link("compo
+           se")])
+       87 -    return Attribution("materializer", "item and action presen
+          -t; the rendered action is wrong", [view.link("actions")])     
+      120 +    return Attribution("materialize", "item and action present
+          +; the rendered action is wrong", [view.link("actions")])      
+      121  
+      122  
+      123  def attribute_unwanted(view: RunView, manifest: Manifest, day:
+            int, items) -> Attribution:
+     ...
+      128          expected = manifest.run_day(day).candidates
+      129      except KeyError:
+      130          expected = []
+       98 -    links = [view.link("compose")]                            
+       99 -    for it in items:                                          
+      100 -        for cid in it.candidate_ids:                          
+      101 -            c = view.candidate(cid)                           
+      102 -            if c is None:                                     
+      103 -                continue                                      
+      104 -            ctype = c.data.get("type", "")                    
+      105 -            expected_here = any(type_matches(ctype, e.type) an
+          -d about_match(c.data.get("about"), e.about) for e in expected)
+      106 -            if any(type_matches(ctype, t) for t in THRESHOLD_T
+          -YPES) and not expected_here:                                  
+      107 -                return Attribution("compute", f"candidate {cty
+          -pe} {c.data.get('about')} should not exist on day {day}",     
+      108 -                                   [view.link("candidates", c.
+          -line)])                                                       
+      109 -            tri = view.triage_for(cid)                        
+      110 -            if tri:                                           
+      111 -                links.append(view.link("triage", tri[0].line))
+      112 -    return Attribution("triage", "triage included an item that
+          - should not surface", links)                                  
+      131 +    behind = [s for it in items for s in view.item_signals(it)
+          +]                                                             
+      132 +    for s in behind:                                          
+      133 +        is_net = s.origin == "safety_net" or (s.artifact == "c
+          +andidates" and not s.origin                                   
+      134 +                                               and any(type_ma
+          +tches(s.type, t) for t in THRESHOLD_TYPES))                   
+      135 +        if not is_net:                                        
+      136 +            continue                                          
+      137 +        expected_here = any(signal_is_type(s, e.type) and any(
+          +about_match(a, e.about) for a in s.abouts) for e in expected) 
+      138 +        if not expected_here:                                 
+      139 +            return Attribution("net", f"{s.type} {s.abouts[:1]
+          +} should not fire on day {day}", [view.signal_link(s)])       
+      140 +    lead = lead_signal([s for s in behind if s.live])         
+      141 +    if lead is None:                                          
+      142 +        return Attribution("compose", "rendered an item no fin
+          +ding supports", [view.link("compose")])                       
+      143 +    return Attribution(lead.stage, f"{lead.label()} said it ne
+          +eds Avery", [view.signal_link(lead)])                         
+⏺ Next: triage.py (judgment diagnostics on triage.jsonl + hard-rule checks),
+  switched to findings.
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && sed -n
+      '60,143p;168,229p' eval/scorer/digest_metrics.py)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && python3 -
+      <<'EOF'
+      from pathlib import Path…)
+  ⎿  (No output)
+
+⏺ Write(~/Desktop/work/lookup-digest-v2-c-eval/eval/scorer/triage.py)
+  ⎿  Added 73 lines, removed 21 lines
+       1 -"""Triage metrics (eval.md §2.3): include P/R, priority and act
+         -ion-type confusion, sections, question cards."""               
+       1 +"""Judgment diagnostics on `triage.jsonl` (eval.md §2.3, MIGRAT
+         +ION_PLAN §1): include P/R, priority and action-type            
+       2 +confusion, sections, question cards, and the hard-rule checks. 
+       3 +                                                               
+       4 +In v2 `triage.jsonl` is the Finding → TriageResult mapping afte
+         +r the code floors (digest/findings.py `to_triage`,             
+       5 +then `enforce`): include ← needs_avery, priority, section, acti
+         +ons, ambiguity come from the reader, sweep or net that         
+       6 +found the item. A miss is attributed to that finding's stage (r
+         +ead / sweep / net), or to `net` when the finding was           
+       7 +right and the code floors changed it. Diagnostics, not targets.
+       8 +                                                               
+       9 +Hard rules checked on every included row: no reply / forward / 
+         +decide draft action to a never-draft contact                   
+      10 +(Sam, cold inbound, recruiters: `message_person` instead), susp
+         +icious content never P0, at least one citation.                
+      11 +"""                                                            
+      12  from __future__ import annotations
+      13  
+      14  from collections import Counter
+     ...
+      19  from .common import (
+      20      Miss,
+      21      StageMetrics,
+      12 -    candidates_for_expected,                                   
+      22      claimed_abouts,
+      23      contact_label,
+      24 +    is_never_draft,                                            
+      25      prf,
+      26      rate,
+      27      sender_emails,
+      28 +    signals_for_expected,                                      
+      29  )
+      30  from .match import PRIORITY_ORDER, max_priority
+      31  
+      32  PRIORITIES = ("P0", "P1", "P2", "P3")
+      33 +DRAFT_ACTIONS = ("reply", "forward_delegate", "decide")        
+      34  
+      35  
+      36  def triage_rows_for(view: RunView, about: str, cites_any: list[
+          str], claimed: list[str] | None = None) -> list[Row]:
+      37      rows: list[Row] = []
+      26 -    for c in candidates_for_expected(view, about, cites_any, cl
+         -aimed):                                                        
+      27 -        rows.extend(view.triage_for(c.data.get("candidate_id"))
+         -)                                                              
+      38 +    for s in signals_for_expected(view, about, cites_any, claim
+         +ed):                                                           
+      39 +        if s.candidate_id:                                     
+      40 +            rows.extend(view.triage_for(s.candidate_id))       
+      41      return rows
+      42  
+      43  
+     ...
+      60      return got == ei.priority
+      61  
+      62  
+      63 +def _stage_of(view: RunView, rows: list[Row]) -> str:          
+      64 +    """The stage of the finding behind these triage rows (read 
+         +if unknown)."""                                                
+      65 +    from .attribution import lead_signal  # attribution imports
+         + this module                                                   
+      66 +                                                               
+      67 +    sigs = [s for r in rows for s in view.signals_for(r.data.ge
+         +t("candidate_id"))]                                            
+      68 +    lead = lead_signal(sigs)                                   
+      69 +    return lead.stage if lead else "read"                      
+      70 +                                                               
+      71 +                                                               
+      72 +def hard_rule_violations(view: RunView, manifest: Manifest) -> 
+         +list[Miss]:                                                    
+      73 +    out: list[Miss] = []                                       
+      74 +    for r in view.triage:                                      
+      75 +        d = r.data                                             
+      76 +        if not d.get("include"):                               
+      77 +            continue                                           
+      78 +        link = view.link("triage", r.line)                     
+      79 +        cid = d.get("candidate_id")                            
+      80 +        for a in d.get("proposed_actions", []):                
+      81 +            if a.get("type") in DRAFT_ACTIONS and is_never_draf
+         +t(manifest, a.get("target")):                                  
+      82 +                out.append(Miss(f"{cid}: {a['type']} to never-d
+         +raft contact {a.get('target')}", "message_person",             
+      83 +                                a["type"], link, "net"))       
+      84 +        sigs = view.signals_for(cid)                           
+      85 +        if d.get("priority") == "P0" and (any(s.suspicious for 
+         +s in sigs) or (view.candidate(cid) or Row({}, 0)).data.get("typ
+         +e") == "suspicious_content"):                                  
+      86 +            out.append(Miss(f"{cid}: suspicious content at P0",
+         + "never P0", "P0", link, "net"))                               
+      87 +        if not d.get("citations"):                             
+      88 +            out.append(Miss(f"{cid}: included without a citatio
+         +n", "≥1 citation", 0, link, "net"))                            
+      89 +    return out                                                 
+      90 +                                                               
+      91 +                                                               
+      92  def score_triage(view: RunView, manifest: Manifest, day: int) -
+          > StageMetrics:
+      51 -    sm = StageMetrics("triage")                                
+      93 +    sm = StageMetrics("judgment")                              
+      94      try:
+      95          rd = manifest.run_day(day)
+      96      except KeyError:
+     ...
+      106      amb_ok = amb_n = dflt_ok = 0
+      107  
+      108      for ei in rd.items:
+       67 -        rows = triage_rows_for(view, ei.about, ei.cites_any, c
+          -laimed_abouts(manifest, day, ei.about))                       
+      109 +        claimed = claimed_abouts(manifest, day, ei.about)     
+      110 +        rows = triage_rows_for(view, ei.about, ei.cites_any, c
+          +laimed)                                                       
+      111          out = triage_outcome(rows)
+      112          link = view.link("triage", out["line"]) if out["line"]
+            else view.link("triage")
+      113 +        stage = _stage_of(view, rows)                         
+      114          if not ei.include:
+      115              if out["include"]:
+      116                  fp += 1
+       73 -                sm.misses.append(Miss(f"{ei.about}: included, 
+          -expected excluded", False, True, link, "triage"))             
+      117 +                sm.misses.append(Miss(f"{ei.about}: included, 
+          +expected excluded", False, True, link, stage))                
+      118              continue
+      119          if not rows:
+       76 -            fn += 1  # no candidate reached triage: compute's 
+          -miss, counted here as a recall loss too                       
+       77 -            sm.misses.append(Miss(f"{ei.about}: never triaged 
+          -(no candidate)", "include", "no candidate", view.link("candida
+          -tes"), "compute"))                                            
+      120 +            fn += 1  # no finding reached triage: the reader, 
+          +sweep or net that should have noticed it                      
+      121 +            from .attribution import attribute_missing        
+      122 +                                                              
+      123 +            att = attribute_missing(view, manifest, ei.about, 
+          +ei.cites_any)                                                 
+      124 +            sm.misses.append(Miss(f"{ei.about}: never surfaced
+          + ({att.evidence})", "include", "no candidate",                
+      125 +                                  att.links[0] if att.links el
+          +se view.link("findings"), att.stage))                         
+      126              continue
+      127          if not out["include"]:
+      128              fn += 1
+       81 -            sm.misses.append(Miss(f"{ei.about}: excluded by tr
+          -iage", "include", "exclude", link, "triage"))                 
+      129 +            sm.misses.append(Miss(f"{ei.about}: excluded", "in
+          +clude", "exclude", link, stage))                              
+      130              continue
+      131          tp += 1
+      132          if ei.priority or ei.priority_band:
+     ...
+      136              if priority_ok(ei, out["priority"]):
+      137                  prio_ok += 1
+      138              else:
+       91 -                sm.misses.append(Miss(f"{ei.about}: priority",
+          - ei.priority or ei.priority_band, out["priority"], link, "tria
+          -ge"))                                                         
+      139 +                sm.misses.append(Miss(f"{ei.about}: priority",
+          + ei.priority or ei.priority_band, out["priority"], link, stage
+          +))                                                            
+      140              # sender-vs-content cell: expected priority differ
+           s from the sender's tier
+      141              senders = [s for sid in ei.cites_any for s in send
+           er_emails(manifest, sid)]
+      142              tier = next((c.tier for c in (contact_label(manife
+           st, s) for s in senders) if c and c.tier), None)
+     ...
+      149              if out["section"] == ei.section:
+      150                  sec_ok += 1
+      151              else:
+      104 -                sm.misses.append(Miss(f"{ei.about}: section", 
+          -ei.section, out["section"], link, "triage"))                  
+      152 +                sm.misses.append(Miss(f"{ei.about}: section", 
+          +ei.section, out["section"], link, stage))                     
+      153          for a in ei.actions:
+      154              act_n += 1
+      155              got = a if a in out["actions"] else (out["actions"
+           ][0] if out["actions"] else "none")
+     ...
+      157              if a in out["actions"]:
+      158                  act_hit += 1
+      159              else:
+      112 -                sm.misses.append(Miss(f"{ei.about}: proposed a
+          -ction {a}", a, out["actions"], link, "triage"))               
+      160 +                sm.misses.append(Miss(f"{ei.about}: proposed a
+          +ction {a}", a, out["actions"], link, stage))                  
+      161          if ei.ambiguity:
+      162              amb_n += 1
+      163              amb = out["ambiguity"] or {}
+      164              if amb.get("type") == ei.ambiguity:
+      165                  amb_ok += 1
+      166              else:
+      119 -                sm.misses.append(Miss(f"{ei.about}: ambiguity 
+          -type", ei.ambiguity, amb.get("type"), link, "triage"))        
+      167 +                sm.misses.append(Miss(f"{ei.about}: ambiguity 
+          +type", ei.ambiguity, amb.get("type"), link, stage))           
+      168              opts = amb.get("options") or []
+      169              if isinstance(amb.get("default"), int) and 1 <= am
+           b["default"] <= len(opts):
+      170                  dflt_ok += 1
+      171  
+      124 -    # included triage results that land on labeled noise or on
+          - keys that must be absent                                     
+      172 +    # included results that land on labeled noise or on keys t
+          +hat must be absent                                            
+      173      for about in rd.absent:
+      126 -        if triage_outcome(triage_rows_for(view, about, []))["i
+          -nclude"]:                                                     
+      174 +        rows = triage_rows_for(view, about, [])               
+      175 +        if triage_outcome(rows)["include"]:                   
+      176              fp += 1
+      128 -            sm.misses.append(Miss(f"{about}: included, expecte
+          -d absent", False, True, view.link("triage"), "triage"))       
+      177 +            sm.misses.append(Miss(f"{about}: included, expecte
+          +d absent", False, True, view.link("triage"), _stage_of(view, r
+          +ows)))                                                        
+      178      for sid in rd.noise_source_ids:
+      130 -        rows = [t for c in view.candidates for t in view.triag
+          -e_for(c.data.get("candidate_id"))                             
+      131 -                if sid in view.index.resolve_all([e.get("sourc
+          -e_id", "") for e in c.data.get("evidence", [])])]             
+      132 -        if any(r.data.get("include") for r in rows):          
+      179 +        rows = [t for s in view.signals if s.candidate_id and 
+          +sid in s.sources for t in view.triage_for(s.candidate_id)]    
+      180 +        inc = [r for r in rows if r.data.get("include")]      
+      181 +        if inc:                                               
+      182              fp += 1
+      134 -            sm.misses.append(Miss(f"noise {sid}: included by t
+          -riage", False, True, view.link("triage", rows[0].line), "triag
+          -e"))                                                          
+      183 +            sm.misses.append(Miss(f"noise {sid}: included", Fa
+          +lse, True, view.link("triage", inc[0].line), _stage_of(view, i
+          +nc)))                                                         
+      184  
+      185 +    hard = hard_rule_violations(view, manifest)               
+      186 +    sm.misses += hard                                         
+      187      sm.metrics = {
+      188          "include": prf(tp, fp, fn),
+      189          "priority_accuracy": rate(prio_ok, prio_n),
+     ...
+      196          "action_confusion": {k: dict(v) for k, v in act_conf.i
+           tems()},
+      197          "ambiguity_type_accuracy": rate(amb_ok, amb_n),
+      198          "question_default_present": rate(dflt_ok, amb_n),
+      199 +        "hard_rule_violations": len(hard),                    
+      200      }
+      201      return sm
+
+⏺ Now C1: readers.py, the reader diagnostics that replace the extraction
+  metrics.
+
+⏺ Write(~/Desktop/work/lookup-digest-v2-c-eval/eval/scorer/readers.py)
+  ⎿  Wrote 188 lines to ../lookup-digest-v2-c-eval/eval/scorer/readers.py
+      1 """Reader diagnostics (PIVOT_SPEC §6, handoff C1): per labeled th
+      2
+      3 Replaces the v1 extraction metrics. Reported, never gated: the di
+      4
+      5 Expected `needs_avery` for thread T on run day d. T must be fully
+      6 message sent by then); a partly visible thread is not scored that
+         day, since its labels describe the whole thread.
+      8    - T is labeled must_not_surface → the item comes from a patter
+        n, sweep or net built on T (recruiter pattern,
+        rom T's own
+     … +230 lines (ctrl+o to expand)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && python3 -
+      <<'EOF'
+      from pathlib import Path…)
+  ⎿  (No output)
+
+⏺ Now C2: sweeps.py (planted calendar/notes traps + rescue list), merge.py
+  (merge errors), spine.py (contact classification).
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && python3 -
+      <<'EOF'
+      from pathlib import Path…)
+  ⎿  (No output)
+
+⏺ Write(~/Desktop/work/lookup-digest-v2-c-eval/eval/scorer/sweeps.py)
+  ⎿  Wrote 98 lines to ../lookup-digest-v2-c-eval/eval/scorer/sweeps.py
+      1 """Sweep and safety-net diagnostics (PIVOT_SPEC §6, handoff C2).
+      2
+      3 1. Planted calendar and notes/tasks traps: the day's expected can
+        didates of the types below. A trap is found when a
+        it: one of its about keys fuzzy-matches the trap's
+      5    key, it cites a source the answer key cites for that trap's it
+      6    the #9 fallback. A `contradiction` trap also needs a finding t
+        hat lists a contradiction (the Finding field).
+      7 2. Rescue list: findings a safety net added because no reader or
+      8    kind, with what each rescu
+     … +123 lines (ctrl+o to expand)
+
+⏺ Write(~/Desktop/work/lookup-digest-v2-c-eval/eval/scorer/merge.py)
+  ⎿  Wrote 89 lines to ../lookup-digest-v2-c-eval/eval/scorer/merge.py
+      1 """Merge diagnostics (PIVOT_SPEC §6, handoff C2): over-merged or
+      2
+      3 - Duplicate: an expected item's key is matched by more rendered i
+        tems (sections, one thing and also-pending
+        ay (some keys are expected twice, e.g. a thread
+      5   and the newsletter that attaches to it).
+        ected keys of that day.
+      7 "Matches" is the scorer's usual item selector (`common.select_ite
+        ms`: fuzzy key of the item or of a finding behind
+        swer key's about-key pairs that should
+     … +98 lines (ctrl+o to expand)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && cat >
+      eval/scorer/spine.py <<'EOF'
+      """Entity-spine diagnostics (PIVOT_SPEC §6 "contact classification…)
+  ⎿  (No output)
+
+⏺ Now wiring the runner to the new diagnostic sections.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && python3 -
+      <<'EOF'
+      from pathlib import Path…)
+  ⎿  No matches found
+
+⏺ Now C3 in assertions.py. Reading the parts I haven't seen yet.
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Applying the C3 rewrite to the candidate-kind checkers and moving the other
+  checkers to v2 stage names.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && python3 -
+      <<'EOF'
+      from pathlib import Path…)
+  ⎿  Done
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && uv run ruff
+      check eval/ --fix 2>&1 | tail -20)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && sed -i '' 's/
+       related = related or \[s for s in _signals(view, ctx, a.args,
+      live=False)\]/    relat…)
+  ⎿  (No output)
+
+⏺ Assertions compile. Now simulation.py stage names.
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && python3 -
+      <<'EOF'
+      from pathlib import Path…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && sed -i ''
+      's/^from .assertions import ESCALATION_RE, AssertionResult$/from
+      .assertions import ESCALATI…)
+  ⎿  (No output)
+⏺ Now C4. Checking DESIGN.md's v1 cost figures before fixing them in
+  eval/v1_results.yaml.
+
+⏺ Bash(git show main:DESIGN.md | grep -n -i "cost\|\\$0\.\|per run\|judge" |
+      head -20)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && cat >
+      eval/v1_results.yaml <<'EOF'
+      # v1 (tag `v1-extraction-centric`, commit 02906f9) and naive-baseli…)
+  ⎿  (No output)
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && python3 -
+      <<'EOF'
+      from pathlib import Path…)
+  ⎿  (No output)
+
+⏺ Report compiles. Adding the in-session judge hook (#20: judge of record is the
+  orchestrator session, no API spend): export items, import scores.
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && python3 -
+      <<'EOF'
+      from pathlib import Path…)
+  ⎿  (No output)
+
+⏺ Scorer code is in place. Now extending the fake runs with findings.jsonl
+  (v2-shaped planted defects). Reading the rest of the generator first.
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && python3 -
+      <<'EOF'
+      from pathlib import Path…)
+  ⎿  Done
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && git rm -q
+      tests/fixtures/mini_runs/*/extractions.jsonl 2>&1 | tail -2; uv run python
+      tests/fixtures/mi…)
+  ⎿  (No output)
+
+⏺ Fixtures regenerated. Running the acceptance command on the fake runs.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && uv run digest
+      eval --world tests/fixtures/mini --runs tests/fixtures/mini_runs --out
+      /private/tmp/clau…)
+  ⎿  (No output)
+
+⏺ Bash(cd /private/tmp/claude-501/-Users-shubham-Desktop-work-lookup-digest/43b3
+      5155-2db0-41c8-a88f-38a377b7184e/scratchpad/reports && sed -n '1,140p'
+      tests_fixtures_m…)
+  ⎿  (No output)
+
+⏺ The report renders with the comparison table, reader/sweep diagnostics and
+  rescue list. Checking the rest of it, then fixing the tests.
+
+⏺ Bash(cd /private/tmp/claude-501/-Users-shubham-Desktop-work-lookup-digest/43b3
+      5155-2db0-41c8-a88f-38a377b7184e/scratchpad/reports && sed -n '140,230p'
+      tests_fixtures…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && python3 -
+      <<'EOF'
+      from pathlib import Path…)
+  ⎿  (No output)
+
+⏺ Updating the Track C tests for v2. First the shared synthetic-run helper, so
+  synthetic runs also carry findings.jsonl.
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && grep -rn
+      "extractions=" tests/ | head)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && python3 -
+      <<'EOF'
+      from pathlib import Path…)
+  ⎿  (No output)
+
+⏺ Now rewriting test_c_metrics.py for the v2 diagnostics (reader, sweep/net,
+  merge, judgment, spine).
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Write(~/Desktop/work/lookup-digest-v2-c-eval/tests/test_c_metrics.py)
+  ⎿  Added 153 lines, removed 31 lines
+       1 -"""Per-stage metrics (eval.md §2) on the fake run, whose plante
+         -d defects are listed in make_fake_run.py."""                   
+       1 +"""v2 metrics (PIVOT_SPEC §6) on the fake run, whose planted de
+         +fects are listed in make_fake_run.py: the digest-level         
+       2 +target, and the diagnostics (readers, sweeps and nets, merge, j
+         +udgment, spine, materializer)."""                              
+       3  import pytest
+       4  
+       5 +from eval.manifest_schema import ExpectedCandidate, ExpectedCom
+         +mitment, ExpectedItem, ItemLabel, MessageLabel, RunDayExpectati
+         +on                                                             
+       6  from eval.scorer.artifacts import RunView
+       5 -from eval.scorer.compute import score_compute                  
+       7  from eval.scorer.digest_metrics import score_digest, score_mate
+          rializer, sentence_count, stale_profile_values
+       7 -from eval.scorer.extraction import score_extraction            
+       8  from eval.scorer.match import SourceIndex
+       9 +from eval.scorer.merge import score_merge                      
+      10 +from eval.scorer.readers import label_says_yes, score_readers, 
+         +thread_expectation, visible                                    
+      11  from eval.scorer.runner import score_world
+      12 +from eval.scorer.spine import score_spine                      
+      13 +from eval.scorer.sweeps import score_sweeps                    
+      14  from eval.scorer.triage import score_triage
+      11 -from tests.c_helpers import DAY, MINI_RUNS, ROOT, mini_manifest
+      15 +from tests.c_helpers import DAY, MINI_RUNS, ROOT, finding_row, 
+         +make_run, mini_manifest                                        
+      16  
+      17 +MARCUS = "msg:<20260922-1642.marcus@inflectionpoint.vc>"       
+      18 +RENEE = "msg:<20260922-1408.renee@halberd.com>"                
+      19 +SAM = "msg:<20260923-2110.sam@parkfamily.example>"             
+      20  
+      21 +                                                               
+      22  @pytest.fixture(scope="module")
+      23  def manifest():
+      24      return mini_manifest()
+     ...
+       33      return [m.what for m in sm.misses]
+       34  
+       35  
+       36 +def load(d, manifest, day=DAY):                               
+       37 +    return RunView(d, SourceIndex(manifest), ROOT, day=day)   
+       38 +                                                              
+       39 +                                                              
+       40  def test_rendered_view_is_built_from_compose_and_reduce(view):
+       41      assert [(r.id, r.placement, r.section) for r in view.rende
+           red] == [
+       42          ("i1", "one_thing", "urgent"), ("i2", "section", "urge
+           nt"), ("i3", "section", "decisions"),
+       43          ("i6", "section", "pulse"), ("i4", "section", "calenda
+           r_personal"), ("i5", "section", "calendar_personal")]
+       44      i1 = view.rendered[0]
+       33 -    assert i1.source_ids == {"t-marcus-captable"} and i1.candi
+          -date_types == ["commitment_overdue", "commitment_not_in_tasks"
+          -]                                                             
+       45 +    assert i1.source_ids == {"t-marcus-captable"}             
+       46 +    assert i1.candidate_types == ["overdue promise to lead inv
+          +estor", "promise missing from tasks"]                         
+       47 +    assert [s.origin for s in view.item_signals(i1)] == ["thre
+          +ad_reader", "notes_tasks_sweep"]                              
+       48      assert i1.action_types == ["task", "forward_delegate"]
+       49      assert not view.missing
+       50  
+       51  
+       38 -def test_extraction_metrics(view, manifest):                  
+       39 -    sm = score_extraction(view, manifest)                     
+       52 +def test_findings_become_signals(view):                       
+       53 +    by_id = {s.row.data["finding_id"]: s for s in view.signals
+          +}                                                             
+       54 +    assert set(by_id) == {f"f{i}" for i in range(1, 9)}  # eve
+          +ry finding, each candidate covered by its finding             
+       55 +    assert by_id["f1"].thread == "t-marcus-captable" and by_id
+          +["f1"].live and by_id["f1"].stage == "read"                   
+       56 +    assert by_id["f8"].needs_avery == "no" and not by_id["f8"]
+          +.live and by_id["f8"].candidate_id is None                    
+       57 +    assert by_id["f6"].rescued and by_id["f6"].stage == "net" 
+          +and by_id["f5"].stage == "sweep"                              
+       58 +    assert by_id["f2"].abouts == ["deal:series-a:cap-table", "
+          +deal:series-a:cap-table"]                                     
+       59 +                                                              
+       60 +                                                              
+       61 +# ------------------------------------------------------------
+          +----------------- C1 reader diagnostics                       
+       62 +def test_reader_diagnostics(view, manifest):                  
+       63 +    sm = score_readers(view, manifest, DAY)                   
+       64      m = sm.metrics
+       41 -    assert m["type_accuracy"] == 1.0 and m["items_without_extr
+          -action"] == 0                                                 
+       42 -    assert m["intent_primary_accuracy"] == pytest.approx(0.667
+          -, abs=1e-3)  # Sam's thread: fyi, label ask                   
+       43 -    assert m["commitments"] == {"precision": 1.0, "recall": 1.
+          -0, "tp": 1, "fp": 0, "fn": 0}  # captable ~ cap-table         
+       44 -    assert m["due_date_accuracy"] == 1.0 and m["asks_recall"] 
+          -== 1.0                                                        
+       45 -    assert m["evidence_dropped"] == 1 and m["evidence_validity
+          -"] == pytest.approx(10 / 11, abs=1e-3)                        
+       46 -    assert m["automated_action_kind_accuracy"] == 1.0         
+       47 -    assert whats(sm) == ["t-sam-daycare: intent_primary"]     
+       48 -    assert all(x.stage == "extraction" for x in sm.misses)    
+       65 +    assert m["reader_recall"] == pytest.approx(0.667, abs=1e-3
+          +) and m["expected_yes"] == 3                                  
+       66 +    assert m["priority_in_band"] == 1.0 and m["expected_action
+          +_present"] == 1.0                                             
+       67 +    assert m["noise_items_clean"] == 1.0 and m["threads_not_fu
+          +lly_visible"] == 0                                            
+       68 +    [miss] = sm.misses                                        
+       69 +    assert miss.what.startswith("t-sam-daycare (S11): needs_av
+          +ery") and miss.got == "no" and miss.stage == "read"           
+       70 +    assert miss.link.endswith("findings.jsonl#L8")            
+       71  
+       72  
+       51 -def test_compute_metrics(view, manifest):                     
+       52 -    sm = score_compute(view, manifest, DAY)                   
+       73 +def _thread(sid="t-x", *, must_not=False, ball="avery", commit
+          +ments=(), about=("other:x",), msgs=((28, "10:00"),)):         
+       74 +    from eval.manifest_schema import ExpectedExtraction       
+       75 +                                                              
+       76 +    return ItemLabel(source_id=sid, kind="thread", must_not_su
+          +rface=must_not, must_not_reason="fyi" if must_not else None,  
+       77 +                     expected=ExpectedExtraction(type="human_t
+          +hread", about=list(about), ball_awaiting=ball,                
+       78 +                                                 commitments=l
+          +ist(commitments)),                                            
+       79 +                     messages=[MessageLabel(message_id=f"<{d}-
+          +{t}@x>", day=d, time=t, from_email="a@x") for d, t in msgs])  
+       80 +                                                              
+       81 +                                                              
+       82 +def test_thread_expectation_rules():                          
+       83 +    rd = RunDayExpectation(run_day=30, items=[ExpectedItem(abo
+          +ut="other:x", priority="P1", actions=["reply"], cites_any=["t-
+          +x"])])                                                        
+       84 +    te = thread_expectation(_thread(), rd)                    
+       85 +    assert (te.expect, te.bands, te.actions) == ("yes", ["P1"]
+          +, ["reply"])                                                  
+       86 +    # a must-not thread behind an included item (recruiter pat
+          +tern, cadence watch): not the reader's call                   
+       87 +    assert thread_expectation(_thread(must_not=True), rd).expe
+          +ct is None                                                    
+       88 +    empty = RunDayExpectation(run_day=30)                     
+       89 +    assert thread_expectation(_thread(must_not=True), empty).e
+          +xpect == "no"                 # the precision set             
+       90 +    held = RunDayExpectation(run_day=30, absent=["other:x"])  
+       91 +    assert thread_expectation(_thread(), held).expect == "no" 
+          +                              # timing trap (S3)              
+       92 +    assert thread_expectation(_thread(ball="other"), empty).ex
+          +pect == "no"                  # label decides                 
+       93 +    assert thread_expectation(_thread(), empty).expect == "yes
+          +"                                                             
+       94 +    fulfilled = ExpectedCommitment(owner="avery", about="other
+          +:x", fulfilled_by_source="t-y")  # S16: kept elsewhere        
+       95 +    assert not label_says_yes(_thread(ball="other", commitment
+          +s=[fulfilled]))                                               
+       96 +    assert label_says_yes(_thread(ball="other", commitments=[E
+          +xpectedCommitment(owner="avery", about="other:x")]))          
+       97 +                                                              
+       98 +                                                              
+       99 +def test_visibility_follows_as_of():                          
+      100 +    t = _thread(msgs=((28, "10:00"), (30, "05:00")))          
+      101 +    assert visible(t, 30, "06:00") == "all" and visible(t, 29,
+          + "06:00") == "some" and visible(t, 27, "06:00") == "none"     
+      102 +                                                              
+      103 +                                                              
+      104 +def test_reader_precision_on_must_not_threads(tmp_path, manife
+          +st):                                                          
+      105 +    m = manifest.model_copy(deep=True)                        
+      106 +    m.item("t-sam-daycare").must_not_surface = True           
+      107 +    rd = m.run_day(DAY)                                       
+      108 +    rd.items = [ei for ei in rd.items if ei.about != "family:d
+          +aycare"]                                                      
+      109 +    loud = finding_row("f-sam", "thread_reader", "yes", "famil
+          +y logistics", ["family:daycare"],                             
+      110 +                       [{"source_id": SAM, "quote": "q"}], [],
+          + None, thread="thread:20260923-2110.sam@parkfamily.example")  
+      111 +    d = make_run(tmp_path, m, DAY, [{"id": "a", "about": "deal
+          +:series-a:cap-table", "cites": [MARCUS]}], findings=[loud])   
+      112 +    sm = score_readers(load(d, m), m, DAY)                    
+      113 +    assert sm.metrics["must_not_precision"] == 0.0 and sm.metr
+          +ics["must_not_threads"] == 1                                  
+      114 +    assert any(x.what.startswith("t-sam-daycare (S11): must no
+          +t surface") for x in sm.misses)                               
+      115 +                                                              
+      116 +                                                              
+      117 +# ------------------------------------------------------------
+          +----------------- C2 sweeps, nets, rescues, merge             
+      118 +def test_sweep_and_net_diagnostics(view, manifest):           
+      119 +    sm = score_sweeps(view, manifest, DAY)                    
+      120      m = sm.metrics
+       54 -    assert m["contact_category_accuracy"] == 0.75 and m["conta
+          -ct_tier_accuracy"] == 1.0                                     
+       55 -    assert m["about_merge_accuracy"] == 1.0 and m["about_merge
+          -_pairs_unlogged"] == 0                                        
+       56 -    assert m["candidates"] == {"precision": 0.875, "recall": 0
+          -.875, "tp": 7, "fp": 1, "fn": 1}                              
+       57 -    assert "candidate news_attachment rollout:halberd:oct-6" i
+          -n whats(sm)                                                   
+       58 -    assert "contact dana@lumenanalytics.example: category" in 
+          -whats(sm)                                                     
+      121 +    assert m["trap_recall"] == 1.0 and m["calendar_traps_found
+          +"] == "2/2" and m["notes_tasks_traps_found"] == "1/1"         
+      122 +    assert m["traps_found_by_origin"] == {"calendar_sweep": 1,
+          + "safety_net": 1, "notes_tasks_sweep": 1}                     
+      123 +    assert m["rescues"] == 2 and m["rescues_by_kind"] == {"app
+          +roval_pending": 1, "calendar_conflict:family": 1}             
+      124 +    assert m["rescues_matching_expected"] == 2                
+      125 +    [rescues] = sm.lists.values()                             
+      126 +    assert rescues[0].startswith("approval_pending · 'Sign Mei
+          + Tanaka's offer letter' (P1) → offer:mei-tanaka (P1)")        
+      127 +    assert "findings.jsonl#L6" in rescues[1] and "family:pedia
+          +trician (P0)" in rescues[1]                                   
+      128 +    assert not sm.misses                                      
+      129  
+      130  
+       61 -def test_triage_metrics(view, manifest):                      
+      131 +def test_contradiction_trap_needs_the_contradiction_field(tmp_
+          +path, manifest):                                              
+      132 +    m = manifest.model_copy(deep=True)                        
+      133 +    m.run_day(DAY).candidates.append(ExpectedCandidate(type="c
+          +ontradiction", about="report:q2-planning"))                   
+      134 +    item = {"id": "q2", "about": "report:q2-planning", "ctype"
+          +: "task due today", "origin": "notes_tasks_sweep",            
+      135 +            "cites": ["task:2"], "section": "pulse", "priority
+          +": "P2"}                                                      
+      136 +    sm = score_sweeps(load(make_run(tmp_path / "a", m, DAY, [i
+          +tem]), m), m, DAY)                                            
+      137 +    assert "trap contradiction report:q2-planning" in whats(sm
+          +)   # the about matches, but nothing says "contradicts"       
+      138 +    flagged = finding_row("f-c", "notes_tasks_sweep", "yes", "
+          +stale number in the plan", ["report:q2-planning"],            
+      139 +                          [{"source_id": "task:2", "quote": "q
+          +"}], [], None, contradictions=["plan says 3.2; finance says 3.
+          +4"])                                                          
+      140 +    sm = score_sweeps(load(make_run(tmp_path / "b", m, DAY, [i
+          +tem], findings=[flagged]), m), m, DAY)                        
+      141 +    assert not sm.misses and sm.metrics["notes_tasks_traps_fou
+          +nd"] == "2/2"                                                 
+      142 +                                                              
+      143 +                                                              
+      144 +def test_merge_diagnostics(view, manifest, tmp_path):         
+      145 +    sm = score_merge(view, manifest, DAY)                     
+      146 +    assert sm.metrics["expected_items_rendered_twice"] == 0 an
+          +d sm.metrics["items_merging_expected_items"] == 0             
+      147 +    assert sm.metrics["about_merge_accuracy"] == 1.0          
+      148 +    twice = [{"id": "a", "about": "deal:series-a:cap-table", "
+          +cites": [MARCUS]},                                            
+      149 +             {"id": "b", "about": "deal:series-a:captable", "c
+          +ites": [MARCUS], "placement": "also_pending"}]                
+      150 +    sm = score_merge(load(make_run(tmp_path / "t", manifest, D
+          +AY, twice), manifest), manifest, DAY)                         
+      151 +    assert sm.metrics["expected_items_rendered_twice"] == 1 an
+          +d sm.misses[0].stage == "merge"                               
+      152 +    merged = [{"id": "m", "about": "deal:series-a:cap-table", 
+          +"cites": [MARCUS, RENEE],                                     
+      153 +               "about_tags": ["deal:series-a:cap-table", "roll
+          +out:halberd:oct-6"]}]                                         
+      154 +    sm = score_merge(load(make_run(tmp_path / "m", manifest, D
+          +AY, merged), manifest), manifest, DAY)                        
+      155 +    assert sm.metrics["items_merging_expected_items"] == 1    
+      156 +    assert "m: one item for 2 expected items" in whats(sm)    
+      157 +                                                              
+      158 +                                                              
+      159 +# ------------------------------------------------------------
+          +----------------- judgment, spine, digest, materializer       
+      160 +def test_judgment_metrics(view, manifest):                    
+      161      sm = score_triage(view, manifest, DAY)
+      162      m = sm.metrics
+      163      assert m["include"] == {"precision": 1.0, "recall": pytest
+           .approx(0.833, abs=1e-3), "tp": 5, "fp": 0, "fn": 1}
+      164      assert m["priority_accuracy"] == 0.8 and m["priority_confu
+           sion"]["P2"] == {"P3": 1}
+       66 -    assert m["section_accuracy"] == 1.0                       
+      165 +    assert m["section_accuracy"] == 1.0 and m["hard_rule_viola
+          +tions"] == 0                                                  
+      166      assert m["action_confusion"]["decide"] == {"calendar_respo
+           nse": 1}
+      167      assert m["action_recall"] == pytest.approx(6 / 7, abs=1e-3
+           )
+       69 -    assert set(whats(sm)) == {"family:daycare: excluded by tri
+          -age", "meeting:lumen-demo: priority",                         
+       70 -                              "meeting:lumen-demo: proposed ac
+          -tion decide"}                                                 
+      168 +    by = {x.what.split(" (")[0]: x.stage for x in sm.misses}  
+      169 +    assert by == {"family:daycare: never surfaced": "read", "m
+          +eeting:lumen-demo: priority": "sweep",                        
+      170 +                  "meeting:lumen-demo: proposed action decide"
+          +: "sweep"}                                                    
+      171  
+      172  
+       73 -def test_digest_metrics_p0_gate_fails_on_the_triage_drop(view,
+          - manifest):                                                   
+      173 +def test_hard_rules(tmp_path, manifest):                      
+      174 +    items = [{"id": "s", "about": "family:daycare", "cites": [
+          +SAM], "priority": "P0",                                       
+      175 +              "actions": [{"type": "reply", "target": "sam@par
+          +kfamily.example"}]},                                          
+      176 +             {"id": "u", "about": "other:uncited", "cites": []
+          +, "priority": "P2"}]                                          
+      177 +    sus = finding_row("f-x", "thread_reader", "yes", "invoice"
+          +, ["invoice:x"], [{"source_id": RENEE, "quote": "q"}], [],    
+      178 +                      "c-s", priority="P0", suspicious=[{"sour
+          +ce_id": RENEE, "quote": "pay now"}])                          
+      179 +    d = make_run(tmp_path, manifest, DAY, items, findings=[sus
+          +])                                                            
+      180 +    sm = score_triage(load(d, manifest), manifest, DAY)       
+      181 +    hard = [x for x in sm.misses if x.expected in ("message_pe
+          +rson", "never P0", "≥1 citation")]                            
+      182 +    assert sm.metrics["hard_rule_violations"] == 3 and {x.stag
+          +e for x in hard} == {"net"}                                   
+      183 +    assert any("reply to never-draft contact sam@parkfamily.ex
+          +ample" in x.what for x in hard)                               
+      184 +                                                              
+      185 +                                                              
+      186 +def test_spine_metrics(view, manifest):                       
+      187 +    sm = score_spine(view, manifest, DAY)                     
+      188 +    m = sm.metrics                                            
+      189 +    assert m["contact_category_accuracy"] == 0.75 and m["conta
+          +ct_tier_accuracy"] == 1.0                                     
+      190 +    assert "contact dana@lumenanalytics.example: category" in 
+          +whats(sm) and {x.stage for x in sm.misses} == {"spine"}       
+      191 +                                                              
+      192 +                                                              
+      193 +def test_digest_metrics_p0_gate_fails_on_the_reader(view, mani
+          +fest):                                                        
+      194      sm = score_digest(view, manifest, DAY)
+      195      m = sm.metrics
+      196      assert m["p0_expected"] == 3 and m["p0_recall"] == pytest.
+           approx(0.667, abs=1e-3) and m["p0_gate"] is False
+     ...
+      198      assert m["section_placement_accuracy"] == 1.0 and m["lengt
+           h_ok"] and m["header_present"]
+      199      assert m["items_cited_rate"] == 1.0 and m["verify_unresolv
+           ed"] == 0 and m["compose_reduce_flags"] == []
+      200      [miss] = sm.misses
+       81 -    assert miss.stage == "triage" and miss.link.endswith("tria
+          -ge.jsonl#L8")                                                 
+      201 +    assert miss.stage == "read" and miss.link.endswith("findin
+          +gs.jsonl#L8")                                                 
+      202  
+      203  
+      204  def test_materializer_checks(view, manifest):
+     ...
+      206      m = sm.metrics
+      207      assert m["drafts"] == 2 and m["banned_phrases_absent"] == 
+           0.5 and m["max_sentences_ok"] == 1.0
+      208      assert m["no_never_draft_recipient"] == 1.0 and m["assumpt
+           ions_shown"] == 1.0
+       89 -    assert sm.misses[0].stage == "materializer" and sm.misses[
+          -0].link.endswith("actions.jsonl#L3")                          
+      209 +    assert sm.misses[0].stage == "materialize" and sm.misses[0
+          +].link.endswith("actions.jsonl#L3")                           
+      210  
+      211  
+      212  def test_sentence_count_ignores_signoff():
+     ...
+      229      h = ws.headline()
+      230      assert h == {"p0_recall": pytest.approx(0.667, abs=1e-3), 
+           "p0_gate": False, "traps_passed": "7/7", "traps_not_run": 0,
+      231                   "must_not_rate": 0.0, "one_thing_accuracy": 1
+           .0, "cost_per_run": 0.0123, "runs_scored": 1}
+      232 +    assert set(ws.runs[DAY].stages) == {"digest", "read", "swe
+          +ep", "merge", "judgment", "spine", "materialize"}             
+      233  
+      234  
+      235  def test_missing_artifacts_are_misses_not_crashes(tmp_path, ma
+           nifest):
+     ...
+      240      for f in ("compose.json", "reduce.json", "triage.jsonl"):
+      241          (d / f).unlink()
+      242      ws = score_world("tests/fixtures/mini", tmp_path, manifest
+           =manifest)
+      122 -    c = ws.runs[DAY].stages["compose"]                        
+      243 +    c = ws.runs[DAY].stages["digest"]                         
+      244      assert c.metrics["p0_recall"] == 0.0
+      124 -    assert {m.stage for m in c.misses} == {"triage"}          
+      245 +    # the findings survive: the reader's cap table and the net
+          +'s pediatrician have no triage row; Sam's reader said no      
+      246 +    assert {m.stage for m in c.misses} == {"read", "net"}     
+      247      assert set(ws.runs[DAY].missing_artifacts) == {"compose", 
+           "reduce", "triage"}
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && uv run pytest
+      -q --no-header -p no:cacheprovider tests/test_c_metrics.py 2>&1 | tail
+      -40)
+  ⎿  (No output)
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && python3 -
+      <<'EOF'
+      from pathlib import Path…)
+  ⎿  (No output)
+
+⏺ Metrics tests pass. Now updating the other Track C test files to v2 stage
+  names and semantics, starting with the assertion tests.
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && uv run python -
+      <<'EOF' 2>&1 | tail -40
+      import tests.test_c_assertions as T…)
+  ⎿  (No output)
+
+⏺ I've confirmed most stage changes align with the intended v2 attributions, but
+  found two meaning shifts (the daycare reply_owed case and Lumen's sweep
+  finding) plus a mislabeled news attachment that should point to the news sweep
+  instead of the reader. Fixing these and updating the table now.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && python3 -
+      <<'EOF'
+      from pathlib import Path…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && python3 -
+      <<'EOF'
+      from pathlib import Path…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && python3 -
+      <<'EOF'
+      from pathlib import Path…)
+  ⎿  (No output)
+
+⏺ Assertion tests green. Now the attribution tests, rewritten around the v2
+  chain.
+
+⏺ Write(~/Desktop/work/lookup-digest-v2-c-eval/tests/test_c_attribution.py)
+  ⎿  Error writing file
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && uv run pytest
+      -q --no-header -p no:cacheprovider tests/test_c_attribution.py 2>&1 | grep
+      -E "^E  |pass…)
+  ⎿  (No output)
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Write(~/Desktop/work/lookup-digest-v2-c-eval/tests/test_c_attribution.py)
+  ⎿  Added 65 lines, removed 29 lines
+      1 -"""Stage attribution walks extraction → compute → triage → compo
+        -se → materializer and stops at the first loss."""               
+      1 +"""Stage attribution walks read → sweep → net → merge → compose 
+        +→ materialize → verify and stops at the first loss."""          
+      2  import json
+      3  import shutil
+      4  
+     ...
+      20      return d
+      21  
+      22  
+      23 -def _edit_jsonl(path, keep):                                   
+      23 +def _edit_jsonl(path, fn):                                     
+      24      rows = [json.loads(x) for x in path.read_text().splitlines(
+          ) if x.strip()]
+      25 -    path.write_text("".join(json.dumps(r) + "\n" for r in rows 
+         -if keep(r)))                                                   
+      25 +    rows = [r for r in (fn(r) for r in rows) if r is not None] 
+      26 +    path.write_text("".join(json.dumps(r) + "\n" for r in rows)
+         +)                                                              
+      27  
+      28  
+      29  def _edit_json(path, fn):
+     ...
+       32      path.write_text(json.dumps(data))
+       33  
+       34  
+       34 -def attribute(d, **want):                                     
+       35 +def _drop_c3(d):                                              
+       36 +    _edit_jsonl(d / "candidates.jsonl", lambda r: None if r["c
+          +andidate_id"] == "c3" else r)                                 
+       37 +    _edit_jsonl(d / "triage.jsonl", lambda r: None if r["candi
+          +date_id"] == "c3" else r)                                     
+       38 +                                                              
+       39 +                                                              
+       40 +def _unplace_i2(c):                                           
+       41 +    c["sections"] = [dict(b, item_ids=[i for i in b["item_ids"
+          +] if i != "i2"]) for b in c["sections"]]                      
+       42 +                                                              
+       43 +                                                              
+       44 +def attribute(d, about=HALBERD[0], cites=HALBERD[1], **want): 
+       45      m = mini_manifest()
+       36 -    return attribute_missing(RunView(d, SourceIndex(m), ROOT, 
+          -day=DAY), m, HALBERD[0], HALBERD[1], **want)                  
+       46 +    return attribute_missing(RunView(d, SourceIndex(m), ROOT, 
+          +day=DAY), m, about, cites, **want)                            
+       47  
+       48  
+       39 -def test_lost_at_extraction(run):                             
+       40 -    # the sprint note shares the about key, but only the cited
+          - thread's own extraction counts                               
+       41 -    _edit_jsonl(run / "extractions.jsonl", lambda r: "renee" n
+          -ot in r["source_id"])                                         
+       42 -    _edit_jsonl(run / "candidates.jsonl", lambda r: r["candida
+          -te_id"] != "c3")                                              
+       49 +def test_nobody_read_it(run):                                 
+       50 +    _edit_jsonl(run / "findings.jsonl", lambda r: None if r["f
+          +inding_id"] == "f3" else r)                                   
+       51 +    _drop_c3(run)                                             
+       52      a = attribute(run)
+       44 -    assert a.stage == "extraction" and a.links[0].endswith("ex
+          -tractions.jsonl")                                             
+       53 +    assert a.stage == "read" and a.evidence.startswith("no fin
+          +ding") and a.links[0].endswith("findings.jsonl")              
+       54  
+       55  
+       47 -def test_lost_at_compute(run):                                
+       48 -    _edit_jsonl(run / "candidates.jsonl", lambda r: r["candida
+          -te_id"] != "c3")                                              
+       49 -    assert attribute(run).stage == "compute"                  
+       56 +def test_the_sweep_should_have_seen_a_task(run):              
+       57 +    _edit_jsonl(run / "findings.jsonl", lambda r: None if r["f
+          +inding_id"] == "f7" else r)                                   
+       58 +    _edit_jsonl(run / "candidates.jsonl", lambda r: None if r[
+          +"candidate_id"] == "c7" else r)                               
+       59 +    assert attribute(run, "report:q2-planning", ["task:2"]).st
+          +age == "sweep"                                                
+       60  
+       61  
+       52 -def test_lost_at_triage(run):                                 
+       53 -    lines = (run / "triage.jsonl").read_text().splitlines()   
+       54 -    rows = [json.loads(x) for x in lines]                     
+       55 -    rows[2]["include"] = False                                
+       56 -    (run / "triage.jsonl").write_text("".join(json.dumps(r) + 
+          -"\n" for r in rows))                                          
+       62 +def test_the_reader_said_no(run):                             
+       63 +    _edit_jsonl(run / "findings.jsonl", lambda r: {**r, "needs
+          +_avery": "no", "candidate_id": None} if r["finding_id"] == "f3
+          +" else r)                                                     
+       64 +    _drop_c3(run)                                             
+       65      a = attribute(run)
+       58 -    assert a.stage == "triage" and a.links[0].endswith("triage
+          -.jsonl#L3")                                                   
+       59 -    assert attribute(MINI_RUNS / RUN, priority="P0").stage == 
+          -"triage"                                                      
+       66 +    assert a.stage == "read" and "not surfaced" in a.evidence 
+          +and a.links[0].endswith("findings.jsonl#L3")                  
+       67  
+       68  
+       69 +def test_wrong_priority_is_the_finding_origins():             
+       70 +    assert attribute(MINI_RUNS / RUN, priority="P0").stage == 
+          +"read"          # Renee's reader said P1                      
+       71 +    assert attribute(MINI_RUNS / RUN, "meeting:lumen-demo", []
+          +, priority="P2").stage == "sweep"                             
+       72 +                                                              
+       73 +                                                              
+       74 +def test_code_floors_overrode_a_right_finding(run):           
+       75 +    # the reader said yes; enforce set include=false (a never_
+          +draft or cold-recruiter floor misfiring)                      
+       76 +    _edit_jsonl(run / "triage.jsonl", lambda r: {**r, "include
+          +": False} if r["candidate_id"] == "c3" else r)                
+       77 +    a = attribute(run)                                        
+       78 +    assert a.stage == "net" and "code floors" in a.evidence an
+          +d a.links[0].endswith("triage.jsonl#L3")                      
+       79 +                                                              
+       80 +                                                              
+       81 +def test_lost_at_reduce_is_merge(run):                        
+       82 +    _edit_json(run / "reduce.json", lambda r: r.update(items=[
+          +i for i in r["items"] if i["id"] != "i2"]))                   
+       83 +    _edit_json(run / "compose.json", _unplace_i2)             
+       84 +    a = attribute(run)                                        
+       85 +    assert a.stage == "merge" and "lost at reduce" in a.eviden
+          +ce                                                            
+       86 +                                                              
+       87 +                                                              
+       88 +def test_folded_into_another_item_is_merge(run):              
+       89 +    def fold(r):                                              
+       90 +        r["items"] = [i for i in r["items"] if i["id"] != "i2"
+          +]                                                             
+       91 +        r["items"][0]["candidate_ids"].append("c3")   # i1 (th
+          +e cap table) absorbed Renee's finding                         
+       92 +    _edit_json(run / "reduce.json", fold)                     
+       93 +    _edit_json(run / "compose.json", _unplace_i2)             
+       94 +    m = mini_manifest()                                       
+       95 +    view = RunView(run, SourceIndex(m), ROOT, day=DAY)        
+       96 +    # the cap-table item now carries Renee's finding, so it is
+          + matched as the Halberd item: the merge shows up              
+       97 +    # as an over-merge in the merge diagnostics rather than as
+          + a missing item                                               
+       98 +    assert [i.id for i in view.rendered if "c3" in i.candidate
+          +_ids] == ["i1"]                                               
+       99 +                                                              
+      100 +                                                              
+      101  def test_lost_at_compose(run):
+       63 -    def drop(c):                                              
+       64 -        c["sections"] = [dict(b, item_ids=[i for i in b["item_
+          -ids"] if i != "i2"]) for b in c["sections"]]                  
+       65 -    _edit_json(run / "compose.json", drop)                    
+      102 +    _edit_json(run / "compose.json", _unplace_i2)             
+      103      a = attribute(run)
+      104      assert a.stage == "compose" and "not placed by compose" in
+            a.evidence
+      105  
+      106  
+       70 -def test_dropped_by_verify_is_compose(run):                   
+      107 +def test_dropped_by_verify(run):                              
+      108      _edit_json(run / "verify.json", lambda v: v["violations"].
+           append({"rule": 9, "item_id": "i2", "fix": "dropped"}))
+      109      a = attribute(run)
+       73 -    assert a.stage == "compose" and a.evidence == "dropped by 
+          -verify"                                                       
+      110 +    assert a.stage == "verify" and a.evidence == "dropped by v
+          +erify"                                                        
+      111  
+      112  
+       76 -def test_present_but_action_wrong_is_materializer():          
+       77 -    a = attribute(MINI_RUNS / RUN, action="reply")            
+       78 -    assert a.stage == "materializer"                          
+      113 +def test_present_but_action_wrong_is_materialize():           
+      114 +    assert attribute(MINI_RUNS / RUN, action="reply").stage ==
+          + "materialize"                                                
+      115  
+      116  
+      117  def test_final_action_dropped_by_compose(run):
+       82 -    _edit_jsonl(run / "actions.jsonl", lambda r: not (r["item_
+          -id"] == "i2" and r["type"] == "reply"))                       
+      118 +    _edit_jsonl(run / "actions.jsonl", lambda r: None if (r["i
+          +tem_id"] == "i2" and r["type"] == "reply") else r)            
+      119      assert attribute(run, action="reply").stage == "compose"
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && uv run pytest
+      -q --no-header -p no:cacheprovider tests/test_c_attribution.py 2>&1 | grep
+      -E "^E  |pass…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && python3 -
+      <<'EOF'
+      from pathlib import Path…)
+  ⎿  (No output)
+
+⏺ Track A's tests read extractions.jsonl from the fake runs I own. Checking
+  before deciding how to handle it.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && grep -n
+      "mini_runs\|extractions" tests/test_a_compute.py tests/test_a_stages.py
+      tests/a_fakes.py | hea…)
+  ⎿  (No output)
+
+⏺ Keeping the base run's v1 extractions.jsonl (restored from git) so Tracks
+  A/B's tests keep passing until they drop the extractor; the scorer ignores it.
+  Condition runs stay without it.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && git restore
+      --staged tests/fixtures/mini_runs/2026-09-24T06-00/extractions.jsonl &&
+      git checkout -- te…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && uv run pytest
+      -q --no-header -p no:cacheprovider tests/test_c_baseline.py
+      tests/test_c_conditions.py t…)
+  ⎿  (No output)
+
+⏺ Mostly renames. The sim_avery one looks like a real behavior change; checking
+  it.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && grep -n "def
+      test_code_match_by_contact_and_thread_kind" -A 16
+      tests/test_c_sim_avery.py; grep -n "thr…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && uv run python
+      -c "
+      from eval.manifest_schema import load_manifest…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && python3 -
+      <<'EOF'
+      from pathlib import Path…)
+  ⎿  (No output)
+⏺ Now fixing the remaining tests (renames, report headings, integrate,
+  simulation).
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && sed -i ''
+      's/^from eval.scorer.common import contact_label, sender_emails$/from
+      eval.scorer.common imp…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && python3 -
+      <<'EOF'
+      from pathlib import Path…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && uv run pytest
+      -q --no-header -p no:cacheprovider 2>&1 | tail -15)
+  ⎿  (No output)
+
+⏺ Full suite green. Adding tests for the new pieces: in-session judge round trip
+  + table cells, fixed v1 numbers, event-id resolution, structural type
+  matching.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && sed -n '1,40p'
+      tests/test_c_judge.py && grep -n "^def test" tests/test_c_judge.py
+      tests/test_c_match.p…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && sed -n '38,50p'
+      tests/test_c_match.py && sed -n '65,94p' tests/test_c_judge.py)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && python3 -
+      <<'EOF'
+      from pathlib import Path…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && python3 -
+      <<'EOF'
+      from pathlib import Path…)
+  ⎿  Error: Exit code 1
+     ........................................................................ [
+     60%]
+     ........................................................................ [
+     80%]
+     ........................................................................
+     [100%]
+     I001 [*] Import block is un-sorted or un-formatted
+       --> tests/test_c_judge.py:2:1
+        |
+      1 |   """Judge (E1): skipped without a model; with a (fake) model, both
+     rubrics score and calibration compares roles."""
+      2 | / import json
+      3 | | from types import SimpleNamespace
+     … +67 lines (ctrl+o to expand)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && uv run ruff
+      check --fix eval tests/test_c_*.py tests/c_helpers.py
+      tests/fixtures/mini_runs/make_fake_r…)
+  ⎿  (No output)
+
+⏺ All green. Now a real-data sanity check: scoring the v1 dev runs in the main
+  checkout (read-only) with the new scorer, report written to the scratchpad.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && ls
+      /Users/shubham/Desktop/work/lookup-digest/runs/dev/ | head -30 && time uv
+      run digest eval --world d…)
+  ⎿  (No output)
+
+⏺ Scorer runs on real v1 data: 113/175 vs the v1 report's 115/175, plus one "not
+  run". Diffing which assertions changed to make sure it's intended.
+
+⏺ Bash(cd /private/tmp/claude-501/-Users-shubham-Desktop-work-lookup-digest/43b3
+      5155-2db0-41c8-a88f-38a377b7184e/scratchpad && python3 - <<'EOF'
+      import re…)
+  ⎿  (No output)
+
+⏺ I found two over-matches in the real data: one from the about-alternative
+  logic wrongly applying to findings with a different v1 rule name, and another
+  from counting via shared citations. I'll fix both by restricting the
+  about-alternative to free-text kinds and matching counts by key instead of
+  shared context sources.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && grep -n
+      "^CandidateType" -A 12 digest/schemas.py)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && python3 -
+      <<'EOF'
+      from pathlib import Path…)
+  ⎿  Updated OPEN_QUESTIONS.md (+8 -0)
+      52    types is proposed; (4) no fact in `why`/`title` is absent fro
+          m the raw thread. Pass = readers match or beat v1 triage
+      53    on ≥4 of 5 and never fail (4). Fail = stop the merge of P3–P5
+          , keep v1, report in the morning. Tracks run
+      54    unattended (defaults from MIGRATION_PLAN.md §5 instead of que
+          stions).
+      55 +  **Verdict (orchestrator, 2026-09-29 ~06:10): PASS.** Threads 
+         +1, 2, 4 beat v1 (one finding instead of three; no              
+      56 +  invented "8:00"; the calendar contradiction lands in calendar
+         +_personal as the key expects); thread 3 matches on             
+      57 +  priority and section but proposes `task` where the key expect
+         +s `message_person`/`decide`; thread 5 shares v1's miss         
+      58 +  (a promise delivered in another thread), which Track A showed
+         + disappears once that thread is retrieved (B2 must rank        
+      59 +  same-participant threads by subject overlap, not only recency
+         +). No finding states a fact absent from the raw thread.        
+      60 +  Carried to integration (A5, orchestrator): compose rewrote Jo
+         +rdan's reply into a customer draft (recipient check in         
+      61 +  code), reduce joins every same-thread finding (join by shared
+         + citation instead), history keyed on free-text tags,           
+      62 +  freshness qualifier keyed on v1 types. Details: `docs/handoff
+         +s/v2-A-checkpoint.md`.                                         
+      63  
+      64  - **2026-09-29 · Orchestrator fixes from the final dev runs (im
+          plementing the spec, no design change).** Traced with
+      65    the debug-trap procedure; each is a commit with a test. Tier 
+          inheritance only at outside firms (every Tessera
+  ⎿  (what this command changed; a convenience view, not a review or audit
+     of the command)
+
+⏺ Bash(cd /private/tmp/claude-501/-Users-shubham-Desktop-work-lookup-digest/43b3
+      5155-2db0-41c8-a88f-38a377b7184e/scratchpad && python3 - <<'EOF'
+      import re…)
+  ⎿  (No output)
+
+  Searched for 1 pattern (ctrl+o to expand)
+
+⏺ Bash(ls eval/reports/ && git log --oneline -5 && git status --short | head)
+  ⎿  (No output)
+
+⏺ C1–C4 are built and passing; I'm now tightening a count match that was too
+  loose on real data, and I'll update v1_results.yaml to point to the renamed
+  *_v1.md reports after the Track A merge.
+
+⏺ Bash(grep -n "passed ·" eval/reports/dev_2026-09-29_v1.md | head -2; grep -c
+      "" eval/reports/dev_2026-09-29_v1.md; cd
+      /Users/shubham/Desktop/work/lookup-digest-v2-c-…)
+  ⎿  (No output)
+
+⏺ Rescoring v1's runs with the v2 scorer reproduces v1's 115/175, aside from one
+  scorer fix in BG-exp-one-item where v1 wrongly counted all 19 approval items
+  instead of respecting the assertion's about. Now I'll look for an actual v2
+  run with findings to test the reader diagnostics on.
+
+⏺ Bash(cd /Users/shubham/Desktop/work && for d in lookup-digest
+      lookup-digest-v2-a-readers lookup-digest-v2-b-spine; do for f in
+      $d/runs/dev/*/findings.jsonl; do [ -s…)
+  ⎿  (No output)
+⏺ Bash(cd /Users/shubham/Desktop/work && find lookup-digest
+      lookup-digest-v2-a-readers lookup-digest-v2-b-spine -name findings.jsonl
+      -size +0 -not -path "*/tests/*" 2>…)
+  ⎿  (No output)
+
+⏺ A real v2 Thursday run (readers only, no sweeps/nets yet) exists in Track A's
+  worktree. Scoring it read-only.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && ls
+      ../lookup-digest-v2-a-readers/runs/dev/ && uv run digest eval --world dev
+      --runs /Users/shubham/Des…)
+  ⎿  (No output)
+
+⏺ Reader diagnostics work on the real run. Verifying the scorer's thread
+  resolution on it (e.g. t-metrika-renewal shows "no finding" — scorer bug or
+  reader gap?).
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && uv run python -
+      <<'EOF'
+      from eval.manifest_schema import load_manifest…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-a-readers/runs/dev/2026-0
+      9-24T06-00 && ls && head -c 600 cost.jsonl && echo && python3 -c "
+      import json…)
+  ⎿  (No output)
+
+⏺ The cost log tags each reader call with its thread, so the diagnostics can
+  tell "never read" (router/window) from "read, no finding". Adding that.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && python3 -
+      <<'EOF'
+      from pathlib import Path…)
+  ⎿  (No output)
+
+⏺ Diagnostics look meaningful on the real run (no sweeps/nets yet, so
+  notes/calendar traps are missed as expected). Spot-checking the merge
+  "rendered twice" findings aren't scorer artifacts.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && uv run python -
+      <<'EOF'
+      from eval.manifest_schema import load_manifest…)
+  ⎿  (No output)
+
+⏺ Duplicates are real (two cap-table items from two threads; two Mei offer
+  items; the diligence-call finding in two items). Checking the P0 miss
+  attribution on this run.
+
+⏺ Bash(R=/private/tmp/claude-501/-Users-shubham-Desktop-work-lookup-digest/43b35
+      155-2db0-41c8-a88f-38a377b7184e/scratchpad/reports_v2/dev_2026-09-29.md;
+      grep -n "P0 mi…)
+  ⎿  (No output)
+
+⏺ Found that v2 readers write coarse about tags, so assertions lacking a
+  cites_any field were being missed even when the reader found them—I'll treat
+  those as satisfied by the answer key's own sources for that key/day.
+  Implementing this fix and re-measuring v1 with the same rule to keep the
+  comparison fair.
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && python3 -
+      <<'EOF'
+      from pathlib import Path…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && uv run pytest
+      -q --no-header -p no:cacheprovider 2>&1 | tail -2;
+      S=/private/tmp/claude-501/-Users-shub…)
+  ⎿  (No output)
+
+⏺ Widening lifts both v2 (46→56 on day 30) and rescored v1 (115→118), confirming
+  the rule affects the scorer as a whole, not just v2. I'll check which v1
+  assertions flipped and record the rescored v1 numbers for dev and held-out
+  sets to show both in the table.
+
+⏺ Bash(cd /private/tmp/claude-501/-Users-shubham-Desktop-work-lookup-digest/43b3
+      5155-2db0-41c8-a88f-38a377b7184e/scratchpad && python3 - <<'EOF'
+      import re…)
+  ⎿  (No output)
+
+⏺ The three flips are legitimate — v1 stored the franchise-tax and press items
+  under different keys that the old scorer missed, so the updated rule applies
+  fairly to both versions. I'll also rescore the held-out v1 set to save both
+  sets of figures.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval &&
+      S=/private/tmp/claude-501/-Users-shubham-Desktop-work-lookup-digest/43b351
+      55-2db0-41c8-a88f-38a377b718…)
+  ⎿  (No output)
+
+⏺ Status: rescored v1 with the v2 scorer (dev 118/175, held-out 137/207);
+  storing those next to the reported v1 numbers and showing both under the
+  table, then writing up the open question and status.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && cat >>
+      eval/v1_results.yaml <<'EOF'
+      # The same v1 runs rescored with the v2 scorer (2026-09-29, before…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && sed -i '' 's/
+       re = v1.get("rescored_with_v2_scorer") or {}/    rescored =
+      v1.get("rescored_with_v2_…)
+  ⎿  (No output)
+
+⏺ Now the write-ups: OPEN_QUESTIONS entry for the scorer interpretations
+  (unattended mode: picked defaults, flagged for review), then the status file.
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Update(~/Desktop/work/lookup-digest-v2-c-eval/OPEN_QUESTIONS.md)
+  ⎿  Added 14 lines
+      34  **Suggestion.** (b), noted in DESIGN.md as a grader change made
+           after results were seen. Your call; not changed.
+      35  
+      36  
+      37 +### 21. Track C · v2 scorer interpretations (C-grader, 2026-09-
+         +29, unattended): built with the picks below; confirm or redirec
+         +t                                                              
+      38 +                                                               
+      39 +Where: `eval/scorer/common.py` (selectors), `readers.py` (C1), 
+         +`assertions.py` (C3), `attribution.py`, `report.py`.           
+      40 +                                                               
+      41 +| # | What | Options | Picked |                                
+      42 +|---|---|---|---|                                              
+      43 +| 21a | **Key-only selectors miss v2 items.** Readers write lig
+         +ht tags (`deal:series-a`), so an assertion with an `about` and 
+         +no `cites_any` (`S4-d30-present`, `S2-d30-0605-present`, …) fin
+         +ds nothing although the reader flagged the thread. | (1) keep k
+         +ey-only; (2) when a selector names a key but no sources, that d
+         +ay's expected items' `cites_any` for the key stand in; (3) add 
+         +`cites_any` to every assertion (manifest edit, Track B) | (2), 
+         +for every item-level check and the candidate kinds, v1 and v2 a
+         +like. On v1's own runs it credits items v1 rendered under other
+         + keys (franchise tax, press request): dev 115 → 118/175, held-o
+         +ut 129 → 137/207. |                                            
+      44 +| 21b | **Which v1 numbers head the table.** | (1) as reported 
+         +(handoff C4); (2) rescored with this scorer (same rules as v2) 
+         +| Column = (1), line under the table = (2), both in `eval/v1_re
+         +sults.yaml` (the v1 runs are overwritten by v2 runs). Suggest D
+         +ESIGN.md quotes (2) for any v1-vs-v2 claim. |                  
+      45 +| 21c | **C3 about alternative** ("type = v1 name **or** about 
+         +matches"). Taken literally, rescoring v1 turned three passing a
+         +bsent checks into failures (an `approval_pending` candidate abo
+         +ut `candidate:ines-ferreira` counted as a `hiring_stall`). | (1
+         +) any finding about the key; (2) the about alternative only for
+         + free-text kinds (a finding that names another v1 rule is that 
+         +rule); `contradiction` / `suspicious_content` / `news_attachmen
+         +t` also need their Finding analog (`contradictions`, `suspiciou
+         +s_instructions`, the news sweep); only live findings (yes, or u
+         +nsure with a card) | (2). With it, v1 rescored matches v1 as re
+         +ported except the 21a/21d fixes. |                             
+      46 +| 21d | **`count_items_of_type` without `about`** on a type v2 
+         +has no rule for (`cadence_drop`, `obligation_cadence`, …): the 
+         +name never appears in v2. `about` was ignored in v1 (`BG-exp-on
+         +e-item` counted all 19 approval items). | (1) name only; (2) th
+         +at day's expected keys of the type, counted by key (not by shar
+         +ed note citations); honour `about` | (2) |                     
+      47 +| 21e | **Reader diagnostics truth (C1).** The label rule (ball
+         + on Avery / open ask / open promise → yes) disagrees with the a
+         +nswer key on some threads: must-not threads with the ball on Av
+         +ery (courtesy close, far deadline, S16 fulfilled elsewhere) and
+         + per-day timing (S3 before 3 business days). | (1) label only; 
+         +(2) label + day rules | (2): thread fully visible at as_of; cit
+         +ed by an included item that day → yes with its band and actions
+         + (a must-not thread behind a pattern item, e.g. TalentBridge, n
+         +ot scored); `must_not_surface` → no; key in that day's `absent`
+         + or an excluded item cites it → no; `fulfilled_by_source` close
+         +s a promise. |                                                 
+      48 +| 21f | **Stages the chain lacks.** | — | `spine` (before `read
+         +`) for contact classification; `net` also covers the code floor
+         +s (`enforce`) when they override a right finding, and hard-rule
+         + violations in `triage.jsonl`. |                               
+      49 +                                                               
+      50 +                                                               
+      51  ## Decided
+      52  
+      53  - **2026-09-29 · Orchestrator fixes from the final dev runs (im
+          plementing the spec, no design change).** Traced with
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && python3 -
+      <<'EOF'
+      from pathlib import Path…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && uv run pytest
+      -q --no-header -p no:cacheprovider 2>&1 | grep -E "passed|failed"; uv run
+      pytest -q --no…)
+  ⎿  No matches found
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && uv run pytest
+      -p no:cacheprovider -q 2>&1 | tail -3; uv run pytest -p no:cacheprovider
+      -q tests/test_c…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && uv run pytest
+      -p no:cacheprovider --co -q -o addopts="" 2>&1 | tail -2; uv run pytest -p
+      no:cacheprovi…)
+  ⎿  (No output)
+
+⏺ Status: 360 tests (Track C 159 → 181), all green. Verifying the worktree after
+  the stash round-trip, then writing the status file and committing.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && git stash list
+      | head -3; git status --short | wc -l; ls eval/scorer/ && uv run pytest -p
+      no:cacheprov…)
+  ⎿  (No output)
+
+⏺ Now the status file.
+
+⏺ Write(~/Desktop/work/lookup-digest-v2-c-eval/docs/handoffs/v2-C-STATUS.md)
+  ⎿  Wrote 35 lines to
+     ../lookup-digest-v2-c-eval/docs/handoffs/v2-C-STATUS.md
+       1 # v2 · Track C · status
+       3 **2026-09-29 · C1–C5 done on branch `v2-c-eval`; stopped.** 360
+       4 choices made unattended are in `OPEN_QUESTIONS.md` #21 (a–f); pl
+         ease confirm or redirect.
+       6 ## Landed
+       8 | Deliverable | Where | Notes |
+      10 | Findings in the run view | `eval/scorer/artifacts.py` | every
+         `findings.jsonl` row becomes a `Signal` (origin, kind, about key
+         , rescued); a candidate with no finding behind it (v1 runs, fixt
+         ional |
+     … +78 lines (ctrl+o to expand)
+
+⏺ Double-checking the v2 numbers quoted in the status against the latest report
+  (widening may have shifted the merge counts).
+
+⏺ Bash(R=/private/tmp/claude-501/-Users-shubham-Desktop-work-lookup-digest/43b35
+      155-2db0-41c8-a88f-38a377b7184e/scratchpad/reports_v2/dev_2026-09-29.md;
+      grep -E "^\| (…)
+  ⎿  (No output)
+
+⏺ Numbers match. Committing my paths only.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && git status
+      --short | grep -v "tests/fixtures/mini_runs" ; git status --short
+      tests/fixtures/mini_runs…)
+  ⎿  (No output)
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval && git add
+      eval/cli.py eval/judge/judge.py eval/report.py eval/scorer
+      eval/sim_avery/sim.py eval/v1_resul…)
+  ⎿  (No output)
+
+⏺ Committed (fa50f79). Now a throwaway trial merge with current main (which has
+  Track A merged) in a temp worktree, to check the orchestrator's merge will be
+  clean and green.
+
+⏺ Bash(cd /Users/shubham/Desktop/work/lookup-digest-v2-c-eval &&
+      T=/private/tmp/claude-501/-Users-shubham-Desktop-work-lookup-digest/43b351
+      55-2db0-41c8-a88f-38a377b718…)
+  ⎿  (No output)
+
+⏺ Bash(cd /private/tmp/claude-501/-Users-shubham-Desktop-work-lookup-digest/43b3
+      5155-2db0-41c8-a88f-38a377b7184e/scratchpad/trial-merge && uv run pytest
+      -p no:cachepro…)
+  ⎿  (No output)
+  ⎿  (timeout 5m)
+
+⏺ Clean merge with main, 367 passed. Running the acceptance command there too,
+  then removing the throwaway worktree.
+
+⏺ Bash(T=/private/tmp/claude-501/-Users-shubham-Desktop-work-lookup-digest/43b35
+      155-2db0-41c8-a88f-38a377b7184e/scratchpad/trial-merge; cd $T && uv run
+      digest eval --w…)
+  ⎿  (No output)
+
+⏺ Trial merge is clean; the acceptance command works there too (the "P0 GATE
+  FAILED" is the fixture's planted defect). Recording the track state in memory
+  for the next session.
+
+  Recalled 1 memory, wrote 1 memory (ctrl+o to expand)
+
+⏺ Track C v2 is done. All five deliverables (C1–C5) are built and committed on
+  v2-c-eval (fa50f79), and I've stopped at the handoff's end point. All 360
+  tests pass in my worktree. A throwaway merge with current main (which now
+  includes Track A) merged cleanly, passed 367 tests, and the fixture acceptance
+  command worked there; I deleted that copy afterwards.
+
+  Deliverable: C1 reader checks
+  What changed: readers.py (eval/scorer/readers.py) replaces the extraction
+  metrics. Per morning it reports: did each thread's reader say it needs Avery,
+   was the priority in the expected range, was an expected action proposed, and
+   did must-not threads stay quiet. It also tells "thread never read" apart
+  from "read, nothing found".
+  ────────────────────────────────────────
+  Deliverable: C2 sweep, net and merge checks
+  What changed: sweeps.py (eval/scorer/sweeps.py) checks the planted calendar
+  and
+  notes traps (and which stage found each) and lists every safety-net rescue.
+  merge.py (eval/scorer/merge.py) flags items shown twice or two expected items
+   merged into one. spine.py (eval/scorer/spine.py) scores contact
+  classification.
+  ────────────────────────────────────────
+  Deliverable: C3 assertions
+  What changed: The candidate-type assertions now match findings. Misses are
+  pinned to spine → read → sweep → net → merge → compose → materialize →
+  verify.
+  ────────────────────────────────────────
+  Deliverable: C4 report
+  What changed: §1 is the v1 / v2 / baseline table for dev and held-out; the v1
+  numbers are fixed in v1_results.yaml (eval/v1_results.yaml). §2 is now
+  "Diagnostics", including the rescue list.
+  ────────────────────────────────────────
+  Deliverable: C5 judge
+  What changed: The DeepSeek --judge path is unchanged and tested with a fake
+  model; I didn't run it (OPEN_QUESTIONS #20 says no API spend on eval). I
+  added --judge-export and --judge-scores so the orchestrator session can judge
+   the digests itself and have the scores appear in the report.
+
+  What the real data showed:
+  - v1 rescored: I scored v1's own runs with the new scorer. It gives dev
+    118/175 (reported 115) and held-out 137/207 (reported 129). The difference
+    is items v1 did show but under a different key, which the old scorer missed.
+    I stored both sets of v1 numbers, because the v1 run folders will be
+    overwritten by the v2 runs.
+  - v2 Thursday run: this is Track A's readers-only run, day 30 only. P0 recall
+    is 87.5% and the one thing is wrong. Readers flagged 24 of 26 threads that
+    need Avery, but only 40% came with an expected action type. 15 of 123
+    must-not threads were wrongly flagged. Only 5 of 11 planted calendar/notes
+    traps were found (sweeps and safety nets aren't in yet), and 3 items show up
+    twice (merge isn't in yet). I didn't commit that report because the run is
+    partial.
+
+  Decision for you: OPEN_QUESTIONS #21 (a–f) lists the scoring interpretations I
+  picked while running unattended. The one that matters most is 21a. v2 readers
+  tag items loosely (for example deal:series-a), so an assertion that gives
+  only a key found nothing even when the reader had flagged the thread. When an
+  assertion names a key but no sources, I now use the answer key's own sources
+  for that key. That rule also caused the +3 and +8 on v1 above. So 21b asks
+  which v1 numbers DESIGN.md should quote: as reported, or rescored with the
+  same scorer as v2. I suggest the rescored ones for any v1-vs-v2 claim; the
+  table shows both.
+
+  Still to do:
+  - Orchestrator: after B's sweeps and safety nets land and the five mornings
+    are run, run digest eval --world dev and --world heldout to get the full
+    report. Details are in v2-C-STATUS.md (docs/handoffs/v2-C-STATUS.md).
+  - Fixture file: the base fake run still has its v1 extractions.jsonl, because
+    test_a_compute.py on main reads it. Delete it once no test does.
+  - You: please run /export sessions/C-grader_v2.txt, then grep it for
+    github_pat_|sk-or-|OPENROUTER_API_KEY= before committing.
+
+  Separately, the claude.ai Gmail and Google Calendar connectors need to be
+  authorized in your connector settings before they can be used; nothing in this
+  task needed them.
