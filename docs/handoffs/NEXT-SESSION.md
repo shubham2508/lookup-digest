@@ -10,12 +10,13 @@ tables over paragraphs, a status line between long steps, and no fixable issue s
   compose v6), ran both final matrices, judged in-session, and filled `DESIGN.md`, `README.md`, `eval/history.md`.
 - **v1 is tag `v1-extraction-centric`**; its reports are `eval/reports/*_2026-09-29_v1.md`. Rejected design, kept for the
   comparison.
-- **Final numbers (both worlds, five mornings):** dev P0 100%, traps 126/175, noise 5.5%, one thing 2/2, memory 11/11,
+- **Final numbers (both worlds, five mornings):** dev P0 100%, traps 127/175, noise 5.5%, one thing 2/2, memory 11/11,
   $0.18 a cold morning; held-out P0 84.6%, traps 149/207, noise 6.1%, one thing 2/2, memory 14/15, $0.29. Judge
   (in-session, `eval/judge/in_session/*.yaml`, read back with `--judge-scores`): dev digest 4.4/3.4/4.4, drafts
   4.7/4.3/3.5; held-out digest 4.4/3.2/4.4, drafts 4.2/4.5/3.2. Reports: `eval/reports/{dev,heldout}_2026-09-29.md`.
 - Decisions taken while Shubham slept are in `OPEN_QUESTIONS.md` → Decided (#19 verdict, #20, #21, #22 accepted).
-  Still open for Shubham: **#18** (the scorer's claimed-key guard; it costs held-out one P0 credit on day 30).
+  #18 is closed by **#23**: the grader matches by exact key, unique sources and the product's decider; no string
+  similarity remains anywhere in the repo.
 
 ## To do next (Shubham, then the orchestrator)
 

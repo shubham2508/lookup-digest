@@ -42,7 +42,7 @@ uv run digest eval --world dev --judge-export items.jsonl   # judge items with r
 uv run digest eval --world dev --judge-scores scores.yaml   # read the scores back into the report (--judge runs the API judge instead)
 ```
 
-Scores every run against `eval/manifests/dev.yaml` and writes `eval/reports/dev_<date>.md`: §1 a v1 / v2 / baseline table (P0 recall, the only gate; trap assertions; must-not rate; one-thing accuracy; judge; cost), §2 diagnostics per morning (reader recall on planted threads, sweep and safety-net recall with the rescue list, merge errors, hard rules, contact classification), then the honesty variants, the customize suite and the simulation checks. `eval/history.md` logs prompt changes with before and after numbers. The v1 pipeline is tag `v1-extraction-centric`; its reports are `eval/reports/*_v1.md`.
+Scores every run against `eval/manifests/dev.yaml` and writes `eval/reports/dev_<date>.md`: §1 a v1 / v2 / baseline table (P0 recall, the only gate; trap assertions; must-not rate; one-thing accuracy; judge; cost), §2 diagnostics per morning (reader recall on planted threads, sweep and safety-net recall with the rescue list, merge errors, hard rules, contact classification), then the honesty variants, the customize suite and the simulation checks. Credit is decided by exact keys and by sources (a citation of a source unique to the expected item); the shared-source cases go to the product's decider and every such decision is listed in the report. `eval/history.md` logs prompt changes with before and after numbers. The v1 pipeline is tag `v1-extraction-centric`; its reports are `eval/reports/*_v1.md`.
 
 ## Debug UI
 
