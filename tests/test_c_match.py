@@ -17,14 +17,11 @@ from tests.c_helpers import mini_manifest
 PT = ZoneInfo("America/Los_Angeles")
 
 
-def test_about_match_uses_the_compute_merge_rule():
-    m = mini_manifest()
-    for a, b in m.about_keys.should_merge:
-        assert about_match(a, b)
-    for a, b in m.about_keys.should_not_merge:
-        assert not about_match(a, b)
-    assert not about_match("offer:mei-tanaka", "candidate:mei-tanaka")  # kind must agree
+def test_about_match_is_exact_since_the_coverage_rewrite():
+    """OPEN_QUESTIONS #23: no string similarity in the grader; sameness comes from sources and the decider."""
     assert about_match("offer:mei-tanaka", "OFFER:mei-tanaka")
+    assert not about_match("deal:series-a:cap-table", "deal:series-a:captable")
+    assert not about_match("offer:mei-tanaka", "candidate:mei-tanaka")  # kind must agree
     assert not about_match(None, "offer:x")
 
 

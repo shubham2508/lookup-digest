@@ -69,6 +69,17 @@ contact_classifier,calendar_sweep,notes_tasks_sweep,news_sweep}.md`.
 
 ## Decided
 
+- **2026-09-29 ~09:30 · #23 grader matching without string similarity; closes #18** (Shubham: "what should the actual
+  behavior be? it's a code match, not an LLM match"). `eval/scorer/match.py::about_match` is exact key equality; the
+  rapidfuzz ratio is gone. Whether a rendered item (or finding) *is* an expected item is decided in
+  `eval/scorer/coverage.py`: (1) an exact key, or a citation of a source **unique** to that expected item that day;
+  (2) an item labeled, exactly, with another expected item's key is that item and is never credited here (the old #18
+  guard without the ratio); (3) items that cite only sources shared with other expected items go to the decider, the
+  product's own linker (Jev first, the LLM under p 0.7), one question per expected item per day, memoized, logged in
+  the report's notes ("matching: …"). The #9 fallback keeps its source routes (a source labeled with the key, or of
+  the same storyline) and drops the token-in-entity heuristic. Under pytest no live decider is built (tests inject a
+  stub or run strict). Held-out and dev were re-scored on the same runs; no pipeline change.
+
 - **2026-09-29 ~07:40 · #21 (C) and #22 (B) accepted as built** (orchestrator, delegated). #21a–f: key-only selectors
   borrow the answer key's sources; v1 column as reported with the rescored line beneath; count-by-key for rule-less
   types; reader truth from the labels; `spine` and `net` stages. #22a–g: waiting nets covered by a reader that read the

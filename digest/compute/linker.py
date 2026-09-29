@@ -64,6 +64,9 @@ TASKS = {
                                "same people on nearby dates. Match the one event that is the same meeting, or none."),
     "declined_meeting_fallout": ("Each item is a meeting Avery declined. Options are decisions, agreements and requests dated after it. "
                                  "Match the ones that came out of that meeting or need Avery's sign-off because of it."),
+    "covers_expected": ("Each item is an expected digest item from a reviewed answer key (its topic key and notes). Options are "
+                        "items a digest rendered that cite the same sources. Pick the rendered item that is about that same "
+                        "expected item, or none; a related item on the same thread about a different issue is none."),
     "role_at_org": ("Each item is a sender (name, email, signature title, organization). Options are roles at named "
                     "organizations from the owner's profile. Match only if the sender holds that role at one of those "
                     "organizations (an acting or new holder of the role counts; a colleague in a different role does not)."),

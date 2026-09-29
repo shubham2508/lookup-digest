@@ -1,7 +1,9 @@
 """Matching rules shared by every metric (extraction_schema §7 "Matching rules for scoring").
 
-- About keys: same `kind`, and the rest (slug + qualifier) has a fuzzy ratio ≥ 0.85. Strict on purpose: the scorer
-  must not be kinder than the product. (Grader side only; the product decides sameness with its linker.)
+- About keys: exact equality of kind and slug (case-insensitive). No string similarity anywhere in the grader since
+  2026-09-29 (OPEN_QUESTIONS #23): v2 readers write free tags, so whether a rendered item *is* an expected item is
+  decided by sources (a citation of a source unique to that expected item) and, for the ambiguous rest, by the same
+  decider the product uses (`scorer/coverage.py`).
 - Source references: product evidence IDs (`msg:<message-id>`, `thread:<root message-id>`, `note:<path>#L<n>`,
   `task:<id>`, `event:<uid>`) are mapped back to manifest `source_id`s through the manifest's message labels. The
   product assigns its own thread IDs, so a thread is identified by its messages, never by its ID.
@@ -17,8 +19,6 @@ from pathlib import PurePosixPath
 from typing import Any
 from zoneinfo import ZoneInfo
 
-from rapidfuzz import fuzz
-
 from eval.manifest_schema import Manifest
 
 FUZZY_RATIO = 0.85
@@ -31,14 +31,11 @@ def split_about(key: str) -> tuple[str, str]:
     return kind, rest
 
 
-def about_match(a: str | None, b: str | None, ratio: float = FUZZY_RATIO) -> bool:
+def about_match(a: str | None, b: str | None, ratio: float | None = None) -> bool:
+    """Exact key equality (kind and slug). `ratio` is accepted and ignored: no fuzzy matching in the grader."""
     if not a or not b:
         return False
-    ka, ra = split_about(a)
-    kb, rb = split_about(b)
-    if ka != kb:
-        return False
-    return ra == rb or fuzz.ratio(ra, rb) / 100.0 >= ratio
+    return split_about(a) == split_about(b)
 
 
 def any_about_match(key: str | None, keys: Iterable[str]) -> bool:

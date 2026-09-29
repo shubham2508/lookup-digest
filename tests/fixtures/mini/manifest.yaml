@@ -84,6 +84,13 @@ items:
       closed_by_courtesy: false
       sender_relationship: {category: family, subtype: partner}
       asks: [{to_avery: true, kind: decision, deadline_day: 30, status: open}]
+  - source_id: event:wren-pediatrician-20260924
+    kind: event
+    storyline: S11
+    must_not_surface: false
+    expected:
+      type: event
+      about: []
 
 contacts:
   - {email: renee.tan@halberd.com, name: Renee Tan, org: Halberd Manufacturing, title: Procurement Lead,

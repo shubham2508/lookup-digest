@@ -10,6 +10,7 @@ from digest.schemas import CandidateType
 from eval.manifest_schema import Manifest
 
 from .artifacts import RenderedItem, RunView, Signal
+from .coverage import covered_items, covered_signals, other_keys
 from .match import about_match, split_about, type_matches
 
 GENERIC_TOKENS = {"the", "and", "for", "with", "other", "meeting", "update", "series"}
@@ -148,12 +149,10 @@ def select_items(view: RunView, manifest: Manifest, args: dict, cites_any: list[
     cites_any = cites_any if cites_any is not None else list(args.get("cites_any") or [])
     day = day if day is not None else view.day
     cites_any = cites_any or expected_cites(manifest, day, args.get("about"))
-    claimed = claimed_abouts(manifest, day, args.get("about"))
+    covered = covered_items(view, manifest, args["about"], cites_any, day) if "about" in args else None
     out = []
     for it in view.rendered:
-        if "about" in args and not (about_match(it.about, args["about"]) or _by_cites(it.about, it.source_ids, cites_any, claimed)
-                                    or any(about_match(a, args["about"]) for s in view.item_signals(it) for a in s.abouts)
-                                    or _by_signal_fallback(view, manifest, it, args["about"], day, claimed)):
+        if covered is not None and it.id not in covered and not _by_signal_fallback(view, manifest, it, args["about"], day):
             continue
         if "source_id" in args and args["source_id"] not in it.source_ids:
             continue
@@ -218,15 +217,12 @@ def labeled_with(manifest: Manifest, about: str) -> set[str]:
 
 
 def fallback_signal_match(view: RunView, s: Signal, about: str, storyline: str | None = None) -> bool:
-    """OPEN_QUESTIONS #9: a key that doesn't fuzzy-match still matches (the caller checks the type) when the finding
-    shares a citation with a source labeled with that key or with the storyline, or an entity / citation token."""
+    """OPEN_QUESTIONS #9, sources only: a finding of the expected type matches when it cites a source the answer key
+    labels with that key, or a source of the same storyline. (The former token-in-entity heuristic is gone: #23.)"""
     manifest = view.index.manifest
     if s.sources & labeled_with(manifest, about):
         return True
-    if storyline and any(manifest.item(x).storyline == storyline for x in s.sources):
-        return True
-    blob = " ".join([*s.entities, *s.refs]).lower()
-    return any(tok in blob for tok in about_tokens(about))
+    return bool(storyline and any(manifest.item(x).storyline == storyline for x in s.sources))
 
 
 def _claimed_by_other(s: Signal, claimed: list[str]) -> bool:
@@ -243,12 +239,12 @@ def _day_expected(view: RunView, about: str):
 
 
 def _by_signal_fallback(view: RunView, manifest: Manifest, it: RenderedItem, about: str, day: int | None,
-                        claimed: list[str]) -> bool:
+                        claimed: list[str] | None = None) -> bool:
     """OPEN_QUESTIONS #9 for rendered items: a finding behind the item is the day's expected signal for this key by
-    type + shared labeled citation / storyline / token (e.g. a net's `family:wren` whose evidence is
-    `event:wren-pediatrician-…` is the manifest's `family:pediatrician`). Never for a key another expectation claims."""
-    if day is None or not it.candidate_ids or any(about_match(it.about, k) for k in claimed):
-        return False
+    type + a citation the answer key labels with that key or its storyline (e.g. a net's `family:wren` whose evidence
+    is `event:wren-pediatrician-…` is the manifest's `family:pediatrician`)."""
+    if day is None or not it.candidate_ids or any(about_match(it.about, k) for k in other_keys(manifest, day, about)):
+        return False   # an item labeled with another expected item's key, exactly, is that item
     try:
         expected = [c for c in manifest.run_day(day).candidates if about_match(c.about, about)]
     except KeyError:
@@ -288,8 +284,9 @@ def select_signals(view: RunView, ctype: str | None = None, about: str | None = 
     that rule, not this one. A structural type (contradiction, suspicious_content, news_attachment) must also carry
     its analog. Without `about`: the type alone decides.
     `live` keeps only findings that reach the digest (needs_avery yes, or unsure with a card)."""
-    claimed = claimed or []
     cites_any = cites_any or expected_cites(view.index.manifest, view.day, about)
+    covered = covered_signals(view, about, cites_any, ctype) if about else set()
+    storylines = {c.storyline for c in _day_expected(view, about) if c.storyline} if about else set()
     out = []
     for s in view.signals:
         if live and not s.live:
@@ -297,9 +294,8 @@ def select_signals(view: RunView, ctype: str | None = None, about: str | None = 
         typed = ctype is None or signal_is_type(s, ctype)
         if about:
             foreign = not typed and names_a_v1_rule(s.type)
-            direct = not foreign and (any(about_match(a, about) for a in s.abouts) or (
-                bool(cites_any and s.sources & set(cites_any)) and not _claimed_by_other(s, claimed)))
-            fallback = ctype is not None and typed and not _claimed_by_other(s, claimed) and fallback_signal_match(view, s, about)
+            direct = not foreign and id(s) in covered
+            fallback = ctype is not None and typed and any(fallback_signal_match(view, s, about, st) for st in (storylines or {None}))
             ok = (typed and (direct or fallback)) if (ctype in STRUCTURAL_TYPES) else (direct or fallback)
         else:
             ok = typed

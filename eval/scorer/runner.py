@@ -133,6 +133,25 @@ def load_views(manifest: Manifest, runs_root: Path, suffix: str | None = None) -
     return {d: RunView(p, index, ROOT, day=d) for d, p in find_runs(manifest, runs_root, suffix).items()}
 
 
+def _matching_notes(views: dict) -> list[str]:
+    """How expected items were credited (OPEN_QUESTIONS #23): exact keys and unique sources need no decision; the
+    shared-source cases the decider settled, or could not, are listed so the grading is auditable."""
+    from collections import Counter
+
+    decided: Counter[str] = Counter()
+    lines: list[str] = []
+    for day, view in sorted(views.items()):
+        cov = getattr(view, "coverage", None)
+        for e in (cov.log if cov else []):
+            decided[e["by"]] += 1
+            lines.append(f"day {day} · {e['about']}: {len(e['options'])} shared-source candidate(s) → "
+                         f"{', '.join(e['matches']) or 'none'} ({e['by']})")
+    if not lines:
+        return []
+    head = "matching: " + ", ".join(f"{n} by {by}" for by, n in decided.most_common()) + "; the rest by exact key or a unique source"
+    return [head] + lines[:40]
+
+
 def score_world(world: str, runs_root: Path | None = None, *, suffix: str | None = None, label: str = "pipeline",
                 manifest: Manifest | None = None, customize_suite: bool = False, conditions: bool = True) -> WorldScore:
     """Score every run day found under runs_root (with `suffix`, if any) and the assertions that belong to it:
@@ -154,6 +173,7 @@ def score_world(world: str, runs_root: Path | None = None, *, suffix: str | None
     for day, view in sorted(views.items()):
         ws.runs[day] = score_run(view, manifest, day)
         ws.notes += [f"day {day}: malformed artifact: {m}" for m in view.malformed]
+    ws.notes += _matching_notes(views)
 
     if suffix in (None, "baseline"):
         base = [a for a in manifest.assertions if not a.variant and not a.customize]
