@@ -37,6 +37,7 @@ ARTIFACTS: dict[str, str] = {
     "degradations": "degradations.jsonl", # skipped items (LLMOutputInvalid, dropped evidence, ...)
     "trace": "trace.jsonl",               # every LLM call with full input/output (debug UI)
     "links": "links.jsonl",               # the linker's same-thing decisions with reasons (compute)
+    "routes": "routes.jsonl",             # Jev's mail kind per thread the headers leave open, and where it went
 }
 
 

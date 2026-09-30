@@ -37,7 +37,7 @@ from .store import Store
 from .triage import enforce_all
 from .verify import verify
 
-STAGES = ("compile_profile", "ingest", "normalize", "spine", "read", "sweep", "nets", "merge", "enforce", "reduce", "compose",
+STAGES = ("compile_profile", "ingest", "normalize", "route", "spine", "read", "sweep", "nets", "merge", "enforce", "reduce", "compose",
           "materialize", "verify", "render")
 STAGES_PENDING: tuple[str, ...] = ()
 
@@ -197,6 +197,11 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
         norm = normalize_world(raw, settings, profile.config.person)
         if norm.owner_email is None:
             ctx.degrade("normalize", "owner", "could not detect the owner's address from the data")
+    with ctx.timed("route"):
+        from .compute.routing import route_by_kind
+
+        routes = route_by_kind(norm, _decider(llm, settings, ctx), ctx)
+        ctx.write_jsonl("routes", routes.rows)
 
     rulings = load_rulings(rulings_path(world, settings), as_of_dt)
     with ctx.timed("spine"):
@@ -325,7 +330,8 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
     summary.update({
         "owner_email": norm.owner_email, "threads": len(norm.threads), "messages": len(norm.messages),
         "forwarded_messages": norm.forwarded_count, "events": len(norm.events), "notes": len(norm.notes),
-        "tasks": len(norm.tasks), "read": read.stats.as_dict(),
+        "tasks": len(norm.tasks), "route": {"asked": routes.asked, "routed": routes.routed, "unsure": routes.unsure, "failed": routes.failed},
+        "read": read.stats.as_dict(),
         "compute": comp.stats, "triage": {"candidates": tstats.candidates, "fixes": len(tstats.fixes), "rulings_applied": tstats.rulings_applied},
         "reduce": {"items": len(reduced.items), "overflow": len(reduced.overflow), "dropped": len(reduced.dropped), "merges": len(reduced.about_merges)},
         "compose": {"cached": cstats.cached, "fallback": cstats.fallback, "fixes": cstats.fixes, "one_thing": composed.one_thing_id,

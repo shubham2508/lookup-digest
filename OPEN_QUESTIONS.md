@@ -69,6 +69,16 @@ contact_classifier,calendar_sweep,notes_tasks_sweep,news_sweep}.md`.
 
 ## Decided
 
+- **2026-09-30 · #27 mail kind by Jev, not by sending all system mail to readers** (Shubham: "all these
+  classification is a typical Jev usecase"). #26 read every thread without list headers, so every receipt and
+  notification cost a full reader call (+40 dev threads, about +$0.15 a morning). Now headers settle what they prove
+  (the owner wrote in it; list mail; Auto-Submitted) and `compute/routing.py` asks Jev one pick-one question per
+  remaining thread: a person, a system asking the owner to act, a system FYI, or list mail. A person or a system ask
+  is read, a system FYI is not, list mail goes to the news sweep. Below p 0.7, on a Jev failure or with no Jev
+  configured, the thread is read. Every decision is in the run's `routes.jsonl`. **Built and unit-tested only**: the
+  API key's account is at $0.09, so it has not run on real data yet; next, one Jev-only routing check on dev (about
+  $0.01), then dev Thursday, then held-out once.
+
 - **2026-09-30 · #26 no keyword or word-list decisions left in `digest/`** (Shubham: "these are bugs, using
   non-deterministic regex to decide some logic as it can go wrong some % of time"; fix on main). #25 claimed every
   keyword decision was gone; three survived. Criteria: code decides only from hard facts (headers, addresses, times,

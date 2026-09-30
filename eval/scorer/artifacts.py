@@ -27,7 +27,7 @@ from digest.runs import ARTIFACTS
 from .digest_md import ParsedDigest, parse_digest
 from .match import SourceIndex, evidence_refs, majority_source, max_priority
 
-OPTIONAL_ARTIFACTS = {"trace", "links", "extractions"}  # trace: debug only; extractions: v1 only (gone in v2)
+OPTIONAL_ARTIFACTS = {"trace", "links", "routes", "extractions"}  # trace, links, routes: logs; extractions: v1 only (gone in v2)
 DRAFT_TYPES = ("reply", "forward_delegate", "decide", "message_person")
 # the stage a finding's origin belongs to (attribution chain read → sweep → net → merge → compose → materialize → verify)
 ORIGIN_STAGE = {"thread_reader": "read", "calendar_sweep": "sweep", "notes_tasks_sweep": "sweep", "news_sweep": "sweep",

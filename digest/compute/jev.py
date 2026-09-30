@@ -1,4 +1,5 @@
-"""Jev (TypeSafe's classifier model) through OpenRouter's decisions endpoint, for the linker's pick-one questions.
+"""Jev (TypeSafe's classifier model) through OpenRouter's decisions endpoint: the linker's pick-one questions, and
+the mail kind of each thread the headers leave open (compute/routing.py).
 
 Jev answers typed questions (pick one option, yes/no, score) with calibrated probabilities and writes no text, so
 it cannot hallucinate an option that was not offered. Request: {model, state, questions}; each question here is a
@@ -38,16 +39,16 @@ class JevDecider:
     trace_log: object | None = None
     timeout_s: float = 30.0
 
-    def _post(self, body: dict, tag: str) -> dict:
+    def _post(self, body: dict, tag: str, role: str = "linker") -> dict:
         key = hashlib.sha256(json.dumps(body, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
         path = self.cache_dir / "jev" / f"{key}.json" if self.cache_dir else None
         if path is not None and path.exists():
             data = json.loads(path.read_text(encoding="utf-8"))
             if self.cost_log is not None:
-                self.cost_log.record(role="linker", model=self.model, prompt_version="jev-decisions", cached=True, prompt_tokens=0,
+                self.cost_log.record(role=role, model=self.model, prompt_version="jev-decisions", cached=True, prompt_tokens=0,
                                      completion_tokens=0, cost_usd=0.0, cost_known=True, tag=tag, cache_key=key)
             if self.trace_log is not None:
-                self.trace_log.record(role="linker", tag=tag, prompt_version="jev-decisions", model=self.model, cached=True,
+                self.trace_log.record(role=role, tag=tag, prompt_version="jev-decisions", model=self.model, cached=True,
                                       messages=[{"role": "state+questions", "content": json.dumps(body, ensure_ascii=False)}],
                                       raw=json.dumps(data), output=data.get("answers"), output_model="Jev decisions",
                                       retries=0, latency_ms=0, cost_usd=0.0, prompt_tokens=0, completion_tokens=0, cache_key=key, invalid=False)
@@ -74,18 +75,41 @@ class JevDecider:
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
         if self.cost_log is not None:
-            self.cost_log.record(role="linker", model=data.get("model", self.model), prompt_version="jev-decisions", cached=False,
+            self.cost_log.record(role=role, model=data.get("model", self.model), prompt_version="jev-decisions", cached=False,
                                  prompt_tokens=int(usage.get("input_tokens") or 0), completion_tokens=int(usage.get("output_tokens") or 0),
                                  cost_usd=float(usage.get("cost") or 0.0), cost_known="cost" in usage, tag=tag, cache_key=key,
                                  retries=0, latency_ms=ms, invalid=False)
         if self.trace_log is not None:
-            self.trace_log.record(role="linker", tag=tag, prompt_version="jev-decisions", model=data.get("model", self.model),
+            self.trace_log.record(role=role, tag=tag, prompt_version="jev-decisions", model=data.get("model", self.model),
                                   cached=False, messages=[{"role": "state+questions", "content": json.dumps(body, ensure_ascii=False)}],
                                   raw=json.dumps(data), output=data.get("answers"), output_model="Jev decisions", retries=0,
                                   latency_ms=ms, cost_usd=float(usage.get("cost") or 0.0), prompt_tokens=int(usage.get("input_tokens") or 0),
                                   completion_tokens=int(usage.get("output_tokens") or 0), cache_key=key, invalid=False,
                                   ts=datetime.now(UTC).isoformat(timespec="seconds"))
         return data
+
+    def classify(self, task: str, instructions: str, items: dict[str, str], options: dict[str, str],
+                 role: str = "router") -> dict[str, tuple[str, float]]:
+        """One pick-one question per item over the same options, no "none": {item id: (option id, probability)}.
+        Items Jev did not answer are missing from the result."""
+        out: dict[str, tuple[str, float]] = {}
+        chunks: list[list[tuple[str, str]]] = [[]]
+        size = 0
+        for iid, text in items.items():
+            if chunks[-1] and (len(chunks[-1]) >= CHUNK_QUESTIONS or size + len(text) > CHUNK_CHARS):
+                chunks.append([])
+                size = 0
+            chunks[-1].append((iid, text))
+            size += len(text)
+        for chunk in (c for c in chunks if c):
+            questions = {iid: {"type": "choice", "instructions": f"{instructions} ITEM: {text}", "criteria": dict(options)}
+                         for iid, text in chunk}
+            data = self._post({"model": self.model, "state": {"task": instructions}, "questions": questions}, tag=f"{role}:{task}", role=role)
+            for iid, a in (data.get("answers") or {}).items():
+                choice = a.get("choice")
+                if choice in options:
+                    out[iid] = (choice, float((a.get("probabilities") or {}).get(choice, 0.0)))
+        return out
 
     def pick(self, task: str, instructions: str, questions: list) -> dict[str, tuple[str | None, float]]:
         """questions: LinkQuestion list → {question id: (chosen option id or None, probability)}."""

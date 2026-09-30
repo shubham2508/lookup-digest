@@ -1,9 +1,10 @@
 """Router (architecture §4): header facts only. No domain, sender-name or subject-word lists (OPEN_QUESTIONS #26).
 
-human: the owner wrote in the thread, or nothing in the headers marks it as machine mail; a thread reader reads it.
+human: the owner wrote in the thread, or nothing in the headers marks it as machine mail.
 bulk: list mail (List-Unsubscribe, List-Id or List-Post, or Precedence bulk/list/junk); the news sweep reads it.
-automated: Auto-Submitted set (RFC 3834); a thread reader reads it too. What a system asks of the owner (a signature,
-a failed payment) is the reader's judgment, not a keyword's."""
+automated: Auto-Submitted set (RFC 3834).
+Then compute/routing.py asks Jev the kind of every thread the owner did not write in and that is not list mail
+(person, system ask, system FYI, list mail) and sets the final route (#27)."""
 from __future__ import annotations
 
 from ..schemas import NormalizedMessage, RouterType
