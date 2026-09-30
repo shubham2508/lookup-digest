@@ -81,7 +81,8 @@ contact_classifier,calendar_sweep,notes_tasks_sweep,news_sweep}.md`.
   (fresh run, rulings aside): 124/175 traps, P0 8/8, the one thing right, must-not 5.9% over five mornings, against
   120/175 for the submitted code rerun cold and 122/175 for #26. Jev asked 177 threads for $0.003: 135 read, 42 skipped
   (receipts, CI runs, calendar invitations and accepts, hiring-tool notices, payroll). Readers 173 instead of 215, so a
-  cold morning is back to about $0.40. Held-out not yet rerun.
+  cold morning is back to about $0.40. **Held-out Thursday** (run once, never tuned on): P0 8/8, the one thing right,
+  153/207 traps and must-not 5.9% over five mornings, against 151/207 and 6.1% for the submitted code; $0.39 cold.
 
 - **2026-09-30 · #26 no keyword or word-list decisions left in `digest/`** (Shubham: "these are bugs, using
   non-deterministic regex to decide some logic as it can go wrong some % of time"; fix on main). #25 claimed every

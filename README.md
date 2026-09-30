@@ -2,7 +2,7 @@
 
 A one-page 6:00am PT triage digest for "Avery Chen", built from a synthetic month of email, calendar, notes and tasks. LLM readers judge the raw threads; code does the math, the hard rules and a recall floor; the page is scored against a human-reviewed answer key.
 
-**Results** (five mornings per world; P0 recall is the gate): P0 recall 100% on dev and 92.3% on held-out (a second world, run once, never tuned on); the one thing right on every morning that has one; noise 5.5% / 6.1%. The one-call baseline gets 50% / 0% P0. About $0.40 a cold morning. After submission, keyword routing was replaced by header facts plus Jev (`OPEN_QUESTIONS.md` #26, #27), verified on dev Thursday only (124/175 traps, P0 8/8).
+**Results** (five mornings per world; P0 recall is the gate): P0 recall 100% on dev and 92.3% on held-out (a second world, run once, never tuned on); the one thing right on every morning that has one; noise 5.5% / 6.1%. The one-call baseline gets 50% / 0% P0. About $0.40 a cold morning. After submission, keyword routing was replaced by header facts plus Jev (`OPEN_QUESTIONS.md` #26, #27), verified by one Thursday rerun per world: P0 8/8 on both, held-out traps 151 → 153/207.
 
 ## For reviewers
 
