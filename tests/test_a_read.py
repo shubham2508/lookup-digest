@@ -75,7 +75,7 @@ def test_thread_facts_are_code_computed(mini_dir):
     assert f["last_message_by"] == "Avery" and f["avery_last_message_at"] == "2026-09-22T21:30-07:00 (Tue)"
     li = f["last_inbound"]
     assert li["business_days_waiting"] == 1 and li["avery_replied_after_it"] is True and "contact_id marcus-webb" in li["from"]
-    assert {t.router_type for t in threads_to_read(w, AS_OF)} <= {"human", "unsure"} and len(threads_to_read(w, AS_OF)) == 3
+    assert {t.router_type for t in threads_to_read(w, AS_OF)} <= {"human", "automated"} and len(threads_to_read(w, AS_OF)) == 4, "DocuSign too (#26)"
 
 
 def test_source_index_resolves_leniently_and_matches_normalized():
@@ -106,8 +106,8 @@ def test_reader_stage_checks_citations_and_separates_data_from_instructions(mini
     ctx = RunContext("t", AS_OF, runs_dir=tmp_path / "runs")
     r = read_threads(llm, w, spine.directory, profile, SETTINGS, AS_OF, ctx, rulings=[])
     st = r.stats
-    assert st.threads == st.llm_calls == 3 and not st.failed and st.findings == 4 and st.needs_avery == {"yes": 3, "no": 1, "unsure": 0}
-    assert st.citations_dropped == 4 and st.findings_dropped == 0, "each fake finding carries one invented quote"
+    assert st.threads == st.llm_calls == 4 and not st.failed and st.findings == 5 and st.needs_avery == {"yes": 4, "no": 1, "unsure": 0}
+    assert st.citations_dropped == 5 and st.findings_dropped == 0, "each fake finding carries one invented quote"
     assert all(len(rf.finding.citations) == 1 and rf.finding.origin == "thread_reader" for rf in r.findings)
     assert any(d["stage"] == "read" and d["reason"] == "evidence_invalid" for d in ctx.degradations)
     renee = next(rf for rf in r.findings if rf.thread_id.startswith("thread:20260922-1408"))
@@ -121,6 +121,34 @@ def test_reader_stage_checks_citations_and_separates_data_from_instructions(mini
     assert "PRIORITY RUBRIC (anchored)" in system and "THREAD FACTS: {" in system and '"contact_id": ' in system
 
 
+def test_a_finding_that_cites_nothing_in_its_thread_is_out_of_scope(mini_dir, tmp_path, monkeypatch):
+    """dev Thursday: a Tomás thread's reader saw another Tomás thread in its context and reported that thread's promise
+    as overdue, without the delivery that thread's own reader could see. A reader judges its own thread (#26)."""
+    import re
+
+    import a_fakes
+
+    real = a_fakes.fake_reader
+
+    def with_context_finding(user_text, **kw):
+        out = real(user_text, **kw)
+        task = re.search(r"^--- (task:\S+)\n- \[[ x]\] (.+?)(?: \(due:|$)", user_text, re.M)
+        out["findings"].append(a_fakes._finding("f9", [{"source_id": task.group(1), "quote": task.group(2)}],
+                                                title="Do the task from the list"))
+        return out
+
+    monkeypatch.setattr(a_fakes, "fake_reader", with_context_finding)
+    w = _world(mini_dir)
+    llm = fake_llm(tmp_path)
+    profile = _profile()
+    spine = build_spine(w, profile, SETTINGS, AS_OF, llm=llm)
+    ctx = RunContext("t", AS_OF, runs_dir=tmp_path / "runs")
+    r = read_threads(llm, w, spine.directory, profile, SETTINGS, AS_OF, ctx, rulings=[])
+    assert r.stats.out_of_scope == 4 and r.stats.findings == 5, "one context-only finding per thread, all dropped"
+    assert not any(rf.finding.title == "Do the task from the list" for rf in r.findings)
+    assert sum(d["reason"] == "out_of_scope" for d in ctx.degradations) == 4, "logged, and not a failed read"
+
+
 def test_reader_cache_is_per_as_of_date(mini_dir, tmp_path):
     profile = _profile()
     llm = fake_llm(tmp_path)
@@ -128,7 +156,7 @@ def test_reader_cache_is_per_as_of_date(mini_dir, tmp_path):
     spine = build_spine(w, profile, SETTINGS, AS_OF, llm=llm)
     read_threads(llm, w, spine.directory, profile, SETTINGS, AS_OF)
     again = read_threads(llm, w, spine.directory, profile, SETTINGS, AS_OF)
-    assert again.stats.cached == 3, "same morning: every reader call comes from the cache"
+    assert again.stats.cached == 4, "same morning: every reader call comes from the cache"
     later = parse_as_of("2026-09-24T09:00")
     same_day = read_threads(llm, w, spine.directory, profile, SETTINGS, later)
     assert same_day.stats.cached == 0, "a different as_of time changes the facts shown (hours since), so a new call"
@@ -156,7 +184,7 @@ def test_reader_failure_and_bad_quotes_degrade_never_crash(mini_dir, tmp_path):
     ctx = RunContext("t", AS_OF, runs_dir=tmp_path / "runs")
     r = read_threads(llm, w, build_spine(w, profile, SETTINGS, AS_OF, llm=llm).directory, profile, SETTINGS, AS_OF, ctx)
     assert len(r.stats.failed) == 1 and "sam" in r.stats.failed[0]
-    assert r.findings == [] and r.stats.findings_dropped == 3, "no quote survives: every finding is dropped and logged"
+    assert r.findings == [] and r.stats.findings_dropped == 4, "no quote survives: every finding is dropped and logged"
     reasons = {d["reason"] for d in ctx.degradations if d["stage"] == "read"}
     assert {"LLMOutputInvalid", "finding_dropped_no_citation", "evidence_invalid"} <= reasons
 

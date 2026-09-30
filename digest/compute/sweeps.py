@@ -214,7 +214,7 @@ def _issue(t: NormalizedThread, today: date) -> tuple[str, dict[str, str]]:
 def news_calls(world: NormalizedWorld, findings: list[Finding], profile: ProfileConfig, as_of: datetime) -> list[SweepCall]:
     """One call per batch of issues; none when no finding needs Avery (news can only attach to something open)."""
     open_items = [f for f in findings if f.needs_avery == "yes"]
-    issues = sorted((t for t in world.threads if t.router_type in ("newsletter", "marketing") and t.messages[0].sent_at <= as_of),
+    issues = sorted((t for t in world.threads if t.router_type == "bulk" and t.messages[0].sent_at <= as_of),
                     key=lambda t: t.messages[0].sent_at)
     if not issues or not open_items:
         return []

@@ -291,8 +291,8 @@ def test_due_text_comes_from_the_resolved_deadline_not_the_brief(tmp_path):
 
 # ----------------------------------------------------------------------------- news sweep
 def test_news_sweep_reads_marketing_mail_alongside_newsletters():
-    nl = thread(msg("n1", "2026-09-23T07:00", "brief@scbrief.example", subject="Brief #1", body="Freight rates fall."), router="newsletter")
-    mk = thread(msg("p1", "2026-09-23T08:00", "promo@gpucloud.example", subject="GPU prices cut 30%", body="Inference pricing drops Oct 1."), router="marketing")
+    nl = thread(msg("n1", "2026-09-23T07:00", "brief@scbrief.example", subject="Brief #1", body="Freight rates fall."), router="bulk")
+    mk = thread(msg("p1", "2026-09-23T08:00", "promo@gpucloud.example", subject="GPU prices cut 30%", body="Inference pricing drops Oct 1."), router="bulk")
     w = world([nl, mk])
     open_item = Finding.model_validate(finding("f1", "Decide the inference vendor", ("msg:<a1>", "vendor")))
     calls = news_calls(w, [open_item], PROFILE, w.as_of)

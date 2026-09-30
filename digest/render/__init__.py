@@ -16,7 +16,7 @@ class CitationIndex:
     def __init__(self, world: NormalizedWorld, owner_name: str = "you"):
         self.owner_name = owner_name
         self.msgs = {f"msg:{m.message_id}": m for t in world.threads for m in t.messages}
-        self.bulk = {f"msg:{m.message_id}" for t in world.threads if t.router_type in ("newsletter", "marketing", "automated") for m in t.messages}
+        self.bulk = {f"msg:{m.message_id}" for t in world.threads if t.router_type in ("bulk", "automated") for m in t.messages}
         self.events = {}
         for e in world.events:
             self.events.setdefault(f"event:{e.uid}", e)

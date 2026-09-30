@@ -74,7 +74,7 @@ def verify(compose: ComposeResult, reduced: dict[str, ReduceItem], actions: list
         srcs = {e.source_id for e in it.citations}
         threads = {t for t in (compute_thread(s, msg_thread or {}) for s in srcs) if t}
         non_thread = any(not s.startswith(("msg:", "thread:")) for s in srcs)
-        bulk_only = bool(threads) and not non_thread and all(router_types.get(t) in ("newsletter", "marketing") for t in threads)
+        bulk_only = bool(threads) and not non_thread and all(router_types.get(t) == "bulk" for t in threads)
         if bulk_only and "news_attachment" not in it.candidate_types and not include_news:
             drop_item(iid, 3, "only newsletter/marketing sources")
             continue

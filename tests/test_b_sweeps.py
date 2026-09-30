@@ -36,7 +36,7 @@ def _world(**kw):
     tasks = [NormalizedTask(task_id="board", title="Send the September board update", due=__import__("datetime").date(2026, 9, 15)),
              NormalizedTask(task_id="later", title="Plan offsite", due=__import__("datetime").date(2026, 10, 2))]
     nl = [thread(msg(f"n{i}", f"2026-09-2{i}T07:00", "brief@scbrief.example", subject=f"Brief #{i}", body="Freight surcharges drop 12% from Nov 1. " * 40),
-                 router="newsletter") for i in range(1, 4)]
+                 router="bulk") for i in range(1, 4)]
     sam = msg("s1", "2026-09-01T10:00", "sam@parkfamily.example", subject="hi", name="Sam Park")
     return world([thread(sam), *nl], events=evs, notes=[note], tasks=tasks, **kw)
 

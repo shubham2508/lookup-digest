@@ -46,7 +46,7 @@ from ..schemas import (
 from ..util import domain_of, norm_name, org_from_domain, slugify
 
 LEARNABLE = ("customer", "capital", "vendor")
-BULK = ("automated", "newsletter", "marketing")
+BULK = ("automated", "bulk")
 MAX_SIGNATURES = 3          # distinct signature blocks shown to the parser
 SIG_CHARS = 400
 MAX_MESSAGES = 5            # representative messages shown to the classifier
@@ -146,7 +146,7 @@ def collect_observations(world: NormalizedWorld) -> dict[str, _Obs]:
         return obs[e]
 
     for t in world.threads:
-        person_mail = t.router_type in ("human", "unsure")
+        person_mail = t.router_type == "human"
         first = next((m for m in t.messages if not m.forwarded_by), t.messages[0])
         for i, m in enumerate(t.messages):
             if m.from_addr and m.from_addr not in owner:
@@ -595,7 +595,7 @@ def behavior_stats(d: ContactDirectory, world: NormalizedWorld, as_of: datetime,
     owner = world.owner_emails
     per: dict[str, dict] = defaultdict(lambda: {"in": [], "out": [], "replies": [], "started": 0, "threads": 0})
     for t in world.threads:
-        if t.router_type not in ("human", "unsure"):
+        if t.router_type != "human":
             continue
         parts = {a for m in t.messages for a in (m.from_addr, *m.to, *m.cc) if a and a not in owner}
         cids = {d.by_email[a].contact_id for a in parts if a in d.by_email}

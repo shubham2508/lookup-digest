@@ -1,13 +1,12 @@
 """Retrieval for readers (specs/PIVOT_SPEC.md §3.3), source dependencies and freshness caps (architecture §6.5).
 
-`retrieve` chooses what a thread reader reads next to its thread: nearby events with the same people or org, notes and
-tasks that mention them or the subject, and the two other threads with the same people that share the most subject
-words (before or after this one: a promise made here may be delivered in a new thread). Word overlap is allowed
-here and only here: retrieval widens what is read, it decides nothing. `ContextIndex` is the v1 index over extractions,
-kept while the v1 orchestration still calls it."""
+`retrieve` chooses what a thread reader reads next to its thread, from hard facts only (OPEN_QUESTIONS #26): calendar
+events within a week that share a participant or an outside domain with the thread, the two other threads with the
+same people (ranked by the rarest shared person, since a teammate on every thread links nothing; later before earlier,
+as a promise made here may be delivered in a new thread), the whole task list and every note. No names, subject words or keywords are matched. `ContextIndex` is the v1 index over extractions; only its
+`as_of` is still read."""
 from __future__ import annotations
 
-import re
 from datetime import date, datetime, timedelta
 
 from ..normalize import NormalizedWorld
@@ -21,7 +20,7 @@ from ..schemas import (
     NormalizedThread,
     SourceKind,
 )
-from ..util import domain_of, fold, org_from_domain, slugify
+from ..util import domain_of, slugify
 
 
 def source_kind(source_id: str) -> SourceKind | None:
@@ -153,29 +152,7 @@ class ContextRef(Model):
 EVENT_DAYS = 7
 PREVIOUS_THREADS = 2
 EXCERPT_CHARS = 300
-NOTE_CHARS = 900
-_WORD = re.compile(r"[a-z0-9][a-z0-9'-]{3,}")
-_SUBJECT_PREFIX = re.compile(r"^\s*((re|fw|fwd|aw)\s*:\s*)+", re.I)
-# words that say nothing about what a thread is about; retrieval ignores them as keywords
-STOP = frozenset({
-    "about", "after", "again", "also", "back", "been", "before", "being", "call", "calls", "could", "date", "days",
-    "does", "done", "draft", "email", "emails", "from", "have", "hello", "here", "just", "last", "later", "latest",
-    "meeting", "meetings", "more", "next", "note", "notes", "please", "quick", "question", "questions", "reply",
-    "same", "send", "sent", "some", "sync", "that", "thanks", "thank", "their", "them", "then", "there", "these",
-    "they", "thing", "this", "those", "thursday", "today", "tomorrow", "tuesday", "wednesday", "monday", "friday",
-    "saturday", "sunday", "update", "updates", "week", "weekly", "what", "when", "where", "which", "while", "will",
-    "with", "would", "your", "yours", "follow", "following", "checking", "check", "touch", "base", "intro",
-    "introduction", "team", "time", "works", "working"
-})
-
-
-
-def _words(text: str) -> set[str]:
-    return {w.strip("'-") for w in _WORD.findall(fold(text))} - STOP
-
-
-def _has(term: str, text: str) -> bool:
-    return bool(term) and re.search(rf"(?<![a-z0-9]){re.escape(term)}(?![a-z0-9])", text) is not None
+NOTES_CHARS = 24_000   # every note goes to every reader; past this, newest first and `notes_left_out` names the rest
 
 
 def _stamp(dt: datetime) -> str:
@@ -195,46 +172,69 @@ def _event_text(e: NormalizedEvent, as_of: datetime, me: str = "owner") -> str:
             + (f" · attendees: {who}" if who else ""))
 
 
+def _note_date(n) -> date | None:
+    return n.header_date or (n.mtime.date() if n.mtime else None)
+
+
+def _notes(world: NormalizedWorld) -> tuple[list[ContextRef], list[str]]:
+    """Every note, newest first, whole, each line numbered as in the file (readers cite note:<path>#L<n>), until
+    NOTES_CHARS; the paths that did not fit."""
+    refs: list[ContextRef] = []
+    left_out: list[str] = []
+    budget = NOTES_CHARS
+    for n in sorted(world.notes, key=lambda n: _note_date(n) or date.min, reverse=True):
+        body = "\n".join(f"L{j + 1}: {ln}" for j, ln in enumerate(n.text.split("\n")) if ln.strip())
+        text = f"note:{n.path} · {n.title} · dated {_note_date(n) or 'unknown'}\n{body}"
+        if len(text) > budget:
+            left_out.append(n.path)
+            continue
+        refs.append(ContextRef(source_id=f"note:{n.path}", text=text))
+        budget -= len(text)
+    return refs, left_out
+
+
+def notes_left_out(world: NormalizedWorld) -> list[str]:
+    """Notes no reader sees because the notes together pass NOTES_CHARS (the reader stage logs them)."""
+    return _notes(world)[1]
+
+
+def _tasks(world: NormalizedWorld) -> list[ContextRef]:
+    return [ContextRef(source_id=f"task:{t.task_id}",
+                       text=f"- [{'x' if t.status == 'done' else ' '}] {t.title}" + (f" (due: {t.due.isoformat()})" if t.due else ""))
+            for t in world.tasks]
+
+
+def _participants(t: NormalizedThread, owner: set[str]) -> set[str]:
+    return {a.lower() for m in t.messages for a in (m.from_addr, *m.to, *m.cc) if a and a.lower() not in owner}
+
+
+def _threads_per_address(world: NormalizedWorld, as_of: datetime, owner: set[str]) -> dict[str, int]:
+    """How many human threads each address is on. A shared address links two threads as strongly as it is rare: a
+    customer on three threads is a strong link, a co-founder on a hundred is almost none."""
+    counts: dict[str, int] = {}
+    for t in world.threads:
+        if t.router_type == "human" and t.messages[0].sent_at <= as_of:
+            for a in _participants(t, owner):
+                counts[a] = counts.get(a, 0) + 1
+    return counts
+
+
 def retrieve(thread: NormalizedThread, world: NormalizedWorld, directory, as_of: datetime, cap_tokens: int = 4000) -> list[ContextRef]:
-    """Context for one thread reader, most relevant first (same people > same org > subject keyword; inside a rank,
-    more subject words in common, then nearer in time), capped at about `cap_tokens` (4 characters a token)."""
+    """Context for one thread reader: events with the same people, then with the same outside domain, then the two
+    threads with the same people, capped at about `cap_tokens` (4 characters a token); then the task list and the notes,
+    whole. Links rank by the rarest shared person, then later before earlier, then nearest in time. `directory` is
+    unused (kept for the reader stage's call)."""
     owner = world.owner_emails
     own_domains = {domain_of(e) for e in owner}
-    own_words = {fold(org_from_domain(e) or "") for e in owner} | {fold(e.split("@")[0]) for e in owner}
-    people = {a.lower() for m in thread.messages for a in (m.from_addr, *m.to, *m.cc) if a and a.lower() not in owner}
+    people = _participants(thread, owner)
     domains = {domain_of(a) for a in people} - own_domains
-    contacts = [c for a in people if (c := directory.lookup(a)) is not None] if directory is not None else []
-    names: set[str] = set()
-    orgs: set[str] = set()
-    for c in contacts:
-        for n in c.names[:2]:
-            full = fold(n).strip()
-            if " " in full:
-                names.add(full)
-            first = full.split(" ")[0]
-            if len(first) >= 4:
-                names.add(first)
-        if c.org and fold(c.org) not in own_words:
-            orgs.add(fold(c.org))
-    for d in domains:
-        o = fold(org_from_domain(f"x@{d}") or "")
-        if len(o) >= 4 and o not in own_words:
-            orgs.add(o)
-    subjects = " ".join(_SUBJECT_PREFIX.sub("", m.subject or "") for m in thread.messages)
-    keywords = _words(subjects) - own_words - {w for n in names for w in n.split()}
+    per_address = _threads_per_address(world, as_of, owner)
+
+    def strength(shared: set[str]) -> float:
+        return max((1 / per_address.get(a, 1) for a in shared), default=0.0)
+
     ranked: list[tuple[tuple, ContextRef]] = []
-
-    def rank_text(text: str) -> int | None:
-        t = fold(text)
-        if any(_has(n, t) for n in names):
-            return 0
-        if any(_has(o, t) for o in orgs):
-            return 1
-        if any(_has(k, t) for k in keywords):
-            return 2
-        return None
-
-    # events in [as_of − 7d, as_of + 7d] sharing a participant or the org; one occurrence per uid, the nearest
+    # events in [as_of − 7d, as_of + 7d] sharing a participant or an outside domain; one occurrence per uid, the nearest
     lo, hi = as_of - timedelta(days=EVENT_DAYS), as_of + timedelta(days=EVENT_DAYS)
     nearest: dict[str, NormalizedEvent] = {}
     for e in world.events:
@@ -243,54 +243,32 @@ def retrieve(thread: NormalizedThread, world: NormalizedWorld, directory, as_of:
     for e in nearest.values():
         att = {a.email.lower() for a in e.attendees} | {e.organizer.lower()}
         if att & people:
-            r = 0
-        elif {domain_of(a) for a in att} & domains or any(_has(o, fold(e.title)) for o in orgs):
-            r = 1
+            key = (0, -strength(att & people), abs((e.start - as_of).total_seconds()))
+        elif {domain_of(a) for a in att} & domains:
+            key = (1, 0.0, abs((e.start - as_of).total_seconds()))
         else:
             continue
-        ranked.append(((r, -len(keywords & _words(e.title)), abs((e.start - as_of).total_seconds()) / 86400),
-                       ContextRef(source_id=f"event:{e.uid}", text=_event_text(e, as_of, world.owner_name))))
-    # notes: the lines that mention a participant, the org or a subject word, with a line on each side
-    for n in world.notes:
-        lines = n.text.split("\n")
-        best, hits = None, []
-        for i, ln in enumerate(lines):
-            r = rank_text(ln)
-            if r is not None:
-                best = r if best is None else min(best, r)
-                hits.extend(j for j in (i - 1, i, i + 1) if 0 <= j < len(lines) and j not in hits)
-        if best is None:
-            continue
-        when = n.header_date or (n.mtime.date() if n.mtime else None)
-        body = "\n".join(f"L{j + 1}: {lines[j]}" for j in sorted(hits) if lines[j].strip())[:NOTE_CHARS]
-        age = (as_of.date() - when).days if when else 10_000
-        ranked.append(((best, -len(keywords & _words(body)), age),
-                       ContextRef(source_id=f"note:{n.path}", text=f"note:{n.path} · {n.title} · dated {when or 'unknown'}\n{body}")))
-    # tasks
-    for t in world.tasks:
-        r = rank_text(t.title)
-        if r is not None:
-            line = f"- [{'x' if t.status == 'done' else ' '}] {t.title}" + (f" (due: {t.due.isoformat()})" if t.due else "")
-            ranked.append(((r, -len(keywords & _words(t.title)), 0), ContextRef(source_id=f"task:{t.task_id}", text=line)))
-    # the two other threads with the same people, before or after this one (a promise made here may be delivered in a
-    # new thread): most subject words in common first, then more shared people, then newer; first and last excerpts
-    last = thread.messages[-1].sent_at
-    others: list[tuple[int, int, float, NormalizedThread]] = []
+        ranked.append((key, ContextRef(source_id=f"event:{e.uid}", text=_event_text(e, as_of, world.owner_name))))
+    # the two other threads with the same people (a promise made here may be delivered in a new thread, so a later
+    # thread comes before an earlier one with an equally rare shared person)
+    first, last = thread.messages[0].sent_at, thread.messages[-1].sent_at
+    others: list[tuple[tuple, bool, NormalizedThread]] = []
     for t in world.threads:
-        if t.thread_id == thread.thread_id or t.router_type not in ("human", "unsure") or t.messages[0].sent_at > as_of:
+        if t.thread_id == thread.thread_id or t.router_type != "human" or t.messages[0].sent_at > as_of:
             continue
-        theirs = {a.lower() for m in t.messages for a in (m.from_addr, *m.to, *m.cc) if a and a.lower() not in owner}
-        shared = len(theirs & people)
-        if shared:
-            overlap = len(keywords & _words(" ".join(_SUBJECT_PREFIX.sub("", m.subject or "") for m in t.messages)))
-            others.append((overlap, shared, t.messages[-1].sent_at.timestamp(), t))
-    others.sort(key=lambda x: (-x[0], -x[1], -x[2]))
-    for overlap, _shared, ts, t in others[:PREVIOUS_THREADS]:
-        when = "after this thread" if t.messages[0].sent_at > last else "before this thread"
+        shared = _participants(t, owner) & people
+        if not shared:
+            continue
+        after = t.messages[0].sent_at > last
+        gap = (t.messages[0].sent_at - last) if after else (first - t.messages[-1].sent_at)
+        others.append(((-strength(shared), not after, abs(gap.total_seconds())), after, t))
+    others.sort(key=lambda x: x[0])
+    for i, (_key, after, t) in enumerate(others[:PREVIOUS_THREADS]):
+        when = "after this thread" if after else "before this thread"
         ms = [t.messages[0]] + ([t.messages[-1]] if len(t.messages) > 1 else [])
         for k, m in enumerate(ms):
             label = f"related thread ({len(t.messages)} messages, started {when}), {'first' if k == 0 else 'last'} message"
-            ranked.append(((0, -overlap, (as_of.timestamp() - ts) / 86400 + k / 1000), _excerpt(m, label)))
+            ranked.append(((2, float(i), float(k)), _excerpt(m, label)))
     ranked.sort(key=lambda x: x[0])
     out: list[ContextRef] = []
     budget = cap_tokens * 4
@@ -303,11 +281,7 @@ def retrieve(thread: NormalizedThread, world: NormalizedWorld, directory, as_of:
             break
         out.append(ref)
         budget -= len(ref.text)
-    return out
+    return out + _tasks(world) + _notes(world)[0]
 
 
-__all__ = ["ContextIndex", "ContextRef", "dependencies", "freshness_cap", "retrieve", "source_kind"]
-
-
-def _unused(_: date) -> None:  # keep `date` import for type hints in annotations
-    return None
+__all__ = ["ContextIndex", "ContextRef", "dependencies", "freshness_cap", "notes_left_out", "retrieve", "source_kind"]

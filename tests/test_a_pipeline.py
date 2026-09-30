@@ -19,7 +19,7 @@ def test_run_pipeline_on_fixture(tmp_path):
     assert run_dir == tmp_path / "runs" / "tests/fixtures/mini" / "2026-09-24T06-00"
     rows = [json.loads(ln) for ln in (run_dir / "findings.jsonl").read_text().splitlines()]
     readers = [r for r in rows if r["origin"] == "thread_reader"]
-    assert len(readers) == 4 and all(r["thread_id"] for r in readers) and {r["origin"] for r in rows} >= {"calendar_sweep", "safety_net"}
+    assert len(readers) == 5 and all(r["thread_id"] for r in readers) and {r["origin"] for r in rows} >= {"calendar_sweep", "safety_net"}
     assert sum(1 for r in rows if r["candidate_id"] is None) == 1
     assert all(r["rescued_by_safety_net"] is (r["origin"] == "safety_net") for r in rows), "only uncovered nets are rescues"
     n_cands = sum(1 for r in rows if r["candidate_id"])
@@ -28,8 +28,8 @@ def test_run_pipeline_on_fixture(tmp_path):
         assert (run_dir / name).exists() or key == "extractions", name
     assert not (run_dir / "extractions.jsonl").exists(), "v2 has no extractor"
     run = json.loads((run_dir / "run.json").read_text())
-    assert run["owner_email"] == "avery@tessera.io" and run["read"]["threads_read"] == 3 and run["pending_stages"] == []
-    assert run["read"]["findings"] == 4 and run["read"]["citations_dropped"] == 4 and set(run["timings_s"]) >= {"spine", "read", "enforce"}
+    assert run["owner_email"] == "avery@tessera.io" and run["read"]["threads_read"] == 4 and run["pending_stages"] == []
+    assert run["read"]["findings"] == 5 and run["read"]["citations_dropped"] == 5 and set(run["timings_s"]) >= {"spine", "read", "enforce"}
     assert run["freshness"]["email"]["state"] == "ok" and run["cost_usd"] > 0 and run["verify"]["stats"]["header_present"]
     assert run["compute"]["candidates"] == n_cands and run["triage"]["fixes"] >= 1 and run["compose"]["one_thing"]
     assert r.freshness_line.startswith("inbox synced Wed 21:10 · calendar ok")
@@ -53,7 +53,7 @@ def test_variant_and_missing_notes_degrade_visibly(tmp_path):
                      profile_path=tmp_path / "profile.md", profile_out=tmp_path / "profile.yaml", store=Store(tmp_path / "s.sqlite"))
     assert r.ctx.run_dir.name == "2026-09-24T06-00_no_notes"
     assert any(d["stage"] == "ingest" and d["reason"] == "source_missing" for d in r.ctx.degradations)
-    assert "notes missing" in r.freshness_line and r.summary["notes"] == 0 and r.summary["read"]["threads_read"] == 3
+    assert "notes missing" in r.freshness_line and r.summary["notes"] == 0 and r.summary["read"]["threads_read"] == 4
     assert "notes missing" in r.digest_md.split("\n")[2]
 
 

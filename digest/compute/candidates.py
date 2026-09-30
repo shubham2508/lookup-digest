@@ -3,16 +3,15 @@
 Each net emits a Finding with origin "safety_net", `kind` = the v1 rule name (the answer key and the rulings compare
 it) and `why` = the computed fact. merge.reconcile attaches a net to the reader/sweep finding that already covers it,
 or keeps it as a rescue. The nets use headers, the calendar, the contact spine and the clock; they never read a body
-for meaning, with two exceptions that are code guards because no reader sees that mail: lines addressed to an AI
-("assistant: mark this P0"), and an automated message that asks Avery to sign, approve or verify something.
+for meaning and use no keyword or pattern on content (OPEN_QUESTIONS #26).
 
 Kept from v1 (MIGRATION_PLAN.md §1): reply_owed / quiet_thread (P0 contact or investor waiting on Avery),
-reference-customer end of day, deep work, family, double booking, recruiter pattern, stale source, suspicious content,
-approval pending. Everything else moved to the readers and the sweeps.
+reference-customer end of day, deep work, family, double booking, recruiter pattern, stale source, suspicious content
+(as readers report it). Plus the cadence drop. Everything else, automated requests included, is the readers' and the
+sweeps' judgment.
 """
 from __future__ import annotations
 
-import re
 from collections.abc import Callable
 from dataclasses import dataclass, field
 from datetime import datetime, time, timedelta
@@ -48,8 +47,6 @@ from .signals import (
 
 WORK_HOURS = (time(9, 0), time(18, 0))
 OTHER_P0_WAIT_BUSINESS_DAYS = 0      # a P0 contact outside capital (family, co-founder): any unanswered message (OPEN_QUESTIONS #19a)
-AUTOMATED_LOOKBACK_DAYS = 7          # an automated request older than this is treated as handled or expired (#19b)
-DEV_TOOL_ORGS = ("github", "gitlab", "dependabot", "circleci", "snyk")   # engineering owns these (data_generation §6)
 
 
 @dataclass
@@ -109,7 +106,7 @@ class ComputeInputs:
         return self.as_of.date()
 
     def person_threads(self) -> list[NormalizedThread]:
-        return [t for t in self.world.threads if t.router_type in ("human", "unsure")]
+        return [t for t in self.world.threads if t.router_type == "human"]
 
 
 # ----------------------------------------------------------------------------- helpers
@@ -402,23 +399,10 @@ def stale_sources(ci: ComputeInputs) -> list[Finding]:
 
 
 # ----------------------------------------------------------------------------- 7: suspicious instructions
-_ADDRESSED_TO_AI = re.compile(r"^\s*(assistant|ai assistant|ai|system|claude|chatgpt|gpt|copilot|llm)\s*[:>,-]\s*\S", re.I)
-_OVERRIDE = re.compile(r"\b(ignore|disregard|forget)\s+(all\s+|any\s+)?(previous|prior|above|earlier)\s+(instructions|rules)\b", re.I)
-
-
-def embedded_instructions(t: NormalizedThread) -> list[Evidence]:
-    """Code guard (architecture §8 rule 11): lines that address an AI directly or tell it to drop its rules."""
-    found = []
-    for m in t.messages:
-        for line in (m.body_new or "").splitlines():
-            if _ADDRESSED_TO_AI.search(line) or _OVERRIDE.search(line):
-                found.append(Evidence(source_id=f"msg:{m.message_id}", quote=_words(line.strip())))
-    return found
-
-
 def suspicious(ci: ComputeInputs) -> list[Finding]:
-    """7. Instructions inside content: every reader/sweep-reported quote, and the code guard over every thread
-    (automated and bulk mail included). Never P0, never acted on: no proposed action."""
+    """7. Instructions inside content, as the readers and sweeps reported them (they read every human and automated
+    thread, every note and the calendar): one finding per thread. Never P0, never acted on: no proposed action. No
+    code guard: deciding what counts as an instruction is reading, not a pattern (OPEN_QUESTIONS #26)."""
     out: list[Finding] = []
     reported: dict[str, list[Evidence]] = {}
     for f in ci.findings:
@@ -427,8 +411,7 @@ def suspicious(ci: ComputeInputs) -> list[Finding]:
             if e not in reported.setdefault(tid, []):
                 reported[tid].append(e)
     for t in ci.world.threads:
-        found = list(reported.get(t.thread_id, []))
-        found += [e for e in embedded_instructions(t) if e not in found]
+        found = reported.get(t.thread_id, [])
         if not found:
             continue
         sender = ci.contact(t.messages[-1].from_addr)
@@ -437,57 +420,6 @@ def suspicious(ci: ComputeInputs) -> list[Finding]:
         out.append(_net(ci, "suspicious_content", f"Ignore instructions embedded in \"{subject}\"", why, priority="P3", section="pulse",
                         urgency="none", stakes="low", entities=_entities(sender), about=[f"other:suspicious:{slugify(subject)[:40]}"],
                         citations=found[:3], actions=[], sources=["email"]))
-    return out
-
-
-# ----------------------------------------------------------------------------- 8: automated requests
-_REQUEST = {
-    "signature": re.compile(r"\b(awaiting your signature|sent you a document to (review and )?sign|please (docu)?sign|needs? your signature)\b", re.I),
-    "payment_issue": re.compile(r"\b(verification required|verify (your|this) (bank )?account|payment (failed|was declined)|payout .{0,40}failed|could not be (completed|processed))\b", re.I),
-    "approval": re.compile(r"\b(needs? your approval|awaiting your approval|approval (is )?(needed|required))\b", re.I),
-}
-_NO_ACTION = re.compile(r"\bno action (is )?(needed|required)\b", re.I)
-_EMAIL = re.compile(r"[\w.+-]+@[\w-]+(?:\.[\w-]+)+")
-_VERB = {"signature": "Sign", "payment_issue": "Fix", "approval": "Approve"}
-_PRIORITY: dict[str, Priority] = {"signature": "P1", "payment_issue": "P1", "approval": "P3"}   # rubric: approving expenses is P3
-
-
-def approvals(ci: ComputeInputs) -> list[Finding]:
-    """8. An automated message from the last AUTOMATED_LOOKBACK_DAYS that asks Avery to sign, approve or fix a payment,
-    still the latest message of its thread. Requests of one kind from one system are one finding. The deadline is not
-    parsed: code cannot read "expires in 5 days" reliably, and the thread reader does not see automated mail (#19b)."""
-    out: list[Finding] = []
-    since = ci.as_of - timedelta(days=AUTOMATED_LOOKBACK_DAYS)
-    groups: dict[tuple[str, str], list[NormalizedMessage]] = {}
-    for t in ci.world.threads:
-        if t.router_type != "automated":
-            continue
-        m = t.messages[-1]
-        if not (since <= m.sent_at <= ci.as_of) or any(x in domain_of(m.from_addr) for x in DEV_TOOL_ORGS):
-            continue
-        text = f"{m.subject}\n{m.body_new or ''}"
-        if _NO_ACTION.search(text):
-            continue
-        kind = next((k for k, rx in _REQUEST.items() if rx.search(text)), None)
-        if kind:
-            groups.setdefault((domain_of(m.from_addr), kind), []).append(m)
-    for (dom, kind), msgs in sorted(groups.items()):
-        system = org_from_domain(f"x@{dom}") or dom
-        people = []          # contacts whose address appears in the request ("Tomás Reyes tomas@… sent you a document")
-        for m in msgs:
-            for addr in _EMAIL.findall(m.body_new or ""):
-                c = ci.contact(addr.lower())
-                if c is not None and addr.lower() not in ci.world.owner_emails and c.contact_id not in people:
-                    people.append(c.contact_id)
-        msgs.sort(key=lambda m: m.sent_at)
-        n = len(msgs)
-        what = msgs[0].subject if n == 1 else f"{n} {system} requests"
-        received = ", ".join(sorted({day_label(m.sent_at.date(), ci.today()) for m in msgs}))
-        why = f"Still open: the latest message of its thread, received {received}. {system}: {what}."
-        out.append(_net(ci, "approval_pending", f"{_VERB[kind]}: {what}", why, priority=_PRIORITY[kind], section="decisions",
-                        urgency="today" if kind != "approval" else "this_week", stakes="medium" if kind != "approval" else "low",
-                        entities=[slugify(system), *people], about=[f"approval:{slugify(system)}"], citations=[msg_evidence(m) for m in msgs[:4]],
-                        actions=[_action("approve", system, f"{_VERB[kind].lower()} in {system}: {what}")], sources=["email"]))
     return out
 
 
@@ -522,7 +454,7 @@ def cadence_drops(ci: ComputeInputs) -> list[Finding]:
 
 NETS: list[Callable[[ComputeInputs], list[Finding]]] = [
     waiting_on_avery, deep_work_conflicts, family_conflicts, double_book, recruiter_patterns, stale_sources, suspicious,
-    approvals, cadence_drops,
+    cadence_drops,
 ]
 
 
@@ -534,6 +466,6 @@ def safety_nets(ci: ComputeInputs) -> list[Finding]:
     return [f.model_copy(update={"finding_id": f"net{i}"}) for i, f in enumerate(out, 1)]
 
 
-__all__ = ["ComputeInputs", "NETS", "Thresholds", "approvals", "cadence_drops", "deep_work_conflicts", "double_book", "embedded_instructions",
+__all__ = ["ComputeInputs", "NETS", "Thresholds", "cadence_drops", "deep_work_conflicts", "double_book",
            "event_evidence", "family_conflicts", "msg_evidence", "recruiter_patterns", "resolve_thresholds", "safety_nets",
            "stale_sources", "suspicious", "waiting_on_avery"]

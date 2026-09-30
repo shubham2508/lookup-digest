@@ -295,7 +295,7 @@ def run_pipeline(world: str, as_of: str | None = None, *, variant: str | None = 
             notes.append(f"{dropped_n} item{'s' if dropped_n != 1 else ''} withheld by a hard rule")
         if ctx.degradations:
             failed_reads = set(read.stats.failed)   # already in the header as "could not be read today"
-            skipped = [d for d in ctx.degradations if d["reason"] not in ("code_fix", "evidence_replaced", "evidence_invalid", "rescued_by_safety_net")
+            skipped = [d for d in ctx.degradations if d["reason"] not in ("code_fix", "evidence_replaced", "evidence_invalid", "rescued_by_safety_net", "out_of_scope")
                        and not (d["stage"] == "read" and d["item"] in failed_reads)]
             if skipped:
                 notes.append(f"{len(skipped)} item{'s' if len(skipped) != 1 else ''} could not be fully read")

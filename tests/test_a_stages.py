@@ -54,7 +54,7 @@ def test_code_floors_on_reader_findings(mini_dir, tmp_path):
     rulings = [{"id": "R1", "scope": {"contact": "sam-park"}, "ruling": "x"}, {"id": "R2", "scope": {"contact": "nobody-here"}, "ruling": "y"}]
     world, profile, comp, llm, ctx, results, stats = _stack(mini_dir, tmp_path, rulings=rulings)
     readers = [c for c in comp.candidates if c.facts["origin"] == "thread_reader"]
-    assert len(results) == len(comp.candidates) and len(readers) == 3 and stats.rulings_applied == 1, "R1 reaches Sam's reader; R2 matches nobody"
+    assert len(results) == len(comp.candidates) and len(readers) == 4 and stats.rulings_applied == 1, "R1 reaches Sam's reader; R2 matches nobody"
     assert {c.facts["origin"] for c in comp.candidates} >= {"calendar_sweep", "notes_tasks_sweep", "safety_net"}, "Track B's sweeps and nets are in"
     by = {r.candidate_id: r for r in results}
     cand = {c.candidate_id: c for c in comp.candidates}
@@ -71,10 +71,10 @@ def test_code_floors_on_reader_findings(mini_dir, tmp_path):
     assert any("never_draft" in f for fx in stats.fixes for f in fx["fixes"])
     rows = [row for row in comp.findings if row["origin"] == "thread_reader"]
     no = [row for row in rows if row["needs_avery"] == "no"]
-    assert len(rows) == 4 and len(no) == 1 and no[0]["candidate_id"] is None and no[0]["thread_id"]
+    assert len(rows) == 5 and len(no) == 1 and no[0]["candidate_id"] is None and no[0]["thread_id"]
     assert {row["finding_id"] for row in comp.findings if row["rescued_by_safety_net"]} == \
-        {row["finding_id"] for row in comp.findings if row["origin"] == "safety_net"} and comp.stats["rescues"] == 2, \
-        "the DocuSign request and the family collision: nothing a reader or the fake sweeps raised covers them"
+        {row["finding_id"] for row in comp.findings if row["origin"] == "safety_net"} and comp.stats["rescues"] == 1, \
+        "the family collision: nothing a reader or the fake sweeps raised covers it (the DocuSign request is read, #26)"
 
 
 def test_reduce_merges_sorts_and_caps(mini_dir, tmp_path):

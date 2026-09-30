@@ -36,7 +36,7 @@ def test_fixture_threads_and_router(mini_dir):
     assert [m.message_id for m in cap.messages] == ["<20260922-1642.marcus@inflectionpoint.vc>", "<20260922-2130.avery@tessera.io>"]
     assert cap.messages[1].is_from_avery and cap.router_type == "human"
     assert {t.thread_id.split(":", 1)[1].split(".")[1].split("@")[0]: t.router_type for t in w.threads} == {
-        "hello": "marketing", "dse": "automated", "renee": "human", "marcus": "human", "brief": "newsletter", "sam": "human"}
+        "hello": "bulk", "dse": "human", "renee": "human", "marcus": "human", "brief": "bulk", "sam": "human"}, "header facts only (#26)"
 
 
 def test_quoted_history_stripped_and_signature_separate(mini_dir):

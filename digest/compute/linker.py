@@ -71,8 +71,7 @@ TASKS = {
                     "organizations from the owner's profile. Match only if the sender holds that role at one of those "
                     "organizations (an acting or new holder of the role counts; a colleague in a different role does not)."),
     "net_covers_finding": ("Each item is a fact a code check computed (a message waiting N business days for the owner, a "
-                           "meeting inside a protected block, a family event over a work meeting, an automated request to "
-                           "sign or approve). Options are issues readers or sweeps found, each labelled with the fact that "
+                           "meeting inside a protected block, a family event over a work meeting, a double booking). Options are issues readers or sweeps found, each labelled with the fact that "
                            "made code offer it: [same message] or [same event] (it cites exactly what the fact is about), "
                            "[same thread] or [same person] (only where to look). Match the option that is the same issue "
                            "(the same request, meeting or signature), or none. Another issue with the same person is not "
