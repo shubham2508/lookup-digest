@@ -6,6 +6,12 @@ tables over paragraphs, a status line between long steps, and no fixable issue s
 
 ## Where things stand
 
+- **2026-09-30, after submission: keyword decisions removed, routing by Jev** (`OPEN_QUESTIONS.md` #26, #27). Headers
+  settle what they prove, then Jev picks person / system ask / system FYI / list mail (unsure → read); regex nets gone;
+  reader context by the rarest shared person plus every note and the task list; a reader's finding must cite its own
+  thread. Dev Thursday 124/175, P0 8/8, one thing right (submitted code rerun cold: 120/175). **Held-out not rerun yet**
+  (about $0.35; ask first). The trial key ran out that day; `.env` now holds Shubham's own key. Run one pipeline at a
+  time: OpenRouter reserves credit per request in flight.
 - **2026-09-29 evening: final code review fixed** (`OPEN_QUESTIONS.md` #25), verified by a Thursday rerun per world
   (`eval/reports/review_fixes_2026-09-29.md`: held-out day 30 now 8/8 P0, five mornings 92.3%; dev unchanged).
 - **v2 ("read, don't extract") is built, integrated and measured.** Three parallel sessions (A readers, B spine/sweeps/

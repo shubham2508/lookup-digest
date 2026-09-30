@@ -75,9 +75,13 @@ contact_classifier,calendar_sweep,notes_tasks_sweep,news_sweep}.md`.
   (the owner wrote in it; list mail; Auto-Submitted) and `compute/routing.py` asks Jev one pick-one question per
   remaining thread: a person, a system asking the owner to act, a system FYI, or list mail. A person or a system ask
   is read, a system FYI is not, list mail goes to the news sweep. Below p 0.7, on a Jev failure or with no Jev
-  configured, the thread is read. Every decision is in the run's `routes.jsonl`. **Built and unit-tested only**: the
-  API key's account is at $0.09, so it has not run on real data yet; next, one Jev-only routing check on dev (about
-  $0.01), then dev Thursday, then held-out once.
+  configured, the thread is read. Every decision is in the run's `routes.jsonl`. A first cut of the kinds let Jev
+  skip a $14.4k renewal, a tax notice and a budget alert as FYI; the kinds now name renewals, charges, deadlines,
+  legal or tax notices, budget alerts and family appointments as things that may need the owner. **Dev Thursday**
+  (fresh run, rulings aside): 124/175 traps, P0 8/8, the one thing right, must-not 5.9% over five mornings, against
+  120/175 for the submitted code rerun cold and 122/175 for #26. Jev asked 177 threads for $0.003: 135 read, 42 skipped
+  (receipts, CI runs, calendar invitations and accepts, hiring-tool notices, payroll). Readers 173 instead of 215, so a
+  cold morning is back to about $0.40. Held-out not yet rerun.
 
 - **2026-09-30 · #26 no keyword or word-list decisions left in `digest/`** (Shubham: "these are bugs, using
   non-deterministic regex to decide some logic as it can go wrong some % of time"; fix on main). #25 claimed every
