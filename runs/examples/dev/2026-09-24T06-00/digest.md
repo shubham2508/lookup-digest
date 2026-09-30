@@ -4,35 +4,38 @@ As of Thu 06:00 PDT · inbox synced 05:55 · calendar ok · notes ok · tasks st
 
 ## If there is one thing you must do right now
 
-**Send Marcus the reconciled cap table.** Promised Tuesday; Marcus needs final numbers for today's partnership meeting. *[email: Avery, Tue 21:30] [email: Marcus, Tue 16:42]*
-  ☐ Send Marcus the reconciled cap table — overdue since Tue 22 Sep
+**Send Marcus the reconciled cap table.** Promised Tuesday; needed for today’s partnership meeting. *[email: Marcus, Tue 16:42] [email: Avery, Tue 21:30]*
+  ☐ Send Marcus the updated cap table — overdue since Tue 22 Sep
 
 ---
 
 ## Urgent To-Do Today
 
-- **Deliver both promised analyses to Marcus.** Promised Sep 11; no delivery is confirmed in-thread, and nine business days have passed. *[email: Avery, Wed 14:05] [email: Marcus, Thu 07:50]*
-  ☐ Put the cohort analysis and Q4 pipeline detail in the data room — overdue since Fri 11 Sep
-- **Confirm cap table v3 for counsel.** Naomi is waiting; counsel hopes to send v3 today. *[email: Ben, Mon 09:11] [email: Naomi, Wed 10:05]*
+- **Tell Kai Thanksgiving is at home.** Promised Tuesday; Kai wants to plan by the weekend. *[email: Sam, Mon 21:15] [email: Avery, Tue 07:10]*
+  ↳ Message Kai about tell Kai Thanksgiving will be at home, as promised. No draft (needs your words).
+- **Check and send missing IPV diligence materials.** Marcus’s cohort/pipeline promise is overdue; Elena’s technical packet is due Friday. *[email: Avery, Wed 14:05] [email: Marcus, Thu 07:50] [email: Elena, Wed 06:05]*
+  ↳ Decide: (1) Check the data room and upload whichever item is missing — Closes the diligence gap without assuming either item is already there. (2) Ask Marcus or Elena to confirm what they can access — Gets investor-side confirmation, but may delay delivery if anything is missing. Recommended: (1) The thread records both items as promised, but does not establish whether either is now in the data room.
+  Assumptions: Avery has access to the data room and the cohort analysis and Q4 pipeline detail needed to upload any missing item.
+  ☐ Send Elena the three diligence materials — overdue since Fri 11 Sep
+- **Review and confirm cap table v3.** Counsel wants your sign-off today; Marcus asked if pool numbers are final. *[email: Naomi, Wed 10:05]*
   ↳ Open Tessera cap table v3 (option pool refresh); start at msg:<20260921-0911.bschaffer@wsgr.com>.
-- **Send Elena the three diligence materials.** Architecture, customer uptime, and cost sensitivity are requested by Friday for Monday's call. *[email: Elena, Wed 06:05]*
-  ☐ Prepare and send Elena's three diligence materials — due Fri 25 Sep
-- **Reply to Marcus with current ARR and references.** His Sep 18 request remains unanswered; diligence awaits both. *[email: Marcus, Fri 17:52]*
-  ☐ Reply to Marcus with current ARR and reference contacts — due today
-- **Get Veritas line 2 recovery status.** 100% rejection since 18:10; no ETA; Nadia may email this morning. *[email: Jordan, Wed 21:00] [email: Nadia, Wed 09:00]*
-  ↳ Forward to Jordan with:
-  "jordan, the pipeline has been rejecting 100% of batches since about 18:10, and the production schema differs from Ivan’s sample. please send me the recovery owner, current status or ETA, and customer-update plan before Nadia emails in the morning."
-- **Finish Diane's September investor update.** Due-date sources differ (Sep 15 vs 18); the draft says $3.2M, while Sep 16 finance says $3.4M. *[note: avery-todos.md] [note: finance-sync.md] [email: Avery, Sun 14:05]*
-  ☐ Send Diane the September board update — overdue since Tue 15 Sep
+- **Confirm Cobalt’s pro-rata intent with Diane.** Ben’s question is seven business days unanswered; round math needs Cobalt’s intent. *[email: Ben, Mon 11:30] [email: Avery, Mon 17:45]*
+  ☐ Confirm Cobalt's pro-rata intent with Diane — due today
+- **Confirm ARR and choose two references.** Marcus requests $3.2M; Sep 15 finance reports $3.4M. *[email: Marcus, Fri 17:52] [note: finance-sync.md] [note: customer-health-review.md]*
+  ↳ Decide: (1) Verify ARR and line up references now, but hold introductions until renewals are settled — Finance must confirm whether $3.4M is still current; customer teams can validate two procurement-side rollout contacts and preferred routes without scheduling calls yet. (2) Wait until renewals are settled before verifying ARR or selecting references — Avoids approaching customers prematurely, but leaves Marcus’s two diligence requests unanswered longer. (3) Confirm the Sep 15 ARR figure and send two reference names and routes immediately — Responds quickly, but the available information does not identify suitable references or their preferred contact routes, and reference calls are on hold until renewal is settled. Recommended: (1) The Sep 15 finance note supports $3.4M but does not establish that it remains current; reference calls are explicitly on hold until renewal is settled, so validate candidates and routes without initiating introductions.
+- **Verify Priya swept the three other tenants.** 12 Halberd users restored; Priya never reported the other-tenant sweep. *[email: Priya, Tue 09:30] [email: Renee, Tue 09:10]*
+  ↳ Draft to Priya:
+  "priya, were the three other tenants affected, and is access restored for them? please notify the customer owners if any were affected."
+- **Get Veritas incident status and customer line.** Line 2 rejects 100% since 18:10; Jordan and Sofia lack an ETA. *[email: Jordan, Wed 21:00]*
+  ↳ Draft to Jordan:
+  "jordan, thanks for flagging this and for getting on it. please send the ETA and customer-safe status as soon as they’re available."
 
 ---
 
 ## Decisions & Approvals
 
-- **Choose the backfill concurrency plan.** August spend was $41k vs $22k modeled; September projects ~$38k; the sync is today. *[email: Priya, Tue 15:10] [note: q2-planning.md] [cal: work, Q2 planning sync]*
-  Q1 · Which tradeoff do you prefer for backfill concurrency? (1) Cap at 2; Halberd's backfill finishes about one week later. (2) Leave concurrency uncapped; inference stays about 2x model through the raise.. Default if unanswered: 1 → digest answer Q1 1
-- **Decide on fifth on-call headcount.** Jordan's comment remains open before today's 14:30 review. *[note: q2-planning.md] [email: Jordan, Fri 09:35] [cal: work, Q2 planning sync]*
-  ↳ Decide: (1) Add the fifth person as a committed Q2 headcount line — The plan treats the role as approved before the open question is resolved. (2) Leave it out of Q2 planning — The review proceeds without a fifth-person headcount decision. (3) List it as an unresolved decision for the Q2 review, not as approved headcount — The question stays visible for resolution without implying approval. Recommended: (3) The comment is unresolved, and Jordan explicitly took the headcount question to Q2 planning rather than deciding it in the thread.
+- **Choose the backfill concurrency plan.** Today’s sync needs a call: cap risks Oct 6; uncapped costs ~$38k/month. *[email: Priya, Tue 15:10] [note: q2-planning.md] [email: Priya, Wed 08:40]*
+  Q1 · Which backfill concurrency option do you prefer? (1) Cap at 2; Halberd backfill finishes about one week later. (2) Leave it uncapped; inference stays about 2x model through the raise.. Default if unanswered: 1 → digest answer Q1 1
 
 ---
 
@@ -50,25 +53,25 @@ Nothing today.
 
 ## Calendar & Personal
 
-- **Resolve who takes Wren to the 3:00 visit and the Q2 sync overlap.** The visit overlaps 14:30–15:30; the calendar event still needs action. *[email: Oakland, Wed 21:10] [cal: shared, added Wed 21:04] [cal: work, Q2 planning sync]*
-  ↳ Message Sam about ask who is taking Wren to the 3:00 appointment and coordinate around the Q2 planning sync. No draft (Sam).
-- **Move the IPV diligence call to Monday at 10:00.** Email says Mon Sep 28 at 10:00; the accepted calendar event still shows Fri Sep 25 at 10:00. *[email: Marcus, Tue 11:15] [email: Avery, Tue 17:50] [email: Elena, Wed 06:05]*
-  ↳ Propose: moving the accepted Friday event to Monday, Sep 28 at 10:00, matching the email.
-- **Arrange care for Wren today.** Little Acorns is closed; there is no drop-off or pickup. *[email: Beatriz, Wed 17:45]*
+- **Resolve Wren’s appointment and planning-sync overlap.** Pediatrician 15:00–16:00 overlaps sync 14:30–15:30; family-first rule applies. *[cal: shared, added Wed 21:04] [cal: work, Q2 planning sync]*
+  ↳ Message Sam about ask whether Avery is expected at Wren’s appointment and who will take Wren if Avery attends the planning sync. No draft (Sam).
+- **Reschedule IPV diligence around Leadership sync.** Calendar says Fri Sep 25 10–11; email confirms Mon Sep 28 10, conflicting with Leadership sync. *[email: Marcus, Tue 11:15] [email: Avery, Tue 17:50] [email: Elena, Wed 06:05]*
+  ↳ Propose: a Monday time outside Leadership sync; the accepted Friday event no longer matches the email-confirmed move.
+- **Arrange care for Wren today.** Little Acorns is closed; no drop-off or pickup. *[email: Beatriz, Wed 17:45]*
   ☐ Arrange care for Wren during daycare closure — due today
 
 3 other meetings, nothing to act on.
 
 ---
 
-## Also pending (36)
+## Also pending (44)
 
-- **Send Renee the SOC 2 report.** *[email: Avery, Wed 12:40]*
-- **Decide whether to attend Northstar’s QBR.** *[email: Grace, Mon 13:45]*
-- **Confirm Cobalt’s Series A pro-rata intent.** *[email: Ben, Mon 11:30]*
-- **Schedule Curtis for Kansas City scoping.** *[email: Curtis, Tue 10:40]*
-- **Check DocuSign for Mei’s offer.** *[email: Tomás, Mon 10:30]*
-- **Tell Kai Thanksgiving is at home.** *[email: Avery, Tue 07:10]*
-- **Move the Lumen demo out of deep work.** *[cal: work, Lumen Analytics <> Tessera - demo]*
-- **Use Northstar’s visibility result in Marta’s walkthrough.** *[email: Factory Floor Weekly, Wed 06:30]*
-- …and 28 more lower-priority items (full list in reduce.json).
+- **Continue the monthly investor update cadence.** *[note: board-meeting-minutes.md]*
+- **Confirm the weekly report setup and line-count format.** *[email: Avery, Mon 16:05]*
+- **Confirm attendance at Northstar’s Sept 30 QBR.** *[email: Tomás, Mon 17:30]*
+- **Confirm Renee received the SOC 2 report.** *[email: Avery, Wed 12:40]*
+- **Get Yuki to answer Grace’s recipient-list question.** *[email: Grace, Fri 09:50]*
+- **Approve Meridian's Plant Bundle pricing.** *[email: Tomás, Mon 08:40]*
+- **Sign Mei’s offer letter.** *[email: Tomás, Tue 18:22]*
+- **Send David times for the investor call.** *[email: Avery, Thu 15:40]*
+- …and 36 more lower-priority items (full list in reduce.json).

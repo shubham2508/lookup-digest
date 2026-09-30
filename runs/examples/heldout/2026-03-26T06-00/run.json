@@ -8,28 +8,29 @@
   "suffix": null,
   "customize": null,
   "timings_s": {
-    "compile_profile": 0.007,
-    "ingest": 0.428,
-    "normalize": 0.033,
-    "spine": 0.3,
-    "read": 1.646,
-    "persist": 0.015,
-    "sweep": 0.017,
-    "nets": 0.014,
-    "merge": 0.007,
-    "compute": 0.042,
-    "enforce": 0.004,
+    "compile_profile": 0.008,
+    "ingest": 0.434,
+    "normalize": 0.031,
+    "route": 5.208,
+    "spine": 5.944,
+    "read": 241.09,
+    "persist": 0.016,
+    "sweep": 64.517,
+    "nets": 0.735,
+    "merge": 7.998,
+    "compute": 73.265,
+    "enforce": 0.006,
     "reduce": 0.001,
-    "compose": 0.012,
-    "materialize": 0.005,
-    "verify": 0.001,
-    "render": 0.0
+    "compose": 115.372,
+    "materialize": 6.483,
+    "verify": 0.005,
+    "render": 0.001
   },
-  "wall_s": 2.527,
-  "cost_usd": 0.0,
-  "llm_calls": 403,
-  "llm_cached": 403,
-  "degradations": 33,
+  "wall_s": 447.927,
+  "cost_usd": 0.388633,
+  "llm_calls": 334,
+  "llm_cached": 131,
+  "degradations": 25,
   "owner_email": "avery@tessera.io",
   "threads": 387,
   "messages": 534,
@@ -37,41 +38,51 @@
   "events": 122,
   "notes": 10,
   "tasks": 5,
+  "route": {
+    "asked": 206,
+    "routed": {
+      "automated": 62,
+      "human": 144
+    },
+    "unsure": 10,
+    "failed": null
+  },
   "read": {
-    "threads_read": 220,
-    "llm_calls": 220,
-    "cached": 220,
+    "threads_read": 178,
+    "llm_calls": 178,
+    "cached": 4,
     "failed": 0,
-    "findings": 87,
+    "findings": 86,
     "needs_avery": {
-      "yes": 52,
-      "no": 27,
+      "yes": 47,
+      "no": 31,
       "unsure": 8
     },
-    "citations_dropped": 19,
+    "citations_dropped": 13,
     "findings_dropped": 0,
+    "out_of_scope": 0,
     "rulings_applied": 0,
     "retrieval": "compute.context.retrieve"
   },
   "compute": {
     "contacts": 148,
-    "reader_findings": 87,
-    "sweep_findings": 14,
-    "net_findings": 26,
-    "rescues": 4,
-    "about_merges": 3,
-    "candidates": 78,
+    "reader_findings": 86,
+    "sweep_findings": 12,
+    "net_findings": 21,
+    "rescues": 3,
+    "about_merges": 5,
+    "candidates": 70,
     "by_origin": {
-      "thread_reader": 87,
+      "thread_reader": 86,
       "calendar_sweep": 4,
-      "notes_tasks_sweep": 8,
+      "notes_tasks_sweep": 6,
       "news_sweep": 2,
-      "safety_net": 5
+      "safety_net": 4
     },
-    "links": 176
+    "links": 154
   },
   "triage": {
-    "candidates": 78,
+    "candidates": 70,
     "fixes": 6,
     "rulings_applied": 0
   },
@@ -79,10 +90,10 @@
     "items": 57,
     "overflow": 32,
     "dropped": 0,
-    "merges": 3
+    "merges": 5
   },
   "compose": {
-    "cached": true,
+    "cached": false,
     "fallback": false,
     "fixes": [
       "i26 unplaced → also pending",
@@ -117,47 +128,34 @@
       "i55 unplaced → also pending",
       "i56 unplaced → also pending",
       "i57 unplaced → also pending",
-      "i23 moved to also pending (page limit 12)",
-      "i22 moved to also pending (page limit 12)",
-      "i21 moved to also pending (page limit 12)",
+      "i25 moved to also pending (page limit 12)",
+      "i24 moved to also pending (page limit 12)",
+      "i20 moved to also pending (page limit 12)",
       "i17 moved to also pending (page limit 12)",
-      "i16 moved to also pending (page limit 12)",
-      "i15 moved to also pending (page limit 12)"
+      "i14 moved to also pending (page limit 12)",
+      "i13 moved to also pending (page limit 12)"
     ],
-    "one_thing": "i2",
-    "placed": 11,
-    "cut": 46
+    "one_thing": "i3",
+    "placed": 12,
+    "cut": 45
   },
   "materialize": {
-    "actions": 15,
-    "llm_calls": 5,
-    "cached": 5,
+    "actions": 13,
+    "llm_calls": 3,
+    "cached": 0,
     "draft_retries": 0,
     "drafts_dropped": 0
   },
   "verify": {
-    "violations": [
-      {
-        "rule": 3,
-        "item_id": "i10",
-        "detail": "only newsletter/marketing sources",
-        "fix": "dropped"
-      },
-      {
-        "rule": 7,
-        "item_id": "i10",
-        "detail": "P0 item was not placed; added as a one-liner",
-        "fix": "fixed"
-      }
-    ],
+    "violations": [],
     "stats": {
-      "words": 244,
+      "words": 222,
       "budget": 350,
       "header_present": true,
-      "items": 11,
-      "items_cited": 11,
-      "citations_total": 44,
-      "citations_resolved": 44
+      "items": 12,
+      "items_cited": 12,
+      "citations_total": 40,
+      "citations_resolved": 40
     }
   },
   "history": {

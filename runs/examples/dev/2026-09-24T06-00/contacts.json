@@ -239,7 +239,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "newsletter",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -268,24 +268,19 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": null,
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
-      "evidence": [
-        {
-          "source_id": "sig:email@stratechery.com",
-          "quote": "You are receiving this because you subscribed to Stratechery Daily Updates."
-        }
-      ]
+      "evidence": []
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": 0.0,
+      "avery_reply_rate": null,
       "median_avery_reply_hours": null,
-      "last_inbound": "2026-09-04T06:15:48-07:00",
+      "last_inbound": null,
       "last_outbound": null,
-      "initiation_ratio": 1.0,
+      "initiation_ratio": null,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -302,7 +297,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "newsletter",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -331,24 +326,19 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": null,
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
-      "evidence": [
-        {
-          "source_id": "sig:hello@latentdispatch.ai",
-          "quote": "You're getting this because you signed up at latentdispatch.ai."
-        }
-      ]
+      "evidence": []
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": 0.0,
+      "avery_reply_rate": null,
       "median_avery_reply_hours": null,
-      "last_inbound": "2026-09-23T07:09:54-07:00",
+      "last_inbound": null,
       "last_outbound": null,
-      "initiation_ratio": 1.0,
+      "initiation_ratio": null,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -365,7 +355,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -474,19 +464,28 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "automated",
+      "subtype": null,
       "stage": null,
       "source": "inferred",
-      "evidence": []
+      "evidence": [
+        {
+          "source_id": "msg:<20260828-0930.notifications@github.com>",
+          "quote": "Dependabot found a moderate severity vulnerability"
+        },
+        {
+          "source_id": "msg:<20260923-1550.notifications@github.com>",
+          "quote": "Merged #247 into main."
+        }
+      ]
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": null,
+      "avery_reply_rate": 0.0,
       "median_avery_reply_hours": null,
-      "last_inbound": null,
+      "last_inbound": "2026-09-23T15:50:18-07:00",
       "last_outbound": null,
-      "initiation_ratio": null,
+      "initiation_ratio": 1.0,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -503,7 +502,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -590,7 +589,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "newsletter",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -619,7 +618,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "newsletter",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -730,7 +729,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -909,7 +908,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -980,7 +979,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -1008,20 +1007,29 @@
     "org": null,
     "title": null,
     "relationship": {
-      "category": "automated",
-      "subtype": "automated",
-      "stage": null,
+      "category": "vendor",
+      "subtype": "benefits_platform",
+      "stage": "active_contract",
       "source": "inferred",
-      "evidence": []
+      "evidence": [
+        {
+          "source_id": "msg:<20260901-0540.noreply@gusto.com>",
+          "quote": "Your September benefits invoice is ready."
+        },
+        {
+          "source_id": "msg:<20260909-0705.noreply@gusto.com>",
+          "quote": "open enrollment for your team's 2027 benefits runs Nov 2 - Nov 16, 2026."
+        }
+      ]
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": null,
+      "avery_reply_rate": 0.0,
       "median_avery_reply_hours": null,
-      "last_inbound": null,
+      "last_inbound": "2026-09-09T07:05:05-07:00",
       "last_outbound": null,
-      "initiation_ratio": null,
+      "initiation_ratio": 1.0,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -1038,45 +1046,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "newsletter",
-      "stage": null,
-      "source": "inferred",
-      "evidence": [
-        {
-          "source_id": "sig:news@oaklandtechdigest.org",
-          "quote": "Oakland Tech Digest is a volunteer newsletter."
-        },
-        {
-          "source_id": "msg:<20260828-0745.news@oaklandtechdigest.org>",
-          "quote": "Here is what is happening in East Bay tech over the next two weeks."
-        }
-      ]
-    },
-    "tier": null,
-    "profile_rules": [],
-    "behavior": {
-      "avery_reply_rate": 0.0,
-      "median_avery_reply_hours": null,
-      "last_inbound": "2026-09-18T07:48:51-07:00",
-      "last_outbound": null,
-      "initiation_ratio": 1.0,
-      "shared_meetings_30d": 0
-    },
-    "drift": []
-  },
-  {
-    "contact_id": "greenhouse",
-    "names": [
-      "Greenhouse"
-    ],
-    "emails": [
-      "no-reply@greenhouse.io"
-    ],
-    "org": null,
-    "title": null,
-    "relationship": {
-      "category": "automated",
-      "subtype": "automated",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -1094,6 +1064,40 @@
     "drift": []
   },
   {
+    "contact_id": "greenhouse",
+    "names": [
+      "Greenhouse"
+    ],
+    "emails": [
+      "no-reply@greenhouse.io"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": null,
+      "stage": null,
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "msg:<20260921-0920.noreply@greenhouse.io>",
+          "quote": "An offer has been sent. Candidate: Mei Tanaka Job: Backend Engineer"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-09-21T09:20:59-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
     "contact_id": "figma",
     "names": [
       "Figma"
@@ -1105,7 +1109,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -1151,7 +1155,7 @@
       "median_avery_reply_hours": 0.8,
       "last_inbound": "2026-09-23T16:40:55-07:00",
       "last_outbound": "2026-09-16T12:40:34-07:00",
-      "initiation_ratio": 0.31,
+      "initiation_ratio": 0.29,
       "shared_meetings_30d": 9
     },
     "drift": []
@@ -1197,7 +1201,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -1264,7 +1268,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -1335,23 +1339,36 @@
     "emails": [
       "no-reply@aws.amazon.com"
     ],
-    "org": null,
+    "org": "Amazon Web Services, Inc.",
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "automated",
+      "subtype": null,
       "stage": null,
       "source": "inferred",
-      "evidence": []
+      "evidence": [
+        {
+          "source_id": "sig:no-reply@aws.amazon.com",
+          "quote": "Amazon Web Services, Inc."
+        },
+        {
+          "source_id": "msg:<20260830-0415.noreply@aws.amazon.com>",
+          "quote": "This e-mail confirms that your latest billing statement"
+        },
+        {
+          "source_id": "msg:<20260918-0602.noreply@aws.amazon.com>",
+          "quote": "You requested that we alert you when the ACTUAL cost"
+        }
+      ]
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": null,
+      "avery_reply_rate": 0.0,
       "median_avery_reply_hours": null,
-      "last_inbound": null,
+      "last_inbound": "2026-09-18T06:02:00-07:00",
       "last_outbound": null,
-      "initiation_ratio": null,
+      "initiation_ratio": 1.0,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -1368,7 +1385,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "newsletter",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -1397,7 +1414,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -1425,20 +1442,29 @@
     "org": null,
     "title": null,
     "relationship": {
-      "category": "automated",
-      "subtype": "automated",
-      "stage": null,
+      "category": "capital",
+      "subtype": "deal_counsel",
+      "stage": "existing",
       "source": "inferred",
-      "evidence": []
+      "evidence": [
+        {
+          "source_id": "msg:<20260831-0630.billing@wsgr.com>",
+          "quote": "Responsible partner: Ben Schaffer"
+        },
+        {
+          "source_id": "msg:<20260831-0630.billing@wsgr.com>",
+          "quote": "Series A Preferred Stock Financing"
+        }
+      ]
     },
-    "tier": null,
+    "tier": "P0",
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": null,
+      "avery_reply_rate": 0.0,
       "median_avery_reply_hours": null,
-      "last_inbound": null,
+      "last_inbound": "2026-08-31T06:30:08-07:00",
       "last_outbound": null,
-      "initiation_ratio": null,
+      "initiation_ratio": 1.0,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -1455,7 +1481,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -1560,7 +1586,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -1660,7 +1686,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -1689,19 +1715,24 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "automated",
+      "subtype": "payment_notification",
       "stage": null,
       "source": "inferred",
-      "evidence": []
+      "evidence": [
+        {
+          "source_id": "msg:<20260922-0312.notifications@stripe.com>",
+          "quote": "A payout of $18,420.55 to your bank account ending in 4471 could not be completed."
+        }
+      ]
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": null,
+      "avery_reply_rate": 0.0,
       "median_avery_reply_hours": null,
-      "last_inbound": null,
+      "last_inbound": "2026-09-22T03:12:55-07:00",
       "last_outbound": null,
-      "initiation_ratio": null,
+      "initiation_ratio": 1.0,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -1717,25 +1748,20 @@
     "org": null,
     "title": null,
     "relationship": {
-      "category": "unresolved",
-      "subtype": null,
+      "category": "automated",
+      "subtype": "bulk",
       "stage": null,
-      "source": "unresolved",
-      "evidence": [
-        {
-          "source_id": "msg:<20260901-0605.members@lakeshoreathletic.club>",
-          "quote": "Your Lakeshore membership renews Oct 1 - no action needed"
-        }
-      ]
+      "source": "inferred",
+      "evidence": []
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": 0.0,
+      "avery_reply_rate": null,
       "median_avery_reply_hours": null,
-      "last_inbound": "2026-09-01T06:05:25-07:00",
+      "last_inbound": null,
       "last_outbound": null,
-      "initiation_ratio": 1.0,
+      "initiation_ratio": null,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -1786,7 +1812,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -1853,7 +1879,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -1882,7 +1908,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -1911,7 +1937,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -2104,7 +2130,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "newsletter",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -2204,7 +2230,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -2268,7 +2294,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -2335,7 +2361,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -2360,32 +2386,23 @@
     "emails": [
       "office@cobaltridge.vc"
     ],
-    "org": "Cobalt Ridge Ventures",
+    "org": null,
     "title": null,
     "relationship": {
-      "category": "capital",
-      "subtype": "fund_staff",
-      "stage": "existing",
+      "category": "automated",
+      "subtype": "bulk",
+      "stage": null,
       "source": "inferred",
-      "evidence": [
-        {
-          "source_id": "sig:office@cobaltridge.vc",
-          "quote": "Cobalt Ridge Ventures | Platform Team"
-        },
-        {
-          "source_id": "msg:<20260904-1000.office@cobaltridge.vc>",
-          "quote": "Please join us for our fall portfolio founders dinner."
-        }
-      ]
+      "evidence": []
     },
-    "tier": "P1",
+    "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": 0.0,
+      "avery_reply_rate": null,
       "median_avery_reply_hours": null,
-      "last_inbound": "2026-09-04T10:00:45-07:00",
+      "last_inbound": null,
       "last_outbound": null,
-      "initiation_ratio": 1.0,
+      "initiation_ratio": null,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -2478,7 +2495,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -2586,7 +2603,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -2653,7 +2670,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -2749,7 +2766,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -2896,7 +2913,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -2963,7 +2980,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -3038,7 +3055,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -3066,25 +3083,20 @@
     "org": null,
     "title": null,
     "relationship": {
-      "category": "family",
-      "subtype": "dentist",
+      "category": "automated",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
-      "evidence": [
-        {
-          "source_id": "msg:<20260909-0700.appointments@grandavedental.com>",
-          "quote": "This confirms your appointment at Grand Avenue Dental"
-        }
-      ]
+      "evidence": []
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": 0.0,
+      "avery_reply_rate": null,
       "median_avery_reply_hours": null,
-      "last_inbound": "2026-09-09T07:00:25-07:00",
+      "last_inbound": null,
       "last_outbound": null,
-      "initiation_ratio": 1.0,
+      "initiation_ratio": null,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -3191,7 +3203,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "newsletter",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -3258,36 +3270,23 @@
     "emails": [
       "hello@lattice.com"
     ],
-    "org": "Lattice",
+    "org": null,
     "title": null,
     "relationship": {
-      "category": "cold_inbound",
-      "subtype": "sales_pitch",
+      "category": "automated",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
-      "evidence": [
-        {
-          "source_id": "sig:hello@lattice.com",
-          "quote": "Lattice | 360 Spear St, San Francisco, CA 94105"
-        },
-        {
-          "source_id": "msg:<20260910-1110.hello@lattice.com>",
-          "quote": "Lattice's Startup plan is built for exactly this stage:"
-        },
-        {
-          "source_id": "msg:<20260910-1110.hello@lattice.com>",
-          "quote": "Startups under 50 employees get Lattice for $5 per person per month for the first year."
-        }
-      ]
+      "evidence": []
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": 0.0,
+      "avery_reply_rate": null,
       "median_avery_reply_hours": null,
-      "last_inbound": "2026-09-10T11:10:30-07:00",
+      "last_inbound": null,
       "last_outbound": null,
-      "initiation_ratio": 1.0,
+      "initiation_ratio": null,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -3304,7 +3303,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -3412,25 +3411,20 @@
     "org": null,
     "title": null,
     "relationship": {
-      "category": "external_visibility",
-      "subtype": "conference_organizer",
+      "category": "automated",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
-      "evidence": [
-        {
-          "source_id": "msg:<20260911-1230.speakers@sctechsummit.com>",
-          "quote": "The Supply Chain Tech Summit returns to Chicago on March 9 to 11, 2027"
-        }
-      ]
+      "evidence": []
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": 0.0,
+      "avery_reply_rate": null,
       "median_avery_reply_hours": null,
-      "last_inbound": "2026-09-11T12:30:56-07:00",
+      "last_inbound": null,
       "last_outbound": null,
-      "initiation_ratio": 1.0,
+      "initiation_ratio": null,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -3531,7 +3525,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -3559,25 +3553,20 @@
     "org": null,
     "title": null,
     "relationship": {
-      "category": "unresolved",
-      "subtype": null,
+      "category": "automated",
+      "subtype": "bulk",
       "stage": null,
-      "source": "unresolved",
-      "evidence": [
-        {
-          "source_id": "msg:<20260913-0830.list@grandlakeneighbors.org>",
-          "quote": "Fall block party: Sunday, October 11, 3-6pm on Rand Ave"
-        }
-      ]
+      "source": "inferred",
+      "evidence": []
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": 0.0,
+      "avery_reply_rate": null,
       "median_avery_reply_hours": null,
-      "last_inbound": "2026-09-13T08:30:25-07:00",
+      "last_inbound": null,
       "last_outbound": null,
-      "initiation_ratio": 1.0,
+      "initiation_ratio": null,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -3716,7 +3705,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -3745,19 +3734,24 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "automated",
+      "subtype": null,
       "stage": null,
       "source": "inferred",
-      "evidence": []
+      "evidence": [
+        {
+          "source_id": "msg:<20260922-0840.dse@docusign.net>",
+          "quote": "DocuSign Tomás Reyes sent you a document to review and sign."
+        }
+      ]
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": null,
+      "avery_reply_rate": 0.0,
       "median_avery_reply_hours": null,
-      "last_inbound": null,
+      "last_inbound": "2026-09-22T08:40:13-07:00",
       "last_outbound": null,
-      "initiation_ratio": null,
+      "initiation_ratio": 1.0,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -3946,19 +3940,24 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "automated",
+      "subtype": null,
       "stage": null,
       "source": "inferred",
-      "evidence": []
+      "evidence": [
+        {
+          "source_id": "msg:<20260918-0937.noreply@1password.com>",
+          "quote": "We noticed a new sign-in to your 1Password account."
+        }
+      ]
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": null,
+      "avery_reply_rate": 0.0,
       "median_avery_reply_hours": null,
-      "last_inbound": null,
+      "last_inbound": "2026-09-18T09:37:51-07:00",
       "last_outbound": null,
-      "initiation_ratio": null,
+      "initiation_ratio": 1.0,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -4239,19 +4238,28 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "automated",
+      "subtype": null,
       "stage": null,
       "source": "inferred",
-      "evidence": []
+      "evidence": [
+        {
+          "source_id": "msg:<20260921-1004.noreply@ramp.com>",
+          "quote": "Expense report from Sofia Andrade needs your approval ($612.40)"
+        },
+        {
+          "source_id": "msg:<20260921-1005.noreply@ramp.com>",
+          "quote": "You are receiving this because you are the expense approver for Yuki Sato."
+        }
+      ]
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": null,
+      "avery_reply_rate": 0.0,
       "median_avery_reply_hours": null,
-      "last_inbound": null,
+      "last_inbound": "2026-09-21T10:05:12-07:00",
       "last_outbound": null,
-      "initiation_ratio": null,
+      "initiation_ratio": 1.0,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -4424,19 +4432,24 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "automated",
+      "subtype": "security_notification",
       "stage": null,
       "source": "inferred",
-      "evidence": []
+      "evidence": [
+        {
+          "source_id": "msg:<20260923-0715.noreply@accounts.google.com>",
+          "quote": "Your Google Account was just signed in to from a Mac you've used before."
+        }
+      ]
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": null,
+      "avery_reply_rate": 0.0,
       "median_avery_reply_hours": null,
-      "last_inbound": null,
+      "last_inbound": "2026-09-23T07:15:13-07:00",
       "last_outbound": null,
-      "initiation_ratio": null,
+      "initiation_ratio": 1.0,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -4452,20 +4465,29 @@
     "org": null,
     "title": null,
     "relationship": {
-      "category": "automated",
-      "subtype": "automated",
-      "stage": null,
+      "category": "vendor",
+      "subtype": "account_manager",
+      "stage": "renewal_due",
       "source": "inferred",
-      "evidence": []
+      "evidence": [
+        {
+          "source_id": "msg:<20260923-0900.billing@metrika.io>",
+          "quote": "the Metrika Team plan for Tessera (account #TS-20841) renews automatically on September 25, 2026."
+        },
+        {
+          "source_id": "msg:<20260923-0900.billing@metrika.io>",
+          "quote": "Renewal amount: $14,400 (unchanged from last year)"
+        }
+      ]
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": null,
+      "avery_reply_rate": 0.0,
       "median_avery_reply_hours": null,
-      "last_inbound": null,
+      "last_inbound": "2026-09-23T09:00:42-07:00",
       "last_outbound": null,
-      "initiation_ratio": null,
+      "initiation_ratio": 1.0,
       "shared_meetings_30d": 0
     },
     "drift": []

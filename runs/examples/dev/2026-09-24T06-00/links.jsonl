@@ -1,150 +1,134 @@
 {"task": "role_at_org", "question": "s0", "matches": ["r0"], "reason": "jev p=0.99", "by": "jev"}
-{"task": "role_at_org", "question": "s1", "matches": ["r0"], "reason": "jev p=0.97", "by": "jev"}
+{"task": "role_at_org", "question": "s1", "matches": ["r0"], "reason": "jev p=0.96", "by": "jev"}
 {"task": "role_at_org", "question": "s2", "matches": ["r0"], "reason": "jev p=0.98", "by": "jev"}
-{"task": "role_at_org", "question": "s3", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "role_at_org", "question": "s4", "matches": [], "reason": "jev p=0.88", "by": "jev"}
+{"task": "role_at_org", "question": "s3", "matches": [], "reason": "jev p=0.78", "by": "jev"}
+{"task": "role_at_org", "question": "s4", "matches": [], "reason": "jev p=0.99", "by": "jev"}
 {"task": "role_at_org", "question": "s5", "matches": [], "reason": "jev p=0.99", "by": "jev"}
 {"task": "role_at_org", "question": "s6", "matches": [], "reason": "jev p=0.99", "by": "jev"}
-{"task": "role_at_org", "question": "s7", "matches": [], "reason": "jev p=0.99", "by": "jev"}
-{"task": "role_at_org", "question": "s8", "matches": ["r0"], "reason": "jev p=0.94", "by": "jev"}
-{"task": "role_at_org", "question": "s9", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "role_at_org", "question": "s10", "matches": [], "reason": "jev p=0.98", "by": "jev"}
-{"task": "role_at_org", "question": "s11", "matches": [], "reason": "jev p=0.86", "by": "jev"}
-{"task": "role_at_org", "question": "s12", "matches": [], "reason": "jev p=0.77", "by": "jev"}
-{"task": "role_at_org", "question": "s13", "matches": ["r0"], "reason": "jev p=0.90", "by": "jev"}
-{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n1", "thread": "thread:20260828-0920.marcus@inflectionpoint.vc", "by": "reader_read_thread", "fact": "Waiting 18 business days for Avery (threshold 3).", "summary": "Avery sent Marcus the deck and August metrics on August 28; Marcus acknowledged receipt and said Ravi would follow up about timing. The request is closed."}
-{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n2", "finding": "f6", "by": "same_thread", "finding_needs_avery": "yes"}
-{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n3", "finding": "f9", "by": "same_thread", "finding_needs_avery": "no"}
-{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n4", "thread": "thread:20260903-0930.ravi@inflectionpoint.vc", "by": "reader_read_thread", "fact": "Waiting 11 business days for Avery (threshold 3).", "summary": "Ravi coordinated the September 9 partnership session, provided logistics, and confirmed the deck was loaded. No live issue remains."}
-{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n5", "finding": "f12", "by": "same_thread", "finding_needs_avery": "yes"}
-{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n6", "finding": "f16", "by": "same_thread", "finding_needs_avery": "yes"}
-{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n7", "finding": "f25", "by": "same_thread", "finding_needs_avery": "yes"}
-{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n8", "thread": "thread:20260910-0830.diane@cobaltridge.vc", "by": "reader_read_thread", "fact": "Waiting 8 business days for Avery (threshold 3).", "summary": "Diane introduced Avery to Northwind principal Tessa, and they agreed to a call for Sep 17. Retrieved context also shows Diane's September investor update remains overdue, with conflicting update cadences in the profile and board notes."}
-{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n9", "thread": "thread:20260910-0900.avery@tessera.io", "by": "reader_read_thread", "fact": "Waiting 9 business days for Avery (threshold 3).", "summary": "Avery shared the updated IPV data room; Marcus confirmed receipt and said Ravi’s team would start reviewing it."}
-{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n10", "thread": "thread:20260915-1420.bschaffer@wsgr.com", "by": "reader_read_thread", "fact": "Waiting 6 business days for Avery (threshold 3).", "summary": "Ben confirms the three August hires’ 83(b) elections were filed on time, copies were distributed, and Kim has the corporate originals; nothing further is needed."}
-{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n11", "finding": "f43", "by": "same_thread", "finding_needs_avery": "yes"}
-{"task": "net_covers_finding", "decision": "net_covered", "net": "reply_owed", "net_id": "n12", "finding": "f52", "by": "same_thread", "finding_needs_avery": "yes"}
-{"task": "net_covers_finding", "decision": "net_covered", "net": "reply_owed", "net_id": "n13", "finding": "f60", "by": "same_thread", "finding_needs_avery": "yes"}
-{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n14", "finding": "f62", "by": "same_thread", "finding_needs_avery": "yes"}
-{"task": "net_covers_finding", "decision": "net_covered", "net": "suspicious_content", "net_id": "n19", "finding": "f61", "by": "reported_quote"}
-{"task": "net_covers_finding", "question": "n0", "matches": ["s1"], "reason": "jev p=0.91", "by": "jev"}
-{"task": "net_covers_finding", "question": "n1", "matches": ["s2"], "reason": "jev p=0.95", "by": "jev"}
-{"task": "net_covers_finding", "question": "n2", "matches": ["f56"], "reason": "jev p=0.79", "by": "jev"}
-{"task": "net_covers_finding", "question": "n3", "matches": [], "reason": "jev p=0.98", "by": "jev"}
-{"task": "net_covers_finding", "decision": "net_covered", "net": "calendar_conflict:deep_work", "net_id": "n15", "finding": "s1", "by": "linker", "finding_needs_avery": "yes"}
-{"task": "net_covers_finding", "decision": "net_covered", "net": "calendar_conflict:family", "net_id": "n16", "finding": "s2", "by": "linker", "finding_needs_avery": "yes"}
-{"task": "net_covers_finding", "decision": "net_covered", "net": "approval_pending", "net_id": "n20", "finding": "f56", "by": "linker", "finding_needs_avery": "yes"}
-{"task": "topics", "question": "q0|approval:inference-spend-backfill-cap", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q1|approval:kim-pto-oct-5-9", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q2|approval:plant-bundle-pricing", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q3|approval:ramp", "matches": [], "reason": "jev p=0.96", "by": "jev"}
-{"task": "topics", "question": "q4|approval:stripe", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q5|board-update:diane-september", "matches": ["k22"], "reason": "jev p=0.99", "by": "jev"}
-{"task": "topics", "question": "q6|board-update:independent-director-opportunity", "matches": [], "reason": "jev p=0.94", "by": "jev"}
-{"task": "topics", "question": "q7|board-update:ipv-board-composition", "matches": [], "reason": "jev p=0.91", "by": "jev"}
-{"task": "topics", "question": "q8|board-update:september-investor-update", "matches": ["k29"], "reason": "jev p=0.91", "by": "jev"}
-{"task": "topics", "question": "q9|candidate:ines-ferreira:interview-logistics", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q10|candidate:mei-tanaka", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q11|candidate:theo-lindgren", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q13|deal:meridian-plant-bundle-quote", "matches": ["k48"], "reason": "jev p=0.91", "by": "jev"}
-{"task": "topics", "question": "q14|deal:meridian:plant-bundle-quote", "matches": ["k57"], "reason": "jev p=0.83", "by": "jev"}
-{"task": "topics", "question": "q15|deal:series-a:aperture-call", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q17|deal:series-a:cobalt-pro-rata", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q18|deal:series-a:customer-cohort-analysis-and-q4-pipeline-detail", "matches": [], "reason": "jev p=0.93", "by": "jev"}
-{"task": "topics", "question": "q19|deal:series-a:customer-references", "matches": [], "reason": "jev p=0.97", "by": "jev"}
-{"task": "topics", "question": "q20|deal:series-a:diligence-materials", "matches": [], "reason": "jev p=0.89", "by": "jev"}
-{"task": "topics", "question": "q22|family:tahoe-long-weekend", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q23|family:thanksgiving-plan", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q24|family:wren-daycare-closure", "matches": [], "reason": "jev p=0.97", "by": "jev"}
-{"task": "topics", "question": "q25|family:wren-pediatrician:sep-24", "matches": [], "reason": "jev p=0.99", "by": "jev"}
-{"task": "topics", "question": "q26|hiring-req:backend-and-designer", "matches": [], "reason": "jev p=0.88", "by": "jev"}
-{"task": "topics", "question": "q27|hiring-req:on-call-fifth-person", "matches": ["k144"], "reason": "jev p=0.76", "by": "jev"}
-{"task": "topics", "question": "q28|hiring-req:on-call-rotation", "matches": ["k147"], "reason": "jev p=0.99", "by": "jev"}
-{"task": "topics", "question": "q29|hiring-req:product-designer:keystone-search", "matches": [], "reason": "jev p=0.99", "by": "jev"}
-{"task": "topics", "question": "q30|meeting:cobalt-ridge-portfolio-founders-dinner", "matches": [], "reason": "jev p=0.98", "by": "jev"}
-{"task": "topics", "question": "q31|meeting:halberd-kansas-city-scoping", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q32|meeting:hollis-series-a-board-composition", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q33|meeting:ipv-diligence-call", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q34|meeting:jae-whitlock", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q35|meeting:lumen-demo", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q36|meeting:northstar-qbr", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q37|other:backfill-concurrency-cap", "matches": [], "reason": "jev p=0.99", "by": "jev"}
-{"task": "topics", "question": "q38|other:cadence:veritas-components", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q39|other:delaware-franchise-tax-amended-report", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q42|other:news-deepseek-volume-cut", "matches": [], "reason": "jev p=0.97", "by": "jev"}
-{"task": "topics", "question": "q43|other:news-halberd-visibility-case-study", "matches": [], "reason": "jev p=0.91", "by": "jev"}
-{"task": "topics", "question": "q44|other:news-northstar-visibility-case-study", "matches": [], "reason": "jev p=0.88", "by": "jev"}
+{"task": "role_at_org", "question": "s7", "matches": ["r0"], "reason": "jev p=0.97", "by": "jev"}
+{"task": "role_at_org", "question": "s8", "matches": [], "reason": "jev p=0.97", "by": "jev"}
+{"task": "role_at_org", "question": "s9", "matches": [], "reason": "jev p=0.85", "by": "jev"}
+{"task": "role_at_org", "question": "s10", "matches": [], "reason": "jev p=0.80", "by": "jev"}
+{"task": "role_at_org", "question": "s11", "matches": ["r0"], "reason": "jev p=0.90", "by": "jev"}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n1", "thread": "thread:20260828-0920.marcus@inflectionpoint.vc", "by": "reader_read_thread", "fact": "Waiting 18 business days for Avery (threshold 3).", "summary": "Avery sent Marcus the deck and August metrics. Marcus acknowledged receipt and said Ravi would follow up on scheduling; nothing remains owed in this thread."}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n2", "finding": "f5", "by": "same_thread", "finding_needs_avery": "yes"}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n3", "finding": "f7", "by": "same_thread", "finding_needs_avery": "no"}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n4", "thread": "thread:20260903-0930.ravi@inflectionpoint.vc", "by": "reader_read_thread", "fact": "Waiting 11 business days for Avery (threshold 3).", "summary": "Ravi coordinated the Sep 9 IPV partnership session. A later message confirms the session occurred and the partnership proceeded to diligence; no live issue remains in this thread."}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n5", "finding": "f11", "by": "same_thread", "finding_needs_avery": "yes"}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n6", "finding": "f20", "by": "same_thread", "finding_needs_avery": "yes"}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n7", "thread": "thread:20260910-0830.diane@cobaltridge.vc", "by": "reader_read_thread", "fact": "Waiting 8 business days for Avery (threshold 3).", "summary": "Diane introduced Avery to Tessa; they scheduled a Zoom intro for September 17. Tessa said she would send the link that morning."}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n8", "thread": "thread:20260910-0900.avery@tessera.io", "by": "reader_read_thread", "fact": "Waiting 9 business days for Avery (threshold 3).", "summary": "Avery shared the updated data room with Marcus; Marcus confirmed receipt and said Ravi’s team would begin reviewing it."}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n9", "thread": "thread:20260915-1420.bschaffer@wsgr.com", "by": "reader_read_thread", "fact": "Waiting 6 business days for Avery (threshold 3).", "summary": "Ben confirms the three August new-hire 83(b) elections were filed on September 11, copies were distributed, and nothing further is needed."}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n10", "finding": "f39", "by": "same_thread", "finding_needs_avery": "yes"}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "reply_owed", "net_id": "n11", "finding": "f55", "by": "same_thread", "finding_needs_avery": "yes"}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "reply_owed", "net_id": "n12", "finding": "f65", "by": "same_thread", "finding_needs_avery": "yes"}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "quiet_thread", "net_id": "n13", "finding": "f68", "by": "same_thread", "finding_needs_avery": "yes"}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "suspicious_content", "net_id": "n18", "finding": "f67", "by": "reported_quote"}
+{"task": "net_covers_finding", "question": "n0", "matches": ["s1"], "reason": "jev p=0.94", "by": "jev"}
+{"task": "net_covers_finding", "question": "n1", "matches": ["s2"], "reason": "jev p=0.81", "by": "jev"}
+{"task": "net_covers_finding", "question": "n2", "matches": [], "reason": "jev p=0.93", "by": "jev"}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "calendar_conflict:deep_work", "net_id": "n14", "finding": "s1", "by": "linker", "finding_needs_avery": "yes"}
+{"task": "net_covers_finding", "decision": "net_covered", "net": "calendar_conflict:family", "net_id": "n15", "finding": "s2", "by": "linker", "finding_needs_avery": "yes"}
+{"task": "topics", "question": "q0|approval:ana-kowalski-september-expenses", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q1|approval:expense-report:yuki-september", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "question": "q2|approval:sofia-september-expense-report", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "question": "q3|board-update:monthly-investor-updates", "matches": [], "reason": "jev p=0.87", "by": "jev"}
+{"task": "topics", "question": "q4|board-update:september-investor-update", "matches": [], "reason": "jev p=0.98", "by": "jev"}
+{"task": "topics", "question": "q5|candidate:ines-ferreira:onsite", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q6|candidate:mei-tanaka:offer", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q7|candidate:theo-lindgren", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q8|deal:meridian-two-plants:pricing", "matches": [], "reason": "jev p=0.70", "by": "jev"}
+{"task": "topics", "question": "q9|deal:meridian:plant-bundle-pricing", "matches": ["k24"], "reason": "jev p=0.86", "by": "jev"}
+{"task": "topics", "question": "q10|deal:meridian:plant-bundle-quote", "matches": ["k33"], "reason": "jev p=0.84", "by": "jev"}
+{"task": "topics", "question": "q11|deal:series-a:aperture-call", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "question": "q12|deal:series-a:cap-table-v3", "matches": [], "reason": "jev p=0.70", "by": "jev"}
+{"task": "topics", "question": "q13|deal:series-a:cobalt-pro-rata", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q15|deal:series-a:diligence-references", "matches": [], "reason": "jev p=0.96", "by": "jev"}
+{"task": "topics", "question": "q16|deal:series-a:technical-diligence-materials", "matches": ["k92"], "reason": "jev p=0.74", "by": "jev"}
+{"task": "topics", "question": "q18|family:tahoe-october-cabin", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q19|family:thanksgiving-plans", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q20|family:wren-daycare-closure-sep-24", "matches": [], "reason": "jev p=0.98", "by": "jev"}
+{"task": "topics", "question": "q21|family:wren-pediatrician", "matches": [], "reason": "jev p=0.96", "by": "jev"}
+{"task": "topics", "question": "q22|incident:halberd-sso-guide-tenant-sweep", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q23|incident:veritas-line-2-ingest", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q24|meeting:customer-roundtable-october", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "question": "q25|meeting:hollis-board-compensation", "matches": [], "reason": "jev p=0.90", "by": "jev"}
+{"task": "topics", "question": "q26|meeting:hollis-board-composition", "matches": [], "reason": "jev p=0.88", "by": "jev"}
+{"task": "topics", "question": "q27|meeting:ipv-diligence-call", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "question": "q28|meeting:jae-whitlock-intro", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q29|meeting:lumen-demo-agenda", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q30|meeting:nia-bassett-october-catch-up", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q31|meeting:northstar-qbr", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q32|other:1password-new-device-sign-in", "matches": [], "reason": "jev p=0.86", "by": "jev"}
+{"task": "topics", "question": "q34|other:cadence:veritas-components", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q35|other:delaware-franchise-tax-amended-report", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q36|other:google-account-sign-in", "matches": [], "reason": "jev p=0.92", "by": "jev"}
+{"task": "topics", "question": "q37|other:industrial-iot-board-seat", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q38|other:inference-spend-backfill-concurrency", "matches": ["k271"], "reason": "jev p=0.83", "by": "jev"}
+{"task": "topics", "question": "q39|other:kim-delgado-pto-oct-5-9", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q40|other:news-deepseek-volume-price-cut", "matches": [], "reason": "jev p=0.86", "by": "jev"}
+{"task": "topics", "question": "q41|other:news-halberd-visibility-case-study", "matches": [], "reason": "jev p=0.85", "by": "jev"}
+{"task": "topics", "question": "q42|other:news-northstar-modesto-case-study", "matches": [], "reason": "jev p=0.87", "by": "jev"}
+{"task": "topics", "question": "q43|other:on-call-headcount", "matches": ["k361"], "reason": "jev p=0.98", "by": "jev"}
+{"task": "topics", "question": "q44|other:on-call-rotation:5th-person", "matches": ["k377"], "reason": "jev p=0.97", "by": "jev"}
 {"task": "topics", "question": "q45|other:profile-arr", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q46|other:recruiter-pattern:talentbridge-recruiting", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q47|other:workspace-second-device", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q48|report:halberd-soc-2-type-ii", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q49|report:mid-market-ai-deployment", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q50|rollout:halberd-oct-6", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q51|rollout:northstar-modesto-line-2-downtime-log", "matches": [], "reason": "jev p=0.99", "by": "jev"}
-{"task": "topics", "question": "q52|rollout:northstar-weekly-exception-report-line-count", "matches": [], "reason": "jev p=0.98", "by": "jev"}
-{"task": "topics", "question": "q54|deal:meridian-plant-bundle-quote", "matches": ["k315"], "reason": "jev p=0.90", "by": "jev"}
-{"task": "topics", "question": "q55|deal:meridian:plant-bundle-quote", "matches": ["k317"], "reason": "jev p=0.79", "by": "jev"}
-{"task": "topics", "question": "q56|board-update:september-investor-update", "matches": [], "reason": "jev p=0.99", "by": "jev"}
-{"task": "topics", "question": "q57|meeting:cobalt-ridge-portfolio-founders-dinner", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q58|meeting:halberd-kansas-city-scoping", "matches": [], "reason": "jev p=0.94", "by": "jev"}
-{"task": "topics", "question": "q59|other:news-halberd-visibility-case-study", "matches": [], "reason": "jev p=0.74", "by": "jev"}
-{"task": "topics", "question": "q62|deal:series-a:customer-cohort-analysis-and-q4-pipeline-detail", "matches": [], "reason": "jev p=0.87", "by": "jev"}
-{"task": "topics", "question": "q63|deal:series-a:diligence-materials", "matches": [], "reason": "jev p=0.93", "by": "jev"}
-{"task": "topics", "question": "q64|meeting:ipv-diligence-call", "matches": [], "reason": "jev p=0.99", "by": "jev"}
-{"task": "topics", "question": "q65|meeting:northstar-qbr", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q66|other:news-northstar-visibility-case-study", "matches": [], "reason": "jev p=0.96", "by": "jev"}
-{"task": "topics", "question": "q67|rollout:northstar-modesto-line-2-downtime-log", "matches": [], "reason": "jev p=0.98", "by": "jev"}
-{"task": "topics", "question": "q68|rollout:northstar-weekly-exception-report-line-count", "matches": [], "reason": "jev p=0.96", "by": "jev"}
-{"task": "topics", "question": "q69|meeting:halberd-kansas-city-scoping", "matches": [], "reason": "jev p=0.72", "by": "jev"}
-{"task": "topics", "question": "q71|report:halberd-soc-2-type-ii", "matches": [], "reason": "jev p=0.98", "by": "jev"}
-{"task": "topics", "question": "q72|rollout:halberd-oct-6", "matches": [], "reason": "jev p=0.95", "by": "jev"}
-{"task": "topics", "question": "q73|other:news-northstar-visibility-case-study", "matches": [], "reason": "jev p=0.99", "by": "jev"}
-{"task": "topics", "question": "q74|rollout:northstar-modesto-line-2-downtime-log", "matches": [], "reason": "jev p=0.99", "by": "jev"}
-{"task": "topics", "question": "q75|board-update:ipv-board-composition", "matches": [], "reason": "jev p=0.73", "by": "jev"}
-{"task": "topics", "question": "q76|meeting:hollis-series-a-board-composition", "matches": [], "reason": "jev p=0.85", "by": "jev"}
-{"task": "topics", "question": "q77|deal:series-a:customer-cohort-analysis-and-q4-pipeline-detail", "matches": [], "reason": "jev p=0.94", "by": "jev"}
-{"task": "topics", "question": "q78|deal:series-a:customer-references", "matches": [], "reason": "jev p=0.98", "by": "jev"}
-{"task": "topics", "question": "q79|deal:series-a:diligence-materials", "matches": [], "reason": "jev p=0.92", "by": "jev"}
-{"task": "topics", "question": "q80|deal:series-a:updated-cap-table", "matches": [], "reason": "jev p=0.95", "by": "jev"}
-{"task": "topics", "question": "q81|meeting:ipv-diligence-call", "matches": [], "reason": "jev p=0.99", "by": "jev"}
-{"task": "topics", "question": "q82|approval:kim-pto-oct-5-9", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q85|other:delaware-franchise-tax-amended-report", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q86|other:workspace-second-device", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q87|deal:series-a:customer-cohort-analysis-and-q4-pipeline-detail", "matches": [], "reason": "jev p=0.90", "by": "jev"}
-{"task": "topics", "question": "q88|deal:series-a:customer-references", "matches": [], "reason": "jev p=0.97", "by": "jev"}
-{"task": "topics", "question": "q89|deal:series-a:diligence-materials", "matches": [], "reason": "jev p=0.96", "by": "jev"}
-{"task": "topics", "question": "q90|deal:series-a:updated-cap-table", "matches": [], "reason": "jev p=0.96", "by": "jev"}
-{"task": "topics", "question": "q91|meeting:ipv-diligence-call", "matches": [], "reason": "jev p=0.99", "by": "jev"}
-{"task": "topics", "question": "q92|other:news-northstar-visibility-case-study", "matches": [], "reason": "jev p=0.99", "by": "jev"}
-{"task": "topics", "question": "q93|rollout:northstar-modesto-line-2-downtime-log", "matches": [], "reason": "jev p=0.99", "by": "jev"}
-{"task": "topics", "question": "q94|hiring-req:on-call-fifth-person", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q95|other:workspace-second-device", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q96|meeting:northstar-qbr", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q97|other:news-northstar-visibility-case-study", "matches": [], "reason": "jev p=0.97", "by": "jev"}
-{"task": "topics", "question": "q98|rollout:northstar-modesto-line-2-downtime-log", "matches": [], "reason": "jev p=0.98", "by": "jev"}
-{"task": "topics", "question": "q99|rollout:northstar-weekly-exception-report-line-count", "matches": [], "reason": "jev p=0.97", "by": "jev"}
-{"task": "topics", "question": "q100|other:news-northstar-visibility-case-study", "matches": [], "reason": "jev p=0.99", "by": "jev"}
-{"task": "topics", "question": "q101|rollout:northstar-modesto-line-2-downtime-log", "matches": [], "reason": "jev p=0.99", "by": "jev"}
-{"task": "topics", "question": "q102|approval:inference-spend-backfill-cap", "matches": ["k439"], "reason": "jev p=0.70", "by": "jev"}
-{"task": "topics", "question": "q103|hiring-req:on-call-fifth-person", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q104|incident:veritas-line-2-ingest", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q105|meeting:lumen-demo", "matches": ["k458"], "reason": "jev p=0.89", "by": "jev"}
-{"task": "topics", "question": "q106|other:backfill-concurrency-cap", "matches": [], "reason": "jev p=0.78", "by": "jev"}
-{"task": "topics", "question": "q107|other:lumen-demo-format", "matches": ["k469"], "reason": "jev p=0.72", "by": "jev"}
-{"task": "topics", "question": "q108|other:news-deepseek-volume-cut", "matches": [], "reason": "jev p=0.90", "by": "jev"}
-{"task": "topics", "question": "q109|deal:series-a:customer-cohort-analysis-and-q4-pipeline-detail", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q110|meeting:ipv-diligence-call", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q111|meeting:halberd-kansas-city-scoping", "matches": [], "reason": "jev p=0.78", "by": "jev"}
-{"task": "topics", "question": "q113|report:halberd-soc-2-type-ii", "matches": [], "reason": "jev p=0.99", "by": "jev"}
-{"task": "topics", "question": "q114|rollout:halberd-oct-6", "matches": [], "reason": "jev p=0.95", "by": "jev"}
-{"task": "topics", "question": "q115|hiring-req:on-call-fifth-person", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q116|incident:veritas-line-2-ingest", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q117|approval:kim-pto-oct-5-9", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q118|approval:plant-bundle-pricing", "matches": ["k499"], "reason": "jev p=0.73", "by": "jev"}
-{"task": "topics", "question": "q120|offer:mei-tanaka", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q121|other:delaware-franchise-tax-amended-report", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q122|incident:veritas-line-2-ingest", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q123|other:cadence:veritas-components", "matches": [], "reason": "jev p=0.99", "by": "jev"}
-{"task": "topics", "question": "q124|deal:meridian:plant-bundle-quote", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q125|incident:veritas-line-2-ingest", "matches": [], "reason": "jev p=1.00", "by": "jev"}
-{"task": "topics", "question": "q126|report:halberd-soc-2-type-ii", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q46|other:q2-planning-doc", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "question": "q47|other:recruiter-pattern:talentbridge-recruiting", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q48|other:stripe-payout-verification", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q51|report:halberd-soc-2", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q52|report:mid-market-manufacturing-ai", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q53|rollout:halberd-fresno-oct-6", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q54|rollout:halberd-kansas-city", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q55|rollout:northstar-downtime-log", "matches": [], "reason": "jev p=0.82", "by": "jev"}
+{"task": "topics", "question": "q56|rollout:northstar-modesto-exception-report-recipients", "matches": [], "reason": "jev p=0.74", "by": "jev"}
+{"task": "topics", "question": "q60|meeting:customer-roundtable-october", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q65|meeting:ipv-diligence-call", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q66|meeting:northstar-qbr", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q67|other:news-northstar-modesto-case-study", "matches": [], "reason": "jev p=0.82", "by": "jev"}
+{"task": "topics", "question": "q68|rollout:northstar-downtime-log", "matches": [], "reason": "jev p=0.90", "by": "jev"}
+{"task": "topics", "question": "q69|rollout:northstar-modesto-exception-report-recipients", "matches": [], "reason": "jev p=0.74", "by": "jev"}
+{"task": "topics", "question": "q70|rollout:northstar-weekly-exception-report", "matches": [], "reason": "jev p=0.71", "by": "jev"}
+{"task": "topics", "question": "q71|incident:halberd-sso-guide-tenant-sweep", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "question": "q72|other:news-halberd-visibility-case-study", "matches": [], "reason": "jev p=0.90", "by": "jev"}
+{"task": "topics", "question": "q73|report:halberd-soc-2", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q74|rollout:halberd-fresno-oct-6", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q75|rollout:halberd-kansas-city", "matches": [], "reason": "jev p=0.98", "by": "jev"}
+{"task": "topics", "question": "q76|other:news-northstar-modesto-case-study", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q77|rollout:northstar-downtime-log", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q79|deal:series-a:diligence-references", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q81|deal:series-a:updated-cap-table", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q82|meeting:ipv-diligence-call", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q84|deal:series-a:diligence-references", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "question": "q86|deal:series-a:updated-cap-table", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q87|meeting:ipv-diligence-call", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q88|other:news-northstar-modesto-case-study", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q89|rollout:northstar-downtime-log", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q90|meeting:northstar-qbr", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q91|other:news-northstar-modesto-case-study", "matches": [], "reason": "jev p=0.88", "by": "jev"}
+{"task": "topics", "question": "q92|rollout:northstar-downtime-log", "matches": [], "reason": "jev p=0.88", "by": "jev"}
+{"task": "topics", "question": "q93|rollout:northstar-modesto-exception-report-recipients", "matches": [], "reason": "jev p=0.77", "by": "jev"}
+{"task": "topics", "question": "q94|rollout:northstar-weekly-exception-report", "matches": [], "reason": "jev p=0.71", "by": "jev"}
+{"task": "topics", "question": "q95|other:news-northstar-modesto-case-study", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q96|rollout:northstar-downtime-log", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q97|incident:halberd-sso-guide-tenant-sweep", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "question": "q98|incident:veritas-line-2-ingest", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "question": "q99|meeting:lumen-demo-agenda", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q101|other:inference-spend-backfill-concurrency", "matches": ["k629"], "reason": "jev p=0.70", "by": "jev"}
+{"task": "topics", "question": "q102|other:news-deepseek-volume-price-cut", "matches": [], "reason": "jev p=0.89", "by": "jev"}
+{"task": "topics", "question": "q103|other:q2-planning-doc", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q104|deal:series-a:data-room-diligence-materials", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q105|meeting:ipv-diligence-call", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q106|incident:halberd-sso-guide-tenant-sweep", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "question": "q107|other:news-halberd-visibility-case-study", "matches": [], "reason": "jev p=0.90", "by": "jev"}
+{"task": "topics", "question": "q108|report:halberd-soc-2", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q109|rollout:halberd-fresno-oct-6", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "question": "q110|rollout:halberd-kansas-city", "matches": [], "reason": "jev p=0.98", "by": "jev"}
+{"task": "topics", "question": "q111|incident:veritas-line-2-ingest", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q112|other:on-call-headcount", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q113|other:kim-delgado-pto-oct-5-9", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q114|pricing:meridian-plant-bundle", "matches": ["k671"], "reason": "jev p=0.72", "by": "jev"}
+{"task": "topics", "question": "q115|pricing:plant-bundle-meridian", "matches": ["k673"], "reason": "jev p=0.81", "by": "jev"}
+{"task": "topics", "question": "q117|pricing:meridian-plant-bundle", "matches": ["k677"], "reason": "jev p=0.91", "by": "jev"}
+{"task": "topics", "question": "q118|report:halberd-soc-2", "matches": [], "reason": "jev p=1.00", "by": "jev"}
+{"task": "topics", "question": "q119|rollout:northstar-modesto-exception-report-recipients", "matches": [], "reason": "jev p=0.99", "by": "jev"}
+{"task": "topics", "matches": ["other:backfill-concurrency-cap", "other:inference-spend-backfill-concurrency"], "reason": "Both concern choosing the concurrency cap or plan for backfill."}

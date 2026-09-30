@@ -1,73 +1,80 @@
 {
-  "calls": 305,
-  "cached": 305,
-  "prompt_tokens": 0,
-  "completion_tokens": 0,
-  "cost_usd": 0.0,
+  "calls": 311,
+  "cached": 275,
+  "prompt_tokens": 360755,
+  "completion_tokens": 53014,
+  "cost_usd": 0.049941,
   "cost_unknown_calls": 0,
   "by_role": {
+    "router": {
+      "calls": 8,
+      "cached": 0,
+      "prompt_tokens": 78593,
+      "completion_tokens": 12210,
+      "cost_usd": 0.003301
+    },
     "signature_parser": {
-      "calls": 52,
-      "cached": 52,
-      "prompt_tokens": 0,
-      "completion_tokens": 0,
-      "cost_usd": 0.0
+      "calls": 49,
+      "cached": 47,
+      "prompt_tokens": 1367,
+      "completion_tokens": 54,
+      "cost_usd": 0.000164
     },
     "contact_classifier": {
-      "calls": 63,
-      "cached": 63,
-      "prompt_tokens": 0,
-      "completion_tokens": 0,
-      "cost_usd": 0.0
+      "calls": 65,
+      "cached": 62,
+      "prompt_tokens": 6565,
+      "completion_tokens": 329,
+      "cost_usd": 0.000985
     },
     "linker": {
-      "calls": 9,
-      "cached": 9,
-      "prompt_tokens": 0,
-      "completion_tokens": 0,
-      "cost_usd": 0.0
+      "calls": 8,
+      "cached": 1,
+      "prompt_tokens": 44285,
+      "completion_tokens": 11264,
+      "cost_usd": 0.002171
     },
     "thread_reader": {
-      "calls": 175,
-      "cached": 175,
-      "prompt_tokens": 0,
-      "completion_tokens": 0,
-      "cost_usd": 0.0
-    },
-    "news_sweep": {
-      "calls": 1,
-      "cached": 1,
-      "prompt_tokens": 0,
-      "completion_tokens": 0,
-      "cost_usd": 0.0
-    },
-    "notes_tasks_sweep": {
-      "calls": 1,
-      "cached": 1,
-      "prompt_tokens": 0,
-      "completion_tokens": 0,
-      "cost_usd": 0.0
+      "calls": 173,
+      "cached": 165,
+      "prompt_tokens": 98936,
+      "completion_tokens": 2594,
+      "cost_usd": 0.013663
     },
     "calendar_sweep": {
       "calls": 1,
-      "cached": 1,
-      "prompt_tokens": 0,
-      "completion_tokens": 0,
-      "cost_usd": 0.0
+      "cached": 0,
+      "prompt_tokens": 12229,
+      "completion_tokens": 2790,
+      "cost_usd": 0.002924
+    },
+    "news_sweep": {
+      "calls": 1,
+      "cached": 0,
+      "prompt_tokens": 60930,
+      "completion_tokens": 4441,
+      "cost_usd": 0.009837
+    },
+    "notes_tasks_sweep": {
+      "calls": 1,
+      "cached": 0,
+      "prompt_tokens": 16905,
+      "completion_tokens": 5849,
+      "cost_usd": 0.005038
     },
     "compose": {
       "calls": 1,
-      "cached": 1,
-      "prompt_tokens": 0,
-      "completion_tokens": 0,
-      "cost_usd": 0.0
+      "cached": 0,
+      "prompt_tokens": 29539,
+      "completion_tokens": 12751,
+      "cost_usd": 0.010068
     },
     "materializer": {
-      "calls": 2,
-      "cached": 2,
-      "prompt_tokens": 0,
-      "completion_tokens": 0,
-      "cost_usd": 0.0
+      "calls": 4,
+      "cached": 0,
+      "prompt_tokens": 11406,
+      "completion_tokens": 732,
+      "cost_usd": 0.001791
     }
   }
 }

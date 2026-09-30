@@ -148,11 +148,11 @@
       "escalation_rare_listen"
     ],
     "behavior": {
-      "avery_reply_rate": 0.22,
+      "avery_reply_rate": 0.21,
       "median_avery_reply_hours": 1.4,
       "last_inbound": "2026-03-25T21:12:40-07:00",
       "last_outbound": "2026-03-16T13:45:31-07:00",
-      "initiation_ratio": 0.41,
+      "initiation_ratio": 0.42,
       "shared_meetings_30d": 16
     },
     "drift": []
@@ -188,7 +188,7 @@
       "median_avery_reply_hours": 1.1,
       "last_inbound": "2026-03-25T22:05:25-07:00",
       "last_outbound": "2026-03-19T12:30:09-07:00",
-      "initiation_ratio": 0.25,
+      "initiation_ratio": 0.27,
       "shared_meetings_30d": 12
     },
     "drift": []
@@ -239,82 +239,6 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "billing_notification",
-      "stage": null,
-      "source": "inferred",
-      "evidence": [
-        {
-          "source_id": "msg:<20260225-0412.team@makenotion.com>",
-          "quote": "Your payment was received."
-        },
-        {
-          "source_id": "msg:<20260325-0412.team@makenotion.com>",
-          "quote": "Notion Plus - 12 members x $10.00"
-        }
-      ]
-    },
-    "tier": null,
-    "profile_rules": [],
-    "behavior": {
-      "avery_reply_rate": 0.0,
-      "median_avery_reply_hours": null,
-      "last_inbound": "2026-03-25T04:12:13-07:00",
-      "last_outbound": null,
-      "initiation_ratio": 1.0,
-      "shared_meetings_30d": 0
-    },
-    "drift": []
-  },
-  {
-    "contact_id": "supply-chain-morning",
-    "names": [
-      "Supply Chain Morning"
-    ],
-    "emails": [
-      "morning@scmorning.co"
-    ],
-    "org": null,
-    "title": null,
-    "relationship": {
-      "category": "automated",
-      "subtype": "newsletter",
-      "stage": null,
-      "source": "inferred",
-      "evidence": [
-        {
-          "source_id": "sig:morning@scmorning.co",
-          "quote": "Supply Chain Morning is an independent daily brief written in Oakland."
-        },
-        {
-          "source_id": "sig:morning@scmorning.co",
-          "quote": "Manage your subscription: https://scmorning.co/manage"
-        }
-      ]
-    },
-    "tier": null,
-    "profile_rules": [],
-    "behavior": {
-      "avery_reply_rate": 0.0,
-      "median_avery_reply_hours": null,
-      "last_inbound": "2026-03-22T07:38:40-07:00",
-      "last_outbound": null,
-      "initiation_ratio": 1.0,
-      "shared_meetings_30d": 0
-    },
-    "drift": []
-  },
-  {
-    "contact_id": "gusto",
-    "names": [
-      "Gusto"
-    ],
-    "emails": [
-      "no-reply@gusto.com"
-    ],
-    "org": null,
-    "title": null,
-    "relationship": {
-      "category": "automated",
       "subtype": "automated",
       "stage": null,
       "source": "inferred",
@@ -333,6 +257,73 @@
     "drift": []
   },
   {
+    "contact_id": "supply-chain-morning",
+    "names": [
+      "Supply Chain Morning"
+    ],
+    "emails": [
+      "morning@scmorning.co"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "bulk",
+      "stage": null,
+      "source": "inferred",
+      "evidence": []
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": null,
+      "median_avery_reply_hours": null,
+      "last_inbound": null,
+      "last_outbound": null,
+      "initiation_ratio": null,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "gusto",
+    "names": [
+      "Gusto"
+    ],
+    "emails": [
+      "no-reply@gusto.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "vendor",
+      "subtype": "account_manager",
+      "stage": "active_contract",
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "msg:<20260303-0540.noreply@gusto.com>",
+          "quote": "Your March benefits invoice is ready."
+        },
+        {
+          "source_id": "msg:<20260324-0440.noreply@gusto.com>",
+          "quote": "The ACH debit to fund your Mar 31 payroll was returned by your bank."
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-03-24T04:40:55-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
     "contact_id": "platform-notes",
     "names": [
       "Platform Notes"
@@ -344,24 +335,19 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "newsletter",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
-      "evidence": [
-        {
-          "source_id": "sig:notes@platformnotes.io",
-          "quote": "Platform Notes goes out Monday, Wednesday and Friday. Unsubscribe: https://platformnotes.io/u"
-        }
-      ]
+      "evidence": []
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": 0.0,
+      "avery_reply_rate": null,
       "median_avery_reply_hours": null,
-      "last_inbound": "2026-03-25T06:45:57-07:00",
+      "last_inbound": null,
       "last_outbound": null,
-      "initiation_ratio": 1.0,
+      "initiation_ratio": null,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -378,7 +364,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "newsletter",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -407,7 +393,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -436,7 +422,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "newsletter",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -482,7 +468,7 @@
       "median_avery_reply_hours": 4.0,
       "last_inbound": "2026-03-20T17:10:09-07:00",
       "last_outbound": "2026-03-20T15:35:25-07:00",
-      "initiation_ratio": 0.37,
+      "initiation_ratio": 0.35,
       "shared_meetings_30d": 9
     },
     "drift": []
@@ -528,19 +514,24 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "automated",
+      "subtype": "project_notification",
       "stage": null,
       "source": "inferred",
-      "evidence": []
+      "evidence": [
+        {
+          "source_id": "msg:<20260316-0950.notifications@linear.app>",
+          "quote": "Jordan Liu created a new issue in the project H1 planning"
+        }
+      ]
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": null,
+      "avery_reply_rate": 0.0,
       "median_avery_reply_hours": null,
-      "last_inbound": null,
+      "last_inbound": "2026-03-16T09:50:29-07:00",
       "last_outbound": null,
-      "initiation_ratio": null,
+      "initiation_ratio": 1.0,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -557,7 +548,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -674,36 +665,23 @@
     "emails": [
       "no-reply@zoom.us"
     ],
-    "org": "Zoom Communications, Inc.",
+    "org": null,
     "title": null,
     "relationship": {
-      "category": "vendor",
-      "subtype": "account_manager",
-      "stage": "renewal_due",
+      "category": "automated",
+      "subtype": "automated",
+      "stage": null,
       "source": "inferred",
-      "evidence": [
-        {
-          "source_id": "sig:no-reply@zoom.us",
-          "quote": "Zoom Communications, Inc."
-        },
-        {
-          "source_id": "msg:<20260317-0815.noreply@zoom.us>",
-          "quote": "Your Zoom Workplace annual plan renews in May."
-        },
-        {
-          "source_id": "msg:<20260317-0815.noreply@zoom.us>",
-          "quote": "accounts moving from Business to Business Plus before renewal"
-        }
-      ]
+      "evidence": []
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": 0.0,
+      "avery_reply_rate": null,
       "median_avery_reply_hours": null,
-      "last_inbound": "2026-03-17T08:15:01-07:00",
+      "last_inbound": null,
       "last_outbound": null,
-      "initiation_ratio": 1.0,
+      "initiation_ratio": null,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -720,28 +698,19 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "newsletter",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
-      "evidence": [
-        {
-          "source_id": "sig:letters@runwaynotes.co",
-          "quote": "Runway Notes is a weekly letter for operators."
-        },
-        {
-          "source_id": "msg:<20260305-0545.letters@runwaynotes.co>",
-          "quote": "RUNWAY NOTES Thursday, March 5, 2026"
-        }
-      ]
+      "evidence": []
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": 0.0,
+      "avery_reply_rate": null,
       "median_avery_reply_hours": null,
-      "last_inbound": "2026-03-05T05:45:46-08:00",
+      "last_inbound": null,
       "last_outbound": null,
-      "initiation_ratio": 1.0,
+      "initiation_ratio": null,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -758,7 +727,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -1103,7 +1072,7 @@
       "median_avery_reply_hours": null,
       "last_inbound": "2026-03-23T11:40:05-07:00",
       "last_outbound": null,
-      "initiation_ratio": 0.33,
+      "initiation_ratio": 0.14,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -1120,7 +1089,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -1224,7 +1193,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -1253,28 +1222,19 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": null,
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
-      "evidence": [
-        {
-          "source_id": "sig:hello@inferenceweekly.ai",
-          "quote": "Inference Weekly is free and reader-supported."
-        },
-        {
-          "source_id": "msg:<20260227-0900.hello@inferenceweekly.ai>",
-          "quote": "INFERENCE WEEKLY Friday, February 27, 2026"
-        }
-      ]
+      "evidence": []
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": 0.0,
+      "avery_reply_rate": null,
       "median_avery_reply_hours": null,
-      "last_inbound": "2026-03-20T09:00:38-07:00",
+      "last_inbound": null,
       "last_outbound": null,
-      "initiation_ratio": 1.0,
+      "initiation_ratio": null,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -1290,20 +1250,25 @@
     "org": null,
     "title": null,
     "relationship": {
-      "category": "automated",
-      "subtype": "automated",
-      "stage": null,
+      "category": "vendor",
+      "subtype": "account_manager",
+      "stage": "active_contract",
       "source": "inferred",
-      "evidence": []
+      "evidence": [
+        {
+          "source_id": "msg:<20260301-0630.notifications@brex.com>",
+          "quote": "Your February statement for Tessera, Inc. is ready."
+        }
+      ]
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": null,
+      "avery_reply_rate": 0.0,
       "median_avery_reply_hours": null,
-      "last_inbound": null,
+      "last_inbound": "2026-03-23T10:03:47-07:00",
       "last_outbound": null,
-      "initiation_ratio": null,
+      "initiation_ratio": 1.0,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -1358,32 +1323,23 @@
     "emails": [
       "hello@eastbayfounders.org"
     ],
-    "org": "East Bay Founders Weekly",
+    "org": null,
     "title": null,
     "relationship": {
-      "category": "network",
-      "subtype": "community_organizer",
+      "category": "automated",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
-      "evidence": [
-        {
-          "source_id": "sig:hello@eastbayfounders.org",
-          "quote": "East Bay Founders Weekly is a volunteer-run community newsletter."
-        },
-        {
-          "source_id": "msg:<20260319-0930.hello@eastbayfounders.org>",
-          "quote": "a reminder that the Founder Breakfast is tomorrow, Friday March 20"
-        }
-      ]
+      "evidence": []
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": 0.0,
+      "avery_reply_rate": null,
       "median_avery_reply_hours": null,
-      "last_inbound": "2026-03-19T09:30:58-07:00",
+      "last_inbound": null,
       "last_outbound": null,
-      "initiation_ratio": 1.0,
+      "initiation_ratio": null,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -1400,7 +1356,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -1475,36 +1431,23 @@
     "emails": [
       "feedback@slack.com"
     ],
-    "org": "Slack Technologies, LLC",
+    "org": null,
     "title": null,
     "relationship": {
-      "category": "cold_inbound",
-      "subtype": "sales_pitch",
+      "category": "automated",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
-      "evidence": [
-        {
-          "source_id": "sig:feedback@slack.com",
-          "quote": "Slack Technologies, LLC"
-        },
-        {
-          "source_id": "msg:<20260312-0800.feedback@slack.com>",
-          "quote": "Your Slack workspace has grown, and it now qualifies for a limited upgrade offer"
-        },
-        {
-          "source_id": "msg:<20260312-0800.feedback@slack.com>",
-          "quote": "Upgrade in Settings > Billing, or compare plans"
-        }
-      ]
+      "evidence": []
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": 0.0,
+      "avery_reply_rate": null,
       "median_avery_reply_hours": null,
-      "last_inbound": "2026-03-12T08:00:03-07:00",
+      "last_inbound": null,
       "last_outbound": null,
-      "initiation_ratio": 1.0,
+      "initiation_ratio": null,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -1521,7 +1464,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -1622,7 +1565,41 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "automated",
+      "subtype": null,
+      "stage": null,
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "msg:<20260301-0610.billingnoreply@google.com>",
+          "quote": "This is an automated message. Replies are not monitored."
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-03-01T06:10:50-08:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "term-sheet-sunday",
+    "names": [
+      "Term Sheet Sunday"
+    ],
+    "emails": [
+      "sunday@termsheetsunday.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
+      "category": "automated",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -1640,44 +1617,6 @@
     "drift": []
   },
   {
-    "contact_id": "term-sheet-sunday",
-    "names": [
-      "Term Sheet Sunday"
-    ],
-    "emails": [
-      "sunday@termsheetsunday.com"
-    ],
-    "org": null,
-    "title": null,
-    "relationship": {
-      "category": "automated",
-      "subtype": "newsletter",
-      "stage": null,
-      "source": "inferred",
-      "evidence": [
-        {
-          "source_id": "msg:<20260301-0800.sunday@termsheetsunday.com>",
-          "quote": "The week in venture, for founders who read the documents."
-        },
-        {
-          "source_id": "sig:sunday@termsheetsunday.com",
-          "quote": "Term Sheet Sunday is written by a former deal lawyer. It is not legal advice. Unsubscribe: https://termsheetsunday.com/u"
-        }
-      ]
-    },
-    "tier": null,
-    "profile_rules": [],
-    "behavior": {
-      "avery_reply_rate": 0.0,
-      "median_avery_reply_hours": null,
-      "last_inbound": "2026-03-22T08:00:46-07:00",
-      "last_outbound": null,
-      "initiation_ratio": 1.0,
-      "shared_meetings_30d": 0
-    },
-    "drift": []
-  },
-  {
     "contact_id": "grammarly",
     "names": [
       "Grammarly"
@@ -1689,7 +1628,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -1890,7 +1829,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -1919,7 +1858,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -1948,7 +1887,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -1977,19 +1916,28 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "automated",
+      "subtype": null,
       "stage": null,
       "source": "inferred",
-      "evidence": []
+      "evidence": [
+        {
+          "source_id": "msg:<20260303-1402.noreply@md.getsentry.com>",
+          "quote": "Sentry Metric alert: API error rate (production)"
+        },
+        {
+          "source_id": "msg:<20260319-2207.noreply@md.getsentry.com>",
+          "quote": "Status: Critical Triggered: Mar 19, 2026, 10:07 PM PDT"
+        }
+      ]
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": null,
+      "avery_reply_rate": 0.0,
       "median_avery_reply_hours": null,
-      "last_inbound": null,
+      "last_inbound": "2026-03-19T22:07:35-07:00",
       "last_outbound": null,
-      "initiation_ratio": null,
+      "initiation_ratio": 1.0,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -2031,36 +1979,23 @@
     "emails": [
       "members@baylinefitness.com"
     ],
-    "org": "Bayline Fitness",
+    "org": null,
     "title": null,
     "relationship": {
-      "category": "vendor",
-      "subtype": "account_manager",
-      "stage": "active_contract",
+      "category": "automated",
+      "subtype": "bulk",
+      "stage": null,
       "source": "inferred",
-      "evidence": [
-        {
-          "source_id": "sig:members@baylinefitness.com",
-          "quote": "Bayline Fitness"
-        },
-        {
-          "source_id": "msg:<20260303-1830.members@baylinefitness.com>",
-          "quote": "Your Bayline Fitness membership (Lake Merritt location) is set to renew on April 12."
-        },
-        {
-          "source_id": "sig:members@baylinefitness.com",
-          "quote": "Bayline Fitness, 3200 Lakeshore Ave, Oakland, CA 94610."
-        }
-      ]
+      "evidence": []
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": 0.0,
+      "avery_reply_rate": null,
       "median_avery_reply_hours": null,
-      "last_inbound": "2026-03-03T18:30:32-08:00",
+      "last_inbound": null,
       "last_outbound": null,
-      "initiation_ratio": 1.0,
+      "initiation_ratio": null,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -2077,7 +2012,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -2102,36 +2037,23 @@
     "emails": [
       "platform@granitebay.vc"
     ],
-    "org": "Granite Bay Ventures",
+    "org": null,
     "title": null,
     "relationship": {
-      "category": "capital",
-      "subtype": "fund_staff",
-      "stage": "existing",
+      "category": "automated",
+      "subtype": "bulk",
+      "stage": null,
       "source": "inferred",
-      "evidence": [
-        {
-          "source_id": "sig:platform@granitebay.vc",
-          "quote": "Granite Bay Ventures | Platform"
-        },
-        {
-          "source_id": "msg:<20260304-1000.platform@granitebay.vc>",
-          "quote": "Dear Granite Bay founders, The March portfolio update is below."
-        },
-        {
-          "source_id": "msg:<20260322-0900.platform@granitebay.vc>",
-          "quote": "founders and CEOs across Funds III and IV"
-        }
-      ]
+      "evidence": []
     },
-    "tier": "P1",
+    "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": 0.0,
+      "avery_reply_rate": null,
       "median_avery_reply_hours": null,
-      "last_inbound": "2026-03-22T09:00:08-07:00",
+      "last_inbound": null,
       "last_outbound": null,
-      "initiation_ratio": 1.0,
+      "initiation_ratio": null,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -2148,7 +2070,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "newsletter",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -2226,29 +2148,20 @@
     "org": null,
     "title": null,
     "relationship": {
-      "category": "cold_inbound",
-      "subtype": "sales_pitch",
+      "category": "automated",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
-      "evidence": [
-        {
-          "source_id": "msg:<20260305-0830.hello@gusto.com>",
-          "quote": "Coming soon in Gusto Plus: performance reviews, a compensation-band tool, and headcount planning"
-        },
-        {
-          "source_id": "sig:hello@gusto.com",
-          "quote": "This is a marketing message."
-        }
-      ]
+      "evidence": []
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": 0.0,
+      "avery_reply_rate": null,
       "median_avery_reply_hours": null,
-      "last_inbound": "2026-03-05T08:30:46-08:00",
+      "last_inbound": null,
       "last_outbound": null,
-      "initiation_ratio": 1.0,
+      "initiation_ratio": null,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -2311,7 +2224,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -2382,7 +2295,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -2465,7 +2378,7 @@
       "median_avery_reply_hours": null,
       "last_inbound": "2026-03-24T15:20:02-07:00",
       "last_outbound": null,
-      "initiation_ratio": 0.6,
+      "initiation_ratio": 0.5,
       "shared_meetings_30d": 3
     },
     "drift": []
@@ -2481,29 +2394,20 @@
     "org": null,
     "title": null,
     "relationship": {
-      "category": "cold_inbound",
-      "subtype": "sales_pitch",
+      "category": "automated",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
-      "evidence": [
-        {
-          "source_id": "msg:<20260306-0915.product@ashbyhq.com>",
-          "quote": "What's new in Ashby this month:"
-        },
-        {
-          "source_id": "msg:<20260306-0915.product@ashbyhq.com>",
-          "quote": "The new browser extension adds candidates from LinkedIn and GitHub to a pipeline"
-        }
-      ]
+      "evidence": []
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": 0.0,
+      "avery_reply_rate": null,
       "median_avery_reply_hours": null,
-      "last_inbound": "2026-03-06T09:15:03-08:00",
+      "last_inbound": null,
       "last_outbound": null,
-      "initiation_ratio": 1.0,
+      "initiation_ratio": null,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -2566,7 +2470,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -2633,7 +2537,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -2662,7 +2566,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -2767,36 +2671,23 @@
     "emails": [
       "noreply@github.com"
     ],
-    "org": "GitHub, Inc.",
+    "org": null,
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "notification",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
-      "evidence": [
-        {
-          "source_id": "sig:noreply@github.com",
-          "quote": "GitHub, Inc."
-        },
-        {
-          "source_id": "msg:<20260324-1240.noreply@github.com>",
-          "quote": "GitHub Universe 2026: early registration and a call for talks"
-        },
-        {
-          "source_id": "sig:noreply@github.com",
-          "quote": "GitHub, Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107."
-        }
-      ]
+      "evidence": []
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": 0.0,
+      "avery_reply_rate": null,
       "median_avery_reply_hours": null,
-      "last_inbound": "2026-03-24T12:40:34-07:00",
+      "last_inbound": null,
       "last_outbound": null,
-      "initiation_ratio": 1.0,
+      "initiation_ratio": null,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -2855,7 +2746,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -2883,25 +2774,20 @@
     "org": null,
     "title": null,
     "relationship": {
-      "category": "family",
-      "subtype": "dentist",
+      "category": "automated",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
-      "evidence": [
-        {
-          "source_id": "msg:<20260310-0900.reminders@grandlakedental.com>",
-          "quote": "Our records show it has been about six months since your last cleaning and exam at Grand Lake Dental."
-        }
-      ]
+      "evidence": []
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": 0.0,
+      "avery_reply_rate": null,
       "median_avery_reply_hours": null,
-      "last_inbound": "2026-03-10T09:00:15-07:00",
+      "last_inbound": null,
       "last_outbound": null,
-      "initiation_ratio": 1.0,
+      "initiation_ratio": null,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -3042,7 +2928,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -3105,32 +2991,23 @@
     "emails": [
       "hello@lattice.com"
     ],
-    "org": "Lattice",
+    "org": null,
     "title": null,
     "relationship": {
-      "category": "cold_inbound",
-      "subtype": "sales_pitch",
+      "category": "automated",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
-      "evidence": [
-        {
-          "source_id": "sig:hello@lattice.com",
-          "quote": "Lattice"
-        },
-        {
-          "source_id": "msg:<20260311-1140.hello@lattice.com>",
-          "quote": "Lattice for small teams starts at $11 per person per month"
-        }
-      ]
+      "evidence": []
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": 0.0,
+      "avery_reply_rate": null,
       "median_avery_reply_hours": null,
-      "last_inbound": "2026-03-11T11:40:56-07:00",
+      "last_inbound": null,
       "last_outbound": null,
-      "initiation_ratio": 1.0,
+      "initiation_ratio": null,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -3219,36 +3096,23 @@
     "emails": [
       "marketing@snowflake.com"
     ],
-    "org": "Snowflake Inc.",
+    "org": null,
     "title": null,
     "relationship": {
-      "category": "cold_inbound",
-      "subtype": "sales_pitch",
+      "category": "automated",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
-      "evidence": [
-        {
-          "source_id": "sig:marketing@snowflake.com",
-          "quote": "Snowflake Inc."
-        },
-        {
-          "source_id": "msg:<20260311-1500.marketing@snowflake.com>",
-          "quote": "Snowflake Startup Program is designed to remove the first problem."
-        },
-        {
-          "source_id": "msg:<20260311-1500.marketing@snowflake.com>",
-          "quote": "Eligible companies (under $10M raised, under 5 years old) receive:"
-        }
-      ]
+      "evidence": []
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": 0.0,
+      "avery_reply_rate": null,
       "median_avery_reply_hours": null,
-      "last_inbound": "2026-03-11T15:00:35-07:00",
+      "last_inbound": null,
       "last_outbound": null,
-      "initiation_ratio": 1.0,
+      "initiation_ratio": null,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -3307,7 +3171,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -3378,36 +3242,23 @@
     "emails": [
       "speakers@indsoftsummit.com"
     ],
-    "org": "Foundry Events LLC",
+    "org": null,
     "title": null,
     "relationship": {
-      "category": "external_visibility",
-      "subtype": "conference_organizer",
+      "category": "automated",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
-      "evidence": [
-        {
-          "source_id": "sig:speakers@indsoftsummit.com",
-          "quote": "Produced by Foundry Events LLC"
-        },
-        {
-          "source_id": "msg:<20260313-0700.speakers@indsoftsummit.com>",
-          "quote": "the call for proposals is now open"
-        },
-        {
-          "source_id": "sig:speakers@indsoftsummit.com",
-          "quote": "Industrial Software Summit | Produced by Foundry Events LLC, Denver, CO"
-        }
-      ]
+      "evidence": []
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": 0.0,
+      "avery_reply_rate": null,
       "median_avery_reply_hours": null,
-      "last_inbound": "2026-03-13T07:00:12-07:00",
+      "last_inbound": null,
       "last_outbound": null,
-      "initiation_ratio": 1.0,
+      "initiation_ratio": null,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -3550,7 +3401,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -3579,7 +3430,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -3608,24 +3459,19 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "library_notice",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
-      "evidence": [
-        {
-          "source_id": "msg:<20260315-1015.notices@lakeviewlibrary.org>",
-          "quote": "Your hold is ready for pickup"
-        }
-      ]
+      "evidence": []
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": 0.0,
+      "avery_reply_rate": null,
       "median_avery_reply_hours": null,
-      "last_inbound": "2026-03-15T10:15:48-07:00",
+      "last_inbound": null,
       "last_outbound": null,
-      "initiation_ratio": 1.0,
+      "initiation_ratio": null,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -3683,20 +3529,29 @@
     "org": null,
     "title": null,
     "relationship": {
-      "category": "automated",
-      "subtype": "automated",
-      "stage": null,
+      "category": "hiring",
+      "subtype": "candidate",
+      "stage": "sourced",
       "source": "inferred",
-      "evidence": []
+      "evidence": [
+        {
+          "source_id": "msg:<20260316-1005.replye91c44f0@inbound.ashbyhq.com>",
+          "quote": "Application: Product Designer - Celeste Nguyen"
+        },
+        {
+          "source_id": "msg:<20260316-1005.replye91c44f0@inbound.ashbyhq.com>",
+          "quote": "Applying for the product designer role."
+        }
+      ]
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": null,
+      "avery_reply_rate": 0.0,
       "median_avery_reply_hours": null,
-      "last_inbound": null,
+      "last_inbound": "2026-03-16T10:05:03-07:00",
       "last_outbound": null,
-      "initiation_ratio": null,
+      "initiation_ratio": 1.0,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -3918,25 +3773,20 @@
     "org": null,
     "title": null,
     "relationship": {
-      "category": "unresolved",
-      "subtype": null,
+      "category": "automated",
+      "subtype": "bulk",
       "stage": null,
-      "source": "unresolved",
-      "evidence": [
-        {
-          "source_id": "msg:<20260317-1820.list@trestleglenneighbors.org>",
-          "quote": "Two items from the association"
-        }
-      ]
+      "source": "inferred",
+      "evidence": []
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": 0.0,
+      "avery_reply_rate": null,
       "median_avery_reply_hours": null,
-      "last_inbound": "2026-03-17T18:20:05-07:00",
+      "last_inbound": null,
       "last_outbound": null,
-      "initiation_ratio": 1.0,
+      "initiation_ratio": null,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -3953,7 +3803,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -4020,7 +3870,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -4086,20 +3936,29 @@
     "org": null,
     "title": null,
     "relationship": {
-      "category": "automated",
-      "subtype": "automated",
-      "stage": null,
+      "category": "vendor",
+      "subtype": "account_manager",
+      "stage": "renewal_due",
       "source": "inferred",
-      "evidence": []
+      "evidence": [
+        {
+          "source_id": "msg:<20260319-0900.billing@bastioncompliance.com>",
+          "quote": "the Bastion Compliance annual plan for Tessera, Inc. (account BC-30922) renews automatically on March 27, 2026."
+        },
+        {
+          "source_id": "msg:<20260325-0900.billing@bastioncompliance.com>",
+          "quote": "your card ending 8817 will be charged on the renewal date."
+        }
+      ]
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": null,
+      "avery_reply_rate": 0.0,
       "median_avery_reply_hours": null,
-      "last_inbound": null,
+      "last_inbound": "2026-03-25T09:00:34-07:00",
       "last_outbound": null,
-      "initiation_ratio": null,
+      "initiation_ratio": 1.0,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -4325,8 +4184,46 @@
     "org": null,
     "title": null,
     "relationship": {
+      "category": "hiring",
+      "subtype": "candidate",
+      "stage": "sourced",
+      "source": "inferred",
+      "evidence": [
+        {
+          "source_id": "msg:<20260320-1530.reply3f8ab6c7@inbound.ashbyhq.com>",
+          "quote": "New candidate message on \"Senior Backend Engineer (Oakland / hybrid)\"."
+        },
+        {
+          "source_id": "msg:<20260320-1530.reply3f8ab6c7@inbound.ashbyhq.com>",
+          "quote": "Hi, I applied for the senior backend engineer role two weeks ago"
+        }
+      ]
+    },
+    "tier": null,
+    "profile_rules": [],
+    "behavior": {
+      "avery_reply_rate": 0.0,
+      "median_avery_reply_hours": null,
+      "last_inbound": "2026-03-20T15:30:58-07:00",
+      "last_outbound": null,
+      "initiation_ratio": 1.0,
+      "shared_meetings_30d": 0
+    },
+    "drift": []
+  },
+  {
+    "contact_id": "postman",
+    "names": [
+      "Postman"
+    ],
+    "emails": [
+      "help@postman.com"
+    ],
+    "org": null,
+    "title": null,
+    "relationship": {
       "category": "automated",
-      "subtype": "automated",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -4344,48 +4241,6 @@
     "drift": []
   },
   {
-    "contact_id": "postman",
-    "names": [
-      "Postman"
-    ],
-    "emails": [
-      "help@postman.com"
-    ],
-    "org": "Postman, Inc.",
-    "title": null,
-    "relationship": {
-      "category": "cold_inbound",
-      "subtype": "sales_pitch",
-      "stage": null,
-      "source": "inferred",
-      "evidence": [
-        {
-          "source_id": "sig:help@postman.com",
-          "quote": "Postman, Inc."
-        },
-        {
-          "source_id": "msg:<20260320-1545.help@postman.com>",
-          "quote": "Basic team plans start at $14 per user per month."
-        },
-        {
-          "source_id": "msg:<20260320-1545.help@postman.com>",
-          "quote": "Start a team workspace:"
-        }
-      ]
-    },
-    "tier": null,
-    "profile_rules": [],
-    "behavior": {
-      "avery_reply_rate": 0.0,
-      "median_avery_reply_hours": null,
-      "last_inbound": "2026-03-20T15:45:38-07:00",
-      "last_outbound": null,
-      "initiation_ratio": 1.0,
-      "shared_meetings_30d": 0
-    },
-    "drift": []
-  },
-  {
     "contact_id": "asana",
     "names": [
       "Asana"
@@ -4397,7 +4252,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -4425,25 +4280,20 @@
     "org": null,
     "title": null,
     "relationship": {
-      "category": "family",
-      "subtype": "pharmacy",
+      "category": "automated",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
-      "evidence": [
-        {
-          "source_id": "msg:<20260321-1200.notifications@hillcrestrx.com>",
-          "quote": "Your prescription refill is ready for pickup."
-        }
-      ]
+      "evidence": []
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": 0.0,
+      "avery_reply_rate": null,
       "median_avery_reply_hours": null,
-      "last_inbound": "2026-03-21T12:00:37-07:00",
+      "last_inbound": null,
       "last_outbound": null,
-      "initiation_ratio": 1.0,
+      "initiation_ratio": null,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -4682,7 +4532,7 @@
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "marketing",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
       "evidence": []
@@ -4749,23 +4599,32 @@
     "emails": [
       "noreply@mail.hellosign.com"
     ],
-    "org": null,
+    "org": "Dropbox Sign",
     "title": null,
     "relationship": {
       "category": "automated",
-      "subtype": "automated",
+      "subtype": null,
       "stage": null,
       "source": "inferred",
-      "evidence": []
+      "evidence": [
+        {
+          "source_id": "sig:noreply@mail.hellosign.com",
+          "quote": "Dropbox Sign, 1800 Owens St, San Francisco, CA 94158"
+        },
+        {
+          "source_id": "msg:<20260324-0815.noreply@mail.hellosign.com>",
+          "quote": "has sent you a document to review and sign."
+        }
+      ]
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": null,
+      "avery_reply_rate": 0.0,
       "median_avery_reply_hours": null,
-      "last_inbound": null,
+      "last_inbound": "2026-03-24T08:15:22-07:00",
       "last_outbound": null,
-      "initiation_ratio": null,
+      "initiation_ratio": 1.0,
       "shared_meetings_30d": 0
     },
     "drift": []
@@ -4972,36 +4831,23 @@
     "emails": [
       "membership@eastbaychildrensmuseum.org"
     ],
-    "org": "East Bay Children's Museum",
+    "org": null,
     "title": null,
     "relationship": {
-      "category": "family",
-      "subtype": "museum_membership",
+      "category": "automated",
+      "subtype": "bulk",
       "stage": null,
       "source": "inferred",
-      "evidence": [
-        {
-          "source_id": "sig:membership@eastbaychildrensmuseum.org",
-          "quote": "East Bay Children's Museum"
-        },
-        {
-          "source_id": "msg:<20260324-1700.membership@eastbaychildrensmuseum.org>",
-          "quote": "Your Family Membership expires on April 30, 2026."
-        },
-        {
-          "source_id": "msg:<20260324-1700.membership@eastbaychildrensmuseum.org>",
-          "quote": "unlimited admission for 2 adults and up to 4 children"
-        }
-      ]
+      "evidence": []
     },
     "tier": null,
     "profile_rules": [],
     "behavior": {
-      "avery_reply_rate": 0.0,
+      "avery_reply_rate": null,
       "median_avery_reply_hours": null,
-      "last_inbound": "2026-03-24T17:00:20-07:00",
+      "last_inbound": null,
       "last_outbound": null,
-      "initiation_ratio": 1.0,
+      "initiation_ratio": null,
       "shared_meetings_30d": 0
     },
     "drift": []

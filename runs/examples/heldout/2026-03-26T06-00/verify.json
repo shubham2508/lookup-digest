@@ -1,25 +1,12 @@
 {
-  "violations": [
-    {
-      "rule": 3,
-      "item_id": "i10",
-      "detail": "only newsletter/marketing sources",
-      "fix": "dropped"
-    },
-    {
-      "rule": 7,
-      "item_id": "i10",
-      "detail": "P0 item was not placed; added as a one-liner",
-      "fix": "fixed"
-    }
-  ],
+  "violations": [],
   "stats": {
-    "words": 244,
+    "words": 222,
     "budget": 350,
     "header_present": true,
-    "items": 11,
-    "items_cited": 11,
-    "citations_total": 44,
-    "citations_resolved": 44
+    "items": 12,
+    "items_cited": 12,
+    "citations_total": 40,
+    "citations_resolved": 40
   }
 }

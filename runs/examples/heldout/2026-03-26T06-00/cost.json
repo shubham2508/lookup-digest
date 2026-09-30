@@ -1,73 +1,80 @@
 {
-  "calls": 403,
-  "cached": 403,
-  "prompt_tokens": 0,
-  "completion_tokens": 0,
-  "cost_usd": 0.0,
+  "calls": 334,
+  "cached": 131,
+  "prompt_tokens": 2465988,
+  "completion_tokens": 219214,
+  "cost_usd": 0.388633,
   "cost_unknown_calls": 0,
   "by_role": {
+    "router": {
+      "calls": 9,
+      "cached": 0,
+      "prompt_tokens": 91890,
+      "completion_tokens": 14229,
+      "cost_usd": 0.003859
+    },
     "signature_parser": {
-      "calls": 77,
-      "cached": 77,
-      "prompt_tokens": 0,
-      "completion_tokens": 0,
-      "cost_usd": 0.0
+      "calls": 58,
+      "cached": 57,
+      "prompt_tokens": 651,
+      "completion_tokens": 62,
+      "cost_usd": 9.6e-05
     },
     "contact_classifier": {
-      "calls": 86,
-      "cached": 86,
-      "prompt_tokens": 0,
-      "completion_tokens": 0,
-      "cost_usd": 0.0
+      "calls": 72,
+      "cached": 68,
+      "prompt_tokens": 9477,
+      "completion_tokens": 474,
+      "cost_usd": 0.001421
     },
     "linker": {
-      "calls": 11,
-      "cached": 11,
-      "prompt_tokens": 0,
-      "completion_tokens": 0,
-      "cost_usd": 0.0
+      "calls": 10,
+      "cached": 2,
+      "prompt_tokens": 50678,
+      "completion_tokens": 12877,
+      "cost_usd": 0.002587
     },
     "thread_reader": {
-      "calls": 220,
-      "cached": 220,
-      "prompt_tokens": 0,
-      "completion_tokens": 0,
-      "cost_usd": 0.0
-    },
-    "calendar_sweep": {
-      "calls": 1,
-      "cached": 1,
-      "prompt_tokens": 0,
-      "completion_tokens": 0,
-      "cost_usd": 0.0
-    },
-    "notes_tasks_sweep": {
-      "calls": 1,
-      "cached": 1,
-      "prompt_tokens": 0,
-      "completion_tokens": 0,
-      "cost_usd": 0.0
+      "calls": 178,
+      "cached": 4,
+      "prompt_tokens": 2184326,
+      "completion_tokens": 162998,
+      "cost_usd": 0.350262
     },
     "news_sweep": {
       "calls": 1,
-      "cached": 1,
-      "prompt_tokens": 0,
-      "completion_tokens": 0,
-      "cost_usd": 0.0
+      "cached": 0,
+      "prompt_tokens": 55755,
+      "completion_tokens": 3075,
+      "cost_usd": 0.008507
+    },
+    "calendar_sweep": {
+      "calls": 1,
+      "cached": 0,
+      "prompt_tokens": 13567,
+      "completion_tokens": 3831,
+      "cost_usd": 0.003611
+    },
+    "notes_tasks_sweep": {
+      "calls": 1,
+      "cached": 0,
+      "prompt_tokens": 17190,
+      "completion_tokens": 5937,
+      "cost_usd": 0.005117
     },
     "compose": {
       "calls": 1,
-      "cached": 1,
-      "prompt_tokens": 0,
-      "completion_tokens": 0,
-      "cost_usd": 0.0
+      "cached": 0,
+      "prompt_tokens": 32798,
+      "completion_tokens": 15301,
+      "cost_usd": 0.01175
     },
     "materializer": {
-      "calls": 5,
-      "cached": 5,
-      "prompt_tokens": 0,
-      "completion_tokens": 0,
-      "cost_usd": 0.0
+      "calls": 3,
+      "cached": 0,
+      "prompt_tokens": 9656,
+      "completion_tokens": 430,
+      "cost_usd": 0.001422
     }
   }
 }

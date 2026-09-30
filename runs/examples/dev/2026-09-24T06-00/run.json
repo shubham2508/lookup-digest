@@ -9,27 +9,28 @@
   "customize": null,
   "timings_s": {
     "compile_profile": 0.008,
-    "ingest": 0.437,
-    "normalize": 0.037,
-    "spine": 0.323,
-    "read": 1.398,
-    "persist": 0.016,
-    "sweep": 0.022,
-    "nets": 0.013,
-    "merge": 0.021,
-    "compute": 0.06,
-    "enforce": 0.003,
+    "ingest": 0.463,
+    "normalize": 0.035,
+    "route": 4.386,
+    "spine": 4.56,
+    "read": 10.4,
+    "persist": 0.017,
+    "sweep": 49.219,
+    "nets": 0.705,
+    "merge": 4.842,
+    "compute": 54.816,
+    "enforce": 0.004,
     "reduce": 0.001,
-    "compose": 0.012,
-    "materialize": 0.003,
+    "compose": 97.302,
+    "materialize": 12.729,
     "verify": 0.001,
     "render": 0.0
   },
-  "wall_s": 2.33,
-  "cost_usd": 0.0,
-  "llm_calls": 305,
-  "llm_cached": 305,
-  "degradations": 29,
+  "wall_s": 184.769,
+  "cost_usd": 0.049941,
+  "llm_calls": 311,
+  "llm_cached": 275,
+  "degradations": 19,
   "owner_email": "avery@tessera.io",
   "threads": 359,
   "messages": 528,
@@ -37,52 +38,62 @@
   "events": 112,
   "notes": 10,
   "tasks": 5,
-  "read": {
-    "threads_read": 175,
-    "llm_calls": 175,
-    "cached": 175,
-    "failed": 0,
-    "findings": 69,
-    "needs_avery": {
-      "yes": 47,
-      "no": 20,
-      "unsure": 2
+  "route": {
+    "asked": 177,
+    "routed": {
+      "human": 135,
+      "automated": 42
     },
-    "citations_dropped": 17,
-    "findings_dropped": 1,
+    "unsure": 14,
+    "failed": null
+  },
+  "read": {
+    "threads_read": 173,
+    "llm_calls": 173,
+    "cached": 165,
+    "failed": 0,
+    "findings": 74,
+    "needs_avery": {
+      "yes": 49,
+      "no": 22,
+      "unsure": 3
+    },
+    "citations_dropped": 10,
+    "findings_dropped": 0,
+    "out_of_scope": 0,
     "rulings_applied": 0,
     "retrieval": "compute.context.retrieve"
   },
   "compute": {
     "contacts": 138,
-    "reader_findings": 69,
-    "sweep_findings": 16,
-    "net_findings": 23,
-    "rescues": 4,
-    "about_merges": 5,
-    "candidates": 68,
+    "reader_findings": 74,
+    "sweep_findings": 13,
+    "net_findings": 19,
+    "rescues": 2,
+    "about_merges": 4,
+    "candidates": 67,
     "by_origin": {
-      "thread_reader": 69,
-      "calendar_sweep": 5,
-      "notes_tasks_sweep": 8,
+      "thread_reader": 74,
+      "calendar_sweep": 3,
+      "notes_tasks_sweep": 7,
       "news_sweep": 3,
-      "safety_net": 5
+      "safety_net": 3
     },
-    "links": 150
+    "links": 134
   },
   "triage": {
-    "candidates": 68,
-    "fixes": 4,
+    "candidates": 67,
+    "fixes": 3,
     "rulings_applied": 0
   },
   "reduce": {
-    "items": 48,
-    "overflow": 23,
+    "items": 56,
+    "overflow": 31,
     "dropped": 0,
-    "merges": 5
+    "merges": 4
   },
   "compose": {
-    "cached": true,
+    "cached": false,
     "fallback": false,
     "fixes": [
       "i26 unplaced → also pending",
@@ -108,37 +119,44 @@
       "i46 unplaced → also pending",
       "i47 unplaced → also pending",
       "i48 unplaced → also pending",
-      "i23 moved to also pending (page limit 12)",
-      "i22 moved to also pending (page limit 12)",
-      "i21 moved to also pending (page limit 12)",
+      "i49 unplaced → also pending",
+      "i50 unplaced → also pending",
+      "i51 unplaced → also pending",
+      "i52 unplaced → also pending",
+      "i53 unplaced → also pending",
+      "i54 unplaced → also pending",
+      "i55 unplaced → also pending",
+      "i56 unplaced → also pending",
+      "i25 moved to also pending (page limit 12)",
+      "i24 moved to also pending (page limit 12)",
       "i20 moved to also pending (page limit 12)",
       "i19 moved to also pending (page limit 12)",
-      "i17 moved to also pending (page limit 12)",
+      "i18 moved to also pending (page limit 12)",
       "i16 moved to also pending (page limit 12)",
-      "i15 moved to also pending (page limit 12)",
+      "i14 moved to also pending (page limit 12)",
       "i13 moved to also pending (page limit 12)"
     ],
-    "one_thing": "i3",
+    "one_thing": "i4",
     "placed": 12,
-    "cut": 36
+    "cut": 44
   },
   "materialize": {
-    "actions": 12,
-    "llm_calls": 2,
-    "cached": 2,
+    "actions": 13,
+    "llm_calls": 4,
+    "cached": 0,
     "draft_retries": 0,
     "drafts_dropped": 0
   },
   "verify": {
     "violations": [],
     "stats": {
-      "words": 223,
+      "words": 198,
       "budget": 350,
       "header_present": true,
       "items": 12,
       "items_cited": 12,
-      "citations_total": 47,
-      "citations_resolved": 47
+      "citations_total": 39,
+      "citations_resolved": 39
     }
   },
   "history": {
