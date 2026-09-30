@@ -2,12 +2,6 @@
 
 A one-page 6:00am PT triage digest for "Avery Chen", built from a synthetic month of email, calendar, notes and tasks. LLM readers judge the raw threads; code does the math, the hard rules and a recall floor; the page is scored against a human-reviewed answer key.
 
-**Since the first submission** (tag `submitted-v1` → `resubmitted-v2`; decisions `OPEN_QUESTIONS.md` #26, #27):
-- No keyword or word-list decisions left in `digest/`: routing reads mail headers where they prove something, and Jev picks the rest (a person, a system asking Avery to act, a system FYI, list mail); unsure means the thread is read.
-- The regex safety nets for automated requests and injected instructions are gone: readers now read that mail and report both.
-- Reader context comes from shared people (ranked by the rarest one), plus every note and the task list; a reader may only raise issues from its own thread.
-- Measured by one Thursday rerun per world: P0 8/8 and the one thing right on both; dev 124/175 traps against 120/175 for the submitted code rerun the same day (the reported 126 was a good run); held-out five mornings 151 → 153/207, noise 6.1% → 5.9%. The five-morning reports in `eval/reports/` are still from the submitted code.
-
 **Results** (five mornings per world; P0 recall is the gate): P0 recall 100% on dev and 92.3% on held-out (a second world, run once, never tuned on); the one thing right on every morning that has one; noise 5.5% / 6.1%. The one-call baseline gets 50% / 0% P0. About $0.40 a cold morning.
 
 ## For reviewers
