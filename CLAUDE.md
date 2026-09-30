@@ -40,7 +40,7 @@ profile/       profile.md (Avery's profile, verbatim from the assignment), profi
 prompts/       one versioned .md per LLM prompt
 digest/        THE PRODUCT (never reads world/ or eval/)
   ingest/ normalize/         parsing, threading, quote stripping, freshness
-  compute/                   contacts (spine), context (retrieval), sweeps, candidates (safety nets), linker, jev, merge
+  compute/                   routing (Jev mail kind), contacts (spine), context (retrieval), sweeps, candidates (safety nets), linker, jev, merge
   read/                      raw-thread renderer and the thread readers
   findings.py                Finding → Candidate + TriageResult (the contract the tail of the pipeline consumes)
   reduce/ compose/ materialize/ verify/ render/ compile/

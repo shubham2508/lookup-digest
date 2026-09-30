@@ -48,6 +48,8 @@ A fixed DAG, not an agent loop. Each digest is a snapshot "as of" a timestamp (P
 
 ## 4. Router (code)
 
+> **Superseded 2026-09-30** (`OPEN_QUESTIONS.md` #26, #27): no domain or word lists. Headers settle what they prove (the owner wrote in it, list headers, Auto-Submitted); Jev picks person / system ask / system FYI / list mail for the rest; unsure is read. See `digest/normalize/router.py` and `digest/compute/routing.py`.
+
 - `marketing` or `newsletter` if `List-Unsubscribe` / `Precedence: bulk` / known bulk sender domains, split by a small domain→kind list plus the extractor fallback.
 - `automated` for known system senders (DocuSign, Stripe, Expensify, GitHub, calendar notifications).
 - Else `human`. When uncertain → `unsure`, and the extractor decides.

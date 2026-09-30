@@ -2,7 +2,13 @@
 
 A one-page 6:00am PT triage digest for "Avery Chen", built from a synthetic month of email, calendar, notes and tasks. LLM readers judge the raw threads; code does the math, the hard rules and a recall floor; the page is scored against a human-reviewed answer key.
 
-**Results** (five mornings per world; P0 recall is the gate): P0 recall 100% on dev and 92.3% on held-out (a second world, run once, never tuned on); the one thing right on every morning that has one; noise 5.5% / 6.1%. The one-call baseline gets 50% / 0% P0. About $0.40 a cold morning. After submission, keyword routing was replaced by header facts plus Jev (`OPEN_QUESTIONS.md` #26, #27), verified by one Thursday rerun per world: P0 8/8 on both, held-out traps 151 → 153/207.
+**Since the first submission** (tag `submitted-v1` → `resubmitted-v2`; decisions `OPEN_QUESTIONS.md` #26, #27):
+- No keyword or word-list decisions left in `digest/`: routing reads mail headers where they prove something, and Jev picks the rest (a person, a system asking Avery to act, a system FYI, list mail); unsure means the thread is read.
+- The regex safety nets for automated requests and injected instructions are gone: readers now read that mail and report both.
+- Reader context comes from shared people (ranked by the rarest one), plus every note and the task list; a reader may only raise issues from its own thread.
+- Measured by one Thursday rerun per world: P0 8/8 and the one thing right on both; dev 124/175 traps against 120/175 for the submitted code rerun the same day (the reported 126 was a good run); held-out five mornings 151 → 153/207, noise 6.1% → 5.9%. The five-morning reports in `eval/reports/` are still from the submitted code.
+
+**Results** (five mornings per world; P0 recall is the gate): P0 recall 100% on dev and 92.3% on held-out (a second world, run once, never tuned on); the one thing right on every morning that has one; noise 5.5% / 6.1%. The one-call baseline gets 50% / 0% P0. About $0.40 a cold morning.
 
 ## For reviewers
 
@@ -26,7 +32,7 @@ cp .env.example .env          # paste an OPENROUTER_API_KEY with a few dollars o
 uv run pytest                 # ~400 tests, no network, no key
 ```
 
-Everything else is in the repo: both worlds' data (`data/dev`, `data/heldout`), the answer keys, the profile, the prompts, the config, finished example runs under `runs/examples/` (digests, every artifact, one full LLM trace) and the final reports under `eval/reports/`. Without a key you can read those; with one, a morning takes about 8 minutes and $0.40 cold (readers are cached per thread and date; a rerun is a cent) and the full eval matrix about $2 per world. Models are in `config/models.yaml`: the pipeline on `openai/gpt-6-luna`, TypeSafe's Jev for "same thing?" decisions (the LLM if unavailable), `deepseek/deepseek-v4.1-flash` as judge.
+Everything else is in the repo: both worlds' data (`data/dev`, `data/heldout`), the answer keys, the profile, the prompts, the config, finished example runs under `runs/examples/` (digests, every artifact, one full LLM trace) and the final reports under `eval/reports/`. Without a key you can read those; with one, a morning takes about 8 minutes and $0.40 cold (readers are cached per thread and date; a rerun is a cent) and the full eval matrix about $2 per world. Models are in `config/models.yaml`: the pipeline on `openai/gpt-6-luna`, TypeSafe's Jev for "same thing?" decisions and for each thread's mail kind (the LLM, or reading the thread, if unavailable), `deepseek/deepseek-v4.1-flash` as judge.
 
 ## Run
 
@@ -38,7 +44,7 @@ uv run digest baseline --world dev --as-of 2026-09-24T06:00               # naiv
 uv run digest ui                                                          # http://127.0.0.1:8765
 ```
 
-A run writes `runs/dev/<as_of>/digest.md` and every stage's artifact: `contacts.json`, `findings.jsonl`, `links.jsonl`, `reduce.json`, `compose.json`, `actions.jsonl`, `verify.json`, `cost.json`, `trace.jsonl` (every LLM call with its prompt and answer). Run days: dev Sun 2026-09-20 to Thu 2026-09-24, held-out Sun 2026-03-22 to Thu 2026-03-26 (`--world heldout`). Without a key, `run` stops and says so. `--customize` takes any sentence (nine examples in `profile/customize/`); the UI runs a morning and shows the digest, why each item is there, and every LLM call by phase.
+A run writes `runs/dev/<as_of>/digest.md` and every stage's artifact: `contacts.json`, `findings.jsonl`, `links.jsonl`, `reduce.json`, `compose.json`, `actions.jsonl`, `verify.json`, `cost.json`, `routes.jsonl` (Jev's mail kind per thread and where it went), `trace.jsonl` (every LLM call with its prompt and answer). Run days: dev Sun 2026-09-20 to Thu 2026-09-24, held-out Sun 2026-03-22 to Thu 2026-03-26 (`--world heldout`). Without a key, `run` stops and says so. `--customize` takes any sentence (nine examples in `profile/customize/`); the UI runs a morning and shows the digest, why each item is there, and every LLM call by phase.
 
 ## Memory
 
