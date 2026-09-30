@@ -17,10 +17,13 @@ ITEM_CHARS = 600
 KINDS = {
     "person": "a person wrote it to the owner or the team: a colleague, customer, investor, candidate, advisor, "
               "lawyer, vendor or sales rep, recruiter, friend or family member",
-    "system_ask": "an automated system message that asks the owner to do something only they can do: sign a document, "
-                  "pay or fix a failed payment, approve a request, verify an account, or a security step",
-    "system_fyi": "an automated system message that needs nothing from the owner: a receipt, notification, report, "
-                  "alert handled by someone else, confirmation, or a reminder of something already done",
+    "system_ask": "an automated message about something the owner may need to act on or decide: sign a document, pay or "
+                  "fix a failed payment, approve a request, verify an account, a security step, an upcoming renewal or "
+                  "charge, a deadline, a legal or tax notice, a budget or spend alert, or a family member's appointment, "
+                  "school or daycare notice",
+    "system_fyi": "an automated message that needs nothing from the owner: a receipt or a payment that went through, a "
+                  "completed or processed notice, a code, CI or deploy notification, a report or digest, a calendar "
+                  "invitation, accept or decline, or an applicant or interview notice for the hiring team",
     "bulk": "a newsletter, marketing or promotional email sent to a list",
 }
 ROUTE = {"person": "human", "system_ask": "human", "system_fyi": "automated", "bulk": "bulk"}
