@@ -69,6 +69,28 @@ contact_classifier,calendar_sweep,notes_tasks_sweep,news_sweep}.md`.
 
 ## Decided
 
+- **2026-09-30 · #26 no keyword or word-list decisions left in `digest/`** (Shubham: "these are bugs, using
+  non-deterministic regex to decide some logic as it can go wrong some % of time"; fix on main). #25 claimed every
+  keyword decision was gone; three survived. Criteria: code decides only from hard facts (headers, addresses, times,
+  counts); meaning goes to an LLM. (1) Router: header facts only. Avery wrote in it → human; list headers or
+  Precedence bulk → bulk (the news sweep reads it); Auto-Submitted → automated; everything else → human. The domain,
+  sender-name and subject-word lists are gone (they kept 65 dev / 72 held-out threads from any reader, and sent
+  bulk mail to a reader only when a word score tied). Readers read human and automated threads. (2) Nets: the
+  automated-request regex net (#22c) is removed, since readers now read that mail; the suspicious net keeps what readers
+  and sweeps report and drops its regex guard (both planted injections are in threads readers read). (3) Retrieval:
+  events and the two related threads by shared people, ranked by the rarest shared person (a teammate on every thread
+  links nothing; counting everyone equally filled readers' context with unrelated internal threads and cost 4 traps),
+  later before earlier, nearest first; every note and the whole task list go to every reader, newest note first under
+  a cap, any left out logged. (4) A reader's finding must cite its own thread: one that cites only context is
+  logged as out_of_scope and dropped (a Tomás thread's reader reported another thread's promise as overdue).
+  **Measured on dev Thursday only** (cold runs, rulings aside): new code 122/175 traps, P0 8/8, the one thing
+  missed; the submitted code rerun cold scores 120/175, P0 8/8, the one thing missed too, so the submitted
+  125–126 was a good draw and the change is inside run-to-run noise. The SSO "sweep other tenants" P0 is reader
+  variance (about 1 run in 3 with the old context, the new one, or no notes). Held-out was **not** run: the OpenRouter
+  key ran out (HTTP 402 on in-flight reservations; one attempt had 238 of 240 reader calls refused and was
+  discarded, and the submitted held-out Thursday run was put back). Cold cost on dev is about $0.45 (every note in
+  every reader).
+
 - **2026-09-29 evening · #25 final code review: fix high and medium, verify with one day** (Shubham: "fix high severity
   and medium ones … one day iteration is also fine"). Fixed: decide-card drafts pass the never-draft and draft checks
   (materialize and verify); a customize "hide section" moves a P0 to "Also outside your filter"; any API/transport
