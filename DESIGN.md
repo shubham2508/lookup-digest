@@ -42,7 +42,7 @@ v1 extracted every document into a fact schema, generated candidates from twenty
 
 ## Running it on a schedule
 
-Ingest incrementally (hourly), compose at 06:00 in the owner's time zone from the delta. Local launchd for a demo; a timezone-aware cloud scheduler (Cloud Scheduler or EventBridge with an explicit zone) in production, so 06:00 does not drift twice a year. About $0.30 a cold morning; a midday rerun reuses every cached reading whose thread did not change.
+Ingest incrementally (hourly), compose at 06:00 in the owner's time zone from the delta. Local launchd for a demo; a timezone-aware cloud scheduler (Cloud Scheduler or EventBridge with an explicit zone) in production, so 06:00 does not drift twice a year. About $0.40 a cold morning; a midday rerun reuses every cached reading whose thread did not change.
 
 ## Week two
 

@@ -26,7 +26,7 @@ cp .env.example .env          # paste an OPENROUTER_API_KEY with a few dollars o
 uv run pytest                 # ~400 tests, no network, no key
 ```
 
-Everything else is in the repo: both worlds' data (`data/dev`, `data/heldout`), the answer keys, the profile, the prompts, the config, finished example runs under `runs/examples/` (digests, every artifact, one full LLM trace) and the final reports under `eval/reports/`. Without a key you can read those; with one, a morning takes about 8 minutes and $0.40 cold (readers are cached per thread and date; a rerun is a cent) and the full eval matrix about $2 per world. Models are in `config/models.yaml`: the pipeline on `openai/gpt-6-luna`, TypeSafe's Jev for "same thing?" decisions and for each thread's mail kind (the LLM, or reading the thread, if unavailable), `deepseek/deepseek-v4.1-flash` as judge.
+Everything else is in the repo: both worlds' data (`data/dev`, `data/heldout`), the answer keys, the profile, the prompts, the config, finished example runs under `runs/examples/` (digests, every artifact, one full LLM trace) and the final reports under `eval/reports/`. Without a key you can read those; with one, a morning takes about 8 minutes and $0.40 cold (readers are cached per thread and date; a rerun is a cent) and the full eval matrix about $5 per world. Models are in `config/models.yaml`: the pipeline on `openai/gpt-6-luna`, TypeSafe's Jev for "same thing?" decisions and for each thread's mail kind (the LLM, or reading the thread, if unavailable), `deepseek/deepseek-v4.1-flash` as judge.
 
 ## Run
 
@@ -46,7 +46,7 @@ A run writes `runs/dev/<as_of>/digest.md` and every stage's artifact: `contacts.
 uv run digest run --world dev --as-of 2026-09-21T06:00      # Monday: a question card Q1
 uv run digest answer Q1 2 --world dev                        # answer it → runs/dev/rulings.yaml
 uv run digest run --world dev --as-of 2026-09-22T06:00      # Tuesday: "applied 1 learned rule"; the card is gone
-uv run digest simulate --world dev --days 5 --fresh          # the whole loop with a simulated Avery (~$1)
+uv run digest simulate --world dev --days 5 --fresh          # the whole loop with a simulated Avery (~$2)
 ```
 
 Answers are kept in `runs/<world>/rulings.yaml` and apply to every later run of that world; `--fresh` and the eval matrix set it and the history store aside first (renamed, never deleted).
@@ -59,7 +59,7 @@ uv run digest eval --world dev --customize-suite --baseline   # rescore the runs
 uv run digest eval --world dev --judge                        # + the API judge (cents); --judge-export f / --judge-scores f for in-session grading
 ```
 
-A fresh clone has no runs to score: start with the matrix (cold, about $2 and 1.5–2 h per world; dev and held-out can run at the same time, each has its own store). The submitted reports are `eval/reports/{dev,heldout}_2026-09-29.md`, with the in-session judge scores in `eval/judge/in_session/`.
+A fresh clone has no runs to score: start with the matrix (cold, about $5 and 1.5–2 h per world; dev and held-out can run at the same time, each has its own store). The final reports are `eval/reports/{dev,heldout}_2026-09-29.md`, with the in-session judge scores in `eval/judge/in_session/`.
 
 The report: §1 v1 / v2 / baseline on dev and held-out (P0 recall is the only gate; trap assertions, noise, the one thing, judge, cost), §2 diagnostics per morning with every miss attributed to the stage that lost it, then variants, customize and the simulation checks. Credit is decided by exact keys and cited sources, the product's decider for the ambiguous cases; every decision is listed. `eval/history.md` logs prompt changes; v1 is tag `v1-extraction-centric`.
 
