@@ -46,4 +46,8 @@ Ingest incrementally (hourly), compose at 06:00 in the owner's time zone from th
 
 ## Week two
 
-A closed loop (an accepted draft becomes sent mail, so the next morning sees it resolved); answering cards by replying to the digest email; midday runs; Slack and Gmail behind the same normalize layer; the API judge calibrated against this session's scores; reader tags carried across mornings.
+1. **Score the mean of 3 runs per morning.** The same code scored 126 and 120/175 on two cold dev runs; one run can't tell a real ±3 from luck.
+2. **Stabilize the calls that flip.** The one thing and a few P0s change between identical runs; ask 2–3 times on those and keep the majority.
+3. **Close the loop.** Accepted drafts become sent mail; question cards are answered by replying to the digest email.
+4. **Notes at scale.** Jev picks each thread's relevant notes instead of sending all of them to every reader.
+5. Slack and Gmail through the same normalize layer; midday runs; the API judge calibrated against the in-session scores.

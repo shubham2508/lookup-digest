@@ -8,7 +8,7 @@ A one-page 6:00am PT triage digest for "Avery Chen", built from a synthetic mont
 
 | To see | Open |
 |---|---|
-| The design, results and what was rejected, on one page | `DESIGN.md` |
+| The design, results, what was rejected, how it runs on a schedule, and what a second week would do | `DESIGN.md` |
 | What a morning looks like | `runs/examples/dev/2026-09-24T06-00/digest.md` (every artifact and LLM call beside it) |
 | Scores, and every miss traced to the stage that lost it | `eval/reports/dev_2026-09-29.md`, `heldout_2026-09-29.md`, `review_fixes_2026-09-29.md` |
 | What it does and how each capability is tested | `docs/CAPABILITIES.md` |
